@@ -1,0 +1,58 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        args: [--preview, -l79]
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: [--profile, black, --line-length=79]
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          - flake8-bugbear
+          - flake8-comprehensions
+          - flake8-simplify
+          - flake8-pie
+          - flake8-print
+          - flake8-useless-assert
+          - flake8-comprehensions
+          - flake8-builtins
+          - flake8-assertive
+          - radon
+          - dlint
+        args: [--max-line-length=79, --radon-max-cc=12, --radon-show-closures]
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.3.0
+    hooks:
+      - id: mypy
+        exclude: migrations
+        additional_dependencies:
+          - types-dataclasses >= 0.1.3
+          - types-PyYAML
+          - tomli >= 0.2.6, < 2.0.0
+          - types-typed-ast >= 1.4.1
+          - click >= 8.1.0
+          - platformdirs >= 2.1.0
+          - hypothesis
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: debug-statements
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-yaml
+        exclude: cie10.yaml|cpt.yaml
+      - id: requirements-txt-fixer
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+default_language_version:
+  python: python3
+
+default_stages: [commit]
+default_install_hook_types: [pre-commit, pre-push]
