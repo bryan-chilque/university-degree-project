@@ -17,10 +17,10 @@ class HomeView(TemplateView):
 class SeguroVehicularCreateView(CreateView):
     template_name = "rrggadmin/seguro/vehicular/create.html"
     success_url = urls.reverse_lazy("rrggadmin:seguro:vehicular:list")
-    model = rrgg.models.SeguroVehicular
+    model = rrgg.models.InsuranceVehiclePrice
     fields = "__all__"
 
 
 class SeguroVehicularListView(ListView):
     template_name = "rrggadmin/seguro/vehicular/list.html"
-    model = rrgg.models.SeguroVehicular
+    model = rrgg.models.InsuranceVehiclePrice
