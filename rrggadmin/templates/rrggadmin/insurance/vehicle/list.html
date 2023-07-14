@@ -1,0 +1,7 @@
+<h3>Seguros vehiculares</h3>
+<a href="{% url 'rrggadmin:insurance:vehicle:create' %}">Crear</a>
+<ul>
+  {% for insurance in object_list %}
+  <li><a href="{% url 'rrggadmin:insurance:vehicle:price:list' insurance.id %}">{{ insurance }}</a></li>
+  {% endfor %}
+</ul>

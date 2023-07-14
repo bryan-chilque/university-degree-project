@@ -2,21 +2,39 @@ from django.urls import include, path
 
 from . import views
 
-seguro_vehicular_urlpatterns = (
+insurance_vehicle_price_urlpatterns = (
     [
-        path("lista/", views.SeguroVehicularListView.as_view(), name="list"),
         path(
-            "crear/", views.SeguroVehicularCreateView.as_view(), name="create"
+            "list/", views.InsuranceVehiclePriceListView.as_view(), name="list"
+        ),
+        path(
+            "create/",
+            views.InsuranceVehiclePriceCreateView.as_view(),
+            name="create",
         ),
     ],
-    "vehicular",
+    "price",
 )
 
-seguro_urlpatterns = (
+insurance_vehicle_urlpatterns = (
     [
-        path("vehicular/", include(seguro_vehicular_urlpatterns)),
+        path("list/", views.InsuraceVehicleListView.as_view(), name="list"),
+        path(
+            "create/", views.InsuraceVehicleCreateView.as_view(), name="create"
+        ),
+        path(
+            "<int:insurance_vehicle_id>/price/",
+            include(insurance_vehicle_price_urlpatterns),
+        ),
     ],
-    "seguro",
+    "vehicle",
+)
+
+insurance_urlpatterns = (
+    [
+        path("vehicle/", include(insurance_vehicle_urlpatterns)),
+    ],
+    "insurance",
 )
 
 consultant_urlpatterns = (
@@ -31,6 +49,6 @@ app_name = "rrggadmin"
 urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),
     path("home/", views.HomeView.as_view(), name="home"),
-    path("seguro/", include(seguro_urlpatterns)),
+    path("insurance/", include(insurance_urlpatterns)),
     path("consultant/", include(consultant_urlpatterns)),
 ]
