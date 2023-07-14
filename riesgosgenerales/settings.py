@@ -11,7 +11,7 @@ SECRET_KEY = (
 
 DEBUG = True
 
-ALLOWED_HOSTS: List[str] = []
+ALLOWED_HOSTS: List[str] = ["*"]
 
 
 # Application definition
@@ -23,6 +23,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rrgg",
+    "rrggweb",
+    "rrggadmin",
 ]
 
 MIDDLEWARE = [

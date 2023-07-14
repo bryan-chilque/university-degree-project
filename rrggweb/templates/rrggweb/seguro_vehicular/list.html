@@ -1,0 +1,10 @@
+<ul>
+    {% for seguro in object_list %}
+        <li>
+            Prima Neta = {{ seguro.prima_neta }}
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'rrggweb:seguro_vehicular:create' %}">
+    Crear
+</a>
