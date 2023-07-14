@@ -1,37 +1,21 @@
-from django.core.validators import (
-    MaxLengthValidator,
-    MinLengthValidator,
-    RegexValidator,
-)
 from django.db import models
 
 
 class Customer(models.Model):
-    give_name = models.CharField(max_length=64, default="")
-    first_surname = models.CharField(max_length=64, default="")
-    second_surname = models.CharField(max_length=64, default="")
-    dni = models.CharField(
-        max_length=8,
-        default="",
-        validators=[
-            MinLengthValidator(8),
-            MaxLengthValidator(8),
-            RegexValidator(r"^\d+$"),
-        ],
-    )
+    give_name = models.CharField(max_length=64)
+    first_surname = models.CharField(max_length=64)
+    second_surname = models.CharField(max_length=64, null=True)
+    document_number = models.CharField(max_length=32)
 
     def __str__(self):
         return self.give_name + " " + self.first_surname
 
 
 class Vehicle(models.Model):
-    brand = models.CharField(max_length=64, default="")
-    vehicle_model = models.CharField(max_length=64, default="")
-    property_number = models.CharField(max_length=64, default="")
-    fabrication_year = models.PositiveIntegerField(
-        default=0, validators=[MinLengthValidator(4), MaxLengthValidator(4)]
-    )
-    use = models.CharField(max_length=128, default="")
+    brand = models.CharField(max_length=64)
+    vehicle_model = models.CharField(max_length=64)
+    property_number = models.CharField(max_length=64)
+    fabrication_year = models.PositiveIntegerField(default=0)
 
     customer = models.ForeignKey(
         Customer,
@@ -47,48 +31,40 @@ class Vehicle(models.Model):
 
 
 class Consultant(models.Model):
-    give_name = models.CharField(max_length=64, default="")
-    first_surname = models.CharField(max_length=64, default="")
-    second_surname = models.CharField(max_length=64, default="")
-    dni = models.CharField(
-        max_length=8,
-        default="",
-        validators=[
-            MinLengthValidator(8),
-            MaxLengthValidator(8),
-            RegexValidator(r"^\d+$"),
-        ],
-    )
+    give_name = models.CharField(max_length=64)
+    first_surname = models.CharField(max_length=64)
+    second_surname = models.CharField(max_length=64)
+    document_number = models.CharField(max_length=32)
 
     def __str__(self):
         return self.give_name + self.first_surname
 
 
 class InsuranceVehicle(models.Model):
-    name = models.CharField(max_length=64, default="")
+    name = models.CharField(max_length=64)
 
     def __str__(self):
         return self.name
 
+    def last_price(self):
+        return self.prices.order_by("-created").first()
+
 
 class InsuranceVehiclePrice(models.Model):
-    name = models.CharField(max_length=64, default="")
     business_premium = models.PositiveIntegerField()
     emission_right = models.PositiveIntegerField()
-    igv = models.PositiveIntegerField()
+    tax = models.PositiveIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
     insurance_vehicle = models.ForeignKey(
         InsuranceVehicle,
-        related_name="insurance_vehicle_prices",
+        related_name="prices",
         on_delete=models.PROTECT,
         null=False,
     )
 
     @property
-    def prima_total(self):
-        return self.business_premium + self.emission_right + self.igv
-
-    def __str__(self):
-        return self.name
+    def total(self):
+        return self.business_premium + self.emission_right + self.tax
 
 
 class InsuranceVehicleQuotation(models.Model):
@@ -110,9 +86,8 @@ class InsuranceVehicleQuotation(models.Model):
         on_delete=models.PROTECT,
         null=False,
     )
-    date = models.DateField(null=False)
-    hour = models.TimeField(null=False)
-    observations = models.CharField(max_length=128, default="")
+    created = models.DateTimeField(auto_now_add=True)
+    observations = models.TextField(max_length=512)
 
     # TODO: Pensar que puede devolver
     def __str__(self):

@@ -24,3 +24,8 @@ class SeguroVehicularCreateView(CreateView):
 class SeguroVehicularListView(ListView):
     template_name = "rrggadmin/seguro/vehicular/list.html"
     model = rrgg.models.InsuranceVehiclePrice
+
+
+class ConsultantListView(ListView):
+    template_name = "rrggadmin/consultant/list.html"
+    model = rrgg.models.Consultant

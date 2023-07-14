@@ -19,6 +19,12 @@ seguro_urlpatterns = (
     "seguro",
 )
 
+consultant_urlpatterns = (
+    [
+        path("list/", views.ConsultantListView.as_view(), name="list"),
+    ],
+    "consultant",
+)
 
 app_name = "rrggadmin"
 
@@ -26,4 +32,5 @@ urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),
     path("home/", views.HomeView.as_view(), name="home"),
     path("seguro/", include(seguro_urlpatterns)),
+    path("consultant/", include(consultant_urlpatterns)),
 ]
