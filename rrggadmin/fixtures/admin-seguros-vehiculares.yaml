@@ -1,7 +1,0 @@
-- model: rrgg.segurovehicular
-  pk: 1
-  fields:
-    nombre: mapfre
-    prima_neta: 111
-    derecho_emision: 222
-    igv: 333

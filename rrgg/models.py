@@ -56,15 +56,15 @@ class InsuranceVehiclePrice(models.Model):
     tax = models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     insurance_vehicle = models.ForeignKey(
-        InsuranceVehicle,
-        related_name="prices",
-        on_delete=models.PROTECT,
-        null=False,
+        InsuranceVehicle, related_name="prices", on_delete=models.PROTECT
     )
 
     @property
     def total(self):
         return self.business_premium + self.emission_right + self.tax
+
+    def __str__(self) -> str:
+        return f"business_premium={self.business_premium}"
 
 
 class InsuranceVehicleQuotation(models.Model):
