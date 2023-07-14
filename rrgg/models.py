@@ -25,9 +25,7 @@ class Vehicle(models.Model):
     )
 
     def __str__(self):
-        return (
-            self.brand + " " + self.vehicle_model + " " + self.fabrication_year
-        )
+        return self.brand + " " + self.vehicle_model + " " + self.fabrication_year
 
 
 class Consultant(models.Model):
@@ -37,7 +35,7 @@ class Consultant(models.Model):
     document_number = models.CharField(max_length=32)
 
     def __str__(self):
-        return self.give_name + self.first_surname
+        return self.give_name + " " + self.first_surname
 
 
 class InsuranceVehicle(models.Model):

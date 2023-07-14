@@ -1,1 +1,16 @@
-<h1>Lista de Consultores</h1>
+{% extends 'base.html' %} {% load static %} {% block title %}Consultores
+{%endblock %} {% block body %}
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Lista de Consultores</h1>
+    <a class="btn btn-primary" href="{% url 'rrggadmin:consultant:create' %}"
+      >Adicionar Consultor</a
+    >
+  </div>
+  <ul class="list-group">
+    {% for consultant in object_list %}
+    <li class="list-group-item">{{ consultant }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
