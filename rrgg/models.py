@@ -25,7 +25,9 @@ class Vehicle(models.Model):
     )
 
     def __str__(self):
-        return self.brand + " " + self.vehicle_model + " " + self.fabrication_year
+        return (
+            self.brand + " " + self.vehicle_model + " " + self.fabrication_year
+        )
 
 
 class Consultant(models.Model):

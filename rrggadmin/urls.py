@@ -5,7 +5,9 @@ from . import views
 seguro_vehicular_urlpatterns = (
     [
         path("lista/", views.SeguroVehicularListView.as_view(), name="list"),
-        path("crear/", views.SeguroVehicularCreateView.as_view(), name="create"),
+        path(
+            "crear/", views.SeguroVehicularCreateView.as_view(), name="create"
+        ),
     ],
     "vehicular",
 )
