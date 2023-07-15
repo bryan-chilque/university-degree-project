@@ -1,5 +1,12 @@
 {% extends 'base.html' %} {% block title %}Seguro Vehicular{% endblock %}
 {% block body %}
 <h1>Seguro Vehicular</h1>
+<ul>
+    {% for quotation in object_list %}
+    <li>
+        {{ quotation }}
+    </li>
+    {% endfor %}
+</ul>
 <a href="{% url 'rrggweb:quotation:insurance:vehicle:create' %}">Crear</a>
 {% endblock %}

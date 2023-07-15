@@ -4,7 +4,7 @@ from django.db import models
 class Customer(models.Model):
     give_name = models.CharField(max_length=64)
     first_surname = models.CharField(max_length=64)
-    second_surname = models.CharField(max_length=64, null=True)
+    second_surname = models.CharField(max_length=64, blank=True)
     document_number = models.CharField(max_length=32)
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Vehicle(models.Model):
 class Consultant(models.Model):
     give_name = models.CharField(max_length=64)
     first_surname = models.CharField(max_length=64)
-    second_surname = models.CharField(max_length=64, null=True)
+    second_surname = models.CharField(max_length=64, blank=True)
     document_number = models.CharField(max_length=32)
 
     def __str__(self):
@@ -63,15 +63,19 @@ class InsuranceVehiclePrice(models.Model):
         return self.business_premium + self.emission_right + self.tax
 
     def __str__(self) -> str:
-        return f"business_premium={self.business_premium}"
+        return (
+            f"bp={self.business_premium} er={self.emission_right}"
+            f"tax={self.tax} total={self.total}"
+        )
 
 
 class QuotationInsuranceVehicle(models.Model):
-    vehicle = models.OneToOneField(
+    """vehicle = models.OneToOneField(
         Vehicle,
         related_name="insurance_vehicle_quotation",
         on_delete=models.PROTECT,
-    )
+    )"""
+
     consultant = models.OneToOneField(
         Consultant,
         related_name="insurance_vehicle_quotation",
@@ -83,8 +87,10 @@ class QuotationInsuranceVehicle(models.Model):
         on_delete=models.PROTECT,
     )
     created = models.DateTimeField(auto_now_add=True)
-    observations = models.TextField(max_length=512)
+    observations = models.TextField(max_length=512, blank=True)
 
-    # TODO: Pensar que puede devolver
     def __str__(self):
-        return self.customer.give_name + " " + self.customer.first_surname
+        return (
+            f"c={self.consultant} iv={self.insurance_vehicle_price}"
+            f"({self.created})"
+        )
