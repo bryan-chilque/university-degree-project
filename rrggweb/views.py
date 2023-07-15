@@ -1,9 +1,10 @@
 from django import urls
 from django.contrib.auth import views as views_auth
-from django.views.generic import CreateView, ListView, TemplateView
+from django.views.generic import CreateView, FormView, ListView, TemplateView
 
 import rrgg.models
 
+from . import forms
 from .utils import SeguroItem
 
 
@@ -41,3 +42,23 @@ class QuotationInsuranceVehicleCreateView(CreateView):
     success_url = urls.reverse_lazy("rrggweb:quotation:insurance:vehicle:list")
     model = rrgg.models.QuotationInsuranceVehicle
     fields = "__all__"
+
+
+class QuotationInsuranceVehicleSearchView(FormView):
+    template_name = "rrggweb/quotation/insurance/vehicle/search.html"
+    form_class = forms.SearchByDocumentNumberForm
+
+    def form_valid(self, form):
+        document_number = form.cleaned_data["document_number"]
+        customer_exists = rrgg.models.Customer.objects.filter(
+            document_number=document_number
+        ).exists()
+        if customer_exists:
+            self.success_url = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create_vehicle"
+            )
+        else:
+            self.success_url = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create_customer"
+            )
+        return super().form_valid(form)

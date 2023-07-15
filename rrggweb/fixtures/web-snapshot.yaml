@@ -3,8 +3,8 @@
   fields:
     give_name: Angie
     first_surname: Tomasto
-    second_surname: ''
-    document_number: '12345678'
+    second_surname: ""
+    document_number: "12345678"
 - model: rrgg.insurancevehicle
   pk: 1
   fields:
@@ -101,10 +101,25 @@
     tax: 9
     created: 2023-07-14 23:39:13.926868+00:00
     insurance_vehicle: 1
+- model: rrgg.customer
+  pk: 1
+  fields:
+    give_name: Bryan
+    first_surname: Chilque
+    document_number: 12345679
+- model: rrgg.vehicle
+  pk: 1
+  fields:
+    customer_id: 1
+    brand: Toyota
+    vehicle_model: Corolla
+    property_number: 123
+    fabrication_year: 2022
 - model: rrgg.quotationinsurancevehicle
   pk: 1
   fields:
+    vehicle_id: 1
     consultant: 1
     insurance_vehicle_price: 4
     created: 2023-07-15 13:08:38.068658+00:00
-    observations: ''
+    observations: ""

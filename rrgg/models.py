@@ -5,7 +5,7 @@ class Customer(models.Model):
     give_name = models.CharField(max_length=64)
     first_surname = models.CharField(max_length=64)
     second_surname = models.CharField(max_length=64, blank=True)
-    document_number = models.CharField(max_length=32)
+    document_number = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
         return self.give_name + " " + self.first_surname
@@ -14,7 +14,7 @@ class Customer(models.Model):
 class Vehicle(models.Model):
     brand = models.CharField(max_length=64)
     vehicle_model = models.CharField(max_length=64)
-    property_number = models.CharField(max_length=64)
+    property_number = models.CharField(max_length=64, unique=True)
     fabrication_year = models.PositiveIntegerField(default=0)
 
     customer = models.ForeignKey(
@@ -33,14 +33,14 @@ class Consultant(models.Model):
     give_name = models.CharField(max_length=64)
     first_surname = models.CharField(max_length=64)
     second_surname = models.CharField(max_length=64, blank=True)
-    document_number = models.CharField(max_length=32)
+    document_number = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
         return self.give_name + " " + self.first_surname
 
 
 class InsuranceVehicle(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return self.name
@@ -53,7 +53,7 @@ class InsuranceVehiclePrice(models.Model):
     business_premium = models.PositiveIntegerField()
     emission_right = models.PositiveIntegerField()
     tax = models.PositiveIntegerField()
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True, unique=True)
     insurance_vehicle = models.ForeignKey(
         InsuranceVehicle, related_name="prices", on_delete=models.PROTECT
     )
@@ -70,20 +70,19 @@ class InsuranceVehiclePrice(models.Model):
 
 
 class QuotationInsuranceVehicle(models.Model):
-    """vehicle = models.OneToOneField(
+    vehicle = models.OneToOneField(
         Vehicle,
-        related_name="insurance_vehicle_quotation",
+        related_name="quotation_insurance_vehicle",
         on_delete=models.PROTECT,
-    )"""
-
+    )
     consultant = models.OneToOneField(
         Consultant,
-        related_name="insurance_vehicle_quotation",
+        related_name="quotation_insurance_vehicle",
         on_delete=models.PROTECT,
     )
     insurance_vehicle_price = models.OneToOneField(
         InsuranceVehiclePrice,
-        related_name="insurance_vehicle_quotation",
+        related_name="quotation_insurance_vehicle",
         on_delete=models.PROTECT,
     )
     created = models.DateTimeField(auto_now_add=True)
