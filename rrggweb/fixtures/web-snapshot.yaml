@@ -1,10 +1,54 @@
+- model: rrgg.customer
+  pk: 1
+  fields:
+    give_name: Bryan
+    first_surname: Chilque
+    second_surname: ''
+    document_number: '12345679'
+- model: rrgg.vehicle
+  pk: 1
+  fields:
+    brand: Toyota
+    vehicle_model: Corolla
+    property_number: '123'
+    fabrication_year: 2022
+    customer: 1
+- model: rrgg.vehicle
+  pk: 2
+  fields:
+    brand: nissan
+    vehicle_model: '123'
+    property_number: '123456'
+    fabrication_year: 2002
+    customer: 1
+- model: rrgg.vehicle
+  pk: 3
+  fields:
+    brand: '12345'
+    vehicle_model: '12345'
+    property_number: '12345'
+    fabrication_year: 2001
+    customer: 1
+- model: rrgg.vehicle
+  pk: 4
+  fields:
+    brand: '455'
+    vehicle_model: '455'
+    property_number: '455'
+    fabrication_year: 2025
+    customer: 1
 - model: rrgg.consultant
   pk: 1
   fields:
     give_name: Angie
     first_surname: Tomasto
-    second_surname: ""
-    document_number: "12345678"
+    second_surname: ''
+    document_number: '12345678'
+- model: rrgg.consultantmembership
+  pk: 1
+  fields:
+    consultant: 1
+    user: 3
 - model: rrgg.insurancevehicle
   pk: 1
   fields:
@@ -101,25 +145,80 @@
     tax: 9
     created: 2023-07-14 23:39:13.926868+00:00
     insurance_vehicle: 1
-- model: rrgg.customer
-  pk: 1
-  fields:
-    give_name: Bryan
-    first_surname: Chilque
-    document_number: 12345679
-- model: rrgg.vehicle
-  pk: 1
-  fields:
-    customer_id: 1
-    brand: Toyota
-    vehicle_model: Corolla
-    property_number: 123
-    fabrication_year: 2022
 - model: rrgg.quotationinsurancevehicle
   pk: 1
   fields:
-    vehicle_id: 1
+    vehicle: 1
     consultant: 1
     insurance_vehicle_price: 4
     created: 2023-07-15 13:08:38.068658+00:00
-    observations: ""
+    observations: ''
+- model: rrgg.quotationinsurancevehicle
+  pk: 2
+  fields:
+    vehicle: 4
+    consultant: 1
+    insurance_vehicle_price: 7
+    created: 2023-07-15 17:23:27.666811+00:00
+    observations: ''
+- model: rrgg.quotationinsurancevehicle
+  pk: 3
+  fields:
+    vehicle: 4
+    consultant: 1
+    insurance_vehicle_price: 7
+    created: 2023-07-15 17:23:36.300733+00:00
+    observations: ''
+- model: rrgg.quotationinsurancevehicle
+  pk: 4
+  fields:
+    vehicle: 4
+    consultant: 1
+    insurance_vehicle_price: 7
+    created: 2023-07-15 17:27:12.780822+00:00
+    observations: ''
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$600000$5BqAtvC8wS6bbMlWHDW5vy$2r5WWwpkLuVzBFvn46N08l3KWHjrkGE4hsnQwZANlEs=
+    last_login: 2023-07-15 16:18:15.819806+00:00
+    is_superuser: false
+    username: admin
+    first_name: ''
+    last_name: ''
+    email: admin@rrgg.com
+    is_staff: false
+    is_active: true
+    date_joined: 2023-07-14 16:52:43.593890+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: miguel
+    last_login: null
+    is_superuser: false
+    username: miguel
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2023-07-15 16:26:35.179061+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$600000$D1ooclEBbVKqGEvBwDaxnV$zvuPwmGGpPyT0i08p1Zyt5j5gF1nWTWk/sxvjYo178w=
+    last_login: 2023-07-15 17:18:43.448020+00:00
+    is_superuser: false
+    username: bryan
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2023-07-15 16:29:31.678998+00:00
+    groups: []
+    user_permissions: []

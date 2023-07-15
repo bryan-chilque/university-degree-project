@@ -45,11 +45,37 @@ consultant_urlpatterns = (
     "consultant",
 )
 
+
+user_urlpatterns = (
+    [
+        path("list/", views.UserListView.as_view(), name="list"),
+        path("create/", views.UserCreateView.as_view(), name="create"),
+    ],
+    "user",
+)
+
+consultant_membership_urlpatterns = (
+    [
+        path(
+            "list/", views.ConsultantMembershipListView.as_view(), name="list"
+        ),
+        path(
+            "create/",
+            views.ConsultantMembershipCreateView.as_view(),
+            name="create",
+        ),
+    ],
+    "consultant_membership",
+)
+
 app_name = "rrggadmin"
+
 
 urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),
     path("home/", views.HomeView.as_view(), name="home"),
     path("insurance/", include(insurance_urlpatterns)),
     path("consultant/", include(consultant_urlpatterns)),
+    path("user/", include(user_urlpatterns)),
+    path("consultant_membership/", include(consultant_membership_urlpatterns)),
 ]

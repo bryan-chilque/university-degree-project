@@ -14,6 +14,36 @@ class HomeView(TemplateView):
     template_name = "rrggadmin/home.html"
 
 
+# USERS
+class UserListView(ListView):
+    template_name = "rrggadmin/user/list.html"
+    model = rrgg.models.get_user_model()
+
+
+class UserCreateView(CreateView):
+    template_name = "rrggadmin/user/create.html"
+    success_url = urls.reverse_lazy("rrggadmin:user:list")
+    model = rrgg.models.get_user_model()
+    fields = ["username", "password"]
+
+    def form_valid(self, form):
+        form.instance.set_password(form.instance.password)
+        return super().form_valid(form)
+
+
+# CONSULTANT MEMBERSHIP
+class ConsultantMembershipListView(ListView):
+    template_name = "rrggadmin/consultant_membership/list.html"
+    model = rrgg.models.ConsultantMembership
+
+
+class ConsultantMembershipCreateView(CreateView):
+    template_name = "rrggadmin/consultant_membership/create.html"
+    success_url = urls.reverse_lazy("rrggadmin:consultant_membership:list")
+    model = rrgg.models.ConsultantMembership
+    fields = "__all__"
+
+
 # INSURANCE VEHICLE
 
 

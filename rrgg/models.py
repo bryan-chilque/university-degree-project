@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 
@@ -37,6 +38,20 @@ class Consultant(models.Model):
         return self.give_name + " " + self.first_surname
 
 
+class ConsultantMembership(models.Model):
+    consultant = models.ForeignKey(
+        Consultant, on_delete=models.PROTECT, related_name="membership"
+    )
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.PROTECT,
+        related_name="consultant_membership",
+    )
+
+    def __str__(self):
+        return f"consultant={self.consultant}, user={self.user}"
+
+
 class InsuranceVehicle(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
@@ -68,17 +83,17 @@ class InsuranceVehiclePrice(models.Model):
 
 
 class QuotationInsuranceVehicle(models.Model):
-    vehicle = models.OneToOneField(
+    vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicle",
         on_delete=models.PROTECT,
     )
-    consultant = models.OneToOneField(
+    consultant = models.ForeignKey(
         Consultant,
         related_name="quotation_insurance_vehicle",
         on_delete=models.PROTECT,
     )
-    insurance_vehicle_price = models.OneToOneField(
+    insurance_vehicle_price = models.ForeignKey(
         InsuranceVehiclePrice,
         related_name="quotation_insurance_vehicle",
         on_delete=models.PROTECT,
@@ -89,5 +104,5 @@ class QuotationInsuranceVehicle(models.Model):
     def __str__(self):
         return (
             f"c={self.consultant} iv={self.insurance_vehicle_price}"
-            f"({self.created})"
+            f" cr={self.vehicle.customer} ({self.created})"
         )

@@ -41,7 +41,7 @@ quotation_urlpatterns = (
 )
 
 urlpatterns = [
-    path("home/", views.HomeView.as_view(), name="home"),
     path("login/", views.LoginView.as_view(), name="login"),
-    path("quotation/", include(quotation_urlpatterns)),
+    path("<int:consultant_id>/home/", views.HomeView.as_view(), name="home"),
+    path("<int:consultant_id>/quotation/", include(quotation_urlpatterns)),
 ]
