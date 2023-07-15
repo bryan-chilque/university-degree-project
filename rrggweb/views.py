@@ -1,4 +1,4 @@
-from django import urls
+from django import shortcuts, urls
 from django.contrib.auth import views as views_auth
 from django.views.generic import CreateView, FormView, ListView, TemplateView
 
@@ -41,7 +41,17 @@ class QuotationInsuranceVehicleCreateView(CreateView):
     template_name = "rrggweb/quotation/insurance/vehicle/create.html"
     success_url = urls.reverse_lazy("rrggweb:quotation:insurance:vehicle:list")
     model = rrgg.models.QuotationInsuranceVehicle
-    fields = "__all__"
+    fields = ["insurance_vehicle_price", "observations"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.Customer, id=self.kwargs["customer_id"]
+        )
+        context["vehicle"] = shortcuts.get_object_or_404(
+            rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
+        )
+        return context
 
 
 class QuotationInsuranceVehicleSearchView(FormView):
@@ -70,12 +80,18 @@ class QuotationInsuranceVehicleSearchView(FormView):
 
 class QuotationInsuranceVehicleCreateVehicleView(CreateView):
     template_name = "rrggweb/quotation/insurance/vehicle/create_vehicle.html"
-    success_url = urls.reverse_lazy(
-        "rrggweb:quotation:insurance:vehicle:create"
-    )
     model = rrgg.models.Vehicle
     fields = ["brand", "vehicle_model", "property_number", "fabrication_year"]
 
     def form_valid(self, form):
         form.instance.customer_id = self.kwargs["customer_id"]
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:create",
+            kwargs={
+                "customer_id": self.kwargs["customer_id"],
+                "vehicle_id": self.object.id,
+            },
+        )

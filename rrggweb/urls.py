@@ -12,7 +12,7 @@ quotation_insurance_vehicle_urlpatterns = (
             name="list",
         ),
         path(
-            "create/",
+            "create/customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
             views.QuotationInsuranceVehicleCreateView.as_view(),
             name="create",
         ),
