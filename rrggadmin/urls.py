@@ -40,6 +40,7 @@ insurance_urlpatterns = (
 consultant_urlpatterns = (
     [
         path("list/", views.ConsultantListView.as_view(), name="list"),
+        path("create/", views.ConsultantCreateView.as_view(), name="create"),
     ],
     "consultant",
 )
