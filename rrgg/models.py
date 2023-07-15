@@ -21,7 +21,6 @@ class Vehicle(models.Model):
         Customer,
         related_name="vehicles",
         on_delete=models.PROTECT,
-        null=False,
     )
 
     def __str__(self):
@@ -33,7 +32,7 @@ class Vehicle(models.Model):
 class Consultant(models.Model):
     give_name = models.CharField(max_length=64)
     first_surname = models.CharField(max_length=64)
-    second_surname = models.CharField(max_length=64)
+    second_surname = models.CharField(max_length=64, null=True)
     document_number = models.CharField(max_length=32)
 
     def __str__(self):
@@ -67,24 +66,21 @@ class InsuranceVehiclePrice(models.Model):
         return f"business_premium={self.business_premium}"
 
 
-class InsuranceVehicleQuotation(models.Model):
+class QuotationInsuranceVehicle(models.Model):
     vehicle = models.OneToOneField(
         Vehicle,
         related_name="insurance_vehicle_quotation",
         on_delete=models.PROTECT,
-        null=False,
     )
     consultant = models.OneToOneField(
         Consultant,
         related_name="insurance_vehicle_quotation",
         on_delete=models.PROTECT,
-        null=True,
     )
     insurance_vehicle_price = models.OneToOneField(
         InsuranceVehiclePrice,
         related_name="insurance_vehicle_quotation",
         on_delete=models.PROTECT,
-        null=False,
     )
     created = models.DateTimeField(auto_now_add=True)
     observations = models.TextField(max_length=512)
