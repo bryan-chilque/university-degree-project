@@ -54,11 +54,28 @@ class QuotationInsuranceVehicleSearchView(FormView):
             document_number=document_number
         ).exists()
         if customer_exists:
+            customer = rrgg.models.Customer.objects.get(
+                document_number=document_number
+            )
             self.success_url = urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:create_vehicle"
+                "rrggweb:quotation:insurance:vehicle:create_vehicle",
+                kwargs={"customer_id": customer.id},
             )
         else:
             self.success_url = urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:create_customer"
             )
+        return super().form_valid(form)
+
+
+class QuotationInsuranceVehicleCreateVehicleView(CreateView):
+    template_name = "rrggweb/quotation/insurance/vehicle/create_vehicle.html"
+    success_url = urls.reverse_lazy(
+        "rrggweb:quotation:insurance:vehicle:create"
+    )
+    model = rrgg.models.Vehicle
+    fields = ["brand", "vehicle_model", "property_number", "fabrication_year"]
+
+    def form_valid(self, form):
+        form.instance.customer_id = self.kwargs["customer_id"]
         return super().form_valid(form)
