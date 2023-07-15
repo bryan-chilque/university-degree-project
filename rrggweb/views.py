@@ -43,6 +43,11 @@ class QuotationInsuranceVehicleCreateView(CreateView):
     model = rrgg.models.QuotationInsuranceVehicle
     fields = ["insurance_vehicle_price", "observations"]
 
+    def form_valid(self, form):
+        form.instance.customer_id = self.kwargs["customer_id"]
+        form.instance.vehicle_id = self.kwargs["vehicle_id"]
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["customer"] = shortcuts.get_object_or_404(
