@@ -1,3 +1,5 @@
+{% extends 'dashboard.html' %} {% block title_section %}Crear Poliza Vehícular{% endblock %}
+{% block content %}
 Consultant: {{ consultant }}
 <br />
 Customer: {{ customer }}
@@ -9,5 +11,6 @@ Vehicle: {{ vehicle }}
   <table>
     {{ form }}
   </table>
-  <input type="submit" />
+  <input class="btn btn-primary" type="submit" />
 </form>
+{% endblock content %}

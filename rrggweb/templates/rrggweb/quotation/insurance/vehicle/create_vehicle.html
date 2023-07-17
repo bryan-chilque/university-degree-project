@@ -1,11 +1,14 @@
-Consultant: {{ consultant }}
+{% extends 'dashboard.html' %} {% block title_section %}Crear Vehículo{% endblock %}
+{% block content %}
+<span><b>Consultant:</b> {{ consultant }}</span>
 <br />
-Customer: {{ customer }}
+<span><b>Customer:</b> {{ customer }}</span>
 <br />
 <form method="post">
   {% csrf_token %}
   <table>
     {{ form }}
   </table>
-  <input type="submit" />
+  <input class="btn btn-primary" type="submit" />
 </form>
+{% endblock content %}

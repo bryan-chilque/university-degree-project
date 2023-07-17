@@ -1,8 +1,8 @@
 {% extends 'dashboard.html' %} {% block title_section %}Seguro Vehicular{% endblock %}
 {% block content %}
-<ul>
+<ul class="list-group">
     {% for quotation in object_list %}
-    <li>
+    <li class="list-group-item">
         {{ quotation }}
     </li>
     {% endfor %}

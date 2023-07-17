@@ -1,7 +1,10 @@
+{% extends 'dashboard.html' %} {% block title_section %}Crear Cliente{% endblock %}
+{% block content %}
 <form method="post">
   {% csrf_token %}
   <table>
     {{ form }}
   </table>
-  <input type="submit" />
+  <input class="btn btn-primary" type="submit" />
 </form>
+{% endblock %}
