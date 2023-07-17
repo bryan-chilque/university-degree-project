@@ -1,6 +1,12 @@
 from django import shortcuts, urls
 from django.contrib.auth import views as views_auth
-from django.views.generic import CreateView, FormView, ListView, TemplateView
+from django.views.generic import (
+    CreateView,
+    FormView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
 
 import rrgg.models
 
@@ -53,7 +59,7 @@ class QuotationInsuranceVehicleListView(ListView):
 
 
 class QuotationInsuranceVehicleCreateView(CreateView):
-    template_name = "rrggweb/quotation/insurance/vehicle/create.html"
+    template_name = "rrggweb/quotation/insurance/vehicle/create_quotation.html"
 
     model = rrgg.models.QuotationInsuranceVehicle
     fields = ["insurance_vehicle_price", "observations"]
@@ -146,6 +152,22 @@ class QuotationInsuranceVehicleCreateCustomerView(CreateView):
     template_name = "rrggweb/quotation/insurance/vehicle/create_customer.html"
     model = rrgg.models.Customer
     fields = "__all__"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:create_vehicle",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.object.id,
+            },
+        )
+
+
+class QuotationInsuranceVehicleUpdateCustomerView(UpdateView):
+    template_name = "rrggweb/quotation/insurance/vehicle/update_customer.html"
+    model = rrgg.models.Customer
+    fields = "__all__"
+    pk_url_kwarg = "customer_id"
 
     def get_success_url(self):
         return urls.reverse(

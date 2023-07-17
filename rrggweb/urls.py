@@ -2,8 +2,6 @@ from django.urls import include, path
 
 from . import views
 
-app_name = "rrggweb"
-
 quotation_insurance_vehicle_urlpatterns = (
     [
         path(
@@ -31,6 +29,11 @@ quotation_insurance_vehicle_urlpatterns = (
             views.QuotationInsuranceVehicleCreateCustomerView.as_view(),
             name="create_customer",
         ),
+        path(
+            "update_customer/<int:customer_id>/",
+            views.QuotationInsuranceVehicleUpdateCustomerView.as_view(),
+            name="update_customer",
+        ),
     ],
     "vehicle",
 )
@@ -44,6 +47,8 @@ quotation_urlpatterns = (
     [path("insurance/", include(quotation_insurance_urlpatterns))],
     "quotation",
 )
+
+app_name = "rrggweb"
 
 urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),

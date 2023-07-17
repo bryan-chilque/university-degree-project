@@ -9,3 +9,5 @@ Customer: {{ customer }}
   </table>
   <input type="submit" />
 </form>
+
+<a href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' view.kwargs.consultant_id view.kwargs.customer_id %}">Volver</a>
