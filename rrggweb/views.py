@@ -1,6 +1,12 @@
 from django import shortcuts, urls
 from django.contrib.auth import views as views_auth
-from django.views.generic import CreateView, FormView, ListView, TemplateView
+from django.views.generic import (
+    CreateView,
+    FormView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
 
 import rrgg.models
 
@@ -9,11 +15,14 @@ from .utils import SeguroItem
 
 # LOGIN
 
+
 class LoginView(views_auth.LoginView):
     template_name = "rrggweb/login.html"
 
     def form_valid(self, form):
-        consultant_id = form.get_user().consultant_membership.first().consultant.id
+        consultant_id = (
+            form.get_user().consultant_membership.first().consultant.id
+        )
         self.next_page = urls.reverse(
             "rrggweb:home", kwargs={"consultant_id": consultant_id}
         )
@@ -21,6 +30,7 @@ class LoginView(views_auth.LoginView):
 
 
 # LOGOUT
+
 
 class LogoutView(views_auth.LogoutView):
     template_name = "rrggweb/logout.html"
@@ -63,7 +73,7 @@ class QuotationInsuranceVehicleListView(ListView):
 
 
 class QuotationInsuranceVehicleCreateView(CreateView):
-    template_name = "rrggweb/quotation/insurance/vehicle/create.html"
+    template_name = "rrggweb/quotation/insurance/vehicle/create_quotation.html"
 
     model = rrgg.models.QuotationInsuranceVehicle
     fields = ["insurance_vehicle_price", "observations"]
@@ -104,7 +114,9 @@ class QuotationInsuranceVehicleSearchView(FormView):
             document_number=document_number
         ).exists()
         if customer_exists:
-            customer = rrgg.models.Customer.objects.get(document_number=document_number)
+            customer = rrgg.models.Customer.objects.get(
+                document_number=document_number
+            )
             self.success_url = urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:create_vehicle",
                 kwargs={
@@ -154,6 +166,22 @@ class QuotationInsuranceVehicleCreateCustomerView(CreateView):
     template_name = "rrggweb/quotation/insurance/vehicle/create_customer.html"
     model = rrgg.models.Customer
     fields = "__all__"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:create_vehicle",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.object.id,
+            },
+        )
+
+
+class QuotationInsuranceVehicleUpdateCustomerView(UpdateView):
+    template_name = "rrggweb/quotation/insurance/vehicle/update_customer.html"
+    model = rrgg.models.Customer
+    fields = "__all__"
+    pk_url_kwarg = "customer_id"
 
     def get_success_url(self):
         return urls.reverse(

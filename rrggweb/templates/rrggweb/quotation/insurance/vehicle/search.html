@@ -6,5 +6,6 @@
     {{ form.as_table }}
   </table>
   <input class="btn btn-primary" type="submit" value="Buscar" />
+  <a href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.consultant_id %}"> Volver </a>
 </form>
 {% endblock %}
