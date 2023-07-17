@@ -1,9 +1,15 @@
 {% extends 'base.html' %} {% block title %} Home {% endblock %} {% block body %}
-{% for seguro in seguros%}
-<div class="card mb-2">
-  <div class="card-body">
-    <h5 class="card-title">{{seguro.name}}</h5>
-    <a href="{{seguro.url}}" class="card-link">Link</a>
+<div class="d-flex vh-100">
+  {% include 'sidebar.html' %}
+  <div>
+    {% for seguro in seguros%}
+    <div class="card mb-2">
+      <div class="card-body">
+        <h5 class="card-title">{{seguro.name}}</h5>
+        <a href="{{seguro.url}}" class="card-link">Link</a>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
-{% endfor %} {% endblock body %}
+{% endblock %}
