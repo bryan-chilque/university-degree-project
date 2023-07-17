@@ -26,6 +26,11 @@ quotation_insurance_vehicle_urlpatterns = (
             views.QuotationInsuranceVehicleCreateVehicleView.as_view(),
             name="create_vehicle",
         ),
+        path(
+            "create_customer/",
+            views.QuotationInsuranceVehicleCreateCustomerView.as_view(),
+            name="create_customer",
+        ),
     ],
     "vehicle",
 )

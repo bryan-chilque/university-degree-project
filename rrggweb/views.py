@@ -125,3 +125,17 @@ class QuotationInsuranceVehicleCreateVehicleView(CreateView):
                 "vehicle_id": self.object.id,
             },
         )
+
+
+class QuotationInsuranceVehicleCreateCustomerView(CreateView):
+    template_name = "rrggweb/quotation/insurance/vehicle/create_customer.html"
+    model = rrgg.models.Customer
+    fields = [
+        "document_number",
+        "first_name",
+        "last_name",
+        "email",
+        "phone_number",
+    ]
+
+    # TODO: Validar que el documento no exista y agregar lógica
