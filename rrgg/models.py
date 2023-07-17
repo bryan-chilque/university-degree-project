@@ -103,6 +103,6 @@ class QuotationInsuranceVehicle(models.Model):
 
     def __str__(self):
         return (
-            f"c={self.consultant} iv={self.insurance_vehicle_price}"
-            f" cr={self.vehicle.customer} ({self.created})"
+            f"Consultant={self.consultant} iv={self.insurance_vehicle_price}"
+            f" Customer={self.vehicle.customer} ({self.created})"
         )
