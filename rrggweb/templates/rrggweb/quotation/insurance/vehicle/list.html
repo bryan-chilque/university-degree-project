@@ -1,12 +1,11 @@
-{% extends 'base.html' %} {% block title %}Seguro Vehicular{% endblock %}
-{% block body %}
-<h1>Seguro Vehicular</h1>
-<ul>
+{% extends 'dashboard.html' %} {% block title_section %}Seguro Vehicular{% endblock %}
+{% block content %}
+<ul class="list-group">
     {% for quotation in object_list %}
-    <li>
+    <li class="list-group-item">
         {{ quotation }}
     </li>
     {% endfor %}
 </ul>
-<a href="{% url 'rrggweb:quotation:insurance:vehicle:search' view.kwargs.consultant_id %}">Crear</a>
+<a class="btn btn-primary" href="{% url 'rrggweb:quotation:insurance:vehicle:search' view.kwargs.consultant_id %}">Crear Nuevo Seguro</a>
 {% endblock %}
