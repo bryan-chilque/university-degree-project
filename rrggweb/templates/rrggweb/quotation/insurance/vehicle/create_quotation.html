@@ -12,6 +12,6 @@ Vehicle: {{ vehicle }}
     {{ form }}
   </table>
   <input class="btn btn-primary" type="submit" />
-  <a href="{% url 'rrggweb:quotation:insurance:vehicle:create_vehicle' view.kwargs.consultant_id view.kwargs.customer_id %} ">Volver</a>
+  <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id %} ">Volver</a>
 </form>
 {% endblock content %}
