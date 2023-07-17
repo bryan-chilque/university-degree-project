@@ -10,7 +10,7 @@ from django.views.generic import (
 
 import rrgg.models
 
-from . import forms
+from . import forms, mixins
 from .utils import SeguroItem
 
 # LOGIN
@@ -67,7 +67,9 @@ class QuotationInsuranceVehicleListView(ListView):
     model = rrgg.models.QuotationInsuranceVehicle
 
 
-class QuotationInsuranceVehicleCreateView(CreateView):
+class QuotationInsuranceVehicleCreateView(
+    mixins.RrggBootstrapDisplayMixin, CreateView
+):
     template_name = "rrggweb/quotation/insurance/vehicle/create_quotation.html"
 
     model = rrgg.models.QuotationInsuranceVehicle
@@ -127,7 +129,9 @@ class QuotationInsuranceVehicleSearchView(FormView):
         return super().form_valid(form)
 
 
-class QuotationInsuranceVehicleCreateVehicleView(CreateView):
+class QuotationInsuranceVehicleCreateVehicleView(
+    mixins.RrggBootstrapDisplayMixin, CreateView
+):
     template_name = "rrggweb/quotation/insurance/vehicle/create_vehicle.html"
     model = rrgg.models.Vehicle
     fields = ["brand", "vehicle_model", "property_number", "fabrication_year"]
@@ -181,7 +185,9 @@ class QuotationInsuranceVehicleUpdateVehicleView(UpdateView):
         return context
 
 
-class QuotationInsuranceVehicleCreateCustomerView(CreateView):
+class QuotationInsuranceVehicleCreateCustomerView(
+    mixins.RrggBootstrapDisplayMixin, CreateView
+):
     template_name = "rrggweb/quotation/insurance/vehicle/create_customer.html"
     model = rrgg.models.Customer
     fields = "__all__"
