@@ -22,6 +22,8 @@ class LoginView(views_auth.LoginView):
 
 
 # HOME
+
+
 class HomeView(TemplateView):
     template_name = "rrggweb/home.html"
 
@@ -43,6 +45,8 @@ class HomeView(TemplateView):
 
 
 # QUOTATION INSURANCE VEHICLE
+
+
 class QuotationInsuranceVehicleListView(ListView):
     template_name = "rrggweb/quotation/insurance/vehicle/list.html"
     model = rrgg.models.QuotationInsuranceVehicle
@@ -102,7 +106,8 @@ class QuotationInsuranceVehicleSearchView(FormView):
             )
         else:
             self.success_url = urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:create_customer"
+                "rrggweb:quotation:insurance:vehicle:create_customer",
+                kwargs={"consultant_id": self.kwargs["consultant_id"]},
             )
         return super().form_valid(form)
 
@@ -126,16 +131,27 @@ class QuotationInsuranceVehicleCreateVehicleView(CreateView):
             },
         )
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["consultant"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["consultant_id"]
+        )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.Customer, id=self.kwargs["customer_id"]
+        )
+        return context
+
 
 class QuotationInsuranceVehicleCreateCustomerView(CreateView):
     template_name = "rrggweb/quotation/insurance/vehicle/create_customer.html"
     model = rrgg.models.Customer
-    fields = [
-        "document_number",
-        "first_name",
-        "last_name",
-        "email",
-        "phone_number",
-    ]
+    fields = "__all__"
 
-    # TODO: Validar que el documento no exista y agregar lógica
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:create_vehicle",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.object.id,
+            },
+        )
