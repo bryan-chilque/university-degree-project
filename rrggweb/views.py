@@ -161,7 +161,9 @@ class QuotationInsuranceVehicleCreateVehicleView(
         return context
 
 
-class QuotationInsuranceVehicleUpdateVehicleView(UpdateView):
+class QuotationInsuranceVehicleUpdateVehicleView(
+    mixins.RrggBootstrapDisplayMixin, UpdateView
+):
     template_name = "rrggweb/quotation/insurance/vehicle/update_vehicle.html"
     model = rrgg.models.Vehicle
     fields = "__all__"
@@ -202,7 +204,9 @@ class QuotationInsuranceVehicleCreateCustomerView(
         )
 
 
-class QuotationInsuranceVehicleUpdateCustomerView(UpdateView):
+class QuotationInsuranceVehicleUpdateCustomerView(
+    mixins.RrggBootstrapDisplayMixin, UpdateView
+):
     template_name = "rrggweb/quotation/insurance/vehicle/update_customer.html"
     model = rrgg.models.Customer
     fields = "__all__"
