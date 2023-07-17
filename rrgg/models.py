@@ -3,13 +3,13 @@ from django.db import models
 
 
 class Customer(models.Model):
-    give_name = models.CharField(max_length=64)
+    given_name = models.CharField(max_length=64)
     first_surname = models.CharField(max_length=64)
     second_surname = models.CharField(max_length=64, blank=True)
     document_number = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
-        return self.give_name + " " + self.first_surname
+        return self.given_name + " " + self.first_surname
 
 
 class Vehicle(models.Model):
@@ -29,13 +29,13 @@ class Vehicle(models.Model):
 
 
 class Consultant(models.Model):
-    give_name = models.CharField(max_length=64)
+    given_name = models.CharField(max_length=64)
     first_surname = models.CharField(max_length=64)
     second_surname = models.CharField(max_length=64, blank=True)
     document_number = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
-        return self.give_name + " " + self.first_surname
+        return self.given_name + " " + self.first_surname
 
 
 class ConsultantMembership(models.Model):
@@ -100,9 +100,3 @@ class QuotationInsuranceVehicle(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     observations = models.TextField(max_length=512, blank=True)
-
-    def __str__(self):
-        return (
-            f"Consultant={self.consultant} iv={self.insurance_vehicle_price}"
-            f" Customer={self.vehicle.customer} ({self.created})"
-        )

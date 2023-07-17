@@ -33,14 +33,14 @@
         height="32"
         class="rounded-circle me-2"
       />
-      <strong>Bryan</strong>
+      <strong>{{ view.request.user.consultant_membership.first.consultant.given_name }} {{view.request.user.consultant_membership.first.consultant.first_surname}}</strong>
     </a>
     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
       <li><a class="dropdown-item" href="#">New project...</a></li>
       <li><a class="dropdown-item" href="#">Settings</a></li>
       <li><a class="dropdown-item" href="#">Profile</a></li>
       <li><hr class="dropdown-divider" /></li>
-      <li><a class="dropdown-item" href="#">Sign out</a></li>
+      <li><a class="dropdown-item" href="{% url 'rrggweb:logout' %}">Cerrar Sesión</a></li>
     </ul>
   </div>
 </aside>

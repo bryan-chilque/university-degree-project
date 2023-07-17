@@ -1,7 +1,7 @@
 - model: rrgg.customer
   pk: 1
   fields:
-    give_name: Bryan
+    given_name: Bryan
     first_surname: Chilque
     second_surname: ''
     document_number: '12345679'
@@ -40,7 +40,7 @@
 - model: rrgg.consultant
   pk: 1
   fields:
-    give_name: Angie
+    given_name: Angie
     first_surname: Tomasto
     second_surname: ''
     document_number: '12345678'

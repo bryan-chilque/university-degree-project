@@ -10,6 +10,10 @@ class LoginView(views_auth.LoginView):
     next_page = urls.reverse_lazy("rrggadmin:home")
 
 
+class LogoutView(views_auth.LogoutView):
+    next_page = urls.reverse_lazy("rrggadmin:login")
+
+
 class HomeView(TemplateView):
     template_name = "rrggadmin/home.html"
 

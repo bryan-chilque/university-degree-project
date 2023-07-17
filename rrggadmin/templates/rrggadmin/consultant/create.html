@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block title %}Consultores
+{% extends 'base.html' %} {% load static %} {% block title %}Asesores
 {%endblock %} {% block body %}
 <div class="container">
   <div class="d-flex align-items-center gap-2 mb-4">
@@ -6,7 +6,7 @@
       href="{% url 'rrggadmin:consultant:list' %}"
       style="all: unset; cursor: pointer"
       > < <a>
-    <h3 class="mb-0">Consultores</h3>
+    <h3 class="mb-0">Asesores</h3>
   </div>
   <form method="post">
     {%csrf_token%}

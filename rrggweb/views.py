@@ -33,12 +33,7 @@ class LoginView(views_auth.LoginView):
 
 
 class LogoutView(views_auth.LogoutView):
-    template_name = "rrggweb/logout.html"
-
-    def get_next_page(self):
-        return urls.reverse(
-            "rrggweb:login",
-        )
+    next_page = urls.reverse_lazy("rrggweb:login")
 
 
 # HOME
