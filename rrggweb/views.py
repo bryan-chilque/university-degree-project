@@ -162,6 +162,30 @@ class QuotationInsuranceVehicleCreateVehicleView(CreateView):
         return context
 
 
+class QuotationInsuranceVehicleUpdateVehicleView(UpdateView):
+    template_name = "rrggweb/quotation/insurance/vehicle/update_vehicle.html"
+    model = rrgg.models.Vehicle
+    fields = "__all__"
+    pk_url_kwarg = "vehicle_id"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:create",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.object.customer.id,
+                "vehicle_id": self.object.id,
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["consultant"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["consultant_id"]
+        )
+        return context
+
+
 class QuotationInsuranceVehicleCreateCustomerView(CreateView):
     template_name = "rrggweb/quotation/insurance/vehicle/create_customer.html"
     model = rrgg.models.Customer
