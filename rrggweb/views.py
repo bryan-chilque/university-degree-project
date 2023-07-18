@@ -1,5 +1,6 @@
 from django import shortcuts, urls
 from django.contrib.auth import views as views_auth
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     CreateView,
     FormView,
@@ -122,9 +123,12 @@ class QuotationInsuranceVehicleSearchView(FormView):
                 },
             )
         else:
-            self.success_url = urls.reverse(
+            create_customer_url = urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:create_customer",
                 kwargs={"consultant_id": self.kwargs["consultant_id"]},
+            )
+            self.success_url = (
+                f"{create_customer_url}?document_number={document_number}"
             )
         return super().form_valid(form)
 
@@ -188,7 +192,7 @@ class QuotationInsuranceVehicleUpdateVehicleView(
 
 
 class QuotationInsuranceVehicleCreateCustomerView(
-    mixins.RrggBootstrapDisplayMixin, CreateView
+    LoginRequiredMixin, mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_customer.html"
     model = rrgg.models.Customer
@@ -202,6 +206,13 @@ class QuotationInsuranceVehicleCreateCustomerView(
                 "customer_id": self.object.id,
             },
         )
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["document_number"] = self.request.GET.get(
+            "document_number", ""
+        )
+        return initial
 
 
 class QuotationInsuranceVehicleUpdateCustomerView(
