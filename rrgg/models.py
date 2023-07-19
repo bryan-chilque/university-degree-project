@@ -17,9 +17,9 @@ class Vehicle(models.Model):
     vehicle_model = models.CharField(max_length=64)
     plate = models.CharField(max_length=64, unique=True)
     fabrication_year = models.PositiveIntegerField(default=0)
-    engine = models.CharField(max_length=64)
-    chassis = models.CharField(max_length=64)
-    use_type = models.CharField(max_length=64)
+    engine = models.CharField(max_length=64, default="")
+    chassis = models.CharField(max_length=64, default="")
+    use_type = models.CharField(max_length=64, default="")
 
     customer = models.ForeignKey(
         Customer,

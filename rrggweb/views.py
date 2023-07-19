@@ -145,7 +145,15 @@ class QuotationInsuranceVehicleCreateVehicleView(
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_vehicle.html"
     model = rrgg.models.Vehicle
-    fields = ["brand", "vehicle_model", "property_number", "fabrication_year"]
+    fields = [
+        "brand",
+        "vehicle_model",
+        "plate",
+        "fabrication_year",
+        "chassis",
+        "engine",
+        "use_type",
+    ]
 
     def form_valid(self, form):
         form.instance.customer_id = self.kwargs["customer_id"]

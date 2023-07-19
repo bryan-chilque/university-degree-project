@@ -10,7 +10,7 @@
   fields:
     brand: Toyota
     vehicle_model: Corolla
-    property_number: '123'
+    plate: '123'
     fabrication_year: 2022
     customer: 1
 - model: rrgg.vehicle
@@ -18,7 +18,7 @@
   fields:
     brand: nissan
     vehicle_model: '123'
-    property_number: '123456'
+    plate: '123456'
     fabrication_year: 2002
     customer: 1
 - model: rrgg.vehicle
@@ -26,7 +26,7 @@
   fields:
     brand: '12345'
     vehicle_model: '12345'
-    property_number: '12345'
+    plate: '12345'
     fabrication_year: 2001
     customer: 1
 - model: rrgg.vehicle
@@ -34,7 +34,7 @@
   fields:
     brand: '455'
     vehicle_model: '455'
-    property_number: '455'
+    plate: '455'
     fabrication_year: 2025
     customer: 1
 - model: rrgg.consultant
