@@ -4,30 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('rrgg', '0018_rename_give_name_consultant_given_name_and_more'),
+        ("rrgg", "0018_rename_give_name_consultant_given_name_and_more"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='vehicle',
-            old_name='property_number',
-            new_name='plate',
+            model_name="vehicle",
+            old_name="property_number",
+            new_name="plate",
         ),
         migrations.AddField(
-            model_name='vehicle',
-            name='chassis',
-            field=models.CharField(default='', max_length=64),
+            model_name="vehicle",
+            name="chassis",
+            field=models.CharField(default="", max_length=64),
         ),
         migrations.AddField(
-            model_name='vehicle',
-            name='engine',
-            field=models.CharField(default='', max_length=64),
+            model_name="vehicle",
+            name="engine",
+            field=models.CharField(default="", max_length=64),
         ),
         migrations.AddField(
-            model_name='vehicle',
-            name='use_type',
-            field=models.CharField(default='', max_length=64),
+            model_name="vehicle",
+            name="use_type",
+            field=models.CharField(default="", max_length=64),
         ),
     ]

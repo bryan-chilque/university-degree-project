@@ -68,6 +68,14 @@ consultant_membership_urlpatterns = (
     "consultant_membership",
 )
 
+use_type_urlpatterns = (
+    [
+        path("list/", views.UseTypeListView.as_view(), name="list"),
+        path("create/", views.UseTypeCreateView.as_view(), name="create"),
+    ],
+    "use_type",
+)
+
 app_name = "rrggadmin"
 
 
@@ -77,6 +85,7 @@ urlpatterns = [
     path("home/", views.HomeView.as_view(), name="home"),
     path("insurance/", include(insurance_urlpatterns)),
     path("consultant/", include(consultant_urlpatterns)),
+    path("use_type/", include(use_type_urlpatterns)),
     path("user/", include(user_urlpatterns)),
     path("consultant_membership/", include(consultant_membership_urlpatterns)),
 ]

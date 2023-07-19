@@ -150,8 +150,8 @@ class QuotationInsuranceVehicleCreateVehicleView(
         "vehicle_model",
         "plate",
         "fabrication_year",
-        "chassis",
         "engine",
+        "chassis",
         "use_type",
     ]
 

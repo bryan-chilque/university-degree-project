@@ -12,6 +12,13 @@ class Customer(models.Model):
         return self.given_name + " " + self.first_surname
 
 
+class UseType(models.Model):
+    name = models.CharField(max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Vehicle(models.Model):
     brand = models.CharField(max_length=64)
     vehicle_model = models.CharField(max_length=64)
@@ -19,7 +26,12 @@ class Vehicle(models.Model):
     fabrication_year = models.PositiveIntegerField(default=0)
     engine = models.CharField(max_length=64, default="")
     chassis = models.CharField(max_length=64, default="")
-    use_type = models.CharField(max_length=64, default="")
+
+    use_type = models.ForeignKey(
+        UseType,
+        related_name="use_type",
+        on_delete=models.PROTECT,
+    )
 
     customer = models.ForeignKey(
         Customer,
