@@ -1,3 +1,5 @@
+<a href="{% url 'rrggadmin:home' %}">🏠</a>
+<a href="{% url menu.create_name %}">🆕</a>
 <table>
     <thead>
         <tr>
@@ -8,10 +10,13 @@
         {% for obj in object_items %}
         <tr>
             {% for field in obj.fields %}
-            <td>{{ field }}</td>
+            <td>
+                <a href="{% url menu.detail_name obj.pk %}">{{ field }}</a>
+            </td>
             {% endfor %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
 {% include 'rrggadmin/pagination.html' %}

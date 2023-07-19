@@ -109,4 +109,3 @@ class ConsultantCreateView(CreateView):
     success_url = urls.reverse_lazy("rrggadmin:consultant:list")
     model = rrgg.models.Consultant
     fields = "__all__"
-

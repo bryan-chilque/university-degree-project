@@ -4,15 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('rrgg', '0019_rename_property_number_vehicle_plate_vehicle_chassis_and_more'),
+        (
+            "rrgg",
+            "0019_rename_property_number_vehicle_plate_vehicle_chassis_and_more",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='vehicle',
-            name='use_type',
-            field=models.CharField(choices=[('particular', 'Particular'), ('public', 'Public'), ('commercial', 'Commercial')], max_length=64),
+            model_name="vehicle",
+            name="use_type",
+            field=models.CharField(
+                choices=[
+                    ("particular", "Particular"),
+                    ("public", "Public"),
+                    ("commercial", "Commercial"),
+                ],
+                max_length=64,
+            ),
         ),
     ]

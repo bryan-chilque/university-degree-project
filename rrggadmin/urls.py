@@ -1,10 +1,11 @@
 from django.urls import include, path
 from nomos.urls import menu_patterns
+from nomos.views.generic.detail import PairFieldsMixin
 from nomos.views.generic.menu import MenuTraits, ViewTraits
 
 import rrgg.models
 
-from . import views, mixins
+from . import mixins, views
 
 insurance_vehicle_price_urlpatterns = (
     [
@@ -72,12 +73,16 @@ consultant_membership_urlpatterns = (
     "consultant_membership",
 )
 
-use_type_urlpatterns = menu_patterns(rrgg.models.UseType,
-                                      "rrggadmin/commons", 
-                                      "use_type", 
-                                      "admin",
-                                      menu_traits=MenuTraits(list = ViewTraits(bases=[mixins.ListMixin])))
-
+use_type_urlpatterns = menu_patterns(
+    rrgg.models.UseType,
+    "rrggadmin/commons",
+    "use_type",
+    "admin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
 
 app_name = "rrggadmin"
 
@@ -91,5 +96,4 @@ urlpatterns = [
     path("use_type/", include(use_type_urlpatterns)),
     path("user/", include(user_urlpatterns)),
     path("consultant_membership/", include(consultant_membership_urlpatterns)),
-
 ]

@@ -4,21 +4,28 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('rrgg', '0020_alter_vehicle_use_type'),
+        ("rrgg", "0020_alter_vehicle_use_type"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UseType',
+            name="UseType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64, unique=True)),
             ],
         ),
         migrations.RemoveField(
-            model_name='vehicle',
-            name='use_type',
+            model_name="vehicle",
+            name="use_type",
         ),
     ]
