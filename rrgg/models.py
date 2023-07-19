@@ -15,8 +15,11 @@ class Customer(models.Model):
 class Vehicle(models.Model):
     brand = models.CharField(max_length=64)
     vehicle_model = models.CharField(max_length=64)
-    property_number = models.CharField(max_length=64, unique=True)
+    plate = models.CharField(max_length=64, unique=True)
     fabrication_year = models.PositiveIntegerField(default=0)
+    engine = models.CharField(max_length=64)
+    chassis = models.CharField(max_length=64)
+    use_type = models.CharField(max_length=64)
 
     customer = models.ForeignKey(
         Customer,

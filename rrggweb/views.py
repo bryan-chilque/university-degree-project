@@ -43,6 +43,13 @@ class LogoutView(views_auth.LogoutView):
 class HomeView(TemplateView):
     template_name = "rrggweb/home.html"
 
+
+# QUOTATION VIEW
+
+
+class QuotationView(TemplateView):
+    template_name = "rrggweb/quotation.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["seguros"] = [

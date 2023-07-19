@@ -58,6 +58,11 @@ app_name = "rrggweb"
 urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
+    path(
+        "<int:consultant_id>/quotation/",
+        views.QuotationView.as_view(),
+        name="quotation",
+    ),
     path("<int:consultant_id>/home/", views.HomeView.as_view(), name="home"),
     path("<int:consultant_id>/quotation/", include(quotation_urlpatterns)),
 ]
