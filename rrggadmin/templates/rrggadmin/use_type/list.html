@@ -1,8 +1,0 @@
-Lista de usos vehiculares
-<br />
-<ul>
-    {% for use_type in object_list %}
-        <li>{{ use_type.name }}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'rrggadmin:use_type:create' %}">Crear nuevo uso vehicular</a>

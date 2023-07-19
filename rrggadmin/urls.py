@@ -1,6 +1,10 @@
 from django.urls import include, path
+from nomos.urls import menu_patterns
+from nomos.views.generic.menu import MenuTraits, ViewTraits
 
-from . import views
+import rrgg.models
+
+from . import views, mixins
 
 insurance_vehicle_price_urlpatterns = (
     [
@@ -68,13 +72,12 @@ consultant_membership_urlpatterns = (
     "consultant_membership",
 )
 
-use_type_urlpatterns = (
-    [
-        path("list/", views.UseTypeListView.as_view(), name="list"),
-        path("create/", views.UseTypeCreateView.as_view(), name="create"),
-    ],
-    "use_type",
-)
+use_type_urlpatterns = menu_patterns(rrgg.models.UseType,
+                                      "rrggadmin/commons", 
+                                      "use_type", 
+                                      "admin",
+                                      menu_traits=MenuTraits(list = ViewTraits(bases=[mixins.ListMixin])))
+
 
 app_name = "rrggadmin"
 
@@ -88,4 +91,5 @@ urlpatterns = [
     path("use_type/", include(use_type_urlpatterns)),
     path("user/", include(user_urlpatterns)),
     path("consultant_membership/", include(consultant_membership_urlpatterns)),
+
 ]

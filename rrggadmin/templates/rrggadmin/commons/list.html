@@ -1,0 +1,17 @@
+<table>
+    <thead>
+        <tr>
+            {% for field in object_fields %}<th>{{ field }}</th>{% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in object_items %}
+        <tr>
+            {% for field in obj.fields %}
+            <td>{{ field }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% include 'rrggadmin/pagination.html' %}

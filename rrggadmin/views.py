@@ -110,17 +110,3 @@ class ConsultantCreateView(CreateView):
     model = rrgg.models.Consultant
     fields = "__all__"
 
-
-# USE_TYPE
-
-
-class UseTypeListView(ListView):
-    template_name = "rrggadmin/use_type/list.html"
-    model = rrgg.models.UseType
-
-
-class UseTypeCreateView(CreateView):
-    template_name = "rrggadmin/use_type/create.html"
-    success_url = urls.reverse_lazy("rrggadmin:use_type:list")
-    model = rrgg.models.UseType
-    fields = "__all__"
