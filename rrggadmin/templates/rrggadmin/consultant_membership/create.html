@@ -1,4 +1,7 @@
+{% extends 'rrggadmin/dashboard.html' %}
+{% block container %}
 <form method="post">{% csrf_token %}
     <table>{{ form }}</table>
     <input type="submit"/>
 </form>
+{% endblock %}

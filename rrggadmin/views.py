@@ -3,11 +3,14 @@ from django.contrib.auth import views as views_auth
 from django.views.generic import CreateView, ListView, TemplateView
 
 import rrgg.models
+from rrgg import forms as rrgg_forms
+from rrgg import mixins as rrgg_mixins
 
 
 class LoginView(views_auth.LoginView):
     template_name = "rrggadmin/login.html"
     next_page = urls.reverse_lazy("rrggadmin:home")
+    form_class = rrgg_forms.AuthenticationForm
 
 
 class LogoutView(views_auth.LogoutView):
@@ -41,7 +44,9 @@ class ConsultantMembershipListView(ListView):
     model = rrgg.models.ConsultantMembership
 
 
-class ConsultantMembershipCreateView(CreateView):
+class ConsultantMembershipCreateView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
     template_name = "rrggadmin/consultant_membership/create.html"
     success_url = urls.reverse_lazy("rrggadmin:consultant_membership:list")
     model = rrgg.models.ConsultantMembership

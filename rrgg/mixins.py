@@ -17,6 +17,11 @@ class RrggBootstrapDisplayMixin:
                 max_length=model_field.max_length,
                 widget=forms.TextInput(attrs={"class": "form-control"}),
             )
+        elif isinstance(model_field, models.ForeignKey):
+            return forms.ModelChoiceField(
+                queryset=model_field.related_model.objects.all(),
+                widget=forms.Select(attrs={"class": "form-select"}),
+            )
         elif isinstance(model_field, models.PositiveIntegerField):
             return forms.IntegerField(
                 widget=forms.NumberInput(attrs={"class": "form-control"})

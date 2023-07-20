@@ -1,5 +1,10 @@
-<a href="{% url 'rrggadmin:home' %}">🏠</a>
-<a href="{% url menu.list_name %}">🔙</a>
+{% load custom_filters %}
+{% include 'base.html' %}
 
-<h2>Crear</h2>
-{% include "rrggadmin/common/form.html" %}
+{% block content %}
+    <a href="{% url 'rrggadmin:home' %}">🏠</a>
+    <a href="{% url menu.list_name %}">🔙</a>
+
+    <h2>Crear</h2>
+    {% include "rrggadmin/commons/form.html" %}
+{% endblock %}
