@@ -1,3 +1,5 @@
+{% extends 'rrggadmin/dashboard.html' %}
+{% block container %}
 Opciones
 <ul>
   <li><a href="{% url 'rrggadmin:insurance:vehicle:list' %}">Seguros vehiculares</a></li>
@@ -8,3 +10,4 @@ Opciones
 </ul>
 
 <a href="{% url 'rrggadmin:logout' %}">Logout</a>
+{% endblock container %}

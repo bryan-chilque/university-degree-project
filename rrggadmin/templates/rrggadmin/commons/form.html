@@ -1,4 +1,12 @@
+{% load custom_filters %}
+{% include 'base.html' %}
+
+{% block content %}
 <form method="post">{% csrf_token %}
-    <table>{{ form }}</table>
+    <div>
+        <label class="form-label">{{ form.name.label }}</label>
+        {{ form.name|addclass:"form-control" }}
+    </div>
     <input type="submit"/>
 </form>
+{% endblock %}
