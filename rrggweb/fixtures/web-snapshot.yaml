@@ -1,3 +1,35 @@
+- model: rrgg.usetype
+  pk: 1
+  fields:
+    name: Particular
+- model: rrgg.usetype
+  pk: 2
+  fields:
+    name: Publico
+- model: rrgg.usetype
+  pk: 3
+  fields:
+    name: Taxi
+- model: rrgg.usetype
+  pk: 4
+  fields:
+    name: Escolar
+- model: rrgg.usetype
+  pk: 5
+  fields:
+    name: Turismo
+- model: rrgg.usetype
+  pk: 6
+  fields:
+    name: Camión
+- model: rrgg.usetype
+  pk: 7
+  fields:
+    name: Pick Up
+- model: rrgg.usetype
+  pk: 8
+  fields:
+    name: Comercial
 - model: rrgg.customer
   pk: 1
   fields:
@@ -56,9 +88,21 @@
 - model: rrgg.insurancevehicle
   pk: 1
   fields:
-    name: Mapfre
+    name: Pacífico
 - model: rrgg.insurancevehicle
   pk: 2
+  fields:
+    name: Qualitas
+- model: rrgg.insurancevehicle
+  pk: 3
+  fields:
+    name: La Positiva
+- model: rrgg.insurancevehicle
+  pk: 4
+  fields:
+    name: Mapfre
+- model: rrgg.insurancevehicle
+  pk: 5
   fields:
     name: Rimac
 - model: rrgg.insurancevehicleprice

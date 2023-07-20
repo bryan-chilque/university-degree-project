@@ -72,7 +72,7 @@ class InsuranceVehicle(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
-        return self.name
+        return f"name={self.name}, net_premium={self.net_premium}"
 
     def last_price(self):
         return self.prices.order_by("-created").first()
@@ -99,7 +99,9 @@ class InsuranceVehiclePrice(models.Model):
 
 
 class QuotationInsuranceVehicle(models.Model):
-    amount_insured = models.PositiveIntegerField(default=0, null=True)  # suma asegurada
+    amount_insured = models.PositiveIntegerField(
+        default=0, null=True
+    )  # suma asegurada
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicle",
@@ -117,42 +119,3 @@ class QuotationInsuranceVehicle(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     observations = models.TextField(max_length=512, blank=True)
-
-
-# Issuance
-
-
-""" class Issuance(models.Model):
-    policy_number = models.CharField(max_length=64, unique=True)  # Numero de poliza
-    collection_document = models.CharField(
-        max_length=64, unique=True
-    )  # Documento de cobranza
-    broadcast_date = models.DateTimeField()  # Fecha de emision
-    start_date = models.DateTimeField()  # Fecha de inicio
-    end_date = models.DateTimeField()  # Fecha de fin
-    amount_insured = models.PositiveIntegerField()  # Monto asegurado
-    net_premium = models.PositiveIntegerField()  # Prima neta
-    emission_right = models.PositiveIntegerField(default=3)  # Derecho de emision
-
-    @property
-    def rate(self):  # Tasa
-        return "{:.2f}%".format(self.net_bonus / self.amount_insured * 100)
-
-    @property
-    def commercial_premium(self):  # Prima comercial
-        return self.emission_right * self.net_bonus
-
-    @property
-    def total_premium(self):  # Prima total
-        return self.commercial_premium * 1.18
-
-    # TODO: Agregar campos de la tabla de emision
-
-    quotation_insurance_vehicle = models.ForeignKey(
-        QuotationInsuranceVehicle,
-        related_name="issuance",
-        on_delete=models.PROTECT,
-    )
-    created = models.DateTimeField(auto_now_add=True)
-    observations = models.TextField(max_length=512, blank=True)
- """

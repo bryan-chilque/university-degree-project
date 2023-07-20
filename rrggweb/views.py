@@ -82,7 +82,7 @@ class QuotationInsuranceVehicleCreateView(
     template_name = "rrggweb/quotation/insurance/vehicle/create_quotation.html"
 
     model = rrgg.models.QuotationInsuranceVehicle
-    fields = ["insurance_vehicle_price", "observations"]
+    fields = ["insurance_vehicle_price", "amount_insured", "observations"]
 
     def form_valid(self, form):
         form.instance.consultant_id = self.kwargs["consultant_id"]
@@ -108,6 +108,16 @@ class QuotationInsuranceVehicleCreateView(
             "rrggweb:quotation:insurance:vehicle:list",
             kwargs={"consultant_id": self.kwargs["consultant_id"]},
         )
+
+
+# QUOTATION INSURANCE VEHICLE PREMIUM GENERATION
+
+
+class QuotationInsuranceVehiclePremiumGenerationView(ListView):
+    template_name = (
+        "rrggweb/quotation/insurance/vehicle/premium_generation.html"
+    )
+    model = rrgg.models.InsuranceVehicle
 
 
 class QuotationInsuranceVehicleSearchView(FormView):

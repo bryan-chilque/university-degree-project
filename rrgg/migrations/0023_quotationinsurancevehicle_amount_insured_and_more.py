@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('rrgg', '0022_vehicle_use_type'),
+        ("rrgg", "0022_vehicle_use_type"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='quotationinsurancevehicle',
-            name='amount_insured',
+            model_name="quotationinsurancevehicle",
+            name="amount_insured",
             field=models.PositiveIntegerField(default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='usetype',
-            name='name',
+            model_name="usetype",
+            name="name",
             field=models.CharField(max_length=64, null=True, unique=True),
         ),
     ]

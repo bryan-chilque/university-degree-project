@@ -99,4 +99,3 @@ class InsuranceVehiclePriceCreateView(CreateView):
         )
         form.instance.insurance_vehicle = insurance_vehicle
         return super().form_valid(form)
-    
