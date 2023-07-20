@@ -10,8 +10,9 @@ from django.views.generic import (
 )
 
 import rrgg.models
+from rrgg import mixins as rrgg_mixins
 
-from . import forms, mixins
+from . import forms
 from .utils import SeguroItem
 
 # LOGIN
@@ -76,7 +77,7 @@ class QuotationInsuranceVehicleListView(ListView):
 
 
 class QuotationInsuranceVehicleCreateView(
-    mixins.RrggBootstrapDisplayMixin, CreateView
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_quotation.html"
 
@@ -141,7 +142,7 @@ class QuotationInsuranceVehicleSearchView(FormView):
 
 
 class QuotationInsuranceVehicleCreateVehicleView(
-    mixins.RrggBootstrapDisplayMixin, CreateView
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_vehicle.html"
     model = rrgg.models.Vehicle
@@ -181,7 +182,7 @@ class QuotationInsuranceVehicleCreateVehicleView(
 
 
 class QuotationInsuranceVehicleUpdateVehicleView(
-    mixins.RrggBootstrapDisplayMixin, UpdateView
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/update_vehicle.html"
     model = rrgg.models.Vehicle
@@ -207,7 +208,7 @@ class QuotationInsuranceVehicleUpdateVehicleView(
 
 
 class QuotationInsuranceVehicleCreateCustomerView(
-    LoginRequiredMixin, mixins.RrggBootstrapDisplayMixin, CreateView
+    LoginRequiredMixin, rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_customer.html"
     model = rrgg.models.Customer
@@ -231,7 +232,7 @@ class QuotationInsuranceVehicleCreateCustomerView(
 
 
 class QuotationInsuranceVehicleUpdateCustomerView(
-    mixins.RrggBootstrapDisplayMixin, UpdateView
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/update_customer.html"
     model = rrgg.models.Customer

@@ -16,7 +16,11 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/web/1/quotation/" class="nav-link link-dark" aria-current="page">
+      <a
+        href="/web/1/quotation/"
+        class="nav-link link-dark"
+        aria-current="page"
+      >
         <i class="bi bi-clipboard"></i>
         Cotización
       </a>
@@ -50,10 +54,9 @@
         height="32"
         class="rounded-circle me-2"
       />
-      <strong
-        >{{ view.request.user.consultant_membership.first.consultant.given_name}}
-        {{view.request.user.consultant_membership.first.consultant.first_surname}}</strong
-      >
+      {% with view.request.user.consultant_membership.first.consultant as consultant %}
+      <strong>{{ consultant.given_name }} {{ consultant.first_surname }}</strong>
+      {% endwith %}
     </a>
     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
       <li><a class="dropdown-item" href="#">New project...</a></li>
