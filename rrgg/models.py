@@ -72,7 +72,7 @@ class InsuranceVehicle(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
-        return f"name={self.name}, net_premium={self.net_premium}"
+        return f"name={self.name}"
 
     def last_price(self):
         return self.prices.order_by("-created").first()
