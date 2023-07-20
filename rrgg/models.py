@@ -121,7 +121,9 @@ class QuotationInsuranceVehicle(models.Model):
 
 
 class Issuance(models.Model):
-    policy_number = models.CharField(max_length=64, unique=True)  # Numero de poliza
+    policy_number = models.CharField(
+        max_length=64, unique=True
+    )  # Numero de poliza
     collection_document = models.CharField(
         max_length=64, unique=True
     )  # Documento de cobranza
@@ -130,7 +132,9 @@ class Issuance(models.Model):
     end_date = models.DateTimeField()  # Fecha de fin
     amount_insured = models.PositiveIntegerField()  # Monto asegurado
     net_premium = models.PositiveIntegerField()  # Prima neta
-    emission_right = models.PositiveIntegerField(default=3)  # Derecho de emision
+    emission_right = models.PositiveIntegerField(
+        default=3
+    )  # Derecho de emision
 
     @property
     def rate(self):  # Tasa
@@ -141,10 +145,10 @@ class Issuance(models.Model):
         return self.emission_right * self.net_bonus
 
     @property
-    def total_premium(self): # Prima total
+    def total_premium(self):  # Prima total
         return self.commercial_premium * 1.18
 
-    #TODO: Agregar campos de la tabla de emision
+    # TODO: Agregar campos de la tabla de emision
 
     quotation_insurance_vehicle = models.ForeignKey(
         QuotationInsuranceVehicle,
