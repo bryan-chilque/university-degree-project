@@ -31,6 +31,7 @@ class Vehicle(models.Model):
         UseType,
         related_name="use_type",
         on_delete=models.PROTECT,
+        null=True,
     )
 
     customer = models.ForeignKey(
@@ -98,7 +99,7 @@ class InsuranceVehiclePrice(models.Model):
 
 
 class QuotationInsuranceVehicle(models.Model):
-    ammount_insured = models.PositiveIntegerField(null=True)  # suma asegurada
+    amount_insured = models.PositiveIntegerField(default=0, null=True)  # suma asegurada
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicle",

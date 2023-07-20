@@ -152,6 +152,7 @@
 - model: rrgg.quotationinsurancevehicle
   pk: 1
   fields:
+    amount_insured: 15000
     vehicle: 1
     consultant: 1
     insurance_vehicle_price: 4
@@ -160,6 +161,7 @@
 - model: rrgg.quotationinsurancevehicle
   pk: 2
   fields:
+    amount_insured: 15000
     vehicle: 4
     consultant: 1
     insurance_vehicle_price: 7
@@ -168,6 +170,7 @@
 - model: rrgg.quotationinsurancevehicle
   pk: 3
   fields:
+    amount_insured: 15000
     vehicle: 4
     consultant: 1
     insurance_vehicle_price: 7
@@ -176,6 +179,7 @@
 - model: rrgg.quotationinsurancevehicle
   pk: 4
   fields:
+    amount_insured: 15000
     vehicle: 4
     consultant: 1
     insurance_vehicle_price: 7
