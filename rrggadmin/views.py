@@ -94,18 +94,4 @@ class InsuranceVehiclePriceCreateView(CreateView):
         )
         form.instance.insurance_vehicle = insurance_vehicle
         return super().form_valid(form)
-
-
-# CONSULTANT
-
-
-class ConsultantListView(ListView):
-    template_name = "rrggadmin/consultant/list.html"
-    model = rrgg.models.Consultant
-
-
-class ConsultantCreateView(CreateView):
-    template_name = "rrggadmin/consultant/create.html"
-    success_url = urls.reverse_lazy("rrggadmin:consultant:list")
-    model = rrgg.models.Consultant
-    fields = "__all__"
+    
