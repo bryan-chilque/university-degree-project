@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block title %} Dashboard {% endblock %} {% block body %}
+<main class="d-flex vh-100">
+    {% include 'sidebar.html' %}
+    <section class="p-3 w-100">
+        <h3>{% block title_section %}{% endblock title_section %}</h3>
+        <hr />
+    {% block content %}
+    {% endblock content %}
+    </section>
+</main>
+{% endblock %}

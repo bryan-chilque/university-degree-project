@@ -1,0 +1,11 @@
+{% extends 'dashboard.html' %} {% block title_section %}Actualizar Vehiculo{% endblock %}
+{% block content %}
+<a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' view.kwargs.consultant_id view.object.customer.id %}"> <i class="bi bi-arrow-left"></i>Volver </a>
+<form method="post">
+    {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <input class="btn btn-primary" type="submit" />
+</form>
+{% endblock %}

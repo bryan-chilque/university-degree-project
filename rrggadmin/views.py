@@ -3,15 +3,54 @@ from django.contrib.auth import views as views_auth
 from django.views.generic import CreateView, ListView, TemplateView
 
 import rrgg.models
+from rrgg import forms as rrgg_forms
+from rrgg import mixins as rrgg_mixins
 
 
 class LoginView(views_auth.LoginView):
     template_name = "rrggadmin/login.html"
     next_page = urls.reverse_lazy("rrggadmin:home")
+    form_class = rrgg_forms.AuthenticationForm
+
+
+class LogoutView(views_auth.LogoutView):
+    next_page = urls.reverse_lazy("rrggadmin:login")
 
 
 class HomeView(TemplateView):
     template_name = "rrggadmin/home.html"
+
+
+# USERS
+class UserListView(ListView):
+    template_name = "rrggadmin/user/list.html"
+    model = rrgg.models.get_user_model()
+
+
+class UserCreateView(CreateView):
+    template_name = "rrggadmin/user/create.html"
+    success_url = urls.reverse_lazy("rrggadmin:user:list")
+    model = rrgg.models.get_user_model()
+    fields = ["username", "password"]
+
+    def form_valid(self, form):
+        form.instance.set_password(form.instance.password)
+        return super().form_valid(form)
+
+
+# CONSULTANT MEMBERSHIP
+class ConsultantMembershipListView(ListView):
+    template_name = "rrggadmin/consultant_membership/list.html"
+    model = rrgg.models.ConsultantMembership
+
+
+class ConsultantMembershipCreateView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggadmin/consultant_membership/create.html"
+    success_url = urls.reverse_lazy("rrggadmin:consultant_membership:list")
+    model = rrgg.models.ConsultantMembership
+    fields = "__all__"
 
 
 # INSURANCE VEHICLE
@@ -60,18 +99,4 @@ class InsuranceVehiclePriceCreateView(CreateView):
         )
         form.instance.insurance_vehicle = insurance_vehicle
         return super().form_valid(form)
-
-
-# CONSULTANT
-
-
-class ConsultantListView(ListView):
-    template_name = "rrggadmin/consultant/list.html"
-    model = rrgg.models.Consultant
-
-
-class ConsultantCreateView(CreateView):
-    template_name = "rrggadmin/consultant/create.html"
-    success_url = urls.reverse_lazy("rrggadmin:consultant:list")
-    model = rrgg.models.Consultant
-    fields = "__all__"
+    

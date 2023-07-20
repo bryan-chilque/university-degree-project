@@ -1,0 +1,8 @@
+Consultant Memberships:
+<br/>
+<ul>
+    {% for membership in object_list %}
+        <li>{{ membership }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'rrggadmin:consultant_membership:create' %}">Crear</a>

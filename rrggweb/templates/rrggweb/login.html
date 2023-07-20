@@ -1,11 +1,16 @@
 {% extends 'base.html' %} {% block title %}Login{% endblock %} {% block body %}
-<div class="vh-100 d-flex justify-content-center align-items-center">
-  <form method="post">
-    {% csrf_token %}
-    <table>
-      {{form}}
-    </table>
-    <input type="submit" value="Login" />
-  </form>
+<div class="vh-100 d-flex justify-content-center align-items-center bg-primary">
+  <div class="card bg-light">
+    <div class="card-body">
+      <h5 class="card-title">Iniciar Sesión</h5>
+      <form method="post">
+        {% csrf_token %}
+        <table>
+          {{form}}
+        </table>
+        <button type="submit" class="btn btn-primary w-100 mt-3">Iniciar Sesión</button>
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock %}
