@@ -7,7 +7,10 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             "rrgg",
-            "0019_rename_property_number_vehicle_plate_vehicle_chassis_and_more",
+            (
+                "0019_rename_property_number_vehicle_"
+                "plate_vehicle_chassis_and_more"
+            ),
         ),
     ]
 
