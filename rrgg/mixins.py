@@ -27,8 +27,4 @@ class RrggBootstrapDisplayMixin:
                 widget=forms.NumberInput(attrs={"class": "form-control"})
             )
         else:
-            print(model_field)
-            print(type(model_field))
-            if model_field.formfield() is not None:
-                print(type(model_field.formfield().widget))
             return model_field.formfield()
