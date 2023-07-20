@@ -13,7 +13,7 @@ class Customer(models.Model):
 
 
 class UseType(models.Model):
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=64, unique=True, null=True)
 
     def __str__(self):
         return self.name
@@ -98,6 +98,7 @@ class InsuranceVehiclePrice(models.Model):
 
 
 class QuotationInsuranceVehicle(models.Model):
+    ammount_insured = models.PositiveIntegerField(null=True)  # suma asegurada
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicle",
@@ -120,10 +121,8 @@ class QuotationInsuranceVehicle(models.Model):
 # Issuance
 
 
-class Issuance(models.Model):
-    policy_number = models.CharField(
-        max_length=64, unique=True
-    )  # Numero de poliza
+""" class Issuance(models.Model):
+    policy_number = models.CharField(max_length=64, unique=True)  # Numero de poliza
     collection_document = models.CharField(
         max_length=64, unique=True
     )  # Documento de cobranza
@@ -132,9 +131,7 @@ class Issuance(models.Model):
     end_date = models.DateTimeField()  # Fecha de fin
     amount_insured = models.PositiveIntegerField()  # Monto asegurado
     net_premium = models.PositiveIntegerField()  # Prima neta
-    emission_right = models.PositiveIntegerField(
-        default=3
-    )  # Derecho de emision
+    emission_right = models.PositiveIntegerField(default=3)  # Derecho de emision
 
     @property
     def rate(self):  # Tasa
@@ -157,3 +154,4 @@ class Issuance(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     observations = models.TextField(max_length=512, blank=True)
+ """

@@ -13,6 +13,7 @@
     plate: '123'
     fabrication_year: 2022
     customer: 1
+    use_type: 1
 - model: rrgg.vehicle
   pk: 2
   fields:
@@ -21,6 +22,7 @@
     plate: '123456'
     fabrication_year: 2002
     customer: 1
+    use_type: 1
 - model: rrgg.vehicle
   pk: 3
   fields:
@@ -29,6 +31,7 @@
     plate: '12345'
     fabrication_year: 2001
     customer: 1
+    use_type: 1
 - model: rrgg.vehicle
   pk: 4
   fields:
@@ -37,6 +40,7 @@
     plate: '455'
     fabrication_year: 2025
     customer: 1
+    use_type: 1
 - model: rrgg.consultant
   pk: 1
   fields:
