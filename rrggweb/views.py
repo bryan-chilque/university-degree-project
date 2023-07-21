@@ -124,22 +124,21 @@ class QuotationInsuranceVehicleCreatePremiumsView(
     template_name = "rrggweb/quotation/insurance/vehicle/create_premiums.html"
 
     model = rrgg.models.InsuranceVehiclePremium
-    fields = ["business_premium"]
+    fields = ["business_premium", "insurance_vehicle_ratio"]
 
     def form_valid(self, form):
-        form.instance.consultant_id = self.kwargs["consultant_id"]
-        form.instance.customer_id = self.kwargs["customer_id"]
-        form.instance.vehicle_id = self.kwargs["vehicle_id"]
-        form.quotation.id = self.kwargs["quotation_id"]
+        data = form.cleaned_data
+        form.instance.insurance_vehicle_ratio = data["insurance_vehicle_ratio"]
+        form.instance.quotation_insurance_vehicle_id = self.kwargs[
+            "quotation_id"
+        ]
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context["ratios"] = (
             rrgg.models.InsuranceVehicleRatio.objects.all().values()
         )
-
         context["consultant"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["consultant_id"]
         )
