@@ -76,13 +76,13 @@ class QuotationInsuranceVehicleListView(ListView):
     model = rrgg.models.QuotationInsuranceVehicle
 
 
-class QuotationInsuranceVehicleCreateView(
+class QuotationInsuranceVehicleInsuredAmountView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_quotation.html"
 
     model = rrgg.models.QuotationInsuranceVehicle
-    fields = ["insurance_vehicle_price", "amount_insured", "observations"]
+    fields = ["insured_amount"]
 
     def form_valid(self, form):
         form.instance.consultant_id = self.kwargs["consultant_id"]
@@ -104,20 +104,62 @@ class QuotationInsuranceVehicleCreateView(
         return context
 
     def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:create_premiums",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.kwargs["customer_id"],
+                "vehicle_id": self.kwargs["vehicle_id"],
+                "quotation_id": self.object.id,
+            },
+        )
+
+
+# QUOTATION INSURANCE VEHICLE PREMIUM
+
+
+class QuotationInsuranceVehicleCreatePremiumsView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggweb/quotation/insurance/vehicle/create_premiums.html"
+
+    model = rrgg.models.InsuranceVehiclePremium
+    fields = ["business_premium"]
+
+    def form_valid(self, form):
+        form.instance.consultant_id = self.kwargs["consultant_id"]
+        form.instance.customer_id = self.kwargs["customer_id"]
+        form.instance.vehicle_id = self.kwargs["vehicle_id"]
+        form.quotation.id = self.kwargs["quotation_id"]
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["ratios"] = (
+            rrgg.models.InsuranceVehicleRatio.objects.all().values()
+        )
+
+        context["consultant"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["consultant_id"]
+        )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.Customer, id=self.kwargs["customer_id"]
+        )
+        context["vehicle"] = shortcuts.get_object_or_404(
+            rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
+        )
+        context["quotation"] = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehicle,
+            id=self.kwargs["quotation_id"],
+        )
+        return context
+
+    def get_success_url(self):
         return urls.reverse_lazy(
             "rrggweb:quotation:insurance:vehicle:list",
             kwargs={"consultant_id": self.kwargs["consultant_id"]},
         )
-
-
-# QUOTATION INSURANCE VEHICLE PREMIUM GENERATION
-
-
-class QuotationInsuranceVehiclePremiumGenerationView(ListView):
-    template_name = (
-        "rrggweb/quotation/insurance/vehicle/premium_generation.html"
-    )
-    model = rrgg.models.InsuranceVehicle
 
 
 class QuotationInsuranceVehicleSearchView(FormView):
@@ -172,7 +214,7 @@ class QuotationInsuranceVehicleCreateVehicleView(
 
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:create",
+            "rrggweb:quotation:insurance:vehicle:insured_amount",
             kwargs={
                 "consultant_id": self.kwargs["consultant_id"],
                 "customer_id": self.kwargs["customer_id"],

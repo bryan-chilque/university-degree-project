@@ -68,40 +68,10 @@ class ConsultantMembership(models.Model):
         return f"consultant={self.consultant}, user={self.user}"
 
 
-class InsuranceVehicle(models.Model):
-    name = models.CharField(max_length=64, unique=True)
-
-    def __str__(self):
-        return f"name={self.name}"
-
-    def last_price(self):
-        return self.prices.order_by("-created").first()
-
-
-class InsuranceVehiclePrice(models.Model):
-    business_premium = models.PositiveIntegerField()
-    emission_right = models.PositiveIntegerField()
-    tax = models.PositiveIntegerField()
-    created = models.DateTimeField(auto_now_add=True, unique=True)
-    insurance_vehicle = models.ForeignKey(
-        InsuranceVehicle, related_name="prices", on_delete=models.PROTECT
-    )
-
-    @property
-    def total(self):
-        return self.business_premium + self.emission_right + self.tax
-
-    def __str__(self) -> str:
-        return (
-            f"bp={self.business_premium} er={self.emission_right}"
-            f"tax={self.tax} total={self.total}"
-        )
-
-
+# cotización de seguro vehicular
 class QuotationInsuranceVehicle(models.Model):
-    amount_insured = models.PositiveIntegerField(
-        default=0, null=True
-    )  # suma asegurada
+    # suma asegurada
+    insured_amount = models.PositiveIntegerField(default=0, null=True)
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicle",
@@ -112,10 +82,58 @@ class QuotationInsuranceVehicle(models.Model):
         related_name="quotation_insurance_vehicle",
         on_delete=models.PROTECT,
     )
-    insurance_vehicle_price = models.ForeignKey(
-        InsuranceVehiclePrice,
-        related_name="quotation_insurance_vehicle",
+    created = models.DateTimeField(auto_now_add=True)
+
+
+# aseguradora
+class InsuranceVehicle(models.Model):
+    name = models.CharField(max_length=64, unique=True)
+
+    def __str__(self):
+        return f"name={self.name}"
+
+    def last_ratio(self):
+        return self.ratio.order_by("-created").first()
+
+
+# relación precio - aseguradora
+class InsuranceVehicleRatio(models.Model):
+    # derecho de emisión
+    emission_right = models.PositiveIntegerField()
+    # impuesto (igv)
+    tax = models.PositiveIntegerField()
+    created = models.DateTimeField(auto_now_add=True, unique=True)
+    insurance_vehicle = models.ForeignKey(
+        InsuranceVehicle, related_name="ratio", on_delete=models.PROTECT
+    )
+
+
+class InsuranceVehiclePremium(models.Model):
+    # prima neta o comercial
+    business_premium = models.PositiveIntegerField()
+    insurance_vehicle_ratio = models.ForeignKey(
+        InsuranceVehicleRatio,
+        related_name="insurance_vehicle_premium",
         on_delete=models.PROTECT,
     )
-    created = models.DateTimeField(auto_now_add=True)
-    observations = models.TextField(max_length=512, blank=True)
+    quotation_insurance_vehicle = models.ForeignKey(
+        QuotationInsuranceVehicle,
+        related_name="insurance_vehicle_premiums",
+        on_delete=models.PROTECT,
+    )
+    created = models.DateTimeField(auto_now_add=True, unique=True)
+
+    @property
+    def total(self):
+        return (
+            self.business_premium
+            + self.insurance_vehicle_ratio.emission_right
+            + self.insurance_vehicle_ratio.tax
+        )
+
+    def __str__(self) -> str:
+        return (
+            f"bp={self.business_premium}"
+            f"er={self.insurance_vehicle_ratio.emission_right}"
+            f"tax={self.insurance_vehicle_ratio.tax} total={self.total}"
+        )

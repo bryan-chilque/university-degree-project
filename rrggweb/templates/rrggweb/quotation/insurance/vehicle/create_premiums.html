@@ -1,4 +1,4 @@
-{% extends 'dashboard.html' %} {% block title_section %}Crear Poliza Vehícular{% endblock %}
+{% extends 'dashboard.html' %} {% block title_section %}Vincular Primas de Seguro Vehicular{% endblock %}
 {% block content %}
 <a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id %} "><i class="bi bi-arrow-left"></i>Volver</a>
 <div class="mt-2">
@@ -7,8 +7,18 @@
   Customer: {{ customer }}
   <br />
   Vehicle: {{ vehicle }}
-  <hr class="w-25"/>
-</div>
+  <br />
+  Suma Asegurada: {{ quotation.insured_amount }}
+  <br />
+  <table>
+    <tbody>
+        {% for ratio in ratios %}
+        <tr>
+            {% for field in ratios %}<td>{{ ratio }}</td>{% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 <form method="post">
   {% csrf_token %}
   <table>

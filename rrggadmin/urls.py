@@ -8,7 +8,7 @@ import rrgg.models
 from . import mixins, views
 
 insurance_vehicle_price_urlpatterns = menu_patterns(
-    rrgg.models.InsuranceVehiclePrice,
+    rrgg.models.InsuranceVehicleRatio,
     "rrggadmin/common",
     "price",
     "rrggadmin",

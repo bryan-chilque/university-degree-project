@@ -71,19 +71,19 @@ class InsuraceVehicleListView(ListView):
 # INSURANCE VEHICLE PRICE
 
 
-class InsuranceVehiclePriceListView(ListView):
+class InsuranceVehicleRatioListView(ListView):
     template_name = "rrggadmin/insurance/vehicle/price/list.html"
-    model = rrgg.models.InsuranceVehiclePrice
+    model = rrgg.models.InsuranceVehicleRatio
 
     def get_queryset(self):
-        return rrgg.models.InsuranceVehiclePrice.objects.filter(
+        return rrgg.models.InsuranceVehicleRatio.objects.filter(
             insurance_vehicle__id=self.kwargs["insurance_vehicle_id"]
         )
 
 
-class InsuranceVehiclePriceCreateView(CreateView):
+class InsuranceVehicleRatioCreateView(CreateView):
     template_name = "rrggadmin/insurance/vehicle/price/create.html"
-    model = rrgg.models.InsuranceVehiclePrice
+    model = rrgg.models.InsuranceVehicleRatio
     fields = "business_premium", "emission_right", "tax"
 
     def get_success_url(self):

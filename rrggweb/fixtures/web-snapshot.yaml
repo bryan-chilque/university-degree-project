@@ -37,42 +37,6 @@
     first_surname: Chilque
     second_surname: ''
     document_number: '12345679'
-- model: rrgg.vehicle
-  pk: 1
-  fields:
-    brand: Toyota
-    vehicle_model: Corolla
-    plate: '123'
-    fabrication_year: 2022
-    customer: 1
-    use_type: 1
-- model: rrgg.vehicle
-  pk: 2
-  fields:
-    brand: nissan
-    vehicle_model: '123'
-    plate: '123456'
-    fabrication_year: 2002
-    customer: 1
-    use_type: 1
-- model: rrgg.vehicle
-  pk: 3
-  fields:
-    brand: '12345'
-    vehicle_model: '12345'
-    plate: '12345'
-    fabrication_year: 2001
-    customer: 1
-    use_type: 1
-- model: rrgg.vehicle
-  pk: 4
-  fields:
-    brand: '455'
-    vehicle_model: '455'
-    plate: '455'
-    fabrication_year: 2025
-    customer: 1
-    use_type: 1
 - model: rrgg.consultant
   pk: 1
   fields:
@@ -105,130 +69,27 @@
   pk: 5
   fields:
     name: Rimac
-- model: rrgg.insurancevehicleprice
+- model: rrgg.insurancevehicleratio
   pk: 1
   fields:
-    business_premium: 1
-    emission_right: 1
-    tax: 1
-    created: 2023-07-14 22:25:39.196589+00:00
-    insurance_vehicle: 1
-- model: rrgg.insurancevehicleprice
-  pk: 2
-  fields:
-    business_premium: 2
-    emission_right: 2
-    tax: 2
-    created: 2023-07-14 22:48:07.747739+00:00
-    insurance_vehicle: 1
-- model: rrgg.insurancevehicleprice
-  pk: 3
-  fields:
-    business_premium: 8
-    emission_right: 8
-    tax: 8
-    created: 2023-07-14 23:15:16.716890+00:00
-    insurance_vehicle: 2
-- model: rrgg.insurancevehicleprice
-  pk: 4
-  fields:
-    business_premium: 9
-    emission_right: 9
-    tax: 9
-    created: 2023-07-14 23:16:19.609743+00:00
-    insurance_vehicle: 2
-- model: rrgg.insurancevehicleprice
-  pk: 5
-  fields:
-    business_premium: 9
-    emission_right: 9
-    tax: 9
-    created: 2023-07-14 23:17:05.285736+00:00
-    insurance_vehicle: 2
-- model: rrgg.insurancevehicleprice
-  pk: 6
-  fields:
-    business_premium: 9
-    emission_right: 9
-    tax: 9
-    created: 2023-07-14 23:17:47.161052+00:00
-    insurance_vehicle: 2
-- model: rrgg.insurancevehicleprice
-  pk: 7
-  fields:
-    business_premium: 9
-    emission_right: 9
-    tax: 9
-    created: 2023-07-14 23:18:26.983036+00:00
-    insurance_vehicle: 2
-- model: rrgg.insurancevehicleprice
-  pk: 8
-  fields:
-    business_premium: 9
-    emission_right: 9
-    tax: 9
-    created: 2023-07-14 23:18:30.353914+00:00
-    insurance_vehicle: 2
-- model: rrgg.insurancevehicleprice
-  pk: 9
-  fields:
-    business_premium: 4
-    emission_right: 4
-    tax: 4
-    created: 2023-07-14 23:26:58.994640+00:00
-    insurance_vehicle: 1
-- model: rrgg.insurancevehicleprice
-  pk: 10
-  fields:
-    business_premium: 3
     emission_right: 3
-    tax: 3
-    created: 2023-07-14 23:30:44.053705+00:00
+    tax: 18
+    created: 2023-07-21 19:36:30.639471+00:00
     insurance_vehicle: 1
-- model: rrgg.insurancevehicleprice
-  pk: 11
-  fields:
-    business_premium: 8
-    emission_right: 8
-    tax: 9
-    created: 2023-07-14 23:39:13.926868+00:00
-    insurance_vehicle: 1
-- model: rrgg.quotationinsurancevehicle
-  pk: 1
-  fields:
-    amount_insured: 15000
-    vehicle: 1
-    consultant: 1
-    insurance_vehicle_price: 4
-    created: 2023-07-15 13:08:38.068658+00:00
-    observations: ''
-- model: rrgg.quotationinsurancevehicle
+- model: rrgg.insurancevehicleratio
   pk: 2
   fields:
-    amount_insured: 15000
-    vehicle: 4
-    consultant: 1
-    insurance_vehicle_price: 7
-    created: 2023-07-15 17:23:27.666811+00:00
-    observations: ''
-- model: rrgg.quotationinsurancevehicle
+    emission_right: 5
+    tax: 18
+    created: 2023-07-21 19:37:45.639471+00:00
+    insurance_vehicle: 2
+- model: rrgg.insurancevehicleratio
   pk: 3
   fields:
-    amount_insured: 15000
-    vehicle: 4
-    consultant: 1
-    insurance_vehicle_price: 7
-    created: 2023-07-15 17:23:36.300733+00:00
-    observations: ''
-- model: rrgg.quotationinsurancevehicle
-  pk: 4
-  fields:
-    amount_insured: 15000
-    vehicle: 4
-    consultant: 1
-    insurance_vehicle_price: 7
-    created: 2023-07-15 17:27:12.780822+00:00
-    observations: ''
+    emission_right: 2
+    tax: 18
+    created: 2023-07-21 19:38:15.639471+00:00
+    insurance_vehicle: 3
 - model: auth.user
   pk: 1
   fields:

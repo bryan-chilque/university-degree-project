@@ -11,16 +11,16 @@ quotation_insurance_vehicle_urlpatterns = (
         ),
         path(
             (
-                "create/customer/<int:customer_id>/vehicle"
-                "/<int:vehicle_id>/premium_generation/"
+                "customer/<int:customer_id>/vehicle/<int:vehicle_id>"
+                "/quotation/<int:quotation_id>/create_premiums/"
             ),
-            views.QuotationInsuranceVehiclePremiumGenerationView.as_view(),
-            name="premium_generation",
+            views.QuotationInsuranceVehicleCreatePremiumsView.as_view(),
+            name="create_premiums",
         ),
         path(
-            "create/customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
-            views.QuotationInsuranceVehicleCreateView.as_view(),
-            name="create",
+            "customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
+            views.QuotationInsuranceVehicleInsuredAmountView.as_view(),
+            name="insured_amount",
         ),
         path(
             "search/",
