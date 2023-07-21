@@ -10,13 +10,26 @@
   <br />
   Suma Asegurada: {{ quotation.insured_amount }}
   <br />
-  <table>
+  <table class="table table-striped-columns">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Prima</th>
+        <th>Impuesto</th>
+        <th>Fecha de Creación</th>
+        <th>Vehicle ID</th>
+      </tr>
+    </thead>
     <tbody>
-        {% for ratio in ratios %}
+      {% for ratio in ratios %}
         <tr>
-            {% for field in ratios %}<td>{{ ratio }}</td>{% endfor %}
-        </tr>
-        {% endfor %}
+            <td>{{ ratio.id }}</td>
+            <td>{{ ratio.emission_right }}</td>
+            <td>{{ ratio.tax }}</td>
+            <td>{{ ratio.created }}</td>
+            <td>{{ ratio.insurance_vehicle_id }}</td>
+          </tr>
+      {% endfor %}
     </tbody>
   </table>
 <form method="post">
