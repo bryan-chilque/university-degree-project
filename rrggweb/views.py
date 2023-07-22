@@ -1,6 +1,7 @@
 from django import shortcuts, urls
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms import modelformset_factory
 from django.views.generic import (
     CreateView,
     FormView,
@@ -118,27 +119,44 @@ class QuotationInsuranceVehicleInsuredAmountView(
 # QUOTATION INSURANCE VEHICLE PREMIUM
 
 
-class QuotationInsuranceVehicleCreatePremiumsView(
-    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
-):
+class QuotationInsuranceVehicleCreatePremiumsView(FormView):
     template_name = "rrggweb/quotation/insurance/vehicle/create_premiums.html"
 
-    model = rrgg.models.InsuranceVehiclePremium
-    fields = ["business_premium", "insurance_vehicle_ratio"]
-
     def form_valid(self, form):
-        data = form.cleaned_data
-        form.instance.insurance_vehicle_ratio = data["insurance_vehicle_ratio"]
-        form.instance.quotation_insurance_vehicle_id = self.kwargs[
-            "quotation_id"
-        ]
+        form.save()
         return super().form_valid(form)
+
+    def get_form(self):
+        form_class = modelformset_factory(
+            rrgg.models.InsuranceVehiclePremium,
+            extra=rrgg.models.InsuranceVehicle.objects.count(),
+            fields="__all__",
+        )
+        formset = super().get_form(form_class)
+        # Mantener el orden: Ver ABC123
+        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by(
+            "name"
+        )
+        for form, insurance_vehicle in zip(formset, insurance_vehicles):
+            insurance_vehicle_ratio = form.fields["insurance_vehicle_ratio"]
+            quotation_insurance_vehicle = form.fields[
+                "quotation_insurance_vehicle"
+            ]
+
+            insurance_vehicle_ratio.initial = insurance_vehicle.last_ratio
+            quotation_insurance_vehicle.initial = shortcuts.get_object_or_404(
+                rrgg.models.QuotationInsuranceVehicle,
+                id=self.kwargs["quotation_id"],
+            )
+
+            insurance_vehicle_ratio.widget = forms.forms.HiddenInput()
+            quotation_insurance_vehicle.widget = forms.forms.HiddenInput()
+
+        return formset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["ratios"] = (
-            rrgg.models.InsuranceVehicleRatio.objects.all().values()
-        )
+
         context["consultant"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["consultant_id"]
         )
@@ -152,6 +170,17 @@ class QuotationInsuranceVehicleCreatePremiumsView(
             rrgg.models.QuotationInsuranceVehicle,
             id=self.kwargs["quotation_id"],
         )
+
+        # Mantener el orden: Ver ABC123
+        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by(
+            "name"
+        )
+        last_ratios = (
+            insurance_vehicle.last_ratio
+            for insurance_vehicle in insurance_vehicles
+        )
+        context["last_ratio_forms"] = zip(last_ratios, context["form"])
+
         return context
 
     def get_success_url(self):

@@ -92,8 +92,9 @@ class InsuranceVehicle(models.Model):
     def __str__(self):
         return f"name={self.name}"
 
+    @property
     def last_ratio(self):
-        return self.ratio.order_by("-created").first()
+        return self.ratios.order_by("-created").first()
 
 
 # relación precio - aseguradora
@@ -104,8 +105,15 @@ class InsuranceVehicleRatio(models.Model):
     tax = models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True, unique=True)
     insurance_vehicle = models.ForeignKey(
-        InsuranceVehicle, related_name="ratio", on_delete=models.PROTECT
+        InsuranceVehicle, related_name="ratios", on_delete=models.PROTECT
     )
+
+    def __str__(self):
+        return (
+            f"er={self.emission_right}, tax={self.tax},"
+            f" created={self.created},"
+            f" insurance_vehicle={self.insurance_vehicle}"
+        )
 
 
 class InsuranceVehiclePremium(models.Model):

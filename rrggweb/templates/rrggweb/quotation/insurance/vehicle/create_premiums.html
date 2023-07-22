@@ -10,32 +10,41 @@
   <br />
   Suma Asegurada: {{ quotation.insured_amount }}
   <br />
+<form method="post">
+  {% csrf_token %}
   <table class="table table-striped-columns">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Prima</th>
+        <th>Derecho de Emisión</th>
         <th>Impuesto</th>
         <th>Fecha de Creación</th>
-        <th>Vehicle ID</th>
+        <th>Vehicle Insurance</th>
+        <th>Monto</th>
       </tr>
     </thead>
     <tbody>
-      {% for ratio in ratios %}
+      {% for ratio, form in last_ratio_forms %}
         <tr>
-            <td>{{ ratio.id }}</td>
-            <td>{{ ratio.emission_right }}</td>
-            <td>{{ ratio.tax }}</td>
-            <td>{{ ratio.created }}</td>
-            <td>{{ ratio.insurance_vehicle_id }}</td>
-          </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-<form method="post">
-  {% csrf_token %}
-  <table>
-    {{ form }}
+          <td>{{ ratio.id }}</td>
+          <td>{{ ratio.emission_right }}</td>
+          <td>{{ ratio.tax }}</td>
+          <td>{{ ratio.created|date }}</td>
+          <td>{{ ratio.insurance_vehicle.name }}</td>
+          <td>{{ form.business_premium }}
+              {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                  {{ form.errors }}
+                </div>
+              {% endif %}
+              {{ form.insurance_vehicle_ratio }}
+              {{ form.quotation_insurance_vehicle }}
+              {{ form.id }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {{ form.management_form }}
   </table>
   <input class="btn btn-primary" type="submit" />
 </form>
