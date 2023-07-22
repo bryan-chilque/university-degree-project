@@ -14,12 +14,12 @@ quotation_insurance_vehicle_urlpatterns = (
                 "customer/<int:customer_id>/vehicle/<int:vehicle_id>"
                 "/quotation/<int:quotation_id>/create_premiums/"
             ),
-            views.QuotationInsuranceVehicleCreatePremiumsView.as_view(),
+            views.QuotationInsuranceVehiclePremiumsFormView.as_view(),
             name="create_premiums",
         ),
         path(
             "customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
-            views.QuotationInsuranceVehicleInsuredAmountView.as_view(),
+            views.QuotationInsuranceVehicleInsuredAmountCreateView.as_view(),
             name="insured_amount",
         ),
         path(
@@ -46,6 +46,11 @@ quotation_insurance_vehicle_urlpatterns = (
             "update_customer/<int:customer_id>/",
             views.QuotationInsuranceVehicleUpdateCustomerView.as_view(),
             name="update_customer",
+        ),
+        path(
+            "detail/<int:quotation_id>/",
+            views.QuotationInsuranceVehicleDetailView.as_view(),
+            name="detail",
         ),
     ],
     "vehicle",

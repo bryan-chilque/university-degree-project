@@ -30,7 +30,7 @@
                 <td scope="row">{{ quotation.vehicle.customer }}</td>
                 <td>{{ quotation.vehicle }}</td>
                 <td>{{ quotation.consultant }}</td>
-                <td><i class="bi bi-eye-fill"></i></td>
+                <td><a href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.consultant_id quotation.id %}"><i class="bi bi-eye-fill"></i></a></td>
             </tr>
             {% endfor %}
         </tbody>

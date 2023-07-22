@@ -74,12 +74,12 @@ class QuotationInsuranceVehicle(models.Model):
     insured_amount = models.PositiveIntegerField(default=0, null=True)
     vehicle = models.ForeignKey(
         Vehicle,
-        related_name="quotation_insurance_vehicle",
+        related_name="quotation_insurance_vehicles",
         on_delete=models.PROTECT,
     )
     consultant = models.ForeignKey(
         Consultant,
-        related_name="quotation_insurance_vehicle",
+        related_name="quotation_insurance_vehicles",
         on_delete=models.PROTECT,
     )
     created = models.DateTimeField(auto_now_add=True)
@@ -116,17 +116,17 @@ class InsuranceVehicleRatio(models.Model):
         )
 
 
-class InsuranceVehiclePremium(models.Model):
+class QuotationInsuranceVehiclePremium(models.Model):
     # prima neta o comercial
-    business_premium = models.PositiveIntegerField()
+    amount = models.PositiveIntegerField()
     insurance_vehicle_ratio = models.ForeignKey(
         InsuranceVehicleRatio,
-        related_name="insurance_vehicle_premium",
+        related_name="quotation_insurance_vehicle_premiums",
         on_delete=models.PROTECT,
     )
     quotation_insurance_vehicle = models.ForeignKey(
         QuotationInsuranceVehicle,
-        related_name="insurance_vehicle_premiums",
+        related_name="premiums",
         on_delete=models.PROTECT,
     )
     created = models.DateTimeField(auto_now_add=True, unique=True)
@@ -134,14 +134,15 @@ class InsuranceVehiclePremium(models.Model):
     @property
     def total(self):
         return (
-            self.business_premium
+            self.amount
             + self.insurance_vehicle_ratio.emission_right
             + self.insurance_vehicle_ratio.tax
         )
 
     def __str__(self) -> str:
         return (
-            f"bp={self.business_premium}"
-            f"er={self.insurance_vehicle_ratio.emission_right}"
-            f"tax={self.insurance_vehicle_ratio.tax} total={self.total}"
+            f"amount={self.amount}"
+            " Derecho de"
+            f" Emisión={self.insurance_vehicle_ratio.emission_right}"
+            f" IGV={self.insurance_vehicle_ratio.tax} total={self.total}"
         )

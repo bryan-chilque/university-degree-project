@@ -1,0 +1,16 @@
+{% extends 'dashboard.html' %} {% block title_section %}Detalle de Cotizacion de Vehiculo{% endblock %}
+{% block content %}
+{{ object.insured_amount }}
+<br />
+{{ object.vehicle }}
+<br />
+{{ object.consultant }}
+<br />
+{{ object.created }}
+<br />
+<ul>
+  {% for premium in object.premiums.all %}
+    <li>{{ premium }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelformset_factory
 from django.views.generic import (
     CreateView,
+    DetailView,
     FormView,
     ListView,
     TemplateView,
@@ -77,7 +78,7 @@ class QuotationInsuranceVehicleListView(ListView):
     model = rrgg.models.QuotationInsuranceVehicle
 
 
-class QuotationInsuranceVehicleInsuredAmountView(
+class QuotationInsuranceVehicleInsuredAmountCreateView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_quotation.html"
@@ -119,16 +120,27 @@ class QuotationInsuranceVehicleInsuredAmountView(
 # QUOTATION INSURANCE VEHICLE PREMIUM
 
 
-class QuotationInsuranceVehicleCreatePremiumsView(FormView):
+class QuotationInsuranceVehicleDetailView(DetailView):
+    template_name = "rrggweb/quotation/insurance/vehicle/detail.html"
+    model = rrgg.models.QuotationInsuranceVehicle
+    pk_url_kwarg = "quotation_id"
+
+
+class QuotationInsuranceVehiclePremiumsFormView(FormView):
     template_name = "rrggweb/quotation/insurance/vehicle/create_premiums.html"
 
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["queryset"] = rrgg.models.InsuranceVehicle.objects.none()
+        return kwargs
+
     def get_form(self):
         form_class = modelformset_factory(
-            rrgg.models.InsuranceVehiclePremium,
+            rrgg.models.QuotationInsuranceVehiclePremium,
             extra=rrgg.models.InsuranceVehicle.objects.count(),
             fields="__all__",
         )
