@@ -9,7 +9,7 @@ class Customer(models.Model):
     document_number = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
-        return self.given_name + " " + self.first_surname
+        return f"{self.given_name} {self.first_surname}"
 
 
 class UseType(models.Model):
@@ -41,7 +41,7 @@ class Vehicle(models.Model):
     )
 
     def __str__(self):
-        return f"{self.brand} {self.vehicle_model} {self.fabrication_year}"
+        return f"{self.brand} {self.vehicle_model} {self.plate}"
 
 
 class Consultant(models.Model):
@@ -51,7 +51,7 @@ class Consultant(models.Model):
     document_number = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
-        return self.given_name + " " + self.first_surname
+        return f"{self.given_name} {self.first_surname}"
 
 
 class ConsultantMembership(models.Model):
@@ -84,13 +84,16 @@ class QuotationInsuranceVehicle(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"insured_amount={self.insured_amount}, vehicle={self.vehicle}"
+
 
 # aseguradora
 class InsuranceVehicle(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
-        return f"name={self.name}"
+        return self.name
 
     @property
     def last_ratio(self):
@@ -100,9 +103,11 @@ class InsuranceVehicle(models.Model):
 # relación precio - aseguradora
 class InsuranceVehicleRatio(models.Model):
     # derecho de emisión
-    emission_right = models.PositiveIntegerField()
+    emission_right = models.DecimalField(
+        decimal_places=2, max_digits=10, null=False
+    )
     # impuesto (igv)
-    tax = models.PositiveIntegerField()
+    tax = models.DecimalField(decimal_places=2, max_digits=10, null=False)
     created = models.DateTimeField(auto_now_add=True, unique=True)
     insurance_vehicle = models.ForeignKey(
         InsuranceVehicle, related_name="ratios", on_delete=models.PROTECT
@@ -110,15 +115,15 @@ class InsuranceVehicleRatio(models.Model):
 
     def __str__(self):
         return (
-            f"er={self.emission_right}, tax={self.tax},"
-            f" created={self.created},"
+            f"er={self.emission_right},"
+            f" tax={self.tax},"
             f" insurance_vehicle={self.insurance_vehicle}"
         )
 
 
 class QuotationInsuranceVehiclePremium(models.Model):
     # prima neta o comercial
-    amount = models.PositiveIntegerField()
+    amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     insurance_vehicle_ratio = models.ForeignKey(
         InsuranceVehicleRatio,
         related_name="quotation_insurance_vehicle_premiums",
@@ -132,17 +137,23 @@ class QuotationInsuranceVehiclePremium(models.Model):
     created = models.DateTimeField(auto_now_add=True, unique=True)
 
     @property
-    def total(self):
-        return (
-            self.amount
-            + self.insurance_vehicle_ratio.emission_right
-            + self.insurance_vehicle_ratio.tax
+    def emission_right(self):
+        return round(
+            self.amount * self.insurance_vehicle_ratio.emission_right, 2
         )
+
+    @property
+    def tax(self):
+        value = self.amount + self.emission_right
+        return round(value * self.insurance_vehicle_ratio.tax, 2)
+
+    @property
+    def total(self):
+        return self.amount + self.emission_right + self.tax
 
     def __str__(self) -> str:
         return (
-            f"amount={self.amount}"
-            " Derecho de"
-            f" Emisión={self.insurance_vehicle_ratio.emission_right}"
-            f" IGV={self.insurance_vehicle_ratio.tax} total={self.total}"
+            f"premium={self.amount},"
+            f" er={self.emission_right},"
+            f" tax={self.tax} total={self.total}"
         )
