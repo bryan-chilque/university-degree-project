@@ -2,6 +2,7 @@ from django import shortcuts, urls
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelformset_factory
+from django.http import HttpResponse
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -9,6 +10,7 @@ from django.views.generic import (
     ListView,
     TemplateView,
     UpdateView,
+    View,
 )
 
 import rrgg.models
@@ -71,6 +73,56 @@ class QuotationView(TemplateView):
 
 
 # QUOTATION INSURANCE VEHICLE
+class QuotationInsuranceVehicleReportXlsxView(View):
+    def get(self, request, *args, **kwargs):
+        quotation = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehicle,
+            id=kwargs["quotation_id"],
+        )
+
+        workbook = self.create_workbook(quotation)
+
+        response = HttpResponse(
+            content_type="application/vnd.openxmlformats"
+            + "-officedocument.spreadsheetml.sheet"
+        )
+        response["Content-Disposition"] = (
+            "attachment; filename=report_quotations.xlsx"
+        )
+
+        workbook.save(response)
+        return response
+
+    def create_workbook(self, quotation):
+        from openpyxl import load_workbook
+
+        wb = load_workbook(filename="rrggweb/resources/report_quotations.xlsx")
+
+        ws = wb.active
+        ws["C11"] = quotation.insured_amount
+        ws["I6"] = quotation.created.strftime("%d/%m/%Y")
+
+        vehicle = quotation.vehicle
+        ws["C7"] = vehicle.brand
+        ws["C8"] = vehicle.vehicle_model
+        ws["C9"] = vehicle.fabrication_year
+        ws["C10"] = vehicle.use_type.name
+
+        amount = quotation.premiums.first().amount
+        insurance_vehicle_ratio = (
+            quotation.premiums.first().insurance_vehicle_ratio
+        )
+        ws["E14"] = insurance_vehicle_ratio.emission_right * amount
+
+        insurance_vehicle_ratio = (
+            quotation.premiums.last().insurance_vehicle_ratio
+        )
+        ws["F14"] = insurance_vehicle_ratio.emission_right
+
+        customer = vehicle.customer
+        ws["C6"] = f"{customer.given_name} {customer.first_surname}"
+
+        return wb
 
 
 class QuotationInsuranceVehicleListView(ListView):
