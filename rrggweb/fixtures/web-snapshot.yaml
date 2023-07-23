@@ -33,15 +33,15 @@
 - model: rrgg.customer
   pk: 1
   fields:
-    given_name: Bryan
-    first_surname: Chilque
+    given_name: Angie
+    first_surname: Tomasto
     second_surname: ''
     document_number: '12345679'
 - model: rrgg.consultant
   pk: 1
   fields:
-    given_name: Angie
-    first_surname: Tomasto
+    given_name: Bryan
+    first_surname: Chilque
     second_surname: ''
     document_number: '12345678'
 - model: rrgg.consultantmembership
@@ -72,36 +72,36 @@
 - model: rrgg.insurancevehicleratio
   pk: 1
   fields:
-    emission_right: 3
-    tax: 18
+    emission_right: 0.03
+    tax: 0.18
     created: 2023-07-21 19:36:30.639471+00:00
     insurance_vehicle: 1
 - model: rrgg.insurancevehicleratio
   pk: 2
   fields:
-    emission_right: 5
-    tax: 18
+    emission_right: 0.05
+    tax: 0.18
     created: 2023-07-21 19:37:45.639471+00:00
     insurance_vehicle: 2
 - model: rrgg.insurancevehicleratio
   pk: 3
   fields:
-    emission_right: 2
-    tax: 18
+    emission_right: 0.02
+    tax: 0.18
     created: 2023-07-21 19:38:15.639471+00:00
     insurance_vehicle: 3
 - model: rrgg.insurancevehicleratio
   pk: 4
   fields:
-    emission_right: 4
-    tax: 18
+    emission_right: 0.04
+    tax: 0.18
     created: 2023-07-21 19:38:45.639471+00:00
     insurance_vehicle: 4
 - model: rrgg.insurancevehicleratio
   pk: 5
   fields:
-    emission_right: 6
-    tax: 18
+    emission_right: 0.06
+    tax: 0.18
     created: 2023-07-21 19:39:15.639471+00:00
     insurance_vehicle: 5
 - model: auth.user
