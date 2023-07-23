@@ -108,19 +108,37 @@ class QuotationInsuranceVehicleReportXlsxView(View):
         ws["C9"] = vehicle.fabrication_year
         ws["C10"] = vehicle.use_type.name
 
-        amount = quotation.premiums.first().amount
-        insurance_vehicle_ratio = (
-            quotation.premiums.first().insurance_vehicle_ratio
-        )
-        ws["E14"] = insurance_vehicle_ratio.emission_right * amount
-
-        insurance_vehicle_ratio = (
-            quotation.premiums.last().insurance_vehicle_ratio
-        )
-        ws["F14"] = insurance_vehicle_ratio.emission_right
-
         customer = vehicle.customer
         ws["C6"] = f"{customer.given_name} {customer.first_surname}"
+
+        for premium in quotation.premiums.all():
+            ratio = premium.insurance_vehicle_ratio
+            insurance_vehicle = ratio.insurance_vehicle
+            if premium.amount > 0 and insurance_vehicle.id == 1:
+                ws["E13"] = premium.amount
+                ws["E14"] = ws["E13"].value * ratio.emission_right
+                ws["E15"] = (ws["E13"].value + ws["E14"].value) * ratio.tax
+                ws["E16"] = ws["E13"].value + ws["E14"].value + ws["E15"].value
+            if premium.amount > 0 and insurance_vehicle.id == 2:
+                ws["G13"] = premium.amount
+                ws["G14"] = ws["G13"].value * ratio.emission_right
+                ws["G15"] = (ws["G13"].value + ws["G14"].value) * ratio.tax
+                ws["G16"] = ws["G13"].value + ws["G14"].value + ws["G15"].value
+            if premium.amount > 0 and insurance_vehicle.id == 3:
+                ws["I13"] = premium.amount
+                ws["I14"] = ws["I13"].value * ratio.emission_right
+                ws["I15"] = (ws["I13"].value + ws["I14"].value) * ratio.tax
+                ws["I16"] = ws["I13"].value + ws["I14"].value + ws["I15"].value
+            if premium.amount > 0 and insurance_vehicle.id == 4:
+                ws["K13"] = premium.amount
+                ws["K14"] = ws["K13"].value * ratio.emission_right
+                ws["K15"] = (ws["K13"].value + ws["K14"].value) * ratio.tax
+                ws["K16"] = ws["K13"].value + ws["K14"].value + ws["K15"].value
+            if premium.amount > 0 and insurance_vehicle.id == 5:
+                ws["M13"] = premium.amount
+                ws["M14"] = ws["M13"].value * ratio.emission_right
+                ws["M15"] = (ws["M13"].value + ws["M14"].value) * ratio.tax
+                ws["M16"] = ws["M13"].value + ws["M14"].value + ws["M15"].value
 
         return wb
 
