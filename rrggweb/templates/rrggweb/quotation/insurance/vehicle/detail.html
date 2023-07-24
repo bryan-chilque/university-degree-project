@@ -1,16 +1,57 @@
 {% extends 'dashboard.html' %} {% block title_section %}Detalle de Cotizacion de Vehiculo{% endblock %}
 {% block content %}
-{{ object.insured_amount }}
-<br />
-{{ object.vehicle }}
-<br />
-{{ object.consultant }}
-<br />
-{{ object.created }}
-<br />
-<ul>
-  {% for premium in object.premiums.all %}
-    <li>{{ premium }}</li>
-  {% endfor %}
-</ul>
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <h4 class="mb-0">Cliente: {{ customer }} </h4>
+    </div>
+    <div class="col-md-6 text-right">
+      <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_xlsx' view.kwargs.consultant_id object.pk %}" class="btn btn-success">Exportar a Excel</a>
+      <a href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.consultant_id %}" class="btn btn-secondary">Volver</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+      <p><strong>Monto Asegurado:</strong> ${{ object.insured_amount }}</p>
+      <p><strong>Vehiculo:</strong> {{ object.vehicle }}</p>
+      <p><strong>Consultor:</strong> {{ object.consultant }}</p>
+      <p><strong>Fecha de Creacion:</strong> {{ object.created }}</p>
+      <div>
+      <div>
+        <h4>Cotizaciones:</h4>
+      {% if object.premiums.count == 0 %}
+        <p>No hay premiums asociados</p>
+      {% else %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Aseguradora</th>
+            <th>Prima Neta</th>
+            <th>% Derecho de Emisión</th>
+            <th>Derecho de Emisión</th>
+            <th>% IGV</th>
+            <th>IGV</th>
+            <th>Prima Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for premium in object.premiums.all %}
+            <tr>
+              <td>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</td>
+              <td>${{ premium.amount }}</td>
+              <td>{% widthratio premium.insurance_vehicle_ratio.emission_right 1 100 %}%</td>
+              <td>${{ premium.emission_right }}</td>
+              <td>{% widthratio premium.insurance_vehicle_ratio.tax 1 100 %}%</td>
+              <td>${{ premium.tax }}</td>
+              <td>${{ premium.total }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

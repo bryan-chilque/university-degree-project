@@ -91,6 +91,7 @@ class QuotationInsuranceVehicleReportXlsxView(View):
         )
 
         workbook.save(response)
+
         return response
 
     def create_workbook(self, quotation):
@@ -194,6 +195,11 @@ class QuotationInsuranceVehicleDetailView(DetailView):
     template_name = "rrggweb/quotation/insurance/vehicle/detail.html"
     model = rrgg.models.QuotationInsuranceVehicle
     pk_url_kwarg = "quotation_id"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["customer"] = self.object.vehicle.customer
+        return context
 
 
 class QuotationInsuranceVehiclePremiumsFormView(FormView):
