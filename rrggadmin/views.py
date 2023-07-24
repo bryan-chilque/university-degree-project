@@ -84,7 +84,7 @@ class InsuranceVehicleRatioListView(ListView):
 class InsuranceVehicleRatioCreateView(CreateView):
     template_name = "rrggadmin/insurance/vehicle/price/create.html"
     model = rrgg.models.InsuranceVehicleRatio
-    fields = "business_premium", "emission_right", "tax"
+    fields = "emission_right", "tax"
 
     def get_success_url(self):
         return urls.reverse(

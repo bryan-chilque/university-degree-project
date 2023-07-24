@@ -7,15 +7,18 @@ import rrgg.models
 
 from . import mixins, views
 
-insurance_vehicle_price_urlpatterns = menu_patterns(
-    rrgg.models.InsuranceVehicleRatio,
-    "rrggadmin/common",
+insurance_vehicle_price_urlpatterns = (
+    [
+        path(
+            "list/", views.InsuranceVehicleRatioListView.as_view(), name="list"
+        ),
+        path(
+            "create/",
+            views.InsuranceVehicleRatioCreateView.as_view(),
+            name="create",
+        ),
+    ],
     "price",
-    "rrggadmin",
-    menu_traits=MenuTraits(
-        list=ViewTraits(bases=[mixins.ListMixin]),
-        detail=ViewTraits(bases=[PairFieldsMixin]),
-    ),
 )
 
 insurance_vehicle_urlpatterns = (
