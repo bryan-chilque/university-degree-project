@@ -6,12 +6,15 @@
 {% include 'topbar.html' %}
     <main>
         {% include 'sidebar.html' %}
-        <section class="container p-3 w-100" style="margin-left: 280px;">
-            <h3>{% block title_section %}{% endblock title_section %}</h3>
-            <hr />
-        {% block content %}
-        {% endblock content %}
-        </section>
+        <div style="margin-left: 280px;">
+            <div class="p-3 border-dark bg-body-tertiary border-bottom border-dark-subtle">
+                <h5 class="mb-0">{% block title_section %}{% endblock title_section %}</h5>
+            </div>
+            <section class="container ms-0 p-3 w-100">
+                {% block content %}
+                {% endblock content %}
+            </section>
+        </div>
     </main>
 </main>
 {% endblock %}
