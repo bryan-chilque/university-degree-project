@@ -1,6 +1,8 @@
-{% extends 'base.html' %} {% block title %}Login{% endblock %} {% block body %}
+{% extends 'rrggweb/base.html' %} {% block title %}Login{% endblock %} {% block body %}
+{% load static %}
 <div class="vh-100 d-flex justify-content-center align-items-center bg-primary">
   <div class="card bg-light p-5">
+    <img src="{% static 'web/img/logo.png' %}" class="card-img-top" alt="Logo" style="width: 150px; margin: 0 auto;">
     <div class="card-body">
       <h5 class="card-title">Iniciar Sesión</h5>
       <form method="post">

@@ -1,11 +1,11 @@
-{% extends 'base.html' %} {% block title %} Dashboard {% endblock %} {% block body %}
+{% extends 'rrggweb/base.html' %} {% block title %} Dashboard {% endblock %} {% block body %}
 <style>
-{% include 'sidebar.css' %}
+{% include 'rrggweb/sidebar.css' %}
 </style>
 <main class="vh-100">
-{% include 'topbar.html' %}
+{% include 'rrggweb/topbar.html' %}
     <main>
-        {% include 'sidebar.html' %}
+        {% include 'rrggweb/sidebar.html' %}
         <div style="margin-left: 280px;">
             <div class="p-3 border-dark bg-body-tertiary border-bottom border-dark-subtle">
                 <h5 class="mb-0">{% block title_section %}{% endblock title_section %}</h5>

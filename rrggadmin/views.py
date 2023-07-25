@@ -39,6 +39,8 @@ class UserCreateView(CreateView):
 
 
 # CONSULTANT MEMBERSHIP
+
+
 class ConsultantMembershipListView(ListView):
     template_name = "rrggadmin/consultant_membership/list.html"
     model = rrgg.models.ConsultantMembership
