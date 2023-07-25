@@ -1,73 +1,71 @@
-<aside
-  class="d-flex flex-column flex-shrink-0 p-3 bg-light"
-  style="width: 280px"
->
-  <a
-    href="/"
-    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
-  >
-    <span class="fs-4">KCS - Riesgos</span>
-  </a>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="/web/1/home/" class="nav-link link-dark">
-        <i class="bi bi-house"></i>
-        Inicio
-      </a>
+<aside class="flex-shrink-0 p-3 bg-white shadow" style="width: 250px;">
+  <div class="d-flex align-items-center pb-2 mb-3 gap-2 link-dark text-decoration-none border-bottom">
+    <i class="bi bi-person-circle fs-1"></i>
+    {% with view.request.user.consultant_membership.first.consultant as consultant %}
+      <strong>{{ consultant.given_name }} {{ consultant.first_surname }}</strong>
+    {% endwith %}
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text"><i class="bi bi-search"></i></span>
+    <input type="text" class="form-control" placeholder="Buscar" aria-label="Search" aria-describedby="basic-addon1">
+  </div>
+  <ul class="list-unstyled ps-0">
+    <li class="mb-1">
+      <button class="btn btn-solo align-items-center rounded collapsed d-flex gap-2">
+        <i class="bi bi-house"></i>Inicio
+      </button>
     </li>
-    <li class="nav-item">
-      <a
-        href="/web/1/quotation/"
-        class="nav-link link-dark"
-        aria-current="page"
-      >
-        <i class="bi bi-clipboard"></i>
-        Cotización
-      </a>
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+        <i class="bi bi-person"></i> Gestión de Personal
+      </button>
+      <div class="collapse show" id="home-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">Overview</a></li>
+          <li><a href="#" class="link-dark rounded">Updates</a></li>
+          <li><a href="#" class="link-dark rounded">Reports</a></li>
+        </ul>
+      </div>
     </li>
-    <li>
-      <a href="#" class="nav-link link-dark">
-        <i class="bi bi-clipboard-data"></i>
-        Emisión
-      </a>
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+        Dashboard
+      </button>
+      <div class="collapse" id="dashboard-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">Overview</a></li>
+          <li><a href="#" class="link-dark rounded">Weekly</a></li>
+          <li><a href="#" class="link-dark rounded">Monthly</a></li>
+          <li><a href="#" class="link-dark rounded">Annually</a></li>
+        </ul>
+      </div>
     </li>
-    <li>
-      <a href="#" class="nav-link link-dark">
-        <i class="bi bi-clipboard-check"></i>
-        Cobranza
-      </a>
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+        Orders
+      </button>
+      <div class="collapse" id="orders-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">New</a></li>
+          <li><a href="#" class="link-dark rounded">Processed</a></li>
+          <li><a href="#" class="link-dark rounded">Shipped</a></li>
+          <li><a href="#" class="link-dark rounded">Returned</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="border-top my-3"></li>
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+        Account
+      </button>
+      <div class="collapse" id="account-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">New...</a></li>
+          <li><a href="#" class="link-dark rounded">Profile</a></li>
+          <li><a href="#" class="link-dark rounded">Settings</a></li>
+          <li><a class="dropdown-item" href="{% url 'rrggweb:logout' %}">Cerrar Sesión</a></li>
+        </ul>
+      </div>
     </li>
   </ul>
-  <hr />
-  <div class="dropdown">
-    <a
-      href="#"
-      class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-      id="dropdownUser2"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <img
-        src="https://github.com/mdo.png"
-        alt=""
-        width="32"
-        height="32"
-        class="rounded-circle me-2"
-      />
-      {% with view.request.user.consultant_membership.first.consultant as consultant %}
-      <strong>{{ consultant.given_name }} {{ consultant.first_surname }}</strong>
-      {% endwith %}
-    </a>
-    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-      <li><a class="dropdown-item" href="#">New project...</a></li>
-      <li><a class="dropdown-item" href="#">Settings</a></li>
-      <li><a class="dropdown-item" href="#">Profile</a></li>
-      <li><hr class="dropdown-divider" /></li>
-      <li>
-        <a class="dropdown-item" href="{% url 'rrggweb:logout' %}"
-          >Cerrar Sesión</a
-        >
-      </li>
-    </ul>
-  </div>
 </aside>
