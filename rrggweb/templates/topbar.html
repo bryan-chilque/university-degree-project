@@ -1,0 +1,24 @@
+<nav class="navbar navbar-dark bg-primary sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand">KCS</a>
+    <div class="nav-item dropdown mx-4">
+      <a class="nav-link dropdown-toggle d-flex gap-2 align-items-center text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-circle"></i>
+        {% with view.request.user.consultant_membership.first.consultant as consultant %}
+            <strong>{{ consultant.given_name }} {{ consultant.first_surname }}</strong>
+        {% endwith %}
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" href="#">Action</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Another action</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{% url 'rrggweb:logout' %}">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
