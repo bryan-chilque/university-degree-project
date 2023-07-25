@@ -56,14 +56,14 @@ class ConsultantMembershipCreateView(
 # INSURANCE VEHICLE
 
 
-class InsuraceVehicleCreateView(CreateView):
+class InsuranceVehicleCreateView(CreateView):
     template_name = "rrggadmin/insurance/vehicle/create.html"
     success_url = urls.reverse_lazy("rrggadmin:insurance:vehicle:list")
     model = rrgg.models.InsuranceVehicle
     fields = "__all__"
 
 
-class InsuraceVehicleListView(ListView):
+class InsuranceVehicleListView(ListView):
     template_name = "rrggadmin/insurance/vehicle/list.html"
     model = rrgg.models.InsuranceVehicle
 
