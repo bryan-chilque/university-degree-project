@@ -1,4 +1,4 @@
-<aside class="flex-shrink-0 p-3 bg-white shadow" style="width: 250px;">
+<aside class="flex-shrink-0 p-3 bg-white shadow" style="width: 280px;">
   <div class="d-flex align-items-center pb-2 mb-3 gap-2 link-dark text-decoration-none border-bottom">
     <i class="bi bi-person-circle fs-1"></i>
     {% with view.request.user.consultant_membership.first.consultant as consultant %}
@@ -11,59 +11,104 @@
   </div>
   <ul class="list-unstyled ps-0">
     <li class="mb-1">
-      <button class="btn btn-solo align-items-center rounded collapsed d-flex gap-2">
+      <button href="/web/1/home/" class="btn btn-solo align-items-center rounded collapsed d-flex gap-2">
         <i class="bi bi-house"></i>Inicio
       </button>
     </li>
     <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#personal" aria-expanded="false">
         <i class="bi bi-person"></i> Gestión de Personal
       </button>
-      <div class="collapse show" id="home-collapse">
+      <div class="collapse" id="personal">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark rounded">Overview</a></li>
-          <li><a href="#" class="link-dark rounded">Updates</a></li>
-          <li><a href="#" class="link-dark rounded">Reports</a></li>
+          <li><a href="#" class="link-dark rounded">Asesores</a></li>
+          <li><a href="#" class="link-dark rounded">Cargos</a></li>
         </ul>
       </div>
     </li>
     <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-        Dashboard
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#clients" aria-expanded="false">
+        <i class="bi bi-people"></i> Gestión de Clientes
       </button>
-      <div class="collapse" id="dashboard-collapse">
+      <div class="collapse" id="clients">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark rounded">Overview</a></li>
-          <li><a href="#" class="link-dark rounded">Weekly</a></li>
-          <li><a href="#" class="link-dark rounded">Monthly</a></li>
-          <li><a href="#" class="link-dark rounded">Annually</a></li>
+          <li><a href="#" class="link-dark rounded">Contratantes</a></li>
+          <li><a href="#" class="link-dark rounded">Asegurados</a></li>
         </ul>
       </div>
     </li>
     <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-        Orders
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#emission" aria-expanded="false">
+        <i class="bi bi-file-earmark-text"></i> Gestión de Emisiones
       </button>
-      <div class="collapse" id="orders-collapse">
+      <div class="collapse" id="emission">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark rounded">New</a></li>
-          <li><a href="#" class="link-dark rounded">Processed</a></li>
-          <li><a href="#" class="link-dark rounded">Shipped</a></li>
-          <li><a href="#" class="link-dark rounded">Returned</a></li>
+          <li><a href="#" class="link-dark rounded">Emisión</a></li>
+          <li><a href="#" class="link-dark rounded">Aseguradora</a></li>
+          <li><a href="#" class="link-dark rounded">Seguros</a></li>
+          <li><a href="#" class="link-dark rounded">Plan de Seguros</a></li>
+          <li><a href="#" class="link-dark rounded">Plan de Seguros Comisión</a></li>
+          <li><a href="#" class="link-dark rounded">Emisión Asistencia</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#quote" aria-expanded="false">
+        <i class="bi bi-file-post"></i> Gestión de Cotizaciones
+      </button>
+      <div class="collapse" id="quote">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="/web/1/quotation/" class="link-dark rounded">Lista de Cotizaciones</a></li>
+          <li><a href="/web/1/quotation/insurance/vehicle/list/" class="link-dark rounded">Cotización de vehículos</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#audit" aria-expanded="false">
+        <i class="bi bi-rocket-fill"></i> Menú de Auditoria
+      </button>
+      <div class="collapse" id="audit">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">Historial de Accesos</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#config" aria-expanded="false">
+        <i class="bi bi-gear-fill"></i> Menu de configuración
+      </button>
+      <div class="collapse" id="config">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">Periodos</a></li>
+          <li><a href="#" class="link-dark rounded">País</a></li>
+          <li><a href="#" class="link-dark rounded">Carga Primas</a></li>
+          <li><a href="#" class="link-dark rounded">Ubigeo</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#security" aria-expanded="false">
+        <i class="bi bi-shield-fill"></i> Seguridad
+      </button>
+      <div class="collapse" id="security">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">Usuarios</a></li>
+          <li><a href="#" class="link-dark rounded">Roles</a></li>
+          <li><a href="#" class="link-dark rounded">Funcionalidades</a></li>
         </ul>
       </div>
     </li>
     <li class="border-top my-3"></li>
     <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-        Account
+      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+        <i class="bi bi-person"></i> Cuenta
       </button>
       <div class="collapse" id="account-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a href="#" class="link-dark rounded">New...</a></li>
           <li><a href="#" class="link-dark rounded">Profile</a></li>
           <li><a href="#" class="link-dark rounded">Settings</a></li>
-          <li><a class="dropdown-item" href="{% url 'rrggweb:logout' %}">Cerrar Sesión</a></li>
+          <li><a class="link-dark rounded" href="{% url 'rrggweb:logout' %}">Cerrar Sesión</a></li>
         </ul>
       </div>
     </li>
