@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('rrgg', '0028_alter_insurancevehicleratio_emission_right_and_more'),
+        ("rrgg", "0028_alter_insurancevehicleratio_emission_right_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='insurancevehicle',
-            name='image',
-            field=models.ImageField(blank=True, null=True, upload_to='insurance_vehicle_images/'),
+            model_name="insurancevehicle",
+            name="image",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="insurance_vehicle_images/"
+            ),
         ),
     ]

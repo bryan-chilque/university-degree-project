@@ -5,3 +5,5 @@ coverage.*
 htmlcov
 staticfiles
 .vscode
+.DS_Store
+media
