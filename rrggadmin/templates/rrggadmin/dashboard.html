@@ -1,13 +1,14 @@
 {% extends 'rrggadmin/base.html' %} {% block title %} Dashboard {% endblock %}
 {% block body %}
-<div class="d-flex vh-100">
+<main class="vh-100">
+    {% include 'rrggadmin/topbar.html' %}
+  <div class="d-flex vh-100">
     {% include 'rrggadmin/sidebar.html' %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                {% block container %}{% endblock %}
-            </div>
-        </div>
+      <div class="row">
+        <div class="col-md-12">{% block container %}{% endblock %}</div>
+      </div>
     </div>
-</div>
+  </div>
+</main>
 {% endblock body %}
