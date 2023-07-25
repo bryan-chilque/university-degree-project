@@ -91,6 +91,7 @@ class QuotationInsuranceVehicle(models.Model):
 # aseguradora
 class InsuranceVehicle(models.Model):
     name = models.CharField(max_length=64, unique=True)
+    logo = models.ImageField(upload_to='insurance_vehicle_images/', blank=True, null=True)
 
     def __str__(self):
         return self.name
