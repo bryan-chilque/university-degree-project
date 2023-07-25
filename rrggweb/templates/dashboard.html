@@ -2,13 +2,16 @@
 <style>
 {% include 'sidebar.css' %}
 </style>
-<main class="d-flex vh-100">
-    {% include 'sidebar.html' %}
-    <section class="container ms-0 p-3 w-100">
-        <h3>{% block title_section %}{% endblock title_section %}</h3>
-        <hr />
-    {% block content %}
-    {% endblock content %}
-    </section>
+<main class="vh-100">
+{% include 'topbar.html' %}
+    <main>
+        {% include 'sidebar.html' %}
+        <section class="container p-3 w-100" style="margin-left: 280px;">
+            <h3>{% block title_section %}{% endblock title_section %}</h3>
+            <hr />
+        {% block content %}
+        {% endblock content %}
+        </section>
+    </main>
 </main>
 {% endblock %}
