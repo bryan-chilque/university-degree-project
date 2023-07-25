@@ -25,7 +25,9 @@ insurance_vehicle_urlpatterns = (
     [
         path("list/", views.InsuranceVehicleListView.as_view(), name="list"),
         path(
-            "create/", views.InsuranceVehicleCreateView.as_view(), name="create"
+            "create/",
+            views.InsuranceVehicleCreateView.as_view(),
+            name="create",
         ),
         path(
             "<int:insurance_vehicle_id>/price/",
