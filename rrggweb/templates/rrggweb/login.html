@@ -9,10 +9,24 @@
         <div class="form-group mb-2">
           <label class="form-label">{{ form.username.label_tag }}</label>
           {{ form.username }}
+          {% if form.username.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.username.errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
         <div class="form-group">
           <label class="form-label">{{ form.password.label_tag }}</label>
           {{ form.password }}
+          {% if form.password.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.password.errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary btn-block mt-4">Iniciar Sesión</button>
