@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import forms as forms_auth
 
 
 class SearchByDocumentNumberForm(forms.Form):
@@ -6,4 +7,17 @@ class SearchByDocumentNumberForm(forms.Form):
         max_length=32,
         label="Número de documento",
         widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+
+
+class LoginAuthenticationForm(forms_auth.AuthenticationForm):
+    username = forms.CharField(
+        max_length=32,
+        label="Usuario",
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+    password = forms.CharField(
+        max_length=32,
+        label="Contraseña",
+        widget=forms.PasswordInput(attrs={"class": "form-control"}),
     )
