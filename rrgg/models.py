@@ -125,7 +125,7 @@ class InsuranceVehicleRatio(models.Model):
 
 
 class QuotationInsuranceVehiclePremium(models.Model):
-    # prima neta o comercial
+    # prima neta
     amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     insurance_vehicle_ratio = models.ForeignKey(
         InsuranceVehicleRatio,
@@ -150,6 +150,18 @@ class QuotationInsuranceVehiclePremium(models.Model):
         value = self.amount + self.emission_right
         return round(value * self.insurance_vehicle_ratio.tax, 2)
 
+    # tasa
+    @property
+    def rate(self):
+        q = self.quotation_insurance_vehicle
+        return round(self.amount / q.insured_amount, 2)
+
+    # prima comercial
+    @property
+    def commercial_premium(self):
+        q = self.quotation_insurance_vehicle
+        return round(self.amount + q.emission_right, 2)
+
     @property
     def total(self):
         return self.amount + self.emission_right + self.tax
@@ -160,3 +172,23 @@ class QuotationInsuranceVehiclePremium(models.Model):
             f" er={self.emission_right},"
             f" tax={self.tax} total={self.total}"
         )
+
+
+# Issuance
+class IssuanceInsuranceVehicle(models.Model):
+    # numero de póliza
+    policy_number = models.CharField(max_length=64)
+    # documento de cobranza
+    collection_document = models.CharField(max_length=64)
+    # fecha de inicio
+    start_date = models.DateTimeField()
+    # fecha de fin
+    end_date = models.DateTimeField()
+
+    quotation_vehicle_premium = models.ForeignKey(
+        QuotationInsuranceVehiclePremium,
+        related_name="issuance",
+        on_delete=models.PROTECT,
+    )
+
+    created = models.DateTimeField(auto_now_add=True)

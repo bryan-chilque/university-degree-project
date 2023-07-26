@@ -1,0 +1,58 @@
+{% extends 'dashboard.html' %} {% block title_section %}Crear Emisión Vehícular{% endblock %}
+{% block content %}
+<a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.consultant_id quotation_premium.quotation_insurance_vehicle.id %} "><i class="bi bi-arrow-left"></i>Volver</a>
+<div class="mt-2">
+  <h5 class="mt-3 mb-1">Datos del contratante</h5>
+  <hr class="w-25 mt-1 mb-1"/>
+  Tipo de documento: DNI
+  <br />
+  Número de documento: {{ quotation_premium.quotation_insurance_vehicle.vehicle.customer.document_number }}
+  <br />
+  Nombres y apellidos: {{ quotation_premium.quotation_insurance_vehicle.vehicle.customer }}
+  <br />
+  <h5 class="mt-3">Datos del vendedor</h5>
+  <hr class="w-25 mt-1 mb-1"/>
+  Tipo de documento: DNI
+  <br />
+  Número de documento: {{ quotation_premium.quotation_insurance_vehicle.consultant.document_number }}
+  <br />
+  Nombres y apellidos: {{ quotation_premium.quotation_insurance_vehicle.consultant }}
+  <br />
+  <h5 class="mt-3">Datos del vehiculo</h5>
+  <hr class="w-25 mt-1 mb-1"/>
+  Placa: {{ quotation_premium.quotation_insurance_vehicle.vehicle.plate }}
+  <br />
+  Marca: {{ quotation_premium.quotation_insurance_vehicle.vehicle.brand }}
+  <br />
+  Modelo: {{ quotation_premium.quotation_insurance_vehicle.vehicle.vehicle_model }}
+  <br />
+  Año de fabricación: {{ quotation_premium.quotation_insurance_vehicle.vehicle.fabrication_year }}
+  <br />
+  Motor: {{ quotation_premium.quotation_insurance_vehicle.vehicle.engine }}
+  <br />
+  Chasis: {{ quotation_premium.quotation_insurance_vehicle.vehicle.chassis }}
+  <br />
+  <h5 class="mt-3">Datos de la cotización</h5>
+  <hr class="w-25 mt-1 mb-1"/>
+  Suma asegurada: ${{ quotation_premium.quotation_insurance_vehicle.insured_amount }}
+  <br />
+  Aseguradora: {{ quotation_premium.insurance_vehicle_ratio.insurance_vehicle }}
+  <br />
+  Prima neta: ${{ quotation_premium.amount }}
+  <br />
+  Derecho de emisión: ${{ quotation_premium.emission_right }}
+  <br />
+  IGV: ${{ quotation_premium.tax }}
+  <br />
+  Tasa: ${{ quotation_premium.rate }}
+  <br />
+  Prima total: ${{ quotation_premium.total }}
+</div>
+<form method="post">
+  {% csrf_token %}
+  <table>
+    {{ form }}
+  </table>
+  <input class="btn btn-primary" type="submit" />
+</form>
+{% endblock content %}
