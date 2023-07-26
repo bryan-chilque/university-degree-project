@@ -24,6 +24,7 @@ from .utils import SeguroItem
 
 class LoginView(views_auth.LoginView):
     template_name = "rrggweb/login.html"
+    form_class = forms.LoginAuthenticationForm
 
     def form_valid(self, form):
         consultant_id = (
@@ -273,8 +274,11 @@ class QuotationInsuranceVehiclePremiumsFormView(FormView):
 
     def get_success_url(self):
         return urls.reverse_lazy(
-            "rrggweb:quotation:insurance:vehicle:list",
-            kwargs={"consultant_id": self.kwargs["consultant_id"]},
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "quotation_id": self.kwargs["quotation_id"],
+            },
         )
 
 
@@ -413,5 +417,66 @@ class QuotationInsuranceVehicleUpdateCustomerView(
             kwargs={
                 "consultant_id": self.kwargs["consultant_id"],
                 "customer_id": self.object.id,
+            },
+        )
+
+
+# ------------------------------
+
+# ISSUANCE VIEW
+
+
+class IssuanceView(TemplateView):
+    template_name = "rrggweb/issuance.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["seguros"] = [
+            SeguroItem(
+                "Seguro de vehicular",
+                urls.reverse(
+                    "rrggweb:issuance:insurance:vehicle:list",
+                    kwargs={"consultant_id": self.kwargs["consultant_id"]},
+                ),
+            ),
+            SeguroItem("Seguro de vida", ""),
+            SeguroItem("Seguro de accidentes", ""),
+            SeguroItem("Seguro de salud", ""),
+        ]
+        return context
+
+
+class IssuanceInsuranceVehicleListView(ListView):
+    template_name = "rrggweb/issuance/insurance/vehicle/list.html"
+    model = rrgg.models.IssuanceInsuranceVehicle
+
+
+class IssuanceInsuranceVehicleCreateIssuanceView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/create_issuance.html"
+
+    model = rrgg.models.IssuanceInsuranceVehicle
+    fields = ["policy_number", "collection_document", "start_date", "end_date"]
+
+    def form_valid(self, form):
+        form.instance.quotation_vehicle_premium_id = self.kwargs[
+            "quotation_premium_id"
+        ]
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["quotation_premium"] = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["quotation_premium_id"],
+        )
+        return context
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
             },
         )

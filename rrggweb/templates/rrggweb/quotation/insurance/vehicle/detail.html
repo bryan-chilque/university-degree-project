@@ -33,6 +33,7 @@
             <th>% IGV</th>
             <th>IGV</th>
             <th>Prima Total</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -45,6 +46,11 @@
               <td>{% widthratio premium.insurance_vehicle_ratio.tax 1 100 %}%</td>
               <td>${{ premium.tax }}</td>
               <td>${{ premium.total }}</td>
+              <td><a
+                  href="{% url 'rrggweb:issuance:insurance:vehicle:create_issuance' view.kwargs.consultant_id premium.id %}"
+                  > generar emisión
+                  </a>
+                </td>
             </tr>
           {% endfor %}
         </tbody>

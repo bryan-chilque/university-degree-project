@@ -1,0 +1,36 @@
+{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Lista de emisiones de seguros vehiculares{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+    <div>
+        <a class="btn btn-primary" href="{% url 'rrggweb:issuance:insurance:vehicle:list_quotations' view.kwargs.consultant_id %}">Crear Nueva emisión
+            <i class="bi bi-plus-lg"></i>
+        </a>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Cliente</th>
+                <th scope="col">Vehiculo</th>
+                <th scope="col">Asesor</th>
+                <th scope="col">Aseguradora</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for issuance in object_list %}
+            <tr class="">
+                <td scope="row">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.customer }}</td>
+                <td>{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle }}</td>
+                <td>{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.consultant }}</td>
+                <td>{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -61,6 +61,27 @@ quotation_insurance_vehicle_urlpatterns = (
     "vehicle",
 )
 
+issuance_insurance_vehicle_urlpatterns = (
+    [
+        path(
+            "list/",
+            views.IssuanceInsuranceVehicleListView.as_view(),
+            name="list",
+        ),
+        path(
+            "list_quotations/",
+            views.QuotationInsuranceVehicleListView.as_view(),
+            name="list_quotations",
+        ),
+        path(
+            "quotation_premium/<int:quotation_premium_id>/create_issuance/",
+            views.IssuanceInsuranceVehicleCreateIssuanceView.as_view(),
+            name="create_issuance",
+        ),
+    ],
+    "vehicle",
+)
+
 quotation_insurance_urlpatterns = (
     [path("vehicle/", include(quotation_insurance_vehicle_urlpatterns))],
     "insurance",
@@ -69,6 +90,16 @@ quotation_insurance_urlpatterns = (
 quotation_urlpatterns = (
     [path("insurance/", include(quotation_insurance_urlpatterns))],
     "quotation",
+)
+
+issuance_insurance_urlpatterns = (
+    [path("vehicle/", include(issuance_insurance_vehicle_urlpatterns))],
+    "insurance",
+)
+
+issuance_urlpatterns = (
+    [path("insurance/", include(issuance_insurance_urlpatterns))],
+    "issuance",
 )
 
 app_name = "rrggweb"
@@ -81,6 +112,12 @@ urlpatterns = [
         views.QuotationView.as_view(),
         name="quotation",
     ),
+    path(
+        "<int:consultant_id>/issuance/",
+        views.IssuanceView.as_view(),
+        name="issuance",
+    ),
     path("<int:consultant_id>/home/", views.HomeView.as_view(), name="home"),
     path("<int:consultant_id>/quotation/", include(quotation_urlpatterns)),
+    path("<int:consultant_id>/issuance/", include(issuance_urlpatterns)),
 ]
