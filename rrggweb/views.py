@@ -24,6 +24,7 @@ from .utils import SeguroItem
 
 class LoginView(views_auth.LoginView):
     template_name = "rrggweb/login.html"
+    form_class = forms.LoginAuthenticationForm
 
     def form_valid(self, form):
         consultant_id = (
