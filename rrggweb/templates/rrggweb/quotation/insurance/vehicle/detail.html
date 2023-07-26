@@ -6,7 +6,14 @@
       <h4 class="mb-0">Cliente: {{ customer }} </h4>
     </div>
     <div class="col-md-6 text-right">
-      <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_xlsx' view.kwargs.consultant_id object.pk %}" class="btn btn-success">Exportar a Excel</a>
+      <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_xlsx' view.kwargs.consultant_id object.pk %}" class="btn btn-success">
+        <i class="bi bi-file-earmark-excel"></i>
+        Exportar a Excel
+      </a>
+      <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_pdf' view.kwargs.consultant_id object.pk %}" class="btn btn-danger">
+        <i class="bi bi-file-earmark-pdf"></i>
+        Exportar a PDF
+      </a>
       <a href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.consultant_id %}" class="btn btn-secondary">Volver</a>
     </div>
   </div>

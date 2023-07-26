@@ -145,6 +145,35 @@ class QuotationInsuranceVehicleReportXlsxView(View):
         return wb
 
 
+class QuotationInsuranceVehicleReportPdfView(View):
+    def get(self, request, *args, **kwargs):
+        from django.template.loader import render_to_string
+        from weasyprint import HTML
+
+        templatename = "rrggweb/quotation/insurance/vehicle/report.html"
+        quotation = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehicle,
+            id=kwargs["quotation_id"],
+        )
+
+        html_string = render_to_string(
+            templatename,
+            {
+                "quotation": quotation,
+                "premiums": quotation.premiums.all(),
+            },
+        )
+
+        pdf_file = HTML(string=html_string).write_pdf()
+
+        response = HttpResponse(pdf_file, content_type="application/pdf")
+        response["Content-Disposition"] = (
+            "attachment; filename=report_quotations.pdf"
+        )
+
+        return response
+
+
 class QuotationInsuranceVehicleListView(ListView):
     template_name = "rrggweb/quotation/insurance/vehicle/list.html"
     model = rrgg.models.QuotationInsuranceVehicle
