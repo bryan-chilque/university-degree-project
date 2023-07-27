@@ -66,7 +66,7 @@ quotation_insurance_vehicle_urlpatterns = (
             "borrador/pdf/<int:quotation_id>/",
             views.QuotationInsuranceVehicleReportView.as_view(),
             name="report_pdf",
-        )
+        ),
     ],
     "vehicle",
 )
