@@ -201,24 +201,8 @@ class QuotationInsuranceVehicleReportView(View):
             rrgg.models.QuotationInsuranceVehicle, id=kwargs["quotation_id"]
         )
 
-        # TODO: Agregar modelo para que se tenga el numero de cuotas
-        cuotas1 = [4, 6, 12, 4, 6]
-        cuotas2 = [12, 12, 12, 12, 12]
-
-        totals1 = [
-            (cuota, premium.amount / cuota)
-            for cuota, premium in zip(cuotas1, quotation.premiums.all())
-        ]
-
-        totals2 = [
-            (cuota, premium.amount / cuota)
-            for cuota, premium in zip(cuotas2, quotation.premiums.all())
-        ]
-
         context = {
             "quotation": quotation,
-            "totals1": totals1,
-            "totals2": totals2,
         }
 
         html_string = render(

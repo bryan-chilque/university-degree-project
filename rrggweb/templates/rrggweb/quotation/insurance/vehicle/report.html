@@ -6,14 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
       @page {
         margin: 0.3cm;
+      }
+      * {
+        font-family: "Roboto", sans-serif;
+        font-size: 10pt;
+      }
+      table {
+        border: 1px solid #000;
+      }
+      table > tbody > tr > th {
+        text-align: left;
+        padding: 0.3rem;
+        font-weight: 500;
+      }
+      table > tbody > tr > th:nth-child(1) {
+        font-weight: 600;
+      }
+      section:nth-child(1) {
+        padding: 0.5rem 0;
+      }
+      section:nth-child(1) table:nth-child(2) > tbody > tr > th:nth-child(1) {
+        width: 150px;
+      }
+      section > table > tbody > tr > th:nth-child(1) {
+        width: 150px;
+      }
+      section > table > tbody > tr > th:not(:nth-child(1)) {
+        width: 100px;
+        text-align: center;
+      }
+      section {
+        margin: 1rem 0;
+      }
+      section:nth-child(4) > table,
+      section:nth-child(2) > table > tbody:nth-child(1) > tr:nth-child(5) {
+        background-color: #cfe2ff;
+      }
+      section > h4 {
+        width: 712px;
+        text-align: center;
+        margin: 0;
+        padding: 10px 0;
+        background-color: #cfe2ff;
+        border: 1px solid #000;
+        border-bottom: 0;
       }
     </style>
   </head>
   <body>
     <section>
-      <img src="{% static 'web/img/kcs-logo.png' %}" alt="logo" />
+      <img
+        src="https://kcs.pe/View/img/Logo/KCSLogotipo167x88.png"
+        alt="logo"
+        width="100"
+      />
       <table>
         <tr>
           <th>Datos Cliente</th>
@@ -48,27 +97,77 @@
     <section>
       <table>
         <tr>
-          <th>Prima Neta (US$)</th>
-          {% for premium in quotation.premiums.all %}
-          <th>{{ premium.amount }}</th>
-          {% endfor %}
+          <th>
+            <img
+              src="https://www.apeseg.org.pe/wp-content/uploads/2018/05/Seguro-vehicular.jpg"
+              alt="Seguro Vehicular"
+              width="100"
+            />
+          </th>
+          <th>
+            <img
+              src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/112010/lapositivaseguros-converted.png?itok=gYEjQKre"
+              alt="La Positiva"
+              width="100"
+            />
+          </th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
         <tr>
-          <th>Derecho de Emisión</th>
+          <th>Nombre Aseguradora</th>
           {% for premium in quotation.premiums.all %}
-          <th>{{ premium.emission_right }}</th>
+            {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 1 %}
+              <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
+            {% endif %}
+            {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 2 %}
+              <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
+            {% endif %}
+            {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 3 %}
+              <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
+            {% endif %}
+            {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 4 %}
+              <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
+            {% endif %}
           {% endfor %}
-        </tr>
-        <tr>
-          <th>IGV</th>
+          </tr>
+          <tr>
+            <th>Prima Neta (US$)</th>
+            {% for premium in quotation.premiums.all %}
+              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 1 %}
+                <th>$ {{ premium.amount }}</th>
+              {% endif %}
+              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 2 %}
+                <th>$ {{ premium.amount }}</th>
+              {% endif %}
+              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 3 %}
+                <th>$ {{ premium.amount }}</th>
+              {% endif %}
+              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 4 %}
+                <th>$ {{ premium.amount }}</th>
+              {% endif %}
+              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 5 %}
+                <th>$ {{ premium.amount }}</th>
+              {% endif %}
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>Derecho de Emisión</th>
+            {% for premium in quotation.premiums.all %}
+            <th>$ {{ premium.emission_right }}</th>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>IGV</th>
+            {% for premium in quotation.premiums.all %}
+            <th>$ {{ premium.tax }}</th>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>Prima Total</th>
           {% for premium in quotation.premiums.all %}
-          <th>{{ premium.tax }}</th>
-          {% endfor %}
-        </tr>
-        <tr>
-          <th>Prima Total</th>
-          {% for premium in quotation.premiums.all %}
-          <th>{{ premium.total }}</th>
+          <th>$ {{ premium.total }}</th>
           {% endfor %}
         </tr>
       </table>
@@ -374,17 +473,20 @@
       <table>
         <tr>
           <th>Cuotas Iguales sin intereses</th>
-          {% for pair in totals %}
-            <th>{{ pair.0 }}&nbsp;{{ pair.1 }}</th>
+          {% for premium in quotation.premiums.all %}
+          <th>
+            {{ premium.insurance_vehicle_ratio.fee }}|&nbsp;${{ premium.fee }}
+          </th>
           {% endfor %}
         </tr>
         <tr>
-          <th>Debito automático </th>
-          <th>12&nbsp;</th>
-          <th>12&nbsp;</th>
-          <th>12&nbsp;</th>
-          <th>12&nbsp;</th>
-          <th>12&nbsp;</th>
+          <th>Debito automático</th>
+          {% for premium in quotation.premiums.all %}
+          <th>
+            {{ premium.insurance_vehicle_ratio.direct_debit }}|&nbsp;${{
+            premium.direct_debit }}
+          </th>
+          {% endfor %}
         </tr>
       </table>
     </section>
