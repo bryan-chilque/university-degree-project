@@ -1,3 +1,10 @@
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
 Consultant Memberships:
 <br/>
 <ul>
@@ -5,4 +12,5 @@ Consultant Memberships:
         <li>{{ membership }}</li>
     {% endfor %}
 </ul>
-<a href="{% url 'rrggadmin:consultant_membership:create' %}">Crear</a>
+<a href="{% url 'rrggadmin:consultant_membership:create' %}" class="btn btn-primary">Crear</a>
+{% endblock container %}

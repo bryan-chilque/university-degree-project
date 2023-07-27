@@ -1,7 +1,14 @@
-<h3>Seguros vehiculares</h3>
-<a href="{% url 'rrggadmin:insurance:vehicle:create' %}">Crear</a>
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
 <ul>
   {% for insurance in object_list %}
   <li><a href="{% url 'rrggadmin:insurance:vehicle:price:list' insurance.id %}">{{ insurance }}</a></li>
   {% endfor %}
 </ul>
+<a href="{% url 'rrggadmin:insurance:vehicle:create' %}" class="btn btn-primary">Crear</a>
+{% endblock container %}

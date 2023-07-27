@@ -37,6 +37,17 @@ insurance_vehicle_urlpatterns = (
     "vehicle",
 )
 
+# insurance_vehicle_urlpatterns = menu_patterns(
+#    rrgg.models.InsuranceVehicle,
+#    "rrggadmin/common",
+#    "vehicle",
+#    "rrggadmin:insurance",
+#    menu_traits=MenuTraits(
+#        list=ViewTraits(bases=[mixins.ListMixin]),
+#        detail=ViewTraits(bases=[PairFieldsMixin]),
+#    ),
+# )
+
 insurance_urlpatterns = (
     [
         path("vehicle/", include(insurance_vehicle_urlpatterns)),

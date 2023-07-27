@@ -1,12 +1,28 @@
-{% extends 'rrggadmin/base.html' %} {% block title %} Dashboard {% endblock %}
+{% extends 'rrggadmin/base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
 {% block body %}
-<main class="vh-100">
-    {% include 'rrggadmin/topbar.html' %}
-  <div class="d-flex vh-100">
-    {% include 'rrggadmin/sidebar.html' %}
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">{% block container %}{% endblock %}</div>
+<main class="vh-90">
+  <div class="row">{% include 'rrggadmin/topbar.html' %}</div>
+  <div class="row"
+    style="height:90vh;"
+  >
+    <div class="d-flex">
+      {% include 'rrggadmin/sidebar.html' %}
+      <div class="container-fluid">
+        <div class="row">
+        {# BEGIN titlebar #}
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <span class="navbar-brand">{% block titlebar_title %}{% endblock %}</span>
+          </div>
+        </nav>
+        {# END titlebar #}
+        </div>
+        <div class="row">
+          <div class="col-md-12">{% block container %}{% endblock %}</div>
+        </div>
       </div>
     </div>
   </div>

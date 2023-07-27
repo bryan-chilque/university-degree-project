@@ -1,6 +1,13 @@
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
 <a href="{% url 'rrggadmin:home' %}">🏠</a>
 <a href="{% url menu.create_name %}">🆕</a>
-<table>
+<table class="table table-hover">
     <thead>
         <tr>
             {% for field in object_fields %}<th>{{ field }}</th>{% endfor %}
@@ -20,3 +27,4 @@
 </table>
 
 {% include 'rrggadmin/pagination.html' %}
+{% endblock %}

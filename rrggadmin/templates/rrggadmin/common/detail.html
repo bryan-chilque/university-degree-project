@@ -1,9 +1,19 @@
-<a href="{% url 'rrggadmin:home' %}">🏠</a>
-<a href="{% url menu.list_name %}">🔙</a>
-<table>
-    {% for name, value in pairfields %}
-    <tr><td><i>{{ name }}</i></td><td>{{ value }}</td></tr>
-    {% endfor %}
-</table>
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
+    <a href="{% url 'rrggadmin:home' %}">🏠</a>
+    <a href="{% url menu.list_name %}">🔙</a>
+
+    <table>
+        {% for name, value in pairfields %}
+        <tr><td><i>{{ name }}</i></td><td>{{ value }}</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
 <a href="{% url menu.update_name object.pk %}">Actualizar</a>
 <a href="{% url menu.delete_name object.pk %}">Eliminar</a>

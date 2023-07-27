@@ -1,0 +1,13 @@
+<span class="navbar-brand mb-0 h1">
+    {% if 'list' in request.resolver_match.view_name  %}
+        Lista
+    {% elif 'detail' in request.resolver_match.view_name  %}
+        Detalle
+    {% elif 'create' in request.resolver_match.view_name  %}
+        Crear
+    {% elif request.resolver_match.view_name == 'rrggadmin:home' %}
+        Opciones
+    {% else %}
+        {{ request.resolver_match.view_name }}
+    {% endif %}
+</span>

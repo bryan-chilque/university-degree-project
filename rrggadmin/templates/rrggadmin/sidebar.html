@@ -1,44 +1,57 @@
 <aside
-  class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+  class="d-flex flex-column flex-shrink-0 p-3 text-black bg-light"
   style="width: 280px"
 >
-  <a
-    href="/"
-    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-  >
-    <i class="fas fa-2x fa-cubes"></i>
-    <span class="fs-4">Sidebar</span>
-  </a>
-  <hr />
+  <h5>Administración</h5>
   <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="#" class="nav-link active" aria-current="page">
+    <li>
+      <a href="{% url 'rrggadmin:home' %}"
+        class="nav-link
+        {% if request.resolver_match.view_name == 'rrggadmin:home' %}
+          active
+        {% else %}
+          text-dark
+        {% endif %}
+        ">
         <i class="fas fa-home"></i>
-        Home
+        Inicio
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
-        <i class="fas fa-tachometer-alt"></i>
-        Dashboard
+      <a href="{% url 'rrggadmin:consultant:list' %}"
+        class="nav-link
+        {% if ':consultant:' in request.resolver_match.view_name %}
+          active
+        {% else %}
+          text-dark
+        {% endif %}
+        ">
+        <i class="bi bi-person-vcard-fill"></i>
+        Asesores
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
+      <a href="{% url 'rrggadmin:consultant_membership:list' %}" class="nav-link text-dark">
         <i class="fas fa-table"></i>
-        Orders
+        Registro de Asesores
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
-        <i class="fas fa-th"></i>
-        Products
+      <a href="{% url 'rrggadmin:user:list' %}" class="nav-link text-dark">
+        <i class="bi bi-people-fill"></i>
+        Usuarios
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
-        <i class="fas fa-chart-bar"></i>
-        Customers
+      <a href="{% url 'rrggadmin:insurance:vehicle:list' %}" class="nav-link text-dark">
+        <i class="bi bi-car-front-fill"></i>
+        Seguros Vehiculares
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'rrggadmin:use_type:list' %}" class="nav-link text-dark">
+        <i class="bi bi-truck-front-fill"></i>
+        Tipos de uso de Vehicular
       </a>
     </li>
   </ul>
@@ -46,7 +59,7 @@
   <div class="dropdown">
     <a
       href="#"
-      class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+      class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
       id="dropdownUser1"
       data-bs-toggle="dropdown"
       aria-expanded="false"
