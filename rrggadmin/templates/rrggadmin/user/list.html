@@ -1,8 +1,16 @@
-users:
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
+
 <br/>
 <ul>
     {% for user in object_list %}
         <li>{{ user }}</li>
     {% endfor %}
 </ul>
-<a href="{% url 'rrggadmin:user:create' %}">Crear</a>
+<a class="btn btn-primary" href="{% url 'rrggadmin:user:create' %}">Crear</a>
+{% endblock container %}

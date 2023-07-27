@@ -1,5 +1,12 @@
-<h3>Seguro vehicular</h3>
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
 <form method="post" enctype='multipart/form-data'>{% csrf_token %}
   <table>{{ form }}</table>
   <input type="submit"/>
 </form>
+{% endblock container %}

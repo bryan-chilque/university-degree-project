@@ -1,12 +1,27 @@
-{% load custom_filters %}
-{% include 'base.html' %}
+{% include 'rrggadmin/base.html' %}
 
 {% block content %}
 <form method="post">{% csrf_token %}
-    <div>
-        <label class="form-label">{{ form.name.label }}</label>
-        {{ form.name|addclass:"form-control" }}
+    <div class="row">
+        <div class="col-md-2">
+            {% for field in form %}
+                <div class="form-group mb-1">
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-1">
+            {% for field in form %}
+                <div class="form-group mb-1">
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <input type="submit"/>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}
