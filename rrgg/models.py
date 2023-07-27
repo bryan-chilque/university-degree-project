@@ -71,7 +71,7 @@ class ConsultantMembership(models.Model):
 # cotización de seguro vehicular
 class QuotationInsuranceVehicle(models.Model):
     # suma asegurada
-    insured_amount = models.PositiveIntegerField(default=0, null=True)
+    insured_amount = models.PositiveIntegerField(null=True)
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicles",
@@ -111,6 +111,11 @@ class InsuranceVehicleRatio(models.Model):
     )
     # impuesto (igv)
     tax = models.DecimalField(decimal_places=2, max_digits=10, null=False)
+    # cuotas
+    fee = models.PositiveIntegerField(null=True)
+    # débito automático
+    direct_debit = models.PositiveIntegerField(null=True)
+
     created = models.DateTimeField(auto_now_add=True, unique=True)
     insurance_vehicle = models.ForeignKey(
         InsuranceVehicle, related_name="ratios", on_delete=models.PROTECT
@@ -120,6 +125,7 @@ class InsuranceVehicleRatio(models.Model):
         return (
             f"er={self.emission_right},"
             f" tax={self.tax},"
+            f" fee={self.fee},"
             f" insurance_vehicle={self.insurance_vehicle}"
         )
 
@@ -159,12 +165,25 @@ class QuotationInsuranceVehiclePremium(models.Model):
     # prima comercial
     @property
     def commercial_premium(self):
-        q = self.quotation_insurance_vehicle
+        q = self.insurance_vehicle_ratio
         return round(self.amount + q.emission_right, 2)
 
+    # prima total
     @property
     def total(self):
         return self.amount + self.emission_right + self.tax
+
+    # fee
+    @property
+    def fee(self):
+        q = self.insurance_vehicle_ratio
+        return round(self.total / q.fee, 2)
+
+    # direct_debit
+    @property
+    def direct_debit(self):
+        q = self.insurance_vehicle_ratio
+        return round(self.total / q.direct_debit, 2)
 
     def __str__(self) -> str:
         return (
