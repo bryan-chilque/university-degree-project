@@ -23,7 +23,7 @@
       <p><strong>Monto Asegurado:</strong> ${{ object.insured_amount }}</p>
       <p><strong>Vehiculo:</strong> {{ object.vehicle }}</p>
       <p><strong>Consultor:</strong> {{ object.consultant }}</p>
-      <p><strong>Fecha de Registro:</strong> {{ object.created }}</p>
+      <p><strong>Fecha de Registro:</strong> {{ object.created|date:'d/m/Y' }}</p>
       <p><strong>¿Expiró?:</strong>
         {% if object.expired == True %}
           Si
