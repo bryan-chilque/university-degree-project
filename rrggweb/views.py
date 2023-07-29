@@ -532,3 +532,26 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
                 "consultant_id": self.kwargs["consultant_id"],
             },
         )
+
+
+class IssuanceInsuranceVehicleUpdateIssuanceView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/update_issuance.html"
+    model = rrgg.models.IssuanceInsuranceVehicle
+    fields = ["policy_number", "collection_document", "start_date", "end_date"]
+    pk_url_kwarg = "issuance_id"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+            },
+        )
+
+
+class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
+    template_name = "rrggweb/issuance/insurance/vehicle/detail_issuance.html"
+    model = rrgg.models.IssuanceInsuranceVehicle
+    pk_url_kwarg = "issuance_id"
