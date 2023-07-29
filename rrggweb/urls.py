@@ -57,6 +57,11 @@ quotation_insurance_vehicle_urlpatterns = (
             views.QuotationInsuranceVehicleReportXlsxView.as_view(),
             name="report_xlsx",
         ),
+        path(
+            "report/pdf/<int:quotation_id>/",
+            views.QuotationInsuranceVehicleReportPdfView.as_view(),
+            name="report_pdf",
+        ),
     ],
     "vehicle",
 )

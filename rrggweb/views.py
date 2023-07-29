@@ -121,28 +121,80 @@ class QuotationInsuranceVehicleReportXlsxView(View):
                 ws["E14"] = ws["E13"].value * ratio.emission_right
                 ws["E15"] = (ws["E13"].value + ws["E14"].value) * ratio.tax
                 ws["E16"] = ws["E13"].value + ws["E14"].value + ws["E15"].value
+                ws["D59"] = ratio.fee
+                ws["E59"] = ws["E16"].value / ratio.fee
+                ws["D60"] = ratio.direct_debit
+                ws["E60"] = ws["E16"].value / ratio.direct_debit
             if premium.amount > 0 and insurance_vehicle.id == 2:
                 ws["G13"] = premium.amount
                 ws["G14"] = ws["G13"].value * ratio.emission_right
                 ws["G15"] = (ws["G13"].value + ws["G14"].value) * ratio.tax
                 ws["G16"] = ws["G13"].value + ws["G14"].value + ws["G15"].value
+                ws["F59"] = ratio.fee
+                ws["G59"] = ws["G16"].value / ratio.fee
+                ws["F60"] = ratio.direct_debit
+                ws["G60"] = ws["G16"].value / ratio.direct_debit
             if premium.amount > 0 and insurance_vehicle.id == 3:
                 ws["I13"] = premium.amount
                 ws["I14"] = ws["I13"].value * ratio.emission_right
                 ws["I15"] = (ws["I13"].value + ws["I14"].value) * ratio.tax
                 ws["I16"] = ws["I13"].value + ws["I14"].value + ws["I15"].value
+                ws["H59"] = ratio.fee
+                ws["I59"] = ws["I16"].value / ratio.fee
+                ws["H60"] = ratio.direct_debit
+                ws["I60"] = ws["I16"].value / ratio.direct_debit
             if premium.amount > 0 and insurance_vehicle.id == 4:
                 ws["K13"] = premium.amount
                 ws["K14"] = ws["K13"].value * ratio.emission_right
                 ws["K15"] = (ws["K13"].value + ws["K14"].value) * ratio.tax
                 ws["K16"] = ws["K13"].value + ws["K14"].value + ws["K15"].value
+                ws["J59"] = ratio.fee
+                ws["K59"] = ws["K16"].value / ratio.fee
+                ws["J60"] = ratio.direct_debit
+                ws["K60"] = ws["K16"].value / ratio.direct_debit
             if premium.amount > 0 and insurance_vehicle.id == 5:
                 ws["M13"] = premium.amount
                 ws["M14"] = ws["M13"].value * ratio.emission_right
                 ws["M15"] = (ws["M13"].value + ws["M14"].value) * ratio.tax
                 ws["M16"] = ws["M13"].value + ws["M14"].value + ws["M15"].value
+                ws["L59"] = ratio.fee
+                ws["M59"] = ws["M16"].value / ratio.fee
+                ws["L60"] = ratio.direct_debit
+                ws["M60"] = ws["M16"].value / ratio.direct_debit
 
         return wb
+
+
+class QuotationInsuranceVehicleReportPdfView(View):
+    def get(self, request, *args, **kwargs):
+        from django.template.loader import render_to_string
+        from weasyprint import HTML
+
+        templatename = "rrggweb/quotation/insurance/vehicle/report.html"
+        quotation = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehicle,
+            id=kwargs["quotation_id"],
+        )
+        premiums = quotation.premiums.all().order_by(
+            "insurance_vehicle_ratio__insurance_vehicle__id"
+        )
+
+        html_string = render_to_string(
+            templatename,
+            {
+                "quotation": quotation,
+                "premiums": premiums,
+            },
+        )
+
+        pdf_file = HTML(string=html_string).write_pdf()
+
+        response = HttpResponse(pdf_file, content_type="application/pdf")
+        response["Content-Disposition"] = (
+            "attachment; filename=report_quotations.pdf"
+        )
+
+        return response
 
 
 class QuotationInsuranceVehicleListView(ListView):

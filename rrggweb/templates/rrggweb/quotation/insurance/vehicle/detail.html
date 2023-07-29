@@ -6,7 +6,14 @@
       <h4 class="mb-0">Cliente: {{ customer }} </h4>
     </div>
     <div class="col-md-6 text-right">
-      <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_xlsx' view.kwargs.consultant_id object.pk %}" class="btn btn-success">Exportar a Excel</a>
+      <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_xlsx' view.kwargs.consultant_id object.pk %}" class="btn btn-success">
+        <i class="bi bi-file-earmark-excel"></i>
+        Exportar a Excel
+      </a>
+      <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_pdf' view.kwargs.consultant_id object.pk %}" class="btn btn-danger">
+        <i class="bi bi-file-earmark-pdf"></i>
+        Exportar a PDF
+      </a>
       <a href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.consultant_id %}" class="btn btn-secondary">Volver</a>
     </div>
   </div>
@@ -33,10 +40,15 @@
             <th>% IGV</th>
             <th>IGV</th>
             <th>Prima Total</th>
+            <th>Mes / Cuota</th>
+            <th>Couta</th>
+            <th>Mes / débito auto.</th>
+            <th>Débito auto.</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
+          {{ object.premiums.premium.all.first }}
           {% for premium in object.premiums.all %}
             <tr>
               <td>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</td>
@@ -46,11 +58,15 @@
               <td>{% widthratio premium.insurance_vehicle_ratio.tax 1 100 %}%</td>
               <td>${{ premium.tax }}</td>
               <td>${{ premium.total }}</td>
+              <td>{{ premium.insurance_vehicle_ratio.fee }}</td>
+              <td>{{ premium.fee }}</td>
+              <td>{{ premium.insurance_vehicle_ratio.direct_debit }}</td>
+              <td>{{ premium.direct_debit }}</td>
               <td><a
-                  href="{% url 'rrggweb:issuance:insurance:vehicle:create_issuance' view.kwargs.consultant_id premium.id %}"
-                  > generar emisión
-                  </a>
-                </td>
+                href="{% url 'rrggweb:issuance:insurance:vehicle:create_issuance' view.kwargs.consultant_id premium.id %}"
+                > generar emisión
+                </a>
+            </td>
             </tr>
           {% endfor %}
         </tbody>
