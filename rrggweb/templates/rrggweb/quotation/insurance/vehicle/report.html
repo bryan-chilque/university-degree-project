@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
       @page {
         margin: 0.3cm;
       }
       * {
-        font-family: "Roboto", sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-size: 10pt;
       }
       table {
@@ -42,7 +42,7 @@
         margin: 1rem 0;
       }
       section:nth-child(4) > table,
-      section:nth-child(2) > table > tbody:nth-child(1) > tr:nth-child(5) {
+      section:nth-child(2) > table > tbody:nth-child(1) > tr:nth-child(6) {
         background-color: #cfe2ff;
       }
       section > h4 {
@@ -54,15 +54,22 @@
         border: 1px solid #000;
         border-bottom: 0;
       }
+      section:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr > th img {
+        width: 100px;
+      }
+      section:nth-child(8) {
+        margin-top: 1.5rem;
+        font-size: 9pt;
+      }
+      section:nth-child(8) h5 {
+        margin: 0;
+        padding: 0;
+      }
     </style>
   </head>
   <body>
     <section>
-      <img
-        src="https://kcs.pe/View/img/Logo/KCSLogotipo167x88.png"
-        alt="logo"
-        width="100"
-      />
+      <img src="https://kcs.pe/View/img/Logo/KCSLogotipo167x88.png" alt="logo" width="100" />
       <table>
         <tr>
           <th>Datos Cliente</th>
@@ -90,7 +97,7 @@
         </tr>
         <tr>
           <th>Fecha</th>
-          <th>{{ quotation.created|date:"d-m-Y" }}</th>
+          <th>{{ quotation.created|date:'d-m-Y' }}</th>
         </tr>
       </table>
     </section>
@@ -98,76 +105,52 @@
       <table>
         <tr>
           <th>
-            <img
-              src="https://www.apeseg.org.pe/wp-content/uploads/2018/05/Seguro-vehicular.jpg"
-              alt="Seguro Vehicular"
-              width="100"
-            />
+            <img src="https://www.apeseg.org.pe/wp-content/uploads/2018/05/Seguro-vehicular.jpg" alt="Seguro Vehicular" width="100" />
           </th>
           <th>
-            <img
-              src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/112010/lapositivaseguros-converted.png?itok=gYEjQKre"
-              alt="La Positiva"
-              width="100"
-            />
+            <img src="https://seeklogo.com/images/P/pacifico-seguros-logo-E1CD9C6D2E-seeklogo.com.png" alt="Pacífico Seguros" width="100" />
           </th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>
+            <img src="https://www.apeseg.org.pe/wp-content/uploads/2019/07/qualitas.png" alt="Qualitas Seguros" width="100" />
+          </th>
+          <th>
+            <img src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/112010/lapositivaseguros-converted.png?itok=gYEjQKre" alt="La Positiva" width="100" />
+          </th>
+          <th>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/LOGO-MAPFRE.jpg/800px-LOGO-MAPFRE.jpg" alt="Mapfre" width="100" />
+          </th>
+          <th>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Nuevo_logo_de_Rimac_Seguros.PNG/799px-Nuevo_logo_de_Rimac_Seguros.PNG" alt="Rimac Seguros" width="100" />
+          </th>
         </tr>
         <tr>
           <th>Nombre Aseguradora</th>
-          {% for premium in quotation.premiums.all %}
-            {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 1 %}
-              <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
-            {% endif %}
-            {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 2 %}
-              <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
-            {% endif %}
-            {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 3 %}
-              <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
-            {% endif %}
-            {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 4 %}
-              <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
-            {% endif %}
+          {% for premium in premiums %}
+            <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>
           {% endfor %}
-          </tr>
-          <tr>
-            <th>Prima Neta (US$)</th>
-            {% for premium in quotation.premiums.all %}
-              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 1 %}
-                <th>$ {{ premium.amount }}</th>
-              {% endif %}
-              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 2 %}
-                <th>$ {{ premium.amount }}</th>
-              {% endif %}
-              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 3 %}
-                <th>$ {{ premium.amount }}</th>
-              {% endif %}
-              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 4 %}
-                <th>$ {{ premium.amount }}</th>
-              {% endif %}
-              {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == 5 %}
-                <th>$ {{ premium.amount }}</th>
-              {% endif %}
-            {% endfor %}
-          </tr>
-          <tr>
-            <th>Derecho de Emisión</th>
-            {% for premium in quotation.premiums.all %}
+        </tr>
+        <tr>
+          <th>Prima Neta (US$)</th>
+          {% for premium in premiums %}
+            <th>$ {{ premium.amount }}</th>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th>Derecho de Emisión</th>
+          {% for premium in premiums %}
             <th>$ {{ premium.emission_right }}</th>
-            {% endfor %}
-          </tr>
-          <tr>
-            <th>IGV</th>
-            {% for premium in quotation.premiums.all %}
+          {% endfor %}
+        </tr>
+        <tr>
+          <th>IGV</th>
+          {% for premium in premiums %}
             <th>$ {{ premium.tax }}</th>
-            {% endfor %}
-          </tr>
-          <tr>
-            <th>Prima Total</th>
-          {% for premium in quotation.premiums.all %}
-          <th>$ {{ premium.total }}</th>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th>Prima Total</th>
+          {% for premium in premiums %}
+            <th>$ {{ premium.total }}</th>
           {% endfor %}
         </tr>
       </table>
@@ -473,22 +456,24 @@
       <table>
         <tr>
           <th>Cuotas Iguales sin intereses</th>
-          {% for premium in quotation.premiums.all %}
-          <th>
-            {{ premium.insurance_vehicle_ratio.fee }}|&nbsp;${{ premium.fee }}
-          </th>
+          {% for premium in premiums %}
+            <th>{{ premium.insurance_vehicle_ratio.fee }}|&nbsp;${{ premium.fee }}</th>
           {% endfor %}
         </tr>
         <tr>
           <th>Debito automático</th>
-          {% for premium in quotation.premiums.all %}
-          <th>
-            {{ premium.insurance_vehicle_ratio.direct_debit }}|&nbsp;${{
-            premium.direct_debit }}
-          </th>
+          {% for premium in premiums %}
+            <th>{{ premium.insurance_vehicle_ratio.direct_debit }}|&nbsp;${{ premium.direct_debit }}</th>
           {% endfor %}
         </tr>
       </table>
+    </section>
+    <section>
+      <h5>Beneficiones Adicionales</h5>
+      <p>* Central de Asistencia 24hrs.: Auxilio mecánico, Grúa y Ambulancia</p>
+      <p>* Rehabilitación automática de la Suma Asegurada (Excepto Accesorios Musicales)</p>
+      <p>* Las Condiciones Generales de la póliza prevalecen sobre esta cotización</p>
+      <p>* Cotización válida por 15 días.</p>
     </section>
   </body>
 </html>
