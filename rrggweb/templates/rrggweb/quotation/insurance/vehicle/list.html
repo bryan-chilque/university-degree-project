@@ -23,25 +23,25 @@
             </tr>
         </thead>
         <tbody>
-            {% for quotation in object_list %}
+        {% for quotation in object_list %}
             <tr class="">
-                <td scope="row">{{ quotation.vehicle.customer }}</td>
-                <td>{{ quotation.vehicle }}</td>
-                <td>{{ quotation.consultant }}</td>
-                <td>
-                    {% if quotation.expired %}
-                    <span class="badge bg-danger">Si</span>
-                    {% else %}
-                    <span class="badge bg-success">No</span>
-                    {% endif %}
-                </td>
-                <td>
-                    <a class="btn btn-primary" href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.consultant_id quotation.id %}">
-                    <i class="bi bi-eye-fill"></i>
-                    </a>
-                </td>
+            <td class="align-middle" scope="row">{{ quotation.vehicle.customer }}</td>
+            <td class="align-middle">{{ quotation.vehicle }}</td>
+            <td class="align-middle">{{ quotation.consultant }}</td>
+            <td class="align-middle">
+                {% if quotation.expired %}
+                <span class="badge bg-danger align-middle">Si</span>
+                {% else %}
+                <span class="badge bg-success align-middle">No</span>
+                {% endif %}
+            </td>
+            <td class="align-middle">
+                <a class="btn btn-primary" href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.consultant_id quotation.id %}">
+                <i class="bi bi-eye-fill"></i>
+                </a>
+            </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
 </div>
