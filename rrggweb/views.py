@@ -1,4 +1,5 @@
 from django import shortcuts, urls
+from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelformset_factory
@@ -515,6 +516,15 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
         form.instance.quotation_vehicle_premium_id = self.kwargs[
             "quotation_premium_id"
         ]
+        # validate expiration date
+        quotation_premium = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["quotation_premium_id"],
+        )
+        if quotation_premium.quotation_insurance_vehicle.expired:
+            messages.warning(self.request, "Esta cotización ya expiró")
+            return self.form_invalid(form)
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

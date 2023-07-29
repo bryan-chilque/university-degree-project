@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils import timezone
 
 
 class Customer(models.Model):
@@ -83,6 +84,10 @@ class QuotationInsuranceVehicle(models.Model):
         on_delete=models.PROTECT,
     )
     created = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def expired(self):
+        return timezone.now() - self.created > timezone.timedelta(days=15)
 
     def __str__(self):
         return f"insured_amount={self.insured_amount}, vehicle={self.vehicle}"

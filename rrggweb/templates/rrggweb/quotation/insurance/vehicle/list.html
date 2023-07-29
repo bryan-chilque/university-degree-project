@@ -18,6 +18,7 @@
                 <th scope="col">Cliente</th>
                 <th scope="col">Vehiculo</th>
                 <th scope="col">Asesor</th>
+                <th scope="col">¿Expiró?</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -27,6 +28,13 @@
                 <td scope="row">{{ quotation.vehicle.customer }}</td>
                 <td>{{ quotation.vehicle }}</td>
                 <td>{{ quotation.consultant }}</td>
+                <td>
+                    {% if quotation.expired %}
+                    <span class="badge bg-danger">Si</span>
+                    {% else %}
+                    <span class="badge bg-success">No</span>
+                    {% endif %}
+                </td>
                 <td>
                     <a class="btn btn-primary" href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.consultant_id quotation.id %}">
                     <i class="bi bi-eye-fill"></i>

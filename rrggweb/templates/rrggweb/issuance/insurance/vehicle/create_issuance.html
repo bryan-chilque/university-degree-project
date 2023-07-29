@@ -58,6 +58,16 @@
 </div>
 <form method="post">
   {% csrf_token %}
+  {% if messages %}
+  <ul class="messages list-unstyled">
+    {% for message in messages %}
+    <alert class="alert alert-{{ message.tags }} alert-dismissible fade show d-flex gap-2 w-25" role="alert">
+        <i class="bi bi-exclamation-circle-fill"></i>
+        {{ message }}
+    </alert>
+    {% endfor %}
+  </ul>
+  {% endif %}
   <table>
     {{ form }}
   </table>
