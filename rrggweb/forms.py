@@ -1,11 +1,12 @@
 from django import forms
 from django.contrib.auth import forms as forms_auth
+from django.utils.translation import gettext as _
 
 
 class SearchByDocumentNumberForm(forms.Form):
     document_number = forms.CharField(
         max_length=32,
-        label="Número de documento",
+        label=_("document number"),
         widget=forms.TextInput(attrs={"class": "form-control"}),
     )
 

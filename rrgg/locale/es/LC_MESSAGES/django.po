@@ -1,0 +1,115 @@
+# rrgg translation file.
+# Copyright (C) 2023
+# This file is distributed under the same license as the rrgg package.
+# Cristhian Gonzales <gcca@gcca.dev>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-28 05:59+0000\n"
+"PO-Revision-Date: 2023-07-25 16:40+0000\n"
+"Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
+"Language-Team: Riesgos Devs <devs@crd.pe>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: rrgg/models.py:24
+msgid "brand"
+msgstr "marca"
+
+#: rrgg/models.py:25
+msgid "model"
+msgstr "modelo"
+
+#: rrgg/models.py:26
+msgid "plate"
+msgstr "patente (placa)"
+
+#: rrgg/models.py:27
+msgid "fabrication year"
+msgstr "año de fabricación"
+
+#: rrgg/models.py:28
+msgid "engine number"
+msgstr "número de motor"
+
+#: rrgg/models.py:29
+msgid "chassis number"
+msgstr "número de chasis"
+
+#: rrgg/models.py:34
+msgid "usage"
+msgstr "uso"
+
+#: rrgg/models.py:42
+msgid "customer"
+msgstr "cliente"
+
+#: rrgg/models.py:47 rrgg/models.py:87
+msgid "vehicle"
+msgstr "vehículo"
+
+#: rrgg/models.py:48
+msgid "vehicles"
+msgstr "vehículos"
+
+#: rrgg/models.py:55
+msgid "given name"
+msgstr "primer nombre"
+
+#: rrgg/models.py:56
+msgid "first surname"
+msgstr "apellido paterno"
+
+#: rrgg/models.py:57
+msgid "second surname"
+msgstr "apellido materno"
+
+#: rrgg/models.py:58
+msgid "document number"
+msgstr "número de documento"
+
+#: rrgg/models.py:61 rrgg/models.py:93
+msgid "consultant"
+msgstr "vendedor"
+
+#: rrgg/models.py:62
+msgid "consultants"
+msgstr "vendedores"
+
+#: rrgg/models.py:83
+msgid "insured amount"
+msgstr "monto asegurado"
+
+#: rrgg/models.py:99
+msgid "vehicle insurance quotation"
+msgstr "cotización de seguro vehicular"
+
+#: rrgg/models.py:100
+msgid "vehicle insurance quotations"
+msgstr "cotizaciones de seguros vehiculares"
+
+#: rrgg/models.py:104
+msgid "name"
+msgstr "nombre"
+
+#: rrgg/models.py:114 rrgg/models.py:115
+msgid "vehicle insurance"
+msgstr "seguro vehicular"
+
+#: rrgg/models.py:120
+msgid "emission right"
+msgstr "derecho de emisión"
+
+#: rrgg/models.py:121
+msgid "tax (igv)"
+msgstr "impuesto (igv)"
+
+#: rrgg/models.py:136
+msgid "comcercial premium"
+msgstr "prima comercial"

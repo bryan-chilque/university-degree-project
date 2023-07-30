@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 class Customer(models.Model):
@@ -21,16 +22,19 @@ class UseType(models.Model):
 
 
 class Vehicle(models.Model):
-    brand = models.CharField(max_length=64)
-    vehicle_model = models.CharField(max_length=64)
-    plate = models.CharField(max_length=64, unique=True)
-    fabrication_year = models.PositiveIntegerField(default=0)
-    engine = models.CharField(max_length=64, default="")
-    chassis = models.CharField(max_length=64, default="")
+    brand = models.CharField(_("brand"), max_length=64)
+    vehicle_model = models.CharField(_("model"), max_length=64)
+    plate = models.CharField(_("plate"), max_length=64, unique=True)
+    fabrication_year = models.PositiveIntegerField(
+        _("fabrication year"), default=0
+    )
+    engine = models.CharField(_("engine number"), max_length=64, default="")
+    chassis = models.CharField(_("chassis number"), max_length=64, default="")
 
     use_type = models.ForeignKey(
         UseType,
         related_name="use_type",
+        verbose_name=_("usage"),
         on_delete=models.PROTECT,
         null=True,
     )
@@ -38,18 +42,31 @@ class Vehicle(models.Model):
     customer = models.ForeignKey(
         Customer,
         related_name="vehicles",
+        verbose_name=_("customer"),
         on_delete=models.PROTECT,
     )
+
+    class Meta:
+        verbose_name = _("vehicle")
+        verbose_name_plural = _("vehicles")
 
     def __str__(self):
         return f"{self.brand} {self.vehicle_model} {self.plate}"
 
 
 class Consultant(models.Model):
-    given_name = models.CharField(max_length=64)
-    first_surname = models.CharField(max_length=64)
-    second_surname = models.CharField(max_length=64, blank=True)
-    document_number = models.CharField(max_length=32, unique=True)
+    given_name = models.CharField(_("given name"), max_length=64)
+    first_surname = models.CharField(_("first surname"), max_length=64)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+    document_number = models.CharField(
+        _("document number"), max_length=32, unique=True
+    )
+
+    class Meta:
+        verbose_name = _("consultant")
+        verbose_name_plural = _("consultants")
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
@@ -69,21 +86,27 @@ class ConsultantMembership(models.Model):
         return f"consultant={self.consultant}, user={self.user}"
 
 
-# cotización de seguro vehicular
 class QuotationInsuranceVehicle(models.Model):
-    # suma asegurada
-    insured_amount = models.PositiveIntegerField(null=True)
+    insured_amount = models.PositiveIntegerField(
+        _("insured amount"), null=True
+    )
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicles",
+        verbose_name=_("vehicle"),
         on_delete=models.PROTECT,
     )
     consultant = models.ForeignKey(
         Consultant,
         related_name="quotation_insurance_vehicles",
+        verbose_name=_("consultant"),
         on_delete=models.PROTECT,
     )
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("vehicle insurance quotation")
+        verbose_name_plural = _("vehicle insurance quotations")
 
     @property
     def expired(self):
@@ -93,9 +116,8 @@ class QuotationInsuranceVehicle(models.Model):
         return f"insured_amount={self.insured_amount}, vehicle={self.vehicle}"
 
 
-# aseguradora
 class InsuranceVehicle(models.Model):
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(_("name"), max_length=64, unique=True)
     logo = models.ImageField(
         upload_to="insurance_vehicle_images/", blank=True, null=True
     )
@@ -107,15 +129,19 @@ class InsuranceVehicle(models.Model):
     def last_ratio(self):
         return self.ratios.order_by("-created").first()
 
+    class Meta:
+        verbose_name = _("vehicle insurance")
+        verbose_name_plural = _("vehicle insurance")
+
 
 # relación precio - aseguradora
 class InsuranceVehicleRatio(models.Model):
-    # derecho de emisión
-    emission_right = models.DecimalField(
-        decimal_places=2, max_digits=10, null=False
+    tax = models.DecimalField(
+        _("tax (igv)"), decimal_places=2, max_digits=10, null=False
     )
-    # impuesto (igv)
-    tax = models.DecimalField(decimal_places=2, max_digits=10, null=False)
+    emission_right = models.DecimalField(
+        _("emission right"), decimal_places=2, max_digits=10, null=False
+    )
     # cuotas
     fee = models.PositiveIntegerField(null=True)
     # débito automático
@@ -137,7 +163,9 @@ class InsuranceVehicleRatio(models.Model):
 
 class QuotationInsuranceVehiclePremium(models.Model):
     # prima neta
-    amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
+    amount = models.DecimalField(
+        _("comercial premium"), decimal_places=2, max_digits=10, default=0
+    )
     insurance_vehicle_ratio = models.ForeignKey(
         InsuranceVehicleRatio,
         related_name="quotation_insurance_vehicle_premiums",

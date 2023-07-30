@@ -75,6 +75,8 @@ class QuotationView(TemplateView):
 
 
 # QUOTATION INSURANCE VEHICLE
+
+
 class QuotationInsuranceVehicleReportXlsxView(View):
     def get(self, request, *args, **kwargs):
         quotation = shortcuts.get_object_or_404(

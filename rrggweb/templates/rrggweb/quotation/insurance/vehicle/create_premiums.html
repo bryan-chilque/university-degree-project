@@ -1,4 +1,9 @@
-{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Vincular Primas de Seguro Vehicular{% endblock %}
+{% extends 'rrggweb/dashboard.html' %}
+
+{% load i18n %}
+
+{% block title_section %}Vincular Primas de Seguro Vehicular{% endblock %}
+
 {% block content %}
 <a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id %} "><i class="bi bi-arrow-left"></i>Volver</a>
 <div class="mt-2">
@@ -12,14 +17,17 @@
   <br />
 <form method="post">
   {% csrf_token %}
+  {% translate 'emission right' as emission_right_text %}
+  {% translate 'tax (igv)' as tax_text %}
+  {% translate 'vehicle insurance' as vehicle_insurance_text %}
   <table class="table table-striped-columns">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Derecho de Emisión</th>
-        <th>Impuesto</th>
+        <th>{{ emission_right_text|capfirst }}</th>
+        <th>{{ tax_text|capfirst }}</th>
         <th>Fecha de Creación</th>
-        <th>Vehicle Insurance</th>
+        <th>{{ vehicle_insurance_text|capfirst }}</th>
         <th>Monto</th>
       </tr>
     </thead>
