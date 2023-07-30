@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelformset_factory
+from django.forms.models import modelform_factory
 from django.http import HttpResponse
 from django.views.generic import (
     CreateView,
@@ -371,15 +372,9 @@ class QuotationInsuranceVehicleCreateVehicleView(
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_vehicle.html"
     model = rrgg.models.Vehicle
-    fields = [
-        "brand",
-        "vehicle_model",
-        "plate",
-        "fabrication_year",
-        "engine",
-        "chassis",
-        "use_type",
-    ]
+
+    def get_form_class(self):
+        return modelform_factory(self.model, exclude=["customer"])
 
     def form_valid(self, form):
         form.instance.customer_id = self.kwargs["customer_id"]
