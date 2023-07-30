@@ -76,11 +76,11 @@
           <h5 class="card-title mb-0">Detalle de la emisión</h5>
         </div>
         <div class="card-body">
-          <p class="card-text">Número de póliza: {{ object.policy_number }}</p>
+          <p class="card-text">Número de póliza: {{ object.policy }}</p>
           <p class="card-text">Documento de cobranza: {{ object.collection_document }}</p>
           <p class="card-text">Fecha de emisión: {{ object.created|date:'d/m/Y' }}</p>
-          <p class="card-text">Fecha de inicio de vigencia: {{ object.start_date|date:'d/m/Y' }}</p>
-          <p class="card-text">Fecha de fin de vigencia: {{ object.end_date|date:'d/m/Y' }}</p>
+          <p class="card-text">Fecha de inicio de vigencia: {{ object.initial_validity|date:'d/m/Y' }}</p>
+          <p class="card-text">Fecha de fin de vigencia: {{ object.final_validity|date:'d/m/Y' }}</p>
         </div>
       </div>
     </div>

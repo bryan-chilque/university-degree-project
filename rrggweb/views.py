@@ -510,7 +510,13 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
     template_name = "rrggweb/issuance/insurance/vehicle/create_issuance.html"
 
     model = rrgg.models.IssuanceInsuranceVehicle
-    fields = ["policy_number", "collection_document", "start_date", "end_date"]
+    fields = [
+        "policy",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+    ]
 
     def form_valid(self, form):
         form.instance.quotation_vehicle_premium_id = self.kwargs[
@@ -549,7 +555,13 @@ class IssuanceInsuranceVehicleUpdateIssuanceView(
 ):
     template_name = "rrggweb/issuance/insurance/vehicle/update_issuance.html"
     model = rrgg.models.IssuanceInsuranceVehicle
-    fields = ["policy_number", "collection_document", "start_date", "end_date"]
+    fields = [
+        "policy",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+    ]
     pk_url_kwarg = "issuance_id"
 
     def get_success_url(self):
