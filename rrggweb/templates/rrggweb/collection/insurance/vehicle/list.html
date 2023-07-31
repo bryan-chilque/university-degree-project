@@ -1,0 +1,52 @@
+{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Lista de cobranzas de seguros vehiculares{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+    <div>
+        <a class="btn btn-primary" href="{% url 'rrggweb:collection:insurance:vehicle:list_emissions' view.kwargs.consultant_id %}">Nueva cobranza
+            <i class="bi bi-plus-lg"></i>
+        </a>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Cliente</th>
+                <th scope="col">Vencimiento</th>
+                <th scope="col">Status</th>
+                <th scope="col">Asunto</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+    <tbody>
+    {% for collection in object_list %}
+        <tr class="">
+        <td
+            class="align-middle"
+            scope="row"
+        >
+        {{ collection.issuance_vehicle.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.customer }}
+        </td>
+        <td class="align-middle"> {{ collection.expiration_date|date:'d/m/Y' }}</td>
+        <td class="align-middle"> {{ collection.status }}</td>
+        <td class="align-middle"> {{ collection.issue }}</td>
+        <td class="align-middle"> ${{ collection.amount }}</td>
+        <td class="align-middle">
+            <a class="btn btn-primary" href="">
+            <i class="bi bi-eye"></i>
+            </a>
+            <a class="btn btn-warning" href="">
+            <i class="bi bi-pencil-square"></i>
+            </a>
+        </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+{% endblock %}

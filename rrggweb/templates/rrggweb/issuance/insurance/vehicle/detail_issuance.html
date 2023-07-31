@@ -3,9 +3,14 @@
 {% endblock %}
 {% block content %}
   <div class="row mb-3">
-    <div class="col-12">
+    <div class="col-6">
       <a href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.consultant_id %}" class="btn btn-outline-secondary">
         <i class="fas fa-arrow-left"></i> Volver a la lista
+      </a>
+    </div>
+    <div class="col-6">
+      <a href="{% url 'rrggweb:collection:insurance:vehicle:create_collection' view.kwargs.consultant_id view.kwargs.issuance_id %}" class="btn btn-success">
+        <i class="fas fa-arrow-left"></i> Crear cobranza
       </a>
     </div>
   </div>
@@ -58,8 +63,8 @@
           <h5 class="card-title mb-0">Datos de la cotización</h5>
         </div>
         <div class="card-body">
-          <p class="card-text">Suma asegurada: ${{ object.quotation_vehicle_premium.quotation_insurance_vehicle.insured_amount }}</p>
           <p class="card-text">Aseguradora: {{ object.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</p>
+          <p class="card-text">Suma asegurada: ${{ object.quotation_vehicle_premium.quotation_insurance_vehicle.insured_amount }}</p>
           <p class="card-text">Prima neta: ${{ object.quotation_vehicle_premium.amount }}</p>
           <p class="card-text">Derecho de emisión: ${{ object.quotation_vehicle_premium.emission_right }}</p>
           <p class="card-text">IGV: ${{ object.quotation_vehicle_premium.tax }}</p>
@@ -70,17 +75,30 @@
     </div>
   </div>
   <div class="row mb-3">
-    <div class="col-12">
+    <div class="col-6">
       <div class="card">
         <div class="card-header">
           <h5 class="card-title mb-0">Detalle de la emisión</h5>
         </div>
         <div class="card-body">
-          <p class="card-text">Número de póliza: {{ object.policy_number }}</p>
+          <p class="card-text">Número de póliza: {{ object.policy }}</p>
           <p class="card-text">Documento de cobranza: {{ object.collection_document }}</p>
           <p class="card-text">Fecha de emisión: {{ object.created|date:'d/m/Y' }}</p>
-          <p class="card-text">Fecha de inicio de vigencia: {{ object.start_date|date:'d/m/Y' }}</p>
-          <p class="card-text">Fecha de fin de vigencia: {{ object.end_date|date:'d/m/Y' }}</p>
+          <p class="card-text">Fecha de inicio de vigencia: {{ object.initial_validity|date:'d/m/Y' }}</p>
+          <p class="card-text">Fecha de fin de vigencia: {{ object.final_validity|date:'d/m/Y' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Detalle del pago</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Cuotas: {{ object.quotation_vehicle_premium.insurance_vehicle_ratio.fee }} meses</p>
+          <p class="card-text">Monto por cuota: ${{ object.quotation_vehicle_premium.fee}}</p>
+          <p class="card-text">Débito automático: {{ object.quotation_vehicle_premium.insurance_vehicle_ratio.direct_debit }} meses</p>
+          <p class="card-text">Monto por débito: ${{ object.quotation_vehicle_premium.direct_debit}}</p>
         </div>
       </div>
     </div>

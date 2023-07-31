@@ -66,6 +66,17 @@ quotation_insurance_vehicle_urlpatterns = (
     "vehicle",
 )
 
+quotation_insurance_urlpatterns = (
+    [path("vehicle/", include(quotation_insurance_vehicle_urlpatterns))],
+    "insurance",
+)
+
+quotation_urlpatterns = (
+    [path("insurance/", include(quotation_insurance_urlpatterns))],
+    "quotation",
+)
+
+
 issuance_insurance_vehicle_urlpatterns = (
     [
         path(
@@ -97,16 +108,6 @@ issuance_insurance_vehicle_urlpatterns = (
     "vehicle",
 )
 
-quotation_insurance_urlpatterns = (
-    [path("vehicle/", include(quotation_insurance_vehicle_urlpatterns))],
-    "insurance",
-)
-
-quotation_urlpatterns = (
-    [path("insurance/", include(quotation_insurance_urlpatterns))],
-    "quotation",
-)
-
 issuance_insurance_urlpatterns = (
     [path("vehicle/", include(issuance_insurance_vehicle_urlpatterns))],
     "insurance",
@@ -115,6 +116,38 @@ issuance_insurance_urlpatterns = (
 issuance_urlpatterns = (
     [path("insurance/", include(issuance_insurance_urlpatterns))],
     "issuance",
+)
+
+
+collection_insurance_vehicle_urlpatterns = (
+    [
+        path(
+            "list/",
+            views.CollectionInsuranceVehicleListView.as_view(),
+            name="list",
+        ),
+        path(
+            "list_emissions/",
+            views.IssuanceInsuranceVehicleListView.as_view(),
+            name="list_emissions",
+        ),
+        path(
+            "issuance/<int:issuance_id>/create_collection/",
+            views.CollectionInsuranceVehicleCreateCollectionView.as_view(),
+            name="create_collection",
+        ),
+    ],
+    "vehicle",
+)
+
+collection_insurance_urlpatterns = (
+    [path("vehicle/", include(collection_insurance_vehicle_urlpatterns))],
+    "insurance",
+)
+
+collection_urlpatterns = (
+    [path("insurance/", include(collection_insurance_urlpatterns))],
+    "collection",
 )
 
 app_name = "rrggweb"
@@ -132,7 +165,13 @@ urlpatterns = [
         views.IssuanceView.as_view(),
         name="issuance",
     ),
+    path(
+        "<int:consultant_id>/collection/",
+        views.CollectionView.as_view(),
+        name="collection",
+    ),
     path("<int:consultant_id>/home/", views.HomeView.as_view(), name="home"),
     path("<int:consultant_id>/quotation/", include(quotation_urlpatterns)),
     path("<int:consultant_id>/issuance/", include(issuance_urlpatterns)),
+    path("<int:consultant_id>/collection/", include(collection_urlpatterns)),
 ]

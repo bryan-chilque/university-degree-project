@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelformset_factory
+from django.forms.models import modelform_factory
 from django.http import HttpResponse
 from django.views.generic import (
     CreateView,
@@ -373,15 +374,9 @@ class QuotationInsuranceVehicleCreateVehicleView(
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/create_vehicle.html"
     model = rrgg.models.Vehicle
-    fields = [
-        "brand",
-        "vehicle_model",
-        "plate",
-        "fabrication_year",
-        "engine",
-        "chassis",
-        "use_type",
-    ]
+
+    def get_form_class(self):
+        return modelform_factory(self.model, exclude=["customer"])
 
     def form_valid(self, form):
         form.instance.customer_id = self.kwargs["customer_id"]
@@ -510,9 +505,14 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/issuance/insurance/vehicle/create_issuance.html"
-
     model = rrgg.models.IssuanceInsuranceVehicle
-    fields = ["policy_number", "collection_document", "start_date", "end_date"]
+    fields = [
+        "policy",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+    ]
 
     def form_valid(self, form):
         form.instance.quotation_vehicle_premium_id = self.kwargs[
@@ -551,7 +551,13 @@ class IssuanceInsuranceVehicleUpdateIssuanceView(
 ):
     template_name = "rrggweb/issuance/insurance/vehicle/update_issuance.html"
     model = rrgg.models.IssuanceInsuranceVehicle
-    fields = ["policy_number", "collection_document", "start_date", "end_date"]
+    fields = [
+        "policy",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+    ]
     pk_url_kwarg = "issuance_id"
 
     def get_success_url(self):
@@ -567,3 +573,75 @@ class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
     template_name = "rrggweb/issuance/insurance/vehicle/detail_issuance.html"
     model = rrgg.models.IssuanceInsuranceVehicle
     pk_url_kwarg = "issuance_id"
+
+
+# ------------------------------
+
+# COLLECTION VIEW
+
+
+class CollectionView(TemplateView):
+    template_name = "rrggweb/collection.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["seguros"] = [
+            SeguroItem(
+                "Seguro de vehicular",
+                urls.reverse(
+                    "rrggweb:collection:insurance:vehicle:list",
+                    kwargs={"consultant_id": self.kwargs["consultant_id"]},
+                ),
+            ),
+            SeguroItem("Seguro de vida", ""),
+            SeguroItem("Seguro de accidentes", ""),
+            SeguroItem("Seguro de salud", ""),
+        ]
+        return context
+
+
+class CollectionInsuranceVehicleListView(ListView):
+    template_name = "rrggweb/collection/insurance/vehicle/list.html"
+    model = rrgg.models.CollectionInsuranceVehicle
+
+
+class CollectionInsuranceVehicleCreateCollectionView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = (
+        "rrggweb/collection/insurance/vehicle/create_collection.html"
+    )
+    model = rrgg.models.CollectionInsuranceVehicle
+    fields = [
+        "expiration_date",
+        "payment_date",
+        "payment_receipt",
+        "issue",
+        "amount",
+    ]
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["payment_date"].required = False
+        form.fields["payment_receipt"].required = False
+        return form
+
+    def form_valid(self, form):
+        form.instance.issuance_vehicle_id = self.kwargs["issuance_id"]
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["issuance"] = shortcuts.get_object_or_404(
+            rrgg.models.IssuanceInsuranceVehicle,
+            id=self.kwargs["issuance_id"],
+        )
+        return context
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:collection:insurance:vehicle:list",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+            },
+        )
