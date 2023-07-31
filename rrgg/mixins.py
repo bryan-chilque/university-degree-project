@@ -34,10 +34,10 @@ class RrggBootstrapDisplayMixin:
             )
         elif isinstance(model_field, models.DateField):
             return forms.DateField(
-                widget=forms.DateInput(
+                widget=forms.TextInput(
                     attrs={"class": "form-control mb-2", "type": "date"}
-                )
-                ** common_kwargs,
+                ),
+                **common_kwargs,
             )
         else:
             return model_field.formfield(**common_kwargs)
