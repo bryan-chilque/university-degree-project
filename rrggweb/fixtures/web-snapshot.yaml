@@ -37,6 +37,35 @@
     first_surname: Tomasto
     second_surname: ''
     document_number: '12345679'
+- model: rrgg.customer
+  pk: 2
+  fields:
+    given_name: Paulo
+    first_surname: Llanos
+    second_surname: Colchado
+    document_number: '12345678'
+- model: rrgg.vehicle
+  pk: 1
+  fields:
+    brand: nissan
+    vehicle_model: audi
+    plate: AIX-145
+    fabrication_year: 2012
+    engine: '654321'
+    chassis: '1234567'
+    use_type: 1
+    customer: 1
+- model: rrgg.vehicle
+  pk: 2
+  fields:
+    brand: bmw
+    vehicle_model: i5
+    plate: RTX-257
+    fabrication_year: 2015
+    engine: '545412'
+    chassis: '654123'
+    use_type: 3
+    customer: 2
 - model: rrgg.consultant
   pk: 1
   fields:
@@ -159,3 +188,109 @@
     date_joined: 2023-07-15 16:29:31.678998+00:00
     groups: []
     user_permissions: []
+- model: rrgg.quotationinsurancevehicle
+  pk: 1
+  fields:
+    insured_amount: 3000
+    vehicle: 1
+    consultant: 1
+    created: 2023-07-12 07:15:35.485352+00:00
+- model: rrgg.quotationinsurancevehicle
+  pk: 2
+  fields:
+    insured_amount: 2000
+    vehicle: 2
+    consultant: 1
+    created: 2023-07-31 06:08:11.485352+00:00
+- model: rrgg.quotationinsurancevehiclepremium
+  pk: 1
+  fields:
+    amount: '2850.00'
+    insurance_vehicle_ratio: 3
+    quotation_insurance_vehicle: 1
+    created: 2023-07-12 09:15:35.928242+00:00
+- model: rrgg.quotationinsurancevehiclepremium
+  pk: 2
+  fields:
+    amount: '2550.00'
+    insurance_vehicle_ratio: 3
+    quotation_insurance_vehicle: 2
+    created: 2023-07-31 06:08:35.928242+00:00
+- model: rrgg.quotationinsurancevehiclepremium
+  pk: 3
+  fields:
+    amount: '2500.00'
+    insurance_vehicle_ratio: 4
+    quotation_insurance_vehicle: 2
+    created: 2023-07-31 06:08:35.933243+00:00
+- model: rrgg.quotationinsurancevehiclepremium
+  pk: 4
+  fields:
+    amount: '2450.00'
+    insurance_vehicle_ratio: 1
+    quotation_insurance_vehicle: 2
+    created: 2023-07-31 06:08:35.936245+00:00
+- model: rrgg.quotationinsurancevehiclepremium
+  pk: 5
+  fields:
+    amount: '2600.00'
+    insurance_vehicle_ratio: 2
+    quotation_insurance_vehicle: 2
+    created: 2023-07-31 06:08:35.939988+00:00
+- model: rrgg.quotationinsurancevehiclepremium
+  pk: 6
+  fields:
+    amount: '2700.00'
+    insurance_vehicle_ratio: 5
+    quotation_insurance_vehicle: 2
+    created: 2023-07-31 06:08:35.944033+00:00
+- model: rrgg.issuanceinsurancevehicle
+  pk: 1
+  fields:
+    policy: '14514'
+    collection_document: A415
+    issuance_date: 2023-07-23 00:00:00+00:00
+    initial_validity: 2023-07-25 00:00:00+00:00
+    final_validity: 2023-08-31 00:00:00+00:00
+    quotation_vehicle_premium: 2
+    created: 2023-07-31 07:24:08.278816+00:00
+- model: rrgg.collectioninsurancevehicle
+  pk: 1
+  fields:
+    expiration_date: 2023-07-25 00:00:00+00:00
+    payment_date: null
+    payment_receipt: ''
+    issue: cuota 1
+    amount: '258.27'
+    issuance_vehicle: 1
+    created: 2023-07-31 07:25:29.058081+00:00
+- model: rrgg.collectioninsurancevehicle
+  pk: 2
+  fields:
+    expiration_date: 2023-08-04 00:00:00+00:00
+    payment_date: null
+    payment_receipt: ''
+    issue: cuota 2
+    amount: '258.27'
+    issuance_vehicle: 1
+    created: 2023-07-31 07:32:42.364681+00:00
+- model: rrgg.collectioninsurancevehicle
+  pk: 3
+  fields:
+    expiration_date: 2023-08-01 00:00:00+00:00
+    payment_date: 2023-07-27 00:00:00+00:00
+    payment_receipt: '14541'
+    issue: cuota 3
+    amount: '258.27'
+    issuance_vehicle: 1
+    created: 2023-07-31 07:34:20.561535+00:00
+- model: rrgg.collectioninsurancevehicle
+  pk: 4
+  fields:
+    expiration_date: 2023-08-27 00:00:00+00:00
+    payment_date: null
+    payment_receipt: ''
+    issue: cuota 4
+    amount: '258.27'
+    issuance_vehicle: 1
+    created: 2023-07-31 07:35:39.968019+00:00
