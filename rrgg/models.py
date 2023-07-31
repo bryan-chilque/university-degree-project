@@ -25,11 +25,10 @@ class Vehicle(models.Model):
     brand = models.CharField(_("brand"), max_length=64)
     vehicle_model = models.CharField(_("model"), max_length=64)
     plate = models.CharField(_("plate"), max_length=64, unique=True)
-    fabrication_year = models.PositiveIntegerField(
-        _("fabrication year"), default=0
-    )
-    engine = models.CharField(_("engine number"), max_length=64, default="")
-    chassis = models.CharField(_("chassis number"), max_length=64, default="")
+    fabrication_year = models.PositiveIntegerField(_("fabrication year"))
+    engine = models.CharField(_("engine number"), max_length=64)
+    chassis = models.CharField(_("chassis number"), max_length=64)
+    seat_number = models.PositiveIntegerField(_("seat number"))
 
     use_type = models.ForeignKey(
         UseType,

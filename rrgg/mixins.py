@@ -29,7 +29,12 @@ class RrggBootstrapDisplayMixin:
             )
         elif isinstance(model_field, models.PositiveIntegerField):
             return forms.IntegerField(
-                widget=forms.Select(attrs={"class": "form-select mb-2"}),
+                widget=forms.NumberInput(attrs={"class": "form-control mb-2"}),
+                **common_kwargs,
+            )
+        elif isinstance(model_field, models.DecimalField):
+            return forms.DecimalField(
+                widget=forms.NumberInput(attrs={"class": "form-control mb-2"}),
                 **common_kwargs,
             )
         elif isinstance(model_field, models.DateField):
