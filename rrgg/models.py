@@ -218,3 +218,49 @@ class IssuanceInsuranceVehicle(models.Model):
     )
 
     created = models.DateTimeField(auto_now_add=True)
+
+
+class CollectionInsuranceVehicle(models.Model):
+    # fecha de vencimiento
+    expiration_date = models.DateTimeField()
+    # fecha de pago
+    payment_date = models.DateTimeField(null=True)
+    # número de factura o boleta
+    payment_receipt = models.CharField(max_length=64, null=True)
+    # asunto del pago
+    issue = models.CharField(max_length=64)
+    # monto
+    amount = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+
+    issuance_vehicle = models.ForeignKey(
+        IssuanceInsuranceVehicle,
+        related_name="collections",
+        on_delete=models.PROTECT,
+    )
+    created = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def status(self):
+        if self.payment_date:
+            return "pagado"
+        elif (
+            self.payment_date is None and self.expiration_date < timezone.now()
+        ):
+            return "vencido"
+        elif (
+            self.payment_date is None
+            and self.expiration_date - timezone.now()
+            <= timezone.timedelta(days=7)
+        ):
+            return "por vencer"
+        elif (
+            self.payment_date is None
+            and self.expiration_date - timezone.now()
+            > timezone.timedelta(days=7)
+        ):
+            return "pendiente"
+        else:
+            return "desconocido"
+
+    def __str__(self):
+        return f"status={self.status()}"
