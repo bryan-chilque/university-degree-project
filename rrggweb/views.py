@@ -518,12 +518,29 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
         "issuance_date",
         "initial_validity",
         "final_validity",
+        "has_gps",
+        "has_endorsee",
+        "endorsee_bank",
     ]
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["endorsee_bank"].required = False
+        return form
 
     def form_valid(self, form):
         form.instance.quotation_vehicle_premium_id = self.kwargs[
             "quotation_premium_id"
         ]
+        # validate endorsee
+        if form.instance.has_endorsee:
+            if not form.instance.endorsee_bank:
+                messages.warning(
+                    self.request,
+                    "Debe especificar el banco del endosatario",
+                )
+                return self.form_invalid(form)
+
         # validate expiration date
         quotation_premium = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,

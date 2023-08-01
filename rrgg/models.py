@@ -238,6 +238,12 @@ class IssuanceInsuranceVehicle(models.Model):
     # fecha de vigencia inicio
     final_validity = models.DateTimeField()
 
+    # vehículo gps
+    has_gps = models.BooleanField(_("has gps"), null=True)
+    # vehículo tiene endoso
+    has_endorsee = models.BooleanField(_("has endorsee"), null=True)
+    endorsee_bank = models.CharField(_("endorsee bank"), max_length=64, null=True)
+
     quotation_vehicle_premium = models.ForeignKey(
         QuotationInsuranceVehiclePremium,
         related_name="issuance",
