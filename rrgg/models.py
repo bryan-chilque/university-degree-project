@@ -254,6 +254,12 @@ class IssuanceInsuranceVehicle(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
+class IssuanceInsuranceVehicleDocuments(models.Model):
+    issuance = models.ForeignKey(
+        IssuanceInsuranceVehicle, related_name="documents", on_delete=models.CASCADE
+    )
+    file = models.FileField(upload_to="documents/")
+    created = models.DateTimeField(auto_now_add=True)
 
 class CollectionInsuranceVehicle(models.Model):
     # fecha de vencimiento
