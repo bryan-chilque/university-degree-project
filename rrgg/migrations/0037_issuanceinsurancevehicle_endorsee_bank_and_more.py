@@ -4,25 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('rrgg', '0036_vehicle_seat_number_alter_vehicle_chassis_and_more'),
+        (
+            "rrgg",
+            ("0036_vehicle_seat_number_alter_vehicle_chassis_and_more",),
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='issuanceinsurancevehicle',
-            name='endorsee_bank',
-            field=models.CharField(max_length=64, null=True, verbose_name='endorsee bank'),
+            model_name="issuanceinsurancevehicle",
+            name="endorsee_bank",
+            field=models.CharField(
+                max_length=64, null=True, verbose_name="endorsee bank"
+            ),
         ),
         migrations.AddField(
-            model_name='issuanceinsurancevehicle',
-            name='has_endorsee',
-            field=models.BooleanField(null=True, verbose_name='has endorsee'),
+            model_name="issuanceinsurancevehicle",
+            name="has_endorsee",
+            field=models.BooleanField(null=True, verbose_name="has endorsee"),
         ),
         migrations.AddField(
-            model_name='issuanceinsurancevehicle',
-            name='has_gps',
-            field=models.BooleanField(null=True, verbose_name='has gps'),
+            model_name="issuanceinsurancevehicle",
+            name="has_gps",
+            field=models.BooleanField(null=True, verbose_name="has gps"),
         ),
     ]

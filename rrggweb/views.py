@@ -540,7 +540,10 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
                     "Debe especificar el banco del endosatario",
                 )
                 return self.form_invalid(form)
-
+            else:
+                None
+        else:
+            None
         # validate expiration date
         quotation_premium = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,
