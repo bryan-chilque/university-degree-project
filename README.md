@@ -9,3 +9,5 @@
 * Chequear el código: `pre-commit run --all-files`.
 * Cargar data: `python manage.py loaddata-websnapshot`.
 * Actualizar data: `python manage.py dumpdata --format yaml rrgg auth.user -u rrggweb/fixtures/web-snapshot.yaml`.
+* Generar nueva traducción: `python manage.py makemessages -l es`
+* Guardar la traducción: `python manage.py compilemessages -l es`
