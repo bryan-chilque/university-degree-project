@@ -56,6 +56,9 @@
     seat_number: 5
     use_type: 1
     customer: 1
+    has_gps: false
+    has_endorsee: false
+    endorsee_bank: ''
 - model: rrgg.vehicle
   pk: 2
   fields:
@@ -68,6 +71,9 @@
     seat_number: 4
     use_type: 3
     customer: 2
+    has_gps: false
+    has_endorsee: false
+    endorsee_bank: ''
 - model: rrgg.consultant
   pk: 1
   fields:
@@ -254,9 +260,6 @@
     issuance_date: 2023-07-23 00:00:00+00:00
     initial_validity: 2023-07-25 00:00:00+00:00
     final_validity: 2023-08-31 00:00:00+00:00
-    has_gps: false
-    has_endorsee: true
-    endorsee_bank: scotiabank
     quotation_vehicle_premium: 2
     created: 2023-07-31 07:24:08.278816+00:00
 - model: rrgg.collectioninsurancevehicle

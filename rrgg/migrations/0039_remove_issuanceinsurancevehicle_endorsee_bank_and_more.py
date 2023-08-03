@@ -4,67 +4,81 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('rrgg', '0038_issuanceinsurancevehicledocuments'),
+        ("rrgg", "0038_issuanceinsurancevehicledocuments"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='issuanceinsurancevehicle',
-            name='endorsee_bank',
+            model_name="issuanceinsurancevehicle",
+            name="endorsee_bank",
         ),
         migrations.RemoveField(
-            model_name='issuanceinsurancevehicle',
-            name='has_endorsee',
+            model_name="issuanceinsurancevehicle",
+            name="has_endorsee",
         ),
         migrations.RemoveField(
-            model_name='issuanceinsurancevehicle',
-            name='has_gps',
+            model_name="issuanceinsurancevehicle",
+            name="has_gps",
         ),
         migrations.AddField(
-            model_name='vehicle',
-            name='endorsee_bank',
-            field=models.CharField(max_length=64, null=True, verbose_name='endorsee bank'),
+            model_name="vehicle",
+            name="endorsee_bank",
+            field=models.CharField(
+                max_length=64, null=True, verbose_name="endorsee bank"
+            ),
         ),
         migrations.AddField(
-            model_name='vehicle',
-            name='has_endorsee',
-            field=models.BooleanField(null=True, verbose_name='has endorsee?'),
+            model_name="vehicle",
+            name="has_endorsee",
+            field=models.BooleanField(null=True, verbose_name="has endorsee?"),
         ),
         migrations.AddField(
-            model_name='vehicle',
-            name='has_gps',
-            field=models.BooleanField(null=True, verbose_name='has gps?'),
+            model_name="vehicle",
+            name="has_gps",
+            field=models.BooleanField(null=True, verbose_name="has gps?"),
         ),
         migrations.AlterField(
-            model_name='customer',
-            name='document_number',
-            field=models.CharField(max_length=32, unique=True, verbose_name='document number'),
+            model_name="customer",
+            name="document_number",
+            field=models.CharField(
+                max_length=32, unique=True, verbose_name="document number"
+            ),
         ),
         migrations.AlterField(
-            model_name='customer',
-            name='first_surname',
-            field=models.CharField(max_length=64, verbose_name='first surname'),
+            model_name="customer",
+            name="first_surname",
+            field=models.CharField(
+                max_length=64, verbose_name="first surname"
+            ),
         ),
         migrations.AlterField(
-            model_name='customer',
-            name='given_name',
-            field=models.CharField(max_length=64, verbose_name='given name'),
+            model_name="customer",
+            name="given_name",
+            field=models.CharField(max_length=64, verbose_name="given name"),
         ),
         migrations.AlterField(
-            model_name='customer',
-            name='second_surname',
-            field=models.CharField(blank=True, max_length=64, verbose_name='second surname'),
+            model_name="customer",
+            name="second_surname",
+            field=models.CharField(
+                blank=True, max_length=64, verbose_name="second surname"
+            ),
         ),
         migrations.AlterField(
-            model_name='insurancevehicle',
-            name='logo',
-            field=models.ImageField(blank=True, null=True, upload_to='insurance_vehicle_images/', verbose_name='logo'),
+            model_name="insurancevehicle",
+            name="logo",
+            field=models.ImageField(
+                blank=True,
+                null=True,
+                upload_to="insurance_vehicle_images/",
+                verbose_name="logo",
+            ),
         ),
         migrations.AlterField(
-            model_name='quotationinsurancevehiclepremium',
-            name='created',
-            field=models.DateTimeField(auto_now_add=True, unique=True, verbose_name='created at'),
+            model_name="quotationinsurancevehiclepremium",
+            name="created",
+            field=models.DateTimeField(
+                auto_now_add=True, unique=True, verbose_name="created at"
+            ),
         ),
     ]
