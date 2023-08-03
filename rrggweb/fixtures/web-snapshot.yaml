@@ -53,6 +53,7 @@
     fabrication_year: 2012
     engine: '654321'
     chassis: '1234567'
+    seat_number: 5
     use_type: 1
     customer: 1
 - model: rrgg.vehicle
@@ -64,6 +65,7 @@
     fabrication_year: 2015
     engine: '545412'
     chassis: '654123'
+    seat_number: 4
     use_type: 3
     customer: 2
 - model: rrgg.consultant
