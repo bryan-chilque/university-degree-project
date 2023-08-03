@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-25 16:58+0000\n"
+"POT-Creation-Date: 2023-08-01 14:06-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -18,6 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: rrggweb/forms.py:7
+#: .\rrggweb\forms.py:9
 msgid "document number"
 msgstr "documento de identidad"
+
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:20
+msgid "emission right"
+msgstr ""
+
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:21
+msgid "tax (igv)"
+msgstr ""
+
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:22
+msgid "vehicle insurance"
+msgstr ""
+
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:23
+msgid "created at"
+msgstr ""

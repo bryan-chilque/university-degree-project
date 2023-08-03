@@ -20,13 +20,14 @@
   {% translate 'emission right' as emission_right_text %}
   {% translate 'tax (igv)' as tax_text %}
   {% translate 'vehicle insurance' as vehicle_insurance_text %}
+  {% translate 'created at' as created_at_text %}
   <table class="table table-striped-columns">
     <thead>
       <tr>
         <th>ID</th>
         <th>{{ emission_right_text|capfirst }}</th>
         <th>{{ tax_text|capfirst }}</th>
-        <th>Fecha de Creación</th>
+        <th>{{ created_at_text|capfirst }}</th>
         <th>{{ vehicle_insurance_text|capfirst }}</th>
         <th>Monto</th>
       </tr>

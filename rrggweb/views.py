@@ -545,6 +545,29 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
 
     def get_success_url(self):
         return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:document",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "issuance_id": self.object.id,
+            },
+        )
+
+
+class IssuanceInsuranceVehicleCreateDocumentView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/create_document.html"
+    model = rrgg.models.IssuanceInsuranceVehicleDocuments
+    fields = [
+        "file",
+    ]
+
+    def form_valid(self, form):
+        form.instance.issuance_id = self.kwargs["issuance_id"]
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return urls.reverse(
             "rrggweb:issuance:insurance:vehicle:list",
             kwargs={
                 "consultant_id": self.kwargs["consultant_id"],
@@ -579,6 +602,11 @@ class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
     template_name = "rrggweb/issuance/insurance/vehicle/detail_issuance.html"
     model = rrgg.models.IssuanceInsuranceVehicle
     pk_url_kwarg = "issuance_id"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["documents"] = self.object.documents.all()
+        return context
 
 
 # ------------------------------

@@ -103,4 +103,24 @@
       </div>
     </div>
   </div>
+  <div class="row mb-3">
+    <div class="col-12">
+      {% if documents %}
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Documentos</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            {% for document in documents %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{{ document.file.url }}" class="text-decoration-none">
+                  <i class="bi bi-file-earmark-pdf"></i> {{ document.file.name }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}

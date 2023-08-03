@@ -457,13 +457,13 @@
         <tr>
           <th>Cuotas Iguales sin intereses</th>
           {% for premium in premiums %}
-            <th>{{ premium.insurance_vehicle_ratio.fee }}|&nbsp;${{ premium.fee }}</th>
+            <th>{{ premium.insurance_vehicle_ratio.fee }}&nbsp;|&nbsp;${{ premium.fee }}</th>
           {% endfor %}
         </tr>
         <tr>
           <th>Debito automático</th>
           {% for premium in premiums %}
-            <th>{{ premium.insurance_vehicle_ratio.direct_debit }}|&nbsp;${{ premium.direct_debit }}</th>
+            <th>{{ premium.insurance_vehicle_ratio.direct_debit }}&nbsp;|&nbsp;${{ premium.direct_debit }}</th>
           {% endfor %}
         </tr>
       </table>

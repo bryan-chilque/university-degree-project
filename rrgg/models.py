@@ -5,10 +5,14 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Customer(models.Model):
-    given_name = models.CharField(max_length=64)
-    first_surname = models.CharField(max_length=64)
-    second_surname = models.CharField(max_length=64, blank=True)
-    document_number = models.CharField(max_length=32, unique=True)
+    given_name = models.CharField(_("given name"), max_length=64)
+    first_surname = models.CharField(_("first surname"), max_length=64)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+    document_number = models.CharField(
+        _("document number"), max_length=32, unique=True
+    )
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
@@ -29,6 +33,13 @@ class Vehicle(models.Model):
     engine = models.CharField(_("engine number"), max_length=64)
     chassis = models.CharField(_("chassis number"), max_length=64)
     seat_number = models.PositiveIntegerField(_("seat number"))
+    # vehículo gps
+    has_gps = models.BooleanField(_("has gps?"), null=True)
+    # vehículo tiene endoso
+    has_endorsee = models.BooleanField(_("has endorsee?"), null=True)
+    endorsee_bank = models.CharField(
+        _("endorsee bank"), max_length=64, null=True
+    )
 
     use_type = models.ForeignKey(
         UseType,
@@ -118,7 +129,7 @@ class QuotationInsuranceVehicle(models.Model):
 class InsuranceVehicle(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True)
     logo = models.ImageField(
-        upload_to="insurance_vehicle_images/", blank=True, null=True
+        _("logo"), upload_to="insurance_vehicle_images/", blank=True, null=True
     )
 
     def __str__(self):
@@ -175,7 +186,9 @@ class QuotationInsuranceVehiclePremium(models.Model):
         related_name="premiums",
         on_delete=models.PROTECT,
     )
-    created = models.DateTimeField(auto_now_add=True, unique=True)
+    created = models.DateTimeField(
+        _("created at"), auto_now_add=True, unique=True
+    )
 
     @property
     def emission_right(self):
@@ -244,6 +257,16 @@ class IssuanceInsuranceVehicle(models.Model):
         on_delete=models.PROTECT,
     )
 
+    created = models.DateTimeField(auto_now_add=True)
+
+
+class IssuanceInsuranceVehicleDocuments(models.Model):
+    issuance = models.ForeignKey(
+        IssuanceInsuranceVehicle,
+        related_name="documents",
+        on_delete=models.CASCADE,
+    )
+    file = models.FileField(upload_to="documents/")
     created = models.DateTimeField(auto_now_add=True)
 
 
