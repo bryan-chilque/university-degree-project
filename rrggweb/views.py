@@ -28,9 +28,7 @@ class LoginView(views_auth.LoginView):
     form_class = forms.LoginAuthenticationForm
 
     def form_valid(self, form):
-        consultant_id = (
-            form.get_user().consultant_membership.first().consultant.id
-        )
+        consultant_id = form.get_user().consultant_membership.first().consultant.id
         self.next_page = urls.reverse(
             "rrggweb:home", kwargs={"consultant_id": consultant_id}
         )
@@ -90,9 +88,7 @@ class QuotationInsuranceVehicleReportXlsxView(View):
             content_type="application/vnd.openxmlformats"
             + "-officedocument.spreadsheetml.sheet"
         )
-        response["Content-Disposition"] = (
-            "attachment; filename=report_quotations.xlsx"
-        )
+        response["Content-Disposition"] = "attachment; filename=report_quotations.xlsx"
 
         workbook.save(response)
 
@@ -193,9 +189,7 @@ class QuotationInsuranceVehicleReportPdfView(View):
         pdf_file = HTML(string=html_string).write_pdf()
 
         response = HttpResponse(pdf_file, content_type="application/pdf")
-        response["Content-Disposition"] = (
-            "attachment; filename=report_quotations.pdf"
-        )
+        response["Content-Disposition"] = "attachment; filename=report_quotations.pdf"
 
         return response
 
@@ -278,14 +272,10 @@ class QuotationInsuranceVehiclePremiumsFormView(FormView):
         )
         formset = super().get_form(form_class)
         # Mantener el orden: Ver ABC123
-        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by(
-            "name"
-        )
+        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by("name")
         for form, insurance_vehicle in zip(formset, insurance_vehicles):
             insurance_vehicle_ratio = form.fields["insurance_vehicle_ratio"]
-            quotation_insurance_vehicle = form.fields[
-                "quotation_insurance_vehicle"
-            ]
+            quotation_insurance_vehicle = form.fields["quotation_insurance_vehicle"]
 
             insurance_vehicle_ratio.initial = insurance_vehicle.last_ratio
             quotation_insurance_vehicle.initial = shortcuts.get_object_or_404(
@@ -316,12 +306,9 @@ class QuotationInsuranceVehiclePremiumsFormView(FormView):
         )
 
         # Mantener el orden: Ver ABC123
-        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by(
-            "name"
-        )
+        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by("name")
         last_ratios = (
-            insurance_vehicle.last_ratio
-            for insurance_vehicle in insurance_vehicles
+            insurance_vehicle.last_ratio for insurance_vehicle in insurance_vehicles
         )
         context["last_ratio_forms"] = zip(last_ratios, context["form"])
 
@@ -347,9 +334,7 @@ class QuotationInsuranceVehicleSearchView(FormView):
             document_number=document_number
         ).exists()
         if customer_exists:
-            customer = rrgg.models.Customer.objects.get(
-                document_number=document_number
-            )
+            customer = rrgg.models.Customer.objects.get(document_number=document_number)
             self.success_url = urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:create_vehicle",
                 kwargs={
@@ -453,9 +438,7 @@ class QuotationInsuranceVehicleCreateCustomerView(
 
     def get_initial(self):
         initial = super().get_initial()
-        initial["document_number"] = self.request.GET.get(
-            "document_number", ""
-        )
+        initial["document_number"] = self.request.GET.get("document_number", "")
         return initial
 
 
@@ -520,27 +503,8 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
         "final_validity",
     ]
 
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.fields["endorsee_bank"].required = False
-        return form
-
     def form_valid(self, form):
-        form.instance.quotation_vehicle_premium_id = self.kwargs[
-            "quotation_premium_id"
-        ]
-        # validate endorsee
-        if form.instance.has_endorsee:
-            if not form.instance.endorsee_bank:
-                messages.warning(
-                    self.request,
-                    "Debe especificar el banco del endosatario",
-                )
-                return self.form_invalid(form)
-            else:
-                None
-        else:
-            None
+        form.instance.quotation_vehicle_premium_id = self.kwargs["quotation_premium_id"]
         # validate expiration date
         quotation_premium = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,
@@ -549,14 +513,6 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
         if quotation_premium.quotation_insurance_vehicle.expired:
             messages.warning(self.request, "Esta cotización ya expiró")
             return self.form_invalid(form)
-
-        form.instance.save()
-
-        files = self.request.FILES.getlist("files")
-        for file in files:
-            rrgg.models.IssuanceInsuranceVehicleDocuments.objects.create(
-                issuance=form.instance, file=file
-            )
 
         return super().form_valid(form)
 
@@ -567,6 +523,29 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
             id=self.kwargs["quotation_premium_id"],
         )
         return context
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:document",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "issuance_id": self.object.id,
+            },
+        )
+
+
+class IssuanceInsuranceVehicleCreateDocumentView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/create_document.html"
+    model = rrgg.models.IssuanceInsuranceVehicleDocuments
+    fields = [
+        "file",
+    ]
+
+    def form_valid(self, form):
+        form.instance.issuance_id = self.kwargs["issuance_id"]
+        return super().form_valid(form)
 
     def get_success_url(self):
         return urls.reverse(
@@ -605,6 +584,11 @@ class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
     model = rrgg.models.IssuanceInsuranceVehicle
     pk_url_kwarg = "issuance_id"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["documents"] = self.object.documents.all()
+        return context
+
 
 # ------------------------------
 
@@ -639,9 +623,7 @@ class CollectionInsuranceVehicleListView(ListView):
 class CollectionInsuranceVehicleCreateCollectionView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
-    template_name = (
-        "rrggweb/collection/insurance/vehicle/create_collection.html"
-    )
+    template_name = "rrggweb/collection/insurance/vehicle/create_collection.html"
     model = rrgg.models.CollectionInsuranceVehicle
     fields = [
         "expiration_date",

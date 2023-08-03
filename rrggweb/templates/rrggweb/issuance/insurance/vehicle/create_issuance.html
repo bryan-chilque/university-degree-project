@@ -56,7 +56,7 @@
     Prima total: ${{ quotation_premium.total }}
   </div>
 </div>
-<form method="post" enctype="multipart/form-data">
+<form method="post">
   {% csrf_token %}
   {% if messages %}
   <ul class="messages list-unstyled">
@@ -71,10 +71,8 @@
   <table>
     {{ form }}
   </table>
-  <div class="mb-3">
-    <label for="files" class="form-label">Documentos</label>
-    <input type="file" class="form-control" id="files" name="files" multiple>
-  </div>
-  <input class="btn btn-primary" type="submit" />
+  <button class="btn btn-primary" type="submit">
+    Siguiente
+  </button>
 </form>
 {% endblock content %}
