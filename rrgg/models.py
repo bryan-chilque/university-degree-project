@@ -16,6 +16,19 @@ class Customer(models.Model):
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
+    
+class VehicleOwner(models.Model):
+    given_name = models.CharField(_("given name"), max_length=64)
+    first_surname = models.CharField(_("first surname"), max_length=64)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+    document_number = models.CharField(
+        _("document number"), max_length=32, unique=True
+    )
+
+    def __str__(self):
+        return f"{self.given_name} {self.first_surname}"
 
 
 class UseType(models.Model):
@@ -40,7 +53,6 @@ class Vehicle(models.Model):
     endorsee_bank = models.CharField(
         _("endorsee bank"), max_length=64, null=True
     )
-
     use_type = models.ForeignKey(
         UseType,
         related_name="use_type",
@@ -48,13 +60,18 @@ class Vehicle(models.Model):
         on_delete=models.PROTECT,
         null=True,
     )
-
     customer = models.ForeignKey(
         Customer,
         related_name="vehicles",
         verbose_name=_("customer"),
         on_delete=models.PROTECT,
     )
+    # owner = models.ForeignKey(
+    #     VehicleOwner,
+    #     related_name="vehicles",
+    #     verbose_name=_("owner"),
+    #     on_delete=models.PROTECT,
+    # )
 
     class Meta:
         verbose_name = _("vehicle")

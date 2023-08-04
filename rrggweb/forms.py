@@ -10,6 +10,11 @@ class SearchByDocumentNumberForm(forms.Form):
         widget=forms.TextInput(attrs={"class": "form-control"}),
     )
 
+class IsOwnVehicleForm(forms.Form):
+    is_own_vehicle = forms.BooleanField(
+        label=_("is own vehicle"),
+        widget=forms.CheckboxInput(attrs={"class": "form-control"}),
+    )
 
 class LoginAuthenticationForm(forms_auth.AuthenticationForm):
     username = forms.CharField(
