@@ -545,7 +545,7 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
 
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:document",
+            "rrggweb:issuance:insurance:vehicle:create_document",
             kwargs={
                 "consultant_id": self.kwargs["consultant_id"],
                 "issuance_id": self.object.id,
@@ -573,6 +573,13 @@ class IssuanceInsuranceVehicleCreateDocumentView(
                 "consultant_id": self.kwargs["consultant_id"],
             },
         )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["documents"] = self.model.objects.filter(
+            issuance_id=self.kwargs["issuance_id"]
+        )
+        return context
 
 
 class IssuanceInsuranceVehicleUpdateIssuanceView(
