@@ -2,10 +2,13 @@
   <div class="container-fluid">
     <a class="navbar-brand">KCS</a>
     <div class="nav-item dropdown mx-4">
-      <a class="nav-link dropdown-toggle d-flex gap-2 align-items-center text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <a class="nav-link dropdown-toggle d-flex gap-2 align-items-center text-white"
+         type="button"
+         data-bs-toggle="dropdown"
+         aria-expanded="false">
         <i class="bi bi-person-circle"></i>
         {% with view.request.user.consultant_membership.first.consultant as consultant %}
-            <strong>{{ consultant.given_name }} {{ consultant.first_surname }}</strong>
+          <strong>{{ consultant.given_name }} {{ consultant.first_surname }}</strong>
         {% endwith %}
       </a>
       <ul class="dropdown-menu">

@@ -1,11 +1,16 @@
-{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Crear Cliente{% endblock %}
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% block title_section %}
+  Crear Cliente
+{% endblock title_section %}
 {% block content %}
-<a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:search' view.kwargs.consultant_id %}"><i class="bi bi-arrow-left"></i>Volver</a>
-<form method="post">
-  {% csrf_token %}
-  <table>
-    {{ form }}
-  </table>
-  <input class="btn btn-primary" type="submit" />
-</form>
-{% endblock %}
+  {% include "rrggweb/utils/stepper.html" with step=2 max_step=5 %}
+  <a class="d-flex gap-1 text-muted text-decoration-none"
+     href="{% url 'rrggweb:quotation:insurance:vehicle:search' view.kwargs.consultant_id %}"><i class="bi bi-arrow-left"></i>Volver</a>
+  <form method="post">
+    {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <input class="btn btn-primary" type="submit" />
+  </form>
+{% endblock content %}
