@@ -59,7 +59,6 @@
     has_gps: false
     has_endorsee: false
     endorsee_bank: ''
-    seat_number: 5
 - model: rrgg.vehicle
   pk: 2
   fields:
@@ -75,7 +74,6 @@
     has_gps: false
     has_endorsee: false
     endorsee_bank: ''
-    seat_number: 4
 - model: rrgg.consultant
   pk: 1
   fields:
