@@ -1,11 +1,15 @@
-{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Actualizar Cliente{% endblock %}
+{% extends "rrggweb/dashboard.html" %}
+{% block title_section %}
+  Actualizar Cliente
+{% endblock title_section %}
 {% block content %}
-<a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:search' view.kwargs.consultant_id %}"> <i class="bi bi-arrow-left"></i>Volver </a>
-<form method="post">
+  <a class="d-flex gap-1 text-muted text-decoration-none"
+     href="{% url 'rrggweb:quotation:insurance:vehicle:search' view.kwargs.consultant_id %}"> <i class="bi bi-arrow-left"></i>Volver </a>
+  <form method="post">
     {% csrf_token %}
     <table>
       {{ form }}
     </table>
     <input class="btn btn-primary" type="submit" />
-</form>
-{% endblock %}
+  </form>
+{% endblock content %}

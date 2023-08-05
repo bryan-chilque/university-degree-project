@@ -1,8 +1,11 @@
-{% extends 'rrggweb/dashboard.html' %} {% block title_section %} Seguros {% endblock %}
+{% extends "rrggweb/dashboard.html" %}
+{% block title_section %}
+  Seguros
+{% endblock title_section %}
 {% block content %}
-<div id="chart"></div>
-<div id="columnChart"></div>
-<script>
+  <div id="chart"></div>
+  <div id="columnChart"></div>
+  <script>
   var options = {
     series: [
       {
@@ -119,5 +122,5 @@
   var chart = new ApexCharts(document.querySelector("#chart"), options);
   chart.render();
   columnChart.render();
-</script>
-{% endblock %}
+  </script>
+{% endblock content %}

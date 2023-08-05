@@ -1,61 +1,61 @@
-{% extends 'rrggweb/quotation/insurance/vehicle/base.html' %}
-
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% load i18n %}
-
-{% block title_section %}Vincular Primas de Seguro Vehicular{% endblock %}
-
+{% block title_section %}
+  Vincular Primas de Seguro Vehicular
+{% endblock title_section %}
 {% block content %}
-{% include 'rrggweb/utils/stepper.html' with step=5 max_step=5 %}
-<a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id %} "><i class="bi bi-arrow-left"></i>Volver</a>
-<div class="mt-2">
-  Consultant: {{ consultant }}
-  <br />
-  Customer: {{ customer }}
-  <br />
-  Vehicle: {{ vehicle }}
-  <br />
-  Suma Asegurada: {{ quotation.insured_amount }}
-  <br />
-<form method="post">
-  {% csrf_token %}
-  {% translate 'emission right' as emission_right_text %}
-  {% translate 'tax (igv)' as tax_text %}
-  {% translate 'vehicle insurance' as vehicle_insurance_text %}
-  {% translate 'created at' as created_at_text %}
-  <table class="table table-striped-columns">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>{{ emission_right_text|capfirst }}</th>
-        <th>{{ tax_text|capfirst }}</th>
-        <th>{{ created_at_text|capfirst }}</th>
-        <th>{{ vehicle_insurance_text|capfirst }}</th>
-        <th>Monto</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for ratio, form in last_ratio_forms %}
-        <tr>
-          <td>{{ ratio.id }}</td>
-          <td>{{ ratio.emission_right }}</td>
-          <td>{{ ratio.tax }}</td>
-          <td>{{ ratio.created|date }}</td>
-          <td>{{ ratio.insurance_vehicle.name }}</td>
-          <td>{{ form.amount }}
-              {% if form.errors %}
-                <div class="alert alert-danger" role="alert">
-                  {{ form.errors }}
-                </div>
-              {% endif %}
-              {{ form.insurance_vehicle_ratio }}
-              {{ form.quotation_insurance_vehicle }}
-              {{ form.id }}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-      {{ form.management_form }}
-  </table>
-  <input class="btn btn-primary" type="submit" />
-</form>
+  {% include "rrggweb/utils/stepper.html" with step=5 max_step=5 %}
+  <a class="d-flex gap-1 text-muted text-decoration-none"
+     href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id %} ">
+    <i class="bi bi-arrow-left"></i>Volver
+  </a>
+  <div class="mt-2">
+    Consultant: {{ consultant }}
+    <br />
+    Customer: {{ customer }}
+    <br />
+    Vehicle: {{ vehicle }}
+    <br />
+    Suma Asegurada: {{ quotation.insured_amount }}
+    <br />
+    <form method="post">
+      {% csrf_token %}
+      {% translate "emission right" as emission_right_text %}
+      {% translate "tax (igv)" as tax_text %}
+      {% translate "vehicle insurance" as vehicle_insurance_text %}
+      {% translate "created at" as created_at_text %}
+      <table class="table table-striped-columns">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>{{ emission_right_text|capfirst }}</th>
+            <th>{{ tax_text|capfirst }}</th>
+            <th>{{ created_at_text|capfirst }}</th>
+            <th>{{ vehicle_insurance_text|capfirst }}</th>
+            <th>Monto</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ratio, form in last_ratio_forms %}
+            <tr>
+              <td>{{ ratio.id }}</td>
+              <td>{{ ratio.emission_right }}</td>
+              <td>{{ ratio.tax }}</td>
+              <td>{{ ratio.created|date }}</td>
+              <td>{{ ratio.insurance_vehicle.name }}</td>
+              <td>
+                {{ form.amount }}
+                {% if form.errors %}<div class="alert alert-danger" role="alert">{{ form.errors }}</div>{% endif %}
+                {{ form.insurance_vehicle_ratio }}
+                {{ form.quotation_insurance_vehicle }}
+                {{ form.id }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        {{ form.management_form }}
+      </table>
+      <input class="btn btn-primary" type="submit" />
+    </form>
+  </div>
 {% endblock content %}

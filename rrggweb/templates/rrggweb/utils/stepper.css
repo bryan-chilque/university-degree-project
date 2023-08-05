@@ -58,7 +58,15 @@
   background-color: #ccc;
   z-index: -1;
   transition: background-color 0.2s ease-in-out;
-  clip-path: polygon(100% 50%, 75% 0, 75% 25%, 25% 25%, 25% 75%, 75% 75%, 75% 100%);
+  clip-path: polygon(
+    100% 50%,
+    75% 0,
+    75% 25%,
+    25% 25%,
+    25% 75%,
+    75% 75%,
+    75% 100%
+  );
 }
 
 #rrggweb-stepper > li em {
@@ -70,7 +78,7 @@
 }
 
 #rrggweb-stepper > li.active em {
-    color: #2f7cff;
+  color: #2f7cff;
 }
 
 #rrggweb-stepper > li.completed > span::before {

@@ -1,59 +1,65 @@
-{% extends 'rrggweb/quotation/insurance/vehicle/base.html' %}
-
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% load i18n %}
-
-{% block title_section %}Crear Vehículo{% endblock %}
-
+{% block title_section %}
+  Crear Vehículo
+{% endblock title_section %}
 {% block content %}
-{% include 'rrggweb/utils/stepper.html' with step=3 max_step=5 %}
-<div class="mt-2">
-  <h5><b>Asesor:</b> {{ consultant }}</h5>
-  <h5><b>Cliente:</b> {{ customer }}</h5>
-  <hr class="w-25"/>
-<div>
-<form method="post">
-  {% csrf_token %}
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <label for="id_brand">{{ form.brand.label|capfirst }}:</label>
-      {{ form.brand }}
-    </div>
-    <div class="col-md-4">
-      <label for="id_vehicle_model">{{ form.vehicle_model.label|capfirst }}:</label>
-      {{ form.vehicle_model }}
-    </div>
-    <div class="col-md-4">
-      <label for="id_fabrication_year">{{ form.fabrication_year.label|capfirst }}:</label>
-      {{ form.fabrication_year }}
+  {% include "rrggweb/utils/stepper.html" with step=3 max_step=5 %}
+  <div class="mt-2">
+    <h5>
+      <b>Asesor:</b> {{ consultant }}
+    </h5>
+    <h5>
+      <b>Cliente:</b> {{ customer }}
+    </h5>
+    <hr class="w-25" />
+    <div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="id_brand">{{ form.brand.label|capfirst }}:</label>
+            {{ form.brand }}
+          </div>
+          <div class="col-md-4">
+            <label for="id_vehicle_model">{{ form.vehicle_model.label|capfirst }}:</label>
+            {{ form.vehicle_model }}
+          </div>
+          <div class="col-md-4">
+            <label for="id_fabrication_year">{{ form.fabrication_year.label|capfirst }}:</label>
+            {{ form.fabrication_year }}
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="id_plate">{{ form.plate.label|capfirst }}:</label>
+            {{ form.plate }}
+          </div>
+          <div class="col-md-4">
+            <label for="id_chassis">{{ form.chassis.label|capfirst }}:</label>
+            {{ form.chassis }}
+          </div>
+          <div class="col-md-4">
+            <label for="id_engine">{{ form.engine.label|capfirst }}:</label>
+            {{ form.engine }}
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="id_use_type">{{ form.seat_number.label|capfirst }}</label>
+            {{ form.seat_number }}
+          </div>
+          <div class="col-md-4">
+            <label for="id_use_type">Uso:</label>
+            {{ form.use_type }}
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <a class="btn btn-secondary"
+             href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' view.kwargs.consultant_id view.kwargs.customer_id %}">Volver</a>
+          <input class="btn btn-primary" type="submit" />
+        </div>
+      </form>
     </div>
   </div>
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <label for="id_plate">{{ form.plate.label|capfirst }}:</label>
-      {{ form.plate }}
-    </div>
-    <div class="col-md-4">
-      <label for="id_chassis">{{ form.chassis.label|capfirst }}:</label>
-      {{ form.chassis }}
-    </div>
-    <div class="col-md-4">
-      <label for="id_engine">{{ form.engine.label|capfirst }}:</label>
-      {{ form.engine }}
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <label for="id_use_type">{{ form.seat_number.label|capfirst }}</label>
-      {{ form.seat_number }}
-    </div>
-    <div class="col-md-4">
-      <label for="id_use_type">Uso:</label>
-      {{ form.use_type }}
-    </div>
-  </div>
-  <div class="d-flex justify-content-between">
-    <a class="btn btn-secondary" href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' view.kwargs.consultant_id view.kwargs.customer_id %}">Volver</a>
-    <input class="btn btn-primary" type="submit" />
-  </div>
-</form>
 {% endblock content %}
