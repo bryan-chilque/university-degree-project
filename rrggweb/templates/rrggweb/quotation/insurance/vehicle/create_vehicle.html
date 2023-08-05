@@ -1,10 +1,11 @@
-{% extends 'rrggweb/dashboard.html' %}
+{% extends 'rrggweb/quotation/insurance/vehicle/base.html' %}
 
 {% load i18n %}
 
 {% block title_section %}Crear Vehículo{% endblock %}
 
 {% block content %}
+{% include 'rrggweb/utils/stepper.html' with step=3 max_step=5 %}
 <div class="mt-2">
   <h5><b>Asesor:</b> {{ consultant }}</h5>
   <h5><b>Cliente:</b> {{ customer }}</h5>
