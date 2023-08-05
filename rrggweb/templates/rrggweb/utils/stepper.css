@@ -1,0 +1,84 @@
+#rrggweb-stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  padding: 0;
+  list-style: none;
+}
+
+#rrggweb-stepper > li {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  color: #2f7cff;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 10px;
+}
+
+#rrggweb-stepper > li > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #2f7cff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  position: relative;
+}
+
+#rrggweb-stepper > li.active > span {
+  background-color: #2f7cff;
+  color: #fff;
+}
+
+#rrggweb-stepper > li:not(.active) > span {
+  background-color: white;
+  color: #ccc;
+  border-color: #ccc;
+}
+
+#rrggweb-stepper > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 2px;
+  background-color: #ccc;
+  z-index: -1;
+  transition: background-color 0.2s ease-in-out;
+  clip-path: polygon(100% 50%, 75% 0, 75% 25%, 25% 25%, 25% 75%, 75% 75%, 75% 100%);
+}
+
+#rrggweb-stepper > li em {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: #666;
+  margin-top: 5px;
+}
+
+#rrggweb-stepper > li.active em {
+    color: #2f7cff;
+}
+
+#rrggweb-stepper > li.completed > span::before {
+  content: "\2713";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #2f7cff;
+}

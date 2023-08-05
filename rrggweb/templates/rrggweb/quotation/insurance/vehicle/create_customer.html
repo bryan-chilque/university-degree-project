@@ -1,5 +1,6 @@
-{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Crear Cliente{% endblock %}
+{% extends 'rrggweb/quotation/insurance/vehicle/base.html' %} {% block title_section %}Crear Cliente{% endblock %}
 {% block content %}
+{% include 'rrggweb/utils/stepper.html' with step=2 max_step=5 %}
 <a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:search' view.kwargs.consultant_id %}"><i class="bi bi-arrow-left"></i>Volver</a>
 <form method="post">
   {% csrf_token %}

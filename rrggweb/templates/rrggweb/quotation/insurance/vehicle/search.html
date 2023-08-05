@@ -1,5 +1,6 @@
-{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Seguro Vehicular{% endblock %}
+{% extends 'rrggweb/quotation/insurance/vehicle/base.html' %} {% block title_section %}Seguro Vehicular{% endblock %}
 {% block content %}
+{% include 'rrggweb/utils/stepper.html' with step=1 max_step=5 %}
 <a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.consultant_id %}">
   <i class="bi bi-arrow-left"></i>Volver
 </a>

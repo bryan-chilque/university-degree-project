@@ -1,0 +1,10 @@
+{% with ''|center:max_step as range %}
+<ol id="rrggweb-stepper">
+  {% for _ in range %}
+    <li class="{% if step == forloop.counter %}active{% elif step > forloop.counter %}completed{% endif %}">
+      <span>{{ forloop.counter }}</span>
+      <em>Paso {{forloop.counter}}</em>
+    </li>
+  {% endfor %}
+</ol>
+{% endwith %}
