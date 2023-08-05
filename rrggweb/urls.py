@@ -105,9 +105,14 @@ issuance_insurance_vehicle_urlpatterns = (
             name="update",
         ),
         path(
-            "document/<int:issuance_id>/",
-            views.IssuanceInsuranceVehicleCreateDocumentView.as_view(),
-            name="document",
+            "create_document/<int:issuance_id>/",
+            views.IssuanceInsuranceVehicleAddDocumentCreateView.as_view(),
+            name="create_document",
+        ),
+        path(
+            "delete_document/<int:document_id>/issuance/<int:issuance_id>/",
+            views.IssuanceInsuranceVehicleDeleteDocumentView.as_view(),
+            name="delete_document",
         ),
     ],
     "vehicle",
