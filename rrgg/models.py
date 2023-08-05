@@ -260,7 +260,7 @@ class IssuanceInsuranceVehicle(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
 
-class IssuanceInsuranceVehicleDocuments(models.Model):
+class IssuanceInsuranceVehicleDocument(models.Model):
     issuance = models.ForeignKey(
         IssuanceInsuranceVehicle,
         related_name="documents",

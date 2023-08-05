@@ -6,6 +6,7 @@ from django.forms import modelformset_factory
 from django.http import HttpResponse
 from django.views.generic import (
     CreateView,
+    DeleteView,
     DetailView,
     FormView,
     ListView,
@@ -557,7 +558,7 @@ class IssuanceInsuranceVehicleAddDocumentCreateView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/issuance/insurance/vehicle/create_document.html"
-    model = rrgg.models.IssuanceInsuranceVehicleDocuments
+    model = rrgg.models.IssuanceInsuranceVehicleDocument
     fields = ["issuance", "file"]
 
     def get_success_url(self):
@@ -575,6 +576,21 @@ class IssuanceInsuranceVehicleAddDocumentCreateView(
             issuance_id=self.kwargs["issuance_id"]
         )
         return context
+
+
+class IssuanceInsuranceVehicleDeleteDocumentView(DeleteView):
+    template_name = "rrggweb/issuance/insurance/vehicle/delete_document.html"
+    model = rrgg.models.IssuanceInsuranceVehicleDocument
+    pk_url_kwarg = "document_id"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:create_document",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
 
 
 class IssuanceInsuranceVehicleUpdateIssuanceView(
