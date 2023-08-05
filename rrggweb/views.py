@@ -553,24 +553,19 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
         )
 
 
-class IssuanceInsuranceVehicleCreateDocumentView(
+class IssuanceInsuranceVehicleAddDocumentCreateView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/issuance/insurance/vehicle/create_document.html"
     model = rrgg.models.IssuanceInsuranceVehicleDocuments
-    fields = [
-        "file",
-    ]
-
-    def form_valid(self, form):
-        form.instance.issuance_id = self.kwargs["issuance_id"]
-        return super().form_valid(form)
+    fields = ["issuance", "file"]
 
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:list",
+            "rrggweb:issuance:insurance:vehicle:create_document",
             kwargs={
                 "consultant_id": self.kwargs["consultant_id"],
+                "issuance_id": self.kwargs["issuance_id"],
             },
         )
 

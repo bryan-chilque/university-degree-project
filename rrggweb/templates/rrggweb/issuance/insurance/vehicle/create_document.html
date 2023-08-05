@@ -1,14 +1,15 @@
 {% extends 'rrggweb/dashboard.html' %} {% block title_section %}
   Crear Emisión Vehícular
 {% endblock %} {% block content %}
-  <form action="{% url 'rrggweb:issuance:insurance:vehicle:create_document' view.kwargs.consultant_id view.kwargs.issuance_id %}" method="post" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
       <label for="{{ form.file.id_for_label }}" class="form-label">Archivo</label>
       {{ form.file }}
     </div>
     <button type="submit" class="btn btn-primary">Agregar archivo</button>
-    <a href="{% url 'rrggweb:issuance:insurance:vehicle:create_document' view.kwargs.consultant_id view.kwargs.issuance_id %}" class="btn btn-secondary">Agregar Nuevo Documento</a>
+    <a href="{% url 'rrggweb:issuance:insurance:vehicle:create_document' view.kwargs.consultant_id view.kwargs.issuance_id %}" class="btn btn-secondary">Finalizar</a>
+    <input type="hidden" name="issuance" value="{{ view.kwargs.issuance_id }}"/>
   </form>
   {% if documents %}
     <div class="card">
@@ -21,7 +22,7 @@
             <a href="{{ document.file.url }}" class="text-decoration-none">
               <i class="bi bi-file-earmark-pdf"></i> {{ document.file.name }}
             </a>
-            <form action="{% url 'rrggweb:issuance-insurance-vehicle-document-delete' document.id %}" method="post">
+            <form action="'rrggweb:issuance-insurance-vehicle-document-delete' document.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn btn-danger">
                 <i class="bi bi-trash"></i>

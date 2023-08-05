@@ -106,7 +106,7 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             "create_document/<int:issuance_id>/",
-            views.IssuanceInsuranceVehicleCreateDocumentView.as_view(),
+            views.IssuanceInsuranceVehicleAddDocumentCreateView.as_view(),
             name="create_document",
         ),
     ],
