@@ -1,17 +1,17 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% block title_section %}
-  Crear Poliza Vehícular
+  Crear Cotización Vehícular
 {% endblock title_section %}
 {% block content %}
   {% include "rrggweb/utils/stepper.html" with step=4 max_step=5 %}
   <a class="d-flex gap-1 text-muted text-decoration-none"
-     href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id %} ">
+     href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id 'create' %} ">
     <i class="bi bi-arrow-left"></i>Volver
   </a>
   <div class="mt-2">
     Consultant: {{ consultant }}
     <br />
-    Customer: {{ customer }}
+    Customer: {{ vehicle.customer }}
     <br />
     Vehicle: {{ vehicle }}
     <hr class="w-25" />

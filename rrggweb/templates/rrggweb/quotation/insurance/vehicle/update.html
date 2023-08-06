@@ -1,0 +1,24 @@
+{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Editar Cotización Vehícular{% endblock %}
+{% block content %}
+<a
+  class="d-flex gap-1 text-muted text-decoration-none"
+  href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.object.vehicle.id 'update' %} "
+  >
+  <i class="bi bi-arrow-left"></i>Volver
+</a>
+<div class="mt-2">
+  Consultant: {{ view.object.consultant }}
+  <br />
+  Customer: {{ view.object.vehicle.customer }}
+  <br />
+  Vehicle: {{ view.object.vehicle }}
+  <hr class="w-25"/>
+</div>
+<form method="post">
+  {% csrf_token %}
+  <table>
+    {{ form }}
+  </table>
+  <input class="btn btn-primary" type="submit" />
+</form>
+{% endblock content %}

@@ -5,37 +5,9 @@ from . import views
 quotation_insurance_vehicle_urlpatterns = (
     [
         path(
-            "list/",
-            views.QuotationInsuranceVehicleListView.as_view(),
-            name="list",
-        ),
-        path(
-            (
-                "customer/<int:customer_id>/vehicle/<int:vehicle_id>"
-                "/quotation/<int:quotation_id>/create_premiums/"
-            ),
-            views.QuotationInsuranceVehiclePremiumsFormView.as_view(),
-            name="create_premiums",
-        ),
-        path(
-            "customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
-            views.QuotationInsuranceVehicleInsuredAmountCreateView.as_view(),
-            name="insured_amount",
-        ),
-        path(
-            "search/",
-            views.QuotationInsuranceVehicleSearchView.as_view(),
-            name="search",
-        ),
-        path(
-            "create_vehicle/customer/<int:customer_id>/",
-            views.QuotationInsuranceVehicleCreateVehicleView.as_view(),
-            name="create_vehicle",
-        ),
-        path(
-            "update_vehicle/<int:vehicle_id>/",
-            views.QuotationInsuranceVehicleUpdateVehicleView.as_view(),
-            name="update_vehicle",
+            "search_customer/",
+            views.QuotationInsuranceVehicleSearchCustomerView.as_view(),
+            name="search_customer",
         ),
         path(
             "create_customer/",
@@ -48,9 +20,44 @@ quotation_insurance_vehicle_urlpatterns = (
             name="update_customer",
         ),
         path(
+            "create_vehicle/customer/<int:customer_id>/",
+            views.QuotationInsuranceVehicleCreateVehicleView.as_view(),
+            name="create_vehicle",
+        ),
+        path(
+            "update_vehicle/<int:vehicle_id>/<str:origin>",
+            views.QuotationInsuranceVehicleUpdateVehicleView.as_view(),
+            name="update_vehicle",
+        ),
+        path(
+            "list/",
+            views.QuotationInsuranceVehicleListView.as_view(),
+            name="list",
+        ),
+        path(
             "detail/<int:quotation_id>/",
             views.QuotationInsuranceVehicleDetailView.as_view(),
             name="detail",
+        ),
+        path(
+            "create/vehicle/<int:vehicle_id>/",
+            views.QuotationInsuranceVehicleCreateView.as_view(),
+            name="create",
+        ),
+        path(
+            "<int:quotation_id>/update/",
+            views.QuotationInsuranceVehicleUpdateView.as_view(),
+            name="update",
+        ),
+        path(
+            "create_premiums/quotation/<int:quotation_id>",
+            views.QuotationInsuranceVehiclePremiumsFormView.as_view(),
+            name="create_premiums",
+        ),
+        path(
+            "update_premium/<int:premium_id>/",
+            views.QuotationInsuranceVehiclePremiumsUpdateView.as_view(),
+            name="update_premium",
         ),
         path(
             "report/xlsx/<int:quotation_id>/",
