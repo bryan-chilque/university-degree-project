@@ -3,7 +3,7 @@ from django.contrib.auth import forms as forms_auth
 from django.utils.translation import gettext as _
 
 
-class SearchByDocumentNumberForm(forms.Form):
+class SearchPersonForm(forms.Form):
     document_number = forms.CharField(
         max_length=32,
         label=_("document number"),

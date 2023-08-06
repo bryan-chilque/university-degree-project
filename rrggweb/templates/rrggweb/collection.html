@@ -1,12 +1,16 @@
-{% extends 'rrggweb/dashboard.html' %} {% block title_section %} Cobranza {% endblock %} {% block content %}
-<main class="d-flex flex-wrap gap-3">
-  {% for seguro in seguros%}
-  <div class="card mb-2">
-    <div class="card-body">
-      <h5 class="card-title">{{seguro.name}}</h5>
-      <a href="{{seguro.url}}" class="btn btn-primary">Ir</a>
-    </div>
-  </div>
-  {% endfor %}
-</main>
-{% endblock %}
+{% extends "rrggweb/dashboard.html" %}
+{% block title_section %}
+  Cobranza
+{% endblock title_section %}
+{% block content %}
+  <main class="d-flex flex-wrap gap-3">
+    {% for seguro in seguros %}
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ seguro.name }}</h5>
+          <a href="{{ seguro.url }}" class="btn btn-primary">Ir</a>
+        </div>
+      </div>
+    {% endfor %}
+  </main>
+{% endblock content %}
