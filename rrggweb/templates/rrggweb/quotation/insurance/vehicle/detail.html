@@ -39,13 +39,13 @@
             <tr>
               <td><strong>Monto Asegurado:</strong></td>
               <td>${{ object.insured_amount }}
-              <a href="{% url 'rrggweb:quotation:insurance:vehicle:update' view.kwargs.consultant_id view.kwargs.quotation_id %}" class="btn btn-link">✎</td>
+              <a href="{% url 'rrggweb:quotation:insurance:vehicle:update' view.kwargs.consultant_id view.kwargs.quotation_id 'quotation_detail' 0 %}" class="btn btn-link">✎</td>
             </tr>
             <tr>
               <td><strong>Vehiculo:</strong></td>
               <td>{{ object.vehicle }}
               <a
-                href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id object.vehicle.id object.customer.id 'detail' %}"
+                href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id object.vehicle.id object.customer.id 'quotation_detail' object.id %}"
                 class="btn btn-link"
               >✎</td>
             </tr>
@@ -110,7 +110,7 @@
                         </td>
                         <td class="align-middle">
                           <a
-                            href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.consultant_id premium.id %} "
+                            href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.consultant_id premium.id 'quotation_detail' object.id %} "
                             class="btn btn-link"
                             >✎
                           </a>

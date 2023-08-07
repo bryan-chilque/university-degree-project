@@ -283,15 +283,17 @@ class QuotationInsuranceVehiclePremium(models.Model):
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
-    policy = models.CharField(max_length=64)
+    policy = models.CharField(_("policy_number"), max_length=64)
     # documento de cobranza
-    collection_document = models.CharField(max_length=64)
+    collection_document = models.CharField(
+        _("collection_document"), max_length=64
+    )
     # fecha de emisión de la póliza
-    issuance_date = models.DateTimeField(null=True)
+    issuance_date = models.DateTimeField(_("issuance_date"), null=True)
     # fecha de vigencia final
-    initial_validity = models.DateTimeField()
+    initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia inicio
-    final_validity = models.DateTimeField()
+    final_validity = models.DateTimeField(_("final_validity"))
 
     quotation_vehicle_premium = models.ForeignKey(
         QuotationInsuranceVehiclePremium,

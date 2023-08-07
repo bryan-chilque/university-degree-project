@@ -150,13 +150,23 @@ class QuotationInsuranceVehicleUpdateCustomerView(
     pk_url_kwarg = "customer_id"
 
     def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:search_vehicle",
-            kwargs={
-                "consultant_id": self.kwargs["consultant_id"],
-                "customer_id": self.object.id,
-            },
-        )
+        origin = self.kwargs["origin"]
+        if origin == "issuance_create":
+            return urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:create_issuance",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_premium_id": self.kwargs["origin_id"],
+                },
+            )
+        else:
+            return urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:search_vehicle",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "customer_id": self.object.id,
+                },
+            )
 
 
 # VEHICLE
@@ -209,10 +219,6 @@ class QuotationInsuranceVehicleCreateVehicleView(
         "use_type",
     ]
 
-    # def form_valid(self, form):
-    #     form.instance.customer_id = self.kwargs["customer_id"]
-    #     return super().form_valid(form)
-
     def get_success_url(self):
         return urls.reverse(
             "rrggweb:quotation:insurance:vehicle:define_owner",
@@ -259,17 +265,15 @@ class QuotationInsuranceVehicleUpdateVehicleView(
     def get_success_url(self):
         origin = self.kwargs["origin"]
 
-        if origin == "detail":
+        if origin == "quotation_detail":
             return urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:detail",
                 kwargs={
                     "consultant_id": self.kwargs["consultant_id"],
-                    "quotation_id": (
-                        self.object.quotation_insurance_vehicles.last().id
-                    ),
+                    "quotation_id": self.kwargs["origin_id"],
                 },
             )
-        elif origin == "owner":
+        elif origin == "define_owner":
             return urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:define_owner",
                 kwargs={
@@ -278,14 +282,12 @@ class QuotationInsuranceVehicleUpdateVehicleView(
                     "vehicle_id": self.object.id,
                 },
             )
-        elif origin == "update":
+        elif origin == "issuance_create":
             return urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:update",
+                "rrggweb:issuance:insurance:vehicle:create_issuance",
                 kwargs={
                     "consultant_id": self.kwargs["consultant_id"],
-                    "quotation_id": (
-                        self.object.quotation_insurance_vehicles.last().id
-                    ),
+                    "quotation_premium_id": self.kwargs["origin_id"],
                 },
             )
         else:
@@ -436,13 +438,31 @@ class QuotationInsuranceVehicleUpdateView(UpdateView):
     pk_url_kwarg = "quotation_id"
 
     def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:create_premiums",
-            kwargs={
-                "consultant_id": self.kwargs["consultant_id"],
-                "quotation_id": self.object.id,
-            },
-        )
+        origin = self.kwargs["origin"]
+        if origin == "issuance_create":
+            return urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:create_issuance",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_id": self.object.id,
+                },
+            )
+        elif origin == "quotation_detail":
+            return urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:detail",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_id": self.object.id,
+                },
+            )
+        else:
+            return urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create_premiums",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_id": self.object.id,
+                },
+            )
 
 
 class QuotationInsuranceVehicleDetailView(DetailView):
@@ -539,13 +559,23 @@ class QuotationInsuranceVehiclePremiumsUpdateView(UpdateView):
     pk_url_kwarg = "premium_id"
 
     def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:detail",
-            kwargs={
-                "consultant_id": self.kwargs["consultant_id"],
-                "quotation_id": self.object.quotation_insurance_vehicle.id,
-            },
-        )
+        origin = self.kwargs["origin"]
+        if origin == "issuance_create":
+            return urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:create_issuance",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_premium_id": self.object.id,
+                },
+            )
+        else:
+            return urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:detail",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_id": self.kwargs["origin_id"],
+                },
+            )
 
 
 # QUOTATION INSURANCE VEHICLE MULTIMEDIA

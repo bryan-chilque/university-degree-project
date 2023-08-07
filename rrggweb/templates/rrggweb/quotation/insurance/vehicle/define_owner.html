@@ -6,7 +6,7 @@
   {% include "rrggweb/utils/stepper.html" with step=3 max_step=5 %}
   <a
     class="d-flex gap-1 text-muted text-decoration-none"
-    href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id view.kwargs.customer_id 'owner' %}">
+    href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id view.kwargs.customer_id 'define_owner' 0 %}">
     <i class="bi bi-arrow-left"></i>Volver
   </a>
   <form method="post">

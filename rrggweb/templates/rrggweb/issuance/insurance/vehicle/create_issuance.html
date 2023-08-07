@@ -3,17 +3,23 @@
 <a class="d-flex gap-1 text-muted text-decoration-none" href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.consultant_id quotation_premium.quotation_insurance_vehicle.id %} "><i class="bi bi-arrow-left"></i>Volver</a>
 <div class="row mb-2">
   <div class="col-6">
-    <h5 class="mt-3 mb-1">Datos del contratante</h5>
+    <h5 class="mt-3 mb-1">
+      Datos del contratante
+      <a
+        href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.customer.id 'issuance_create' quotation_premium.id %}"
+        class="btn btn-link">✎</td>
+      </a>
+    </h5>
     <hr class="w-25 mt-1 mb-1"/>
     Tipo de documento: DNI
     <br />
-    Número de documento: {{ quotation_premium.quotation_insurance_vehicle.vehicle.customer.document_number }}
+    Número de documento: {{ quotation_premium.quotation_insurance_vehicle.customer.document_number }}
     <br />
-    Nombres y apellidos: {{ quotation_premium.quotation_insurance_vehicle.vehicle.customer }}
+    Nombres y apellidos: {{ quotation_premium.quotation_insurance_vehicle.customer }}
     <br />
   </div>
   <div class="col-6">
-    <h5 class="mt-3">Datos del vendedor</h5>
+    <h5 class="mt-3"> Datos del vendedor </h5>
     <hr class="w-25 mt-1 mb-1"/>
     Tipo de documento: DNI
     <br />
@@ -23,7 +29,13 @@
     <br />
   </div>
   <div class="col-6">
-    <h6 class="mt-3">Datos del vehiculo</h6>
+    <h5 class="mt-3 mb-1">
+      Datos del vehículo
+      <a
+      href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.id quotation_premium.quotation_insurance_vehicle.customer.id 'issuance_create' quotation_premium.id %}"
+      class="btn btn-link">✎</td>
+    </a>
+    </h5>
     <hr class="w-25 mt-1 mb-1"/>
     Placa: {{ quotation_premium.quotation_insurance_vehicle.vehicle.plate }}
     <br />
@@ -39,13 +51,23 @@
     <br />
   </div>
   <div class="col-6">
-    <h6 class="mt-3">Datos de la cotización</h6>
+    <h5 class="mt-3 mb-1">
+      Datos de la cotización
+    </h5>
     <hr class="w-25 mt-1 mb-1"/>
     Suma asegurada: ${{ quotation_premium.quotation_insurance_vehicle.insured_amount }}
+    <a
+    href="{% url 'rrggweb:quotation:insurance:vehicle:update' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.id 'issuance_create' quotation_premium.id %}"
+    class="btn btn-link">✎</td>
+    </a>
     <br />
     Aseguradora: {{ quotation_premium.insurance_vehicle_ratio.insurance_vehicle }}
     <br />
     Prima neta: ${{ quotation_premium.amount }}
+    <a
+    href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.id 'issuance_create' 0 %}"
+    class="btn btn-link">✎</td>
+    </a>
     <br />
     Derecho de emisión: ${{ quotation_premium.emission_right }}
     <br />
