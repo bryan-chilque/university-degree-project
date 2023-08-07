@@ -34,7 +34,7 @@ class SearchVehicleForm(forms.Form):
 
 class DefineOwnerForm(forms.Form):
     is_owner = forms.BooleanField(
-        label=_("is owner?"),
+        label=_("is contractor or insured?"),
         widget=forms.CheckboxInput(
             attrs={"class": "form-check-input", "type": "checkbox"}
         ),

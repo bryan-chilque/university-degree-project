@@ -617,7 +617,7 @@ class QuotationInsuranceVehicleReportXlsxView(View):
         ws["C9"] = vehicle.fabrication_year
         ws["C10"] = vehicle.use_type.name
 
-        customer = vehicle.customer
+        customer = quotation.customer
         ws["C6"] = f"{customer.given_name} {customer.first_surname}"
 
         for premium in quotation.premiums.all():
