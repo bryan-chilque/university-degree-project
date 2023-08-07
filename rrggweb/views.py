@@ -743,7 +743,7 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
         "policy",
         "collection_document",
         "issuance_date",
-        "initial_validity"
+        "initial_validity",
     ]
 
     def form_valid(self, form):
@@ -781,9 +781,13 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
     def form_valid(self, form):
         # If the initial_validity field has changed, update the final_validity field
         if form.instance.pk is not None:
-            old_self = rrgg.models.IssuanceInsuranceVehicle.objects.get(pk=form.instance.pk)
+            old_self = rrgg.models.IssuanceInsuranceVehicle.objects.get(
+                pk=form.instance.pk
+            )
             if old_self.initial_validity != form.instance.initial_validity:
-                form.instance.final_validity = form.instance.initial_validity + timedelta(days=365)
+                form.instance.final_validity = (
+                    form.instance.initial_validity + timedelta(days=365)
+                )
 
         return super().form_valid(form)
 

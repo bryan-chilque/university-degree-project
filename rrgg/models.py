@@ -7,8 +7,12 @@ from django.utils.translation import gettext_lazy as _
 class Customer(models.Model):
     given_name = models.CharField(_("given name"), max_length=64)
     first_surname = models.CharField(_("first surname"), max_length=64)
-    second_surname = models.CharField(_("second surname"), max_length=64, blank=True)
-    document_number = models.CharField(_("document number"), max_length=32, unique=True)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+    document_number = models.CharField(
+        _("document number"), max_length=32, unique=True
+    )
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
@@ -17,8 +21,12 @@ class Customer(models.Model):
 class Owner(models.Model):
     given_name = models.CharField(_("given name"), max_length=64)
     first_surname = models.CharField(_("first surname"), max_length=64)
-    second_surname = models.CharField(_("second surname"), max_length=64, blank=True)
-    document_number = models.CharField(_("document number"), max_length=32, unique=True)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+    document_number = models.CharField(
+        _("document number"), max_length=32, unique=True
+    )
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
@@ -65,7 +73,9 @@ class Vehicle(models.Model):
     has_gps = models.BooleanField(_("has gps?"), null=True)
     # vehículo tiene endoso
     has_endorsee = models.BooleanField(_("has endorsee?"), null=True)
-    endorsee_bank = models.CharField(_("endorsee bank"), max_length=64, null=True)
+    endorsee_bank = models.CharField(
+        _("endorsee bank"), max_length=64, null=True
+    )
     use_type = models.ForeignKey(
         UseType,
         related_name="use_type",
@@ -92,8 +102,12 @@ class Vehicle(models.Model):
 class Consultant(models.Model):
     given_name = models.CharField(_("given name"), max_length=64)
     first_surname = models.CharField(_("first surname"), max_length=64)
-    second_surname = models.CharField(_("second surname"), max_length=64, blank=True)
-    document_number = models.CharField(_("document number"), max_length=32, unique=True)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+    document_number = models.CharField(
+        _("document number"), max_length=32, unique=True
+    )
 
     class Meta:
         verbose_name = _("consultant")
@@ -118,7 +132,9 @@ class ConsultantMembership(models.Model):
 
 
 class QuotationInsuranceVehicle(models.Model):
-    insured_amount = models.PositiveIntegerField(_("insured amount"), null=True)
+    insured_amount = models.PositiveIntegerField(
+        _("insured amount"), null=True
+    )
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicles",
@@ -212,11 +228,15 @@ class QuotationInsuranceVehiclePremium(models.Model):
         related_name="premiums",
         on_delete=models.PROTECT,
     )
-    created = models.DateTimeField(_("created at"), auto_now_add=True, unique=True)
+    created = models.DateTimeField(
+        _("created at"), auto_now_add=True, unique=True
+    )
 
     @property
     def emission_right(self):
-        return round(self.amount * self.insurance_vehicle_ratio.emission_right, 2)
+        return round(
+            self.amount * self.insurance_vehicle_ratio.emission_right, 2
+        )
 
     @property
     def tax(self):
@@ -265,7 +285,9 @@ class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
     policy = models.CharField(_("policy_number"), max_length=64)
     # documento de cobranza
-    collection_document = models.CharField(_("collection_document"), max_length=64)
+    collection_document = models.CharField(
+        _("collection_document"), max_length=64
+    )
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"), null=True)
     # fecha de vigencia inicio
@@ -315,16 +337,20 @@ class CollectionInsuranceVehicle(models.Model):
     def status(self):
         if self.payment_date:
             return "pagado"
-        elif self.payment_date is None and self.expiration_date < timezone.now():
+        elif (
+            self.payment_date is None and self.expiration_date < timezone.now()
+        ):
             return "vencido"
         elif (
             self.payment_date is None
-            and self.expiration_date - timezone.now() <= timezone.timedelta(days=7)
+            and self.expiration_date - timezone.now()
+            <= timezone.timedelta(days=7)
         ):
             return "por vencer"
         elif (
             self.payment_date is None
-            and self.expiration_date - timezone.now() > timezone.timedelta(days=7)
+            and self.expiration_date - timezone.now()
+            > timezone.timedelta(days=7)
         ):
             return "pendiente"
         else:
