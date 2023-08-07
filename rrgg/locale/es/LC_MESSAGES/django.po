@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-06 21:27-0500\n"
+"POT-Creation-Date: 2023-08-07 04:00-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -18,126 +18,146 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\rrgg\models.py:8 .\rrgg\models.py:22 .\rrgg\models.py:100
+#: .\rrgg\models.py:8 .\rrgg\models.py:22 .\rrgg\models.py:103
 msgid "given name"
 msgstr "nombres"
 
-#: .\rrgg\models.py:9 .\rrgg\models.py:23 .\rrgg\models.py:101
+#: .\rrgg\models.py:9 .\rrgg\models.py:23 .\rrgg\models.py:104
 msgid "first surname"
 msgstr "apellido paterno"
 
-#: .\rrgg\models.py:11 .\rrgg\models.py:25 .\rrgg\models.py:103
+#: .\rrgg\models.py:11 .\rrgg\models.py:25 .\rrgg\models.py:106
 msgid "second surname"
 msgstr "apellido materno"
 
-#: .\rrgg\models.py:14 .\rrgg\models.py:28 .\rrgg\models.py:106
+#: .\rrgg\models.py:14 .\rrgg\models.py:28 .\rrgg\models.py:109
 msgid "document number"
 msgstr "número de documento"
 
-#: .\rrgg\models.py:62
+#: .\rrgg\models.py:65
 msgid "brand"
 msgstr "marca"
 
-#: .\rrgg\models.py:63
+#: .\rrgg\models.py:66
 msgid "model"
 msgstr "modelo"
 
-#: .\rrgg\models.py:64
+#: .\rrgg\models.py:67
 msgid "plate"
 msgstr "número de placa"
 
-#: .\rrgg\models.py:65
+#: .\rrgg\models.py:68
 msgid "fabrication year"
 msgstr "año de fabricación"
 
-#: .\rrgg\models.py:66
+#: .\rrgg\models.py:69
 msgid "engine number"
 msgstr "número de motor"
 
-#: .\rrgg\models.py:67
+#: .\rrgg\models.py:70
 msgid "chassis number"
 msgstr "número de chasis"
 
-#: .\rrgg\models.py:68
+#: .\rrgg\models.py:71
 msgid "seat number"
 msgstr "número de asientos"
 
-#: .\rrgg\models.py:70
+#: .\rrgg\models.py:73
 msgid "has gps?"
 msgstr "¿tiene gps?"
 
-#: .\rrgg\models.py:72
+#: .\rrgg\models.py:75
 msgid "has endorsee?"
 msgstr "¿tiene endosatario?"
 
-#: .\rrgg\models.py:74
+#: .\rrgg\models.py:77
 msgid "endorsee bank"
 msgstr ""
 
-#: .\rrgg\models.py:79
+#: .\rrgg\models.py:82
 msgid "usage"
 msgstr "uso"
 
-#: .\rrgg\models.py:86
+#: .\rrgg\models.py:89
 msgid "owner ship"
 msgstr ""
 
-#: .\rrgg\models.py:92 .\rrgg\models.py:138
+#: .\rrgg\models.py:95 .\rrgg\models.py:141
 msgid "vehicle"
 msgstr "vehículo"
 
-#: .\rrgg\models.py:93
+#: .\rrgg\models.py:96
 msgid "vehicles"
 msgstr "vehículos"
 
-#: .\rrgg\models.py:110 .\rrgg\models.py:144
+#: .\rrgg\models.py:113 .\rrgg\models.py:147
 msgid "consultant"
 msgstr "vendedor"
 
-#: .\rrgg\models.py:111
+#: .\rrgg\models.py:114
 msgid "consultants"
 msgstr "vendedores"
 
-#: .\rrgg\models.py:133
+#: .\rrgg\models.py:136
 msgid "insured amount"
 msgstr "monto asegurado"
 
-#: .\rrgg\models.py:150
+#: .\rrgg\models.py:153
 msgid "customer"
 msgstr "cliente"
 
-#: .\rrgg\models.py:157
+#: .\rrgg\models.py:160
 msgid "vehicle insurance quotation"
 msgstr "cotización de seguro vehicular"
 
-#: .\rrgg\models.py:158
+#: .\rrgg\models.py:161
 msgid "vehicle insurance quotations"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:169
+#: .\rrgg\models.py:172
 msgid "name"
 msgstr "nombre"
 
-#: .\rrgg\models.py:171
+#: .\rrgg\models.py:174
 msgid "logo"
 msgstr "logotipo"
 
-#: .\rrgg\models.py:182 .\rrgg\models.py:183
+#: .\rrgg\models.py:185 .\rrgg\models.py:186
 msgid "vehicle insurance"
 msgstr "seguro vehicular"
 
-#: .\rrgg\models.py:189
+#: .\rrgg\models.py:192
 msgid "tax (igv)"
 msgstr "impuesto (igv)"
 
-#: .\rrgg\models.py:192
+#: .\rrgg\models.py:195
 msgid "emission right"
 msgstr "derecho de emisión"
 
-#: .\rrgg\models.py:216
+#: .\rrgg\models.py:219
 msgid "net premium"
 msgstr "prima neta"
 
-#: .\rrgg\models.py:229
+#: .\rrgg\models.py:232
 msgid "created at"
 msgstr "fecha de creación"
+
+#: .\rrgg\models.py:286
+msgid "policy_number"
+msgstr "número de póliza"
+
+#: .\rrgg\models.py:288
+msgid "collection_document"
+msgstr "documento de cobranza"
+
+#: .\rrgg\models.py:290
+msgid "issuance_date"
+msgstr "fecha de emisión"
+
+#: .\rrgg\models.py:292
+msgid "initial_validity"
+msgstr "fecha inicio de vigencia"
+
+#: .\rrgg\models.py:294
+msgid "final_validity"
+msgstr "fecha fin de vigencia"

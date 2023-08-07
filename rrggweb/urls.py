@@ -15,7 +15,10 @@ quotation_insurance_vehicle_urlpatterns = (
             name="create_customer",
         ),
         path(
-            "update_customer/<int:customer_id>/",
+            (
+                "update_customer/<int:customer_id>/from/"
+                "<str:origin>/<int:origin_id>/"
+            ),
             views.QuotationInsuranceVehicleUpdateCustomerView.as_view(),
             name="update_customer",
         ),
@@ -32,7 +35,7 @@ quotation_insurance_vehicle_urlpatterns = (
         path(
             (
                 "update_vehicle/<int:vehicle_id>/customer/"
-                "<int:customer_id>/<str:origin>"
+                "<int:customer_id>/from/<str:origin>/<int:origin_id>/"
             ),
             views.QuotationInsuranceVehicleUpdateVehicleView.as_view(),
             name="update_vehicle",
@@ -59,7 +62,7 @@ quotation_insurance_vehicle_urlpatterns = (
             name="create",
         ),
         path(
-            "<int:quotation_id>/update/",
+            "<int:quotation_id>/update/from/<str:origin>/<int:origin_id>/",
             views.QuotationInsuranceVehicleUpdateView.as_view(),
             name="update",
         ),
@@ -79,7 +82,10 @@ quotation_insurance_vehicle_urlpatterns = (
             name="create_premiums",
         ),
         path(
-            "update_premium/<int:premium_id>/",
+            (
+                "update_premium/<int:premium_id>/"
+                "from/<str:origin>/<int:origin_id>/"
+            ),
             views.QuotationInsuranceVehiclePremiumsUpdateView.as_view(),
             name="update_premium",
         ),

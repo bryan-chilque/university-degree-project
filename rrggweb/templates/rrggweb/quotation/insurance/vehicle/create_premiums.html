@@ -7,7 +7,7 @@
   {% include "rrggweb/utils/stepper.html" with step=5 max_step=5 %}
   <a
     class="d-flex gap-1 text-muted text-decoration-none"
-    href="{% url 'rrggweb:quotation:insurance:vehicle:update' view.kwargs.consultant_id view.kwargs.quotation_id %}"
+    href="{% url 'rrggweb:quotation:insurance:vehicle:update' view.kwargs.consultant_id view.kwargs.quotation_id 'create_premium' 0 %}"
     >
     <i class="bi bi-arrow-left"></i>Volver
   </a>
