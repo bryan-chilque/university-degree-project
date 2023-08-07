@@ -268,9 +268,9 @@ class IssuanceInsuranceVehicle(models.Model):
     collection_document = models.CharField(_("collection_document"), max_length=64)
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"), null=True)
-    # fecha de vigencia final
-    initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia inicio
+    initial_validity = models.DateTimeField(_("initial_validity"))
+    # fecha de vigencia final
     final_validity = models.DateTimeField(_("final_validity"))
 
     quotation_vehicle_premium = models.ForeignKey(
@@ -278,14 +278,6 @@ class IssuanceInsuranceVehicle(models.Model):
         related_name="issuance",
         on_delete=models.PROTECT,
     )
-
-    def finalAutomaticallyValidity(self, *args, **kwargs):
-        if self.pk is not None:
-            old_self = IssuanceInsuranceVehicle.objects.get(pk=self.pk)
-            if old_self.initial_validity != self.initial_validity:
-                self.final_validity = self.initial_validity + timedelta(days=365)
-
-        super().save(*args, **kwargs)
 
     created = models.DateTimeField(auto_now_add=True)
 
