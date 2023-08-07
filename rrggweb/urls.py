@@ -20,14 +20,48 @@ quotation_insurance_vehicle_urlpatterns = (
             name="update_customer",
         ),
         path(
+            "search_vehicle/customer/<int:customer_id>/",
+            views.QuotationInsuranceVehicleSearchVehicleView.as_view(),
+            name="search_vehicle",
+        ),
+        path(
             "create_vehicle/customer/<int:customer_id>/",
             views.QuotationInsuranceVehicleCreateVehicleView.as_view(),
             name="create_vehicle",
         ),
         path(
-            "update_vehicle/<int:vehicle_id>/<str:origin>",
+            (
+                "update_vehicle/<int:vehicle_id>/customer/"
+                "<int:customer_id>/<str:origin>"
+            ),
             views.QuotationInsuranceVehicleUpdateVehicleView.as_view(),
             name="update_vehicle",
+        ),
+        path(
+            (
+                "define_owner/customer/<int:customer_id>/"
+                "vehicle/<int:vehicle_id>/"
+            ),
+            views.QuotationInsuranceVehicleDefineOwnerView.as_view(),
+            name="define_owner",
+        ),
+        path(
+            (
+                "create_owner/customer/<int:customer_id>/"
+                "vehicle/<int:vehicle_id>/"
+            ),
+            views.QuotationInsuranceVehicleCreateOwnerView.as_view(),
+            name="create_owner",
+        ),
+        path(
+            "create/customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
+            views.QuotationInsuranceVehicleCreateView.as_view(),
+            name="create",
+        ),
+        path(
+            "<int:quotation_id>/update/",
+            views.QuotationInsuranceVehicleUpdateView.as_view(),
+            name="update",
         ),
         path(
             "list/",
@@ -38,16 +72,6 @@ quotation_insurance_vehicle_urlpatterns = (
             "detail/<int:quotation_id>/",
             views.QuotationInsuranceVehicleDetailView.as_view(),
             name="detail",
-        ),
-        path(
-            "create/vehicle/<int:vehicle_id>/",
-            views.QuotationInsuranceVehicleCreateView.as_view(),
-            name="create",
-        ),
-        path(
-            "<int:quotation_id>/update/",
-            views.QuotationInsuranceVehicleUpdateView.as_view(),
-            name="update",
         ),
         path(
             "create_premiums/quotation/<int:quotation_id>",

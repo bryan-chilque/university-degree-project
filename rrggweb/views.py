@@ -87,7 +87,7 @@ class QuotationInsuranceVehicleListView(ListView):
 
 
 class QuotationInsuranceVehicleSearchCustomerView(FormView):
-    template_name = "rrggweb/quotation/insurance/vehicle/search.html"
+    template_name = "rrggweb/quotation/insurance/vehicle/search_customer.html"
     form_class = forms.SearchPersonForm
 
     def form_valid(self, form):
@@ -100,7 +100,7 @@ class QuotationInsuranceVehicleSearchCustomerView(FormView):
                 document_number=document_number
             )
             self.success_url = urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:create_vehicle",
+                "rrggweb:quotation:insurance:vehicle:search_vehicle",
                 kwargs={
                     "consultant_id": self.kwargs["consultant_id"],
                     "customer_id": customer.id,
@@ -126,7 +126,7 @@ class QuotationInsuranceVehicleCreateCustomerView(
 
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:create_vehicle",
+            "rrggweb:quotation:insurance:vehicle:search_vehicle",
             kwargs={
                 "consultant_id": self.kwargs["consultant_id"],
                 "customer_id": self.object.id,
@@ -151,7 +151,7 @@ class QuotationInsuranceVehicleUpdateCustomerView(
 
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:create_vehicle",
+            "rrggweb:quotation:insurance:vehicle:search_vehicle",
             kwargs={
                 "consultant_id": self.kwargs["consultant_id"],
                 "customer_id": self.object.id,
@@ -160,6 +160,37 @@ class QuotationInsuranceVehicleUpdateCustomerView(
 
 
 # VEHICLE
+
+
+class QuotationInsuranceVehicleSearchVehicleView(FormView):
+    template_name = "rrggweb/quotation/insurance/vehicle/search_vehicle.html"
+    form_class = forms.SearchVehicleForm
+
+    def form_valid(self, form):
+        plate = form.cleaned_data["plate"]
+        vehicle_exists = rrgg.models.Vehicle.objects.filter(
+            plate=plate
+        ).exists()
+        if vehicle_exists:
+            vehicle = rrgg.models.Vehicle.objects.get(plate=plate)
+            self.success_url = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "customer_id": self.kwargs["customer_id"],
+                    "vehicle_id": vehicle.id,
+                },
+            )
+        else:
+            create_vehicle_url = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create_vehicle",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "customer_id": self.kwargs["customer_id"],
+                },
+            )
+            self.success_url = f"{create_vehicle_url}?plate={plate}"
+        return super().form_valid(form)
 
 
 class QuotationInsuranceVehicleCreateVehicleView(
@@ -178,15 +209,16 @@ class QuotationInsuranceVehicleCreateVehicleView(
         "use_type",
     ]
 
-    def form_valid(self, form):
-        form.instance.customer_id = self.kwargs["customer_id"]
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     form.instance.customer_id = self.kwargs["customer_id"]
+    #     return super().form_valid(form)
 
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:create",
+            "rrggweb:quotation:insurance:vehicle:define_owner",
             kwargs={
                 "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.kwargs["customer_id"],
                 "vehicle_id": self.object.id,
             },
         )
@@ -200,6 +232,11 @@ class QuotationInsuranceVehicleCreateVehicleView(
             rrgg.models.Customer, id=self.kwargs["customer_id"]
         )
         return context
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["plate"] = self.request.GET.get("plate", "")
+        return initial
 
 
 class QuotationInsuranceVehicleUpdateVehicleView(
@@ -221,6 +258,7 @@ class QuotationInsuranceVehicleUpdateVehicleView(
 
     def get_success_url(self):
         origin = self.kwargs["origin"]
+
         if origin == "detail":
             return urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:detail",
@@ -231,11 +269,12 @@ class QuotationInsuranceVehicleUpdateVehicleView(
                     ),
                 },
             )
-        elif origin == "create":
+        elif origin == "owner":
             return urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:create",
+                "rrggweb:quotation:insurance:vehicle:define_owner",
                 kwargs={
                     "consultant_id": self.kwargs["consultant_id"],
+                    "customer_id": self.kwargs["customer_id"],
                     "vehicle_id": self.object.id,
                 },
             )
@@ -265,6 +304,91 @@ class QuotationInsuranceVehicleUpdateVehicleView(
         return context
 
 
+# OWNER
+
+
+class QuotationInsuranceVehicleDefineOwnerView(FormView):
+    template_name = "rrggweb/quotation/insurance/vehicle/define_owner.html"
+    form_class = forms.DefineOwnerForm
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["is_owner"].required = False
+        return form
+
+    def form_valid(self, form):
+        is_owner = form.cleaned_data["is_owner"]
+        if is_owner:
+            vehicle = shortcuts.get_object_or_404(
+                rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
+            )
+            # customer = shortcuts.get_object_or_404(
+            #     rrgg.models.Customer, id=self.kwargs["customer_id"]
+            # )
+            vehicle.owner_ship = rrgg.models.VehicleOwnerShip.objects.last()
+            vehicle.save()
+            # rrgg.models.VehicleOwnerShip(customer=customer).save()
+            # vehicle.owner_ship = rrgg.models.VehicleOwnerShip.objects.last()
+            # vehicle.save()
+
+            self.success_url = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "customer_id": self.kwargs["customer_id"],
+                    "vehicle_id": self.kwargs["vehicle_id"],
+                },
+            )
+        else:
+            self.success_url = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create_owner",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "customer_id": self.kwargs["customer_id"],
+                    "vehicle_id": self.kwargs["vehicle_id"],
+                },
+            )
+        return super().form_valid(form)
+
+
+class QuotationInsuranceVehicleCreateOwnerView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggweb/quotation/insurance/vehicle/create_owner.html"
+    model = rrgg.models.Owner
+    fields = "__all__"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["consultant"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["consultant_id"]
+        )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.Customer, id=self.kwargs["customer_id"]
+        )
+        context["vehicle"] = shortcuts.get_object_or_404(
+            rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
+        )
+        return context
+
+    def get_success_url(self):
+        vehicle = shortcuts.get_object_or_404(
+            rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
+        )
+        # rrgg.models.VehicleOwnerShip(owner=self.object).save()
+        vehicle.owner_ship = rrgg.models.VehicleOwnerShip.objects.last()
+        vehicle.save()
+
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:create",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.kwargs["customer_id"],
+                "vehicle_id": self.kwargs["vehicle_id"],
+            },
+        )
+
+
 # QUOTATION
 
 
@@ -278,6 +402,7 @@ class QuotationInsuranceVehicleCreateView(
 
     def form_valid(self, form):
         form.instance.consultant_id = self.kwargs["consultant_id"]
+        form.instance.customer_id = self.kwargs["customer_id"]
         form.instance.vehicle_id = self.kwargs["vehicle_id"]
         return super().form_valid(form)
 
@@ -285,6 +410,9 @@ class QuotationInsuranceVehicleCreateView(
         context = super().get_context_data(**kwargs)
         context["consultant"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["consultant_id"]
+        )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.Customer, id=self.kwargs["customer_id"]
         )
         context["vehicle"] = shortcuts.get_object_or_404(
             rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
@@ -324,7 +452,7 @@ class QuotationInsuranceVehicleDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["customer"] = self.object.vehicle.customer
+        context["customer"] = self.object.customer
         return context
 
 

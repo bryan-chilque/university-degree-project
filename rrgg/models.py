@@ -18,6 +18,42 @@ class Customer(models.Model):
         return f"{self.given_name} {self.first_surname}"
 
 
+class Owner(models.Model):
+    given_name = models.CharField(_("given name"), max_length=64)
+    first_surname = models.CharField(_("first surname"), max_length=64)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+    document_number = models.CharField(
+        _("document number"), max_length=32, unique=True
+    )
+
+    def __str__(self):
+        return f"{self.given_name} {self.first_surname}"
+
+
+class VehicleOwnerShip(models.Model):
+    customer = models.ForeignKey(
+        Customer, null=True, related_name="ownership", on_delete=models.PROTECT
+    )
+    owner = models.ForeignKey(
+        Owner, null=True, related_name="ownership", on_delete=models.PROTECT
+    )
+
+    @property
+    def pick(self):
+        return self.customer or self.owner
+
+    @property
+    def save(self, *args, **kwargs):
+        if self.customer and self.owner:
+            raise ValueError(
+                "El dueño del vehículo no puede ser cliente y propietario al"
+                " mismo tiempo."
+            )
+        super(VehicleOwnerShip, self).save(*args, **kwargs)
+
+
 class UseType(models.Model):
     name = models.CharField(max_length=64, unique=True, null=True)
 
@@ -40,7 +76,6 @@ class Vehicle(models.Model):
     endorsee_bank = models.CharField(
         _("endorsee bank"), max_length=64, null=True
     )
-
     use_type = models.ForeignKey(
         UseType,
         related_name="use_type",
@@ -48,12 +83,12 @@ class Vehicle(models.Model):
         on_delete=models.PROTECT,
         null=True,
     )
-
-    customer = models.ForeignKey(
-        Customer,
-        related_name="vehicles",
-        verbose_name=_("customer"),
+    owner_ship = models.ForeignKey(
+        VehicleOwnerShip,
+        related_name="vehicle",
+        verbose_name=_("owner ship"),
         on_delete=models.PROTECT,
+        null=True,
     )
 
     class Meta:
@@ -111,6 +146,13 @@ class QuotationInsuranceVehicle(models.Model):
         related_name="quotation_insurance_vehicles",
         verbose_name=_("consultant"),
         on_delete=models.PROTECT,
+    )
+    customer = models.ForeignKey(
+        Customer,
+        related_name="quotation_insurance_vehicles",
+        verbose_name=_("customer"),
+        on_delete=models.PROTECT,
+        null=True,
     )
     created = models.DateTimeField(auto_now_add=True)
 
@@ -174,7 +216,7 @@ class InsuranceVehicleRatio(models.Model):
 class QuotationInsuranceVehiclePremium(models.Model):
     # prima neta
     amount = models.DecimalField(
-        _("comercial premium"), decimal_places=2, max_digits=10, default=0
+        _("net premium"), decimal_places=2, max_digits=10, default=0
     )
     insurance_vehicle_ratio = models.ForeignKey(
         InsuranceVehicleRatio,
