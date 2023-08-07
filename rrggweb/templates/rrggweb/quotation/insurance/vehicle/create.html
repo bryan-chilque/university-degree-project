@@ -5,13 +5,14 @@
 {% block content %}
   {% include "rrggweb/utils/stepper.html" with step=4 max_step=5 %}
   <a class="d-flex gap-1 text-muted text-decoration-none"
-     href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id 'create' %} ">
+      href="">
+    {% comment %}{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id 'create' %}  {% endcomment %}
     <i class="bi bi-arrow-left"></i>Volver
   </a>
   <div class="mt-2">
     Consultant: {{ consultant }}
     <br />
-    Customer: {{ vehicle.customer }}
+    Customer: {{ customer }}
     <br />
     Vehicle: {{ vehicle }}
     <hr class="w-25" />
