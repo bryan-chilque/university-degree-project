@@ -1,5 +1,13 @@
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
 <form method="post">{% csrf_token %}
     <p>¿Está seguro que desea eliminar <em> "{{ object.name }}"</em>?</p>
     <input type="submit" value="Eliminar"/>
     <a href="{% url menu.detail_name object.pk %}">🔙</a>
 </form>
+{% endblock %}

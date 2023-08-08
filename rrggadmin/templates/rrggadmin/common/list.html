@@ -21,6 +21,9 @@
                 <a href="{% url menu.detail_name obj.pk %}">{{ field }}</a>
             </td>
             {% endfor %}
+            <td>
+                <img src="{{ object_items.5.fields.2.url }}" />
+            </td>
         </tr>
         {% endfor %}
     </tbody>

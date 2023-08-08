@@ -7,6 +7,10 @@
         Crear
     {% elif request.resolver_match.view_name == 'rrggadmin:home' %}
         Opciones
+    {% elif 'update' in request.resolver_match.view_name  %}
+        Actualizar
+    {% elif 'delete' in request.resolver_match.view_name  %}
+        Eliminar
     {% else %}
         {{ request.resolver_match.view_name }}
     {% endif %}
