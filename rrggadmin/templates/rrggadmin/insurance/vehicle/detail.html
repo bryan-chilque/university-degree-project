@@ -1,0 +1,24 @@
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
+    <a href="{% url 'rrggadmin:home' %}">🏠</a>
+    <a href="{% url menu.list_name %}">🔙</a>
+
+    <table class="table">
+        {% for name, value in pairfields %}
+        <tr>
+            <td>
+                <i>{{ name }}</i>
+            </td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a class="btn btn-primary" href="{% url menu.update_name object.pk %}">Actualizar</a>
+    <a class="btn btn-danger"href="{% url menu.delete_name object.pk %}">Eliminar</a>
+{% endblock %}

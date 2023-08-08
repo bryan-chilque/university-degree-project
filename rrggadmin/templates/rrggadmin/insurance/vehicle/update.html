@@ -1,0 +1,33 @@
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
+<a href="{% url 'rrggadmin:home' %}">🏠</a>
+<a href="{% url menu.list_name %}">🔙</a>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row">
+        <div class="col-md-2">
+            {% for field in form %}
+                <div class="form-group mb-1">
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-1">
+            {% for field in form %}
+                <div class="form-group mb-1">
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
