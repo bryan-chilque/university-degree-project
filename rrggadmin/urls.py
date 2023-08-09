@@ -7,37 +7,7 @@ import rrgg.models
 
 from . import mixins, views
 
-insurance_vehicle_price_urlpatterns = (
-    [
-        path(
-            "list/", views.InsuranceVehicleRatioListView.as_view(), name="list"
-        ),
-        path(
-            "create/",
-            views.InsuranceVehicleRatioCreateView.as_view(),
-            name="create",
-        ),
-    ],
-    "price",
-)
-
-insurance_vehicle_price_urlpatterns = (
-    [
-        path("list/", views.InsuranceVehicleListView.as_view(), name="list"),
-        path(
-            "create/",
-            views.InsuranceVehicleCreateView.as_view(),
-            name="create",
-        ),
-        path(
-            "<int:insurance_vehicle_id>/price/",
-            include(insurance_vehicle_price_urlpatterns),
-        ),
-    ],
-    "vehicle",
-)
-
-insurance_vehicle_urlpatterns = menu_patterns(
+insurance_vehicle_menu_patterns = menu_patterns(
     rrgg.models.InsuranceVehicle,
     "rrggadmin/insurance/vehicle",
     "vehicle",
@@ -48,9 +18,44 @@ insurance_vehicle_urlpatterns = menu_patterns(
     ),
 )
 
+insurance_vehicle_price_urlpatterns = (
+    [
+        path(
+            "list/", views.InsuranceVehicleRatioListView.as_view(), name="list"
+        ),
+        path(
+            "create/",
+            views.InsuranceVehicleRatioCreateView.as_view(),
+            name="create",
+        ),
+        path(
+            "<int:pk>/update/",
+            views.InsuranceVehicleRatioUpdateView.as_view(),
+            name="update",
+        ),
+        path(
+            "<int:pk>/detail/",
+            views.InsuranceVehicleRatioDetailView.as_view(),
+            name="detail",
+        ),
+    ],
+    "price",
+)
+
+insurance_vehicle_urlpatterns = [
+    path("", include(insurance_vehicle_menu_patterns)),
+    path(
+        "<int:insurance_vehicle_id>/price/",
+        include(insurance_vehicle_price_urlpatterns, namespace="price"),
+    ),
+]
+
 insurance_urlpatterns = (
     [
-        path("vehicle/", include(insurance_vehicle_urlpatterns)),
+        path(
+            "vehicle/",
+            include(insurance_vehicle_urlpatterns),
+        ),
     ],
     "insurance",
 )

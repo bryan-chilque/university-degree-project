@@ -1,6 +1,12 @@
 from django import shortcuts, urls
 from django.contrib.auth import views as views_auth
-from django.views.generic import CreateView, ListView, TemplateView
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
 
 import rrgg.models
 from rrgg import forms as rrgg_forms
@@ -73,6 +79,11 @@ class InsuranceVehicleListView(ListView):
 # INSURANCE VEHICLE PRICE
 
 
+class InsuranceVehicleRatioDetailView(DetailView):
+    template_name = "rrggadmin/insurance/vehicle/price/detail.html"
+    model = rrgg.models.InsuranceVehicleRatio
+
+
 class InsuranceVehicleRatioListView(ListView):
     template_name = "rrggadmin/insurance/vehicle/price/list.html"
     model = rrgg.models.InsuranceVehicleRatio
@@ -90,7 +101,27 @@ class InsuranceVehicleRatioCreateView(CreateView):
 
     def get_success_url(self):
         return urls.reverse(
-            "rrggadmin:insurance:vehicle:price:list",
+            "rrggadmin:insurance:price:list",
+            args=[self.kwargs["insurance_vehicle_id"]],
+        )
+
+    def form_valid(self, form):
+        insurance_vehicle = shortcuts.get_object_or_404(
+            rrgg.models.InsuranceVehicle,
+            id=self.kwargs["insurance_vehicle_id"],
+        )
+        form.instance.insurance_vehicle = insurance_vehicle
+        return super().form_valid(form)
+
+
+class InsuranceVehicleRatioUpdateView(UpdateView):
+    template_name = "rrggadmin/insurance/vehicle/price/update.html"
+    model = rrgg.models.InsuranceVehicleRatio
+    fields = "emission_right", "tax", "fee"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggadmin:insurance:price:list",
             args=[self.kwargs["insurance_vehicle_id"]],
         )
 
