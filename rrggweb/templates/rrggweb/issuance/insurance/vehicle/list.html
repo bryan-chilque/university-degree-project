@@ -17,6 +17,7 @@
                 <th scope="col">Vehiculo</th>
                 <th scope="col">Vigencia</th>
                 <th scope="col">Aseguradora</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -27,6 +28,13 @@
         <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle }}</td>
         <td class="align-middle">{{ issuance.final_validity | date:'d/m/Y' }}</td>
         <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+        <td class="align-middle">
+            {% if issuance.status.name == "vigente" %}
+            <span class="badge bg-success align-middle">{{ issuance.status.name |slice:":7"}}</span>
+            {% else %}
+            <span class="badge bg-danger align-middle">{{ issuance.status.name |slice:":7"}}</span>
+            {% endif %}
+        </td>
         <td class="align-middle">
             <a class="btn btn-primary" href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.consultant_id issuance.id %}">
             <i class="bi bi-eye"></i>

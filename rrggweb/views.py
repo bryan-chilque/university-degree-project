@@ -866,6 +866,17 @@ class IIVCreateEndorsementView(
         )
 
 
+class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
+    template_name = "rrggweb/issuance/insurance/vehicle/detail.html"
+    model = rrgg.models.IssuanceInsuranceVehicle
+    pk_url_kwarg = "issuance_id"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["documents"] = self.object.documents.all()
+        return context
+
+
 class IssuanceInsuranceVehicleUpdateIssuanceView(
     rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
 ):
@@ -889,15 +900,61 @@ class IssuanceInsuranceVehicleUpdateIssuanceView(
         )
 
 
-class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
-    template_name = "rrggweb/issuance/insurance/vehicle/detail.html"
-    model = rrgg.models.IssuanceInsuranceVehicle
-    pk_url_kwarg = "issuance_id"
+class IIVStatusFormView(FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/define.html"
+    form_class = forms.IssuanceTypeForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["documents"] = self.object.documents.all()
-        return context
+    def form_valid(self, form):
+        tipo = form.cleaned_data["tipo"]
+        if tipo == "policy":
+            self.success_url = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:create_policy",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_premium_id": self.kwargs[
+                        "quotation_premium_id"
+                    ],
+                },
+            )
+        elif tipo == "endorsement":
+            self.success_url = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:create_endorsement",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_premium_id": self.kwargs[
+                        "quotation_premium_id"
+                    ],
+                },
+            )
+        else:
+            messages.warning(self.request, "Debe elegir un tipo de emisión")
+            return self.form_invalid(form)
+
+        return super().form_valid(form)
+
+
+class IIVUpdateStatusFormView(FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/status.html"
+    form_class = forms.IssuanceStatusForm
+
+    def form_valid(self, form: forms.IssuanceStatusForm):
+        issuance = shortcuts.get_object_or_404(
+            rrgg.models.IssuanceInsuranceVehicle,
+            id=self.kwargs["issuance_id"],
+        )
+        data = form.cleaned_data
+        issuance.status = data["status"]
+        issuance.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:detail",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
 
 
 class IssuanceInsuranceVehicleAddDocumentCreateView(

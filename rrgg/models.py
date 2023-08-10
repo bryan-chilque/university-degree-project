@@ -280,6 +280,18 @@ class QuotationInsuranceVehiclePremium(models.Model):
         )
 
 
+class IssuanceInsuranceStatus(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+    comment = models.TextField(_("comment"), null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("issuance insurance status")
+        verbose_name_plural = _("issuance insurance status")
+
+
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
@@ -289,9 +301,17 @@ class IssuanceInsuranceVehicle(models.Model):
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"), null=True)
     # fecha de vigencia inicio
-    initial_validity = models.DateTimeField(_("initial_validity"))
+    initial_validity = models.DateTimeField(_("initial_validity"), null=True)
     # fecha de vigencia final
-    final_validity = models.DateTimeField(_("final_validity"))
+    final_validity = models.DateTimeField(_("final_validity"), null=True)
+
+    # estado
+    status = models.ForeignKey(
+        IssuanceInsuranceStatus,
+        related_name="issuances",
+        on_delete=models.PROTECT,
+        null=True,
+    )
 
     quotation_vehicle_premium = models.ForeignKey(
         QuotationInsuranceVehiclePremium,
@@ -306,7 +326,12 @@ class IssuanceInsuranceVehicle(models.Model):
             self.final_validity = self.initial_validity + timezone.timedelta(
                 days=365
             )
+            self.status = IssuanceInsuranceStatus.objects.get(name="vigente")
         super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _("issuance insurance vehicle")
+        verbose_name_plural = _("issues insurance vehicle")
 
 
 class IssuanceInsuranceVehiclePolicy(IssuanceInsuranceVehicle):

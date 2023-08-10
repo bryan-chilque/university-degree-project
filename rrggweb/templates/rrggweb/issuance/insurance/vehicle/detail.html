@@ -3,14 +3,19 @@
 {% endblock %}
 {% block content %}
   <div class="row mb-3">
-    <div class="col-6">
+    <div class="col-4">
       <a href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.consultant_id %}" class="btn btn-outline-secondary">
         <i class="fas fa-arrow-left"></i> Volver a la lista
       </a>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <a href="" class="btn btn-primary">
         <i class="fas fa-arrow-left"></i> Renovar
+      </a>
+    </div>
+    <div class="col-4">
+      <a href="{% url 'rrggweb:issuance:insurance:vehicle:update_status' view.kwargs.consultant_id object.id %}" class="btn btn-danger">
+        <i class="fas fa-arrow-left"></i> Anular
       </a>
     </div>
   </div>
@@ -83,8 +88,9 @@
         <div class="card-body">
           <p class="card-text">Número de póliza: {{ object.number_registry }}</p>
           <p class="card-text">Fecha de emisión: {{ object.created|date:'d/m/Y' }}</p>
-          <p class="card-text">Fecha de inicio de vigencia: {{ object.initial_validity|date:'d/m/Y' }}</p>
-          <p class="card-text">Fecha de fin de vigencia: {{ object.final_validity|date:'d/m/Y' }}</p>
+          <p class="card-text">Fecha inicio de vigencia: {{ object.initial_validity|date:'d/m/Y' }}</p>
+          <p class="card-text">Fecha fin de vigencia: {{ object.final_validity|date:'d/m/Y' }}</p>
+          <p class="card-text">Estado: {{ object.status }}</p>
         </div>
       </div>
     </div>
@@ -123,7 +129,7 @@
     </div>
   </div>
   <div class="col-12">
-    <a href="{% url 'rrggweb:collection:insurance:vehicle:create_collection' view.kwargs.consultant_id view.kwargs.issuance_id %}" class="btn btn-success">
+    <a href="{% url 'rrggweb:collection:insurance:vehicle:create_collection' view.kwargs.consultant_id object.id %}" class="btn btn-success">
       <i class="fas fa-arrow-left"></i> Crear cobranza
     </a>
   </div>

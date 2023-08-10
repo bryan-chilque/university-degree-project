@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import forms as forms_auth
 from django.utils.translation import gettext as _
 
+import rrgg.models
+
 
 class LoginAuthenticationForm(forms_auth.AuthenticationForm):
     username = forms.CharField(
@@ -48,3 +50,9 @@ class IssuanceTypeForm(forms.Form):
     )
 
     tipo = forms.ChoiceField(choices=TYPE_CHOICES, widget=forms.RadioSelect)
+
+
+class IssuanceStatusForm(forms.Form):
+    status = forms.ModelChoiceField(
+        queryset=rrgg.models.IssuanceInsuranceStatus.objects.all()
+    )
