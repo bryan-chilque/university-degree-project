@@ -1,8 +1,9 @@
-{% extends "rrggweb/dashboard.html" %}
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% block title_section %}
   Crear Emisión Vehícular - Subir documentos
 {% endblock title_section %}
 {% block content %}
+  {% include "rrggweb/utils/stepper.html" with step=3 max_step=3 %}
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">

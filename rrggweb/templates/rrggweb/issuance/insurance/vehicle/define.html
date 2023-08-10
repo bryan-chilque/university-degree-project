@@ -1,15 +1,15 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% block title_section %}
-  Definir Propietario
+  Elegir Tipo de Emisión Vehícular
 {% endblock title_section %}
 {% block content %}
-  {% include "rrggweb/utils/stepper.html" with step=3 max_step=5 %}
+  {% include "rrggweb/utils/stepper.html" with step=1 max_step=3 %}
   <a
     class="d-flex gap-1 text-muted text-decoration-none"
-    href="{% url 'rrggweb:quotation:insurance:vehicle:step_update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id view.kwargs.customer_id %}">
+    href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.consultant_id %}">
     <i class="bi bi-arrow-left"></i>Volver
   </a>
-  <form method="post">
+  <form method="post" class="mt-5">
     {% csrf_token %}
     <table>
       {{ form.as_table }}

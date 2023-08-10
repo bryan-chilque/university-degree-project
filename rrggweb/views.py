@@ -245,10 +245,10 @@ class QuotationInsuranceVehicleCreateVehicleView(
         return initial
 
 
-class QuotationInsuranceVehicleUpdateVehicleView(
+class QIVUpdateVehicleViewSupport(
     rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
 ):
-    template_name = "rrggweb/quotation/insurance/vehicle/update_vehicle.html"
+    pk_url_kwarg = "vehicle_id"
     model = rrgg.models.Vehicle
     fields = [
         "brand",
@@ -260,43 +260,6 @@ class QuotationInsuranceVehicleUpdateVehicleView(
         "seat_number",
         "use_type",
     ]
-    pk_url_kwarg = "vehicle_id"
-
-    def get_success_url(self):
-        origin = self.kwargs["origin"]
-
-        if origin == "quotation_detail":
-            return urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:detail",
-                kwargs={
-                    "consultant_id": self.kwargs["consultant_id"],
-                    "quotation_id": self.kwargs["origin_id"],
-                },
-            )
-        elif origin == "define_owner":
-            return urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:define_owner",
-                kwargs={
-                    "consultant_id": self.kwargs["consultant_id"],
-                    "customer_id": self.kwargs["customer_id"],
-                    "vehicle_id": self.object.id,
-                },
-            )
-        elif origin == "issuance_create":
-            return urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_issuance",
-                kwargs={
-                    "consultant_id": self.kwargs["consultant_id"],
-                    "quotation_premium_id": self.kwargs["origin_id"],
-                },
-            )
-        else:
-            return urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:list",
-                kwargs={
-                    "consultant_id": self.kwargs["consultant_id"],
-                },
-            )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -304,6 +267,59 @@ class QuotationInsuranceVehicleUpdateVehicleView(
             rrgg.models.Consultant, id=self.kwargs["consultant_id"]
         )
         return context
+
+
+class QIVUpdateVehicleStepView(QIVUpdateVehicleViewSupport):
+    template_name = (
+        "rrggweb/quotation/insurance/vehicle/update_vehicle_step.html"
+    )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:update_customer",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.kwargs["customer_id"],
+                "origin": "update_vehicle",
+                "origin_id": self.object.id,
+            },
+        )
+        return context
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:define_owner",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "customer_id": self.kwargs["customer_id"],
+                "vehicle_id": self.object.id,
+            },
+        )
+
+
+class QIVUpdateVehicleView(QIVUpdateVehicleViewSupport):
+    template_name = "rrggweb/quotation/insurance/vehicle/update_vehicle.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "quotation_id": self.kwargs["quotation_id"],
+            },
+        )
+        return context
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "quotation_id": self.kwargs["quotation_id"],
+            },
+        )
 
 
 # OWNER
@@ -319,19 +335,17 @@ class QuotationInsuranceVehicleDefineOwnerView(FormView):
         return form
 
     def form_valid(self, form):
-        is_owner = form.cleaned_data["is_owner"]
-        if is_owner:
+        is_customer_owner = form.cleaned_data["is_owner"]
+        if is_customer_owner:
             vehicle = shortcuts.get_object_or_404(
                 rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
             )
-            # customer = shortcuts.get_object_or_404(
-            #     rrgg.models.Customer, id=self.kwargs["customer_id"]
-            # )
-            vehicle.owner_ship = rrgg.models.VehicleOwnerShip.objects.last()
-            vehicle.save()
-            # rrgg.models.VehicleOwnerShip(customer=customer).save()
-            # vehicle.owner_ship = rrgg.models.VehicleOwnerShip.objects.last()
-            # vehicle.save()
+            customer = shortcuts.get_object_or_404(
+                rrgg.models.Customer, id=self.kwargs["customer_id"]
+            )
+            rrgg.models.VehicleOwnerShip.objects.create(
+                customer=customer, vehicle=vehicle
+            )
 
             self.success_url = urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:create",
@@ -617,7 +631,7 @@ class QuotationInsuranceVehicleReportXlsxView(View):
         ws["C9"] = vehicle.fabrication_year
         ws["C10"] = vehicle.use_type.name
 
-        customer = vehicle.customer
+        customer = quotation.customer
         ws["C6"] = f"{customer.given_name} {customer.first_surname}"
 
         for premium in quotation.premiums.all():
@@ -734,17 +748,46 @@ class IssuanceInsuranceVehicleListView(ListView):
     model = rrgg.models.IssuanceInsuranceVehicle
 
 
-class IssuanceInsuranceVehicleCreateIssuanceView(
-    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
-):
-    template_name = "rrggweb/issuance/insurance/vehicle/create_issuance.html"
-    model = rrgg.models.IssuanceInsuranceVehicle
+class IIVTypeFormView(FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/define.html"
+    form_class = forms.IssuanceTypeForm
+
+    def form_valid(self, form):
+        tipo = form.cleaned_data["tipo"]
+        if tipo == "policy":
+            self.success_url = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:create_policy",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_premium_id": self.kwargs[
+                        "quotation_premium_id"
+                    ],
+                },
+            )
+        elif tipo == "endorsement":
+            self.success_url = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:create_endorsement",
+                kwargs={
+                    "consultant_id": self.kwargs["consultant_id"],
+                    "quotation_premium_id": self.kwargs[
+                        "quotation_premium_id"
+                    ],
+                },
+            )
+        else:
+            messages.warning(self.request, "Debe elegir un tipo de emisión")
+            return self.form_invalid(form)
+
+        return super().form_valid(form)
+
+
+class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
+    template_name = "rrggweb/issuance/insurance/vehicle/create.html"
+    model = rrgg.models.IssuanceInsuranceVehiclePolicy
     fields = [
-        "policy",
-        "collection_document",
+        "number_registry",
         "issuance_date",
         "initial_validity",
-        "final_validity",
     ]
 
     def form_valid(self, form):
@@ -759,7 +802,6 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
         if quotation_premium.quotation_insurance_vehicle.expired:
             messages.warning(self.request, "Esta cotización ya expiró")
             return self.form_invalid(form)
-
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -778,6 +820,84 @@ class IssuanceInsuranceVehicleCreateIssuanceView(
                 "issuance_id": self.object.id,
             },
         )
+
+
+class IIVCreateEndorsementView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/create.html"
+    model = rrgg.models.IssuanceInsuranceVehicleEndorsement
+    fields = [
+        "number_registry",
+        "issuance_date",
+        "initial_validity",
+        "commission",
+    ]
+
+    def form_valid(self, form):
+        form.instance.quotation_vehicle_premium_id = self.kwargs[
+            "quotation_premium_id"
+        ]
+        # validate expiration date
+        quotation_premium = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["quotation_premium_id"],
+        )
+        if quotation_premium.quotation_insurance_vehicle.expired:
+            messages.warning(self.request, "Esta cotización ya expiró")
+            return self.form_invalid(form)
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["quotation_premium"] = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["quotation_premium_id"],
+        )
+        return context
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:create_document",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+                "issuance_id": self.object.id,
+            },
+        )
+
+
+class IssuanceInsuranceVehicleUpdateIssuanceView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/update.html"
+    model = rrgg.models.IssuanceInsuranceVehicle
+    fields = [
+        "policy",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+    ]
+    pk_url_kwarg = "issuance_id"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list",
+            kwargs={
+                "consultant_id": self.kwargs["consultant_id"],
+            },
+        )
+
+
+class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
+    template_name = "rrggweb/issuance/insurance/vehicle/detail.html"
+    model = rrgg.models.IssuanceInsuranceVehicle
+    pk_url_kwarg = "issuance_id"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["documents"] = self.object.documents.all()
+        return context
 
 
 class IssuanceInsuranceVehicleAddDocumentCreateView(
@@ -817,40 +937,6 @@ class IssuanceInsuranceVehicleDeleteDocumentView(DeleteView):
                 "issuance_id": self.kwargs["issuance_id"],
             },
         )
-
-
-class IssuanceInsuranceVehicleUpdateIssuanceView(
-    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
-):
-    template_name = "rrggweb/issuance/insurance/vehicle/update_issuance.html"
-    model = rrgg.models.IssuanceInsuranceVehicle
-    fields = [
-        "policy",
-        "collection_document",
-        "issuance_date",
-        "initial_validity",
-        "final_validity",
-    ]
-    pk_url_kwarg = "issuance_id"
-
-    def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:list",
-            kwargs={
-                "consultant_id": self.kwargs["consultant_id"],
-            },
-        )
-
-
-class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
-    template_name = "rrggweb/issuance/insurance/vehicle/detail_issuance.html"
-    model = rrgg.models.IssuanceInsuranceVehicle
-    pk_url_kwarg = "issuance_id"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["documents"] = self.object.documents.all()
-        return context
 
 
 # ------------------------------

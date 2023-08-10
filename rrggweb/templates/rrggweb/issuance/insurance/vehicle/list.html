@@ -6,15 +6,7 @@
         <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
     <div>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Nueva emisión
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'rrggweb:issuance:insurance:vehicle:list_quotations' view.kwargs.consultant_id %}">Venta nueva</a></li>
-              <li><a class="dropdown-item" href="{% url 'rrggweb:quotation:insurance:vehicle:search_customer' view.kwargs.consultant_id%}">Renovación</a></li>
-            </ul>
-        </div>
+        <a class="btn btn-primary" href="{% url 'rrggweb:issuance:insurance:vehicle:list_quotations' view.kwargs.consultant_id %}">Venta nueva</a></li>
     </div>
 </div>
 <div class="table-responsive">
@@ -23,7 +15,7 @@
             <tr>
                 <th scope="col">Cliente</th>
                 <th scope="col">Vehiculo</th>
-                <th scope="col">Asesor</th>
+                <th scope="col">Vigencia</th>
                 <th scope="col">Aseguradora</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -33,7 +25,7 @@
         <tr class="">
         <td class="align-middle" scope="row">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</td>
         <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle }}</td>
-        <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.consultant }}</td>
+        <td class="align-middle">{{ issuance.final_validity | date:'d/m/Y' }}</td>
         <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
         <td class="align-middle">
             <a class="btn btn-primary" href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.consultant_id issuance.id %}">

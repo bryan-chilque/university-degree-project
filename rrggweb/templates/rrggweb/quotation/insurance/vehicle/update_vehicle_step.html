@@ -4,6 +4,7 @@
   Actualizar Vehiculo
 {% endblock title_section %}
 {% block content %}
+  {% include "rrggweb/utils/stepper.html" with step=2 max_step=5 %}
   <a class="d-flex gap-1 text-muted text-decoration-none" href="{{ previous_page }}">
     <i class="bi bi-arrow-left"></i>Volver
   </a>
