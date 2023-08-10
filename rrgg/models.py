@@ -282,7 +282,6 @@ class QuotationInsuranceVehiclePremium(models.Model):
 
 class IssuanceInsuranceStatus(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True, null=True)
-    comment = models.TextField(_("comment"), null=True)
 
     def __str__(self):
         return self.name
@@ -304,6 +303,8 @@ class IssuanceInsuranceVehicle(models.Model):
     initial_validity = models.DateTimeField(_("initial_validity"), null=True)
     # fecha de vigencia final
     final_validity = models.DateTimeField(_("final_validity"), null=True)
+
+    comment = models.TextField(_("comment"), null=True)
 
     # estado
     status = models.ForeignKey(

@@ -937,6 +937,11 @@ class IIVUpdateStatusFormView(FormView):
     template_name = "rrggweb/issuance/insurance/vehicle/status.html"
     form_class = forms.IssuanceStatusForm
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["comment"].required = False
+        return form
+
     def form_valid(self, form: forms.IssuanceStatusForm):
         issuance = shortcuts.get_object_or_404(
             rrgg.models.IssuanceInsuranceVehicle,
@@ -944,6 +949,7 @@ class IIVUpdateStatusFormView(FormView):
         )
         data = form.cleaned_data
         issuance.status = data["status"]
+        issuance.comment = data["comment"]
         issuance.save()
         return super().form_valid(form)
 

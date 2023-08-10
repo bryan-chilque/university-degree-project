@@ -56,3 +56,8 @@ class IssuanceStatusForm(forms.Form):
     status = forms.ModelChoiceField(
         queryset=rrgg.models.IssuanceInsuranceStatus.objects.all()
     )
+    comment = forms.CharField(
+        max_length=256,
+        label=_("comment"),
+        widget=forms.Textarea(attrs={"class": "form-control"}),
+    )
