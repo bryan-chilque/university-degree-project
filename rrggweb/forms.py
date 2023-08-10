@@ -39,3 +39,12 @@ class DefineOwnerForm(forms.Form):
             attrs={"class": "form-check-input", "type": "checkbox"}
         ),
     )
+
+
+class IssuanceTypeForm(forms.Form):
+    TYPE_CHOICES = (
+        ("policy", "póliza vehicular"),
+        ("endorsement", "endoso con movimiento de prima"),
+    )
+
+    tipo = forms.ChoiceField(choices=TYPE_CHOICES, widget=forms.RadioSelect)

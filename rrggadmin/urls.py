@@ -21,7 +21,7 @@ insurance_vehicle_price_urlpatterns = (
     "price",
 )
 
-insurance_vehicle_urlpatterns = (
+insurance_vehicle_price_urlpatterns = (
     [
         path("list/", views.InsuranceVehicleListView.as_view(), name="list"),
         path(
@@ -37,16 +37,16 @@ insurance_vehicle_urlpatterns = (
     "vehicle",
 )
 
-# insurance_vehicle_urlpatterns = menu_patterns(
-#    rrgg.models.InsuranceVehicle,
-#    "rrggadmin/common",
-#    "vehicle",
-#    "rrggadmin:insurance",
-#    menu_traits=MenuTraits(
-#        list=ViewTraits(bases=[mixins.ListMixin]),
-#        detail=ViewTraits(bases=[PairFieldsMixin]),
-#    ),
-# )
+insurance_vehicle_urlpatterns = menu_patterns(
+    rrgg.models.InsuranceVehicle,
+    "rrggadmin/insurance/vehicle",
+    "vehicle",
+    "rrggadmin:insurance",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
 
 insurance_urlpatterns = (
     [

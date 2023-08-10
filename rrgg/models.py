@@ -32,28 +32,6 @@ class Owner(models.Model):
         return f"{self.given_name} {self.first_surname}"
 
 
-class VehicleOwnerShip(models.Model):
-    customer = models.ForeignKey(
-        Customer, null=True, related_name="ownership", on_delete=models.PROTECT
-    )
-    owner = models.ForeignKey(
-        Owner, null=True, related_name="ownership", on_delete=models.PROTECT
-    )
-
-    @property
-    def pick(self):
-        return self.customer or self.owner
-
-    @property
-    def save(self, *args, **kwargs):
-        if self.customer and self.owner:
-            raise ValueError(
-                "El dueño del vehículo no puede ser cliente y propietario al"
-                " mismo tiempo."
-            )
-        super(VehicleOwnerShip, self).save(*args, **kwargs)
-
-
 class UseType(models.Model):
     name = models.CharField(max_length=64, unique=True, null=True)
 
@@ -83,13 +61,6 @@ class Vehicle(models.Model):
         on_delete=models.PROTECT,
         null=True,
     )
-    owner_ship = models.ForeignKey(
-        VehicleOwnerShip,
-        related_name="vehicle",
-        verbose_name=_("owner ship"),
-        on_delete=models.PROTECT,
-        null=True,
-    )
 
     class Meta:
         verbose_name = _("vehicle")
@@ -97,6 +68,35 @@ class Vehicle(models.Model):
 
     def __str__(self):
         return f"{self.brand} {self.vehicle_model} {self.plate}"
+
+
+class VehicleOwnerShip(models.Model):
+    customer = models.ForeignKey(
+        Customer, null=True, related_name="ownership", on_delete=models.PROTECT
+    )
+    owner = models.ForeignKey(
+        Owner, null=True, related_name="ownership", on_delete=models.PROTECT
+    )
+
+    vehicle = models.OneToOneField(
+        Vehicle,
+        related_name="ownership",
+        verbose_name=_("vehicle"),
+        on_delete=models.PROTECT,
+        null=True,
+    )
+
+    @property
+    def pick(self):
+        return self.customer or self.owner
+
+    def save(self, *args, **kwargs):
+        if self.customer and self.owner:
+            raise ValueError(
+                "El dueño del vehículo no puede ser cliente y propietario al"
+                " mismo tiempo."
+            )
+        super().save(*args, **kwargs)
 
 
 class Consultant(models.Model):
@@ -283,10 +283,8 @@ class QuotationInsuranceVehiclePremium(models.Model):
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
-    policy = models.CharField(_("policy_number"), max_length=64)
-    # documento de cobranza
-    collection_document = models.CharField(
-        _("collection_document"), max_length=64
+    number_registry = models.CharField(
+        _("number registry"), max_length=64, null=True
     )
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"), null=True)
@@ -302,6 +300,21 @@ class IssuanceInsuranceVehicle(models.Model):
     )
 
     created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.final_validity = self.initial_validity + timezone.timedelta(
+                days=365
+            )
+        super().save(*args, **kwargs)
+
+
+class IssuanceInsuranceVehiclePolicy(IssuanceInsuranceVehicle):
+    description = models.CharField(_("description"), max_length=64, null=True)
+
+
+class IssuanceInsuranceVehicleEndorsement(IssuanceInsuranceVehicle):
+    commission = models.PositiveIntegerField(_("commission"), null=True)
 
 
 class IssuanceInsuranceVehicleDocument(models.Model):

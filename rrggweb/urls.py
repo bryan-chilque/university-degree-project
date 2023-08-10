@@ -33,11 +33,13 @@ quotation_insurance_vehicle_urlpatterns = (
             name="create_vehicle",
         ),
         path(
-            (
-                "update_vehicle/<int:vehicle_id>/customer/"
-                "<int:customer_id>/from/<str:origin>/<int:origin_id>/"
-            ),
-            views.QuotationInsuranceVehicleUpdateVehicleView.as_view(),
+            "update_vehicle/<int:vehicle_id>/customer/<int:customer_id>/",
+            views.QIVUpdateVehicleStepView.as_view(),
+            name="step_update_vehicle",
+        ),
+        path(
+            "update_vehicle/<int:vehicle_id>quotation/<int:quotation_id>/",
+            views.QIVUpdateVehicleView.as_view(),
             name="update_vehicle",
         ),
         path(
@@ -127,9 +129,19 @@ issuance_insurance_vehicle_urlpatterns = (
             name="list_quotations",
         ),
         path(
-            "quotation_premium/<int:quotation_premium_id>/create_issuance/",
-            views.IssuanceInsuranceVehicleCreateIssuanceView.as_view(),
-            name="create_issuance",
+            "define_issuance/quotation_premium/<int:quotation_premium_id>/",
+            views.IIVTypeFormView.as_view(),
+            name="define_issuance",
+        ),
+        path(
+            "create_policy/quotation_premium/<int:quotation_premium_id>/",
+            views.IIVCreatePolicyView.as_view(),
+            name="create_policy",
+        ),
+        path(
+            "create_endorsement/quotation_premium/<int:quotation_premium_id>/",
+            views.IIVCreateEndorsementView.as_view(),
+            name="create_endorsement",
         ),
         path(
             "detail/<int:issuance_id>/",

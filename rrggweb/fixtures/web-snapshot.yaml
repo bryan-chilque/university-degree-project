@@ -44,14 +44,6 @@
     first_surname: Llanos
     second_surname: Colchado
     document_number: '12345678'
-- model: rrgg.vehicleownership
-  pk: 1
-  fields:
-    customer: 1
-- model: rrgg.vehicleownership
-  pk: 2
-  fields:
-    customer: 2
 - model: rrgg.vehicle
   pk: 1
   fields:
@@ -66,7 +58,6 @@
     has_endorsee: false
     endorsee_bank: ''
     use_type: 1
-    owner_ship: 1
 - model: rrgg.vehicle
   pk: 2
   fields:
@@ -81,7 +72,16 @@
     has_endorsee: false
     endorsee_bank: ''
     use_type: 3
-    owner_ship: 2
+- model: rrgg.vehicleownership
+  pk: 1
+  fields:
+    customer: 1
+    vehicle: 1
+- model: rrgg.vehicleownership
+  pk: 2
+  fields:
+    customer: 2
+    vehicle: 2
 - model: rrgg.consultant
   pk: 1
   fields:
@@ -265,13 +265,17 @@
 - model: rrgg.issuanceinsurancevehicle
   pk: 1
   fields:
-    policy: '14514'
-    collection_document: A415
+    number_registry: '123456789'
     issuance_date: 2023-07-23 00:00:00+00:00
     initial_validity: 2023-07-25 00:00:00+00:00
-    final_validity: 2023-08-31 00:00:00+00:00
+    final_validity: 2024-07-24 00:00:00+00:00
     quotation_vehicle_premium: 2
     created: 2023-07-31 07:24:08.278816+00:00
+- model: rrgg.issuanceinsurancevehicleendorsement
+  pk: 1
+  fields:
+    commission: 300
+    quotation_vehicle_premium: 2
 - model: rrgg.collectioninsurancevehicle
   pk: 1
   fields:
