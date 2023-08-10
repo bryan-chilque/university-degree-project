@@ -287,12 +287,11 @@ class IssuanceInsuranceVehicle(models.Model):
         _("number registry"), max_length=64, null=True
     )
     # fecha de emisión de la póliza
-    issuance_date = models.DateTimeField(_("issuance date"), null=True)
-    # fecha de vigencia inicial
-    initial_validity = models.DateTimeField(_("initial validity"))
-
+    issuance_date = models.DateTimeField(_("issuance_date"), null=True)
+    # fecha de vigencia inicio
+    initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia final
-    final_validity = models.DateTimeField(_("final validity"), null=True)
+    final_validity = models.DateTimeField(_("final_validity"))
 
     quotation_vehicle_premium = models.ForeignKey(
         QuotationInsuranceVehiclePremium,

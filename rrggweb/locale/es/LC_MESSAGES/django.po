@@ -27,8 +27,8 @@ msgid "plate"
 msgstr "número de placa"
 
 #: .\rrggweb\forms.py:37
-msgid "is owner?"
-msgstr "¿es propietario?"
+msgid "is contractor or insured?"
+msgstr "¿es contratante o asegurado?"
 
 #: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:25
 msgid "emission right"
