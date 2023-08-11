@@ -883,8 +883,6 @@ class IssuanceInsuranceVehicleUpdateIssuanceView(
     template_name = "rrggweb/issuance/insurance/vehicle/update.html"
     model = rrgg.models.IssuanceInsuranceVehicle
     fields = [
-        "policy",
-        "collection_document",
         "issuance_date",
         "initial_validity",
         "final_validity",

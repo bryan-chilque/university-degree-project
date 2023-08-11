@@ -29,7 +29,7 @@
         <td class="align-middle">{{ issuance.final_validity | date:'d/m/Y' }}</td>
         <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
         <td class="align-middle">
-            {% if issuance.status.name == "vigente" %}
+            {% if issuance.status.name == "Vigente" %}
             <span class="badge bg-success align-middle">{{ issuance.status.name |slice:":7"}}</span>
             {% else %}
             <span class="badge bg-danger align-middle">{{ issuance.status.name |slice:":7"}}</span>

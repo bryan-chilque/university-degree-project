@@ -265,23 +265,23 @@
 - model: rrgg.IssuanceInsuranceStatus
   pk: 1
   fields:
-    name: 'vigente'
+    name: 'Vigente'
 - model: rrgg.issuanceinsurancestatus
   pk: 2
   fields:
-    name: 'anulado por falta de pago'
+    name: 'Anulado por falta de pago'
 - model: rrgg.issuanceinsurancestatus
   pk: 3
   fields:
-    name: 'anulado por desistimiento del cliente'
+    name: 'Anulado por desistimiento del cliente'
 - model: rrgg.issuanceinsurancestatus
   pk: 4
   fields:
-    name: 'anulado por cambio de aseguradora'
+    name: 'Anulado por cambio de aseguradora'
 - model: rrgg.issuanceinsurancestatus
   pk: 5
   fields:
-    name: 'anulado por cambio de bróker'
+    name: 'Anulado por cambio de bróker'
 - model: rrgg.issuanceinsurancevehicle
   pk: 1
   fields:
