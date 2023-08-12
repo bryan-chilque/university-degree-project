@@ -262,6 +262,26 @@
     insurance_vehicle_ratio: 5
     quotation_insurance_vehicle: 2
     created: 2023-07-31 06:08:35.944033+00:00
+- model: rrgg.IssuanceInsuranceStatus
+  pk: 1
+  fields:
+    name: 'Vigente'
+- model: rrgg.issuanceinsurancestatus
+  pk: 2
+  fields:
+    name: 'Anulado por falta de pago'
+- model: rrgg.issuanceinsurancestatus
+  pk: 3
+  fields:
+    name: 'Anulado por desistimiento del cliente'
+- model: rrgg.issuanceinsurancestatus
+  pk: 4
+  fields:
+    name: 'Anulado por cambio de aseguradora'
+- model: rrgg.issuanceinsurancestatus
+  pk: 5
+  fields:
+    name: 'Anulado por cambio de bróker'
 - model: rrgg.issuanceinsurancevehicle
   pk: 1
   fields:
@@ -269,6 +289,7 @@
     issuance_date: 2023-07-23 00:00:00+00:00
     initial_validity: 2023-07-25 00:00:00+00:00
     final_validity: 2024-07-24 00:00:00+00:00
+    status: 1
     quotation_vehicle_premium: 2
     created: 2023-07-31 07:24:08.278816+00:00
 - model: rrgg.issuanceinsurancevehicleendorsement

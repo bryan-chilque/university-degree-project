@@ -1,0 +1,18 @@
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% block title_section %}
+  Elegir Estado de Emisión Vehícular
+{% endblock title_section %}
+{% block content %}
+  <a
+    class="d-flex gap-1 text-muted text-decoration-none"
+    href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.consultant_id view.kwargs.issuance_id %}">
+    <i class="bi bi-arrow-left"></i>Volver
+  </a>
+  <form method="post" class="mt-5">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <input class="btn btn-primary mt-5" type="submit" value="Enviar" />
+  </form>
+  {% endblock content %}
