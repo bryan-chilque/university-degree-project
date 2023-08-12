@@ -4,6 +4,69 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
+class Role(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+
+    class Meta:
+        verbose_name = _("role")
+        verbose_name_plural = _("roles")
+
+    def __str__(self):
+        return self.name
+
+
+class Consultant(models.Model):
+    given_name = models.CharField(_("given name"), max_length=64)
+    first_surname = models.CharField(_("first surname"), max_length=64)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+
+    role = models.ForeignKey(
+        Role,
+        related_name="consultant",
+        verbose_name=_("role"),
+        on_delete=models.PROTECT,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = _("consultant")
+        verbose_name_plural = _("consultants")
+
+    def __str__(self):
+        return f"{self.given_name} {self.first_surname}"
+
+
+class Area(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+
+    consultant = models.ManyToManyField(
+        Consultant, related_name="area", verbose_name=_("consultant")
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("area")
+        verbose_name_plural = _("areas")
+
+
+class ConsultantMembership(models.Model):
+    consultant = models.ForeignKey(
+        Consultant, on_delete=models.PROTECT, related_name="membership"
+    )
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.PROTECT,
+        related_name="consultant_membership",
+    )
+
+    def __str__(self):
+        return f"consultant={self.consultant}, user={self.user}"
+
+
 class Customer(models.Model):
     given_name = models.CharField(_("given name"), max_length=64)
     first_surname = models.CharField(_("first surname"), max_length=64)
@@ -97,38 +160,6 @@ class VehicleOwnerShip(models.Model):
                 " mismo tiempo."
             )
         super().save(*args, **kwargs)
-
-
-class Consultant(models.Model):
-    given_name = models.CharField(_("given name"), max_length=64)
-    first_surname = models.CharField(_("first surname"), max_length=64)
-    second_surname = models.CharField(
-        _("second surname"), max_length=64, blank=True
-    )
-    document_number = models.CharField(
-        _("document number"), max_length=32, unique=True
-    )
-
-    class Meta:
-        verbose_name = _("consultant")
-        verbose_name_plural = _("consultants")
-
-    def __str__(self):
-        return f"{self.given_name} {self.first_surname}"
-
-
-class ConsultantMembership(models.Model):
-    consultant = models.ForeignKey(
-        Consultant, on_delete=models.PROTECT, related_name="membership"
-    )
-    user = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.PROTECT,
-        related_name="consultant_membership",
-    )
-
-    def __str__(self):
-        return f"consultant={self.consultant}, user={self.user}"
 
 
 class QuotationInsuranceVehicle(models.Model):
