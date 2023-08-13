@@ -9,12 +9,24 @@ class LoginAuthenticationForm(forms_auth.AuthenticationForm):
     username = forms.CharField(
         max_length=32,
         label="Usuario",
-        widget=forms.TextInput(attrs={"class": "form-control"}),
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Ingresa tu usuario",
+            }
+        ),
+        label_suffix="",
     )
     password = forms.CharField(
         max_length=32,
         label="Contraseña",
-        widget=forms.PasswordInput(attrs={"class": "form-control"}),
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Ingresa tu contraseña",
+            }
+        ),
+        label_suffix="",
     )
 
 
@@ -45,8 +57,8 @@ class DefineOwnerForm(forms.Form):
 
 class IssuanceTypeForm(forms.Form):
     TYPE_CHOICES = (
-        ("policy", "póliza vehicular"),
-        ("endorsement", "endoso con movimiento de prima"),
+        ("policy", "Póliza vehicular"),
+        ("endorsement", "Endoso con movimiento de prima"),
     )
 
     tipo = forms.ChoiceField(choices=TYPE_CHOICES, widget=forms.RadioSelect)

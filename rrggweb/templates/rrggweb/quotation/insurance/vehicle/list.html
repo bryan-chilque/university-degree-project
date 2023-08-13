@@ -3,23 +3,32 @@
     Lista de cotizaciones de seguros vehiculares
 {% endblock title_section %}
 {% block content %}
-    <div class="d-flex justify-content-between mb-3">
-        <form class="d-flex">
+    <div class="d-flex justify-content-between flex-wrap gap-2 mb-3">
+        <form class="d-flex" method="get">
             <input class="form-control me-2"
                    type="search"
                    placeholder="Buscar"
-                   aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+                   aria-label="Search"
+                   name="q"
+                   value="{{ request.GET.q }}">
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                {% if request.GET.q %}
+                    <a class="btn btn-outline-danger" href="?">
+                        Limpiar
+                    </a>
+                {% endif %}
+            </div>
         </form>
         <div>
             <a class="btn btn-warning"
-               href="{% url 'rrggweb:quotation:insurance:vehicle:search_customer' view.kwargs.consultant_id %}">Nuevo registro
-                <i class="bi bi-plus-lg"></i>
+               href="{% url 'rrggweb:quotation:insurance:vehicle:search_customer' view.kwargs.consultant_id %}">Nueva cotización
+                <i class="fa fa-plus"></i>
             </a>
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">Cliente</th>
@@ -30,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for quotation in object_list %}
+                {% for quotation in page_obj %}
                     <tr>
                         <td class="align-middle" scope="row">{{ quotation.customer }}</td>
                         <td class="align-middle">{{ quotation.vehicle }}</td>
@@ -43,14 +52,73 @@
                             {% endif %}
                         </td>
                         <td class="align-middle">
-                            <a class="btn btn-primary"
+                            <a class="btn btn-primary btn-sm"
                                href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.consultant_id quotation.id %}">
-                                <i class="bi bi-eye-fill"></i>
+                                Ver
+                                <i class="fa fa-eye"></i>
                             </a>
                         </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No se encontraron cotizaciones.</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">
+                                <i class="fa fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">
+                                <i class="fa fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">{{ num }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                           aria-label="Next">
+                            <span aria-hidden="true">
+                                <i class="fa fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">
+                                <i class="fa fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
 {% endblock content %}

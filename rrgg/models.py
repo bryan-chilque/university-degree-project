@@ -355,9 +355,6 @@ class IssuanceInsuranceVehicle(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.final_validity = self.initial_validity + timezone.timedelta(
-                days=365
-            )
             self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
         super().save(*args, **kwargs)
 

@@ -1,51 +1,65 @@
-{% extends 'rrggweb/dashboard.html' %} {% block title_section %}Lista de emisiones de seguros vehiculares{% endblock %}
+{% extends "rrggweb/dashboard.html" %}
+{% block title_section %}
+    Lista de emisiones de seguros vehiculares
+{% endblock title_section %}
 {% block content %}
-<div class="d-flex justify-content-between mb-3">
-    <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-    </form>
-    <div>
-        <a class="btn btn-primary" href="{% url 'rrggweb:issuance:insurance:vehicle:list_quotations' view.kwargs.consultant_id %}">Venta nueva</a></li>
+    <div class="d-flex justify-content-between mb-3">
+        <form class="d-flex" method="get">
+            <input class="form-control me-2"
+                   type="search"
+                   placeholder="Buscar"
+                   aria-label="Search"
+                   name="q"
+                   value="{{ request.GET.q }}">
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                {% if request.GET.q %}<a class="btn btn-outline-danger" href="?">Limpiar</a>{% endif %}
+            </div>
+        </form>
+        <div>
+            <a class="btn btn-primary"
+               href="{% url 'rrggweb:issuance:insurance:vehicle:list_quotations' view.kwargs.consultant_id %}">Venta nueva
+                <i class="fas fa-plus"></i>
+            </a>
+        </div>
     </div>
-</div>
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Cliente</th>
-                <th scope="col">Vehiculo</th>
-                <th scope="col">Vigencia</th>
-                <th scope="col">Aseguradora</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-    <tbody>
-    {% for issuance in object_list %}
-        <tr class="">
-        <td class="align-middle" scope="row">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</td>
-        <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle }}</td>
-        <td class="align-middle">{{ issuance.final_validity | date:'d/m/Y' }}</td>
-        <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
-        <td class="align-middle">
-            {% if issuance.status.name == "Vigente" %}
-            <span class="badge bg-success align-middle">{{ issuance.status.name |slice:":7"}}</span>
-            {% else %}
-            <span class="badge bg-danger align-middle">{{ issuance.status.name |slice:":7"}}</span>
-            {% endif %}
-        </td>
-        <td class="align-middle">
-            <a class="btn btn-primary" href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.consultant_id issuance.id %}">
-            <i class="bi bi-eye"></i>
-            </a>
-            <a class="btn btn-warning" href="{% url 'rrggweb:issuance:insurance:vehicle:update' view.kwargs.consultant_id issuance.id %}">
-            <i class="bi bi-pencil-square"></i>
-            </a>
-        </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-    </table>
-</div>
-{% endblock %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>DNI</th>
+                    <th>Vehiculo</th>
+                    <th>Vigencia</th>
+                    <th>Aseguradora</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issuance in object_list %}
+                    <tr>
+                        <td class="align-middle" scope="row">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</td>
+                        <td class="align-middle">
+                            {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer.document_number }}
+                        </td>
+                        <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle }}</td>
+                        <td class="align-middle">{{ issuance.final_validity | date:'d/m/Y' }}</td>
+                        <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+                        <td class="align-middle">
+                            <a class="btn btn-primary btn-sm"
+                               href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.consultant_id issuance.id %}">
+                                <i class="fas fa-eye"></i>
+                                Ver
+                            </a>
+                            <a class="btn btn-warning btn-sm"
+                               href="{% url 'rrggweb:issuance:insurance:vehicle:update' view.kwargs.consultant_id issuance.id %}">
+                                <i class="fas fa-edit"></i>
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

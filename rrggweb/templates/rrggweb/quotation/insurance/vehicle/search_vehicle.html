@@ -3,16 +3,18 @@
   Buscar Vehículo
 {% endblock title_section %}
 {% block content %}
-  {% include "rrggweb/utils/stepper.html" with step=2 max_step=5 %}
-  <a class="d-flex gap-1 text-muted text-decoration-none"
-     href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' view.kwargs.consultant_id view.kwargs.customer_id 'search_vehicle' view.kwargs.customer_id %}">
-    <i class="bi bi-arrow-left"></i>Volver
-  </a>
-  <form method="post">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <input class="btn btn-primary" type="submit" value="Buscar" />
-  </form>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% include "rrggweb/utils/stepper.html" with step=2 max_step=5 %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' view.kwargs.consultant_id view.kwargs.customer_id 'search_vehicle' view.kwargs.customer_id %}">
+        <i class="fas fa-long-arrow-alt-left"></i>Volver
+      </a>
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary btn-block mt-3" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
 {% endblock content %}

@@ -3,17 +3,21 @@
   Definir Propietario
 {% endblock title_section %}
 {% block content %}
-  {% include "rrggweb/utils/stepper.html" with step=3 max_step=5 %}
-  <a
-    class="d-flex gap-1 text-muted text-decoration-none"
-    href="{% url 'rrggweb:quotation:insurance:vehicle:step_update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id view.kwargs.customer_id %}">
-    <i class="bi bi-arrow-left"></i>Volver
-  </a>
-  <form method="post">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <input class="btn btn-primary" type="submit" value="Enviar" />
-  </form>
-  {% endblock content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% include "rrggweb/utils/stepper.html" with step=3 max_step=5 %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{% url 'rrggweb:quotation:insurance:vehicle:step_update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id view.kwargs.customer_id %}">
+        <i class="fas fa-long-arrow-alt-left"></i> Volver
+      </a>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-check mb-3">
+          <label class="form-check-label" for="{{ form.is_owner.id_for_label }}">{{ form.is_owner.label }}</label>
+          {{ form.is_owner }}
+        </div>
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

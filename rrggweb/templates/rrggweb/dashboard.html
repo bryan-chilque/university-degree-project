@@ -1,32 +1,38 @@
 {% extends "rrggweb/base.html" %}
+{% load static %}
 {% block title %}
     Dashboard
 {% endblock title %}
-{% block head %}
-    <style>
-    .content-margin {
-        margin-left: 280px;
-    }
-    </style>
-{% endblock head %}
 {% block body %}
-    <style>{% include 'rrggweb/sidebar.css' %}</style>
-    <main class="vh-100">
+    <div id="layout-wrapper">
         {% include "rrggweb/topbar.html" %}
-        <main>
-            {% include "rrggweb/sidebar.html" %}
-            <div class="content-margin">
-                <div class="p-3 border-dark bg-body-tertiary border-bottom border-dark-subtle">
-                    <h5 class="mb-0">
-                        {% block title_section %}
-                        {% endblock title_section %}
-                    </h5>
+        {% include "rrggweb/sidebar.html" %}
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="page-title-box">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h6 class="page-title">
+                                    {% block title_section %}
+                                    {% endblock title_section %}
+                                </h6>
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="#">breadcrumb 1</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="#">breadcrumb 2</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">breadcrumb 3</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <section class="container ms-0 p-3 w-100">
-                    {% block content %}
-                    {% endblock content %}
-                </section>
+                {% block content %}
+                {% endblock content %}
             </div>
-        </main>
-    </main>
+        </div>
+    </div>
 {% endblock body %}

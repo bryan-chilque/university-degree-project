@@ -2,6 +2,8 @@ from django import shortcuts, urls
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.forms import modelformset_factory
 from django.http import HttpResponse
 from django.views.generic import (
@@ -81,6 +83,24 @@ class QuotationView(TemplateView):
 class QuotationInsuranceVehicleListView(ListView):
     template_name = "rrggweb/quotation/insurance/vehicle/list.html"
     model = rrgg.models.QuotationInsuranceVehicle
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get("q")
+        if query:
+            queryset = queryset.filter(
+                Q(customer__given_name__icontains=query)
+            )
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context["object_list"], self.paginate_by)
+        page_number = self.request.GET.get("page") or 1
+        page_obj = paginator.get_page(page_number)
+        context["page_obj"] = page_obj
+        return context
 
 
 # CLIENT
@@ -445,7 +465,9 @@ class QuotationInsuranceVehicleCreateView(
         )
 
 
-class QuotationInsuranceVehicleUpdateView(UpdateView):
+class QuotationInsuranceVehicleUpdateView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
     template_name = "rrggweb/quotation/insurance/vehicle/update.html"
     model = rrgg.models.QuotationInsuranceVehicle
     fields = ["insured_amount"]
@@ -747,6 +769,15 @@ class IssuanceInsuranceVehicleListView(ListView):
     template_name = "rrggweb/issuance/insurance/vehicle/list.html"
     model = rrgg.models.IssuanceInsuranceVehicle
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get("q")
+        if query:
+            queryset = queryset.filter(
+                Q(customer__given_name__icontains=query)
+            )
+        return queryset
+
 
 class IIVTypeFormView(FormView):
     template_name = "rrggweb/issuance/insurance/vehicle/define.html"
@@ -788,6 +819,7 @@ class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         "number_registry",
         "issuance_date",
         "initial_validity",
+        "final_validity",
     ]
 
     def form_valid(self, form):
