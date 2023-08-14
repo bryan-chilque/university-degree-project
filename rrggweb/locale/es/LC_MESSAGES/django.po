@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-12 13:27-0500\n"
+"POT-Creation-Date: 2023-08-12 20:52-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -18,19 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\rrggweb\forms.py:24
+#: .\rrggweb\forms.py:23
+#, fuzzy
+#| msgid "seller"
+msgid "sellers"
+msgstr "vendedores"
+
+#: .\rrggweb\forms.py:31
 msgid "document number"
 msgstr "documento de identidad"
 
-#: .\rrggweb\forms.py:32
+#: .\rrggweb\forms.py:39
 msgid "plate"
 msgstr "número de placa"
 
-#: .\rrggweb\forms.py:39
+#: .\rrggweb\forms.py:46
 msgid "is contractor or insured?"
 msgstr "¿es contratante o asegurado?"
 
-#: .\rrggweb\forms.py:61
+#: .\rrggweb\forms.py:68
 msgid "comment"
 msgstr ""
 

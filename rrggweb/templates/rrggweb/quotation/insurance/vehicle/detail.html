@@ -19,12 +19,12 @@
         <b>Cliente:</b> {{ customer }}
       </h5>
       <div class="d-flex gap-2">
-        <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_xlsx' view.kwargs.consultant_id object.pk %}"
+        <a href="{{ report_xlsx }}"
            class="btn btn-success">
           <i class="fa fa-file-excel"></i>
           Exportar a Excel
         </a>
-        <a href="{% url 'rrggweb:quotation:insurance:vehicle:report_pdf' view.kwargs.consultant_id object.pk %}"
+        <a href="{{ report_pdf }}"
            class="btn btn-danger">
           <i class="fa fa-file-pdf"></i>
           Exportar a PDF
@@ -42,8 +42,6 @@
               </td>
               <td>
                 ${{ object.insured_amount }}
-                <a href="{% url 'rrggweb:quotation:insurance:vehicle:update' view.kwargs.consultant_id view.kwargs.quotation_id 'quotation_detail' 0 %}"
-                   class="btn-link"><i class="fas fa-edit"></i></a>
               </td>
             </tr>
             <tr>
@@ -51,16 +49,22 @@
                 <strong>Vehiculo:</strong>
               </td>
               <td>
-                {{ object.vehicle }}
-                <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id object.vehicle.id object.id %}"
-                   class="btn-link"><i class="fas fa-edit"></i></a>
+                {{ vehicle }}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Propietario:</strong>
+              </td>
+              <td>
+                {{ owner }}
               </td>
             </tr>
             <tr>
               <td>
                 <strong>Consultor:</strong>
               </td>
-              <td>{{ object.consultant }}</td>
+              <td>{{ consultant }}</td>
             </tr>
             <tr>
               <td>

@@ -19,7 +19,7 @@
                 {{ form.file }}
               </div>
               <button type="submit" class="btn btn-primary">Agregar archivo</button>
-              <a href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.consultant_id view.kwargs.issuance_id %}"
+              <a href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.registrar_id view.kwargs.issuance_id %}"
                  class="btn btn-secondary">Finalizar</a>
               <input type="hidden" name="issuance" value="{{ view.kwargs.issuance_id }}" />
             </form>
@@ -36,7 +36,7 @@
                   <a href="{{ document.file.url }}" class="text-decoration-none">
                     <i class="fas fa-file-{{ document.file.extension|default:'alt' }}"></i> {{ document.file.name }}
                   </a>
-                  <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document' view.kwargs.consultant_id document.id view.kwargs.issuance_id %}"
+                  <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
                      class="btn btn-danger">
                      <i class="fas fa-trash-alt"></i> Eliminar
                   </a>

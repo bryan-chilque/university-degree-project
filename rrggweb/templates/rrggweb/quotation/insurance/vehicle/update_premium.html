@@ -1,20 +1,20 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% load i18n %}
 {% block title_section %}
-  Editar Prima de Aseguradora Vehicular
+  Editar Primas de Aseguradoras Vehiculares
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% include "rrggweb/utils/stepper.html" with step=5 max_step=5 %}
+      {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
       <a class="d-flex gap-1 text-muted text-decoration-none"
-         href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.consultant_id object.quotation_insurance_vehicle.id %}">
+         href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
       <form method="post">
         {% csrf_token %}
           {{ form }}
-        <input class="btn btn-primary" type="submit" />
+        <button class="btn btn-primary btn-block mt-3" type="submit">Editar</button>
       </form>
     </div>
   </div>

@@ -21,7 +21,6 @@ class Consultant(models.Model):
     second_surname = models.CharField(
         _("second surname"), max_length=64, blank=True
     )
-
     role = models.ForeignKey(
         Role,
         related_name="consultant",
@@ -40,7 +39,6 @@ class Consultant(models.Model):
 
 class Area(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True, null=True)
-
     consultant = models.ManyToManyField(
         Consultant, related_name="area", verbose_name=_("consultant")
     )
@@ -140,7 +138,6 @@ class VehicleOwnerShip(models.Model):
     owner = models.ForeignKey(
         Owner, null=True, related_name="ownership", on_delete=models.PROTECT
     )
-
     vehicle = models.OneToOneField(
         Vehicle,
         related_name="ownership",
@@ -172,11 +169,19 @@ class QuotationInsuranceVehicle(models.Model):
         verbose_name=_("vehicle"),
         on_delete=models.PROTECT,
     )
-    consultant = models.ForeignKey(
+    consultant_registrar = models.ForeignKey(
         Consultant,
-        related_name="quotation_insurance_vehicles",
-        verbose_name=_("consultant"),
+        related_name="quotation_insurance_vehicles_registered",
+        verbose_name=_("registrar"),
         on_delete=models.PROTECT,
+        null=True,
+    )
+    consultant_seller = models.ForeignKey(
+        Consultant,
+        related_name="quotation_insurance_vehicles_sold",
+        verbose_name=_("seller"),
+        on_delete=models.PROTECT,
+        null=True,
     )
     customer = models.ForeignKey(
         Customer,

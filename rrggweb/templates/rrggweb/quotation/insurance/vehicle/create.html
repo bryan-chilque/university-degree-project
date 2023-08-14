@@ -5,20 +5,22 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% include "rrggweb/utils/stepper.html" with step=4 max_step=5 %}
-      <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="">
-        {% comment %}{% url 'rrggweb:quotation:insurance:vehicle:update_vehicle' view.kwargs.consultant_id view.kwargs.vehicle_id 'create' %}  {% endcomment %}
+      {% include "rrggweb/utils/stepper.html" with step=5 max_step=6 %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
       <div class="mt-2">
         <h5>
-          <b>Asesor:</b> {{ consultant }}
+          <b>Asesor:</b> {{ seller }}
         </h5>
         <h5>
           <b>Cliente:</b> {{ customer }}
         </h5>
         <h5>
           <b>Vehículo:</b> {{ vehicle }}
+        </h5>
+        <h5>
+          <b>Propietario:</b> {{ owner }}
         </h5>
         <hr class="w-25" />
       </div>

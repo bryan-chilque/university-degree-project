@@ -258,7 +258,8 @@
   fields:
     insured_amount: 3000
     vehicle: 1
-    consultant: 1
+    consultant_registrar: 3
+    consultant_seller: 2
     customer: 1
     created: 2023-07-12 07:15:35.485352+00:00
 - model: rrgg.quotationinsurancevehicle
@@ -266,7 +267,8 @@
   fields:
     insured_amount: 2000
     vehicle: 2
-    consultant: 1
+    consultant_registrar: 1
+    consultant_seller: 2
     customer: 2
     created: 2023-07-31 06:08:11.485352+00:00
 - model: rrgg.quotationinsurancevehiclepremium

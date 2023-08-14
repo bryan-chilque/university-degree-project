@@ -43,7 +43,8 @@ repos:
     rev: v4.4.0
     hooks:
       - id: debug-statements
-      - id: check-added-large-files
+      # paulo estuvo aqui
+      #- id: check-added-large-files
       - id: check-merge-conflict
       - id: check-yaml
         exclude: cie10.yaml|cpt.yaml

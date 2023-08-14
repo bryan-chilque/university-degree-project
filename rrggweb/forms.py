@@ -30,6 +30,15 @@ class LoginAuthenticationForm(forms_auth.AuthenticationForm):
     )
 
 
+class SellerForm(forms.Form):
+    sellers = forms.ModelChoiceField(
+        label=_("sellers"),
+        queryset=rrgg.models.Consultant.objects.exclude(
+            role__name="Administrativos"
+        ),
+    )
+
+
 class SearchPersonForm(forms.Form):
     document_number = forms.CharField(
         max_length=32,

@@ -5,9 +5,18 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% include "rrggweb/utils/stepper.html" with step=1 max_step=5 %}
+      {% include "rrggweb/utils/stepper.html" with step=2 max_step=6 %}
       <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
-         href="{% url 'rrggweb:quotation:insurance:vehicle:search_customer' view.kwargs.consultant_id %}"><i class="fas fa-long-arrow-alt-left"></i>Volver</a>
+         href="{{ previous_page }}"><i class="fas fa-long-arrow-alt-left"></i>Volver</a>
+      <div class="mt-3">
+        <h5>
+          <b>Asesor:</b> {{ seller }}
+        </h5>
+        <h5>
+          <b>Datos del cliente:</b>
+        </h5>
+      </div>
+      <hr class="w-25" />
       <form method="post">
         {% csrf_token %}
         {{ form }}
