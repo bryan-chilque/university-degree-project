@@ -360,6 +360,16 @@ class QIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         initial["plate"] = self.request.GET.get("plate", "")
         return initial
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.Customer, id=self.kwargs["customer_id"]
+        )
+        return context
+
 
 class QIVUpdateVehicleViewSupport(
     rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
@@ -692,7 +702,7 @@ class QIVUpdateViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView):
 
 
 class QIVUpdateStepView(QIVUpdateViewSupport):
-    template_name = "rrggweb/quotation/insurance/vehicle/update.html"
+    template_name = "rrggweb/quotation/insurance/vehicle/update_step.html"
 
     def get_success_url(self):
         return urls.reverse(

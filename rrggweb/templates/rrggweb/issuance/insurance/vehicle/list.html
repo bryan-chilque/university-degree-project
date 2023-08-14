@@ -18,7 +18,7 @@
         </form>
         <div>
             <a class="btn btn-primary"
-               href="{% url 'rrggweb:issuance:insurance:vehicle:list_quotations' view.kwargs.consultant_id %}">Venta nueva
+               href="{% url 'rrggweb:issuance:insurance:vehicle:list_quotations' view.kwargs.registrar_id %}">Venta nueva
                 <i class="fas fa-plus"></i>
             </a>
         </div>
@@ -47,12 +47,12 @@
                         <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
                         <td class="align-middle">
                             <a class="btn btn-primary btn-sm"
-                               href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.consultant_id issuance.id %}">
+                               href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.registrar_id issuance.id %}">
                                 <i class="fas fa-eye"></i>
                                 Ver
                             </a>
                             <a class="btn btn-warning btn-sm"
-                               href="{% url 'rrggweb:issuance:insurance:vehicle:update' view.kwargs.consultant_id issuance.id %}">
+                               href="{% url 'rrggweb:issuance:insurance:vehicle:update' view.kwargs.registrar_id issuance.id %}">
                                 <i class="fas fa-edit"></i>
                                 Editar
                             </a>

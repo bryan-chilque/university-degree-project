@@ -13,7 +13,7 @@
                   <li class="menu-title">Inicio</li>
 
                   <li>
-                    <a href="{% url 'rrggweb:home' view.kwargs.consultant_id %}" class="waves-effect">
+                    <a href="{% url 'rrggweb:home' view.kwargs.registrar_id %}" class="waves-effect">
                       <i class="ti-home"></i>
                       <span>Dashboard</span>
                     </a>
@@ -28,10 +28,10 @@
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                       <li>
-                        <a href="{% url 'rrggweb:quotation' view.kwargs.consultant_id %}">Lista de cotizaciones</a>
+                        <a href="{% url 'rrggweb:quotation' view.kwargs.registrar_id %}">Lista de cotizaciones</a>
                       </li>
                       <li>
-                        <a href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.consultant_id %}">Cotización Vehicular</a>
+                        <a href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.registrar_id %}">Cotización Vehicular</a>
                       </li>
                     </ul>
                   </li>
@@ -45,10 +45,10 @@
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                       <li>
-                        <a href="{% url 'rrggweb:issuance' view.kwargs.consultant_id %}">Lista de emisiones</a>
+                        <a href="{% url 'rrggweb:issuance' view.kwargs.registrar_id %}">Lista de emisiones</a>
                       </li>
                       <li>
-                        <a href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.consultant_id %}">Emisión Vehicular</a>
+                        <a href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.registrar_id %}">Emisión Vehicular</a>
                       </li>
                     </ul>
                   </li>
@@ -62,10 +62,10 @@
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                       <li>
-                        <a href="{% url 'rrggweb:collection' view.kwargs.consultant_id %}">Lista de cobranzas</a>
+                        <a href="{% url 'rrggweb:collection' view.kwargs.registrar_id %}">Lista de cobranzas</a>
                       </li>
                       <li>
-                        <a href="{% url 'rrggweb:collection:insurance:vehicle:list' view.kwargs.consultant_id %}">Cobranza vehicular</a>
+                        <a href="{% url 'rrggweb:collection:insurance:vehicle:list' view.kwargs.registrar_id %}">Cobranza vehicular</a>
                       </li>
                     </ul>
                   </li>

@@ -36,6 +36,7 @@ class SellerForm(forms.Form):
         queryset=rrgg.models.Consultant.objects.exclude(
             role__name="Administrativos"
         ),
+        widget=forms.Select(attrs={"class": "form-select"}),
     )
 
 

@@ -28,46 +28,45 @@
         </h5>
       </div>
       <hr class="w-25" />
-        <form method="post">
-          {% csrf_token %}
-          {% translate "emission right" as emission_right_text %}
-          {% translate "tax (igv)" as tax_text %}
-          {% translate "vehicle insurance" as vehicle_insurance_text %}
-          {% translate "created at" as created_at_text %}
-          <div class="table-responsive">
-            <table class="table table-striped table-hover">
-              <thead class="thead-dark">
+      <form method="post">
+        {% csrf_token %}
+        {% translate "emission right" as emission_right_text %}
+        {% translate "tax (igv)" as tax_text %}
+        {% translate "vehicle insurance" as vehicle_insurance_text %}
+        {% translate "created at" as created_at_text %}
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>{{ emission_right_text|capfirst }}</th>
+                <th>{{ tax_text|capfirst }}</th>
+                <th>{{ vehicle_insurance_text|capfirst }}</th>
+                <th>Prima neta</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ratio, form in last_ratio_forms %}
                 <tr>
-                  <th>{{ emission_right_text|capfirst }}</th>
-                  <th>{{ tax_text|capfirst }}</th>
-                  <th>{{ vehicle_insurance_text|capfirst }}</th>
-                  <th>Prima neta</th>
+                  <td>{{ ratio.emission_right }}</td>
+                  <td>{{ ratio.tax }}</td>
+                  <td>{{ ratio.insurance_vehicle.name }}</td>
+                  <td>
+                    <div class="input-group">
+                      {{ form.amount }}
+                      {% if form.errors %}<div class="alert alert-danger" role="alert">{{ form.errors }}</div>{% endif %}
+                      {{ form.insurance_vehicle_ratio }}
+                      {{ form.quotation_insurance_vehicle }}
+                      {{ form.id }}
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {% for ratio, form in last_ratio_forms %}
-                  <tr>
-                    <td>{{ ratio.emission_right }}</td>
-                    <td>{{ ratio.tax }}</td>
-                    <td>{{ ratio.insurance_vehicle.name }}</td>
-                    <td>
-                      <div class="input-group">
-                        {{ form.amount }}
-                        {% if form.errors %}<div class="alert alert-danger" role="alert">{{ form.errors }}</div>{% endif %}
-                        {{ form.insurance_vehicle_ratio }}
-                        {{ form.quotation_insurance_vehicle }}
-                        {{ form.id }}
-                      </div>
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-              {{ form.management_form }}
-            </table>
-          </div>
-          <button class="btn btn-primary btn-block mt-3" type="submit">Finalizar</button>
-        </form>
-      </div>
+              {% endfor %}
+            </tbody>
+            {{ form.management_form }}
+          </table>
+        </div>
+        <button class="btn btn-primary btn-block mt-3" type="submit">Finalizar</button>
+      </form>
     </div>
   </div>
 {% endblock content %}

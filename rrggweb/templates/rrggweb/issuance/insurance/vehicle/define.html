@@ -7,7 +7,7 @@
     <div class="col-md-8 col-lg-6">
       {% include "rrggweb/utils/stepper.html" with step=1 max_step=3 %}
       <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
-         href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.consultant_id %}">
+         href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.registrar_id %}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
       <form method="post">

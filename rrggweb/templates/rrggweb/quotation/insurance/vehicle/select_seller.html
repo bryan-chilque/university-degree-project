@@ -3,17 +3,18 @@
   Seleccionar Vendedor
 {% endblock title_section %}
 {% block content %}
-  {% include "rrggweb/utils/stepper.html" with step=1 max_step=6 %}
-  <a
-    class="d-flex gap-1 text-muted text-decoration-none"
-    href="{{ previous_page }}">
-    <i class="bi bi-arrow-left"></i>Volver
-  </a>
-  <form method="post">
-    {% csrf_token %}
-    <table class="mt-5 mb-5">
-      {{ form.as_table }}
-    </table>
-    <input class="btn btn-primary" type="submit" value="Enviar" />
-  </form>
-  {% endblock content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% include "rrggweb/utils/stepper.html" with step=1 max_step=6 %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i>Volver
+      </a>
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

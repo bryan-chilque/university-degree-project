@@ -10,7 +10,7 @@
 {% block content %}
   <div class="container">
     <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
-       href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.consultant_id %}">
+       href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.registrar_id %}">
       <i class="fas fa-long-arrow-alt-left"></i>
       Volver
     </a>
@@ -64,7 +64,7 @@
               <td>
                 <strong>Consultor:</strong>
               </td>
-              <td>{{ consultant }}</td>
+              <td>{{ seller }}</td>
             </tr>
             <tr>
               <td>
@@ -127,15 +127,9 @@
                       <td class="align-middle">{{ premium.direct_debit }}</td>
                       <td class="align-middle d-flex gap-2">
                         <a class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
-                           href="{% url 'rrggweb:issuance:insurance:vehicle:define_issuance' view.kwargs.consultant_id premium.id %}">
+                           href="{% url 'rrggweb:issuance:insurance:vehicle:define_issuance' view.kwargs.registrar_id premium.id %}">
                           <i class="fa fa-file"></i>
                           Generar Emisión
-                        </a>
-                        <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.consultant_id premium.id 'quotation_detail' object.id %} "
-                           class="btn btn-outline-dark btn-sm d-flex align-items-center justify-content-center gap-2"
-                           title="Editar">
-                          <i class="fa fa-edit"></i>
-                          Editar
                         </a>
                       </td>
                     </tr>
