@@ -2,7 +2,6 @@ from django import shortcuts, urls
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.forms import modelformset_factory
@@ -230,13 +229,6 @@ class QIVUpdateCustomerViewSupport(
     model = rrgg.models.Customer
     fields = "__all__"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["seller"] = shortcuts.get_object_or_404(
-            rrgg.models.Consultant, id=self.kwargs["seller_id"]
-        )
-        return context
-
 
 class QIVUpdateCustomerStepView(QIVUpdateCustomerViewSupport):
     template_name = (
@@ -255,11 +247,38 @@ class QIVUpdateCustomerStepView(QIVUpdateCustomerViewSupport):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:search_customer",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
+            },
+        )
+        return context
+
+
+class QIVUpdateCustomerView(QIVUpdateCustomerViewSupport):
+    template_name = "rrggweb/quotation/insurance/vehicle/update_customer.html"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.kwargs["quotation_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.kwargs["quotation_id"],
             },
         )
         return context
@@ -279,9 +298,14 @@ class QIVSearchVehicleView(FormView):
         ).exists()
         if vehicle_exists:
             vehicle = rrgg.models.Vehicle.objects.get(plate=plate)
-            if vehicle.ownership is None:
+            vehicle_ownership_exists = (
+                rrgg.models.VehicleOwnerShip.objects.filter(
+                    vehicle__plate=plate
+                ).exists()
+            )
+            if vehicle_ownership_exists:
                 self.success_url = urls.reverse(
-                    "rrggweb:quotation:insurance:vehicle:define_owner",
+                    "rrggweb:quotation:insurance:vehicle:create",
                     kwargs={
                         "registrar_id": self.kwargs["registrar_id"],
                         "seller_id": self.kwargs["seller_id"],
@@ -291,7 +315,7 @@ class QIVSearchVehicleView(FormView):
                 )
             else:
                 self.success_url = urls.reverse(
-                    "rrggweb:quotation:insurance:vehicle:create",
+                    "rrggweb:quotation:insurance:vehicle:define_owner",
                     kwargs={
                         "registrar_id": self.kwargs["registrar_id"],
                         "seller_id": self.kwargs["seller_id"],
@@ -320,11 +344,11 @@ class QIVSearchVehicleView(FormView):
             rrgg.models.Customer, id=self.kwargs["customer_id"]
         )
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:update_customer",
+            "rrggweb:quotation:insurance:vehicle:update_customer_step",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "customer_id": self.kwargs["customer_id"],
                 "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
             },
         )
         return context
@@ -368,6 +392,14 @@ class QIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.Customer, id=self.kwargs["customer_id"]
         )
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:search_vehicle",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+            },
+        )
         return context
 
 
@@ -386,16 +418,6 @@ class QIVUpdateVehicleViewSupport(
         "use_type",
     ]
     pk_url_kwarg = "vehicle_id"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["seller"] = shortcuts.get_object_or_404(
-            rrgg.models.Consultant, id=self.kwargs["seller_id"]
-        )
-        context["customer"] = shortcuts.get_object_or_404(
-            rrgg.models.Customer, id=self.kwargs["customer_id"]
-        )
-        return context
 
 
 class QIVUpdateVehicleStepView(QIVUpdateVehicleViewSupport):
@@ -416,8 +438,14 @@ class QIVUpdateVehicleStepView(QIVUpdateVehicleViewSupport):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.Customer, id=self.kwargs["customer_id"]
+        )
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:update_customer",
+            "rrggweb:quotation:insurance:vehicle:update_customer_step",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -467,17 +495,15 @@ class QIVDefineOwnerView(FormView):
         vehicle = shortcuts.get_object_or_404(
             rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
         )
-        # delete previous ownership
-        try:
-            owner = vehicle.ownership.owner
+        vehicle_ownership_exists = rrgg.models.VehicleOwnerShip.objects.filter(
+            vehicle=vehicle
+        ).exists()
+        if vehicle_ownership_exists:
             vehicle.ownership.delete()
-            if owner is not None:
-                owner.delete()
-        except ObjectDoesNotExist:
+        else:
             pass
 
         is_customer_owner = form.cleaned_data["is_owner"]
-
         if is_customer_owner:
             customer = shortcuts.get_object_or_404(
                 rrgg.models.Customer, id=self.kwargs["customer_id"]
@@ -496,7 +522,7 @@ class QIVDefineOwnerView(FormView):
             )
         else:
             self.success_url = urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:create_owner",
+                "rrggweb:quotation:insurance:vehicle:search_owner",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -529,6 +555,72 @@ class QIVDefineOwnerView(FormView):
         return context
 
 
+class QIVSearchOwnerView(FormView):
+    template_name = "rrggweb/quotation/insurance/vehicle/search_owner.html"
+    form_class = forms.SearchPersonForm
+
+    def form_valid(self, form):
+        document_number = form.cleaned_data["document_number"]
+        owner_exists = rrgg.models.Owner.objects.filter(
+            document_number=document_number
+        ).exists()
+        if owner_exists:
+            owner = rrgg.models.Owner.objects.get(
+                document_number=document_number
+            )
+            vehicle = shortcuts.get_object_or_404(
+                rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
+            )
+            rrgg.models.VehicleOwnerShip.objects.create(
+                owner=owner, vehicle=vehicle
+            )
+            self.success_url = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "seller_id": self.kwargs["seller_id"],
+                    "customer_id": self.kwargs["customer_id"],
+                    "vehicle_id": self.kwargs["vehicle_id"],
+                },
+            )
+        else:
+            create_owner_url = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:create_owner",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "seller_id": self.kwargs["seller_id"],
+                    "customer_id": self.kwargs["customer_id"],
+                    "vehicle_id": self.kwargs["vehicle_id"],
+                },
+            )
+            self.success_url = (
+                f"{create_owner_url}?document_number={document_number}"
+            )
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.Customer, id=self.kwargs["customer_id"]
+        )
+        context["vehicle"] = shortcuts.get_object_or_404(
+            rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
+        )
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:define_owner",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+                "vehicle_id": self.kwargs["vehicle_id"],
+            },
+        )
+        return context
+
+
 class QIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     template_name = "rrggweb/quotation/insurance/vehicle/create_owner.html"
     model = rrgg.models.Owner
@@ -551,6 +643,13 @@ class QIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
             },
         )
 
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["document_number"] = self.request.GET.get(
+            "document_number", ""
+        )
+        return initial
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["seller"] = shortcuts.get_object_or_404(
@@ -563,7 +662,7 @@ class QIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
             rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
         )
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:define_owner",
+            "rrggweb:quotation:insurance:vehicle:search_owner",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -580,13 +679,6 @@ class QIVUpdateOwnerViewSupport(
     model = rrgg.models.Owner
     fields = "__all__"
     pk_url_kwarg = "owner_id"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["seller"] = shortcuts.get_object_or_404(
-            rrgg.models.Consultant, id=self.kwargs["seller_id"]
-        )
-        return context
 
 
 class QIVUpdateOwnerStepView(QIVUpdateOwnerViewSupport):
@@ -607,6 +699,9 @@ class QIVUpdateOwnerStepView(QIVUpdateOwnerViewSupport):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.Customer, id=self.kwargs["customer_id"]
         )
@@ -620,6 +715,30 @@ class QIVUpdateOwnerStepView(QIVUpdateOwnerViewSupport):
                 "seller_id": self.kwargs["seller_id"],
                 "customer_id": self.kwargs["customer_id"],
                 "vehicle_id": self.kwargs["vehicle_id"],
+            },
+        )
+        return context
+
+
+class QIVUpdateOwnerView(QIVUpdateOwnerViewSupport):
+    template_name = "rrggweb/quotation/insurance/vehicle/update_owner.html"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.kwargs["quotation_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.kwargs["quotation_id"],
             },
         )
         return context
@@ -688,20 +807,15 @@ class QIVCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         return context
 
 
-class QIVUpdateViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView):
+class QIVUpdateAmountViewSupport(
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
     model = rrgg.models.QuotationInsuranceVehicle
     fields = ["insured_amount"]
     pk_url_kwarg = "quotation_id"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["seller"] = self.object.consultant_seller
-        context["customer"] = self.object.customer
-        context["vehicle"] = self.object.vehicle
-        return context
 
-
-class QIVUpdateStepView(QIVUpdateViewSupport):
+class QIVUpdateStepView(QIVUpdateAmountViewSupport):
     template_name = "rrggweb/quotation/insurance/vehicle/update_step.html"
 
     def get_success_url(self):
@@ -715,6 +829,9 @@ class QIVUpdateStepView(QIVUpdateViewSupport):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["seller"] = self.object.consultant_seller
+        context["customer"] = self.object.customer
+        context["vehicle"] = self.object.vehicle
         if context["vehicle"].ownership.owner is None:
             context["owner"] = "El cliente es propietario del vehículo."
             context["previous_page"] = urls.reverse(
@@ -741,6 +858,62 @@ class QIVUpdateStepView(QIVUpdateViewSupport):
         return context
 
 
+class QIVUpdateView(QIVUpdateAmountViewSupport):
+    template_name = "rrggweb/quotation/insurance/vehicle/update.html"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.id,
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.id,
+            },
+        )
+        return context
+
+
+class QIVUpdateSellerViewSupport(
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
+    model = rrgg.models.QuotationInsuranceVehicle
+    fields = ["consultant_seller"]
+    pk_url_kwarg = "quotation_id"
+
+
+class QIVUpdateSellerView(QIVUpdateSellerViewSupport):
+    template_name = "rrggweb/quotation/insurance/vehicle/update.html"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.id,
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.id,
+            },
+        )
+        return context
+
+
 class QIVDetailView(DetailView):
     template_name = "rrggweb/quotation/insurance/vehicle/detail.html"
     model = rrgg.models.QuotationInsuranceVehicle
@@ -755,9 +928,47 @@ class QIVDetailView(DetailView):
             context["owner"] = "El cliente es propietario del vehículo."
         else:
             context["owner"] = context["vehicle"].ownership.owner
+            context["update_owner"] = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:update_owner",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "owner_id": self.object.vehicle.ownership.owner.id,
+                    "quotation_id": self.object.id,
+                },
+            )
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        context["update_customer"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:update_customer",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "customer_id": self.object.customer.id,
+                "quotation_id": self.object.id,
+            },
+        )
+        context["update"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:update",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.id,
+            },
+        )
+        context["update_vehicle"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:update_vehicle",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "vehicle_id": self.object.vehicle.id,
+                "quotation_id": self.object.id,
+            },
+        )
+        context["update_seller"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:update_seller",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.id,
+            },
         )
         context["report_xlsx"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:report_xlsx",
@@ -832,13 +1043,12 @@ class QIVPremiumsFormView(FormView):
         else:
             context["owner"] = context["vehicle"].ownership.owner
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:update",
+            "rrggweb:quotation:insurance:vehicle:update_step",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "quotation_id": self.kwargs["quotation_id"],
             },
         )
-
         # Mantener el orden: Ver ABC123
         insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by(
             "name"
@@ -865,18 +1075,11 @@ class QIVPremiumsUpdateViewSupport(
     rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
 ):
     model = rrgg.models.QuotationInsuranceVehiclePremium
-    fields = "__all__"
+    fields = ["amount"]
     pk_url_kwarg = "premium_id"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["seller"] = self.object.consultant_seller
-        context["customer"] = self.object.customer
-        context["vehicle"] = self.object.vehicle
-        return context
 
-
-class QIVPremiumsUpdateStepView(QIVPremiumsUpdateViewSupport):
+class QIVPremiumsUpdateView(QIVPremiumsUpdateViewSupport):
     template_name = "rrggweb/quotation/insurance/vehicle/update_premium.html"
 
     def get_success_url(self):
@@ -891,12 +1094,13 @@ class QIVPremiumsUpdateStepView(QIVPremiumsUpdateViewSupport):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:update",
+            "rrggweb:quotation:insurance:vehicle:detail",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "quotation_id": self.object.quotation_insurance_vehicle.id,
             },
         )
+        return context
 
 
 # QUOTATION INSURANCE VEHICLE MULTIMEDIA

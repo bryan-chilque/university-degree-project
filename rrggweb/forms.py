@@ -33,9 +33,7 @@ class LoginAuthenticationForm(forms_auth.AuthenticationForm):
 class SellerForm(forms.Form):
     sellers = forms.ModelChoiceField(
         label=_("sellers"),
-        queryset=rrgg.models.Consultant.objects.exclude(
-            role__name="Administrativos"
-        ),
+        queryset=rrgg.models.Consultant.objects.all(),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
 
@@ -58,7 +56,7 @@ class SearchVehicleForm(forms.Form):
 
 class DefineOwnerForm(forms.Form):
     is_owner = forms.BooleanField(
-        label=_("is contractor or insured?"),
+        label=_("Is the insured the same as the contracting party?"),
         widget=forms.CheckboxInput(
             attrs={"class": "form-check-input", "type": "checkbox"}
         ),
