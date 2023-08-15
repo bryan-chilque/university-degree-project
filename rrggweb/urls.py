@@ -25,9 +25,14 @@ quotation_insurance_vehicle_urlpatterns = (
             name="create_customer",
         ),
         path(
+            "update_customer/<int:customer_id>/quotation/<int:quotation_id>/",
+            views.QIVUpdateCustomerView.as_view(),
+            name="update_customer",
+        ),
+        path(
             "update_customer/<int:customer_id>/seller/<int:seller_id>/",
             views.QIVUpdateCustomerStepView.as_view(),
-            name="update_customer",
+            name="update_customer_step",
         ),
         path(
             (
@@ -46,17 +51,17 @@ quotation_insurance_vehicle_urlpatterns = (
             name="create_vehicle",
         ),
         path(
+            "update_vehicle/<int:vehicle_id>quotation/<int:quotation_id>/",
+            views.QIVUpdateVehicleView.as_view(),
+            name="update_vehicle",
+        ),
+        path(
             (
                 "update_vehicle/<int:vehicle_id>/seller/<int:seller_id>/"
                 "customer/<int:customer_id>/"
             ),
             views.QIVUpdateVehicleStepView.as_view(),
             name="update_vehicle_step",
-        ),
-        path(
-            "update_vehicle/<int:vehicle_id>quotation/<int:quotation_id>/",
-            views.QIVUpdateVehicleView.as_view(),
-            name="update_vehicle",
         ),
         path(
             (
@@ -68,11 +73,24 @@ quotation_insurance_vehicle_urlpatterns = (
         ),
         path(
             (
+                "search_owner/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.QIVSearchOwnerView.as_view(),
+            name="search_owner",
+        ),
+        path(
+            (
                 "create_owner/seller/<int:seller_id>/"
                 "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
             ),
             views.QIVCreateOwnerView.as_view(),
             name="create_owner",
+        ),
+        path(
+            "update_owner/<int:owner_id>/quotation/<int:quotation_id>/",
+            views.QIVUpdateOwnerView.as_view(),
+            name="update_owner",
         ),
         path(
             (
@@ -91,9 +109,19 @@ quotation_insurance_vehicle_urlpatterns = (
             name="create",
         ),
         path(
-            "<int:quotation_id>/update/",
-            views.QIVUpdateStepView.as_view(),
+            "update/<int:quotation_id>/",
+            views.QIVUpdateView.as_view(),
             name="update",
+        ),
+        path(
+            "update/<int:quotation_id>/premiums/",
+            views.QIVUpdateStepView.as_view(),
+            name="update_step",
+        ),
+        path(
+            "update_seller/<int:quotation_id>/",
+            views.QIVUpdateSellerView.as_view(),
+            name="update_seller",
         ),
         path(
             "detail/<int:quotation_id>/",
@@ -107,7 +135,7 @@ quotation_insurance_vehicle_urlpatterns = (
         ),
         path(
             "update_premium/<int:premium_id>/",
-            views.QIVPremiumsUpdateStepView.as_view(),
+            views.QIVPremiumsUpdateView.as_view(),
             name="update_premium",
         ),
         path(

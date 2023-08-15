@@ -16,7 +16,8 @@
     </a>
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
       <h5 class="mb-0">
-        <b>Cliente:</b> {{ customer }}
+        <b>Cliente:</b> {{ customer }} &nbsp;
+        <a href="{{ update_customer }}"><i class="fas fa-pencil-alt"></i></a>
       </h5>
       <div class="d-flex gap-2">
         <a href="{{ report_xlsx }}"
@@ -41,7 +42,8 @@
                 <strong>Monto Asegurado:</strong>
               </td>
               <td>
-                ${{ object.insured_amount }}
+                ${{ object.insured_amount }} &nbsp;
+                <a href="{{ update }}"><i class="fas fa-pencil-alt"></i></a>
               </td>
             </tr>
             <tr>
@@ -49,7 +51,8 @@
                 <strong>Vehiculo:</strong>
               </td>
               <td>
-                {{ vehicle }}
+                {{ vehicle }} &nbsp;
+                <a href="{{ update_vehicle }}"><i class="fas fa-pencil-alt"></i></a>
               </td>
             </tr>
             <tr>
@@ -57,14 +60,23 @@
                 <strong>Propietario:</strong>
               </td>
               <td>
-                {{ owner }}
+                {{ owner }} &nbsp;
+                {% if update_owner %}
+                  <a href="{{ update_owner }}">
+                    <i class="fas fa-pencil-alt"></i>
+                  </a>
+                {% endif %}
               </td>
             </tr>
             <tr>
               <td>
-                <strong>Consultor:</strong>
+                <strong>Asesor:</strong>
               </td>
-              <td>{{ seller }}</td>
+              <td>
+                {{ seller }} &nbsp;
+                <a href="{{ update_seller }}"><i class="fas fa-pencil-alt"></i></a>
+              </td>
+
             </tr>
             <tr>
               <td>
@@ -108,7 +120,7 @@
                     <th>Couta</th>
                     <th>Mes / débito auto.</th>
                     <th>Débito auto.</th>
-                    <th>Acciones</th>
+                    <th colspan="2">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -130,6 +142,11 @@
                            href="{% url 'rrggweb:issuance:insurance:vehicle:define_issuance' view.kwargs.registrar_id premium.id %}">
                           <i class="fa fa-file"></i>
                           Generar Emisión
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
+                          <i class="fas fa-pencil-alt"></i>
                         </a>
                       </td>
                     </tr>

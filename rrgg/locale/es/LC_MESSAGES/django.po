@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-12 20:37-0500\n"
+"POT-Creation-Date: 2023-08-15 15:12-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -189,20 +189,20 @@ msgstr "fecha fin de vigencia"
 msgid "comment"
 msgstr "comentario"
 
-#: .\rrgg\models.py:370
+#: .\rrgg\models.py:367
 #, fuzzy
 #| msgid "vehicle insurance"
 msgid "issuance insurance vehicle"
 msgstr "emisión de seguro vehicular"
 
-#: .\rrgg\models.py:371
+#: .\rrgg\models.py:368
 msgid "issues insurance vehicle"
 msgstr "emisiones de seguro vehicular"
 
-#: .\rrgg\models.py:375
+#: .\rrgg\models.py:372
 msgid "description"
 msgstr "descripción"
 
-#: .\rrgg\models.py:379
+#: .\rrgg\models.py:376
 msgid "commission"
 msgstr "comisión"
