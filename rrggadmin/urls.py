@@ -18,6 +18,22 @@ insurance_vehicle_menu_patterns = menu_patterns(
     ),
 )
 
+insurance_vehicle_price_urlpatterns2 = menu_patterns(
+    rrgg.models.InsuranceVehicleRatio,
+    "rrggadmin/common",
+    "ratios",
+    "rrggadmin:insurance_vehicle",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
+insurance_vehicle_ratios_urlpatterns = (
+    [path("ratios/", include(insurance_vehicle_price_urlpatterns2))],
+    "insurance_vehicle",
+)
+
 insurance_vehicle_price_urlpatterns = (
     [
         path(
@@ -42,20 +58,20 @@ insurance_vehicle_price_urlpatterns = (
     "price",
 )
 
-insurance_vehicle_urlpatterns = [
-    path("", include(insurance_vehicle_menu_patterns)),
-    path(
-        "<int:insurance_vehicle_id>/price/",
-        include(insurance_vehicle_price_urlpatterns, namespace="price"),
-    ),
-]
+insurance_vehicle_menu_patterns = (
+    [
+        *insurance_vehicle_menu_patterns[0],
+        path(
+            "<int:insurance_vehicle_id>/price/",
+            include(insurance_vehicle_price_urlpatterns),
+        ),
+    ],
+    insurance_vehicle_menu_patterns[1],
+)
 
 insurance_urlpatterns = (
     [
-        path(
-            "vehicle/",
-            include(insurance_vehicle_urlpatterns),
-        ),
+        path("vehicle/", include(insurance_vehicle_menu_patterns)),
     ],
     "insurance",
 )
@@ -117,4 +133,5 @@ urlpatterns = [
     path("use_type/", include(use_type_urlpatterns)),
     path("user/", include(user_urlpatterns)),
     path("consultant_membership/", include(consultant_membership_urlpatterns)),
+    path("insurance_vehicle/", include(insurance_vehicle_ratios_urlpatterns)),
 ]

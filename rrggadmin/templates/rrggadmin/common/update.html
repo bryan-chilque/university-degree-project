@@ -1,4 +1,12 @@
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
 <a href="{% url 'rrggadmin:home' %}">🏠</a>
 <a href="{% url menu.list_name %}">🔙</a>
 <h2>Actualizar datos</h2>
 {% include "rrggadmin/common/form.html" %}
+{% endblock %}

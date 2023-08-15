@@ -6,7 +6,7 @@
 
 {% block container %}
     <a href="{% url 'rrggadmin:home' %}">🏠</a>
-    <a href="{% url 'rrggadmin:insurance:price:list' view.kwargs.insurance_vehicle_id %}">🔙</a>
+    <a href="{% url 'rrggadmin:insurance:vehicle:price:list' view.kwargs.insurance_vehicle_id %}">🔙</a>
 
     <table class="table">
         <tbody>
@@ -25,5 +25,5 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{% url 'rrggadmin:insurance:price:update' view.kwargs.insurance_vehicle_id object.pk %}">Actualizar</a>
+    <a class="btn btn-primary" href="{% url 'rrggadmin:insurance:vehicle:price:update' view.kwargs.insurance_vehicle_id object.pk %}">Actualizar</a>
 {% endblock %}
