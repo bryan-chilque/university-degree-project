@@ -4,6 +4,67 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
+class Role(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+
+    class Meta:
+        verbose_name = _("role")
+        verbose_name_plural = _("roles")
+
+    def __str__(self):
+        return self.name
+
+
+class Consultant(models.Model):
+    given_name = models.CharField(_("given name"), max_length=64)
+    first_surname = models.CharField(_("first surname"), max_length=64)
+    second_surname = models.CharField(
+        _("second surname"), max_length=64, blank=True
+    )
+    role = models.ForeignKey(
+        Role,
+        related_name="consultant",
+        verbose_name=_("role"),
+        on_delete=models.PROTECT,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = _("consultant")
+        verbose_name_plural = _("consultants")
+
+    def __str__(self):
+        return f"{self.given_name} {self.first_surname}"
+
+
+class Area(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+    consultant = models.ManyToManyField(
+        Consultant, related_name="area", verbose_name=_("consultant")
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("area")
+        verbose_name_plural = _("areas")
+
+
+class ConsultantMembership(models.Model):
+    consultant = models.ForeignKey(
+        Consultant, on_delete=models.PROTECT, related_name="membership"
+    )
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.PROTECT,
+        related_name="consultant_membership",
+    )
+
+    def __str__(self):
+        return f"consultant={self.consultant}, user={self.user}"
+
+
 class Customer(models.Model):
     given_name = models.CharField(_("given name"), max_length=64)
     first_surname = models.CharField(_("first surname"), max_length=64)
@@ -30,28 +91,6 @@ class Owner(models.Model):
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
-
-
-class VehicleOwnerShip(models.Model):
-    customer = models.ForeignKey(
-        Customer, null=True, related_name="ownership", on_delete=models.PROTECT
-    )
-    owner = models.ForeignKey(
-        Owner, null=True, related_name="ownership", on_delete=models.PROTECT
-    )
-
-    @property
-    def pick(self):
-        return self.customer or self.owner
-
-    @property
-    def save(self, *args, **kwargs):
-        if self.customer and self.owner:
-            raise ValueError(
-                "El dueño del vehículo no puede ser cliente y propietario al"
-                " mismo tiempo."
-            )
-        super(VehicleOwnerShip, self).save(*args, **kwargs)
 
 
 class UseType(models.Model):
@@ -83,13 +122,6 @@ class Vehicle(models.Model):
         on_delete=models.PROTECT,
         null=True,
     )
-    owner_ship = models.ForeignKey(
-        VehicleOwnerShip,
-        related_name="vehicle",
-        verbose_name=_("owner ship"),
-        on_delete=models.PROTECT,
-        null=True,
-    )
 
     class Meta:
         verbose_name = _("vehicle")
@@ -99,36 +131,32 @@ class Vehicle(models.Model):
         return f"{self.brand} {self.vehicle_model} {self.plate}"
 
 
-class Consultant(models.Model):
-    given_name = models.CharField(_("given name"), max_length=64)
-    first_surname = models.CharField(_("first surname"), max_length=64)
-    second_surname = models.CharField(
-        _("second surname"), max_length=64, blank=True
+class VehicleOwnerShip(models.Model):
+    customer = models.ForeignKey(
+        Customer, null=True, related_name="ownership", on_delete=models.PROTECT
     )
-    document_number = models.CharField(
-        _("document number"), max_length=32, unique=True
+    owner = models.ForeignKey(
+        Owner, null=True, related_name="ownership", on_delete=models.PROTECT
     )
-
-    class Meta:
-        verbose_name = _("consultant")
-        verbose_name_plural = _("consultants")
-
-    def __str__(self):
-        return f"{self.given_name} {self.first_surname}"
-
-
-class ConsultantMembership(models.Model):
-    consultant = models.ForeignKey(
-        Consultant, on_delete=models.PROTECT, related_name="membership"
-    )
-    user = models.ForeignKey(
-        get_user_model(),
+    vehicle = models.OneToOneField(
+        Vehicle,
+        related_name="ownership",
+        verbose_name=_("vehicle"),
         on_delete=models.PROTECT,
-        related_name="consultant_membership",
+        null=True,
     )
 
-    def __str__(self):
-        return f"consultant={self.consultant}, user={self.user}"
+    @property
+    def pick(self):
+        return self.customer or self.owner
+
+    def save(self, *args, **kwargs):
+        if self.customer and self.owner:
+            raise ValueError(
+                "El dueño del vehículo no puede ser cliente y propietario al"
+                " mismo tiempo."
+            )
+        super().save(*args, **kwargs)
 
 
 class QuotationInsuranceVehicle(models.Model):
@@ -141,11 +169,19 @@ class QuotationInsuranceVehicle(models.Model):
         verbose_name=_("vehicle"),
         on_delete=models.PROTECT,
     )
-    consultant = models.ForeignKey(
+    consultant_registrar = models.ForeignKey(
         Consultant,
-        related_name="quotation_insurance_vehicles",
-        verbose_name=_("consultant"),
+        related_name="quotation_insurance_vehicles_registered",
+        verbose_name=_("registrar"),
         on_delete=models.PROTECT,
+        null=True,
+    )
+    consultant_seller = models.ForeignKey(
+        Consultant,
+        related_name="quotation_insurance_vehicles_sold",
+        verbose_name=_("seller"),
+        on_delete=models.PROTECT,
+        null=True,
     )
     customer = models.ForeignKey(
         Customer,
@@ -280,20 +316,39 @@ class QuotationInsuranceVehiclePremium(models.Model):
         )
 
 
+class IssuanceInsuranceStatus(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("issuance insurance status")
+        verbose_name_plural = _("issuance insurance status")
+
+
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
-    policy = models.CharField(_("policy_number"), max_length=64)
-    # documento de cobranza
-    collection_document = models.CharField(
-        _("collection_document"), max_length=64
+    number_registry = models.CharField(
+        _("number registry"), max_length=64, null=True
     )
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"), null=True)
-    # fecha de vigencia final
-    initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia inicio
-    final_validity = models.DateTimeField(_("final_validity"))
+    initial_validity = models.DateTimeField(_("initial_validity"), null=True)
+    # fecha de vigencia final
+    final_validity = models.DateTimeField(_("final_validity"), null=True)
+
+    comment = models.TextField(_("comment"), null=True)
+
+    # estado
+    status = models.ForeignKey(
+        IssuanceInsuranceStatus,
+        related_name="issuances",
+        on_delete=models.PROTECT,
+        null=True,
+    )
 
     quotation_vehicle_premium = models.ForeignKey(
         QuotationInsuranceVehiclePremium,
@@ -302,6 +357,23 @@ class IssuanceInsuranceVehicle(models.Model):
     )
 
     created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _("issuance insurance vehicle")
+        verbose_name_plural = _("issues insurance vehicle")
+
+
+class IssuanceInsuranceVehiclePolicy(IssuanceInsuranceVehicle):
+    description = models.CharField(_("description"), max_length=64, null=True)
+
+
+class IssuanceInsuranceVehicleEndorsement(IssuanceInsuranceVehicle):
+    commission = models.PositiveIntegerField(_("commission"), null=True)
 
 
 class IssuanceInsuranceVehicleDocument(models.Model):

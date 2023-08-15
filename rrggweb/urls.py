@@ -5,98 +5,119 @@ from . import views
 quotation_insurance_vehicle_urlpatterns = (
     [
         path(
-            "search_customer/",
-            views.QuotationInsuranceVehicleSearchCustomerView.as_view(),
+            "list/",
+            views.QIVListView.as_view(),
+            name="list",
+        ),
+        path(
+            "select_seller/",
+            views.QIVSelectSellerFormView.as_view(),
+            name="select_seller",
+        ),
+        path(
+            "search_customer/seller/<int:seller_id>/",
+            views.QIVSearchCustomerView.as_view(),
             name="search_customer",
         ),
         path(
-            "create_customer/",
-            views.QuotationInsuranceVehicleCreateCustomerView.as_view(),
+            "create_customer/seller/<int:seller_id>/",
+            views.QIVehicleCreateCustomerView.as_view(),
             name="create_customer",
         ),
         path(
-            (
-                "update_customer/<int:customer_id>/from/"
-                "<str:origin>/<int:origin_id>/"
-            ),
-            views.QuotationInsuranceVehicleUpdateCustomerView.as_view(),
+            "update_customer/<int:customer_id>/seller/<int:seller_id>/",
+            views.QIVUpdateCustomerStepView.as_view(),
             name="update_customer",
         ),
         path(
-            "search_vehicle/customer/<int:customer_id>/",
-            views.QuotationInsuranceVehicleSearchVehicleView.as_view(),
+            (
+                "search_vehicle/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
+            views.QIVSearchVehicleView.as_view(),
             name="search_vehicle",
         ),
         path(
-            "create_vehicle/customer/<int:customer_id>/",
-            views.QuotationInsuranceVehicleCreateVehicleView.as_view(),
+            (
+                "create_vehicle/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
+            views.QIVCreateVehicleView.as_view(),
             name="create_vehicle",
         ),
         path(
             (
-                "update_vehicle/<int:vehicle_id>/customer/"
-                "<int:customer_id>/from/<str:origin>/<int:origin_id>/"
+                "update_vehicle/<int:vehicle_id>/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
             ),
-            views.QuotationInsuranceVehicleUpdateVehicleView.as_view(),
+            views.QIVUpdateVehicleStepView.as_view(),
+            name="update_vehicle_step",
+        ),
+        path(
+            "update_vehicle/<int:vehicle_id>quotation/<int:quotation_id>/",
+            views.QIVUpdateVehicleView.as_view(),
             name="update_vehicle",
         ),
         path(
             (
-                "define_owner/customer/<int:customer_id>/"
-                "vehicle/<int:vehicle_id>/"
+                "define_owner/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
             ),
-            views.QuotationInsuranceVehicleDefineOwnerView.as_view(),
+            views.QIVDefineOwnerView.as_view(),
             name="define_owner",
         ),
         path(
             (
-                "create_owner/customer/<int:customer_id>/"
-                "vehicle/<int:vehicle_id>/"
+                "create_owner/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
             ),
-            views.QuotationInsuranceVehicleCreateOwnerView.as_view(),
+            views.QIVCreateOwnerView.as_view(),
             name="create_owner",
         ),
         path(
-            "create/customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
-            views.QuotationInsuranceVehicleCreateView.as_view(),
+            (
+                "update_owner/<int:owner_id>/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.QIVUpdateOwnerStepView.as_view(),
+            name="update_owner_step",
+        ),
+        path(
+            (
+                "create/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.QIVCreateView.as_view(),
             name="create",
         ),
         path(
-            "<int:quotation_id>/update/from/<str:origin>/<int:origin_id>/",
-            views.QuotationInsuranceVehicleUpdateView.as_view(),
+            "<int:quotation_id>/update/",
+            views.QIVUpdateStepView.as_view(),
             name="update",
         ),
         path(
-            "list/",
-            views.QuotationInsuranceVehicleListView.as_view(),
-            name="list",
-        ),
-        path(
             "detail/<int:quotation_id>/",
-            views.QuotationInsuranceVehicleDetailView.as_view(),
+            views.QIVDetailView.as_view(),
             name="detail",
         ),
         path(
             "create_premiums/quotation/<int:quotation_id>",
-            views.QuotationInsuranceVehiclePremiumsFormView.as_view(),
+            views.QIVPremiumsFormView.as_view(),
             name="create_premiums",
         ),
         path(
-            (
-                "update_premium/<int:premium_id>/"
-                "from/<str:origin>/<int:origin_id>/"
-            ),
-            views.QuotationInsuranceVehiclePremiumsUpdateView.as_view(),
+            "update_premium/<int:premium_id>/",
+            views.QIVPremiumsUpdateStepView.as_view(),
             name="update_premium",
         ),
         path(
             "report/xlsx/<int:quotation_id>/",
-            views.QuotationInsuranceVehicleReportXlsxView.as_view(),
+            views.QIVReportXlsxView.as_view(),
             name="report_xlsx",
         ),
         path(
             "report/pdf/<int:quotation_id>/",
-            views.QuotationInsuranceVehicleReportPdfView.as_view(),
+            views.QIVReportPdfView.as_view(),
             name="report_pdf",
         ),
     ],
@@ -123,13 +144,23 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             "list_quotations/",
-            views.QuotationInsuranceVehicleListView.as_view(),
+            views.QIVListView.as_view(),
             name="list_quotations",
         ),
         path(
-            "quotation_premium/<int:quotation_premium_id>/create_issuance/",
-            views.IssuanceInsuranceVehicleCreateIssuanceView.as_view(),
-            name="create_issuance",
+            "define_issuance/quotation_premium/<int:quotation_premium_id>/",
+            views.IIVTypeFormView.as_view(),
+            name="define_issuance",
+        ),
+        path(
+            "create_policy/quotation_premium/<int:quotation_premium_id>/",
+            views.IIVCreatePolicyView.as_view(),
+            name="create_policy",
+        ),
+        path(
+            "create_endorsement/quotation_premium/<int:quotation_premium_id>/",
+            views.IIVCreateEndorsementView.as_view(),
+            name="create_endorsement",
         ),
         path(
             "detail/<int:issuance_id>/",
@@ -140,6 +171,11 @@ issuance_insurance_vehicle_urlpatterns = (
             "update/<int:issuance_id>/",
             views.IssuanceInsuranceVehicleUpdateIssuanceView.as_view(),
             name="update",
+        ),
+        path(
+            "update_status/<int:issuance_id>/",
+            views.IIVUpdateStatusFormView.as_view(),
+            name="update_status",
         ),
         path(
             "create_document/<int:issuance_id>/",
@@ -203,22 +239,22 @@ urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path(
-        "<int:consultant_id>/quotation/",
+        "<int:registrar_id>/quotation/",
         views.QuotationView.as_view(),
         name="quotation",
     ),
     path(
-        "<int:consultant_id>/issuance/",
+        "<int:registrar_id>/issuance/",
         views.IssuanceView.as_view(),
         name="issuance",
     ),
     path(
-        "<int:consultant_id>/collection/",
+        "<int:registrar_id>/collection/",
         views.CollectionView.as_view(),
         name="collection",
     ),
-    path("<int:consultant_id>/home/", views.HomeView.as_view(), name="home"),
-    path("<int:consultant_id>/quotation/", include(quotation_urlpatterns)),
-    path("<int:consultant_id>/issuance/", include(issuance_urlpatterns)),
-    path("<int:consultant_id>/collection/", include(collection_urlpatterns)),
+    path("<int:registrar_id>/home/", views.HomeView.as_view(), name="home"),
+    path("<int:registrar_id>/quotation/", include(quotation_urlpatterns)),
+    path("<int:registrar_id>/issuance/", include(issuance_urlpatterns)),
+    path("<int:registrar_id>/collection/", include(collection_urlpatterns)),
 ]

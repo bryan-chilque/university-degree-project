@@ -17,7 +17,7 @@
               {{ form }}
               <div class="d-flex justify-content-between">
                 <input type="submit" value="Confirmar" class="btn btn-danger">
-                <a href="{% url 'rrggweb:issuance:insurance:vehicle:create_document' view.kwargs.consultant_id view.kwargs.issuance_id %}"
+                <a href="{% url 'rrggweb:issuance:insurance:vehicle:create_document' view.kwargs.registrar_id view.kwargs.issuance_id %}"
                    class="btn btn-secondary">Cancelar</a>
               </div>
             </form>

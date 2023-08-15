@@ -1,0 +1,151 @@
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% block title_section %}
+  Editar Emisión Vehícular
+{% endblock title_section %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% include "rrggweb/utils/stepper.html" with step=2 max_step=3 %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.registrar_id %} ">
+        <i class="fas fa-long-arrow-alt-left"></i>
+        Volver
+      </a>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">Datos del contratante</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Tipo de documento</td>
+                <td>DNI</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Número de documento</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.customer.document_number }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Nombres y apellidos</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.customer }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">Datos del vendedor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Tipo de documento</td>
+                <td>DNI</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Número de documento</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.consultant.document_number }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Nombres y apellidos</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.consultant }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">Datos del vehículo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Placa</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.plate }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Marca</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.brand }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Modelo</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.vehicle_model }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Año de fabricación</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.fabrication_year }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Motor</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.engine }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Chasis</td>
+                <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.chassis }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">Datos de la cotización</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Suma asegurada</td>
+                <td>${{ object.quotation_vehicle_premium.quotation_insurance_vehicle.insured_amount }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Aseguradora</td>
+                <td>{{ object.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Prima neta</td>
+                <td>${{ object.quotation_vehicle_premium.amount }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Derecho de emisión</td>
+                <td>${{ object.quotation_vehicle_premium.emission_right }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">IGV</td>
+                <td>${{ object.quotation_vehicle_premium.tax }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Tasa</td>
+                <td>${{ object.quotation_vehicle_premium.rate }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Prima total</td>
+                <td>${{ object.quotation_vehicle_premium.total }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

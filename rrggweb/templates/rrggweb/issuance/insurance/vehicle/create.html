@@ -1,0 +1,161 @@
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% block title_section %}
+  Crear Emisión Vehícular
+{% endblock title_section %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% include "rrggweb/utils/stepper.html" with step=2 max_step=3 %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.registrar_id quotation_premium.quotation_insurance_vehicle.id %}">
+        <i class="fas fa-long-arrow-alt-left"></i>
+        Volver
+      </a>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">
+                  Datos del contratante
+                  <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.customer.id 'issuance_create' quotation_premium.id %}"
+                     class="btn-link">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Tipo de documento</td>
+                <td>DNI</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Número de documento</td>
+                <td>{{ quotation_premium.quotation_insurance_vehicle.customer.document_number }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Nombres y apellidos</td>
+                <td>{{ quotation_premium.quotation_insurance_vehicle.customer }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">Datos del vendedor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Tipo de documento</td>
+                <td>DNI</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Número de documento</td>
+                <td>{{ quotation_premium.quotation_insurance_vehicle.consultant.document_number }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Nombres y apellidos</td>
+                <td>{{ quotation_premium.quotation_insurance_vehicle.consultant }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">Datos del vehículo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Placa</td>
+                <td>{{ quotation_premium.quotation_insurance_vehicle.vehicle.plate }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Marca</td>
+                <td>{{ quotation_premium.quotation_insurance_vehicle.vehicle.brand }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Modelo</td>
+                <td>{{ quotation_premium.quotation_insurance_vehicle.vehicle.vehicle_model }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">Datos de la cotización</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Suma asegurada</td>
+                <td>
+                  ${{ quotation_premium.quotation_insurance_vehicle.insured_amount }}
+                  <a href="{% url 'rrggweb:quotation:insurance:vehicle:update' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.id 'issuance_create' quotation_premium.id %}"
+                     class="btn-link">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Aseguradora</td>
+                <td>{{ quotation_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Prima neta</td>
+                <td>
+                  ${{ quotation_premium.amount }}
+                  <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.id 'issuance_create' 0 %}"
+                     class="btn-link">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Derecho de emisión</td>
+                <td>${{ quotation_premium.emission_right }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">IGV</td>
+                <td>${{ quotation_premium.tax }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Tasa</td>
+                <td>${{ quotation_premium.rate }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Prima total</td>
+                <td>${{ quotation_premium.total }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <form method="post">
+        {% csrf_token %}
+        {% if messages %}
+          <ul class="messages list-unstyled">
+            {% for message in messages %}
+              <alert class="alert alert-{{ message.tags }} alert-dismissible fade show d-flex gap-2 w-25" role="alert">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              {{ message }}
+              </alert>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {{ form }}
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

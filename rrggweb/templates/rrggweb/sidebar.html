@@ -1,100 +1,92 @@
-<aside class="flex-shrink-0 p-3 bg-white shadow position-fixed overflow-y-auto vh-100 rrggweb-sidebar">
-  <div class="d-flex align-items-center pb-2 mb-3 gap-2 link-dark text-decoration-none border-bottom">
-    <i class="bi bi-person-circle fs-1"></i>
-    {% with view.request.user.consultant_membership.first.consultant as consultant %}
-      <strong>{{ consultant.given_name }} {{ consultant.first_surname }}</strong>
-    {% endwith %}
+<div class="vertical-menu">
+  <div data-simplebar="init" class="h-100">
+    <div class="simplebar-wrapper" style="margin: 0px">
+      <div class="simplebar-height-auto-observer-wrapper">
+        <div class="simplebar-height-auto-observer"></div>
+      </div>
+      <div class="simplebar-mask">
+        <div class="simplebar-offset" style="right: -15px; bottom: 0px">
+          <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll">
+            <div class="simplebar-content" style="padding: 0px">
+              <div id="sidebar-menu">
+                <ul class="metismenu list-unstyled" id="side-menu">
+                  <li class="menu-title">Inicio</li>
+
+                  <li>
+                    <a href="{% url 'rrggweb:home' view.kwargs.registrar_id %}" class="waves-effect">
+                      <i class="ti-home"></i>
+                      <span>Dashboard</span>
+                    </a>
+                  </li>
+
+                  <li class="menu-title">Gestión de cotizaciones</li>
+
+                  <li>
+                    <a class="has-arrow waves-effect">
+                      <i class="ti-package"></i>
+                      <span>Cotización</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                      <li>
+                        <a href="{% url 'rrggweb:quotation' view.kwargs.registrar_id %}">Lista de cotizaciones</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.registrar_id %}">Cotización Vehicular</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="menu-title">Gestión de Emisiones</li>
+
+                  <li>
+                    <a class="has-arrow waves-effect">
+                      <i class="fas fa-file-invoice-dollar"></i>
+                      <span>Emisiones</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                      <li>
+                        <a href="{% url 'rrggweb:issuance' view.kwargs.registrar_id %}">Lista de emisiones</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.registrar_id %}">Emisión Vehicular</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="menu-title">Gestión de Cobranzas</li>
+
+                  <li>
+                    <a class="has-arrow waves-effect">
+                      <i class="fas fa-dolly"></i>
+                      <span>Cobranzas</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                      <li>
+                        <a href="{% url 'rrggweb:collection' view.kwargs.registrar_id %}">Lista de cobranzas</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'rrggweb:collection:insurance:vehicle:list' view.kwargs.registrar_id %}">Cobranza vehicular</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="simplebar-placeholder" style="width: auto; height: 1096px"></div>
+    </div>
+    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden">
+      <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none"></div>
+    </div>
+    <div class="simplebar-track simplebar-vertical" style="visibility: visible">
+      <div class="simplebar-scrollbar" style="
+          height: 721px;
+          transform: translate3d(0px, 0px, 0px);
+          display: block;
+        "></div>
+    </div>
   </div>
-  <div class="input-group mb-3">
-    <span class="input-group-text"><i class="bi bi-search"></i></span>
-    <input type="text"
-           class="form-control"
-           placeholder="Buscar"
-           aria-label="Search"
-           aria-describedby="basic-addon1">
-  </div>
-  <ul class="list-unstyled ps-0">
-    <li class="mb-1">
-      <a href="{% url 'rrggweb:home' view.kwargs.consultant_id %}"
-         class="btn btn-solo align-items-center rounded collapsed d-flex gap-2">
-        <i class="bi bi-house"></i>Inicio
-      </a>
-    </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2"
-              data-bs-toggle="collapse"
-              data-bs-target="#quote"
-              aria-expanded="false">
-        <i class="bi bi-file-post"></i> Gestión de Cotizaciones
-      </button>
-      <div class="collapse" id="quote">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li>
-            <a href="{% url 'rrggweb:quotation' view.kwargs.consultant_id %}"
-               class="link-dark rounded">Lista de Cotizaciones</a>
-          </li>
-          <li>
-            <a href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.consultant_id %}"
-               class="link-dark rounded">Cotización de vehículos</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2"
-              data-bs-toggle="collapse"
-              data-bs-target="#emission"
-              aria-expanded="false">
-        <i class="bi bi-file-earmark-text"></i> Gestión de Emisiones
-      </button>
-      <div class="collapse" id="emission">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li>
-            <a href="{% url 'rrggweb:issuance' view.kwargs.consultant_id %}"
-               class="link-dark rounded">Lista de Emisiones</a>
-          </li>
-          <li>
-            <a href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.consultant_id %}"
-               class="link-dark rounded">Emisiones de vehículos</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2"
-              data-bs-toggle="collapse"
-              data-bs-target="#collection"
-              aria-expanded="false">
-        <i class="bi bi-cash-stack"></i> Gestión de Cobranzas
-      </button>
-      <div class="collapse" id="collection">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li>
-            <a href="{% url 'rrggweb:collection' view.kwargs.consultant_id %}"
-               class="link-dark rounded">Lista de Cobranzas</a>
-          </li>
-          <li>
-            <a href="{% url 'rrggweb:collection:insurance:vehicle:list' view.kwargs.consultant_id %}"
-               class="link-dark rounded">Cobranza de vehículos</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="border-top my-3"></li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed d-flex gap-2"
-              data-bs-toggle="collapse"
-              data-bs-target="#account-collapse"
-              aria-expanded="false">
-        <i class="bi bi-person"></i> Cuenta
-      </button>
-      <div class="collapse" id="account-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li>
-            <a class="link-dark rounded" href="{% url 'rrggweb:logout' %}">Cerrar Sesión</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-</aside>
+</div>

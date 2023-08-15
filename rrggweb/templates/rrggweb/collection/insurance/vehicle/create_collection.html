@@ -4,7 +4,7 @@
 <div class="row mb-3">
   <div class="col-6">
     <a
-    href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.consultant_id view.kwargs.issuance_id %}"
+    href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.registrar_id view.kwargs.issuance_id %}"
     class="btn btn-outline-secondary">
       <i class="fas fa-arrow-left"></i> Volver
     </a>
@@ -19,8 +19,8 @@
       </div>
       <div class="card-body">
         <p class="card-text">Tipo de documento: DNI</p>
-        <p class="card-text">Número de documento: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.customer.document_number }}</p>
-        <p class="card-text">Nombres y apellidos: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.customer }}</p>
+        <p class="card-text">Número de documento: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer.document_number }}</p>
+        <p class="card-text">Nombres y apellidos: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</p>
       </div>
     </div>
   </div>

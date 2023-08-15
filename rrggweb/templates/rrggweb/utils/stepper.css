@@ -11,7 +11,7 @@
   position: relative;
   flex: 1;
   text-align: center;
-  color: #2f7cff;
+  color: var(--bs-blue);
   list-style: none;
   font-size: 16px;
   font-weight: 600;
@@ -24,20 +24,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #2f7cff;
+  border: 2px solid var(--bs-blue);
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   background-color: white;
   margin: 0 auto;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   position: relative;
 }
 
 #rrggweb-stepper > li.active > span {
-  background-color: #2f7cff;
+  background-color: var(--bs-blue);
   color: #fff;
 }
 
@@ -50,10 +50,10 @@
 #rrggweb-stepper > li:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 100%;
   transform: translate(-50%, -50%);
-  width: 20px;
+  width: 90px;
   height: 2px;
   background-color: #ccc;
   z-index: -1;
@@ -78,7 +78,7 @@
 }
 
 #rrggweb-stepper > li.active em {
-  color: #2f7cff;
+  color: var(--bs-blue);
 }
 
 #rrggweb-stepper > li.completed > span::before {
@@ -88,5 +88,37 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 24px;
-  color: #2f7cff;
+  color: var(--bs-blue);
+}
+
+@media (max-width: 767px) {
+  #rrggweb-stepper {
+    margin-bottom: 30px;
+  }
+
+  #rrggweb-stepper > li {
+    font-size: 14px;
+    margin: 0 5px;
+  }
+
+  #rrggweb-stepper > li > span {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  #rrggweb-stepper > li:not(:last-child)::after {
+    width: 70px;
+    height: 2px;
+    clip-path: none;
+  }
+
+  #rrggweb-stepper > li em {
+    font-size: 10px;
+    margin-top: 3px;
+  }
+
+  #rrggweb-stepper > li.completed > span::before {
+    font-size: 20px;
+  }
 }

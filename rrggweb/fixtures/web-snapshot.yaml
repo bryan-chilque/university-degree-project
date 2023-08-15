@@ -1,3 +1,109 @@
+- model: rrgg.role
+  pk: 1
+  fields:
+    name: Administrativos
+- model: rrgg.role
+  pk: 2
+  fields:
+    name: Productor
+- model: rrgg.role
+  pk: 3
+  fields:
+    name: Vendedora rrgg
+- model: rrgg.role
+  pk: 4
+  fields:
+    name: Vendedor WS
+- model: rrgg.consultant
+  pk: 1
+  fields:
+    given_name: Katherine
+    first_surname: 'Zapata'
+    role: 1
+- model: rrgg.consultant
+  pk: 2
+  fields:
+    given_name: Gloria
+    first_surname: 'Aliaga'
+    role: 2
+- model: rrgg.consultant
+  pk: 3
+  fields:
+    given_name: Bryan
+    first_surname: Chilque
+    role: 1
+- model: rrgg.area
+  pk: 1
+  fields:
+    name: Cotización
+    consultant:
+    - 1
+    - 2
+    - 3
+- model: rrgg.area
+  pk: 2
+  fields:
+    name: Emisión
+    consultant:
+    - 1
+    - 3
+- model: rrgg.area
+  pk: 3
+  fields:
+    name: Cobranzas
+    consultant:
+    - 1
+    - 3
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$600000$5BqAtvC8wS6bbMlWHDW5vy$2r5WWwpkLuVzBFvn46N08l3KWHjrkGE4hsnQwZANlEs=
+    last_login: 2023-07-15 16:18:15.819806+00:00
+    is_superuser: false
+    username: admin
+    first_name: ''
+    last_name: ''
+    email: admin@rrgg.com
+    is_staff: false
+    is_active: true
+    date_joined: 2023-07-14 16:52:43.593890+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: Katherine
+    last_login: null
+    is_superuser: false
+    username: Katherine
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2023-07-15 16:26:35.179061+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$600000$D1ooclEBbVKqGEvBwDaxnV$zvuPwmGGpPyT0i08p1Zyt5j5gF1nWTWk/sxvjYo178w=
+    last_login: 2023-07-15 17:18:43.448020+00:00
+    is_superuser: false
+    username: bryan
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2023-07-15 16:29:31.678998+00:00
+    groups: []
+    user_permissions: []
+- model: rrgg.consultantmembership
+  pk: 1
+  fields:
+    consultant: 3
+    user: 3
 - model: rrgg.usetype
   pk: 1
   fields:
@@ -44,14 +150,6 @@
     first_surname: Llanos
     second_surname: Colchado
     document_number: '12345678'
-- model: rrgg.vehicleownership
-  pk: 1
-  fields:
-    customer: 1
-- model: rrgg.vehicleownership
-  pk: 2
-  fields:
-    customer: 2
 - model: rrgg.vehicle
   pk: 1
   fields:
@@ -66,7 +164,6 @@
     has_endorsee: false
     endorsee_bank: ''
     use_type: 1
-    owner_ship: 1
 - model: rrgg.vehicle
   pk: 2
   fields:
@@ -81,19 +178,16 @@
     has_endorsee: false
     endorsee_bank: ''
     use_type: 3
-    owner_ship: 2
-- model: rrgg.consultant
+- model: rrgg.vehicleownership
   pk: 1
   fields:
-    given_name: Bryan
-    first_surname: Chilque
-    second_surname: ''
-    document_number: '12345678'
-- model: rrgg.consultantmembership
-  pk: 1
+    customer: 1
+    vehicle: 1
+- model: rrgg.vehicleownership
+  pk: 2
   fields:
-    consultant: 1
-    user: 3
+    customer: 2
+    vehicle: 2
 - model: rrgg.insurancevehicle
   pk: 1
   fields:
@@ -159,57 +253,13 @@
     direct_debit: 12
     created: 2023-07-21 19:39:15.639471+00:00
     insurance_vehicle: 5
-- model: auth.user
-  pk: 1
-  fields:
-    password: pbkdf2_sha256$600000$5BqAtvC8wS6bbMlWHDW5vy$2r5WWwpkLuVzBFvn46N08l3KWHjrkGE4hsnQwZANlEs=
-    last_login: 2023-07-15 16:18:15.819806+00:00
-    is_superuser: false
-    username: admin
-    first_name: ''
-    last_name: ''
-    email: admin@rrgg.com
-    is_staff: false
-    is_active: true
-    date_joined: 2023-07-14 16:52:43.593890+00:00
-    groups: []
-    user_permissions: []
-- model: auth.user
-  pk: 2
-  fields:
-    password: miguel
-    last_login: null
-    is_superuser: false
-    username: miguel
-    first_name: ''
-    last_name: ''
-    email: ''
-    is_staff: false
-    is_active: true
-    date_joined: 2023-07-15 16:26:35.179061+00:00
-    groups: []
-    user_permissions: []
-- model: auth.user
-  pk: 3
-  fields:
-    password: pbkdf2_sha256$600000$D1ooclEBbVKqGEvBwDaxnV$zvuPwmGGpPyT0i08p1Zyt5j5gF1nWTWk/sxvjYo178w=
-    last_login: 2023-07-15 17:18:43.448020+00:00
-    is_superuser: false
-    username: bryan
-    first_name: ''
-    last_name: ''
-    email: ''
-    is_staff: false
-    is_active: true
-    date_joined: 2023-07-15 16:29:31.678998+00:00
-    groups: []
-    user_permissions: []
 - model: rrgg.quotationinsurancevehicle
   pk: 1
   fields:
     insured_amount: 3000
     vehicle: 1
-    consultant: 1
+    consultant_registrar: 3
+    consultant_seller: 2
     customer: 1
     created: 2023-07-12 07:15:35.485352+00:00
 - model: rrgg.quotationinsurancevehicle
@@ -217,7 +267,8 @@
   fields:
     insured_amount: 2000
     vehicle: 2
-    consultant: 1
+    consultant_registrar: 1
+    consultant_seller: 2
     customer: 2
     created: 2023-07-31 06:08:11.485352+00:00
 - model: rrgg.quotationinsurancevehiclepremium
@@ -262,16 +313,41 @@
     insurance_vehicle_ratio: 5
     quotation_insurance_vehicle: 2
     created: 2023-07-31 06:08:35.944033+00:00
+- model: rrgg.IssuanceInsuranceStatus
+  pk: 1
+  fields:
+    name: 'Vigente'
+- model: rrgg.issuanceinsurancestatus
+  pk: 2
+  fields:
+    name: 'Anulado por falta de pago'
+- model: rrgg.issuanceinsurancestatus
+  pk: 3
+  fields:
+    name: 'Anulado por desistimiento del cliente'
+- model: rrgg.issuanceinsurancestatus
+  pk: 4
+  fields:
+    name: 'Anulado por cambio de aseguradora'
+- model: rrgg.issuanceinsurancestatus
+  pk: 5
+  fields:
+    name: 'Anulado por cambio de bróker'
 - model: rrgg.issuanceinsurancevehicle
   pk: 1
   fields:
-    policy: '14514'
-    collection_document: A415
+    number_registry: '123456789'
     issuance_date: 2023-07-23 00:00:00+00:00
     initial_validity: 2023-07-25 00:00:00+00:00
-    final_validity: 2023-08-31 00:00:00+00:00
+    final_validity: 2024-07-24 00:00:00+00:00
+    status: 1
     quotation_vehicle_premium: 2
     created: 2023-07-31 07:24:08.278816+00:00
+- model: rrgg.issuanceinsurancevehicleendorsement
+  pk: 1
+  fields:
+    commission: 300
+    quotation_vehicle_premium: 2
 - model: rrgg.collectioninsurancevehicle
   pk: 1
   fields:

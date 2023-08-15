@@ -4,12 +4,24 @@
   Actualizar Vehiculo
 {% endblock title_section %}
 {% block content %}
-  {% include "rrggweb/utils/stepper.html" with step=2 max_step=5 %}
-  <form method="post">
-    {% csrf_token %}
-    <table>
-      {{ form }}
-    </table>
-    <input class="btn btn-primary" type="submit" />
-  </form>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% include "rrggweb/utils/stepper.html" with step=2 max_step=5 %}
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+             href="{{ previous_page }}">
+            <i class="fas fa-long-arrow-alt-left"></i>Volver
+          </a>
+          <form method="post">
+            {% csrf_token %}
+            <table>
+              {{ form }}
+            </table>
+            <input class="btn btn-primary" type="submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}

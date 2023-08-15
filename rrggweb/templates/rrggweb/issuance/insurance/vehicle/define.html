@@ -1,0 +1,20 @@
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% block title_section %}
+  Elegir Tipo de Emisión Vehícular
+{% endblock title_section %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% include "rrggweb/utils/stepper.html" with step=1 max_step=3 %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.registrar_id %}">
+        <i class="fas fa-long-arrow-alt-left"></i>Volver
+      </a>
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

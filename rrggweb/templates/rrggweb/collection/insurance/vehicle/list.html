@@ -6,7 +6,7 @@
         <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
     <div>
-        <a class="btn btn-primary" href="{% url 'rrggweb:collection:insurance:vehicle:list_emissions' view.kwargs.consultant_id %}">Nueva cobranza
+        <a class="btn btn-success" href="{% url 'rrggweb:collection:insurance:vehicle:list_emissions' view.kwargs.registrar_id %}">Nueva cobranza
             <i class="bi bi-plus-lg"></i>
         </a>
     </div>
@@ -30,7 +30,7 @@
             class="align-middle"
             scope="row"
         >
-        {{ collection.issuance_vehicle.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.customer }}
+        {{ collection.issuance_vehicle.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}
         </td>
         <td class="align-middle"> {{ collection.expiration_date|date:'d/m/Y' }}</td>
         <td class="align-middle"> {{ collection.status }}</td>
