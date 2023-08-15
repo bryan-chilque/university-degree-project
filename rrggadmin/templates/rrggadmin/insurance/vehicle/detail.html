@@ -20,4 +20,5 @@
     </table>
 
     <a class="btn btn-primary" href="{% url menu.update_name object.pk %}">Actualizar</a>
+    <a class="btn btn-primary" href="{% url 'rrggadmin:insurance:vehicle:price:list' object.pk %}"> Lista de Precio </a>
 {% endblock %}

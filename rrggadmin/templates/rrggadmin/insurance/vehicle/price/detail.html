@@ -1,0 +1,29 @@
+{% extends 'rrggadmin/dashboard.html' %}
+
+{% block titlebar_title %}
+    {% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block container %}
+    <a href="{% url 'rrggadmin:home' %}">🏠</a>
+    <a href="{% url 'rrggadmin:insurance:vehicle:price:list' view.kwargs.insurance_vehicle_id %}">🔙</a>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">emission_right</th>
+                <td>{{ object.emission_right }}</td>
+            </tr>
+            <tr>
+                <th scope="row">taxes</th>
+                <td>{{ object.tax }}</td>
+            </tr>
+            <tr>
+                <th scope="row">fee</th>
+                <td>{{ object.fee }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{% url 'rrggadmin:insurance:vehicle:price:update' view.kwargs.insurance_vehicle_id object.pk %}">Actualizar</a>
+{% endblock %}
