@@ -97,7 +97,7 @@ class QIVListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["new_register"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:select_seller",
+            "rrggweb:quotation:insurance:vehicle:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         paginator = Paginator(context["object_list"], self.paginate_by)
@@ -110,11 +110,35 @@ class QIVListView(ListView):
 # SELLER
 
 
+class QIVSelectRoleFormView(FormView):
+    template_name = "rrggweb/quotation/insurance/vehicle/select_role.html"
+    form_class = forms.RoleForm
+
+    def form_valid(self, form: forms.RoleForm):
+        role = form.cleaned_data["roles"]
+        self.success_url = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:select_seller",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "role_id": role.id,
+            },
+        )
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        return context
+
+
 class QIVSelectSellerFormView(FormView):
     template_name = "rrggweb/quotation/insurance/vehicle/select_seller.html"
     form_class = forms.SellerForm
 
-    def form_valid(self, form: forms.IssuanceStatusForm):
+    def form_valid(self, form: forms.SellerForm):
         seller = form.cleaned_data["sellers"]
         self.success_url = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:search_customer",
@@ -125,10 +149,16 @@ class QIVSelectSellerFormView(FormView):
         )
         return super().form_valid(form)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        role_id = self.kwargs.get("role_id")
+        kwargs["role_id"] = role_id
+        return kwargs
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:list",
+            "rrggweb:quotation:insurance:vehicle:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         return context
@@ -177,7 +207,7 @@ class QIVSearchCustomerView(FormView):
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:select_seller",
+            "rrggweb:quotation:insurance:vehicle:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         return context
