@@ -30,12 +30,26 @@ class LoginAuthenticationForm(forms_auth.AuthenticationForm):
     )
 
 
+class RoleForm(forms.Form):
+    roles = forms.ModelChoiceField(
+        label=_("roles"),
+        queryset=rrgg.models.Role.objects.all(),
+        widget=forms.Select(attrs={"class": "form-select"}),
+    )
+
+
 class SellerForm(forms.Form):
     sellers = forms.ModelChoiceField(
         label=_("sellers"),
         queryset=rrgg.models.Consultant.objects.all(),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
+
+    def __init__(self, role_id, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["sellers"].queryset = (
+            rrgg.models.Consultant.objects.filter(role_id=role_id)
+        )
 
 
 class SearchPersonForm(forms.Form):

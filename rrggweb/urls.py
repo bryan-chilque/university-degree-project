@@ -10,7 +10,12 @@ quotation_insurance_vehicle_urlpatterns = (
             name="list",
         ),
         path(
-            "select_seller/",
+            "select_role/",
+            views.QIVSelectRoleFormView.as_view(),
+            name="select_role",
+        ),
+        path(
+            "select_seller/role/<int:role_id>/",
             views.QIVSelectSellerFormView.as_view(),
             name="select_seller",
         ),
