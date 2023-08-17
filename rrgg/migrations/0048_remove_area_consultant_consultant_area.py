@@ -4,19 +4,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('rrgg', '0047_issuanceinsurancevehicle_consultant_new_sale_rate_and_more'),
+        (
+            "rrgg",
+            "0047_issuanceinsurancevehicle_consultant_new_sale_rate_and_more",
+        ),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='area',
-            name='consultant',
+            model_name="area",
+            name="consultant",
         ),
         migrations.AddField(
-            model_name='consultant',
-            name='area',
-            field=models.ManyToManyField(related_name='consultant', to='rrgg.area', verbose_name='area'),
+            model_name="consultant",
+            name="area",
+            field=models.ManyToManyField(
+                related_name="consultant", to="rrgg.area", verbose_name="area"
+            ),
         ),
     ]
