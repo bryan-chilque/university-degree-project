@@ -26,7 +26,7 @@
         <form method="post">
           {% csrf_token %}
           <div class="row mb-3">
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <label for="id_brand">{{ form.brand.label|capfirst }}:</label>
               {{ form.brand }}
               {% if form.brand.errors %}
@@ -35,7 +35,7 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <label for="id_vehicle_model">{{ form.vehicle_model.label|capfirst }}:</label>
               {{ form.vehicle_model }}
               {% if form.vehicle_model.errors %}
@@ -44,7 +44,7 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <label for="id_fabrication_year">{{ form.fabrication_year.label|capfirst }}:</label>
               {{ form.fabrication_year }}
               {% if form.fabrication_year.errors %}
@@ -53,7 +53,7 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <label for="id_plate">{{ form.plate.label|capfirst }}:</label>
               {{ form.plate }}
               {% if form.plate.errors %}
@@ -62,7 +62,7 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <label for="id_chassis">{{ form.chassis.label|capfirst }}:</label>
               {{ form.chassis }}
               {% if form.chassis.errors %}
@@ -71,7 +71,7 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <label for="id_engine">{{ form.engine.label|capfirst }}:</label>
               {{ form.engine }}
               {% if form.engine.errors %}
@@ -80,7 +80,7 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <label for="id_use_type">{{ form.seat_number.label|capfirst }}</label>
               {{ form.seat_number }}
               {% if form.seat_number.errors %}
@@ -89,7 +89,7 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <label for="id_use_type">Uso:</label>
               {{ form.use_type }}
               {% if form.use_type.errors %}
@@ -98,8 +98,8 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
-              <label for="id_has_gps">¿Tiene gps?:</label>
+            <div class="col-md-4 mb-2 d-flex gap-2 align-items-center">
+              <label for="id_has_gps" class="m-0">¿Tiene gps?:</label>
               {{ form.has_gps }}
               {% if form.has_gps.errors %}
                 <div class="alert alert-danger" role="alert">
@@ -107,8 +107,8 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
-              <label for="id_has_endorsee">¿Es vehículo endosado?:</label>
+            <div class="col-md-4 mb-2 d-flex gap-2 align-items-center">
+              <label for="id_has_endorsee" class="m-0">¿Es vehículo endosado?:</label>
               {{ form.has_endorsee }}
               {% if form.use_type.errors %}
                 <div class="alert alert-danger" role="alert">
@@ -116,7 +116,7 @@
                 </div>
               {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2 d-none" id="endorsee-bank-container">
               <label for="id_endorsee_bank">Banco endosado:</label>
               {{ form.endorsee_bank }}
               {% if form.endorsee_bank.errors %}
@@ -131,4 +131,19 @@
       </div>
    </div>
  </div>
+
+ <script>
+  const checkbox = document.querySelector('#id_has_endorsee');
+  const container = document.querySelector('#endorsee-bank-container');
+  const input = document.querySelector('#id_endorsee_bank');
+
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      container.classList.remove('d-none');
+    } else {
+      container.classList.add('d-none');
+      input.value = '';
+    }
+  });
+</script>
 {% endblock content %}

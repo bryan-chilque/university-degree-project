@@ -44,5 +44,12 @@ class RrggBootstrapDisplayMixin:
                 ),
                 **common_kwargs,
             )
+        elif isinstance(model_field, models.BooleanField):
+            return forms.BooleanField(
+                widget=forms.CheckboxInput(
+                    attrs={"class": "form-check-input mb-2"}
+                ),
+                **common_kwargs,
+            )
         else:
             return model_field.formfield(**common_kwargs)
