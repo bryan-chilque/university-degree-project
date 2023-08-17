@@ -156,6 +156,19 @@
     first_surname: Llanos
     second_surname: Colchado
     document_number: '12345678'
+
+- model: rrgg.bank
+  pk: 1
+  fields:
+    name: BCP
+- model: rrgg.bank
+  pk: 2
+  fields:
+    name: Interbank
+- model: rrgg.bank
+  pk: 3
+  fields:
+    name: BBVA
 - model: rrgg.vehicle
   pk: 1
   fields:
@@ -168,7 +181,7 @@
     seat_number: 5
     has_gps: false
     has_endorsee: false
-    endorsee_bank: ''
+    endorsee_bank: 1
     use_type: 1
 - model: rrgg.vehicle
   pk: 2
@@ -182,7 +195,7 @@
     seat_number: 4
     has_gps: false
     has_endorsee: false
-    endorsee_bank: ''
+    endorsee_bank: 2
     use_type: 3
 - model: rrgg.vehicleownership
   pk: 1

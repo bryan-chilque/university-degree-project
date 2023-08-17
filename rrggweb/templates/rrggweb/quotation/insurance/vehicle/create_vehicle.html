@@ -53,8 +53,6 @@
                 </div>
               {% endif %}
             </div>
-          </div>
-          <div class="row mb-3">
             <div class="col-md-4">
               <label for="id_plate">{{ form.plate.label|capfirst }}:</label>
               {{ form.plate }}
@@ -82,8 +80,6 @@
                 </div>
               {% endif %}
             </div>
-          </div>
-          <div class="row mb-3">
             <div class="col-md-4">
               <label for="id_use_type">{{ form.seat_number.label|capfirst }}</label>
               {{ form.seat_number }}
@@ -102,10 +98,37 @@
                 </div>
               {% endif %}
             </div>
+            <div class="col-md-4">
+              <label for="id_has_gps">¿Tiene gps?:</label>
+              {{ form.has_gps }}
+              {% if form.has_gps.errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in form.has_gps.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            <div class="col-md-4">
+              <label for="id_has_endorsee">¿Es vehículo endosado?:</label>
+              {{ form.has_endorsee }}
+              {% if form.use_type.errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in form.has_endorsee.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            <div class="col-md-4">
+              <label for="id_endorsee_bank">Banco endosado:</label>
+              {{ form.endorsee_bank }}
+              {% if form.endorsee_bank.errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in form.endorsee_bank.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
           </div>
-          <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
-        </form>
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+       </form>
       </div>
-    </div>
-  </div>
+   </div>
+ </div>
 {% endblock content %}

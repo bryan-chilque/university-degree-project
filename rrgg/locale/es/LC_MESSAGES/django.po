@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-15 15:12-0500\n"
+"POT-Creation-Date: 2023-08-17 11:31-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\rrgg\models.py:8 .\rrgg\models.py:41 .\rrgg\models.py:208
-#: .\rrgg\models.py:320
+#: .\rrgg\models.py:8 .\rrgg\models.py:57 .\rrgg\models.py:245
+#: .\rrgg\models.py:357
 msgid "name"
 msgstr "nombre"
 
@@ -31,19 +31,19 @@ msgstr "rol"
 msgid "roles"
 msgstr "roles"
 
-#: .\rrgg\models.py:19 .\rrgg\models.py:69 .\rrgg\models.py:83
+#: .\rrgg\models.py:19 .\rrgg\models.py:85 .\rrgg\models.py:102
 msgid "given name"
 msgstr "nombres"
 
-#: .\rrgg\models.py:20 .\rrgg\models.py:70 .\rrgg\models.py:84
+#: .\rrgg\models.py:20 .\rrgg\models.py:86 .\rrgg\models.py:103
 msgid "first surname"
 msgstr "apellido paterno"
 
-#: .\rrgg\models.py:22 .\rrgg\models.py:72 .\rrgg\models.py:86
+#: .\rrgg\models.py:22 .\rrgg\models.py:88 .\rrgg\models.py:105
 msgid "second surname"
 msgstr "apellido materno"
 
-#: .\rrgg\models.py:33 .\rrgg\models.py:43
+#: .\rrgg\models.py:33 .\rrgg\models.py:50 .\rrgg\models.py:59
 msgid "consultant"
 msgstr "vendedor"
 
@@ -51,158 +51,186 @@ msgstr "vendedor"
 msgid "consultants"
 msgstr "vendedores"
 
-#: .\rrgg\models.py:50
+#: .\rrgg\models.py:42
+msgid "new sale"
+msgstr ""
+
+#: .\rrgg\models.py:45
+msgid "renewal"
+msgstr "renovación"
+
+#: .\rrgg\models.py:66
 msgid "area"
 msgstr "área"
 
-#: .\rrgg\models.py:51
+#: .\rrgg\models.py:67
 msgid "areas"
 msgstr "áreas"
 
-#: .\rrgg\models.py:75 .\rrgg\models.py:89
+#: .\rrgg\models.py:91 .\rrgg\models.py:108
 msgid "document number"
 msgstr "número de documento"
 
-#: .\rrgg\models.py:104
+#: .\rrgg\models.py:93 .\rrgg\models.py:110
+msgid "birthdate"
+msgstr "fecha de nacimiento"
+
+#: .\rrgg\models.py:94 .\rrgg\models.py:111
+#, fuzzy
+#| msgid "engine number"
+msgid "phone number"
+msgstr "número de motor"
+
+#: .\rrgg\models.py:95 .\rrgg\models.py:112
+msgid "email"
+msgstr "correo"
+
+#: .\rrgg\models.py:133
 msgid "brand"
 msgstr "marca"
 
-#: .\rrgg\models.py:105
+#: .\rrgg\models.py:134
 msgid "model"
 msgstr "modelo"
 
-#: .\rrgg\models.py:106
+#: .\rrgg\models.py:135
 msgid "plate"
 msgstr "número de placa"
 
-#: .\rrgg\models.py:107
+#: .\rrgg\models.py:136
 msgid "fabrication year"
 msgstr "año de fabricación"
 
-#: .\rrgg\models.py:108
+#: .\rrgg\models.py:137
 msgid "engine number"
 msgstr "número de motor"
 
-#: .\rrgg\models.py:109
+#: .\rrgg\models.py:138
 msgid "chassis number"
 msgstr "número de chasis"
 
-#: .\rrgg\models.py:110
+#: .\rrgg\models.py:139
 msgid "seat number"
 msgstr "número de asientos"
 
-#: .\rrgg\models.py:112
+#: .\rrgg\models.py:141
 msgid "has gps?"
 msgstr "¿tiene gps?"
 
-#: .\rrgg\models.py:114
+#: .\rrgg\models.py:143
 msgid "has endorsee?"
 msgstr "¿tiene endosatario?"
 
-#: .\rrgg\models.py:116
+#: .\rrgg\models.py:146
 msgid "endorsee bank"
 msgstr "banco endosado"
 
-#: .\rrgg\models.py:121
+#: .\rrgg\models.py:153
 msgid "usage"
 msgstr "uso"
 
-#: .\rrgg\models.py:127 .\rrgg\models.py:144 .\rrgg\models.py:169
+#: .\rrgg\models.py:159 .\rrgg\models.py:181 .\rrgg\models.py:206
 msgid "vehicle"
 msgstr "vehículo"
 
-#: .\rrgg\models.py:128
+#: .\rrgg\models.py:160
 msgid "vehicles"
 msgstr "vehículos"
 
-#: .\rrgg\models.py:164
+#: .\rrgg\models.py:201
 msgid "insured amount"
 msgstr "monto asegurado"
 
-#: .\rrgg\models.py:175
+#: .\rrgg\models.py:212 .\rrgg\models.py:386
 msgid "registrar"
 msgstr "registrador"
 
-#: .\rrgg\models.py:182
+#: .\rrgg\models.py:219 .\rrgg\models.py:393
 msgid "seller"
 msgstr "vendedor"
 
-#: .\rrgg\models.py:189
+#: .\rrgg\models.py:226
 msgid "customer"
 msgstr "cliente"
 
-#: .\rrgg\models.py:196
+#: .\rrgg\models.py:233
 msgid "vehicle insurance quotation"
 msgstr "cotización de seguro vehicular"
 
-#: .\rrgg\models.py:197
+#: .\rrgg\models.py:234
 msgid "vehicle insurance quotations"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:210
+#: .\rrgg\models.py:247
 msgid "logo"
 msgstr "logotipo"
 
-#: .\rrgg\models.py:221 .\rrgg\models.py:222
+#: .\rrgg\models.py:258 .\rrgg\models.py:259
 msgid "vehicle insurance"
 msgstr "seguro vehicular"
 
-#: .\rrgg\models.py:228
+#: .\rrgg\models.py:265
 msgid "tax (igv)"
 msgstr "impuesto (igv)"
 
-#: .\rrgg\models.py:231
+#: .\rrgg\models.py:268
 msgid "emission right"
 msgstr "derecho de emisión"
 
-#: .\rrgg\models.py:255
+#: .\rrgg\models.py:292
 msgid "net premium"
 msgstr "prima neta"
 
-#: .\rrgg\models.py:268
+#: .\rrgg\models.py:305
 msgid "created at"
 msgstr "fecha de creación"
 
-#: .\rrgg\models.py:326 .\rrgg\models.py:327
+#: .\rrgg\models.py:363 .\rrgg\models.py:364
 #, fuzzy
 #| msgid "vehicle insurance quotations"
 msgid "issuance insurance status"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:334
+#: .\rrgg\models.py:371
 msgid "number registry"
 msgstr "número de registro"
 
-#: .\rrgg\models.py:337
+#: .\rrgg\models.py:375
 msgid "issuance_date"
 msgstr "fecha de registro"
 
-#: .\rrgg\models.py:339
+#: .\rrgg\models.py:377
 msgid "initial_validity"
 msgstr "fecha inicio de vigencia"
 
-#: .\rrgg\models.py:341
+#: .\rrgg\models.py:379
 msgid "final_validity"
 msgstr "fecha fin de vigencia"
 
-#: .\rrgg\models.py:343
+#: .\rrgg\models.py:381
 msgid "comment"
 msgstr "comentario"
 
-#: .\rrgg\models.py:367
+#: .\rrgg\models.py:398
+#, fuzzy
+#| msgid "consultants"
+msgid "consultant new sale rate"
+msgstr "vendedores"
+
+#: .\rrgg\models.py:425
 #, fuzzy
 #| msgid "vehicle insurance"
 msgid "issuance insurance vehicle"
 msgstr "emisión de seguro vehicular"
 
-#: .\rrgg\models.py:368
+#: .\rrgg\models.py:426
 msgid "issues insurance vehicle"
 msgstr "emisiones de seguro vehicular"
 
-#: .\rrgg\models.py:372
+#: .\rrgg\models.py:430
 msgid "description"
 msgstr "descripción"
 
-#: .\rrgg\models.py:376
+#: .\rrgg\models.py:434
 msgid "commission"
 msgstr "comisión"

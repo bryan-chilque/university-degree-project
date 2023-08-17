@@ -91,6 +91,11 @@ class Customer(models.Model):
     document_number = models.CharField(
         _("document number"), max_length=32, unique=True
     )
+    birthdate = models.DateField(_("birthdate"), null=True)
+    phone_number = models.CharField(
+        _("phone number"), max_length=32, null=True
+    )
+    email = models.EmailField(_("email"), max_length=64, null=True)
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
@@ -105,12 +110,24 @@ class Owner(models.Model):
     document_number = models.CharField(
         _("document number"), max_length=32, unique=True
     )
+    birthdate = models.DateField(_("birthdate"), null=True)
+    phone_number = models.CharField(
+        _("phone number"), max_length=32, null=True
+    )
+    email = models.EmailField(_("email"), max_length=64, null=True)
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
 
 
 class UseType(models.Model):
+    name = models.CharField(max_length=64, unique=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Bank(models.Model):
     name = models.CharField(max_length=64, unique=True, null=True)
 
     def __str__(self):
@@ -126,11 +143,14 @@ class Vehicle(models.Model):
     chassis = models.CharField(_("chassis number"), max_length=64)
     seat_number = models.PositiveIntegerField(_("seat number"))
     # vehículo gps
-    has_gps = models.BooleanField(_("has gps?"), null=True)
+    has_gps = models.BooleanField(_("has gps?"), default=False)
     # vehículo tiene endoso
-    has_endorsee = models.BooleanField(_("has endorsee?"), null=True)
-    endorsee_bank = models.CharField(
-        _("endorsee bank"), max_length=64, null=True
+    has_endorsee = models.BooleanField(_("has endorsee?"), default=False)
+    endorsee_bank = models.ForeignKey(
+        Bank,
+        verbose_name=_("endorsee bank"),
+        on_delete=models.PROTECT,
+        null=True,
     )
     use_type = models.ForeignKey(
         UseType,
@@ -143,6 +163,11 @@ class Vehicle(models.Model):
     class Meta:
         verbose_name = _("vehicle")
         verbose_name_plural = _("vehicles")
+
+    def save(self, *args, **kwargs):
+        if not self.has_endorsee:
+            self.endorsee_bank = None
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.brand} {self.vehicle_model} {self.plate}"

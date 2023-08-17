@@ -396,6 +396,9 @@ class QIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         "chassis",
         "seat_number",
         "use_type",
+        "has_gps",
+        "has_endorsee",
+        "endorsee_bank",
     ]
 
     def get_success_url(self):
@@ -446,6 +449,9 @@ class QIVUpdateVehicleViewSupport(
         "chassis",
         "seat_number",
         "use_type",
+        "has_gps",
+        "has_endorsee",
+        "endorsee_bank",
     ]
     pk_url_kwarg = "vehicle_id"
 
