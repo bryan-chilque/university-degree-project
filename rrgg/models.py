@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Role(models.Model):
-    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+    name = models.CharField(_("name"), max_length=64, unique=True)
 
     class Meta:
         verbose_name = _("role")
@@ -26,7 +26,6 @@ class Consultant(models.Model):
         related_name="consultant",
         verbose_name=_("role"),
         on_delete=models.PROTECT,
-        null=True,
     )
 
     area = models.ManyToManyField(
@@ -43,10 +42,10 @@ class Consultant(models.Model):
 
 class ConsultantRate(models.Model):
     new_sale = models.DecimalField(
-        _("new sale"), decimal_places=2, max_digits=10, null=True
+        _("new sale"), decimal_places=2, max_digits=10
     )
     renewal = models.DecimalField(
-        _("renewal"), decimal_places=2, max_digits=10, null=True
+        _("renewal"), decimal_places=2, max_digits=10
     )
     consultant = models.OneToOneField(
         Consultant,
@@ -54,11 +53,11 @@ class ConsultantRate(models.Model):
         verbose_name=_("consultant"),
         on_delete=models.PROTECT,
     )
-    created = models.DateTimeField(auto_now_add=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
 
 
 class Area(models.Model):
-    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+    name = models.CharField(_("name"), max_length=64, unique=True)
 
     def __str__(self):
         return self.name
@@ -91,11 +90,9 @@ class Customer(models.Model):
     document_number = models.CharField(
         _("document number"), max_length=32, unique=True
     )
-    birthdate = models.DateField(_("birthdate"), null=True)
-    phone_number = models.CharField(
-        _("phone number"), max_length=32, null=True
-    )
-    email = models.EmailField(_("email"), max_length=64, null=True)
+    birthdate = models.DateField(_("birthdate"))
+    phone_number = models.CharField(_("phone number"), max_length=32)
+    email = models.EmailField(_("email"), max_length=64)
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
@@ -110,25 +107,23 @@ class Owner(models.Model):
     document_number = models.CharField(
         _("document number"), max_length=32, unique=True
     )
-    birthdate = models.DateField(_("birthdate"), null=True)
-    phone_number = models.CharField(
-        _("phone number"), max_length=32, null=True
-    )
-    email = models.EmailField(_("email"), max_length=64, null=True)
+    birthdate = models.DateField(_("birthdate"))
+    phone_number = models.CharField(_("phone number"), max_length=32)
+    email = models.EmailField(_("email"), max_length=64)
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
 
 
 class UseType(models.Model):
-    name = models.CharField(max_length=64, unique=True, null=True)
+    name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return self.name
 
 
 class Bank(models.Model):
-    name = models.CharField(max_length=64, unique=True, null=True)
+    name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return self.name
@@ -157,7 +152,6 @@ class Vehicle(models.Model):
         related_name="use_type",
         verbose_name=_("usage"),
         on_delete=models.PROTECT,
-        null=True,
     )
 
     class Meta:
@@ -185,7 +179,6 @@ class VehicleOwnerShip(models.Model):
         related_name="ownership",
         verbose_name=_("vehicle"),
         on_delete=models.PROTECT,
-        null=True,
     )
 
     @property
@@ -202,9 +195,7 @@ class VehicleOwnerShip(models.Model):
 
 
 class QuotationInsuranceVehicle(models.Model):
-    insured_amount = models.PositiveIntegerField(
-        _("insured amount"), null=True
-    )
+    insured_amount = models.PositiveIntegerField(_("insured amount"))
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicles",
@@ -216,21 +207,18 @@ class QuotationInsuranceVehicle(models.Model):
         related_name="quotation_insurance_vehicles_registered",
         verbose_name=_("registrar"),
         on_delete=models.PROTECT,
-        null=True,
     )
     consultant_seller = models.ForeignKey(
         Consultant,
         related_name="quotation_insurance_vehicles_sold",
         verbose_name=_("seller"),
         on_delete=models.PROTECT,
-        null=True,
     )
     customer = models.ForeignKey(
         Customer,
         related_name="quotation_insurance_vehicles",
         verbose_name=_("customer"),
         on_delete=models.PROTECT,
-        null=True,
     )
     created = models.DateTimeField(auto_now_add=True)
 
@@ -359,7 +347,7 @@ class QuotationInsuranceVehiclePremium(models.Model):
 
 
 class IssuanceInsuranceStatus(models.Model):
-    name = models.CharField(_("name"), max_length=64, unique=True, null=True)
+    name = models.CharField(_("name"), max_length=64, unique=True)
 
     def __str__(self):
         return self.name
@@ -372,16 +360,14 @@ class IssuanceInsuranceStatus(models.Model):
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
-    number_registry = models.CharField(
-        _("number registry"), max_length=64, null=True
-    )
+    number_registry = models.CharField(_("number registry"), max_length=64)
 
     # fecha de emisión de la póliza
-    issuance_date = models.DateTimeField(_("issuance_date"), null=True)
+    issuance_date = models.DateTimeField(_("issuance_date"))
     # fecha de vigencia inicio
-    initial_validity = models.DateTimeField(_("initial_validity"), null=True)
+    initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia final
-    final_validity = models.DateTimeField(_("final_validity"), null=True)
+    final_validity = models.DateTimeField(_("final_validity"))
 
     comment = models.TextField(_("comment"), null=True)
 
@@ -390,27 +376,21 @@ class IssuanceInsuranceVehicle(models.Model):
         related_name="issuance_insurance_vehicles_registered",
         verbose_name=_("registrar"),
         on_delete=models.PROTECT,
-        null=True,
     )
     consultant_seller = models.ForeignKey(
         Consultant,
         related_name="issuance_insurance_vehicles_sold",
         verbose_name=_("seller"),
         on_delete=models.PROTECT,
-        null=True,
     )
     consultant_new_sale_rate = models.DecimalField(
-        _("consultant new sale rate"),
-        decimal_places=2,
-        max_digits=10,
-        null=True,
+        _("consultant new sale rate"), decimal_places=2, max_digits=10
     )
     # estado
     status = models.ForeignKey(
         IssuanceInsuranceStatus,
         related_name="issuances",
         on_delete=models.PROTECT,
-        null=True,
     )
 
     quotation_vehicle_premium = models.ForeignKey(
