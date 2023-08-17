@@ -20,46 +20,48 @@
     given_name: Katherine
     first_surname: 'Zapata'
     role: 1
+    area:
+    - 1
+    - 2
+    - 3
 - model: rrgg.consultant
   pk: 2
   fields:
     given_name: Gloria
     first_surname: 'Aliaga'
     role: 2
+    area:
+    - 1
+    - 2
 - model: rrgg.consultant
   pk: 3
   fields:
     given_name: Bryan
     first_surname: Chilque
     role: 1
-- model: rrgg.area
-  pk: 1
-  fields:
-    name: Cotización
-    consultant:
+    area:
     - 1
     - 2
     - 3
 - model: rrgg.area
+  pk: 1
+  fields:
+    name: Cotización
+- model: rrgg.area
   pk: 2
   fields:
     name: Emisión
-    consultant:
-    - 1
-    - 3
 - model: rrgg.area
   pk: 3
   fields:
     name: Cobranzas
-    consultant:
-    - 1
-    - 3
 - model: rrgg.consultantrate
   pk: 1
   fields:
     new_sale: '0.45'
     renewal: '0.45'
     consultant: 1
+    created: 2023-07-21 19:36:30.639471+00:00
 - model: auth.user
   pk: 1
   fields:
@@ -149,6 +151,9 @@
     first_surname: Tomasto
     second_surname: ''
     document_number: '12345679'
+    birthdate: '2000-07-21'
+    phone_number: '987654321'
+    email: atomasto@crd.pe
 - model: rrgg.customer
   pk: 2
   fields:
@@ -156,7 +161,9 @@
     first_surname: Llanos
     second_surname: Colchado
     document_number: '12345678'
-
+    birthdate: '2000-07-21'
+    phone_number: '987654321'
+    email: pllanos@crd.pe
 - model: rrgg.bank
   pk: 1
   fields:
