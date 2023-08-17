@@ -37,6 +37,22 @@ class Consultant(models.Model):
         return f"{self.given_name} {self.first_surname}"
 
 
+class ConsultantRate(models.Model):
+    new_sale = models.DecimalField(
+        _("new sale"), decimal_places=2, max_digits=10, null=True
+    )
+    renewal = models.DecimalField(
+        _("renewal"), decimal_places=2, max_digits=10, null=True
+    )
+    consultant = models.OneToOneField(
+        Consultant,
+        related_name="commission_rate",
+        verbose_name=_("consultant"),
+        on_delete=models.PROTECT,
+    )
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+
 class Area(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True, null=True)
     consultant = models.ManyToManyField(
@@ -333,6 +349,7 @@ class IssuanceInsuranceVehicle(models.Model):
     number_registry = models.CharField(
         _("number registry"), max_length=64, null=True
     )
+
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"), null=True)
     # fecha de vigencia inicio
@@ -342,6 +359,26 @@ class IssuanceInsuranceVehicle(models.Model):
 
     comment = models.TextField(_("comment"), null=True)
 
+    consultant_registrar = models.ForeignKey(
+        Consultant,
+        related_name="issuance_insurance_vehicles_registered",
+        verbose_name=_("registrar"),
+        on_delete=models.PROTECT,
+        null=True,
+    )
+    consultant_seller = models.ForeignKey(
+        Consultant,
+        related_name="issuance_insurance_vehicles_sold",
+        verbose_name=_("seller"),
+        on_delete=models.PROTECT,
+        null=True,
+    )
+    consultant_new_sale_rate = models.DecimalField(
+        _("consultant new sale rate"),
+        decimal_places=2,
+        max_digits=10,
+        null=True,
+    )
     # estado
     status = models.ForeignKey(
         IssuanceInsuranceStatus,

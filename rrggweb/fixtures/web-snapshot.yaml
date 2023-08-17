@@ -54,6 +54,12 @@
     consultant:
     - 1
     - 3
+- model: rrgg.consultantrate
+  pk: 1
+  fields:
+    new_sale: '0.45'
+    renewal: '0.45'
+    consultant: 1
 - model: auth.user
   pk: 1
   fields:
@@ -340,6 +346,9 @@
     issuance_date: 2023-07-23 00:00:00+00:00
     initial_validity: 2023-07-25 00:00:00+00:00
     final_validity: 2024-07-24 00:00:00+00:00
+    consultant_registrar: 1
+    consultant_seller: 2
+    consultant_new_sale_rate: 0.45
     status: 1
     quotation_vehicle_premium: 2
     created: 2023-07-31 07:24:08.278816+00:00
