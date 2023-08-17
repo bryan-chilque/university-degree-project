@@ -121,6 +121,17 @@ use_type_urlpatterns = menu_patterns(
     ),
 )
 
+area_urlpatterns = menu_patterns(
+    rrgg.models.Area,
+    "rrggadmin/common",
+    "area",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
 app_name = "rrggadmin"
 
 
@@ -128,6 +139,7 @@ urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path("home/", views.HomeView.as_view(), name="home"),
+    path("area/", include(area_urlpatterns)),
     path("insurance/", include(insurance_urlpatterns)),
     path("consultant/", include(consultant_urlpatterns)),
     path("use_type/", include(use_type_urlpatterns)),

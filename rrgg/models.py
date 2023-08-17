@@ -29,6 +29,10 @@ class Consultant(models.Model):
         null=True,
     )
 
+    area = models.ManyToManyField(
+        "Area", related_name="consultant", verbose_name=_("area")
+    )
+
     class Meta:
         verbose_name = _("consultant")
         verbose_name_plural = _("consultants")
@@ -55,9 +59,6 @@ class ConsultantRate(models.Model):
 
 class Area(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True, null=True)
-    consultant = models.ManyToManyField(
-        Consultant, related_name="area", verbose_name=_("consultant")
-    )
 
     def __str__(self):
         return self.name
