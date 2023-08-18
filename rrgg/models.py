@@ -284,6 +284,7 @@ class QuotationInsuranceVehiclePremium(models.Model):
     amount = models.DecimalField(
         _("net premium"), decimal_places=2, max_digits=10, default=0
     )
+    rate = models.DecimalField(_("rate"), decimal_places=2, max_digits=10)
     insurance_vehicle_ratio = models.ForeignKey(
         InsuranceVehicleRatio,
         related_name="quotation_insurance_vehicle_premiums",
@@ -308,12 +309,6 @@ class QuotationInsuranceVehiclePremium(models.Model):
     def tax(self):
         value = self.amount + self.emission_right
         return round(value * self.insurance_vehicle_ratio.tax, 2)
-
-    # tasa
-    @property
-    def rate(self):
-        q = self.quotation_insurance_vehicle
-        return round(self.amount / q.insured_amount, 2)
 
     # prima comercial
     @property

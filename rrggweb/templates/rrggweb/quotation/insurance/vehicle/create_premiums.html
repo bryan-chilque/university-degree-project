@@ -42,6 +42,7 @@
                 <th>{{ tax_text|capfirst }}</th>
                 <th>{{ vehicle_insurance_text|capfirst }}</th>
                 <th>Prima neta</th>
+                <th>Tasa</th>
               </tr>
             </thead>
             <tbody>
@@ -59,6 +60,7 @@
                       {{ form.id }}
                     </div>
                   </td>
+                  <td>{{ form.rate }}</td>
                 </tr>
               {% endfor %}
             </tbody>

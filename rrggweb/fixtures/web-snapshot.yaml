@@ -301,6 +301,7 @@
   pk: 1
   fields:
     amount: '2850.00'
+    rate: 0.95
     insurance_vehicle_ratio: 3
     quotation_insurance_vehicle: 1
     created: 2023-07-12 09:15:35.928242+00:00
@@ -308,6 +309,7 @@
   pk: 2
   fields:
     amount: '2550.00'
+    rate: 0.95
     insurance_vehicle_ratio: 3
     quotation_insurance_vehicle: 2
     created: 2023-07-31 06:08:35.928242+00:00
@@ -315,6 +317,7 @@
   pk: 3
   fields:
     amount: '2500.00'
+    rate: 0.95
     insurance_vehicle_ratio: 4
     quotation_insurance_vehicle: 2
     created: 2023-07-31 06:08:35.933243+00:00
@@ -322,6 +325,7 @@
   pk: 4
   fields:
     amount: '2450.00'
+    rate: 0.95
     insurance_vehicle_ratio: 1
     quotation_insurance_vehicle: 2
     created: 2023-07-31 06:08:35.936245+00:00
@@ -329,6 +333,7 @@
   pk: 5
   fields:
     amount: '2600.00'
+    rate: 0.95
     insurance_vehicle_ratio: 2
     quotation_insurance_vehicle: 2
     created: 2023-07-31 06:08:35.939988+00:00
@@ -336,6 +341,7 @@
   pk: 6
   fields:
     amount: '2700.00'
+    rate: 0.95
     insurance_vehicle_ratio: 5
     quotation_insurance_vehicle: 2
     created: 2023-07-31 06:08:35.944033+00:00

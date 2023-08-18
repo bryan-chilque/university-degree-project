@@ -2,7 +2,6 @@ from django import shortcuts, urls
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator
 from django.db.models import Q
 from django.forms import modelformset_factory
 from django.http import HttpResponse
@@ -83,7 +82,6 @@ class QuotationView(TemplateView):
 class QIVListView(ListView):
     template_name = "rrggweb/quotation/insurance/vehicle/list.html"
     model = rrgg.models.QuotationInsuranceVehicle
-    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -100,10 +98,6 @@ class QIVListView(ListView):
             "rrggweb:quotation:insurance:vehicle:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
-        paginator = Paginator(context["object_list"], self.paginate_by)
-        page_number = self.request.GET.get("page") or 1
-        page_obj = paginator.get_page(page_number)
-        context["page_obj"] = page_obj
         return context
 
 
@@ -1111,7 +1105,7 @@ class QIVPremiumsUpdateViewSupport(
     rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
 ):
     model = rrgg.models.QuotationInsuranceVehiclePremium
-    fields = ["amount"]
+    fields = ["amount", "rate"]
     pk_url_kwarg = "premium_id"
 
 

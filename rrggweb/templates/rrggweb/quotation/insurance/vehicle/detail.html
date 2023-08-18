@@ -116,10 +116,7 @@
                     <th>% IGV</th>
                     <th>IGV</th>
                     <th>Prima Total</th>
-                    <th>Mes / Cuota</th>
-                    <th>Couta</th>
-                    <th>Mes / débito auto.</th>
-                    <th>Débito auto.</th>
+                    <th>Tasa</th>
                     <th colspan="2">Acciones</th>
                   </tr>
                 </thead>
@@ -133,10 +130,7 @@
                       <td class="align-middle">{{ premium.insurance_vehicle_ratio.tax|floatformat:2 }}%</td>
                       <td class="align-middle">${{ premium.tax }}</td>
                       <td class="align-middle">${{ premium.total }}</td>
-                      <td class="align-middle">{{ premium.insurance_vehicle_ratio.fee }}</td>
-                      <td class="align-middle">{{ premium.fee }}</td>
-                      <td class="align-middle">{{ premium.insurance_vehicle_ratio.direct_debit }}</td>
-                      <td class="align-middle">{{ premium.direct_debit }}</td>
+                      <td class="align-middle">${{ premium.rate }}</td>
                       <td class="align-middle d-flex gap-2">
                         <a class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
                            href="{% url 'rrggweb:issuance:insurance:vehicle:define_issuance' view.kwargs.registrar_id premium.id %}">

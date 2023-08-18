@@ -139,7 +139,7 @@ msgstr "vehículos"
 
 #: .\rrgg\models.py:201
 msgid "insured amount"
-msgstr "monto asegurado"
+msgstr "suma asegurada"
 
 #: .\rrgg\models.py:212 .\rrgg\models.py:386
 msgid "registrar"
