@@ -1,5 +1,6 @@
 """Django 4.2.1 settings for riesgosgenerales project."""
 
+import os
 from pathlib import Path
 from typing import List
 
