@@ -89,6 +89,25 @@ DATABASES = {
     )
 }
 
+# Logging
+
+if not DEBUG:
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "rrgg-output": {
+                "class": "logging.StreamHandler",
+                "stream": sys.stdout,
+                "level": "DEBUG",
+            },
+        },
+        "loggers": {
+            "": {
+                "handlers": ["rrgg-output"],
+            },
+        },
+    }
 
 # Password validation
 
