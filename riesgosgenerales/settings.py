@@ -10,7 +10,14 @@ SECRET_KEY = (
     "django-insecure-hgcdf2#o+%k*6q(+=!$@3r$rok$4p=h9%azlf=g+8jh4rx*t_w"
 )
 
-DEBUG = True
+ENV_DEBUG: str = os.environ.get("RRGG_DEBUG", "on")
+ENV_DEBUG = ENV_DEBUG.lower()
+if ENV_DEBUG in ("on", "true", "1"):
+    DEBUG = True
+elif ENV_DEBUG in ("off", "false", "0"):
+    DEBUG = False
+else:
+    raise ValueError("Invalid ENV_DEBUG value")
 
 ALLOWED_HOSTS: List[str] = ["*"]
 
