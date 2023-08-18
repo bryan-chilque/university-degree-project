@@ -395,6 +395,13 @@ class QIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         "endorsee_bank",
     ]
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["has_gps"].required = False
+        form.fields["has_endorsee"].required = False
+        form.fields["endorsee_bank"].required = False
+        return form
+
     def get_success_url(self):
         return urls.reverse(
             "rrggweb:quotation:insurance:vehicle:define_owner",
