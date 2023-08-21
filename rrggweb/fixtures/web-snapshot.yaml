@@ -144,26 +144,57 @@
   pk: 8
   fields:
     name: Comercial
-- model: rrgg.customer
+- model: rrgg.documenttype
+  pk: 1
+  fields:
+    code: dni
+    name: Documento Nacional de Identidad
+    min_length: 8
+    max_length: 8
+- model: rrgg.documenttype
+  pk: 2
+  fields:
+    code: ce
+    name: Carné de Extranjería
+    min_length: 8
+    max_length: 12
+- model: rrgg.documenttype
+  pk: 3
+  fields:
+    code: ruc
+    name: Registro Único de Contribuyente
+    min_length: 11
+    max_length: 11
+- model: rrgg.naturalperson
   pk: 1
   fields:
     given_name: Angie
     first_surname: Tomasto
     second_surname: ''
+    document_type: 1
     document_number: '12345679'
     birthdate: '2000-07-21'
     phone_number: '987654321'
     email: atomasto@crd.pe
-- model: rrgg.customer
+- model: rrgg.naturalperson
   pk: 2
   fields:
     given_name: Paulo
     first_surname: Llanos
     second_surname: Colchado
+    document_type: 1
     document_number: '12345678'
     birthdate: '2000-07-21'
     phone_number: '987654321'
     email: pllanos@crd.pe
+- model: rrgg.customermembership
+  pk: 1
+  fields:
+    natural_person: 1
+- model: rrgg.customermembership
+  pk: 2
+  fields:
+    natural_person: 2
 - model: rrgg.bank
   pk: 1
   fields:
@@ -204,12 +235,12 @@
     has_endorsee: false
     endorsee_bank: 2
     use_type: 3
-- model: rrgg.vehicleownership
+- model: rrgg.VehicleOwnership
   pk: 1
   fields:
     customer: 1
     vehicle: 1
-- model: rrgg.vehicleownership
+- model: rrgg.VehicleOwnership
   pk: 2
   fields:
     customer: 2

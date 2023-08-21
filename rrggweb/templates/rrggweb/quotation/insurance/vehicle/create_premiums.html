@@ -55,7 +55,11 @@
                   <td>
                     <div class="input-group">
                       {{ form.amount }}
-                      {% if form.errors %}<div class="alert alert-danger" role="alert">{{ form.errors }}</div>{% endif %}
+                      {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                          {{ form.errors }}
+                        </div>
+                      {% endif %}
                       {{ form.insurance_vehicle_ratio }}
                       {{ form.quotation_insurance_vehicle }}
                       {{ form.id }}

@@ -1,18 +1,19 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
-{% load i18n %}
 {% block title_section %}
-  Actualizar Vehiculo
+  Registrar cliente
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
+      {% include "rrggweb/utils/stepper.html" with step=2 max_step=6 %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
       <form method="post">
         {% csrf_token %}
         {{ form }}
-        <button class="btn btn-primary btn-block mt-3" type="submit">Editar</button>
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
       </form>
     </div>
   </div>
