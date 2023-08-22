@@ -188,7 +188,7 @@ class QIVSearchCustomerView(FormView):
             self.success_url = (
                 f"{select_customer_url}?document_number={document_number}"
             )
-            return super().form_valid(form)
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
