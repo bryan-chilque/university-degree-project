@@ -9,7 +9,8 @@
       {% if step %}
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=6 %}
       {% endif %}
-      <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
       {% if seller or customer %}
@@ -130,24 +131,28 @@
               {% endif %}
             </div>
           </div>
-        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
-       </form>
+          <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+        </form>
       </div>
-   </div>
- </div>
+    </div>
+  </div>
+  <script>
+    const checkbox = document.querySelector('#id_has_endorsee');
+    const container = document.querySelector('#endorsee-bank-container');
+    const input = document.querySelector('#id_endorsee_bank');
 
- <script>
-  const checkbox = document.querySelector('#id_has_endorsee');
-  const container = document.querySelector('#endorsee-bank-container');
-  const input = document.querySelector('#id_endorsee_bank');
-
-  checkbox.addEventListener('change', () => {
+    // Check if the checkbox is checked when the page loads
     if (checkbox.checked) {
       container.classList.remove('d-none');
-    } else {
-      container.classList.add('d-none');
-      input.value = '';
     }
-  });
-</script>
+
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        container.classList.remove('d-none');
+      } else {
+        container.classList.add('d-none');
+        input.value = '';
+      }
+    });
+  </script>
 {% endblock content %}
