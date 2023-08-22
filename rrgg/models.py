@@ -156,7 +156,7 @@ class CustomerMembership(models.Model):
     def save(self, *args, **kwargs):
         if self.natural_person and self.legal_person:
             raise ValueError(
-                "El cliente no puede ser persona natural y jurídica al"
+                "El contratante no puede ser persona natural y jurídica al"
                 " mismo tiempo."
             )
         super().save(*args, **kwargs)
@@ -261,8 +261,8 @@ class VehicleOwnership(models.Model):
     def save(self, *args, **kwargs):
         if self.customer and self.owner:
             raise ValueError(
-                "El dueño del vehículo no puede ser cliente y propietario al"
-                " mismo tiempo."
+                f"El vehículo con placa {self.vehicle.plate} no puede tener 2"
+                " propietarios."
             )
         super().save(*args, **kwargs)
 
@@ -270,7 +270,7 @@ class VehicleOwnership(models.Model):
         if self.owner:
             return f"{self.owner}"
         elif self.customer:
-            return "El cliente es propietario del vehículo."
+            return "El contratante es propietario del vehículo."
 
 
 class QuotationInsuranceVehicle(models.Model):

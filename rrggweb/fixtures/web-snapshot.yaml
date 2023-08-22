@@ -387,7 +387,7 @@
 - model: rrgg.issuanceinsurancestatus
   pk: 3
   fields:
-    name: 'Anulado por desistimiento del cliente'
+    name: 'Anulado por desistimiento del contratante'
 - model: rrgg.issuanceinsurancestatus
   pk: 4
   fields:

@@ -2,7 +2,6 @@ from django import shortcuts, urls
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
 from django.forms import modelformset_factory
 from django.http import HttpResponse
 from django.views.generic import (
@@ -82,15 +81,6 @@ class QuotationView(TemplateView):
 class QIVListView(ListView):
     template_name = "rrggweb/quotation/insurance/vehicle/list.html"
     model = rrgg.models.QuotationInsuranceVehicle
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        query = self.request.GET.get("q")
-        if query:
-            queryset = queryset.filter(
-                Q(customer__given_name__icontains=query)
-            )
-        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -496,7 +486,7 @@ class QIVSearchVehicleView(FormView):
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
-        # determinar si el cliente es persona natural o jurídica
+        # determinar si el contratante es persona natural o jurídica
         customer = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -955,7 +945,7 @@ class QIVCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
             rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
         )
         if context["vehicle"].ownership.owner is None:
-            context["owner"] = "El cliente es propietario del vehículo."
+            context["owner"] = "El contratante es propietario del vehículo."
             context["previous_page"] = urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:define_owner",
                 kwargs={
@@ -1098,7 +1088,7 @@ class QIVDetailView(DetailView):
         context["customer"] = self.object.customer
         context["vehicle"] = self.object.vehicle
         if context["vehicle"].ownership.owner is None:
-            context["owner"] = "El cliente es propietario del vehículo."
+            context["owner"] = "El contratante es propietario del vehículo."
         else:
             context["owner"] = context["vehicle"].ownership.owner
             context["update_owner"] = urls.reverse(
@@ -1113,7 +1103,7 @@ class QIVDetailView(DetailView):
             "rrggweb:quotation:insurance:vehicle:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
-        # determinar si el cliente es persona natural o jurídica
+        # determinar si el contratante es persona natural o jurídica
         customer = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.object.customer.id
         )
@@ -1229,7 +1219,7 @@ class QIVPremiumsFormView(FormView):
         context["customer"] = context["quotation"].customer
         context["vehicle"] = context["quotation"].vehicle
         if context["vehicle"].ownership.owner is None:
-            context["owner"] = "El cliente es propietario del vehículo."
+            context["owner"] = "El contratante es propietario del vehículo."
         else:
             context["owner"] = context["vehicle"].ownership.owner
         context["previous_page"] = urls.reverse(
@@ -1447,15 +1437,6 @@ class IssuanceView(TemplateView):
 class IssuanceInsuranceVehicleListView(ListView):
     template_name = "rrggweb/issuance/insurance/vehicle/list.html"
     model = rrgg.models.IssuanceInsuranceVehicle
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        query = self.request.GET.get("q")
-        if query:
-            queryset = queryset.filter(
-                Q(customer__given_name__icontains=query)
-            )
-        return queryset
 
 
 class IIVTypeFormView(FormView):

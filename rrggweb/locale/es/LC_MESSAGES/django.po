@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-21 05:17-0500\n"
+"POT-Creation-Date: 2023-08-21 22:31-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -23,28 +23,26 @@ msgid "roles"
 msgstr ""
 
 #: .\rrggweb\forms.py:43
-#, fuzzy
-#| msgid "seller"
 msgid "sellers"
-msgstr "vendedores"
+msgstr "asesores"
 
 #: .\rrggweb\forms.py:63
 msgid "type customer"
-msgstr "tipo de cliente"
+msgstr "tipo de contratante"
 
-#: .\rrggweb\forms.py:70
+#: .\rrggweb\forms.py:71
 msgid "document number"
 msgstr "documento de identidad"
 
-#: .\rrggweb\forms.py:78
+#: .\rrggweb\forms.py:79
 msgid "plate"
 msgstr "número de placa"
 
-#: .\rrggweb\forms.py:85
+#: .\rrggweb\forms.py:86
 msgid "Is the insured the same as the contracting party?"
 msgstr "¿El asegurado es el mismo que el contratante?"
 
-#: .\rrggweb\forms.py:107
+#: .\rrggweb\forms.py:108
 msgid "comment"
 msgstr "comentario"
 

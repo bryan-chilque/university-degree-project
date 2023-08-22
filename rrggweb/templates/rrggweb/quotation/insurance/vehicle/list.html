@@ -13,11 +13,7 @@
                    value="{{ request.GET.q }}">
             <div class="d-flex gap-2">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
-                {% if request.GET.q %}
-                    <a class="btn btn-outline-danger" href="?">
-                        Limpiar
-                    </a>
-                {% endif %}
+                {% if request.GET.q %}<a class="btn btn-outline-danger" href="?">Limpiar</a>{% endif %}
             </div>
         </form>
         <div>
@@ -30,7 +26,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Cliente</th>
+                    <th scope="col">Contratante</th>
                     <th scope="col">Vehiculo</th>
                     <th scope="col">Asesor</th>
                     <th scope="col">¿Expiró?</th>
@@ -38,30 +34,25 @@
                 </tr>
             </thead>
             <tbody>
-                {% for quotation in page_obj %}
-                    <tr>
-                        <td class="align-middle" scope="row">{{ quotation.customer }}</td>
-                        <td class="align-middle">{{ quotation.vehicle }}</td>
-                        <td class="align-middle">{{ quotation.consultant_seller }}</td>
-                        <td class="align-middle">
-                            {% if quotation.expired %}
-                                <span class="badge bg-danger align-middle">Si</span>
-                            {% else %}
-                                <span class="badge bg-success align-middle">No</span>
-                            {% endif %}
-                        </td>
-                        <td class="align-middle">
-                            <a class="btn btn-primary btn-sm"
-                               href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.registrar_id quotation.id %}">
-                                Ver
-                                <i class="fa fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="5" class="text-center">No se encontraron cotizaciones.</td>
-                    </tr>
+                {% for quotation in object_list %}
+                <tr>
+                    <td class="align-middle" scope="row">{{ quotation.customer.pick }}</td>
+                    <td class="align-middle">{{ quotation.vehicle }}</td>
+                    <td class="align-middle">{{ quotation.consultant_seller }}</td>
+                    <td class="align-middle">
+                        {% if quotation.expired %}
+                            <span class="badge bg-danger align-middle">Si</span>
+                        {% else %}
+                            <span class="badge bg-success align-middle">No</span>
+                        {% endif %}
+                    </td>
+                    <td class="align-middle">
+                        <a class="btn btn-primary btn-sm"
+                            href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.registrar_id quotation.id %}">
+                            Ver
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
                 {% endfor %}
             </tbody>
         </table>
