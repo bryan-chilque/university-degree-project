@@ -13,11 +13,7 @@
                    value="{{ request.GET.q }}">
             <div class="d-flex gap-2">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
-                {% if request.GET.q %}
-                    <a class="btn btn-outline-danger" href="?">
-                        Limpiar
-                    </a>
-                {% endif %}
+                {% if request.GET.q %}<a class="btn btn-outline-danger" href="?">Limpiar</a>{% endif %}
             </div>
         </form>
         <div>
@@ -31,17 +27,21 @@
             <thead>
                 <tr>
                     <th scope="col">Cliente</th>
+                    <th scope="col">Número de documento</th>
                     <th scope="col">Vehiculo</th>
+                    <th scope="col">Suma asegudara</th>
                     <th scope="col">Asesor</th>
                     <th scope="col">¿Expiró?</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for quotation in page_obj %}
+                {% for quotation in object_list %}
                     <tr>
-                        <td class="align-middle" scope="row">{{ quotation.customer }}</td>
+                        <td class="align-middle" scope="row">{{ quotation.customer.pick }}</td>
+                        <td class="align-middle">{{ quotation.customer.pick.document_number }}</td>
                         <td class="align-middle">{{ quotation.vehicle }}</td>
+                        <td class="align-middle">{{ quotation.insured_amount }}</td>
                         <td class="align-middle">{{ quotation.consultant_seller }}</td>
                         <td class="align-middle">
                             {% if quotation.expired %}

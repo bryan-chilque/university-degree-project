@@ -1,5 +1,7 @@
 """Django 4.2.1 settings for riesgosgenerales project."""
 
+import os
+import sys
 from pathlib import Path
 from typing import List
 
@@ -9,7 +11,14 @@ SECRET_KEY = (
     "django-insecure-hgcdf2#o+%k*6q(+=!$@3r$rok$4p=h9%azlf=g+8jh4rx*t_w"
 )
 
-DEBUG = True
+ENV_DEBUG: str = os.environ.get("RRGG_DEBUG", "on")
+ENV_DEBUG = ENV_DEBUG.lower()
+if ENV_DEBUG in ("on", "true", "1"):
+    DEBUG = True
+elif ENV_DEBUG in ("off", "false", "0"):
+    DEBUG = False
+else:
+    raise ValueError("Invalid ENV_DEBUG value")
 
 ALLOWED_HOSTS: List[str] = ["*"]
 
@@ -30,6 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -62,13 +72,44 @@ WSGI_APPLICATION = "riesgosgenerales.wsgi.application"
 
 # Database
 
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": (
+        {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+        if DEBUG
+        else {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ["RRGG_DB_NAME"],
+            "USER": os.environ["RRGG_DB_USER"],
+            "PASSWORD": os.environ["RRGG_DB_PASSWORD"],
+            "HOST": os.environ["RRGG_DB_HOST"],
+            "PORT": "5432",
+        }
+    )
 }
 
+# Logging
+
+if not DEBUG:
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "rrgg-output": {
+                "class": "logging.StreamHandler",
+                "stream": sys.stdout,
+                "level": "DEBUG",
+            },
+        },
+        "loggers": {
+            "": {
+                "handlers": ["rrgg-output"],
+            },
+        },
+    }
 
 # Password validation
 
@@ -111,6 +152,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = "static/"
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATICFILES_STORAGE = (
+        "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    )
 
 # Media files (user uploaded files)
 

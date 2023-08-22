@@ -52,6 +52,19 @@ class SellerForm(forms.Form):
         )
 
 
+class SelectCustomerForm(forms.Form):
+    TYPE_CHOICES = (
+        ("persona_natural", "Persona natural"),
+        ("persona_jurídica", "Persona jurídica"),
+    )
+
+    type_customer = forms.ChoiceField(
+        choices=TYPE_CHOICES,
+        label=_("type customer"),
+        widget=forms.RadioSelect,
+    )
+
+
 class SearchPersonForm(forms.Form):
     document_number = forms.CharField(
         max_length=32,

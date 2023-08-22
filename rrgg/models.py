@@ -15,6 +15,17 @@ class Role(models.Model):
         return self.name
 
 
+class Area(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("area")
+        verbose_name_plural = _("areas")
+
+
 class Consultant(models.Model):
     given_name = models.CharField(_("given name"), max_length=64)
     first_surname = models.CharField(_("first surname"), max_length=64)
@@ -27,7 +38,6 @@ class Consultant(models.Model):
         verbose_name=_("role"),
         on_delete=models.PROTECT,
     )
-
     area = models.ManyToManyField(
         "Area", related_name="consultant", verbose_name=_("area")
     )
@@ -56,17 +66,6 @@ class ConsultantRate(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
 
-class Area(models.Model):
-    name = models.CharField(_("name"), max_length=64, unique=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = _("area")
-        verbose_name_plural = _("areas")
-
-
 class ConsultantMembership(models.Model):
     consultant = models.ForeignKey(
         Consultant, on_delete=models.PROTECT, related_name="membership"
@@ -81,21 +80,92 @@ class ConsultantMembership(models.Model):
         return f"consultant={self.consultant}, user={self.user}"
 
 
-class Customer(models.Model):
+class DocumentType(models.Model):
+    code = models.CharField(max_length=16)
+    name = models.CharField(max_length=128)
+    min_length = models.IntegerField(default=0)
+    max_length = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name = _("document type")
+
+    def __str__(self):
+        return self.code
+
+
+class Person(models.Model):
+    phone_number = models.CharField(_("phone number"), max_length=32)
+    email = models.EmailField(_("email"), max_length=64)
+    document_type = models.ForeignKey(
+        DocumentType,
+        on_delete=models.PROTECT,
+        verbose_name=_("document type"),
+    )
+    document_number = models.CharField(
+        _("document number"), max_length=32, unique=True
+    )
+
+    class Meta:
+        abstract = True
+
+
+class NaturalPerson(Person):
     given_name = models.CharField(_("given name"), max_length=64)
     first_surname = models.CharField(_("first surname"), max_length=64)
     second_surname = models.CharField(
         _("second surname"), max_length=64, blank=True
     )
-    document_number = models.CharField(
-        _("document number"), max_length=32, unique=True
-    )
     birthdate = models.DateField(_("birthdate"))
-    phone_number = models.CharField(_("phone number"), max_length=32)
-    email = models.EmailField(_("email"), max_length=64)
 
     def __str__(self):
         return f"{self.given_name} {self.first_surname}"
+
+
+class LegalPerson(Person):
+    # nombre comercial
+    business_name = models.CharField(
+        _("business name"), max_length=64, unique=True
+    )
+    # razón social
+    registered_name = models.CharField(_("registered name"), max_length=64)
+    general_manager = models.CharField(_("general manager"), max_length=64)
+    anniversary_date = models.DateField(_("anniversary date"))
+
+    def __str__(self):
+        return self.business_name
+
+
+class CustomerMembership(models.Model):
+    natural_person = models.OneToOneField(
+        NaturalPerson,
+        on_delete=models.PROTECT,
+        null=True,
+        related_name="membership",
+    )
+    legal_person = models.OneToOneField(
+        LegalPerson,
+        on_delete=models.PROTECT,
+        null=True,
+        related_name="membership",
+    )
+
+    @property
+    def pick(self):
+        return self.natural_person or self.legal_person
+
+    def save(self, *args, **kwargs):
+        if self.natural_person and self.legal_person:
+            raise ValueError(
+                "El contratante no puede ser persona natural y jurídica al"
+                " mismo tiempo."
+            )
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        if self.natural_person:
+            return f"{self.natural_person}"
+        elif self.legal_person:
+            return f"{self.legal_person}"
 
 
 class Owner(models.Model):
@@ -167,9 +237,12 @@ class Vehicle(models.Model):
         return f"{self.brand} {self.vehicle_model} {self.plate}"
 
 
-class VehicleOwnerShip(models.Model):
+class VehicleOwnership(models.Model):
     customer = models.ForeignKey(
-        Customer, null=True, related_name="ownership", on_delete=models.PROTECT
+        CustomerMembership,
+        null=True,
+        related_name="ownership",
+        on_delete=models.PROTECT,
     )
     owner = models.ForeignKey(
         Owner, null=True, related_name="ownership", on_delete=models.PROTECT
@@ -188,10 +261,16 @@ class VehicleOwnerShip(models.Model):
     def save(self, *args, **kwargs):
         if self.customer and self.owner:
             raise ValueError(
-                "El dueño del vehículo no puede ser cliente y propietario al"
-                " mismo tiempo."
+                f"El vehículo con placa {self.vehicle.plate} no puede tener 2"
+                " propietarios."
             )
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        if self.owner:
+            return f"{self.owner}"
+        elif self.customer:
+            return "El contratante es propietario del vehículo."
 
 
 class QuotationInsuranceVehicle(models.Model):
@@ -215,7 +294,7 @@ class QuotationInsuranceVehicle(models.Model):
         on_delete=models.PROTECT,
     )
     customer = models.ForeignKey(
-        Customer,
+        CustomerMembership,
         related_name="quotation_insurance_vehicles",
         verbose_name=_("customer"),
         on_delete=models.PROTECT,

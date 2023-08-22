@@ -1,27 +1,32 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% load i18n %}
 {% block title_section %}
-  Crear Vehículo
+  {{ title }}
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% include "rrggweb/utils/stepper.html" with step=3 max_step=6 %}
-      <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
+      {% if step %}
+        {% include "rrggweb/utils/stepper.html" with step=3 max_step=6 %}
+      {% endif %}
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
-      <div class="mt-2">
-        <h5>
-          <b>Asesor:</b> {{ seller }}
-        </h5>
-        <h5>
-          <b>Cliente:</b> {{ customer }}
-        </h5>
-        <h5>
-          <b>Datos de vehículo:</b>
-        </h5>
-      </div>
-      <hr class="w-25" />
+      {% if seller or customer %}
+        <div class="mt-2">
+          <h5>
+            <b>Asesor:</b> {{ seller }}
+          </h5>
+          <h5>
+            <b>Contratante:</b> {{ customer }}
+          </h5>
+          <h5>
+            <b>Datos de vehículo:</b>
+          </h5>
+        </div>
+        <hr class="w-25" />
+      {% endif %}
       <div>
         <form method="post">
           {% csrf_token %}
@@ -126,24 +131,28 @@
               {% endif %}
             </div>
           </div>
-        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
-       </form>
+          <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+        </form>
       </div>
-   </div>
- </div>
+    </div>
+  </div>
+  <script>
+    const checkbox = document.querySelector('#id_has_endorsee');
+    const container = document.querySelector('#endorsee-bank-container');
+    const input = document.querySelector('#id_endorsee_bank');
 
- <script>
-  const checkbox = document.querySelector('#id_has_endorsee');
-  const container = document.querySelector('#endorsee-bank-container');
-  const input = document.querySelector('#id_endorsee_bank');
-
-  checkbox.addEventListener('change', () => {
+    // Check if the checkbox is checked when the page loads
     if (checkbox.checked) {
       container.classList.remove('d-none');
-    } else {
-      container.classList.add('d-none');
-      input.value = '';
     }
-  });
-</script>
+
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        container.classList.remove('d-none');
+      } else {
+        container.classList.add('d-none');
+        input.value = '';
+      }
+    });
+  </script>
 {% endblock content %}
