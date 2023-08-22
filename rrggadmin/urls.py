@@ -143,6 +143,17 @@ role_urlpatterns = menu_patterns(
     ),
 )
 
+consultant_rate_urlpatterns = menu_patterns(
+    rrgg.models.ConsultantRate,
+    "rrggadmin/common",
+    "consultant_rate",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
 app_name = "rrggadmin"
 
 
@@ -157,5 +168,6 @@ urlpatterns = [
     path("use_type/", include(use_type_urlpatterns)),
     path("user/", include(user_urlpatterns)),
     path("consultant_membership/", include(consultant_membership_urlpatterns)),
+    path("consultant_rate/", include(consultant_rate_urlpatterns)),
     path("insurance_vehicle/", include(insurance_vehicle_ratios_urlpatterns)),
 ]
