@@ -125,7 +125,7 @@ class QIVSelectSellerFormView(FormView):
     form_class = forms.SellerForm
 
     def form_valid(self, form: forms.SellerForm):
-        seller = form.cleaned_data["sellers"]
+        seller = form.cleaned_data["asesores"]
         self.success_url = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:search_customer",
             kwargs={
@@ -145,6 +145,9 @@ class QIVSelectSellerFormView(FormView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Seleccionar Asesor"
         context["step"] = True
+        context["role_form"] = forms.RoleForm(
+            role_id=self.kwargs.get("role_id")
+        )
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},

@@ -31,25 +31,37 @@ class LoginAuthenticationForm(forms_auth.AuthenticationForm):
 
 
 class RoleForm(forms.Form):
-    roles = forms.ModelChoiceField(
-        label=_("roles"),
-        queryset=rrgg.models.Role.objects.all(),
-        widget=forms.Select(attrs={"class": "form-select"}),
-    )
+    def __init__(self, role_id=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        roles = rrgg.models.Role.objects.all()
+        self.fields["roles"] = forms.ModelChoiceField(
+            queryset=roles,
+            empty_label=None,
+            widget=forms.Select(attrs={"class": "form-select mb-2"}),
+        )
+
+        if role_id:
+            try:
+                rol_preseleccionado = rrgg.models.Role.objects.get(pk=role_id)
+                self.fields["roles"].initial = rol_preseleccionado
+            except rrgg.models.Role.DoesNotExist:
+                pass
 
 
 class SellerForm(forms.Form):
-    sellers = forms.ModelChoiceField(
-        label=_("sellers"),
-        queryset=rrgg.models.Consultant.objects.all(),
-        widget=forms.Select(attrs={"class": "form-select"}),
-    )
-
-    def __init__(self, role_id, *args, **kwargs):
+    def __init__(self, role_id=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["sellers"].queryset = (
-            rrgg.models.Consultant.objects.filter(role_id=role_id)
+        sellers = rrgg.models.Consultant.objects.all()
+        self.fields["asesores"] = forms.ModelChoiceField(
+            queryset=sellers,
+            empty_label=None,
+            widget=forms.Select(attrs={"class": "form-select mb-2"}),
         )
+
+        if role_id:
+            self.fields["asesores"].queryset = (
+                rrgg.models.Consultant.objects.filter(role_id=role_id)
+            )
 
 
 class SelectCustomerForm(forms.Form):
