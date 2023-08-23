@@ -85,7 +85,11 @@ class DefineOwnerForm(forms.Form):
     is_owner = forms.BooleanField(
         label=_("Is the insured the same as the contracting party?"),
         widget=forms.CheckboxInput(
-            attrs={"class": "form-check-input", "type": "checkbox"}
+            attrs={
+                "class": "form-check",
+                "type": "checkbox",
+                "for": "is_owner",
+            }
         ),
     )
 

@@ -5,14 +5,13 @@
   <style>#{% nomos_sk 'rrggweb-quotation-detail-table' %} tr td:first-child { padding-right: 2em; }</style>
 {% endblock head %}
 {% block title_section %}
-  Detalle Cotización de Vehículo
+  {{ title }}
 {% endblock title_section %}
 {% block content %}
   <div class="container">
     <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
-       href="{% url 'rrggweb:quotation:insurance:vehicle:list' view.kwargs.registrar_id %}">
-      <i class="fas fa-long-arrow-alt-left"></i>
-      Volver
+       href="{{ previous_page }}">
+      <i class="fas fa-long-arrow-alt-left"></i> Volver
     </a>
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
       <h5 class="mb-0">
