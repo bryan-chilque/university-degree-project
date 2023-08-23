@@ -12,11 +12,23 @@
          href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
-      <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
-      </form>
+      {% if role_form %}
+        <div>
+          <label for="model-choice">Roles:</label>
+          <select class="form-select" style="background-color: #e8e8e8;" id="model-choice" disabled>
+              {% for choice in role_form %}
+                  <option value={{ choice }}
+              {% endfor %}
+          </select>
+        </div>
+      {% endif %}
+      <div>
+        <form method="post">
+          {% csrf_token %}
+          {{ form }}
+          <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+        </form>
+      </div>
     </div>
   </div>
 {% endblock content %}
