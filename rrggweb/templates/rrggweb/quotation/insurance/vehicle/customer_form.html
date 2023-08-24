@@ -21,13 +21,31 @@
           </h5>
         </div>
       {% endif %}
-      <div>
-        <form method="post">
-          {% csrf_token %}
-          {{ form }}
-          <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
-        </form>
-      </div>
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <small id="document_number_error" class="text-danger d-none">El número de documento no puede contener letras o estar vacío. Mínimo 8 números.</small>
+        <br />
+        <button class="btn btn-primary btn-block mt-3" type="submit" id="next_button">Siguiente</button>
+      </form>
     </div>
   </div>
+  <script>
+    const documentNumberInput = document.querySelector('#id_document_number');
+    const documentNumberError = document.querySelector('#document_number_error');
+    const nextButton = document.querySelector('#next_button');
+
+    documentNumberInput.addEventListener('input', () => {
+      const documentNumber = documentNumberInput.value;
+      if (/^[0-9]{8,}$/.test(documentNumber)) {
+        documentNumberInput.classList.remove('is-invalid');
+        documentNumberError.classList.add('d-none');
+        nextButton.disabled = false;
+      } else {
+        documentNumberInput.classList.add('is-invalid');
+        documentNumberError.classList.remove('d-none');
+        nextButton.disabled = true;
+      }
+    });
+  </script>
 {% endblock content %}
