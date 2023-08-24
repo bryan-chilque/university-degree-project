@@ -176,12 +176,12 @@ quotation_insurance_vehicle_urlpatterns = (
             name="update_premium",
         ),
         path(
-            "report/xlsx/<int:quotation_id>/",
+            "report_xlsx/<int:quotation_id>/",
             views.QIVReportXlsxView.as_view(),
             name="report_xlsx",
         ),
         path(
-            "report/pdf/<int:quotation_id>/",
+            "report_pdf/<int:quotation_id>/",
             views.QIVReportPdfView.as_view(),
             name="report_pdf",
         ),
