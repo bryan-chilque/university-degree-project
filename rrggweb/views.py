@@ -1354,8 +1354,7 @@ class QIVReportXlsxView(View):
         ws["C8"] = vehicle.vehicle_model
         ws["C9"] = vehicle.fabrication_year
         ws["C10"] = vehicle.use_type.name
-        customer = quotation.customer.pick
-        ws["C6"] = f"{customer.given_name} {customer.first_surname}"
+        ws["C6"] = str(quotation.customer)
 
         for premium in quotation.premiums.all():
             ratio = premium.insurance_vehicle_ratio
