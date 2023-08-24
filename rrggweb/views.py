@@ -1331,9 +1331,7 @@ class QIVReportXlsxView(View):
             rrgg.models.QuotationInsuranceVehicle,
             id=kwargs["quotation_id"],
         )
-
         workbook = self.create_workbook(quotation)
-
         response = HttpResponse(
             content_type="application/vnd.openxmlformats"
             + "-officedocument.spreadsheetml.sheet"
@@ -1341,27 +1339,22 @@ class QIVReportXlsxView(View):
         response["Content-Disposition"] = (
             "attachment; filename=report_quotations.xlsx"
         )
-
         workbook.save(response)
-
         return response
 
     def create_workbook(self, quotation):
         from openpyxl import load_workbook
 
         wb = load_workbook(filename="rrggweb/resources/report_quotations.xlsx")
-
         ws = wb.active
         ws["C11"] = quotation.insured_amount
         ws["I6"] = quotation.created.strftime("%d/%m/%Y")
-
         vehicle = quotation.vehicle
         ws["C7"] = vehicle.brand
         ws["C8"] = vehicle.vehicle_model
         ws["C9"] = vehicle.fabrication_year
         ws["C10"] = vehicle.use_type.name
-
-        customer = quotation.customer
+        customer = quotation.customer.pick
         ws["C6"] = f"{customer.given_name} {customer.first_surname}"
 
         for premium in quotation.premiums.all():
