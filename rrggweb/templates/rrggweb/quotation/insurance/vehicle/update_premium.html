@@ -6,14 +6,27 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+         href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
       <form method="post">
         {% csrf_token %}
-          {{ form }}
+        <div id="insured_amount" class="d-none">{{ insured_amount }}</div>
+        {{ form }}
         <button class="btn btn-primary btn-block mt-3" type="submit">Editar</button>
       </form>
     </div>
   </div>
+  <script>
+    const insuredAmount = Number(document.querySelector('#insured_amount').textContent);
+    const amountInput = document.querySelector('#id_amount');
+    const rateInput = document.querySelector('#id_rate');
+
+    amountInput.addEventListener('input', () => {
+      const amount = Number(amountInput.value);
+      const rate = insuredAmount / amount;
+      rateInput.value = rate.toFixed(2);
+    });
+  </script>
 {% endblock content %}
