@@ -1291,6 +1291,13 @@ class QIVPremiumsUpdateViewSupport(
     fields = ["amount", "rate"]
     pk_url_kwarg = "premium_id"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["insured_amount"] = (
+            self.object.quotation_insurance_vehicle.insured_amount
+        )
+        return context
+
 
 class QIVPremiumsUpdateView(QIVPremiumsUpdateViewSupport):
     def get_success_url(self):

@@ -21,13 +21,11 @@
           </h5>
         </div>
       {% endif %}
-      <div>
-        <form method="post">
-          {% csrf_token %}
-          {{ form }}
-          <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
-        </form>
-      </div>
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary btn-block mt-3" type="submit" id="next_button">Siguiente</button>
+      </form>
     </div>
   </div>
 {% endblock content %}
