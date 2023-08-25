@@ -112,6 +112,11 @@
   fields:
     consultant: 3
     user: 3
+- model: rrgg.consultantmembership
+  pk: 2
+  fields:
+    consultant: 1
+    user: 1
 - model: rrgg.usetype
   pk: 1
   fields:

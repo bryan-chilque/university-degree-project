@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from . import validators
+
 
 class Role(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True)
@@ -94,7 +96,9 @@ class DocumentType(models.Model):
 
 
 class Person(models.Model):
-    phone_number = models.CharField(_("phone number"), max_length=32)
+    phone_number = models.CharField(
+        _("phone number"), max_length=32, validators=[validators.only_int]
+    )
     email = models.EmailField(_("email"), max_length=64)
     document_type = models.ForeignKey(
         DocumentType,
@@ -102,8 +106,16 @@ class Person(models.Model):
         verbose_name=_("document type"),
     )
     document_number = models.CharField(
-        _("document number"), max_length=32, unique=True
+        _("document number"),
+        max_length=32,
+        unique=True,
+        validators=[validators.only_int],
     )
+
+    def clean(self):
+        validators.validate_document_number(
+            self.document_type, self.document_number
+        )
 
     class Meta:
         abstract = True

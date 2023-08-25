@@ -345,6 +345,11 @@ class QIVCreateNaturalPersonView(QIVCreateCustomerView):
             },
         )
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["type_customer"] = "Persona natural"
+        return context
+
 
 class QIVCreateLegalPersonView(QIVCreateCustomerView):
     model = rrgg.models.LegalPerson
@@ -359,6 +364,11 @@ class QIVCreateLegalPersonView(QIVCreateCustomerView):
                 "customer_id": self.object.membership.id,
             },
         )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["type_customer"] = "Persona jurídica"
+        return context
 
 
 class QIVUpdateNaturalPersonViewSupport(

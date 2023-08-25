@@ -17,13 +17,28 @@
           </h5>
           <hr class="w-25 mb-3" />
           <h5>
-            <b>Datos del Contratante</b>
+            <b style="text-decoration: underline;">Datos del Contratante</b>
           </h5>
+          <h6 class="mt-4 mb-4">
+            <b>Tipo:</b> {{ type_customer }}
+          </h6>
         </div>
       {% endif %}
       <form method="post">
         {% csrf_token %}
-        {{ form }}
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            <strong>Error:</strong> Por favor corrija los siguientes errores.
+            <ul>
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ field.label_tag }} {{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+        {{ form.as_p }}
         <button class="btn btn-primary btn-block mt-3" type="submit" id="next_button">Siguiente</button>
       </form>
     </div>
