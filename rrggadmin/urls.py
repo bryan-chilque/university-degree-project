@@ -76,6 +76,10 @@ insurance_urlpatterns = (
     "insurance",
 )
 
+
+# MENU PATTERNS
+
+
 consultant_urlpatterns = menu_patterns(
     rrgg.models.Consultant,
     "rrggadmin/common",
@@ -110,10 +114,10 @@ consultant_membership_urlpatterns = (
     "consultant_membership",
 )
 
-use_type_urlpatterns = menu_patterns(
-    rrgg.models.UseType,
+role_urlpatterns = menu_patterns(
+    rrgg.models.Role,
     "rrggadmin/common",
-    "use_type",
+    "role",
     "rrggadmin",
     menu_traits=MenuTraits(
         list=ViewTraits(bases=[mixins.ListMixin]),
@@ -132,17 +136,6 @@ area_urlpatterns = menu_patterns(
     ),
 )
 
-role_urlpatterns = menu_patterns(
-    rrgg.models.Role,
-    "rrggadmin/common",
-    "role",
-    "rrggadmin",
-    menu_traits=MenuTraits(
-        list=ViewTraits(bases=[mixins.ListMixin]),
-        detail=ViewTraits(bases=[PairFieldsMixin]),
-    ),
-)
-
 consultant_rate_urlpatterns = menu_patterns(
     rrgg.models.ConsultantRate,
     "rrggadmin/common",
@@ -154,10 +147,43 @@ consultant_rate_urlpatterns = menu_patterns(
     ),
 )
 
-document_type_urlpatterns = menu_patterns(
-    rrgg.models.DocumentType,
+risk_urlpatterns = menu_patterns(
+    rrgg.models.Risk,
     "rrggadmin/common",
-    "document_type",
+    "risk",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
+risk_insurance_vehicle_urlpatterns = menu_patterns(
+    rrgg.models.RiskInsuranceVehicle,
+    "rrggadmin/common",
+    "risk_insurance_vehicle",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
+insurance_plan_urlpatterns = menu_patterns(
+    rrgg.models.InsurancePlan,
+    "rrggadmin/common",
+    "insurance_plan",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
+use_type_urlpatterns = menu_patterns(
+    rrgg.models.UseType,
+    "rrggadmin/common",
+    "use_type",
     "rrggadmin",
     menu_traits=MenuTraits(
         list=ViewTraits(bases=[mixins.ListMixin]),
@@ -169,6 +195,17 @@ bank_urlpatterns = menu_patterns(
     rrgg.models.Bank,
     "rrggadmin/common",
     "bank",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
+document_type_urlpatterns = menu_patterns(
+    rrgg.models.DocumentType,
+    "rrggadmin/common",
+    "document_type",
     "rrggadmin",
     menu_traits=MenuTraits(
         list=ViewTraits(bases=[mixins.ListMixin]),
@@ -192,7 +229,12 @@ urlpatterns = [
     path("user/", include(user_urlpatterns)),
     path("consultant_membership/", include(consultant_membership_urlpatterns)),
     path("consultant_rate/", include(consultant_rate_urlpatterns)),
+    path("risk/", include(risk_urlpatterns)),
+    path("insurance_vehicle/", include(insurance_vehicle_ratios_urlpatterns)),
+    path(
+        "risk_insurance_vehicle/", include(risk_insurance_vehicle_urlpatterns)
+    ),
+    path("insurance_plan/", include(insurance_plan_urlpatterns)),
     path("bank/", include(bank_urlpatterns)),
     path("document_type/", include(document_type_urlpatterns)),
-    path("insurance_vehicle/", include(insurance_vehicle_ratios_urlpatterns)),
 ]

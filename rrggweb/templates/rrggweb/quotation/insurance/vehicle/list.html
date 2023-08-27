@@ -1,4 +1,5 @@
 {% extends "rrggweb/dashboard.html" %}
+{% load i18n %}
 {% block title_section %}
     Lista de cotizaciones de seguros vehiculares
 {% endblock title_section %}
@@ -16,7 +17,8 @@
             <thead>
                 <tr>
                     <th scope="col">Cliente</th>
-                    <th scope="col">Número de documento</th>
+                    <th scope="col">Nº de documento</th>
+                    <th scope="col">Riesgo</th>
                     <th scope="col">Vehiculo</th>
                     <th scope="col">Suma asegudara</th>
                     <th scope="col">Asesor</th>
@@ -29,6 +31,7 @@
                     <tr>
                         <td class="align-middle" scope="row">{{ quotation.customer.pick }}</td>
                         <td class="align-middle">{{ quotation.customer.pick.document_number }}</td>
+                        <td class="align-middle">{{ quotation.risk }}</td>
                         <td class="align-middle">{{ quotation.vehicle }}</td>
                         <td class="align-middle">{{ quotation.insured_amount }}</td>
                         <td class="align-middle">{{ quotation.consultant_seller }}</td>
