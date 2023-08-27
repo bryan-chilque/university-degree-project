@@ -991,6 +991,7 @@ class QIVCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     fields = ["insured_amount"]
 
     def form_valid(self, form):
+        form.instance.risk = rrgg.models.Risk.objects.get(name="Vehicular")
         form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
         form.instance.consultant_seller_id = self.kwargs["seller_id"]
         form.instance.customer_id = self.kwargs["customer_id"]
