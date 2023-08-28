@@ -41,7 +41,7 @@ class Consultant(models.Model):
         on_delete=models.PROTECT,
     )
     area = models.ManyToManyField(
-        "Area", related_name="consultant", verbose_name=_("area")
+        Area, related_name="consultant", verbose_name=_("area")
     )
 
     class Meta:
@@ -79,7 +79,7 @@ class ConsultantMembership(models.Model):
     )
 
     def __str__(self):
-        return f"consultant={self.consultant}, user={self.user}"
+        return f"asesor={self.consultant}, usuario={self.user}"
 
 
 class DocumentType(models.Model):
@@ -285,46 +285,6 @@ class VehicleOwnership(models.Model):
             return "El contratante es propietario del vehículo."
 
 
-class QuotationInsuranceVehicle(models.Model):
-    insured_amount = models.PositiveIntegerField(_("insured amount"))
-    vehicle = models.ForeignKey(
-        Vehicle,
-        related_name="quotation_insurance_vehicles",
-        verbose_name=_("vehicle"),
-        on_delete=models.PROTECT,
-    )
-    consultant_registrar = models.ForeignKey(
-        Consultant,
-        related_name="quotation_insurance_vehicles_registered",
-        verbose_name=_("registrar"),
-        on_delete=models.PROTECT,
-    )
-    consultant_seller = models.ForeignKey(
-        Consultant,
-        related_name="quotation_insurance_vehicles_sold",
-        verbose_name=_("seller"),
-        on_delete=models.PROTECT,
-    )
-    customer = models.ForeignKey(
-        CustomerMembership,
-        related_name="quotation_insurance_vehicles",
-        verbose_name=_("customer"),
-        on_delete=models.PROTECT,
-    )
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        verbose_name = _("vehicle insurance quotation")
-        verbose_name_plural = _("vehicle insurance quotations")
-
-    @property
-    def expired(self):
-        return timezone.now() - self.created > timezone.timedelta(days=15)
-
-    def __str__(self):
-        return f"insured_amount={self.insured_amount}, vehicle={self.vehicle}"
-
-
 class InsuranceVehicle(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True)
     logo = models.ImageField(
@@ -368,6 +328,100 @@ class InsuranceVehicleRatio(models.Model):
             f" fee={self.fee},"
             f" insurance_vehicle={self.insurance_vehicle}"
         )
+
+
+class Risk(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("risk")
+        verbose_name_plural = _("risks")
+
+
+class RiskInsuranceVehicle(models.Model):
+    risk = models.ForeignKey(Risk, on_delete=models.PROTECT)
+    insurance_vehicle = models.ForeignKey(
+        InsuranceVehicle, on_delete=models.PROTECT
+    )
+
+    def __str__(self):
+        return f"riesgo={self.risk}, Cia={self.insurance_vehicle}"
+
+
+class InsurancePlan(models.Model):
+    name = models.CharField(_("name"), max_length=64)
+    commission = models.DecimalField(
+        _("commission"), decimal_places=3, max_digits=10
+    )
+    risk_insurance_vehicle = models.ForeignKey(
+        RiskInsuranceVehicle,
+        related_name="plans",
+        on_delete=models.PROTECT,
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("insurance plan")
+        verbose_name_plural = _("insurance plans")
+
+
+class QuotationInsurance(models.Model):
+    risk = models.ForeignKey(
+        Risk,
+        related_name="quotation_insurances",
+        verbose_name=_("risk"),
+        on_delete=models.PROTECT,
+    )
+    consultant_registrar = models.ForeignKey(
+        Consultant,
+        related_name="quotation_insurance_vehicles_registered",
+        verbose_name=_("registrar"),
+        on_delete=models.PROTECT,
+    )
+    consultant_seller = models.ForeignKey(
+        Consultant,
+        related_name="quotation_insurance_vehicles_sold",
+        verbose_name=_("seller"),
+        on_delete=models.PROTECT,
+    )
+    customer = models.ForeignKey(
+        CustomerMembership,
+        related_name="quotation_insurance_vehicles",
+        verbose_name=_("customer"),
+        on_delete=models.PROTECT,
+    )
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        abstract = True
+        verbose_name = _("insurance quotation")
+        verbose_name_plural = _("insurance quotations")
+
+
+class QuotationInsuranceVehicle(QuotationInsurance):
+    insured_amount = models.PositiveIntegerField(_("insured amount"))
+    vehicle = models.ForeignKey(
+        Vehicle,
+        related_name="quotation_insurance_vehicles",
+        verbose_name=_("vehicle"),
+        on_delete=models.PROTECT,
+    )
+
+    class Meta:
+        verbose_name = _("vehicle insurance quotation")
+        verbose_name_plural = _("vehicle insurance quotations")
+
+    @property
+    def expired(self):
+        return timezone.now() - self.created > timezone.timedelta(days=15)
+
+    def __str__(self):
+        return f"insured_amount={self.insured_amount}, vehicle={self.vehicle}"
 
 
 class QuotationInsuranceVehiclePremium(models.Model):

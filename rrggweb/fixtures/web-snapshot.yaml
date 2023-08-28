@@ -315,9 +315,61 @@
     direct_debit: 12
     created: 2023-07-21 19:39:15.639471+00:00
     insurance_vehicle: 5
+- model: rrgg.risk
+  pk: 1
+  fields:
+    name: 'Vehicular'
+- model: rrgg.risk
+  pk: 2
+  fields:
+    name: 'Asistencia Médica'
+- model: rrgg.riskinsurancevehicle
+  pk: 1
+  fields:
+    risk: 1
+    insurance_vehicle: 1
+- model: rrgg.riskinsurancevehicle
+  pk: 2
+  fields:
+    risk: 1
+    insurance_vehicle: 2
+- model: rrgg.riskinsurancevehicle
+  pk: 3
+  fields:
+    risk: 1
+    insurance_vehicle: 3
+- model: rrgg.riskinsurancevehicle
+  pk: 4
+  fields:
+    risk: 1
+    insurance_vehicle: 4
+- model: rrgg.riskinsurancevehicle
+  pk: 5
+  fields:
+    risk: 1
+    insurance_vehicle: 5
+- model: rrgg.insuranceplan
+  pk: 1
+  fields:
+    name: 'auto corporativo'
+    commission: 0.20
+    risk_insurance_vehicle: 3
+- model: rrgg.insuranceplan
+  pk: 2
+  fields:
+    name: 'auto individual'
+    commission: 0.175
+    risk_insurance_vehicle: 3
+- model: rrgg.insuranceplan
+  pk: 3
+  fields:
+    name: 'auto corporativo'
+    commission: 0.175
+    risk_insurance_vehicle: 1
 - model: rrgg.quotationinsurancevehicle
   pk: 1
   fields:
+    risk: 1
     insured_amount: 3000
     vehicle: 1
     consultant_registrar: 3
@@ -327,6 +379,7 @@
 - model: rrgg.quotationinsurancevehicle
   pk: 2
   fields:
+    risk: 1
     insured_amount: 2000
     vehicle: 2
     consultant_registrar: 1

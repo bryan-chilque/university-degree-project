@@ -26,14 +26,8 @@
           text-dark
         {% endif %}
         ">
-        <i class="bi bi-person-vcard-fill"></i>
+        <i class="bi bi-person-lines-fill"></i>
         Asesores
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'rrggadmin:consultant_membership:list' %}" class="nav-link text-dark">
-        <i class="fas fa-table"></i>
-        Registro de Asesores
       </a>
     </li>
     <li>
@@ -43,57 +37,81 @@
       </a>
     </li>
     <li>
-      <a href="{% url 'rrggadmin:area:list' %}" class="nav-link text-dark">
-        <i class="bi bi-shield-fill"></i>
-        Áreas de Seguros
+      <a href="{% url 'rrggadmin:consultant_membership:list' %}" class="nav-link text-dark">
+        <i class="bi bi-person-fill-gear"></i>
+        Afiliación de asesores
       </a>
     </li>
     <li>
       <a href="{% url 'rrggadmin:role:list' %}" class="nav-link text-dark">
-        <i class="bi bi-house-fill"></i>
-        Roles
+        <i class="bi bi-person-fill-lock"></i>
+        Tipos de asesores
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'rrggadmin:area:list' %}" class="nav-link text-dark">
+        <i class="bi bi-shield-fill"></i>
+        Áreas del sistema
       </a>
     </li>
     <li>
       <a href="{% url 'rrggadmin:consultant_rate:list' %}" class="nav-link text-dark">
-        <i class="bi bi-shield-fill"></i>
-        Cotización de Asesores
+        <i class="bi bi-percent"></i>
+        Comisión de asesores
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'rrggadmin:risk:list' %}" class="nav-link text-dark">
+        <i class="bi bi-exclamation-octagon-fill"></i>
+        Riesgo
       </a>
     </li>
     <li>
       <a href="{% url 'rrggadmin:insurance:vehicle:list' %}" class="nav-link text-dark">
-        <i class="bi bi-car-front-fill"></i>
-        Seguros Vehiculares
+        <i class="bi bi-buildings-fill"></i>
+        CIA de seguros
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'rrggadmin:insurance_vehicle:ratios:list' %}" class="nav-link text-dark">
+        <i class="bi bi-percent"></i>
+        Comisión de CIAs
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'rrggadmin:risk_insurance_vehicle:list' %}" class="nav-link text-dark">
+        <i class="bi bi-arrows-angle-contract"></i>
+        Asociar Riesgo/CIA
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'rrggadmin:insurance_plan:list' %}" class="nav-link text-dark">
+        <i class="bi bi-handbag-fill"></i>
+        Plan de seguro
       </a>
     </li>
     <li>
       <a href="{% url 'rrggadmin:use_type:list' %}" class="nav-link text-dark">
-        <i class="bi bi-truck-front-fill"></i>
-        Tipos de uso de Vehicular
+        <i class="bi bi-car-front-fill"></i>
+        Tipos de uso vehicular
       </a>
     </li>
     <li>
       <a href="{% url 'rrggadmin:bank:list' %}" class="nav-link text-dark">
         <i class="bi bi-bank"></i>
-        Registro de Bancos
+        Bancos asociados
       </a>
     </li>
     <li>
       <a href="{% url 'rrggadmin:document_type:list' %}" class="nav-link text-dark">
-        <i class="bi bi-pass"></i>
-        Registro de Tipos de Documentos
+        <i class="bi bi-person-vcard-fill"></i>
+        Tipo de Documentos
       </a>
     </li>
     <li>
       <a href="{% url 'rrggadmin:issuance_insurance_status:list' %}" class="nav-link text-dark">
         <i class="bi bi-file-earmark"></i>
         Registro de Estados
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'rrggadmin:insurance_vehicle:ratios:list' %}" class="nav-link text-dark">
-        <i class="bi bi-truck-front-fill"></i>
-        Ratios de Seguros Vehiculares
       </a>
     </li>
   </ul>

@@ -14,6 +14,5 @@
         {% endfor %}
     </table>
     <a href="{% url menu.update_name object.pk %}">Actualizar</a>
+    <a href="{% url menu.delete_name object.pk %}">Eliminar</a>
 {% endblock %}
-
-<a href="{% url menu.delete_name object.pk %}">Eliminar</a>
