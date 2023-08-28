@@ -165,6 +165,17 @@ document_type_urlpatterns = menu_patterns(
     ),
 )
 
+issuanceInsuranceStatus_urlpatterns = menu_patterns(
+    rrgg.models.IssuanceInsuranceStatus,
+    "rrggadmin/common",
+    "issuance_insurance_status",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
 bank_urlpatterns = menu_patterns(
     rrgg.models.Bank,
     "rrggadmin/common",
@@ -194,5 +205,9 @@ urlpatterns = [
     path("consultant_rate/", include(consultant_rate_urlpatterns)),
     path("bank/", include(bank_urlpatterns)),
     path("document_type/", include(document_type_urlpatterns)),
+    path(
+        "issuance_insurance_status/",
+        include(issuanceInsuranceStatus_urlpatterns),
+    ),
     path("insurance_vehicle/", include(insurance_vehicle_ratios_urlpatterns)),
 ]
