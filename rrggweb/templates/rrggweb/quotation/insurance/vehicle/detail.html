@@ -1,100 +1,151 @@
 {% extends "rrggweb/dashboard.html" %}
 {% load nomos %}
 {% block head %}
-  {{ block.super }}
-  <style>#{% nomos_sk 'rrggweb-quotation-detail-table' %} tr td:first-child { padding-right: 2em; }</style>
+{{ block.super }}
+<style>
+  #{% nomos_sk 'rrggweb-quotation-detail-table' %} tr td:first-child {
+    padding-right: 2em;
+  }
+</style>
 {% endblock head %}
 {% block title_section %}
-  {{ title }}
+{{ title }}
 {% endblock title_section %}
 {% block content %}
-  <div class="container">
-    <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
-       href="{{ previous_page }}">
-      <i class="fas fa-long-arrow-alt-left"></i> Volver
-    </a>
-    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-      <h5 class="mb-0">
-        <b>Contratante:</b> {{ customer }} &nbsp;
-        <a href="{{ update_customer }}"><i class="fas fa-pencil-alt"></i></a>
-      </h5>
-      <div class="d-flex gap-2">
-        <a href="{{ report_xlsx }}"
-           class="btn btn-success">
-          <i class="fa fa-file-excel"></i>
-          Exportar a Excel
-        </a>
-        <a href="{{ report_pdf }}"
-           class="btn btn-danger">
-          <i class="fa fa-file-pdf"></i>
-          Exportar a PDF
-        </a>
-      </div>
+<div class="container">
+  <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
+    <i class="fas fa-long-arrow-alt-left"></i> Volver
+  </a>
+  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+    <h5 class="mb-0">
+      <b>Contratante:</b> {{ customer }} &nbsp;
+      <a href="{{ update_customer }}"><i class="fas fa-pencil-alt"></i></a>
+    </h5>
+    <div class="d-flex gap-2">
+      <a href="{{ report_xlsx }}" class="btn btn-success">
+        <i class="fa fa-file-excel"></i>
+        Exportar a Excel
+      </a>
+      <a href="{{ report_pdf }}" class="btn btn-danger">
+        <i class="fa fa-file-pdf"></i>
+        Exportar a PDF
+      </a>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="mb-4">
-          <table id="{% nomos_sk 'rrggweb-quotation-detail-table' %}"
-                 class="table table-bordered">
-            <tr>
-              <td>
-                <strong>Monto Asegurado:</strong>
-              </td>
-              <td>
-                ${{ object.insured_amount }} &nbsp;
-                <a href="{{ update }}"><i class="fas fa-pencil-alt"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Vehiculo:</strong>
-              </td>
-              <td>
-                {{ vehicle }} &nbsp;
-                <a href="{{ update_vehicle }}"><i class="fas fa-pencil-alt"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Propietario:</strong>
-              </td>
-              <td>
-                {{ owner }} &nbsp;
-                {% if update_owner %}
-                  <a href="{{ update_owner }}">
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mb-4">
+        <table id="{% nomos_sk 'rrggweb-quotation-detail-table' %}" class="table table-bordered">
+          <tr>
+            <td>
+              <strong>Monto Asegurado:</strong>
+            </td>
+            <td>
+              ${{ object.insured_amount }} &nbsp;
+              <a href="{{ update }}"><i class="fas fa-pencil-alt"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Vehiculo:</strong>
+            </td>
+            <td>
+              {{ vehicle }} &nbsp;
+              <a href="{{ update_vehicle }}"><i class="fas fa-pencil-alt"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Propietario:</strong>
+            </td>
+            <td>
+              {{ owner }} &nbsp;
+              {% if update_owner %}
+              <a href="{{ update_owner }}">
+                <i class="fas fa-pencil-alt"></i>
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Asesor:</strong>
+            </td>
+            <td>
+              {{ seller }} &nbsp;
+              <a href="{{ update_seller }}"><i class="fas fa-pencil-alt"></i></a>
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              <strong>Fecha de Registro:</strong>
+            </td>
+            <td>{{ object.created|date:'d/m/Y' }}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>¿Expiró?:</strong>
+            </td>
+            <td>
+              {% if object.expired %}
+              Sí
+              {% else %}
+              No
+              {% endif %}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <h5>
+          <b>Cotizaciones:</b>
+        </h5>
+        {% if object.premiums.count == 0 %}
+        <p>No hay premiums asociados</p>
+        {% else %}
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Aseguradora</th>
+                <th>Prima Neta</th>
+                <th>% Derecho de Emisión</th>
+                <th>Derecho de Emisión</th>
+                <th>% IGV</th>
+                <th>IGV</th>
+                <th>Prima Total</th>
+                <th>Tasa</th>
+                <th colspan="2">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for premium in object.premiums.all %}
+              <tr>
+                <td class="align-middle">{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</td>
+                <td class="align-middle">${{ premium.amount }}</td>
+                <td class="align-middle">{{ premium.insurance_vehicle_ratio.emission_right|floatformat:2 }}%</td>
+                <td class="align-middle">${{ premium.emission_right }}</td>
+                <td class="align-middle">{{ premium.insurance_vehicle_ratio.tax|floatformat:2 }}%</td>
+                <td class="align-middle">${{ premium.tax }}</td>
+                <td class="align-middle">${{ premium.total }}</td>
+                <td class="align-middle">${{ premium.rate }}</td>
+                <td class="align-middle d-flex gap-2">
+                  <a class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
+                    href="{% url 'rrggweb:issuance:insurance:vehicle:define_issuance' view.kwargs.registrar_id premium.id %}">
+                    <i class="fa fa-file"></i>
+                    Generar Emisión
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
                     <i class="fas fa-pencil-alt"></i>
                   </a>
-                {% endif %}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Asesor:</strong>
-              </td>
-              <td>
-                {{ seller }} &nbsp;
-                <a href="{{ update_seller }}"><i class="fas fa-pencil-alt"></i></a>
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                <strong>Fecha de Registro:</strong>
-              </td>
-              <td>{{ object.created|date:'d/m/Y' }}</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>¿Expiró?:</strong>
-              </td>
-              <td>
-                {% if object.expired %}
-                  Sí
-                {% else %}
-                  No
-                {% endif %}
-              </td>
-            </tr>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
           </table>
         </div>
         <div>
@@ -152,4 +203,5 @@
       </div>
     </div>
   </div>
+</div>
 {% endblock content %}

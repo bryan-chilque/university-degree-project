@@ -1,3 +1,5 @@
+import re
+
 from django import shortcuts, urls
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
@@ -197,6 +199,19 @@ class QIVSearchCustomerView(FormView):
 
     def form_valid(self, form):
         document_number = form.cleaned_data["document_number"]
+        if not re.match("^[0-9]+$", document_number):
+            form.add_error(
+                "document_number",
+                "El número de documento debe contener solo números.",
+            )
+            return super().form_invalid(form)
+        elif len(document_number) < 8:
+            form.add_error(
+                "document_number",
+                "El número de documento debe tener al menos 8 caracteres.",
+            )
+            return super().form_invalid(form)
+
         natural_customer_exists = (
             rrgg.models.CustomerMembership.objects.filter(
                 natural_person__document_number=document_number
