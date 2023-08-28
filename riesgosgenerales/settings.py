@@ -7,7 +7,9 @@ from typing import List
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-hgcdf2#o+%k*6q(+=!$@3r$rok$4p=h9%azlf=g+8jh4rx*t_w"
+SECRET_KEY = (
+    "django-insecure-hgcdf2#o+%k*6q(+=!$@3r$rok$4p=h9%azlf=g+8jh4rx*t_w"
+)
 
 ENV_DEBUG: str = os.environ.get("RRGG_DEBUG", "on")
 ENV_DEBUG = ENV_DEBUG.lower()
@@ -119,13 +121,19 @@ AUTH_PASSWORD_VALIDATORS = [
         ),
     },
     {
-        "NAME": ("django.contrib.auth.password_validation.MinimumLengthValidator"),
+        "NAME": (
+            "django.contrib.auth.password_validation.MinimumLengthValidator"
+        ),
     },
     {
-        "NAME": ("django.contrib.auth.password_validation.CommonPasswordValidator"),
+        "NAME": (
+            "django.contrib.auth.password_validation.CommonPasswordValidator"
+        ),
     },
     {
-        "NAME": ("django.contrib.auth.password_validation.NumericPasswordValidator"),
+        "NAME": (
+            "django.contrib.auth.password_validation.NumericPasswordValidator"
+        ),
     },
 ]
 
@@ -148,7 +156,9 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATICFILES_STORAGE = (
+        "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    )
 
 # Media files (user uploaded files)
 
