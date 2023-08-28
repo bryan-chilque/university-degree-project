@@ -204,7 +204,7 @@ issuance_insurance_vehicle_urlpatterns = (
     [
         path(
             "list/",
-            views.IssuanceInsuranceVehicleListView.as_view(),
+            views.IIVListView.as_view(),
             name="list",
         ),
         path(
@@ -213,9 +213,25 @@ issuance_insurance_vehicle_urlpatterns = (
             name="list_quotations",
         ),
         path(
-            "define_issuance/quotation_premium/<int:quotation_premium_id>/",
-            views.IIVTypeFormView.as_view(),
-            name="define_issuance",
+            "select_role/quotation_premium/<int:quotation_premium_id>/",
+            views.IIVSelectRoleFormView.as_view(),
+            name="select_role",
+        ),
+        path(
+            (
+                "select_seller/quotation_premium/<int:quotation_premium_id>/"
+                "role/<int:role_id>/"
+            ),
+            views.IIVSelectSellerFormView.as_view(),
+            name="select_seller",
+        ),
+        path(
+            (
+                "select_plan/quotation_premium/<int:quotation_premium_id>/"
+                "seller/<int:seller_id>/"
+            ),
+            views.IIVPlanFormView.as_view(),
+            name="select_plan",
         ),
         path(
             "create_policy/quotation_premium/<int:quotation_premium_id>/",
@@ -276,7 +292,7 @@ collection_insurance_vehicle_urlpatterns = (
         ),
         path(
             "list_emissions/",
-            views.IssuanceInsuranceVehicleListView.as_view(),
+            views.IIVListView.as_view(),
             name="list_emissions",
         ),
         path(

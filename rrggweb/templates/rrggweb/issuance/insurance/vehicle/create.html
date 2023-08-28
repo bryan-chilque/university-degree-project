@@ -5,9 +5,9 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% include "rrggweb/utils/stepper.html" with step=2 max_step=3 %}
+      {% include "rrggweb/utils/stepper.html" with step=3 max_step=4 %}
       <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
-         href="{% url 'rrggweb:quotation:insurance:vehicle:detail' view.kwargs.registrar_id quotation_premium.quotation_insurance_vehicle.id %}">
+         href="">
         <i class="fas fa-long-arrow-alt-left"></i>
         Volver
       </a>
@@ -18,10 +18,10 @@
               <tr>
                 <th colspan="2" class="font-weight-bold">
                   Datos del contratante
-                  <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.customer.id 'issuance_create' quotation_premium.id %}"
+                  {% comment %} <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.customer.id 'issuance_create' quotation_premium.id %}"
                      class="btn-link">
                     <i class="fas fa-edit"></i>
-                  </a>
+                  </a> {% endcomment %}
                 </th>
               </tr>
             </thead>
@@ -101,10 +101,10 @@
                 <td class="font-weight-bold">Suma asegurada</td>
                 <td>
                   ${{ quotation_premium.quotation_insurance_vehicle.insured_amount }}
-                  <a href="{% url 'rrggweb:quotation:insurance:vehicle:update' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.id 'issuance_create' quotation_premium.id %}"
+                  {% comment %} <a href="{% url 'rrggweb:quotation:insurance:vehicle:update' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.id 'issuance_create' quotation_premium.id %}"
                      class="btn-link">
                     <i class="fas fa-edit"></i>
-                  </a>
+                  </a> {% endcomment %}
                 </td>
               </tr>
               <tr>
@@ -115,10 +115,10 @@
                 <td class="font-weight-bold">Prima neta</td>
                 <td>
                   ${{ quotation_premium.amount }}
-                  <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.id 'issuance_create' 0 %}"
+                  {% comment %} <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.id 'issuance_create' 0 %}"
                      class="btn-link">
                     <i class="fas fa-edit"></i>
-                  </a>
+                  </a> {% endcomment %}
                 </td>
               </tr>
               <tr>

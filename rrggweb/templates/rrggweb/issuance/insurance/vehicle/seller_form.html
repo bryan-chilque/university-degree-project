@@ -1,4 +1,4 @@
-{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
 {% block title_section %}
   {{ title }}
 {% endblock title_section %}
@@ -6,7 +6,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       {% if step %}
-        {% include "rrggweb/utils/stepper.html" with step=1 max_step=6 %}
+        {% include "rrggweb/utils/stepper.html" with step=1 max_step=4 %}
       {% endif %}
       <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
          href="{{ previous_page }}">
