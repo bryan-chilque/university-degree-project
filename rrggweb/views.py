@@ -18,6 +18,7 @@ from django.views.generic import (
 import rrgg.models
 from rrgg import mixins as rrgg_mixins
 
+import re
 from . import forms
 from .utils import SeguroItem
 
@@ -29,9 +30,7 @@ class LoginView(views_auth.LoginView):
     form_class = forms.LoginAuthenticationForm
 
     def form_valid(self, form):
-        registrar_id = (
-            form.get_user().consultant_membership.first().consultant.id
-        )
+        registrar_id = form.get_user().consultant_membership.first().consultant.id
         self.next_page = urls.reverse(
             "rrggweb:home", kwargs={"registrar_id": registrar_id}
         )
@@ -145,9 +144,7 @@ class QIVSelectSellerFormView(FormView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Seleccionar Asesor"
         context["step"] = True
-        context["role_form"] = forms.RoleForm(
-            role_id=self.kwargs.get("role_id")
-        )
+        context["role_form"] = forms.RoleForm(role_id=self.kwargs.get("role_id"))
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
@@ -155,9 +152,7 @@ class QIVSelectSellerFormView(FormView):
         return context
 
 
-class QIVUpdateSellerViewSupport(
-    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
-):
+class QIVUpdateSellerViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView):
     template_name = "rrggweb/quotation/insurance/vehicle/seller_form.html"
     model = rrgg.models.QuotationInsuranceVehicle
     fields = ["consultant_seller"]
@@ -197,11 +192,21 @@ class QIVSearchCustomerView(FormView):
 
     def form_valid(self, form):
         document_number = form.cleaned_data["document_number"]
-        natural_customer_exists = (
-            rrgg.models.CustomerMembership.objects.filter(
-                natural_person__document_number=document_number
-            ).exists()
-        )
+        if not re.match("^[0-9]+$", document_number):
+            form.add_error(
+                "document_number", "El número de documento debe contener solo números."
+            )
+            return super().form_invalid(form)
+        elif len(document_number) < 8:
+            form.add_error(
+                "document_number",
+                "El número de documento debe tener al menos 8 caracteres.",
+            )
+            return super().form_invalid(form)
+
+        natural_customer_exists = rrgg.models.CustomerMembership.objects.filter(
+            natural_person__document_number=document_number
+        ).exists()
         legal_customer_exists = rrgg.models.CustomerMembership.objects.filter(
             legal_person__document_number=document_number
         ).exists()
@@ -307,9 +312,7 @@ class QIVCreateCustomerView(
 
     def get_initial(self):
         initial = super().get_initial()
-        initial["document_number"] = self.request.GET.get(
-            "document_number", ""
-        )
+        initial["document_number"] = self.request.GET.get("document_number", "")
         return initial
 
     def get_context_data(self, **kwargs):
@@ -333,9 +336,7 @@ class QIVCreateNaturalPersonView(QIVCreateCustomerView):
     model = rrgg.models.NaturalPerson
 
     def get_success_url(self):
-        rrgg.models.CustomerMembership.objects.create(
-            natural_person=self.object
-        )
+        rrgg.models.CustomerMembership.objects.create(natural_person=self.object)
         return urls.reverse(
             "rrggweb:quotation:insurance:vehicle:search_vehicle",
             kwargs={
@@ -502,16 +503,12 @@ class QIVSearchVehicleView(FormView):
 
     def form_valid(self, form):
         plate = form.cleaned_data["plate"]
-        vehicle_exists = rrgg.models.Vehicle.objects.filter(
-            plate=plate
-        ).exists()
+        vehicle_exists = rrgg.models.Vehicle.objects.filter(plate=plate).exists()
         if vehicle_exists:
             vehicle = rrgg.models.Vehicle.objects.get(plate=plate)
-            vehicle_ownership_exists = (
-                rrgg.models.VehicleOwnership.objects.filter(
-                    vehicle__plate=plate
-                ).exists()
-            )
+            vehicle_ownership_exists = rrgg.models.VehicleOwnership.objects.filter(
+                vehicle__plate=plate
+            ).exists()
             if vehicle_ownership_exists:
                 self.success_url = urls.reverse(
                     "rrggweb:quotation:insurance:vehicle:create",
@@ -562,10 +559,7 @@ class QIVSearchVehicleView(FormView):
         person = customer.pick
         if isinstance(person, rrgg.models.NaturalPerson):
             context["previous_page"] = urls.reverse(
-                (
-                    "rrggweb:quotation:insurance:vehicle:"
-                    "update_natural_person_step"
-                ),
+                ("rrggweb:quotation:insurance:vehicle:" "update_natural_person_step"),
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -637,9 +631,7 @@ class QIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         return context
 
 
-class QIVUpdateVehicleViewSupport(
-    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
-):
+class QIVUpdateVehicleViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView):
     template_name = "rrggweb/quotation/insurance/vehicle/vehicle_form.html"
     model = rrgg.models.Vehicle
     fields = "__all__"
@@ -800,15 +792,11 @@ class QIVSearchOwnerView(FormView):
             document_number=document_number
         ).exists()
         if owner_exists:
-            owner = rrgg.models.Owner.objects.get(
-                document_number=document_number
-            )
+            owner = rrgg.models.Owner.objects.get(document_number=document_number)
             vehicle = shortcuts.get_object_or_404(
                 rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
             )
-            rrgg.models.VehicleOwnership.objects.create(
-                owner=owner, vehicle=vehicle
-            )
+            rrgg.models.VehicleOwnership.objects.create(owner=owner, vehicle=vehicle)
             self.success_url = urls.reverse(
                 "rrggweb:quotation:insurance:vehicle:create",
                 kwargs={
@@ -828,9 +816,7 @@ class QIVSearchOwnerView(FormView):
                     "vehicle_id": self.kwargs["vehicle_id"],
                 },
             )
-            self.success_url = (
-                f"{create_owner_url}?document_number={document_number}"
-            )
+            self.success_url = f"{create_owner_url}?document_number={document_number}"
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -867,9 +853,7 @@ class QIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         vehicle = shortcuts.get_object_or_404(
             rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
         )
-        rrgg.models.VehicleOwnership.objects.create(
-            owner=self.object, vehicle=vehicle
-        )
+        rrgg.models.VehicleOwnership.objects.create(owner=self.object, vehicle=vehicle)
         return urls.reverse(
             "rrggweb:quotation:insurance:vehicle:create",
             kwargs={
@@ -882,9 +866,7 @@ class QIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
-        initial["document_number"] = self.request.GET.get(
-            "document_number", ""
-        )
+        initial["document_number"] = self.request.GET.get("document_number", "")
         return initial
 
     def get_context_data(self, **kwargs):
@@ -912,9 +894,7 @@ class QIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         return context
 
 
-class QIVUpdateOwnerViewSupport(
-    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
-):
+class QIVUpdateOwnerViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView):
     template_name = "rrggweb/quotation/insurance/vehicle/owner_form.html"
     model = rrgg.models.Owner
     fields = "__all__"
@@ -1046,9 +1026,7 @@ class QIVCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         return context
 
 
-class QIVUpdateAmountViewSupport(
-    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
-):
+class QIVUpdateAmountViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView):
     template_name = "rrggweb/quotation/insurance/vehicle/form.html"
     model = rrgg.models.QuotationInsuranceVehicle
     fields = ["insured_amount"]
@@ -1236,14 +1214,10 @@ class QIVPremiumsFormView(FormView):
         )
         formset = super().get_form(form_class)
         # Mantener el orden: Ver ABC123
-        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by(
-            "name"
-        )
+        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by("name")
         for form, insurance_vehicle in zip(formset, insurance_vehicles):
             insurance_vehicle_ratio = form.fields["insurance_vehicle_ratio"]
-            quotation_insurance_vehicle = form.fields[
-                "quotation_insurance_vehicle"
-            ]
+            quotation_insurance_vehicle = form.fields["quotation_insurance_vehicle"]
             insurance_vehicle_ratio.initial = insurance_vehicle.last_ratio
             quotation_insurance_vehicle.initial = shortcuts.get_object_or_404(
                 rrgg.models.QuotationInsuranceVehicle,
@@ -1273,12 +1247,9 @@ class QIVPremiumsFormView(FormView):
             },
         )
         # Mantener el orden: Ver ABC123
-        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by(
-            "name"
-        )
+        insurance_vehicles = rrgg.models.InsuranceVehicle.objects.order_by("name")
         last_ratios = (
-            insurance_vehicle.last_ratio
-            for insurance_vehicle in insurance_vehicles
+            insurance_vehicle.last_ratio for insurance_vehicle in insurance_vehicles
         )
         context["last_ratio_forms"] = zip(last_ratios, context["form"])
 
@@ -1294,9 +1265,7 @@ class QIVPremiumsFormView(FormView):
         )
 
 
-class QIVPremiumsUpdateViewSupport(
-    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
-):
+class QIVPremiumsUpdateViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView):
     template_name = "rrggweb/quotation/insurance/vehicle/update_premium.html"
     model = rrgg.models.QuotationInsuranceVehiclePremium
     fields = ["amount", "rate"]
@@ -1304,9 +1273,9 @@ class QIVPremiumsUpdateViewSupport(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["insured_amount"] = (
-            self.object.quotation_insurance_vehicle.insured_amount
-        )
+        context[
+            "insured_amount"
+        ] = self.object.quotation_insurance_vehicle.insured_amount
         return context
 
 
@@ -1347,9 +1316,7 @@ class QIVReportXlsxView(View):
             content_type="application/vnd.openxmlformats"
             + "-officedocument.spreadsheetml.sheet"
         )
-        response["Content-Disposition"] = (
-            "attachment; filename=report_quotations.xlsx"
-        )
+        response["Content-Disposition"] = "attachment; filename=report_quotations.xlsx"
         workbook.save(response)
         return response
 
@@ -1444,9 +1411,7 @@ class QIVReportPdfView(View):
         pdf_file = HTML(string=html_string).write_pdf()
 
         response = HttpResponse(pdf_file, content_type="application/pdf")
-        response["Content-Disposition"] = (
-            "attachment; filename=report_quotations.pdf"
-        )
+        response["Content-Disposition"] = "attachment; filename=report_quotations.pdf"
 
         return response
 
@@ -1492,9 +1457,7 @@ class IIVTypeFormView(FormView):
                 "rrggweb:issuance:insurance:vehicle:create_policy",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
-                    "quotation_premium_id": self.kwargs[
-                        "quotation_premium_id"
-                    ],
+                    "quotation_premium_id": self.kwargs["quotation_premium_id"],
                 },
             )
         elif tipo == "endorsement":
@@ -1502,9 +1465,7 @@ class IIVTypeFormView(FormView):
                 "rrggweb:issuance:insurance:vehicle:create_endorsement",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
-                    "quotation_premium_id": self.kwargs[
-                        "quotation_premium_id"
-                    ],
+                    "quotation_premium_id": self.kwargs["quotation_premium_id"],
                 },
             )
         else:
@@ -1525,9 +1486,7 @@ class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     ]
 
     def form_valid(self, form):
-        form.instance.quotation_vehicle_premium_id = self.kwargs[
-            "quotation_premium_id"
-        ]
+        form.instance.quotation_vehicle_premium_id = self.kwargs["quotation_premium_id"]
         # validate expiration date
         quotation_premium = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,
@@ -1556,9 +1515,7 @@ class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         )
 
 
-class IIVCreateEndorsementView(
-    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
-):
+class IIVCreateEndorsementView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     template_name = "rrggweb/issuance/insurance/vehicle/create.html"
     model = rrgg.models.IssuanceInsuranceVehicleEndorsement
     fields = [
@@ -1569,9 +1526,7 @@ class IIVCreateEndorsementView(
     ]
 
     def form_valid(self, form):
-        form.instance.quotation_vehicle_premium_id = self.kwargs[
-            "quotation_premium_id"
-        ]
+        form.instance.quotation_vehicle_premium_id = self.kwargs["quotation_premium_id"]
         # validate expiration date
         quotation_premium = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,
@@ -1643,9 +1598,7 @@ class IIVStatusFormView(FormView):
                 "rrggweb:issuance:insurance:vehicle:create_policy",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
-                    "quotation_premium_id": self.kwargs[
-                        "quotation_premium_id"
-                    ],
+                    "quotation_premium_id": self.kwargs["quotation_premium_id"],
                 },
             )
         elif tipo == "endorsement":
@@ -1653,9 +1606,7 @@ class IIVStatusFormView(FormView):
                 "rrggweb:issuance:insurance:vehicle:create_endorsement",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
-                    "quotation_premium_id": self.kwargs[
-                        "quotation_premium_id"
-                    ],
+                    "quotation_premium_id": self.kwargs["quotation_premium_id"],
                 },
             )
         else:
@@ -1767,9 +1718,7 @@ class CollectionInsuranceVehicleListView(ListView):
 class CollectionInsuranceVehicleCreateCollectionView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
-    template_name = (
-        "rrggweb/collection/insurance/vehicle/create_collection.html"
-    )
+    template_name = "rrggweb/collection/insurance/vehicle/create_collection.html"
     model = rrgg.models.CollectionInsuranceVehicle
     fields = [
         "expiration_date",

@@ -1,31 +1,25 @@
 {% extends 'rrggadmin/base.html' %}
 {% block title %}
-  Dashboard
+Dashboard
 {% endblock %}
 
 {% block body %}
-  <main class="vh-100">
-    {% include 'rrggadmin/topbar.html' %}
-    <div style="height: max-content;">
-      {% include 'rrggadmin/sidebar.html' %}
-      <div style="margin-left: 280px;">
-        {# BEGIN titlebar #}
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-            <span class="navbar-brand">
-              {% block titlebar_title %}
-
-              {% endblock %}
-            </span>
+<div id="layout-wrapper">
+  {% include 'rrggadmin/topbar.html' %}
+  {% include 'rrggadmin/sidebar.html' %}
+  <div class="main-content">
+    <div class="page-content">
+      <div class="container-fluid">
+        <div class="page-title-box">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h6 class="page-title"> {% block titlebar_title %} {% endblock %}</h6>
+            </div>
           </div>
-        </nav>
-        {# END titlebar #}
-        <div class="container ms-0 p-3 w-100">
-          {% block container %}
-
-          {% endblock %}
         </div>
+        {% block container %} {% endblock %}
       </div>
     </div>
-  </main>
+  </div>
+</div>
 {% endblock %}

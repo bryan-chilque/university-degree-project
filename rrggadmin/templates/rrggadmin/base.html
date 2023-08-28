@@ -1,25 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      KCS |{% block title %}
 
-      {% endblock %}
-    </title>
-    <link rel="icon" href="https://cdn.icon-icons.com/icons2/851/PNG/512/bulbasaur_icon-icons.com_67580.png" type="image/x-icon" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    {% block head %}
-
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Panel web de Riesgos Generales" />
+  <meta name="author" content="KCS" />
+  <meta name="keywords" content="KCS, Riesgos Generales, Panel Web" />
+  <title>
+    KCS |
+    {% block title %}
     {% endblock %}
-  </head>
-  <body>
-    {% block body %}
+  </title>
+  <link rel="icon" href="https://kcs.pe/View/img/Icon/KCS-Icono.png" type="image/x-icon" />
+  {% comment %} Local Stylesheets and Javascripts {% endcomment %}
+  <link rel="stylesheet" href='{% static "web/css/bootstrap.min.css" %}' />
+  <link rel="stylesheet" href='{% static "web/css/app.min.css" %}' />
+  <link rel="stylesheet" href='{% static "web/css/icons.min.css" %}' />
+  <link rel="stylesheet" href='{% static "web/css/waves.min.css" %}' />
+  <link rel="stylesheet" href='{% static "web/css/styles.css" %}' />
+  <script src='{% static "web/js/jquery.min.js" %}'></script>
+  <script src='{% static "web/js/bootstrap.bundle.min.js" %}'></script>
+  <script src='{% static "web/js/metisMenu.min.js" %}'></script>
+  <script src='{% static "web/js/waves.min.js" %}'></script>
+  {% block head %}
+  {% endblock %}
+</head>
 
-    {% endblock %}
-  </body>
+<body data-sidebar="dark" data-topbar="light" data-bs-theme="light">
+  {% block body %}
+  {% endblock %}
+  <script src='{% static "web/js/app.js" %}'></script>
+</body>
+
 </html>

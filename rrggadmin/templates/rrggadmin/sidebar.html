@@ -1,12 +1,88 @@
-<aside
+<div class="vertical-menu mm-active">
+
+  <div data-simplebar="init" class="h-100 mm-show">
+    <div class="simplebar-wrapper" style="margin: 0px;">
+      <div class="simplebar-height-auto-observer-wrapper">
+        <div class="simplebar-height-auto-observer"></div>
+      </div>
+      <div class="simplebar-mask">
+        <div class="simplebar-offset" style="right: -17px; bottom: 0px;">
+          <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+            <div class="simplebar-content" style="padding: 0px;">
+
+              <!--- Sidemenu -->
+              <div id="sidebar-menu" class="mm-active">
+                <!-- Left Menu Start -->
+                <ul class="metismenu list-unstyled mm-show" id="side-menu">
+                  <li class="menu-title">Inicio</li>
+
+                  <li>
+                    <a href="{% url 'rrggadmin:home' %}" class="waves-effect">
+                      <i class="ti-home"></i>
+                      <span>Dashboard</span>
+                    </a>
+                  </li>
+
+                  <li class="menu-title">Personas</li>
+
+                  <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                      <i class="ti-user"></i>
+                      <span>Personas</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                      <li><a href="{% url 'rrggadmin:consultant:list' %}">Asesores</a></li>
+                      <li><a href="{% url 'rrggadmin:user:list' %}">Usuarios</a></li>
+                      <li><a href="{% url 'rrggadmin:consultant_membership:list' %}">Afiliación de asesores</a></li>
+                      <li><a href="{% url 'rrggadmin:role:list' %}">Tipos de asesores</a></li>
+                    </ul>
+                  </li>
+
+                  <li class="menu-title">Sistema</li>
+
+                  <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                      <i class="ti-settings"></i>
+                      <span>Configuración</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                      <li><a href="{% url 'rrggadmin:area:list' %}">Áreas del sistema</a></li>
+                      <li><a href="{% url 'rrggadmin:consultant_rate:list' %}">Comisión de asesores</a></li>
+                      <li><a href="{% url 'rrggadmin:risk:list' %}">Riesgo</a></li>
+                      <li><a href="{% url 'rrggadmin:insurance:vehicle:list' %}">CIA de seguros</a></li>
+                      <li><a href="{% url 'rrggadmin:insurance_vehicle:ratios:list' %}">Comisión de CIAs</a></li>
+                      <li><a href="{% url 'rrggadmin:risk_insurance_vehicle:list' %}">Asociar Riesgo/CIA</a></li>
+                      <li><a href="{% url 'rrggadmin:insurance_plan:list' %}">Plan de seguro</a></li>
+                      <li><a href="{% url 'rrggadmin:use_type:list' %}">Tipos de uso vehicular</a></li>
+                      <li><a href="{% url 'rrggadmin:bank:list' %}">Bancos asociados</a></li>
+                      <li><a href="{% url 'rrggadmin:document_type:list' %}">Tipo de Documentos</a></li>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="simplebar-placeholder" style="width: auto; height: 860px;"></div>
+    </div>
+    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+      <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>
+    </div>
+    <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+      <div class="simplebar-scrollbar" style="height: 791px; transform: translate3d(0px, 34px, 0px); display: block;">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} <aside
   class="d-flex flex-column flex-shrink-0 p-3 text-black bg-light position-fixed overflow-y-auto shadow z-1"
-  style="width: 280px; height: 95vh;"
->
+  style="width: 280px; height: 95vh;">
   <h5>Administración</h5>
   <ul class="nav nav-pills flex-column mb-auto">
     <li>
-      <a href="{% url 'rrggadmin:home' %}"
-        class="nav-link
+      <a href="{% url 'rrggadmin:home' %}" class="nav-link
         {% if request.resolver_match.view_name == 'rrggadmin:home' %}
           active
         {% else %}
@@ -18,8 +94,7 @@
       </a>
     </li>
     <li>
-      <a href="{% url 'rrggadmin:consultant:list' %}"
-        class="nav-link
+      <a href="{% url 'rrggadmin:consultant:list' %}" class="nav-link
         {% if ':consultant:' in request.resolver_match.view_name %}
           active
         {% else %}
@@ -111,33 +186,22 @@
   </ul>
   <hr />
   <div class="dropdown">
-    <a
-      href="#"
-      class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
-      id="dropdownUser1"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <img
-        src="https://github.com/mdo.png"
-        alt=""
-        width="32"
-        height="32"
-        class="rounded-circle me-2"
-      />
+    <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
       <strong>
         {{ user.username }}
       </strong>
     </a>
-    <ul
-      class="dropdown-menu dropdown-menu-dark text-small shadow"
-      aria-labelledby="dropdownUser1"
-    >
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
       <li><a class="dropdown-item" href="#">New project...</a></li>
       <li><a class="dropdown-item" href="#">Settings</a></li>
       <li><a class="dropdown-item" href="#">Profile</a></li>
-      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <hr class="dropdown-divider" />
+      </li>
       <li><a class="dropdown-item" href="{% url 'rrggadmin:logout' %}">Sign out</a></li>
     </ul>
   </div>
 </aside>
+{% endcomment %}
