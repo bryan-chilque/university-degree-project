@@ -42,8 +42,8 @@ class RoleForm(forms.Form):
 
         if role_id:
             try:
-                rol_preseleccionado = rrgg.models.Role.objects.get(pk=role_id)
-                self.fields["roles"].initial = rol_preseleccionado
+                selected_role = rrgg.models.Role.objects.get(pk=role_id)
+                self.fields["roles"].initial = selected_role
             except rrgg.models.Role.DoesNotExist:
                 pass
 
@@ -104,6 +104,62 @@ class DefineOwnerForm(forms.Form):
             }
         ),
     )
+
+
+class RiskForm(forms.Form):
+    def __init__(self, risk_id=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        risks = rrgg.models.Risk.objects.all()
+        self.fields["riesgos"] = forms.ModelChoiceField(
+            queryset=risks,
+            empty_label=None,
+            widget=forms.Select(attrs={"class": "form-select mb-2"}),
+        )
+
+        if risk_id:
+            try:
+                selected_risk = rrgg.models.Risk.objects.get(pk=risk_id)
+                self.fields["riesgos"].initial = selected_risk
+            except rrgg.models.Risk.DoesNotExist:
+                pass
+
+
+class InsuranceVehicleForm(forms.Form):
+    def __init__(self, iv_id=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        insurance_vehicle = rrgg.models.InsuranceVehicle.objects.all()
+        self.fields["aseguradoras"] = forms.ModelChoiceField(
+            queryset=insurance_vehicle,
+            empty_label=None,
+            widget=forms.Select(attrs={"class": "form-select mb-2"}),
+        )
+
+        if iv_id:
+            try:
+                selected_iv = rrgg.models.InsuranceVehicle.objects.get(
+                    pk=iv_id
+                )
+                self.fields["aseguradoras"].initial = selected_iv
+            except rrgg.models.InsuranceVehicle.DoesNotExist:
+                pass
+
+
+class InsurancePlanForm(forms.Form):
+    def __init__(self, riv_id=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        plans = rrgg.models.InsurancePlan.objects.all()
+        self.fields["planes de seguro"] = forms.ModelChoiceField(
+            queryset=plans,
+            empty_label=None,
+            widget=forms.Select(attrs={"class": "form-select mb-2"}),
+        )
+
+        if riv_id:
+            self.fields["planes de seguro"].queryset = (
+                rrgg.models.InsurancePlan.objects.filter(
+                    risk_insurance_vehicle_id=riv_id
+                )
+            )
 
 
 class IssuanceTypeForm(forms.Form):

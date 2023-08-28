@@ -111,7 +111,7 @@ class QIVSelectRoleFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Seleccionar Tipo de vendedor"
+        context["title"] = "Seleccionar responsable de la cotización"
         context["step"] = True
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:list",
@@ -143,9 +143,9 @@ class QIVSelectSellerFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Seleccionar Asesor"
+        context["title"] = "Seleccionar responsable de la cotización"
         context["step"] = True
-        context["role_form"] = forms.RoleForm(
+        context["role_selector"] = forms.RoleForm(
             role_id=self.kwargs.get("role_id")
         )
         context["previous_page"] = urls.reverse(
@@ -1174,6 +1174,7 @@ class QIVDetailView(DetailView):
             )
         else:
             pass
+
         context["update"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:update",
             kwargs={
@@ -1476,42 +1477,140 @@ class IssuanceView(TemplateView):
         return context
 
 
-class IssuanceInsuranceVehicleListView(ListView):
+class IIVListView(ListView):
     template_name = "rrggweb/issuance/insurance/vehicle/list.html"
     model = rrgg.models.IssuanceInsuranceVehicle
 
 
-class IIVTypeFormView(FormView):
-    template_name = "rrggweb/issuance/insurance/vehicle/define.html"
-    form_class = forms.IssuanceTypeForm
+# SELLER
 
-    def form_valid(self, form):
-        tipo = form.cleaned_data["tipo"]
-        if tipo == "policy":
-            self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_policy",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "quotation_premium_id": self.kwargs[
-                        "quotation_premium_id"
-                    ],
-                },
-            )
-        elif tipo == "endorsement":
-            self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_endorsement",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "quotation_premium_id": self.kwargs[
-                        "quotation_premium_id"
-                    ],
-                },
-            )
-        else:
-            messages.warning(self.request, "Debe elegir un tipo de emisión")
-            return self.form_invalid(form)
 
+class IIVSelectRoleFormView(FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/seller_form.html"
+    form_class = forms.RoleForm
+
+    def form_valid(self, form: forms.RoleForm):
+        role = form.cleaned_data["roles"]
+        self.success_url = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:select_seller",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_premium_id": self.kwargs["quotation_premium_id"],
+                "role_id": role.id,
+            },
+        )
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Seleccionar responsable de la venta"
+        context["step"] = True
+        premium = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["quotation_premium_id"],
+        )
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": premium.quotation_insurance_vehicle.id,
+            },
+        )
+        return context
+
+
+class IIVSelectSellerFormView(FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/seller_form.html"
+    form_class = forms.SellerForm
+
+    def form_valid(self, form: forms.SellerForm):
+        seller = form.cleaned_data["asesores"]
+        self.success_url = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:select_plan",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_premium_id": self.kwargs["quotation_premium_id"],
+                "seller_id": seller.id,
+            },
+        )
+        return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        role_id = self.kwargs.get("role_id")
+        kwargs["role_id"] = role_id
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Seleccionar responsable de la emisión"
+        context["step"] = True
+        context["role_selector"] = forms.RoleForm(
+            role_id=self.kwargs.get("role_id")
+        )
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:select_role",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_premium_id": self.kwargs["quotation_premium_id"],
+            },
+        )
+        return context
+
+
+class IIVPlanFormView(FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/plan_form.html"
+    form_class = forms.InsurancePlanForm
+
+    def form_valid(self, form: forms.InsurancePlanForm):
+        # plan = form.cleaned_data["planes de seguro"]
+        self.success_url = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:create_policy",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_premium_id": self.kwargs["quotation_premium_id"],
+            },
+        )
+        return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        qivp = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["quotation_premium_id"],
+        )
+        ivr = qivp.insurance_vehicle_ratio
+        riv = shortcuts.get_object_or_404(
+            rrgg.models.RiskInsuranceVehicle,
+            insurance_vehicle_id=ivr.insurance_vehicle_id,
+            risk_id=qivp.quotation_insurance_vehicle.risk_id,
+        )
+        kwargs["riv_id"] = riv.id
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Seleccionar Plan de Seguro"
+        context["step"] = True
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
+        riv = shortcuts.get_object_or_404(
+            rrgg.models.RiskInsuranceVehicle,
+            id=self.get_form_kwargs()["riv_id"],
+        )
+        context["risk_selector"] = forms.RiskForm(risk_id=riv.risk_id)
+        context["insurance_vehicle_selector"] = forms.InsuranceVehicleForm(
+            iv_id=riv.insurance_vehicle_id
+        )
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:select_role",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_premium_id": self.kwargs["quotation_premium_id"],
+            },
+        )
+        return context
 
 
 class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
