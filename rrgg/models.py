@@ -518,7 +518,7 @@ class IssuanceInsuranceVehicle(models.Model):
     final_validity = models.DateTimeField(_("final_validity"))
     # monto
     amount = MoneyField(
-        max_digits=14, decimal_places=2, default_currency="PEN", default=None
+        max_digits=14, decimal_places=2, default_currency="PEN", default=0
     )
     # moneda
     currency = models.ForeignKey(
