@@ -86,6 +86,9 @@
     const amountInput = document.querySelector(`#id_form-${i}-amount`);
     const rateInput = document.querySelector(`#id_form-${i}-rate`);
 
+    amountInput.classList.add('form-control');
+    rateInput.classList.add('form-control');
+
     amountInput.addEventListener('input', () => {
       const amount = Number(amountInput.value);
       const rate = insuredAmount / amount;
