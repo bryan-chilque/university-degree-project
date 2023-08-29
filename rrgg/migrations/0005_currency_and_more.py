@@ -369,6 +369,7 @@ class Migration(migrations.Migration):
                 default="PEN",
                 editable=False,
                 max_length=3,
+                null=True,
             ),
         ),
         migrations.AddField(

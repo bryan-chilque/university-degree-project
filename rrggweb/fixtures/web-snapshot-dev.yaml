@@ -149,6 +149,16 @@
   pk: 8
   fields:
     name: Comercial
+- model: rrgg.currency
+  pk: 1
+  fields:
+    name: Soles
+    symbol: S/
+- model: rrgg.currency
+  pk: 2
+  fields:
+    name: Dólares
+    symbol: $
 - model: rrgg.documenttype
   pk: 1
   fields:
@@ -462,6 +472,8 @@
     issuance_date: 2023-07-23 00:00:00+00:00
     initial_validity: 2023-07-25 00:00:00+00:00
     final_validity: 2024-07-24 00:00:00+00:00
+    amount: 258.27
+    currency: 1
     consultant_registrar: 1
     consultant_seller: 2
     consultant_new_sale_rate: 0.45
