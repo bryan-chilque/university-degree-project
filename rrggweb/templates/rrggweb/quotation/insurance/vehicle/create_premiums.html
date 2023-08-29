@@ -48,8 +48,8 @@
           <tbody>
             {% for ratio, form in last_ratio_forms %}
             <tr>
-              <td>{{ ratio.emission_right }}</td>
-              <td>{{ ratio.tax }}</td>
+              <td>{% widthratio ratio.emission_right 1 100 %}%</td>
+              <td>{% widthratio ratio.tax 1 100 %}%</td>
               <td>{{ ratio.insurance_vehicle.name }}</td>
               <td>
                 <div class="input-group">
@@ -71,7 +71,11 @@
           {{ form.management_form }}
         </table>
       </div>
-      <button class="btn btn-primary btn-block mt-3" type="submit">Finalizar</button>
+      <div class="alert alert-danger mt-2" role="alert" id="note" style="display: none;">
+        <i class="fas fa-exclamation-triangle"></i>
+        Por favor complete al menos un campo antes de continuar.
+      </div>
+      <button id="btn-create-premium" class="btn btn-primary btn-block mt-3" type="submit" disabled>Finalizar</button>
     </form>
   </div>
 </div>
@@ -88,5 +92,29 @@
       rateInput.value = rate.toFixed(2);
     });
   }
+
+  const amountInputs = document.querySelectorAll('[id^="id_form-"][id$="-amount"]');
+  const submitButton = document.querySelector('#btn-create-premium');
+  const note = document.querySelector('#note');
+
+  function checkAmountInputs() {
+    let hasValueGreaterThanOne = false;
+    amountInputs.forEach((input) => {
+      const amount = Number(input.value);
+      if (amount > 1) {
+        hasValueGreaterThanOne = true;
+      }
+    });
+    submitButton.disabled = !hasValueGreaterThanOne;
+    note.style.display = hasValueGreaterThanOne ? 'none' : 'block';
+  }
+
+  amountInputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      checkAmountInputs();
+    });
+  });
+
+  checkAmountInputs();
 </script>
 {% endblock content %}
