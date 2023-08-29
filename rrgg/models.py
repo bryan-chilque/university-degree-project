@@ -505,10 +505,10 @@ class IssuanceInsuranceStatus(models.Model):
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
-    policy = models.CharField(_("policy number"), max_length=64, default=None)
+    policy = models.CharField(_("policy number"), max_length=64, null=True)
     # número de documento de pago
     payment_document = models.CharField(
-        _("payment document"), max_length=64, default=None
+        _("payment document"), max_length=64, null=True
     )
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"))
@@ -525,9 +525,7 @@ class IssuanceInsuranceVehicle(models.Model):
         null=True,
     )
     # moneda
-    currency = models.ForeignKey(
-        Currency, on_delete=models.PROTECT, default=None
-    )
+    currency = models.ForeignKey(Currency, on_delete=models.PROTECT, null=True)
 
     comment = models.TextField(_("comment"), null=True)
 

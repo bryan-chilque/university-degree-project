@@ -376,14 +376,14 @@ class Migration(migrations.Migration):
             model_name="issuanceinsurancevehicle",
             name="payment_document",
             field=models.CharField(
-                default=None, max_length=64, verbose_name="payment document"
+                null=True, max_length=64, verbose_name="payment document"
             ),
         ),
         migrations.AddField(
             model_name="issuanceinsurancevehicle",
             name="policy",
             field=models.CharField(
-                default=None, max_length=64, verbose_name="policy number"
+                null=True, max_length=64, verbose_name="policy number"
             ),
         ),
         migrations.AlterField(
@@ -402,7 +402,7 @@ class Migration(migrations.Migration):
             model_name="issuanceinsurancevehicle",
             name="currency",
             field=models.ForeignKey(
-                default=None,
+                null=True,
                 on_delete=django.db.models.deletion.PROTECT,
                 to="rrgg.currency",
             ),
