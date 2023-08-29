@@ -1632,7 +1632,7 @@ class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     template_name = "rrggweb/issuance/insurance/vehicle/create.html"
     model = rrgg.models.IssuanceInsuranceVehiclePolicy
     fields = [
-        "number_registry",
+        "policy",
         "issuance_date",
         "initial_validity",
         "final_validity",
