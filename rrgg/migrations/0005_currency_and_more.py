@@ -40,7 +40,8 @@ class Migration(migrations.Migration):
             name="amount",
             field=djmoney.models.fields.MoneyField(
                 decimal_places=2,
-                default=None,
+                default=0,
+                null=True,
                 default_currency="PEN",
                 max_digits=14,
             ),
