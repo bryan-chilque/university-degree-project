@@ -2,8 +2,6 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from djmoney.models.fields import MoneyField
-from djmoney.money import Money
 
 from . import validators
 
@@ -204,14 +202,6 @@ class UseType(models.Model):
 
 class Bank(models.Model):
     name = models.CharField(max_length=64, unique=True)
-
-    def __str__(self):
-        return self.name
-
-
-class Currency(models.Model):
-    name = models.CharField(max_length=50)
-    symbol = models.CharField(max_length=10)
 
     def __str__(self):
         return self.name
@@ -517,14 +507,6 @@ class IssuanceInsuranceVehicle(models.Model):
     initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia final
     final_validity = models.DateTimeField(_("final_validity"))
-    # monto
-    amount = MoneyField(
-        max_digits=14, decimal_places=2, default_currency="PEN", default=0
-    )
-    # moneda
-    currency = models.ForeignKey(
-        Currency, on_delete=models.PROTECT, default=None
-    )
 
     comment = models.TextField(_("comment"), null=True)
 
@@ -558,13 +540,7 @@ class IssuanceInsuranceVehicle(models.Model):
     # fecha de registro
     created = models.DateTimeField(auto_now_add=True)
 
-    def clean(self):
-        if self.currency:
-            self.amount.currency = self.currency.symbol
-
     def save(self, *args, **kwargs):
-        if self.amount is None:
-            self.amount = Money(0, "PEN")
         if not self.id:
             self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
         super().save(*args, **kwargs)
