@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
+from djmoney.money import Money
 
 from . import validators
 
@@ -562,6 +563,8 @@ class IssuanceInsuranceVehicle(models.Model):
             self.amount.currency = self.currency.symbol
 
     def save(self, *args, **kwargs):
+        if self.amount is None:
+            self.amount = Money(0, "PEN")
         if not self.id:
             self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
         super().save(*args, **kwargs)
