@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-21 22:31-0500\n"
+"POT-Creation-Date: 2023-08-29 11:24-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -18,46 +18,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\rrggweb\forms.py:35
-msgid "roles"
-msgstr ""
-
-#: .\rrggweb\forms.py:43
-msgid "sellers"
-msgstr "asesores"
-
-#: .\rrggweb\forms.py:63
+#: .\rrggweb\forms.py:75
 msgid "type customer"
 msgstr "tipo de contratante"
 
-#: .\rrggweb\forms.py:71
+#: .\rrggweb\forms.py:83
 msgid "document number"
 msgstr "documento de identidad"
 
-#: .\rrggweb\forms.py:79
+#: .\rrggweb\forms.py:91
 msgid "plate"
 msgstr "número de placa"
 
-#: .\rrggweb\forms.py:86
+#: .\rrggweb\forms.py:98
 msgid "Is the insured the same as the contracting party?"
 msgstr "¿El asegurado es el mismo que el contratante?"
 
-#: .\rrggweb\forms.py:108
+#: .\rrggweb\forms.py:180
 msgid "comment"
 msgstr "comentario"
 
-#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:34
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:33
 msgid "emission right"
 msgstr "derecho de emisión"
 
-#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:35
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:34
 msgid "tax (igv)"
 msgstr "igv"
 
-#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:36
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:35
 msgid "vehicle insurance"
 msgstr "aseguradora"
 
-#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:37
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:36
 msgid "created at"
 msgstr "fecha de creación"
+
+#~ msgid "sellers"
+#~ msgstr "asesores"

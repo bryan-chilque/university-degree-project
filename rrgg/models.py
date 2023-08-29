@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from djmoney.models.fields import MoneyField
 
 from . import validators
 
@@ -134,17 +135,13 @@ class NaturalPerson(Person):
 
 
 class LegalPerson(Person):
-    # nombre comercial
-    business_name = models.CharField(
-        _("business name"), max_length=64, unique=True
-    )
     # razón social
     registered_name = models.CharField(_("registered name"), max_length=64)
     general_manager = models.CharField(_("general manager"), max_length=64)
     anniversary_date = models.DateField(_("anniversary date"))
 
     def __str__(self):
-        return self.business_name
+        return self.registered_name
 
 
 class CustomerMembership(models.Model):
@@ -206,6 +203,14 @@ class UseType(models.Model):
 
 class Bank(models.Model):
     name = models.CharField(max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Currency(models.Model):
+    name = models.CharField(max_length=50)
+    symbol = models.CharField(max_length=10)
 
     def __str__(self):
         return self.name
@@ -500,14 +505,25 @@ class IssuanceInsuranceStatus(models.Model):
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
-    number_registry = models.CharField(_("number registry"), max_length=64)
-
+    policy = models.CharField(_("policy number"), max_length=64, default=None)
+    # número de documento de pago
+    payment_document = models.CharField(
+        _("payment document"), max_length=64, default=None
+    )
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"))
     # fecha de vigencia inicio
     initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia final
     final_validity = models.DateTimeField(_("final_validity"))
+    # monto
+    amount = MoneyField(
+        max_digits=14, decimal_places=2, default_currency="PEN", default=None
+    )
+    # moneda
+    currency = models.ForeignKey(
+        Currency, on_delete=models.PROTECT, default=None
+    )
 
     comment = models.TextField(_("comment"), null=True)
 
@@ -538,8 +554,12 @@ class IssuanceInsuranceVehicle(models.Model):
         related_name="issuance",
         on_delete=models.PROTECT,
     )
-
+    # fecha de registro
     created = models.DateTimeField(auto_now_add=True)
+
+    def clean(self):
+        if self.currency:
+            self.amount.currency = self.currency.symbol
 
     def save(self, *args, **kwargs):
         if not self.id:

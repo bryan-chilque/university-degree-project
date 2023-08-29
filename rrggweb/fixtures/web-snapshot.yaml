@@ -33,16 +33,6 @@
     area:
     - 1
     - 2
-- model: rrgg.consultant
-  pk: 3
-  fields:
-    given_name: Bryan
-    first_surname: Chilque
-    role: 1
-    area:
-    - 1
-    - 2
-    - 3
 - model: rrgg.area
   pk: 1
   fields:
@@ -92,28 +82,8 @@
     date_joined: 2023-07-15 16:26:35.179061+00:00
     groups: []
     user_permissions: []
-- model: auth.user
-  pk: 3
-  fields:
-    password: pbkdf2_sha256$600000$D1ooclEBbVKqGEvBwDaxnV$zvuPwmGGpPyT0i08p1Zyt5j5gF1nWTWk/sxvjYo178w=
-    last_login: 2023-07-15 17:18:43.448020+00:00
-    is_superuser: false
-    username: bryan
-    first_name: ''
-    last_name: ''
-    email: ''
-    is_staff: false
-    is_active: true
-    date_joined: 2023-07-15 16:29:31.678998+00:00
-    groups: []
-    user_permissions: []
 - model: rrgg.consultantmembership
   pk: 1
-  fields:
-    consultant: 3
-    user: 3
-- model: rrgg.consultantmembership
-  pk: 2
   fields:
     consultant: 1
     user: 1
@@ -124,7 +94,7 @@
 - model: rrgg.usetype
   pk: 2
   fields:
-    name: Publico
+    name: Público
 - model: rrgg.usetype
   pk: 3
   fields:
@@ -170,36 +140,6 @@
     name: Registro Único de Contribuyente
     min_length: 11
     max_length: 11
-- model: rrgg.naturalperson
-  pk: 1
-  fields:
-    given_name: Angie
-    first_surname: Tomasto
-    second_surname: ''
-    document_type: 1
-    document_number: '12345679'
-    birthdate: '2000-07-21'
-    phone_number: '987654321'
-    email: atomasto@crd.pe
-- model: rrgg.naturalperson
-  pk: 2
-  fields:
-    given_name: Paulo
-    first_surname: Llanos
-    second_surname: Colchado
-    document_type: 1
-    document_number: '12345678'
-    birthdate: '2000-07-21'
-    phone_number: '987654321'
-    email: pllanos@crd.pe
-- model: rrgg.customermembership
-  pk: 1
-  fields:
-    natural_person: 1
-- model: rrgg.customermembership
-  pk: 2
-  fields:
-    natural_person: 2
 - model: rrgg.bank
   pk: 1
   fields:
@@ -212,44 +152,6 @@
   pk: 3
   fields:
     name: BBVA
-- model: rrgg.vehicle
-  pk: 1
-  fields:
-    brand: nissan
-    vehicle_model: audi
-    plate: AIX-145
-    fabrication_year: 2012
-    engine: '654321'
-    chassis: '1234567'
-    seat_number: 5
-    has_gps: false
-    has_endorsee: false
-    endorsee_bank: 1
-    use_type: 1
-- model: rrgg.vehicle
-  pk: 2
-  fields:
-    brand: bmw
-    vehicle_model: i5
-    plate: RTX-257
-    fabrication_year: 2015
-    engine: '545412'
-    chassis: '654123'
-    seat_number: 4
-    has_gps: false
-    has_endorsee: false
-    endorsee_bank: 2
-    use_type: 3
-- model: rrgg.VehicleOwnership
-  pk: 1
-  fields:
-    customer: 1
-    vehicle: 1
-- model: rrgg.VehicleOwnership
-  pk: 2
-  fields:
-    customer: 2
-    vehicle: 2
 - model: rrgg.insurancevehicle
   pk: 1
   fields:
@@ -366,74 +268,6 @@
     name: 'auto corporativo'
     commission: 0.175
     risk_insurance_vehicle: 1
-- model: rrgg.quotationinsurancevehicle
-  pk: 1
-  fields:
-    risk: 1
-    insured_amount: 3000
-    vehicle: 1
-    consultant_registrar: 3
-    consultant_seller: 2
-    customer: 1
-    created: 2023-07-12 07:15:35.485352+00:00
-- model: rrgg.quotationinsurancevehicle
-  pk: 2
-  fields:
-    risk: 1
-    insured_amount: 2000
-    vehicle: 2
-    consultant_registrar: 1
-    consultant_seller: 2
-    customer: 2
-    created: 2023-07-31 06:08:11.485352+00:00
-- model: rrgg.quotationinsurancevehiclepremium
-  pk: 1
-  fields:
-    amount: '2850.00'
-    rate: 0.95
-    insurance_vehicle_ratio: 3
-    quotation_insurance_vehicle: 1
-    created: 2023-07-12 09:15:35.928242+00:00
-- model: rrgg.quotationinsurancevehiclepremium
-  pk: 2
-  fields:
-    amount: '2550.00'
-    rate: 0.95
-    insurance_vehicle_ratio: 3
-    quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.928242+00:00
-- model: rrgg.quotationinsurancevehiclepremium
-  pk: 3
-  fields:
-    amount: '2500.00'
-    rate: 0.95
-    insurance_vehicle_ratio: 4
-    quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.933243+00:00
-- model: rrgg.quotationinsurancevehiclepremium
-  pk: 4
-  fields:
-    amount: '2450.00'
-    rate: 0.95
-    insurance_vehicle_ratio: 1
-    quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.936245+00:00
-- model: rrgg.quotationinsurancevehiclepremium
-  pk: 5
-  fields:
-    amount: '2600.00'
-    rate: 0.95
-    insurance_vehicle_ratio: 2
-    quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.939988+00:00
-- model: rrgg.quotationinsurancevehiclepremium
-  pk: 6
-  fields:
-    amount: '2700.00'
-    rate: 0.95
-    insurance_vehicle_ratio: 5
-    quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.944033+00:00
 - model: rrgg.IssuanceInsuranceStatus
   pk: 1
   fields:
@@ -454,61 +288,3 @@
   pk: 5
   fields:
     name: 'Anulado por cambio de bróker'
-- model: rrgg.issuanceinsurancevehicle
-  pk: 1
-  fields:
-    number_registry: '123456789'
-    issuance_date: 2023-07-23 00:00:00+00:00
-    initial_validity: 2023-07-25 00:00:00+00:00
-    final_validity: 2024-07-24 00:00:00+00:00
-    consultant_registrar: 1
-    consultant_seller: 2
-    consultant_new_sale_rate: 0.45
-    status: 1
-    quotation_vehicle_premium: 2
-    created: 2023-07-31 07:24:08.278816+00:00
-- model: rrgg.issuanceinsurancevehicleendorsement
-  pk: 1
-  fields:
-    commission: 300
-    quotation_vehicle_premium: 2
-- model: rrgg.collectioninsurancevehicle
-  pk: 1
-  fields:
-    expiration_date: 2023-07-25 00:00:00+00:00
-    payment_date: null
-    payment_receipt: ''
-    issue: cuota 1
-    amount: '258.27'
-    issuance_vehicle: 1
-    created: 2023-07-31 07:25:29.058081+00:00
-- model: rrgg.collectioninsurancevehicle
-  pk: 2
-  fields:
-    expiration_date: 2023-08-04 00:00:00+00:00
-    payment_date: null
-    payment_receipt: ''
-    issue: cuota 2
-    amount: '258.27'
-    issuance_vehicle: 1
-    created: 2023-07-31 07:32:42.364681+00:00
-- model: rrgg.collectioninsurancevehicle
-  pk: 3
-  fields:
-    expiration_date: 2023-08-01 00:00:00+00:00
-    payment_date: 2023-07-27 00:00:00+00:00
-    payment_receipt: '14541'
-    issue: cuota 3
-    amount: '258.27'
-    issuance_vehicle: 1
-    created: 2023-07-31 07:34:20.561535+00:00
-- model: rrgg.collectioninsurancevehicle
-  pk: 4
-  fields:
-    expiration_date: 2023-08-27 00:00:00+00:00
-    payment_date: null
-    payment_receipt: ''
-    issue: cuota 4
-    amount: '258.27'
-    issuance_vehicle: 1
-    created: 2023-07-31 07:35:39.968019+00:00
