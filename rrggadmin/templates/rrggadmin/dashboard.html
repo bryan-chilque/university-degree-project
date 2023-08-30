@@ -15,6 +15,11 @@ Dashboard
             <div class="col-md-8">
               <h6 class="page-title"> {% block titlebar_title %} {% endblock %}</h6>
             </div>
+            <div class="col-md-4">
+              <div class="float-end d-none d-md-block">
+                {% block titlebar_button %} {% endblock %}
+              </div>
+            </div>
           </div>
         </div>
         {% block container %} {% endblock %}

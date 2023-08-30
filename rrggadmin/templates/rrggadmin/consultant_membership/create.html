@@ -1,12 +1,16 @@
 {% extends 'rrggadmin/dashboard.html' %}
 
 {% block titlebar_title %}
-    {% include 'rrggadmin/navbar.html' %}
+Crear usuario del consultor
 {% endblock %}
 
 {% block container %}
-<form method="post">{% csrf_token %}
+<a href="{{ previous_page }}" class="btn btn-outline-dark btn-sm mt-3 mb-4"">
+    <i class=" fas fa-arrow-left"></i> Volver
+</a>
+<form method="post">
+    {% csrf_token %}
     <table>{{ form }}</table>
-    <input type="submit"/>
+    <button class="btn btn-primary" type="submit">Crear</button>
 </form>
 {% endblock %}

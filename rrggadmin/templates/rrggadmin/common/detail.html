@@ -1,18 +1,28 @@
 {% extends 'rrggadmin/dashboard.html' %}
 
 {% block titlebar_title %}
-    {% include 'rrggadmin/navbar.html' %}
+{% include 'rrggadmin/navbar.html' %}
+{% endblock %}
+
+{% block titlebar_button %}
+<a class="btn btn-primary" href="{% url menu.update_name object.pk %}">
+    <i class="fas fa-edit"></i> Actualizar
+</a>
+<a class="btn btn-danger" href="{% url menu.delete_name object.pk %}">
+    <i class="fas fa-trash"></i> Eliminar
+</a>
 {% endblock %}
 
 {% block container %}
-    <a href="{% url 'rrggadmin:home' %}">🏠</a>
-    <a href="{% url menu.list_name %}">🔙</a>
+<a href="{% url menu.list_name %}" class="btn btn-outline-dark btn-sm mt-3 mb-4"">
+    <i class=" fas fa-arrow-left"></i> Volver
+</a>
 
-    <table>
-        {% for name, value in pairfields %}
-        <tr><td><i>{{ name }}</i></td><td>{{ value }}</td></tr>
-        {% endfor %}
-    </table>
-    <a href="{% url menu.update_name object.pk %}">Actualizar</a>
-    <a href="{% url menu.delete_name object.pk %}">Eliminar</a>
+{% for name, value in pairfields %}
+<div class="row">
+    <div class="col-md-3"><b>{{ name }}</b></div>
+    <div class="col-md-9">{{ value|default:"-" }}</div>
+</div>
+{% endfor %}
+
 {% endblock %}

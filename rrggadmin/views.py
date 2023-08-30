@@ -33,7 +33,7 @@ class UserListView(ListView):
     model = rrgg.models.get_user_model()
 
 
-class UserCreateView(CreateView):
+class UserCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     template_name = "rrggadmin/user/create.html"
     success_url = urls.reverse_lazy("rrggadmin:user:list")
     model = rrgg.models.get_user_model()
@@ -42,6 +42,11 @@ class UserCreateView(CreateView):
     def form_valid(self, form):
         form.instance.set_password(form.instance.password)
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse("rrggadmin:user:list")
+        return context
 
 
 # CONSULTANT MEMBERSHIP
@@ -59,6 +64,13 @@ class ConsultantMembershipCreateView(
     success_url = urls.reverse_lazy("rrggadmin:consultant_membership:list")
     model = rrgg.models.ConsultantMembership
     fields = "__all__"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggadmin:consultant_membership:list"
+        )
+        return context
 
 
 # INSURANCE VEHICLE
@@ -114,7 +126,9 @@ class InsuranceVehicleRatioCreateView(CreateView):
         return super().form_valid(form)
 
 
-class InsuranceVehicleRatioUpdateView(UpdateView):
+class InsuranceVehicleRatioUpdateView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
     template_name = "rrggadmin/insurance/vehicle/price/update.html"
     model = rrgg.models.InsuranceVehicleRatio
     fields = "emission_right", "tax", "fee"

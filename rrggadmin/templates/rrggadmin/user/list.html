@@ -1,16 +1,33 @@
 {% extends 'rrggadmin/dashboard.html' %}
 
 {% block titlebar_title %}
-    {% include 'rrggadmin/navbar.html' %}
+Lista de usuarios
+{% endblock %}
+
+{% block titlebar_button %}
+<a class="btn btn-primary" href="{% url 'rrggadmin:user:create' %}">
+    <i class="fas fa-user-plus"></i> Crear usuario
+</a>
 {% endblock %}
 
 {% block container %}
 
-<br/>
-<ul>
-    {% for user in object_list %}
-        <li>{{ user }}</li>
-    {% endfor %}
-</ul>
-<a class="btn btn-primary" href="{% url 'rrggadmin:user:create' %}">Crear</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo electrónico</th>
+            <th>Fecha de creación</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in object_list %}
+        <tr>
+            <td>{{ user }}</td>
+            <td>{{ user.email|default:"-" }}</td>
+            <td>{{ user.date_joined }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock container %}
