@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from djmoney.models.fields import MoneyField
 
 from . import validators
 
@@ -131,7 +130,7 @@ class NaturalPerson(Person):
     birthdate = models.DateField(_("birthdate"))
 
     def __str__(self):
-        return f"{self.given_name} {self.first_surname}"
+        return f"{self.given_name} {self.first_surname} {self.second_surname}"
 
 
 class LegalPerson(Person):
@@ -400,6 +399,14 @@ class QuotationInsurance(models.Model):
         verbose_name=_("customer"),
         on_delete=models.PROTECT,
     )
+    # moneda
+    currency = models.ForeignKey(
+        Currency,
+        related_name="quotation_insurance_vehicles",
+        verbose_name=_("currency"),
+        on_delete=models.PROTECT,
+        null=True,
+    )
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -502,13 +509,35 @@ class IssuanceInsuranceStatus(models.Model):
         verbose_name_plural = _("issuance insurance status")
 
 
+class IssuanceInsuranceType(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("issuance insurance type")
+        verbose_name_plural = _("issuance insurance type")
+
+
+class PaymentMethod(models.Model):
+    name = models.CharField(_("name"), max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("payment method")
+        verbose_name_plural = _("payment methods")
+
+
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
     policy = models.CharField(_("policy number"), max_length=64, null=True)
-    # número de documento de pago
-    payment_document = models.CharField(
-        _("payment document"), max_length=64, null=True
+    # documento de cobranza
+    collection_document = models.CharField(
+        _("collection document"), max_length=64, null=True
     )
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"))
@@ -516,19 +545,24 @@ class IssuanceInsuranceVehicle(models.Model):
     initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia final
     final_validity = models.DateTimeField(_("final_validity"))
-    # monto
-    amount = MoneyField(
-        max_digits=14,
-        decimal_places=2,
-        default_currency="PEN",
-        default=0,
+    # número de documento de pago
+    payment_document = models.CharField(
+        _("payment document"), max_length=64, null=True
+    )
+    plan_commission_percentage = models.DecimalField(
+        _("plan commission percentage"),
+        decimal_places=3,
+        max_digits=10,
         null=True,
     )
-    # moneda
-    currency = models.ForeignKey(Currency, on_delete=models.PROTECT, null=True)
-
     comment = models.TextField(_("comment"), null=True)
 
+    issuance_type = models.ForeignKey(
+        IssuanceInsuranceType,
+        related_name="issuances",
+        on_delete=models.PROTECT,
+        default=1,
+    )
     consultant_registrar = models.ForeignKey(
         Consultant,
         related_name="issuance_insurance_vehicles_registered",
@@ -541,14 +575,31 @@ class IssuanceInsuranceVehicle(models.Model):
         verbose_name=_("seller"),
         on_delete=models.PROTECT,
     )
-    consultant_new_sale_rate = models.DecimalField(
-        _("consultant new sale rate"), decimal_places=2, max_digits=10
+    seller_commission_percentage = models.DecimalField(
+        _("seller commission percentage"),
+        decimal_places=2,
+        max_digits=10,
+        null=True,
     )
     # estado
     status = models.ForeignKey(
         IssuanceInsuranceStatus,
         related_name="issuances",
         on_delete=models.PROTECT,
+    )
+    insurance_plan = models.ForeignKey(
+        InsurancePlan,
+        related_name="issuances",
+        on_delete=models.PROTECT,
+        null=True,
+    )
+    # forma de pago
+    payment_method = models.ForeignKey(
+        PaymentMethod,
+        related_name="issuances",
+        verbose_name=_("payment method"),
+        on_delete=models.PROTECT,
+        default=1,
     )
 
     quotation_vehicle_premium = models.ForeignKey(
@@ -559,26 +610,22 @@ class IssuanceInsuranceVehicle(models.Model):
     # fecha de registro
     created = models.DateTimeField(auto_now_add=True)
 
-    def clean(self):
-        if self.currency:
-            self.amount.currency = self.currency.symbol
+    @property
+    def net_commission_amount(self):
+        q = self.quotation_vehicle_premium
+        return round(q.amount * self.plan_commission_percentage, 2)
 
     def save(self, *args, **kwargs):
         if not self.id:
             self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
+            self.issuance_type = IssuanceInsuranceType.objects.get(
+                name="Venta nueva"
+            )
         super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = _("issuance insurance vehicle")
         verbose_name_plural = _("issues insurance vehicle")
-
-
-class IssuanceInsuranceVehiclePolicy(IssuanceInsuranceVehicle):
-    description = models.CharField(_("description"), max_length=64, null=True)
-
-
-class IssuanceInsuranceVehicleEndorsement(IssuanceInsuranceVehicle):
-    commission = models.PositiveIntegerField(_("commission"), null=True)
 
 
 class IssuanceInsuranceVehicleDocument(models.Model):

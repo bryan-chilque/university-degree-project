@@ -234,23 +234,21 @@ issuance_insurance_vehicle_urlpatterns = (
             name="select_plan",
         ),
         path(
-            "create_policy/quotation_premium/<int:quotation_premium_id>/",
-            views.IIVCreatePolicyView.as_view(),
-            name="create_policy",
-        ),
-        path(
-            "create_endorsement/quotation_premium/<int:quotation_premium_id>/",
-            views.IIVCreateEndorsementView.as_view(),
-            name="create_endorsement",
+            (
+                "create/quotation_premium/<int:quotation_premium_id>/"
+                "seller/<int:seller_id>/plan/<int:plan_id>"
+            ),
+            views.IIVCreateView.as_view(),
+            name="create",
         ),
         path(
             "detail/<int:issuance_id>/",
-            views.IssuanceInsuranceVehicleDetailIssuanceView.as_view(),
+            views.IIVDetailIssuanceView.as_view(),
             name="detail",
         ),
         path(
             "update/<int:issuance_id>/",
-            views.IssuanceInsuranceVehicleUpdateIssuanceView.as_view(),
+            views.IIVUpdateIssuanceView.as_view(),
             name="update",
         ),
         path(
@@ -260,12 +258,12 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             "create_document/<int:issuance_id>/",
-            views.IssuanceInsuranceVehicleAddDocumentCreateView.as_view(),
+            views.IIVAddDocumentCreateView.as_view(),
             name="create_document",
         ),
         path(
             "delete_document/<int:document_id>/issuance/<int:issuance_id>/",
-            views.IssuanceInsuranceVehicleDeleteDocumentView.as_view(),
+            views.IIVDeleteDocumentView.as_view(),
             name="delete_document",
         ),
     ],

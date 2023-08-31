@@ -253,22 +253,22 @@
 - model: rrgg.insuranceplan
   pk: 1
   fields:
-    name: 'auto corporativo'
+    name: 'Auto corporativo'
     commission: 0.20
     risk_insurance_vehicle: 3
 - model: rrgg.insuranceplan
   pk: 2
   fields:
-    name: 'auto individual'
+    name: 'Auto individual'
     commission: 0.175
     risk_insurance_vehicle: 3
 - model: rrgg.insuranceplan
   pk: 3
   fields:
-    name: 'auto corporativo'
+    name: 'Auto corporativo'
     commission: 0.175
     risk_insurance_vehicle: 1
-- model: rrgg.IssuanceInsuranceStatus
+- model: rrgg.issuanceinsurancestatus
   pk: 1
   fields:
     name: 'Vigente'
@@ -288,3 +288,19 @@
   pk: 5
   fields:
     name: 'Anulado por cambio de bróker'
+- model: rrgg.issuanceinsurancetype
+  pk: 1
+  fields:
+    name: 'Venta nueva'
+- model: rrgg.issuanceinsurancetype
+  pk: 2
+  fields:
+    name: 'Renovación'
+- model: rrgg.paymentmethod
+  pk: 1
+  fields:
+    name: 'Al contado'
+- model: rrgg.paymentmethod
+  pk: 2
+  fields:
+    name: 'Financiado'

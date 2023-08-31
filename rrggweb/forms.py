@@ -106,6 +106,26 @@ class DefineOwnerForm(forms.Form):
     )
 
 
+class CurrencyForm(forms.Form):
+    def __init__(self, currency_id=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        currencies = rrgg.models.Currency.objects.all()
+        self.fields["currencies"] = forms.ModelChoiceField(
+            queryset=currencies,
+            empty_label=None,
+            widget=forms.Select(attrs={"class": "form-select mb-2"}),
+        )
+
+        if currency_id:
+            try:
+                selected_currency = rrgg.models.Currency.objects.get(
+                    pk=currency_id
+                )
+                self.fields["currencies"].initial = selected_currency
+            except rrgg.models.Currency.DoesNotExist:
+                pass
+
+
 class RiskForm(forms.Form):
     def __init__(self, risk_id=None, *args, **kwargs):
         super().__init__(*args, **kwargs)

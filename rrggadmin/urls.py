@@ -202,10 +202,43 @@ issuanceInsuranceStatus_urlpatterns = menu_patterns(
     ),
 )
 
+issuanceInsuranceType_urlpatterns = menu_patterns(
+    rrgg.models.IssuanceInsuranceType,
+    "rrggadmin/common",
+    "issuance_insurance_type",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
 bank_urlpatterns = menu_patterns(
     rrgg.models.Bank,
     "rrggadmin/common",
     "bank",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
+currency_urlpatterns = menu_patterns(
+    rrgg.models.Currency,
+    "rrggadmin/common",
+    "currency",
+    "rrggadmin",
+    menu_traits=MenuTraits(
+        list=ViewTraits(bases=[mixins.ListMixin]),
+        detail=ViewTraits(bases=[PairFieldsMixin]),
+    ),
+)
+
+payment_method_urlpatterns = menu_patterns(
+    rrgg.models.PaymentMethod,
+    "rrggadmin/common",
+    "payment_method",
     "rrggadmin",
     menu_traits=MenuTraits(
         list=ViewTraits(bases=[mixins.ListMixin]),
@@ -246,10 +279,16 @@ urlpatterns = [
         "risk_insurance_vehicle/", include(risk_insurance_vehicle_urlpatterns)
     ),
     path("insurance_plan/", include(insurance_plan_urlpatterns)),
-    path("bank/", include(bank_urlpatterns)),
-    path("document_type/", include(document_type_urlpatterns)),
     path(
         "issuance_insurance_status/",
         include(issuanceInsuranceStatus_urlpatterns),
     ),
+    path(
+        "issuance_insurance_type/",
+        include(issuanceInsuranceType_urlpatterns),
+    ),
+    path("bank/", include(bank_urlpatterns)),
+    path("currency/", include(currency_urlpatterns)),
+    path("payment_method/", include(payment_method_urlpatterns)),
+    path("document_type/", include(document_type_urlpatterns)),
 ]

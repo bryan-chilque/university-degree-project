@@ -24,7 +24,7 @@
         <b>Propietario:</b> {{ owner }}
       </h5>
       <h5>
-        <b>Suma Asegurada:</b> <span id="insured_amount">{{ quotation.insured_amount }}</span>
+        <b>Suma Asegurada:</b> <span id="insured_amount">{{ quotation.currency.symbol }}{{ quotation.insured_amount }}</span>
       </h5>
     </div>
     <hr class="w-25" />

@@ -1,170 +1,261 @@
 {% extends "rrggweb/dashboard.html" %}
 {% block title_section %}
-  Detalle de Emisión Vehicular
+  {{ title }}
 {% endblock title_section %}
 {% block content %}
   <div class="row mb-3">
-    <div class="col-6">
+    <div class="col-4">
       <a class="btn btn-outline-dark btn-sm"
-         href="{% url 'rrggweb:issuance:insurance:vehicle:list' view.kwargs.registrar_id %}">
+         href="{{ previous_page }}">
         <i class="fas fa-arrow-left"></i> Volver a la lista
+      </a>
+    </div>
+    <div class="col-4">
+      <a href="" class="btn btn-success">
+        <i class="ion ion-ios-checkmark-circle"></i> Renovar
+      </a>
+    </div>
+    <div class="col-4">
+      <a href="{{ anular }}" class="btn btn-danger">
+        <i class="ion ion-md-alert"></i> Anular
       </a>
     </div>
   </div>
   <div class="row mb-3">
-    <div class="col-md-4">
-      <h5 class="mb-0">Datos del vehículo</h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>Placa</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.plate }}</td>
-          </tr>
-          <tr>
-            <th>Marca</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.brand }}</td>
-          </tr>
-          <tr>
-            <th>Modelo</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.vehicle_model }}</td>
-          </tr>
-          <tr>
-            <th>Año de fabricación</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.fabrication_year }}</td>
-          </tr>
-          <tr>
-            <th>Motor</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.engine }}</td>
-          </tr>
-          <tr>
-            <th>Chasis</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.chassis }}</td>
-          </tr>
-          <tr>
-            <th>Uso</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.use_type }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-4">
-      <h5 class="mb-0">Datos de la cotización</h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>Aseguradora</th>
-            <td>{{ object.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
-          </tr>
-          <tr>
-            <th>Suma asegurada</th>
-            <td>${{ object.quotation_vehicle_premium.quotation_insurance_vehicle.insured_amount }}</td>
-          </tr>
-          <tr>
-            <th>Prima neta</th>
-            <td>${{ object.quotation_vehicle_premium.amount }}</td>
-          </tr>
-          <tr>
-            <th>Derecho de emisión</th>
-            <td>${{ object.quotation_vehicle_premium.emission_right }}</td>
-          </tr>
-          <tr>
-            <th>IGV</th>
-            <td>${{ object.quotation_vehicle_premium.tax }}</td>
-          </tr>
-          <tr>
-            <th>Tasa</th>
-            <td>${{ object.quotation_vehicle_premium.rate }}</td>
-          </tr>
-          <tr>
-            <th>Prima total</th>
-            <td>${{ object.quotation_vehicle_premium.total }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-4">
-      <h5 class="mb-0">Detalle de la emisión</h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>Número de póliza</th>
-            <td>{{ object.number_registry }}</td>
-          </tr>
-          <tr>
-            <th>Fecha de emisión</th>
-            <td>{{ object.created|date:'d/m/Y' }}</td>
-          </tr>
-          <tr>
-            <th>Fecha de inicio de vigencia</th>
-            <td>{{ object.initial_validity|date:'d/m/Y' }}</td>
-          </tr>
-          <tr>
-            <th>Fecha de fin de vigencia</th>
-            <td>{{ object.final_validity|date:'d/m/Y' }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <h5 class="mb-0">Detalle del pago</h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>Cuotas</th>
-            <td>{{ object.quotation_vehicle_premium.insurance_vehicle_ratio.fee }} meses</td>
-          </tr>
-          <tr>
-            <th>Monto por cuota</th>
-            <td>${{ object.quotation_vehicle_premium.fee }}</td>
-          </tr>
-          <tr>
-            <th>Débito automático</th>
-            <td>{{ object.quotation_vehicle_premium.insurance_vehicle_ratio.direct_debit }} meses</td>
-          </tr>
-          <tr>
-            <th>Monto por débito</th>
-            <td>${{ object.quotation_vehicle_premium.direct_debit }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-4">
-      <h5 class="mb-0">Datos del vendedor</h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>Tipo de documento</th>
-            <td>DNI</td>
-          </tr>
-          <tr>
-            <th>Número de documento</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.consultant.document_number }}</td>
-          </tr>
-          <tr>
-            <th>Nombres y apellidos</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.consultant }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <h5 class="mb-0">Datos del contratante</h5>
       <table class="table table-bordered">
         <tbody>
           <tr>
             <th>Tipo de documento</th>
-            <td>DNI</td>
+            <td>{{ customer.pick.document_type}}</td>
           </tr>
           <tr>
             <th>Número de documento</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.customer.document_number }}</td>
+            <td>{{ customer.pick.document_number }}</td>
           </tr>
           <tr>
             <th>Nombres y apellidos</th>
-            <td>{{ object.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</td>
+            <td>{{ customer }}</td>
           </tr>
+        </tbody>
+      </table>
+      <h5 class="mb-0">Datos del asegurado</h5>
+      <table class="table table-bordered">
+        <tbody>
+          {% if update_owner %}
+            <tr>
+              <th>Tipo de documento</th>
+              <td>{{ owner.pick.document_type}}</td>
+            </tr>
+            <tr>
+              <th>Número de documento</th>
+              <td>{{ owner.pick.document_number }}</td>
+            </tr>
+            <tr>
+              <th>Nombres y apellidos</th>
+              <td>{{ owner }}</td>
+            </tr>
+          {% else %}
+            <tr>
+              <th>Tipo de documento</th>
+              <td>{{ customer.pick.document_type}}</td>
+            </tr>
+            <tr>
+              <th>Número de documento</th>
+              <td>{{ customer.pick.document_number }}</td>
+            </tr>
+            <tr>
+              <th>Nombres y apellidos</th>
+              <td>{{ customer }}</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+      <h5 class="mb-0">Datos del asesor</h5>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Tipo de asesor</th>
+            <td>{{ seller.role }}</td>
+          </tr>
+          <tr>
+            <th>Nombres y apellidos</th>
+            <td>{{ seller }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <h5 class="mb-0">Datos del Bien Asegurado</h5>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Placa</th>
+            <td>{{ vehicle.plate }}</td>
+          </tr>
+          <tr>
+            <th>Marca</th>
+            <td>{{ vehicle.brand }}</td>
+          </tr>
+          <tr>
+            <th>Modelo</th>
+            <td>{{ vehicle.vehicle_model }}</td>
+          </tr>
+          <tr>
+            <th>Año de fabricación</th>
+            <td>{{vehicle.fabrication_year }}</td>
+          </tr>
+          <tr>
+            <th>Número de motor</th>
+            <td>{{ vehicle.engine }}</td>
+          </tr>
+          <tr>
+            <th>Número de chasis</th>
+            <td>{{ vehicle.chassis }}</td>
+          </tr>
+          <tr>
+            <th>Número de asientos</th>
+            <td>{{ vehicle.seat_number }}</td>
+          </tr>
+          <tr>
+            <th>Tipo de uso</th>
+            <td>{{ vehicle.use_type }}</td>
+          </tr>
+          <tr>
+            <th>¿Requiere gps?</th>
+            {% if vehicle.has_gps %}
+              <td>Sí</td>
+            {% else %}
+              <td>No</td>
+            {% endif %}
+          </tr>
+          <tr>
+            <th>¿Es endosado?</th>
+            {% if vehicle.has_endorsee %}
+              <td>Sí</td>
+            {% else %}
+              <td>No</td>
+            {% endif %}
+          </tr>
+          {% if vehicle.has_endorsee %}
+            <tr>
+              <th >Banco</th>
+              <td>{{ vehicle.endorsee_bank }}</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <h5 class="mb-0">Datos de la cotización</h5>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Ramo</th>
+            <td>{{ quotation.risk }}</td>
+          </tr>
+          <tr>
+            <th>Aseguradora</th>
+            <td>{{ ratio.insurance_vehicle }}</td>
+          </tr>
+          <tr>
+            <th>Tipo de moneda</th>
+            <td>{{ quotation.currency }}</td>
+          </tr>
+          <tr>
+            <th>Suma asegurada</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.quotation_insurance_vehicle.insured_amount }}</td>
+          </tr>
+          <tr>
+            <th>Prima neta</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.amount }}</td>
+          </tr>
+          <tr>
+            <th>Prima comercial</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.commercial_premium }}</td>
+          </tr>
+          <tr>
+            <th>Tasa</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.rate }}</td>
+          </tr>
+          <tr>
+            <th>Derecho de emisión</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.emission_right }}</td>
+          </tr>
+          <tr>
+            <th>IGV</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.tax }}</td>
+          </tr>
+          <tr>
+            <th>Prima total</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.total }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <h5 class="mb-0">Detalle de la emisión</h5>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Número de póliza</th>
+            <td>{{ object.policy }}</td>
+          </tr>
+          <tr>
+            <th>Documento de cobranza</th>
+            <td>{{ object.collection_document }}</td>
+          </tr>
+          <tr>
+            <th>Fecha de registro</th>
+            <td>{{ object.created|date:'d/m/Y' }}</td>
+          </tr>
+          <tr>
+            <th>Fecha de emisión de la póliza</th>
+            <td>{{ object.issuance_date|date:'d/m/Y' }}</td>
+          </tr>
+          <tr>
+            <th>Fecha de vigencia inicio</th>
+            <td>{{ object.initial_validity|date:'d/m/Y' }}</td>
+          </tr>
+          <tr>
+            <th>Fecha de vigencia fin</th>
+            <td>{{ object.final_validity|date:'d/m/Y' }}</td>
+          </tr>
+          <tr>
+            <th>Número de documento de pago</th>
+            <td>{{ object.payment_document }}</td>
+          </tr>
+          <tr>
+            <th>Plan de seguro</th>
+            <td>{{ object.insurance_plan }}</td>
+          </tr>
+          <tr>
+            <th>Porcentaje comisión del plan</th>
+            <td>{% widthratio object.plan_commission_percentage 1 100 %}%</td>
+          </tr>
+          <tr>
+            <th>Monto comisión neto</th>
+            <td>{{ quotation.currency.symbol }}{{ object.net_commission_amount }}</td>
+          </tr>
+          <tr>
+            <th>Tipo</th>
+            <td>{{ object.issuance_type }}</td>
+          </tr>
+          <tr>
+            <th>Método de pago</th>
+            <td>{{ object.payment_method }}</td>
+          </tr>
+          <tr>
+            <th>Estado</th>
+            <td>{{ object.status }}</td>
+          </tr>
+          {% if object.comment %}
+          <tr>
+            <th>Comentarios:</th>
+            <td>{{ object.comment }}</td>
+          </tr>
+          {% endif %}
         </tbody>
       </table>
     </div>

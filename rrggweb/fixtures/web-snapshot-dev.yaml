@@ -390,6 +390,7 @@
   pk: 2
   fields:
     risk: 1
+    currency: 1
     insured_amount: 2000
     vehicle: 2
     consultant_registrar: 1
@@ -464,6 +465,22 @@
   pk: 5
   fields:
     name: 'Anulado por cambio de bróker'
+- model: rrgg.issuanceinsurancetype
+  pk: 1
+  fields:
+    name: 'Venta nueva'
+- model: rrgg.issuanceinsurancetype
+  pk: 2
+  fields:
+    name: 'Renovación'
+- model: rrgg.paymentmethod
+  pk: 1
+  fields:
+    name: 'Al contado'
+- model: rrgg.paymentmethod
+  pk: 2
+  fields:
+    name: 'Financiado'
 - model: rrgg.issuanceinsurancevehicle
   pk: 1
   fields:
@@ -473,18 +490,13 @@
     initial_validity: 2023-07-25 00:00:00+00:00
     final_validity: 2024-07-24 00:00:00+00:00
     amount: 258.27
-    currency: 1
     consultant_registrar: 1
     consultant_seller: 2
-    consultant_new_sale_rate: 0.45
+    seller_commission_percentage: 0.45
     status: 1
     quotation_vehicle_premium: 2
+    insurance_plan: 1
     created: 2023-07-31 07:24:08.278816+00:00
-- model: rrgg.issuanceinsurancevehicleendorsement
-  pk: 1
-  fields:
-    commission: 300
-    quotation_vehicle_premium: 2
 - model: rrgg.collectioninsurancevehicle
   pk: 1
   fields:

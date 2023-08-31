@@ -28,10 +28,13 @@
             <thead>
                 <tr>
                     <th>Contratante</th>
-                    <th>DNI</th>
+                    <th>Nº de documento</th>
+                    <th>Riesgo</th>
                     <th>Vehiculo</th>
                     <th>Vigencia</th>
                     <th>Aseguradora</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -40,11 +43,22 @@
                     <tr>
                         <td class="align-middle" scope="row">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</td>
                         <td class="align-middle">
-                            {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer.document_number }}
+                            {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer.pick.document_number }}
+                        </td>
+                        <td class="align-middle">
+                            {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.risk }}
                         </td>
                         <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle }}</td>
                         <td class="align-middle">{{ issuance.final_validity | date:'d/m/Y' }}</td>
                         <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+                        <td class="align-middle">{{ issuance.issuance_type.name }}</td>
+                        <td class="align-middle">
+                            {% if issuance.status.name == "Vigente" %}
+                            <span class="badge bg-success align-middle">{{ issuance.status.name |slice:":7"}}</span>
+                            {% else %}
+                            <span class="badge bg-danger align-middle">{{ issuance.status.name |slice:":7"}}</span>
+                            {% endif %}
+                        </td>
                         <td class="align-middle">
                             <a class="btn btn-primary btn-sm"
                                href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.registrar_id issuance.id %}">

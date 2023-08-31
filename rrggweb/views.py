@@ -114,7 +114,9 @@ class QIVSelectRoleFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Seleccionar responsable de la cotización"
+        context["title"] = (
+            "Seleccionar responsable de la cotización / venta nueva"
+        )
         context["step"] = True
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:list",
@@ -146,7 +148,9 @@ class QIVSelectSellerFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Seleccionar responsable de la cotización"
+        context["title"] = (
+            "Seleccionar responsable de la cotización / venta nueva"
+        )
         context["step"] = True
         context["role_selector"] = forms.RoleForm(
             role_id=self.kwargs.get("role_id")
@@ -1004,7 +1008,7 @@ class QIVUpdateOwnerView(QIVUpdateOwnerViewSupport):
 class QIVCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     template_name = "rrggweb/quotation/insurance/vehicle/form.html"
     model = rrgg.models.QuotationInsuranceVehicle
-    fields = ["insured_amount"]
+    fields = ["insured_amount", "currency"]
 
     def form_valid(self, form):
         form.instance.risk = rrgg.models.Risk.objects.get(name="Vehicular")
@@ -1067,7 +1071,7 @@ class QIVUpdateAmountViewSupport(
 ):
     template_name = "rrggweb/quotation/insurance/vehicle/form.html"
     model = rrgg.models.QuotationInsuranceVehicle
-    fields = ["insured_amount"]
+    fields = ["insured_amount", "currency"]
     pk_url_kwarg = "quotation_id"
 
 
@@ -1579,12 +1583,14 @@ class IIVPlanFormView(FormView):
     form_class = forms.InsurancePlanForm
 
     def form_valid(self, form: forms.InsurancePlanForm):
-        # plan = form.cleaned_data["planes de seguro"]
+        plan = form.cleaned_data["planes de seguro"]
         self.success_url = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:create_policy",
+            "rrggweb:issuance:insurance:vehicle:create",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "quotation_premium_id": self.kwargs["quotation_premium_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "plan_id": plan.id,
             },
         )
         return super().form_valid(form)
@@ -1629,20 +1635,44 @@ class IIVPlanFormView(FormView):
         return context
 
 
-class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
+class IIVCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     template_name = "rrggweb/issuance/insurance/vehicle/create.html"
-    model = rrgg.models.IssuanceInsuranceVehiclePolicy
+    model = rrgg.models.IssuanceInsuranceVehicle
     fields = [
         "policy",
+        "collection_document",
         "issuance_date",
         "initial_validity",
         "final_validity",
+        "payment_document",
+        "plan_commission_percentage",
+        "payment_method",
     ]
 
+    def get_initial(self):
+        initial = super().get_initial()
+        plan = shortcuts.get_object_or_404(
+            rrgg.models.InsurancePlan, id=self.kwargs["plan_id"]
+        )
+        kcs_commission_percentage = round(plan.commission * 100, 1)
+        initial["plan_commission_percentage"] = kcs_commission_percentage
+        return initial
+
     def form_valid(self, form):
+        form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
+        form.instance.consultant_seller_id = self.kwargs["seller_id"]
+        form.instance.insurance_plan_id = self.kwargs["plan_id"]
         form.instance.quotation_vehicle_premium_id = self.kwargs[
             "quotation_premium_id"
         ]
+        raw_percentage = form.cleaned_data["plan_commission_percentage"]
+        form.instance.plan_commission_percentage = raw_percentage / 100
+        seller = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
+        form.instance.seller_commission_percentage = (
+            seller.commission_rate.new_sale
+        )
         # validate expiration date
         quotation_premium = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,
@@ -1653,14 +1683,6 @@ class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
             return self.form_invalid(form)
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["quotation_premium"] = shortcuts.get_object_or_404(
-            rrgg.models.QuotationInsuranceVehiclePremium,
-            id=self.kwargs["quotation_premium_id"],
-        )
-        return context
-
     def get_success_url(self):
         return urls.reverse(
             "rrggweb:issuance:insurance:vehicle:create_document",
@@ -1670,65 +1692,90 @@ class IIVCreatePolicyView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
             },
         )
 
-
-class IIVCreateEndorsementView(
-    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
-):
-    template_name = "rrggweb/issuance/insurance/vehicle/create.html"
-    model = rrgg.models.IssuanceInsuranceVehicleEndorsement
-    fields = [
-        "number_registry",
-        "issuance_date",
-        "initial_validity",
-        "commission",
-    ]
-
-    def form_valid(self, form):
-        form.instance.quotation_vehicle_premium_id = self.kwargs[
-            "quotation_premium_id"
-        ]
-        # validate expiration date
-        quotation_premium = shortcuts.get_object_or_404(
-            rrgg.models.QuotationInsuranceVehiclePremium,
-            id=self.kwargs["quotation_premium_id"],
-        )
-        if quotation_premium.quotation_insurance_vehicle.expired:
-            messages.warning(self.request, "Esta cotización ya expiró")
-            return self.form_invalid(form)
-        return super().form_valid(form)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["title"] = "Crear Emisión Vehicular"
         context["quotation_premium"] = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,
             id=self.kwargs["quotation_premium_id"],
         )
-        return context
-
-    def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:create_document",
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
+        context["ratio"] = context["quotation_premium"].insurance_vehicle_ratio
+        context["insurance_plan"] = shortcuts.get_object_or_404(
+            rrgg.models.InsurancePlan, id=self.kwargs["plan_id"]
+        )
+        context["quotation"] = context[
+            "quotation_premium"
+        ].quotation_insurance_vehicle
+        context["customer"] = context["quotation"].customer
+        context["vehicle"] = context["quotation"].vehicle
+        context["owner"] = context["vehicle"].ownership
+        if isinstance(context["owner"].pick, rrgg.models.Owner):
+            context["update_owner"] = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:update_owner",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "owner_id": context["owner"].owner.id,
+                    "quotation_id": self.object.id,
+                },
+            )
+        else:
+            pass
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:select_plan",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "issuance_id": self.object.id,
+                "quotation_premium_id": self.kwargs["quotation_premium_id"],
+                "seller_id": self.kwargs["seller_id"],
             },
         )
+        return context
 
 
-class IssuanceInsuranceVehicleDetailIssuanceView(DetailView):
+class IIVDetailIssuanceView(DetailView):
     template_name = "rrggweb/issuance/insurance/vehicle/detail.html"
     model = rrgg.models.IssuanceInsuranceVehicle
     pk_url_kwarg = "issuance_id"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["title"] = "Detalle de Emisión Vehicular"
+        context["quotation_premium"] = self.object.quotation_vehicle_premium
+        context["ratio"] = context["quotation_premium"].insurance_vehicle_ratio
+        context["quotation"] = context[
+            "quotation_premium"
+        ].quotation_insurance_vehicle
+        context["customer"] = context["quotation"].customer
+        context["vehicle"] = context["quotation"].vehicle
+        context["owner"] = context["vehicle"].ownership
+        if isinstance(context["owner"].pick, rrgg.models.Owner):
+            context["update_owner"] = urls.reverse(
+                "rrggweb:quotation:insurance:vehicle:update_owner",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "owner_id": context["owner"].owner.id,
+                    "quotation_id": self.object.id,
+                },
+            )
+        context["seller"] = self.object.consultant_seller
         context["documents"] = self.object.documents.all()
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        context["anular"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:update_status",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
         return context
 
 
-class IssuanceInsuranceVehicleUpdateIssuanceView(
-    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
-):
+class IIVUpdateIssuanceView(rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView):
     template_name = "rrggweb/issuance/insurance/vehicle/update.html"
     model = rrgg.models.IssuanceInsuranceVehicle
     fields = [
@@ -1745,39 +1792,6 @@ class IssuanceInsuranceVehicleUpdateIssuanceView(
                 "registrar_id": self.kwargs["registrar_id"],
             },
         )
-
-
-class IIVStatusFormView(FormView):
-    template_name = "rrggweb/issuance/insurance/vehicle/define.html"
-    form_class = forms.IssuanceTypeForm
-
-    def form_valid(self, form):
-        tipo = form.cleaned_data["tipo"]
-        if tipo == "policy":
-            self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_policy",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "quotation_premium_id": self.kwargs[
-                        "quotation_premium_id"
-                    ],
-                },
-            )
-        elif tipo == "endorsement":
-            self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_endorsement",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "quotation_premium_id": self.kwargs[
-                        "quotation_premium_id"
-                    ],
-                },
-            )
-        else:
-            messages.warning(self.request, "Debe elegir un tipo de emisión")
-            return self.form_invalid(form)
-
-        return super().form_valid(form)
 
 
 class IIVUpdateStatusFormView(FormView):
@@ -1809,8 +1823,20 @@ class IIVUpdateStatusFormView(FormView):
             },
         )
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Seleccionar Estado de Emisión Vehicular"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+        return context
 
-class IssuanceInsuranceVehicleAddDocumentCreateView(
+
+class IIVAddDocumentCreateView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
     template_name = "rrggweb/issuance/insurance/vehicle/create_document.html"
@@ -1828,13 +1854,21 @@ class IssuanceInsuranceVehicleAddDocumentCreateView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["title"] = "Crear Emisión Vehicular - Subir documentos"
         context["documents"] = self.model.objects.filter(
             issuance_id=self.kwargs["issuance_id"]
+        )
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:update",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
         )
         return context
 
 
-class IssuanceInsuranceVehicleDeleteDocumentView(DeleteView):
+class IIVDeleteDocumentView(DeleteView):
     template_name = "rrggweb/issuance/insurance/vehicle/delete_document.html"
     model = rrgg.models.IssuanceInsuranceVehicleDocument
     pk_url_kwarg = "document_id"

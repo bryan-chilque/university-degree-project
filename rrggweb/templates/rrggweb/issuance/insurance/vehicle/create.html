@@ -1,15 +1,13 @@
-{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
 {% block title_section %}
-  Crear Emisión Vehícular
+  {{ title }}
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       {% include "rrggweb/utils/stepper.html" with step=3 max_step=4 %}
-      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
-         href="">
-        <i class="fas fa-long-arrow-alt-left"></i>
-        Volver
+      <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i> Volver
       </a>
       <div class="row">
         <div class="col-md-6">
@@ -18,25 +16,21 @@
               <tr>
                 <th colspan="2" class="font-weight-bold">
                   Datos del contratante
-                  {% comment %} <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_customer' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.customer.id 'issuance_create' quotation_premium.id %}"
-                     class="btn-link">
-                    <i class="fas fa-edit"></i>
-                  </a> {% endcomment %}
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="font-weight-bold">Tipo de documento</td>
-                <td>DNI</td>
+                <td>{{ customer.pick.document_type}}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Número de documento</td>
-                <td>{{ quotation_premium.quotation_insurance_vehicle.customer.document_number }}</td>
+                <td>{{ customer.pick.document_number }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Nombres y apellidos</td>
-                <td>{{ quotation_premium.quotation_insurance_vehicle.customer }}</td>
+                <td>{{ customer }}</td>
               </tr>
             </tbody>
           </table>
@@ -45,22 +39,39 @@
           <table class="table table-sm table-bordered">
             <thead>
               <tr>
-                <th colspan="2" class="font-weight-bold">Datos del vendedor</th>
+                <th colspan="2" class="font-weight-bold">
+                  Datos del asegurado
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="font-weight-bold">Tipo de documento</td>
-                <td>DNI</td>
-              </tr>
-              <tr>
-                <td class="font-weight-bold">Número de documento</td>
-                <td>{{ quotation_premium.quotation_insurance_vehicle.consultant.document_number }}</td>
-              </tr>
-              <tr>
-                <td class="font-weight-bold">Nombres y apellidos</td>
-                <td>{{ quotation_premium.quotation_insurance_vehicle.consultant }}</td>
-              </tr>
+              {% if update_owner %}
+                <tr>
+                  <td class="font-weight-bold">Tipo de documento</td>
+                  <td>{{ owner.pick.document_type}}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Número de documento</td>
+                  <td>{{ owner.pick.document_number }}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Nombres y apellidos</td>
+                  <td>{{ owner }}</td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td class="font-weight-bold">Tipo de documento</td>
+                  <td>{{ customer.pick.document_type}}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Número de documento</td>
+                  <td>{{ customer.pick.document_number }}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Nombres y apellidos</td>
+                  <td>{{ customer }}</td>
+                </tr>
+              {% endif %}
             </tbody>
           </table>
         </div>
@@ -70,26 +81,85 @@
           <table class="table table-sm table-bordered">
             <thead>
               <tr>
-                <th colspan="2" class="font-weight-bold">Datos del vehículo</th>
+                <th colspan="2" class="font-weight-bold">Datos del Bien Asegurado</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="font-weight-bold">Placa</td>
-                <td>{{ quotation_premium.quotation_insurance_vehicle.vehicle.plate }}</td>
+                <td>{{ vehicle.plate }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Marca</td>
-                <td>{{ quotation_premium.quotation_insurance_vehicle.vehicle.brand }}</td>
+                <td>{{ vehicle.brand }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Modelo</td>
-                <td>{{ quotation_premium.quotation_insurance_vehicle.vehicle.vehicle_model }}</td>
+                <td>{{ vehicle.vehicle_model }}</td>
               </tr>
+              <tr>
+                <td class="font-weight-bold">Año de fabricación</td>
+                <td>{{ vehicle.fabrication_year }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Número de motor</td>
+                <td>{{ vehicle.engine }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Número de chasis</td>
+                <td>{{ vehicle.chassis }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Número de asientos</td>
+                <td>{{ vehicle.seat_number }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Tipo de uso</td>
+                <td>{{ vehicle.use_type }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">¿Requiere gps?</td>
+                {% if vehicle.has_gps %}
+                  <td>Sí</td>
+                {% else %}
+                  <td>No</td>
+                {% endif %}
+              </tr>
+              <tr>
+                <td class="font-weight-bold">¿Es endosado?</td>
+                {% if vehicle.has_endorsee %}
+                  <td>Sí</td>
+                {% else %}
+                  <td>No</td>
+                {% endif %}
+              </tr>
+              {% if vehicle.has_endorsee %}
+                <tr>
+                  <td class="font-weight-bold">Banco</td>
+                  <td>{{ vehicle.endorsee_bank }}</td>
+                </tr>
+              {% endif %}
             </tbody>
           </table>
         </div>
         <div class="col-md-6">
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="font-weight-bold">Datos del asesor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">Tipo de asesor</td>
+                <td>{{ seller.role }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Nombres y apellidos</td>
+                <td>{{ seller }}</td>
+              </tr>
+            </tbody>
+          </table>
           <table class="table table-sm table-bordered">
             <thead>
               <tr>
@@ -98,44 +168,50 @@
             </thead>
             <tbody>
               <tr>
-                <td class="font-weight-bold">Suma asegurada</td>
+                <td class="font-weight-bold">Ramo</td>
                 <td>
-                  ${{ quotation_premium.quotation_insurance_vehicle.insured_amount }}
-                  {% comment %} <a href="{% url 'rrggweb:quotation:insurance:vehicle:update' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.quotation_insurance_vehicle.id 'issuance_create' quotation_premium.id %}"
-                     class="btn-link">
-                    <i class="fas fa-edit"></i>
-                  </a> {% endcomment %}
+                  {{ quotation.risk }}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Aseguradora</td>
-                <td>{{ quotation_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+                <td>{{ ratio.insurance_vehicle }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Plan de seguro</td>
+                <td>{{ insurance_plan }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Tipo de moneda</td>
+                <td>
+                  {{ quotation.currency }}
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Suma asegurada</td>
+                <td>
+                  {{quotation.currency.symbol}}{{ quotation_premium.quotation_insurance_vehicle.insured_amount }}
+                </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Prima neta</td>
                 <td>
-                  ${{ quotation_premium.amount }}
-                  {% comment %} <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' quotation_premium.quotation_insurance_vehicle.consultant.id quotation_premium.id 'issuance_create' 0 %}"
-                     class="btn-link">
-                    <i class="fas fa-edit"></i>
-                  </a> {% endcomment %}
+                  {{quotation.currency.symbol}}{{ quotation_premium.amount }}
                 </td>
               </tr>
               <tr>
-                <td class="font-weight-bold">Derecho de emisión</td>
-                <td>${{ quotation_premium.emission_right }}</td>
-              </tr>
-              <tr>
-                <td class="font-weight-bold">IGV</td>
-                <td>${{ quotation_premium.tax }}</td>
+                <td class="font-weight-bold">Prima comercial</td>
+                <td>
+                  {{quotation.currency.symbol}}{{ quotation_premium.commercial_premium }}
+                </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Tasa</td>
-                <td>${{ quotation_premium.rate }}</td>
+                <td>{{quotation.currency.symbol}}{{ quotation_premium.rate }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Prima total</td>
-                <td>${{ quotation_premium.total }}</td>
+                <td>{{quotation.currency.symbol}}{{ quotation_premium.total }}</td>
               </tr>
             </tbody>
           </table>
@@ -167,5 +243,6 @@
       date.setFullYear(date.getFullYear() + 1);
       finalValidity.value = date.toISOString().slice(0, 10);
     });
+
   </script>
 {% endblock content %}

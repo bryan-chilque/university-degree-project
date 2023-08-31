@@ -33,7 +33,7 @@ Lista de cotizaciones de seguros vehiculares
                 <td class="align-middle">{{ quotation.customer.pick.document_number }}</td>
                 <td class="align-middle">{{ quotation.risk }}</td>
                 <td class="align-middle">{{ quotation.vehicle }}</td>
-                <td class="align-middle">{{ quotation.insured_amount }}</td>
+                <td class="align-middle">{{ quotation.currency.symbol}}{{ quotation.insured_amount }}</td>
                 <td class="align-middle">{{ quotation.consultant_seller }}</td>
                 <td class="align-middle">
                     {% if quotation.expired %}
