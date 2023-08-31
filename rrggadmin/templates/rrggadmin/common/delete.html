@@ -1,13 +1,26 @@
 {% extends 'rrggadmin/dashboard.html' %}
 
 {% block titlebar_title %}
-    {% include 'rrggadmin/navbar.html' %}
+{% include 'rrggadmin/navbar.html' %}
 {% endblock %}
 
 {% block container %}
-<form method="post">{% csrf_token %}
-    <p>¿Está seguro que desea eliminar <em> "{{ object.name }}"</em>?</p>
-    <input type="submit" value="Eliminar"/>
-    <a href="{% url menu.detail_name object.pk %}">🔙</a>
-</form>
+<div class="card">
+    <div class="card-body">
+        <form method="post" class="delete-form">
+            {% csrf_token %}
+            <p class="mb-3">¿Está seguro que desea eliminar <em>"{{ object.name }}"</em>?</p>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <a href="{% url menu.detail_name object.pk %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    .delete-form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+</style>
 {% endblock %}

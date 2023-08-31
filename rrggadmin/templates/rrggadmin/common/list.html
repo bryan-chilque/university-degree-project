@@ -1,12 +1,17 @@
 {% extends 'rrggadmin/dashboard.html' %}
 {% load i18n %}
 {% block titlebar_title %}
-    {% include 'rrggadmin/navbar.html' %}
+Lista de {{ view.model }}
+{% endblock %}
+
+{% block titlebar_button %}
+<a class="btn btn-primary" href="{% url menu.create_name %}">
+    <i class="fa fa-plus"></i>
+    Crear
+</a>
 {% endblock %}
 
 {% block container %}
-<a href="{% url 'rrggadmin:home' %}">🏠</a>
-<a href="{% url menu.create_name %}">🆕</a>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -18,7 +23,7 @@
         <tr>
             {% for field in obj.fields %}
             <td>
-                <a href="{% url menu.detail_name obj.pk %}">{{ field }}</a>
+                <a href="{% url menu.detail_name obj.pk %}">{{ field|default:"-" }}</a>
             </td>
             {% endfor %}
             <td>
@@ -28,6 +33,7 @@
         {% endfor %}
     </tbody>
 </table>
-
+{% if page_obj.has_other_pages %}
 {% include 'rrggadmin/pagination.html' %}
+{% endif %}
 {% endblock %}
