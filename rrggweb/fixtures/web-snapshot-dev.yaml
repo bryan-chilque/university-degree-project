@@ -486,19 +486,21 @@
   pk: 1
   fields:
     policy: '123456789'
-    payment_document: A001
+    collection_document: A001
     issuance_date: 2023-07-23 00:00:00+00:00
     initial_validity: 2023-07-25 00:00:00+00:00
     final_validity: 2024-07-24 00:00:00+00:00
+    plan_commission_percentage: 0.200
+    issuance_type: 1
     consultant_registrar: 1
     consultant_seller: 2
-    insurance_plan: 1
-    plan_commission_percentage: 0.200
     seller_commission_percentage: 0.45
     status: 1
-    quotation_vehicle_premium: 2
+    insurance_plan: 1
     payment_method: 2
+    quotation_vehicle_premium: 2
     created: 2023-07-31 07:24:08.278816+00:00
+
 - model: rrgg.collectioninsurancevehicle
   pk: 1
   fields:

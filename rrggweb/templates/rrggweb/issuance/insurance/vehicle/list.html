@@ -1,6 +1,6 @@
 {% extends "rrggweb/dashboard.html" %}
 {% block title_section %}
-    Lista de emisiones de seguros vehiculares
+    {{ title }}
 {% endblock title_section %}
 {% block content %}
     <div class="d-flex justify-content-between mb-3">
@@ -18,7 +18,7 @@
         </form>
         <div>
             <a class="btn btn-primary"
-               href="{% url 'rrggweb:issuance:insurance:vehicle:list_quotations' view.kwargs.registrar_id %}">Venta nueva
+               href="{{ new_sale }}">Venta nueva
                 <i class="fas fa-plus"></i>
             </a>
         </div>

@@ -542,8 +542,7 @@ class IssuanceInsuranceVehicle(models.Model):
     initial_validity = models.DateTimeField(_("initial_validity"))
     # fecha de vigencia final
     final_validity = models.DateTimeField(_("final_validity"))
-    # número de documento de pago
-    payment_document = models.CharField(_("payment document"), max_length=64)
+
     plan_commission_percentage = models.DecimalField(
         _("plan commission percentage"),
         decimal_places=3,
