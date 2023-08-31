@@ -381,6 +381,7 @@
   fields:
     risk: 1
     insured_amount: 3000
+    currency: 1
     vehicle: 1
     consultant_registrar: 3
     consultant_seller: 2
@@ -489,13 +490,14 @@
     issuance_date: 2023-07-23 00:00:00+00:00
     initial_validity: 2023-07-25 00:00:00+00:00
     final_validity: 2024-07-24 00:00:00+00:00
-    amount: 258.27
     consultant_registrar: 1
     consultant_seller: 2
+    insurance_plan: 1
+    plan_commission_percentage: 0.200
     seller_commission_percentage: 0.45
     status: 1
     quotation_vehicle_premium: 2
-    insurance_plan: 1
+    payment_method: 2
     created: 2023-07-31 07:24:08.278816+00:00
 - model: rrgg.collectioninsurancevehicle
   pk: 1
