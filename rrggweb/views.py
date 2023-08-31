@@ -1449,12 +1449,14 @@ class QIVReportPdfView(View):
         premiums = quotation.premiums.all().order_by(
             "insurance_vehicle_ratio__insurance_vehicle__id"
         )
+        my_range = range(1, 6)
 
         html_string = render_to_string(
             templatename,
             {
                 "quotation": quotation,
                 "premiums": premiums,
+                "my_range": my_range,
             },
         )
 
