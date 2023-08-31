@@ -114,9 +114,7 @@ class QIVSelectRoleFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = (
-            "Seleccionar responsable de la cotización / venta nueva"
-        )
+        context["title"] = "Seleccionar responsable"
         context["step"] = True
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:list",
@@ -148,9 +146,7 @@ class QIVSelectSellerFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = (
-            "Seleccionar responsable de la cotización / venta nueva"
-        )
+        context["title"] = "Seleccionar responsable"
         context["step"] = True
         context["role_selector"] = forms.RoleForm(
             role_id=self.kwargs.get("role_id")
@@ -1149,7 +1145,7 @@ class QIVDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Detalle Cotización de Vehículo"
+        context["title"] = "Detalle"
         context["seller"] = self.object.consultant_seller
         context["customer"] = self.object.customer
         context["vehicle"] = self.object.vehicle

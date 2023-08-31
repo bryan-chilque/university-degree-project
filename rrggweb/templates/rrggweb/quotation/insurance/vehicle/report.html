@@ -1,494 +1,501 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Cotización de Seguro Vehicular" />
-    <meta name="keywords" content="Cotización, Seguro, Vehicular" />
-    <title>Document</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-      @page {
-        margin: 0.3cm;
-      }
-      * {
-        font-family: 'Roboto', sans-serif;
-        font-size: 10pt;
-      }
-      table {
-        border: 1px solid #000;
-      }
-      table > tbody > tr > th {
-        text-align: left;
-        padding: 0.3rem;
-        font-weight: 500;
-      }
-      table > tbody > tr > th:nth-child(1) {
-        font-weight: 600;
-      }
-      section:nth-child(1) {
-        padding: 0.5rem 0;
-      }
-      section:nth-child(1) table:nth-child(2) > tbody > tr > th:nth-child(1) {
-        width: 150px;
-      }
-      section > table > tbody > tr > th:nth-child(1) {
-        width: 150px;
-      }
-      section > table > tbody > tr > th:not(:nth-child(1)) {
-        width: 100px;
-        text-align: center;
-      }
-      section {
-        margin: 1rem 0;
-      }
-      section:nth-child(4) > table,
-      section:nth-child(2) > table > tbody:nth-child(1) > tr:nth-child(6) {
-        background-color: #cfe2ff;
-      }
-      section > h4 {
-        width: 712px;
-        text-align: center;
-        margin: 0;
-        padding: 10px 0;
-        background-color: #cfe2ff;
-        border: 1px solid #000;
-        border-bottom: 0;
-      }
-      section:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr > th img {
-        width: 100px;
-      }
-      section:nth-child(8) {
-        margin-top: 1.5rem;
-        font-size: 9pt;
-      }
-      section:nth-child(8) h5 {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <section>
-      <img src="https://kcs.pe/View/img/Logo/KCSLogotipo167x88.png"
-           alt="logo"
-           width="100"
-           height="100" />
-      <table>
-        <tr>
-          <th>Datos Contratante</th>
-          <th>{{ quotation.customer }}</th>
-        </tr>
-        <tr>
-          <th>Marca</th>
-          <th>{{ quotation.vehicle.brand }}</th>
-        </tr>
-        <tr>
-          <th>Modelo</th>
-          <th>{{ quotation.vehicle.vehicle_model }}</th>
-        </tr>
-        <tr>
-          <th>Año</th>
-          <th>{{ quotation.vehicle.fabrication_year }}</th>
-        </tr>
-        <tr>
-          <th>Uso</th>
-          <th>{{ quotation.vehicle.use_type.name }}</th>
-        </tr>
-        <tr>
-          <th>Suma Asegurada</th>
-          <th>{{ quotation.insured_amount }}</th>
-        </tr>
-        <tr>
-          <th>Fecha</th>
-          <th>{{ quotation.created|date:'d-m-Y' }}</th>
-        </tr>
-      </table>
-    </section>
-    <section>
-      <table>
-        <tr>
-          <th>
-            <img src="https://www.apeseg.org.pe/wp-content/uploads/2018/05/Seguro-vehicular.jpg"
-                 alt="Seguro Vehicular"
-                 width="100"
-                 height="120" />
-          </th>
-          <th>
-            <img src="https://seeklogo.com/images/P/pacifico-seguros-logo-E1CD9C6D2E-seeklogo.com.png"
-                 alt="Pacífico Seguros"
-                 width="100"
-                 height="120" />
-          </th>
-          <th>
-            <img src="https://www.apeseg.org.pe/wp-content/uploads/2019/07/qualitas.png"
-                 alt="Qualitas Seguros"
-                 width="100"
-                 height="120" />
-          </th>
-          <th>
-            <img src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/112010/lapositivaseguros-converted.png?itok=gYEjQKre"
-                 alt="La Positiva"
-                 width="100"
-                 height="120" />
-          </th>
-          <th>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/LOGO-MAPFRE.jpg/800px-LOGO-MAPFRE.jpg"
-                 alt="Mapfre"
-                 width="100"
-                 height="120" />
-          </th>
-          <th>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Nuevo_logo_de_Rimac_Seguros.PNG/799px-Nuevo_logo_de_Rimac_Seguros.PNG"
-                 alt="Rimac Seguros"
-                 width="100"
-                 height="120" />
-          </th>
-        </tr>
-        <tr>
-          <th>Nombre Aseguradora</th>
-          {% for premium in premiums %}<th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</th>{% endfor %}
-        </tr>
-        <tr>
-          <th>Prima Neta (US$)</th>
-          {% for premium in premiums %}<th>$ {{ premium.amount }}</th>{% endfor %}
-        </tr>
-        <tr>
-          <th>Derecho de Emisión</th>
-          {% for premium in premiums %}<th>$ {{ premium.emission_right }}</th>{% endfor %}
-        </tr>
-        <tr>
-          <th>IGV</th>
-          {% for premium in premiums %}<th>$ {{ premium.tax }}</th>{% endfor %}
-        </tr>
-        <tr>
-          <th>Prima Total</th>
-          {% for premium in premiums %}<th>$ {{ premium.total }}</th>{% endfor %}
-        </tr>
-      </table>
-    </section>
-    <section>
-      <h4>Coberturas</h4>
-      <table>
-        <tr>
-          <th>Daño propio</th>
-          <th>Valor Asegurado</th>
-          <th>Valor Asegurado</th>
-          <th>Valor Asegurado</th>
-          <th>Valor Asegurado</th>
-          <th>Valor Asegurado</th>
-        </tr>
-        <tr>
-          <th>* Accidente, Choque, Incendio</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>* Robo total y/o parcial, etc.</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>Responsabillidad Civil</th>
-          <th>$100,000.00</th>
-          <th>$180,000.00</th>
-          <th>$150,000.00</th>
-          <th>$150,000.00</th>
-          <th>$100,000.00</th>
-        </tr>
-        <tr>
-          <th>frente a Terceros</th>
-          <th></th>
-          <th></th>
-          <th>Por Vehículo</th>
-          <th>Por Vehículo</th>
-          <th>Por Vehículo</th>
-        </tr>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>Responsabillidad Civil</th>
-          <th>$20,000.00</th>
-          <th>$30,000.00</th>
-          <th>$80,000.00</th>
-          <th>$50,000.00</th>
-          <th>$10,000.00</th>
-        </tr>
-        <tr>
-          <th>de Ocupantes</th>
-          <th>Por Ocupante</th>
-          <th>Por Ocupante</th>
-          <th>Por Vehículo</th>
-          <th>Por Vehículo</th>
-          <th>Por Vehículo</th>
-        </tr>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>Accidentes Personales</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>* Muerte e Invalid. c/u</th>
-          <th>$20,000.00</th>
-          <th>$20,000.00</th>
-          <th>$25,000.00</th>
-          <th>$25,000.00</th>
-          <th>$5,000.00</th>
-        </tr>
-        <tr>
-          <th>* Gastos de curación c/u.</th>
-          <th>$4,000.00</th>
-          <th>$4,000.00</th>
-          <th>$4,000.00</th>
-          <th>$4,000.00</th>
-          <th>$1,000.00</th>
-        </tr>
-        <tr>
-          <th>* Gastos de Sepelio</th>
-          <th>$1,000.00</th>
-          <th>$1,000.00</th>
-          <th>$2,000.00</th>
-          <th>$2,000.00</th>
-          <th>$1,000.00</th>
-        </tr>
-      </table>
-    </section>
-    <section>
-      <table>
-        <tr>
-          <th>Riesgos Políticos y Naturaleza</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-        </tr>
-        <tr>
-          <th>
-            Ausencia de control p/Empresas
-            <br />
-            o para unidades endosadas
-          </th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-        </tr>
-        <tr>
-          <th>
-            Circulacion en vias fuera del uso
-            <br />
-            regular y frecuente
-          </th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-          <th>VALOR ASEGURADO</th>
-        </tr>
-      </table>
-    </section>
-    <section>
-      <table>
-        <tr>
-          <th>R. Civil x ausencia de control</th>
-          <th>$50,000.00</th>
-          <th>$50,000.00</th>
-          <th>$50,000.00</th>
-          <th>$50,000.00</th>
-          <th>-</th>
-        </tr>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>Servicio de gruas x siniestro</th>
-          <th>$250.00</th>
-          <th>$250.00</th>
-          <th>$500.00</th>
-          <th>$250.00</th>
-          <th>$250.00</th>
-        </tr>
-        <tr>
-          <th>Servicio de ambulancia x siniestro</th>
-          <th>$250.00</th>
-          <th>$250.00</th>
-          <th>$250.00</th>
-          <th>$250.00</th>
-          <th>$250.00</th>
-        </tr>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>Accesorios Musicales HASTA</th>
-          <th>$1,000.00</th>
-          <th>$500.00</th>
-          <th>$1,000.00</th>
-          <th>$1,000.00</th>
-          <th>$500.00</th>
-        </tr>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>Chofer de Reemplazo</th>
-          <th>SOLO LIMA</th>
-          <th>SOLO LIMA</th>
-          <th>SOLO LIMA 3 VECES</th>
-          <th>SOLO LIMA 5 VECES</th>
-          <th>SOLO LIMA 3 VECES</th>
-        </tr>
-        <tr>
-          <th>Vehiculo de reemplazo</th>
-          <th>SOLO LIMA</th>
-          <th>SOLO LIMA</th>
-          <th>SOLO LIMA</th>
-          <th>COPAGO DE S/20.00 AL SEXTRO SERVICIO SE PAGA S/ 60.00</th>
-          <th>SOLO LIMA</th>
-        </tr>
-      </table>
-    </section>
-    <section>
-      <h4>Deducibles</h4>
-      <table>
-        <tr>
-          <th>Taller Preferente / Multimarca</th>
-          <th>10%&nbsp;$150 más IGV</th>
-          <th>10%&nbsp;$150 más IGV</th>
-          <th>15%&nbsp;$150 más IGV</th>
-          <th>15%&nbsp;$150 más IGV</th>
-          <th>20%&nbsp;$200 más IGV</th>
-        </tr>
-        <tr>
-          <th>Talleres afiliados / Concesionario</th>
-          <th>15%&nbsp;$200 más IGV</th>
-          <th>20%&nbsp;$200 más IGV</th>
-          <th>15%&nbsp;$250 más IGV</th>
-          <th>20%&nbsp;$300 más IGV</th>
-          <th>15%&nbsp;$250 más IGV</th>
-        </tr>
-        <tr>
-          <th>Talleres No afiliados :</th>
-          <th>25%&nbsp;$350 más IGV</th>
-          <th>25%&nbsp;$250 más IGV</th>
-          <th>20%&nbsp;$300 más IGV</th>
-          <th>20%&nbsp;$500 más IGV</th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>R. Civil</th>
-          <th>10%&nbsp;$150 más IGV</th>
-          <th>15%&nbsp;$250 más IGV</th>
-          <th>10%&nbsp;$150 más IGV</th>
-          <th>15%&nbsp;$150 más IGV</th>
-          <th>20%&nbsp;$250 más IGV</th>
-        </tr>
-        <tr>
-          <th>Perdida parc. o total x volcadura</th>
-          <th>20%&nbsp;$500 más IGV</th>
-          <th>20%&nbsp;$500 más IGV</th>
-          <th>20%&nbsp;$500 más IGV</th>
-          <th>20%&nbsp;$500 más IGV</th>
-          <th>20%&nbsp;$500 más IGV</th>
-        </tr>
-        <tr>
-          <th>Accesorios Musicales</th>
-          <th>10%&nbsp;$150 más IGV</th>
-          <th>10%&nbsp;$150 más IGV</th>
-          <th>10%&nbsp;$150 más IGV</th>
-          <th>10%&nbsp;$150 más IGV</th>
-          <th>10%&nbsp;$150 más IGV</th>
-        </tr>
-        <tr>
-          <th>Rotura de lunas nacionales</th>
-          <th>SIN DEDUCIBLE</th>
-          <th>SIN DEDUCIBLE</th>
-          <th>SIN DEDUCIBLE</th>
-          <th>SIN DEDUCIBLE</th>
-          <th>SIN DEDUCIBLE</th>
-        </tr>
-        <tr>
-          <th>Conductor menor de 26/29 años</th>
-          <th>SE DUPLICA EL DEDUCIBLE</th>
-          <th>20%&nbsp;$500 más IGV</th>
-          <th>20%&nbsp;$300 más IGV</th>
-          <th>20%&nbsp;$300 más IGV</th>
-          <th>20%&nbsp;$500 más IGV</th>
-        </tr>
-      </table>
-    </section>
-    <section>
-      <h4>Forma de Pago</h4>
-      <table>
-        <tr>
-          <th>Cuotas Iguales sin intereses</th>
-          {% for premium in premiums %}
-            <th>{{ premium.insurance_vehicle_ratio.fee }}&nbsp;|&nbsp;${{ premium.fee }}</th>
-          {% endfor %}
-        </tr>
-        <tr>
-          <th>Debito automático</th>
-          {% for premium in premiums %}
-            <th>{{ premium.insurance_vehicle_ratio.direct_debit }}&nbsp;|&nbsp;${{ premium.direct_debit }}</th>
-          {% endfor %}
-        </tr>
-      </table>
-    </section>
-    <section>
-      <h5>Beneficiones Adicionales</h5>
-      <p>* Central de Asistencia 24hrs.: Auxilio mecánico, Grúa y Ambulancia</p>
-      <p>* Rehabilitación automática de la Suma Asegurada (Excepto Accesorios Musicales)</p>
-      <p>* Las Condiciones Generales de la póliza prevalecen sobre esta cotización</p>
-      <p>* Cotización válida por 15 días.</p>
-    </section>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cotización de Seguro Vehicular" />
+  <meta name="keywords" content="Cotización, Seguro, Vehicular" />
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+    @page {
+      margin: 0.3cm;
+    }
+
+    * {
+      font-family: 'Roboto', sans-serif;
+      font-size: 10pt;
+    }
+
+    table {
+      border: 1px solid #000;
+    }
+
+    table>tbody>tr>th {
+      text-align: left;
+      padding: 0.3rem;
+      font-weight: 500;
+    }
+
+    table>tbody>tr>th:nth-child(1) {
+      font-weight: 600;
+    }
+
+    section:nth-child(1) {
+      padding: 0.5rem 0;
+    }
+
+    section:nth-child(1) table:nth-child(2)>tbody>tr>th:nth-child(1) {
+      width: 150px;
+    }
+
+    section>table>tbody>tr>th:nth-child(1) {
+      width: 150px;
+    }
+
+    section>table>tbody>tr>th:not(:nth-child(1)) {
+      width: 100px;
+      text-align: center;
+    }
+
+    section {
+      margin: 1rem 0;
+    }
+
+    section:nth-child(4)>table,
+    section:nth-child(2)>table>tbody:nth-child(1)>tr:nth-child(6) {
+      background-color: #cfe2ff;
+    }
+
+    section>h4 {
+      width: 712px;
+      text-align: center;
+      margin: 0;
+      padding: 10px 0;
+      background-color: #cfe2ff;
+      border: 1px solid #000;
+      border-bottom: 0;
+    }
+
+    section:nth-child(2)>table:nth-child(1)>tbody:nth-child(1)>tr>th img {
+      width: 100px;
+    }
+
+    section:nth-child(8) {
+      margin-top: 1.5rem;
+      font-size: 9pt;
+    }
+
+    section:nth-child(8) h5 {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <img src="https://kcs.pe/View/img/Logo/KCSLogotipo167x88.png" alt="logo" width="100" height="100" />
+    <table>
+      <tr>
+        <th>Datos Contratante</th>
+        <th>{{ quotation.customer }}</th>
+      </tr>
+      <tr>
+        <th>Marca</th>
+        <th>{{ quotation.vehicle.brand }}</th>
+      </tr>
+      <tr>
+        <th>Modelo</th>
+        <th>{{ quotation.vehicle.vehicle_model }}</th>
+      </tr>
+      <tr>
+        <th>Año</th>
+        <th>{{ quotation.vehicle.fabrication_year }}</th>
+      </tr>
+      <tr>
+        <th>Uso</th>
+        <th>{{ quotation.vehicle.use_type.name }}</th>
+      </tr>
+      <tr>
+        <th>Suma Asegurada</th>
+        <th>{{ quotation.insured_amount }}</th>
+      </tr>
+      <tr>
+        <th>Fecha</th>
+        <th>{{ quotation.created|date:'d-m-Y' }}</th>
+      </tr>
+    </table>
+  </section>
+  <section>
+    <table>
+      <tr>
+        <th>
+          <img src="https://www.apeseg.org.pe/wp-content/uploads/2018/05/Seguro-vehicular.jpg" alt="Seguro Vehicular"
+            width="100" height="120" />
+        </th>
+        <th>
+          <img src="https://seeklogo.com/images/P/pacifico-seguros-logo-E1CD9C6D2E-seeklogo.com.png"
+            alt="Pacífico Seguros" width="100" height="120" />
+        </th>
+        <th>
+          <img src="https://www.apeseg.org.pe/wp-content/uploads/2019/07/qualitas.png" alt="Qualitas Seguros"
+            width="100" height="120" />
+        </th>
+        <th>
+          <img
+            src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/112010/lapositivaseguros-converted.png?itok=gYEjQKre"
+            alt="La Positiva" width="100" height="120" />
+        </th>
+        <th>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/LOGO-MAPFRE.jpg/800px-LOGO-MAPFRE.jpg"
+            alt="Mapfre" width="100" height="120" />
+        </th>
+        <th>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Nuevo_logo_de_Rimac_Seguros.PNG/799px-Nuevo_logo_de_Rimac_Seguros.PNG"
+            alt="Rimac Seguros" width="100" height="120" />
+        </th>
+      </tr>
+      <tr>
+        <th>Nombre Aseguradora</th>
+        {% for premium in premiums %}
+        <th>{{ premium.insurance_vehicle_ratio.insurance_vehicle.name|default:"No name provided" }}</th>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>Prima Neta (US$)</th>
+        {% for premium in premiums %}<th>$ {{ premium.amount|default:"-" }}</th>{% endfor %}
+      </tr>
+      <tr>
+        <th>Derecho de Emisión</th>
+        {% for premium in premiums %}<th>$ {{ premium.emission_right|default:"-" }}</th>{% endfor %}
+      </tr>
+      <tr>
+        <th>IGV</th>
+        {% for premium in premiums %}<th>$ {{ premium.tax|default:"-" }}</th>{% endfor %}
+      </tr>
+      <tr>
+        <th>Prima Total</th>
+        {% for premium in premiums %}<th>$ {{ premium.total|default:"-" }}</th>{% endfor %}
+      </tr>
+    </table>
+  </section>
+  <section>
+    <h4>Coberturas</h4>
+    <table>
+      <tr>
+        <th>Daño propio</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>* Accidente, Choque, Incendio</th>
+        <th>Valor Asegurado</th>
+        <th>Valor Asegurado</th>
+        <th>Valor Asegurado</th>
+        <th>Valor Asegurado</th>
+        <th>Valor Asegurado</th>
+      </tr>
+      <tr>
+        <th>* Robo total y/o parcial, etc.</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Responsabillidad Civil</th>
+        <th>$100,000.00</th>
+        <th>$180,000.00</th>
+        <th>$150,000.00</th>
+        <th>$150,000.00</th>
+        <th>$100,000.00</th>
+      </tr>
+      <tr>
+        <th>frente a Terceros</th>
+        <th></th>
+        <th></th>
+        <th>Por Vehículo</th>
+        <th>Por Vehículo</th>
+        <th>Por Vehículo</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Responsabillidad Civil</th>
+        <th>$20,000.00</th>
+        <th>$30,000.00</th>
+        <th>$80,000.00</th>
+        <th>$50,000.00</th>
+        <th>$10,000.00</th>
+      </tr>
+      <tr>
+        <th>de Ocupantes</th>
+        <th>Por Ocupante</th>
+        <th>Por Ocupante</th>
+        <th>Por Vehículo</th>
+        <th>Por Vehículo</th>
+        <th>Por Vehículo</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Accidentes Personales</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>* Muerte e Invalid. c/u</th>
+        <th>$20,000.00</th>
+        <th>$20,000.00</th>
+        <th>$25,000.00</th>
+        <th>$25,000.00</th>
+        <th>$5,000.00</th>
+      </tr>
+      <tr>
+        <th>* Gastos de curación c/u.</th>
+        <th>$4,000.00</th>
+        <th>$4,000.00</th>
+        <th>$4,000.00</th>
+        <th>$4,000.00</th>
+        <th>$1,000.00</th>
+      </tr>
+      <tr>
+        <th>* Gastos de Sepelio</th>
+        <th>$1,000.00</th>
+        <th>$1,000.00</th>
+        <th>$2,000.00</th>
+        <th>$2,000.00</th>
+        <th>$1,000.00</th>
+      </tr>
+    </table>
+  </section>
+  <section>
+    <table>
+      <tr>
+        <th>Riesgos Políticos y Naturaleza</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+      </tr>
+      <tr>
+        <th>
+          Ausencia de control p/Empresas
+          <br />
+          o para unidades endosadas
+        </th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+      </tr>
+      <tr>
+        <th>
+          Circulacion en vias fuera del uso
+          <br />
+          regular y frecuente
+        </th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+        <th>VALOR ASEGURADO</th>
+      </tr>
+    </table>
+  </section>
+  <section>
+    <table>
+      <tr>
+        <th>R. Civil x ausencia de control</th>
+        <th>$50,000.00</th>
+        <th>$50,000.00</th>
+        <th>$50,000.00</th>
+        <th>$50,000.00</th>
+        <th>-</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Servicio de gruas x siniestro</th>
+        <th>$250.00</th>
+        <th>$250.00</th>
+        <th>$500.00</th>
+        <th>$250.00</th>
+        <th>$250.00</th>
+      </tr>
+      <tr>
+        <th>Servicio de ambulancia x siniestro</th>
+        <th>$250.00</th>
+        <th>$250.00</th>
+        <th>$250.00</th>
+        <th>$250.00</th>
+        <th>$250.00</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Accesorios Musicales HASTA</th>
+        <th>$1,000.00</th>
+        <th>$500.00</th>
+        <th>$1,000.00</th>
+        <th>$1,000.00</th>
+        <th>$500.00</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Chofer de Reemplazo</th>
+        <th>SOLO LIMA</th>
+        <th>SOLO LIMA</th>
+        <th>SOLO LIMA 3 VECES</th>
+        <th>SOLO LIMA 5 VECES</th>
+        <th>SOLO LIMA 3 VECES</th>
+      </tr>
+      <tr>
+        <th>Vehiculo de reemplazo</th>
+        <th>SOLO LIMA</th>
+        <th>SOLO LIMA</th>
+        <th>SOLO LIMA</th>
+        <th>COPAGO DE S/20.00 AL SEXTO SERVICIO SE PAGA S/ 60.00</th>
+        <th>SOLO LIMA</th>
+      </tr>
+    </table>
+  </section>
+  <section>
+    <h4>Deducibles</h4>
+    <table>
+      <tr>
+        <th>Taller Preferente / Multimarca</th>
+        <th>10%&nbsp;$150 más IGV</th>
+        <th>10%&nbsp;$150 más IGV</th>
+        <th>15%&nbsp;$150 más IGV</th>
+        <th>15%&nbsp;$150 más IGV</th>
+        <th>20%&nbsp;$200 más IGV</th>
+      </tr>
+      <tr>
+        <th>Talleres afiliados / Concesionario</th>
+        <th>15%&nbsp;$200 más IGV</th>
+        <th>20%&nbsp;$200 más IGV</th>
+        <th>15%&nbsp;$250 más IGV</th>
+        <th>20%&nbsp;$300 más IGV</th>
+        <th>15%&nbsp;$250 más IGV</th>
+      </tr>
+      <tr>
+        <th>Talleres No afiliados :</th>
+        <th>25%&nbsp;$350 más IGV</th>
+        <th>25%&nbsp;$250 más IGV</th>
+        <th>20%&nbsp;$300 más IGV</th>
+        <th>20%&nbsp;$500 más IGV</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>R. Civil</th>
+        <th>10%&nbsp;$150 más IGV</th>
+        <th>15%&nbsp;$250 más IGV</th>
+        <th>10%&nbsp;$150 más IGV</th>
+        <th>15%&nbsp;$150 más IGV</th>
+        <th>20%&nbsp;$250 más IGV</th>
+      </tr>
+      <tr>
+        <th>Perdida parc. o total x volcadura</th>
+        <th>20%&nbsp;$500 más IGV</th>
+        <th>20%&nbsp;$500 más IGV</th>
+        <th>20%&nbsp;$500 más IGV</th>
+        <th>20%&nbsp;$500 más IGV</th>
+        <th>20%&nbsp;$500 más IGV</th>
+      </tr>
+      <tr>
+        <th>Accesorios Musicales</th>
+        <th>10%&nbsp;$150 más IGV</th>
+        <th>10%&nbsp;$150 más IGV</th>
+        <th>10%&nbsp;$150 más IGV</th>
+        <th>10%&nbsp;$150 más IGV</th>
+        <th>10%&nbsp;$150 más IGV</th>
+      </tr>
+      <tr>
+        <th>Rotura de lunas nacionales</th>
+        <th>SIN DEDUCIBLE</th>
+        <th>SIN DEDUCIBLE</th>
+        <th>SIN DEDUCIBLE</th>
+        <th>SIN DEDUCIBLE</th>
+        <th>SIN DEDUCIBLE</th>
+      </tr>
+      <tr>
+        <th>Conductor menor de 26/29 años</th>
+        <th>SE DUPLICA EL DEDUCIBLE</th>
+        <th>20%&nbsp;$500 más IGV</th>
+        <th>20%&nbsp;$300 más IGV</th>
+        <th>20%&nbsp;$300 más IGV</th>
+        <th>20%&nbsp;$500 más IGV</th>
+      </tr>
+    </table>
+  </section>
+  <section>
+    <h4>Forma de Pago</h4>
+    <table>
+      <tr>
+        <th>Cuotas Iguales sin intereses</th>
+        {% for premium in premiums %}
+        <th>{{ premium.insurance_vehicle_ratio.fee }}&nbsp;|&nbsp;${{ premium.fee }}</th>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>Debito automático</th>
+        {% for premium in premiums %}
+        <th>{{ premium.insurance_vehicle_ratio.direct_debit }}&nbsp;|&nbsp;${{ premium.direct_debit }}</th>
+        {% endfor %}
+      </tr>
+    </table>
+  </section>
+  <section>
+    <h5>Beneficiones Adicionales</h5>
+    <p>* Central de Asistencia 24hrs.: Auxilio mecánico, Grúa y Ambulancia</p>
+    <p>* Rehabilitación automática de la Suma Asegurada (Excepto Accesorios Musicales)</p>
+    <p>* Las Condiciones Generales de la póliza prevalecen sobre esta cotización</p>
+    <p>* Cotización válida por 15 días.</p>
+  </section>
+</body>
+
 </html>

@@ -309,11 +309,9 @@ class InsuranceVehicle(models.Model):
 
 # relación precio - aseguradora
 class InsuranceVehicleRatio(models.Model):
-    tax = models.DecimalField(
-        _("tax (igv)"), decimal_places=2, max_digits=10, null=False
-    )
+    tax = models.DecimalField(_("tax (igv)"), decimal_places=2, max_digits=10)
     emission_right = models.DecimalField(
-        _("emission right"), decimal_places=2, max_digits=10, null=False
+        _("emission right"), decimal_places=2, max_digits=10
     )
     # cuotas
     fee = models.PositiveIntegerField(null=True)
@@ -405,7 +403,6 @@ class QuotationInsurance(models.Model):
         related_name="quotation_insurance_vehicles",
         verbose_name=_("currency"),
         on_delete=models.PROTECT,
-        null=True,
     )
     created = models.DateTimeField(auto_now_add=True)
 
@@ -534,10 +531,10 @@ class PaymentMethod(models.Model):
 # Issuance
 class IssuanceInsuranceVehicle(models.Model):
     # numero de póliza
-    policy = models.CharField(_("policy number"), max_length=64, null=True)
+    policy = models.CharField(_("policy number"), max_length=64)
     # documento de cobranza
     collection_document = models.CharField(
-        _("collection document"), max_length=64, null=True
+        _("collection document"), max_length=64
     )
     # fecha de emisión de la póliza
     issuance_date = models.DateTimeField(_("issuance_date"))
@@ -546,14 +543,11 @@ class IssuanceInsuranceVehicle(models.Model):
     # fecha de vigencia final
     final_validity = models.DateTimeField(_("final_validity"))
     # número de documento de pago
-    payment_document = models.CharField(
-        _("payment document"), max_length=64, null=True
-    )
+    payment_document = models.CharField(_("payment document"), max_length=64)
     plan_commission_percentage = models.DecimalField(
         _("plan commission percentage"),
         decimal_places=3,
         max_digits=10,
-        null=True,
     )
     comment = models.TextField(_("comment"), null=True)
 
@@ -579,7 +573,6 @@ class IssuanceInsuranceVehicle(models.Model):
         _("seller commission percentage"),
         decimal_places=2,
         max_digits=10,
-        null=True,
     )
     # estado
     status = models.ForeignKey(
@@ -591,7 +584,6 @@ class IssuanceInsuranceVehicle(models.Model):
         InsurancePlan,
         related_name="issuances",
         on_delete=models.PROTECT,
-        null=True,
     )
     # forma de pago
     payment_method = models.ForeignKey(
@@ -599,7 +591,6 @@ class IssuanceInsuranceVehicle(models.Model):
         related_name="issuances",
         verbose_name=_("payment method"),
         on_delete=models.PROTECT,
-        default=1,
     )
 
     quotation_vehicle_premium = models.ForeignKey(
