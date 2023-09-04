@@ -537,11 +537,11 @@ class IssuanceInsuranceVehicle(models.Model):
         _("collection document"), max_length=64
     )
     # fecha de emisión de la póliza
-    issuance_date = models.DateTimeField(_("issuance_date"))
+    issuance_date = models.DateTimeField(_("issuance date"))
     # fecha de vigencia inicio
-    initial_validity = models.DateTimeField(_("initial_validity"))
+    initial_validity = models.DateTimeField(_("initial validity"))
     # fecha de vigencia final
-    final_validity = models.DateTimeField(_("final_validity"))
+    final_validity = models.DateTimeField(_("final validity"))
 
     plan_commission_percentage = models.DecimalField(
         _("plan commission percentage"),

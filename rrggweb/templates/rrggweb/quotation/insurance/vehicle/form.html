@@ -1,6 +1,7 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% block title_section %}
-{{ title }}
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
 <div class="row justify-content-center">
@@ -14,16 +15,16 @@
     {% if seller or customer %}
     <div class="mt-2">
       <h5>
-        <b>Asesor:</b> {{ seller }}
+        Asesor: <b>{{ seller }}</b>
       </h5>
       <h5>
-        <b>Contratante:</b> {{ customer }}
+        Contratante: <b>{{ customer }}</b>
       </h5>
       <h5>
-        <b>Vehículo:</b> {{ vehicle }}
+        Vehículo: <b>{{ vehicle }}</b>
       </h5>
       <h5>
-        <b>Propietario:</b> {{ owner }}
+        Propietario: <b>{{ owner }}</b>
       </h5>
       <hr class="w-25" />
     </div>

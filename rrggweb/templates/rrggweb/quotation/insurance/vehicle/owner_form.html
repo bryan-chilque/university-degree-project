@@ -1,6 +1,7 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% block title_section %}
-  {{ title }}
+    {{ title }}
+    <h6> {{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
@@ -15,21 +16,38 @@
       {% if seller or customer or vehicle %}
         <div class="mt-2">
           <h5>
-            <b>Asesor:</b> {{ seller }}
+            Asesor: <b>{{ seller }}</b>
           </h5>
           <h5>
-            <b>Contratante:</b> {{ customer }}
+            Contratante: <b>{{ customer }}</b>
           </h5>
           <h5>
-            <b>Vehículo:</b> {{ vehicle }}
+            Vehículo: <b>{{ vehicle }}</b>
           </h5>
           <hr class="w-25" />
         </div>
       {% endif %}
+      {% if body %}
+        <h5 class="mb-3">
+          {{ body }}
+        </h5>
+      {% endif %}
       <div>
         <form method="post">
           {% csrf_token %}
-          {{ form }}
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <strong>Error:</strong> Por favor corrija los siguientes errores:
+              <ul>
+                {% for field in form %}
+                {% for error in field.errors %}
+                <li>{{ field.label_tag }} {{ error }}</li>
+                {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          {{ form.as_p }}
           <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
         </form>
       </div>

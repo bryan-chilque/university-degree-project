@@ -95,7 +95,7 @@ class SearchVehicleForm(forms.Form):
 
 class DefineOwnerForm(forms.Form):
     is_owner = forms.BooleanField(
-        label=_("Is the insured the same as the contracting party?"),
+        label=_("does the contractor own the vehicle?"),
         widget=forms.CheckboxInput(
             attrs={
                 "class": "form-check",
@@ -144,6 +144,19 @@ class RiskForm(forms.Form):
                 pass
 
 
+class SelectVehicleRegistrationTypeForm(forms.Form):
+    TYPE_CHOICES = (
+        ("new_sale", "Venta nueva"),
+        ("search_quotation", "Buscar cotización"),
+    )
+
+    vehicle_registration_type = forms.ChoiceField(
+        choices=TYPE_CHOICES,
+        label=_("vehicle registration type"),
+        widget=forms.RadioSelect,
+    )
+
+
 class InsuranceVehicleForm(forms.Form):
     def __init__(self, iv_id=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -180,15 +193,6 @@ class InsurancePlanForm(forms.Form):
                     risk_insurance_vehicle_id=riv_id
                 )
             )
-
-
-class IssuanceTypeForm(forms.Form):
-    TYPE_CHOICES = (
-        ("policy", "Póliza vehicular"),
-        ("endorsement", "Endoso con movimiento de prima"),
-    )
-
-    tipo = forms.ChoiceField(choices=TYPE_CHOICES, widget=forms.RadioSelect)
 
 
 class IssuanceStatusForm(forms.Form):

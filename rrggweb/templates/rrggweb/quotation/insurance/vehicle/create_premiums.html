@@ -1,36 +1,41 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% load i18n %}
 {% block title_section %}
-{{ title }}
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
 <div class="row justify-content-center">
   <div class="col-md-12 col-lg-10">
-    {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
-    <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
+    {% if step %}
+      {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
+    {% endif %}
+    <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
       <i class="fas fa-long-arrow-alt-left"></i>Volver
     </a>
-    <div class="mt-3">
-      <h5>
-        <b>Asesor:</b> {{ seller }}
-      </h5>
-      <h5>
-        <b>Contratante:</b> {{ customer }}
-      </h5>
-      <h5>
-        <b>Vehículo:</b> {{ vehicle }}
-      </h5>
-      <h5>
-        <b>Propietario:</b> {{ owner }}
-      </h5>
-      <h5>
-        <b>Tipo de moneda:</b> {{ quotation.currency.name }}
-      </h5>
-      <h5>
-        <b>Suma Asegurada:</b> <span id="insured_amount">{{ quotation.insured_amount }}</span>
-      </h5>
-    </div>
-    <hr class="w-25" />
+    {% if seller or customer or vehicle or quotation %}
+      <div class="mt-2">
+        <h5>
+          Asesor: <b>{{ seller }}</b>
+        </h5>
+        <h5>
+          Contratante: <b>{{ customer }}</b>
+        </h5>
+        <h5>
+          Vehículo: <b>{{ vehicle }}</b>
+        </h5>
+        <h5>
+          Propietario: <b>{{ owner }}</b>
+        </h5>
+        <h5>
+          Tipo de moneda: <b>{{ quotation.currency.name }}</b>
+        </h5>
+        <h5>
+          Suma Asegurada: <b><span id="insured_amount">{{ quotation.insured_amount }}</span></b>
+        </h5>
+        <hr class="w-25"/>
+      </div>
+    {% endif %}
     <form method="post">
       {% csrf_token %}
       {% translate "emission right" as emission_right_text %}

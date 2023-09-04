@@ -1,6 +1,7 @@
 {% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
 {% block title_section %}
   {{ title }}
+  <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
@@ -31,19 +32,19 @@
         </div>
       {% endif %}
       {% if insurance_vehicle_selector %}
-      <div>
-        <label for="model-choice">Aseguradora:</label>
-        <select class="form-select mb-3" style="background-color: #e8e8e8;" id="model-choice" disabled>
-            {% for choice in insurance_vehicle_selector %}
-                <option value={{ choice }}
-            {% endfor %}
-        </select>
-      </div>
-    {% endif %}
+        <div>
+          <label for="model-choice">Aseguradora:</label>
+          <select class="form-select mb-3" style="background-color: #e8e8e8;" id="model-choice" disabled>
+              {% for choice in insurance_vehicle_selector %}
+                  <option value={{ choice }}
+              {% endfor %}
+          </select>
+        </div>
+      {% endif %}
       <div>
         <form method="post">
           {% csrf_token %}
-          {{ form }}
+          {{ form.as_p }}
           <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
         </form>
       </div>

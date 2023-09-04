@@ -2,6 +2,7 @@
 {% load i18n %}
 {% block title_section %}
   {{ title }}
+  <h6> {{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
@@ -16,18 +17,18 @@
       {% if seller or customer %}
         <div class="mt-2">
           <h5>
-            <b>Asesor:</b> {{ seller }}
+            Asesor: <b>{{ seller }}</b>
           </h5>
           <h5>
-            <b>Contratante:</b> {{ customer }}
+            Contratante: <b>{{ customer }}</b>
           </h5>
-          <h5>
-            <b>Datos de vehículo:</b>
-          </h5>
+          <hr class="w-25"/>
         </div>
-        <hr class="w-25" />
       {% endif %}
-      <div>
+      <h5>
+        Formulario de vehículo:
+      </h5>
+      <div class="mt-4">
         <form method="post">
           {% csrf_token %}
           {% if pretty_style %}
@@ -51,11 +52,11 @@
                 {% endif %}
               </div>
               <div class="col-md-4 mb-2">
-                <label for="id_fabrication_year">{{ form.fabrication_year.label|capfirst }}:</label>
-                {{ form.fabrication_year }}
-                {% if form.fabrication_year.errors %}
+                <label for="id_use_type">Uso:</label>
+                {{ form.use_type }}
+                {% if form.use_type.errors %}
                   <div class="alert alert-danger" role="alert">
-                    {% for error in form.fabrication_year.errors %}{{ error }}{% endfor %}
+                    {% for error in form.use_type.errors %}{{ error }}{% endfor %}
                   </div>
                 {% endif %}
               </div>
@@ -65,6 +66,15 @@
                 {% if form.plate.errors %}
                   <div class="alert alert-danger" role="alert">
                     {% for error in form.plate.errors %}{{ error }}{% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="col-md-4 mb-2">
+                <label for="id_fabrication_year">{{ form.fabrication_year.label|capfirst }}:</label>
+                {{ form.fabrication_year }}
+                {% if form.fabrication_year.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {% for error in form.fabrication_year.errors %}{{ error }}{% endfor %}
                   </div>
                 {% endif %}
               </div>
@@ -92,15 +102,6 @@
                 {% if form.seat_number.errors %}
                   <div class="alert alert-danger" role="alert">
                     {% for error in form.seat_number.errors %}{{ error }}{% endfor %}
-                  </div>
-                {% endif %}
-              </div>
-              <div class="col-md-4 mb-2">
-                <label for="id_use_type">Uso:</label>
-                {{ form.use_type }}
-                {% if form.use_type.errors %}
-                  <div class="alert alert-danger" role="alert">
-                    {% for error in form.use_type.errors %}{{ error }}{% endfor %}
                   </div>
                 {% endif %}
               </div>
@@ -133,6 +134,18 @@
               </div>
             </div>
           {% else %}
+            {% if form.errors %}
+              <div class="alert alert-danger">
+                <strong>Error:</strong> Por favor corrija los siguientes errores:
+                <ul>
+                  {% for field in form %}
+                  {% for error in field.errors %}
+                  <li>{{ field.label_tag }} {{ error }}</li>
+                  {% endfor %}
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
             {{ form }}
           {% endif %}
           <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>

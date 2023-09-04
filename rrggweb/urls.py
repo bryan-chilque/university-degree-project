@@ -208,8 +208,13 @@ issuance_insurance_vehicle_urlpatterns = (
             name="list",
         ),
         path(
+            "define_record_type/",
+            views.IIVDefineRegistrationTypeView.as_view(),
+            name="define_record_type",
+        ),
+        path(
             "list_quotations/",
-            views.QIVListView.as_view(),
+            views.IIVListQuotationView.as_view(),
             name="list_quotations",
         ),
         path(
