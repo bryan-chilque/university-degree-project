@@ -87,7 +87,7 @@ class QIVListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Lista de cotizaciones"
         context["new_register"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:select_role",
@@ -120,7 +120,7 @@ class QIVSelectRoleFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Seleccionar responsable"
         context["step"] = True
         context["previous_page"] = urls.reverse(
@@ -153,7 +153,7 @@ class QIVSelectSellerFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Seleccionar responsable"
         context["step"] = True
         context["role_selector"] = forms.RoleForm(
@@ -187,7 +187,7 @@ class QIVUpdateSellerView(QIVUpdateSellerViewSupport):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Cambiar asesor"
         context["step"] = False
         context["previous_page"] = urls.reverse(
@@ -262,7 +262,7 @@ class QIVSearchCustomerView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Buscar contratante"
         context["step"] = True
         context["body"] = "Buscar contratante"
@@ -307,7 +307,7 @@ class QIVSelectCustomerFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Definir contratante"
         context["step"] = True
         context["seller"] = shortcuts.get_object_or_404(
@@ -338,7 +338,7 @@ class QIVCreateCustomerView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Registrar contratante"
         context["body"] = "Formulario del Contratante:"
         context["step"] = True
@@ -429,7 +429,7 @@ class QIVUpdateNaturalPersonViewSupport(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar contratante"
         return context
 
@@ -494,7 +494,7 @@ class QIVUpdateLegalPersonViewSupport(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar contratante"
         return context
 
@@ -627,7 +627,7 @@ class QIVSearchVehicleView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Buscar vehículo"
         context["step"] = True
         context["pretty_style"] = False
@@ -699,7 +699,7 @@ class QIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Registrar vehículo"
         context["step"] = True
         context["pretty_style"] = True
@@ -737,7 +737,7 @@ class QIVUpdateVehicleViewSupport(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar vehículo"
         return context
 
@@ -854,7 +854,7 @@ class QIVDefineOwnerView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Definir propietario"
         context["step"] = True
         context["seller"] = shortcuts.get_object_or_404(
@@ -929,7 +929,7 @@ class QIVSearchOwnerView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Buscar propietario"
         context["step"] = True
         context["seller"] = shortcuts.get_object_or_404(
@@ -984,7 +984,7 @@ class QIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Registrar propietario"
         context["body"] = "Formulario del Propietario:"
         context["step"] = True
@@ -1019,7 +1019,7 @@ class QIVUpdateOwnerViewSupport(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar propietario"
         return context
 
@@ -1111,7 +1111,7 @@ class QIVCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Registrar cotización"
         context["step"] = True
         context["seller"] = shortcuts.get_object_or_404(
@@ -1159,7 +1159,7 @@ class QIVUpdateAmountViewSupport(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar cotización"
         return context
 
@@ -1236,7 +1236,7 @@ class QIVDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Detalle de la cotización"
         context["seller"] = self.object.consultant_seller
         context["customer"] = self.object.customer
@@ -1253,7 +1253,7 @@ class QIVDetailView(DetailView):
             )
         else:
             pass
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Detalle de la cotización"
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:list",
@@ -1368,7 +1368,7 @@ class QIVPremiumsFormView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["step"] = True
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Registrar primas de aseguradoras"
         context["quotation"] = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehicle,
@@ -1435,7 +1435,7 @@ class QIVPremiumsUpdateView(QIVPremiumsUpdateViewSupport):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "VENTA NUEVA VEHICULAR"
+        context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar Prima de Aseguradora"
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:detail",
@@ -1624,7 +1624,7 @@ class IIVDefineRegistrationTypeView(FormView):
         ]
         if vehicle_registration_type == "new_sale":
             self.success_url = urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:select_role",
+                "rrggweb:issuance:insurance:vehicle:list",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                 },
