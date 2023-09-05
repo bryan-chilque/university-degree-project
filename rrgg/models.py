@@ -218,7 +218,7 @@ class Currency(models.Model):
 class Vehicle(models.Model):
     brand = models.CharField(_("brand"), max_length=64)
     vehicle_model = models.CharField(_("model"), max_length=64)
-    plate = models.CharField(_("plate"), max_length=64, unique=True)
+    plate = models.CharField(_("plate"), max_length=64, unique=True, null=True)
     fabrication_year = models.PositiveIntegerField(_("fabrication year"))
     engine = models.CharField(_("engine number"), max_length=64)
     chassis = models.CharField(_("chassis number"), max_length=64)
@@ -390,6 +390,7 @@ class QuotationInsurance(models.Model):
         related_name="quotation_insurance_vehicles_sold",
         verbose_name=_("seller"),
         on_delete=models.PROTECT,
+        null=True,
     )
     customer = models.ForeignKey(
         CustomerMembership,
@@ -537,11 +538,11 @@ class IssuanceInsuranceVehicle(models.Model):
         _("collection document"), max_length=64
     )
     # fecha de emisión de la póliza
-    issuance_date = models.DateTimeField(_("issuance date"))
+    issuance_date = models.DateField(_("issuance date"))
     # fecha de vigencia inicio
-    initial_validity = models.DateTimeField(_("initial validity"))
+    initial_validity = models.DateField(_("initial validity"))
     # fecha de vigencia final
-    final_validity = models.DateTimeField(_("final validity"))
+    final_validity = models.DateField(_("final validity"))
 
     plan_commission_percentage = models.DecimalField(
         _("plan commission percentage"),
@@ -630,9 +631,9 @@ class IssuanceInsuranceVehicleDocument(models.Model):
 
 class CollectionInsuranceVehicle(models.Model):
     # fecha de vencimiento
-    expiration_date = models.DateTimeField()
+    expiration_date = models.DateField()
     # fecha de pago
-    payment_date = models.DateTimeField(null=True)
+    payment_date = models.DateField(null=True)
     # número de factura o boleta
     payment_receipt = models.CharField(max_length=64, null=True)
     # asunto del pago

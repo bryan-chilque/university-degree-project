@@ -19,14 +19,16 @@
         <i class="fas fa-long-arrow-alt-left"></i> Volver a la lista
       </a>
       <div class="d-flex gap-2">
-        <a href="{{ report_xlsx }}" class="btn btn-success">
-          <i class="fa fa-file-excel"></i>
-          Exportar a Excel
-        </a>
-        <a href="{{ report_pdf }}" class="btn btn-danger">
-          <i class="fa fa-file-pdf"></i>
-          Exportar a PDF
-        </a>
+        {% if report_xlsx or report_pdf %}
+          <a href="{{ report_xlsx }}" class="btn btn-success">
+            <i class="fa fa-file-excel"></i>
+            Exportar a Excel
+          </a>
+          <a href="{{ report_pdf }}" class="btn btn-danger">
+            <i class="fa fa-file-pdf"></i>
+            Exportar a PDF
+          </a>
+        {% endif%}
       </div>
     </div>
     <div class="row">
@@ -73,16 +75,18 @@
                 {% endif %}
               </td>
             </tr>
-            <tr>
-              <td>
-                <strong>Asesor:</strong>
-              </td>
-              <td>
-                {{ seller }} &nbsp;
-                <a href="{{ update_seller }}"><i class="fas fa-pencil-alt"></i></a>
-              </td>
+            {% if seller %}
+              <tr>
+                <td>
+                  <strong>Asesor:</strong>
+                </td>
+                <td>
+                  {{ seller }} &nbsp;
+                  <a href="{{ update_seller }}"><i class="fas fa-pencil-alt"></i></a>
+                </td>
 
-            </tr>
+              </tr>
+            {% endif %}
             <tr>
               <td>
                 <strong>Fecha de Registro:</strong>
@@ -141,10 +145,15 @@
                       </a>
                     </td>
                     <td>
-                      <a
-                        href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
-                        <i class="fas fa-pencil-alt"></i>
-                      </a>
+                      {% if seller %}
+                        <a href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
+                          <i class="fas fa-pencil-alt"></i>
+                        </a>
+                      {% else %}
+                        <a href="{% url 'rrggweb:issuance:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
+                          <i class="fas fa-pencil-alt"></i>
+                        </a>
+                      {% endif %}
                     </td>
                   </tr>
                   {% endfor %}

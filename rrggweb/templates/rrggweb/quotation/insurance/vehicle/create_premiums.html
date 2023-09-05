@@ -13,11 +13,13 @@
     <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
       <i class="fas fa-long-arrow-alt-left"></i>Volver
     </a>
-    {% if seller or customer or vehicle or quotation %}
-      <div class="mt-2">
+    <div class="mt-2">
+      {% if seller %}
         <h5>
           Asesor: <b>{{ seller }}</b>
         </h5>
+      {% endif %}
+      {% if customer or vehicle or quotation %}
         <h5>
           Contratante: <b>{{ customer }}</b>
         </h5>
@@ -34,8 +36,8 @@
           Suma Asegurada: <b><span id="insured_amount">{{ quotation.insured_amount }}</span></b>
         </h5>
         <hr class="w-25"/>
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
     <form method="post">
       {% csrf_token %}
       {% translate "emission right" as emission_right_text %}

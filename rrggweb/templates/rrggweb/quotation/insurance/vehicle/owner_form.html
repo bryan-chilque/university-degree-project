@@ -9,24 +9,26 @@
       {% if step %}
         {% include "rrggweb/utils/stepper.html" with step=4 max_step=6 %}
       {% endif %}
-      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+      <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i> Volver
       </a>
-      {% if seller or customer or vehicle %}
-        <div class="mt-2">
-          <h5>
+      <div class="mt-2">
+        {% if seller %}
+            <h5>
             Asesor: <b>{{ seller }}</b>
-          </h5>
-          <h5>
-            Contratante: <b>{{ customer }}</b>
-          </h5>
-          <h5>
-            Vehículo: <b>{{ vehicle }}</b>
-          </h5>
-          <hr class="w-25" />
-        </div>
-      {% endif %}
+            </h5>
+        {% endif %}
+        {% if customer or vehicle %}
+            <h5>
+              Contratante: <b>{{ customer }}</b>
+            </h5>
+            <h5>
+              Vehículo: <b>{{ vehicle }}</b>
+            </h5>
+            <hr class="w-25" />
+        {% endif %}
+      </div>
       {% if body %}
         <h5 class="mb-3">
           {{ body }}
