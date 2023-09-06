@@ -146,8 +146,8 @@ class RiskForm(forms.Form):
 
 class SelectVehicleRegistrationTypeForm(forms.Form):
     TYPE_CHOICES = (
-        ("new_sale", "Venta nueva"),
-        ("search_quotation", "Buscar cotización"),
+        ("new_sale", "venta nueva"),
+        ("renewal", "renovación"),
     )
 
     vehicle_registration_type = forms.ChoiceField(
@@ -175,6 +175,19 @@ class InsuranceVehicleForm(forms.Form):
                 self.fields["aseguradoras"].initial = selected_iv
             except rrgg.models.InsuranceVehicle.DoesNotExist:
                 pass
+
+
+class DefineNewSaleForm(forms.Form):
+    has_quote = forms.BooleanField(
+        label=_("new sale has a previous quote?"),
+        widget=forms.CheckboxInput(
+            attrs={
+                "class": "form-check",
+                "type": "checkbox",
+                "for": "has_quote",
+            }
+        ),
+    )
 
 
 class InsurancePlanForm(forms.Form):

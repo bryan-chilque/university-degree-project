@@ -212,6 +212,11 @@ issuance_insurance_vehicle_urlpatterns = (
             views.IIVDefineRegistrationTypeView.as_view(),
             name="define_record_type",
         ),
+        path(
+            "define_new_sale/",
+            views.IIVDefineNewSaleView.as_view(),
+            name="define_new_sale",
+        ),
         # NEW SALE
         path(
             "search_customer/",

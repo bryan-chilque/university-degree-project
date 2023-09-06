@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-04 06:09-0500\n"
+"POT-Creation-Date: 2023-09-06 09:50-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\rrgg\models.py:10 .\rrgg\models.py:21 .\rrgg\models.py:293
-#: .\rrgg\models.py:336 .\rrgg\models.py:357 .\rrgg\models.py:499
-#: .\rrgg\models.py:510 .\rrgg\models.py:521
+#: .\rrgg\models.py:336 .\rrgg\models.py:357 .\rrgg\models.py:500
+#: .\rrgg\models.py:511 .\rrgg\models.py:522
 msgid "name"
 msgstr "nombre"
 
@@ -144,7 +144,7 @@ msgstr "banco endosado"
 msgid "usage"
 msgstr "uso"
 
-#: .\rrgg\models.py:244 .\rrgg\models.py:269 .\rrgg\models.py:420
+#: .\rrgg\models.py:244 .\rrgg\models.py:269 .\rrgg\models.py:421
 msgid "vehicle"
 msgstr "vehículo"
 
@@ -192,119 +192,119 @@ msgstr "suma asegurada"
 msgid "insurance plans"
 msgstr "suma asegurada"
 
-#: .\rrgg\models.py:385 .\rrgg\models.py:562
+#: .\rrgg\models.py:385 .\rrgg\models.py:563
 msgid "registrar"
 msgstr "registrador"
 
-#: .\rrgg\models.py:391 .\rrgg\models.py:568
+#: .\rrgg\models.py:391 .\rrgg\models.py:569
 msgid "seller"
 msgstr "vendedor"
 
-#: .\rrgg\models.py:397
+#: .\rrgg\models.py:398
 msgid "customer"
 msgstr "contratante"
 
-#: .\rrgg\models.py:404
+#: .\rrgg\models.py:405
 msgid "currency"
 msgstr "tipo de moneda"
 
-#: .\rrgg\models.py:411
+#: .\rrgg\models.py:412
 #, fuzzy
 #| msgid "vehicle insurance quotation"
 msgid "insurance quotation"
 msgstr "cotización de seguro vehicular"
 
-#: .\rrgg\models.py:412
+#: .\rrgg\models.py:413
 #, fuzzy
 #| msgid "vehicle insurance quotations"
 msgid "insurance quotations"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:416
+#: .\rrgg\models.py:417
 msgid "insured amount"
 msgstr "suma asegurada"
 
-#: .\rrgg\models.py:425
+#: .\rrgg\models.py:426
 msgid "vehicle insurance quotation"
 msgstr "cotización de seguro vehicular"
 
-#: .\rrgg\models.py:426
+#: .\rrgg\models.py:427
 msgid "vehicle insurance quotations"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:439
+#: .\rrgg\models.py:440
 msgid "net premium"
 msgstr "prima neta"
 
-#: .\rrgg\models.py:441
+#: .\rrgg\models.py:442
 msgid "rate"
 msgstr "tasa"
 
-#: .\rrgg\models.py:453
+#: .\rrgg\models.py:454
 msgid "created at"
 msgstr "fecha de creación"
 
-#: .\rrgg\models.py:505 .\rrgg\models.py:506
+#: .\rrgg\models.py:506 .\rrgg\models.py:507
 #, fuzzy
 #| msgid "vehicle insurance quotations"
 msgid "issuance insurance status"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:516 .\rrgg\models.py:517
+#: .\rrgg\models.py:517 .\rrgg\models.py:518
 #, fuzzy
 #| msgid "vehicle insurance quotations"
 msgid "issuance insurance type"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:527 .\rrgg\models.py:591
+#: .\rrgg\models.py:528 .\rrgg\models.py:592
 msgid "payment method"
 msgstr "método de pago"
 
-#: .\rrgg\models.py:528
+#: .\rrgg\models.py:529
 msgid "payment methods"
 msgstr "métodos de pago"
 
-#: .\rrgg\models.py:534
+#: .\rrgg\models.py:535
 msgid "policy number"
 msgstr "número de póliza"
 
-#: .\rrgg\models.py:537
+#: .\rrgg\models.py:538
 msgid "collection document"
 msgstr "documento de cobranza"
 
-#: .\rrgg\models.py:540
+#: .\rrgg\models.py:541
 msgid "issuance date"
 msgstr "fecha de emisión"
 
-#: .\rrgg\models.py:542
+#: .\rrgg\models.py:543
 msgid "initial validity"
 msgstr "fecha inicio de vigencia"
 
-#: .\rrgg\models.py:544
+#: .\rrgg\models.py:545
 msgid "final validity"
 msgstr "fecha fin de vigencia"
 
-#: .\rrgg\models.py:547
+#: .\rrgg\models.py:548
 msgid "plan commission percentage"
 msgstr "porcentaje de comisión KCS"
 
-#: .\rrgg\models.py:551
+#: .\rrgg\models.py:552
 msgid "comment"
 msgstr "comentario"
 
-#: .\rrgg\models.py:572
+#: .\rrgg\models.py:573
 #, fuzzy
 #| msgid "plan commission percentage"
 msgid "seller commission percentage"
 msgstr "porcentaje de comisión KCS"
 
-#: .\rrgg\models.py:617
+#: .\rrgg\models.py:618
 #, fuzzy
 #| msgid "vehicle insurance"
 msgid "issuance insurance vehicle"
 msgstr "emisión de seguro vehicular"
 
-#: .\rrgg\models.py:618
+#: .\rrgg\models.py:619
 msgid "issues insurance vehicle"
 msgstr "emisiones de seguro vehicular"
 
