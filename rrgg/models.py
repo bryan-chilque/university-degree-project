@@ -318,7 +318,7 @@ class InsuranceVehicleRatio(models.Model):
     # débito automático
     direct_debit = models.PositiveIntegerField(null=True)
 
-    created = models.DateTimeField(auto_now_add=True, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
     insurance_vehicle = models.ForeignKey(
         InsuranceVehicle, related_name="ratios", on_delete=models.PROTECT
     )
@@ -450,9 +450,7 @@ class QuotationInsuranceVehiclePremium(models.Model):
         related_name="premiums",
         on_delete=models.PROTECT,
     )
-    created = models.DateTimeField(
-        _("created at"), auto_now_add=True, unique=True
-    )
+    created = models.DateTimeField(_("created at"), auto_now_add=True)
 
     @property
     def emission_right(self):

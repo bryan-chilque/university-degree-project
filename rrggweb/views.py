@@ -1624,17 +1624,13 @@ class IIVDefineRegistrationTypeView(FormView):
         ]
         if vehicle_registration_type == "new_sale":
             self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:search_customer",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                },
+                "rrggweb:issuance:insurance:vehicle:define_new_sale",
+                kwargs={"registrar_id": self.kwargs["registrar_id"]},
             )
-        elif vehicle_registration_type == "search_quotation":
+        elif vehicle_registration_type == "renewal":
             self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:list_quotations",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                },
+                "rrggweb:issuance:insurance:vehicle:define_record_type",
+                kwargs={"registrar_id": self.kwargs["registrar_id"]},
             )
         else:
             pass
@@ -1646,6 +1642,40 @@ class IIVDefineRegistrationTypeView(FormView):
         context["subtitle"] = "Definir tipo de registro"
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        return context
+
+
+class IIVDefineNewSaleView(FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/basic_form.html"
+    form_class = forms.DefineNewSaleForm
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["has_quote"].required = False
+        return form
+
+    def form_valid(self, form):
+        has_quote = form.cleaned_data["has_quote"]
+        if has_quote:
+            self.success_url = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:list_quotations",
+                kwargs={"registrar_id": self.kwargs["registrar_id"]},
+            )
+        else:
+            self.success_url = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:search_customer",
+                kwargs={"registrar_id": self.kwargs["registrar_id"]},
+            )
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR"
+        context["subtitle"] = "Definir venta nueva"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:define_record_type",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         return context
@@ -1714,7 +1744,7 @@ class IIVSearchCustomerView(FormView):
         context["step"] = True
         context["body"] = "Buscar contratante"
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:define_record_type",
+            "rrggweb:issuance:insurance:vehicle:define_new_sale",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         return context
@@ -2616,7 +2646,7 @@ class IIVQuotationDetailView(DetailView):
         else:
             pass
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:list",
+            "rrggweb:issuance:insurance:vehicle:list_quotations",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         # determinar si el contratante es persona natural o jurídica
@@ -2663,7 +2693,7 @@ class IIVQuotationDetailView(DetailView):
         return context
 
 
-# QUOTATION INSURANCE VEHICLE PREMIUM
+# ISSUANCE - QUOTATION INSURANCE VEHICLE PREMIUM
 
 
 class IIVQuotationPremiumFormView(FormView):
@@ -2789,7 +2819,7 @@ class IIVQPremiumsUpdateView(IIVQPremiumsUpdateViewSupport):
 
 
 class IIVListQuotationView(ListView):
-    template_name = "rrggweb/quotation/insurance/vehicle/list.html"
+    template_name = "rrggweb/issuance/insurance/vehicle/list_quotations.html"
     model = rrgg.models.QuotationInsuranceVehicle
     paginate_by = 8
 
@@ -2798,7 +2828,7 @@ class IIVListQuotationView(ListView):
         context["title"] = "EMISIÓN VEHICULAR"
         context["subtitle"] = "Lista de cotizaciones vehiculares"
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:define_record_type",
+            "rrggweb:issuance:insurance:vehicle:define_new_sale",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         return context
@@ -2832,11 +2862,12 @@ class IIVSelectRoleFormView(FormView):
             rrgg.models.QuotationInsuranceVehiclePremium,
             id=self.kwargs["quotation_premium_id"],
         )
+        quotation = premium.quotation_insurance_vehicle
         context["previous_page"] = urls.reverse(
-            "rrggweb:quotation:insurance:vehicle:detail",
+            "rrggweb:issuance:insurance:vehicle:quotation_detail",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "quotation_id": premium.quotation_insurance_vehicle.id,
+                "quotation_id": quotation.id,
             },
         )
         return context
