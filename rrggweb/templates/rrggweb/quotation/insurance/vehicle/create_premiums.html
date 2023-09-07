@@ -1,41 +1,41 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% load i18n %}
 {% block title_section %}
-  {{ title }}
-  <h6>{{ subtitle }}</h6>
+{{ title }}
+<h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
 <div class="row justify-content-center">
   <div class="col-md-12 col-lg-10">
     {% if step %}
-      {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
+    {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
     {% endif %}
     <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
       <i class="fas fa-long-arrow-alt-left"></i>Volver
     </a>
     <div class="mt-2">
       {% if seller %}
-        <h5>
-          Asesor: <b>{{ seller }}</b>
-        </h5>
+      <h5>
+        Asesor: <b>{{ seller }}</b>
+      </h5>
       {% endif %}
       {% if customer or vehicle or quotation %}
-        <h5>
-          Contratante: <b>{{ customer }}</b>
-        </h5>
-        <h5>
-          Vehículo: <b>{{ vehicle }}</b>
-        </h5>
-        <h5>
-          Propietario: <b>{{ owner }}</b>
-        </h5>
-        <h5>
-          Tipo de moneda: <b>{{ quotation.currency.name }}</b>
-        </h5>
-        <h5>
-          Suma Asegurada: <b><span id="insured_amount">{{ quotation.insured_amount }}</span></b>
-        </h5>
-        <hr class="w-25"/>
+      <h5>
+        Contratante: <b>{{ customer }}</b>
+      </h5>
+      <h5>
+        Vehículo: <b>{{ vehicle }}</b>
+      </h5>
+      <h5>
+        Propietario: <b>{{ owner }}</b>
+      </h5>
+      <h5>
+        Tipo de moneda: <b>{{ quotation.currency.name }}</b>
+      </h5>
+      <h5>
+        Suma Asegurada: <b><span id="insured_amount">{{ quotation.insured_amount }}</span></b>
+      </h5>
+      <hr class="w-25" />
       {% endif %}
     </div>
     <form method="post">
@@ -129,5 +129,9 @@
   });
 
   checkAmountInputs();
+
+  swal("¡No te olvides!",
+    "Si llenas el campo de la prima neta de la aseguradora, esta es la que se cotizará. Recuerda que si no llenas los otros campos de prima neta de otras aseguradoras, estas no seran tomada en cuenta para la cotización. 😊👌",
+    "info");
 </script>
 {% endblock content %}
