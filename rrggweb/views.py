@@ -1374,6 +1374,7 @@ class QIVPremiumsFormView(FormView):
             rrgg.models.QuotationInsuranceVehicle,
             id=self.kwargs["quotation_id"],
         )
+        context["insurances"] = rrgg.models.InsuranceVehicle.objects.all()
         context["seller"] = context["quotation"].consultant_seller
         context["customer"] = context["quotation"].customer
         context["vehicle"] = context["quotation"].vehicle
