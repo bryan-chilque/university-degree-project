@@ -324,12 +324,11 @@ class InsuranceVehicleRatio(models.Model):
     )
 
     def __str__(self):
-        return (
-            f"er={self.emission_right},"
-            f" tax={self.tax},"
-            f" fee={self.fee},"
-            f" insurance_vehicle={self.insurance_vehicle}"
-        )
+        return f"{self.insurance_vehicle}"
+
+    class Meta:
+        verbose_name = _("vehicle insurance ratio")
+        verbose_name_plural = _("vehicle insurance ratios")
 
 
 class Risk(models.Model):
@@ -443,6 +442,7 @@ class QuotationInsuranceVehiclePremium(models.Model):
     insurance_vehicle_ratio = models.ForeignKey(
         InsuranceVehicleRatio,
         related_name="quotation_insurance_vehicle_premiums",
+        verbose_name=_("vehicle insurance ratio"),
         on_delete=models.PROTECT,
     )
     quotation_insurance_vehicle = models.ForeignKey(

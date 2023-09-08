@@ -6,7 +6,9 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% if step %}
+      {% if initial_step == 8 and final_step == 9 %}
+        {% include "rrggweb/utils/stepper.html" with step=8 max_step=9 %}
+      {% elif initial_step == 3 and final_step == 4 %}
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=4 %}
       {% endif %}
       <a class="btn btn-outline-dark btn-sm mt-3 mb-4" href="{{ previous_page }}">
@@ -164,6 +166,10 @@
                   <td class="font-weight-bold">Nombres y apellidos</td>
                   <td>{{ seller }}</td>
                 </tr>
+                <tr>
+                  <td class="font-weight-bold">Comisión</td>
+                  <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
+                </tr>
               </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -196,28 +202,28 @@
                 <tr>
                   <td class="font-weight-bold">Suma asegurada</td>
                   <td>
-                    {{quotation.currency.symbol}}{{ quotation_premium.quotation_insurance_vehicle.insured_amount }}
+                    {{quotation.currency.symbol}}{{ premium.quotation_insurance_vehicle.insured_amount }}
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima neta</td>
                   <td>
-                    {{quotation.currency.symbol}}{{ quotation_premium.amount }}
+                    {{quotation.currency.symbol}}{{ premium.amount }}
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima comercial</td>
                   <td>
-                    {{quotation.currency.symbol}}{{ quotation_premium.commercial_premium }}
+                    {{quotation.currency.symbol}}{{ premium.commercial_premium }}
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Tasa</td>
-                  <td>{{quotation.currency.symbol}}{{ quotation_premium.rate }}</td>
+                  <td>{{quotation.currency.symbol}}{{ premium.rate }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima total</td>
-                  <td>{{quotation.currency.symbol}}{{ quotation_premium.total }}</td>
+                  <td>{{quotation.currency.symbol}}{{ premium.total }}</td>
                 </tr>
               </tbody>
             </table>

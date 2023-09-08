@@ -83,6 +83,14 @@
             <th>Nombres y apellidos</th>
             <td>{{ seller }}</td>
           </tr>
+          <tr>
+            <th>Comisión</th>
+            <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
+          </tr>
+          <tr>
+            <th>Monto comisión neto</th>
+            <td>{{ quotation.currency.symbol }}{{ seller_commission }} </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -233,6 +241,10 @@
           <tr>
             <th>Monto comisión neto</th>
             <td>{{ quotation.currency.symbol }}{{ object.net_commission_amount }}</td>
+          </tr>
+          <tr>
+            <th>Monto comisión KCS</th>
+            <td>{{ quotation.currency.symbol }}{{ kcs_commission }}</td>
           </tr>
           <tr>
             <th>Tipo</th>

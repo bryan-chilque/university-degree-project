@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-06 09:50-0500\n"
+"POT-Creation-Date: 2023-09-08 06:58-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\rrgg\models.py:10 .\rrgg\models.py:21 .\rrgg\models.py:293
-#: .\rrgg\models.py:336 .\rrgg\models.py:357 .\rrgg\models.py:500
+#: .\rrgg\models.py:337 .\rrgg\models.py:358 .\rrgg\models.py:500
 #: .\rrgg\models.py:511 .\rrgg\models.py:522
 msgid "name"
 msgstr "nombre"
@@ -144,7 +144,7 @@ msgstr "banco endosado"
 msgid "usage"
 msgstr "uso"
 
-#: .\rrgg\models.py:244 .\rrgg\models.py:269 .\rrgg\models.py:421
+#: .\rrgg\models.py:244 .\rrgg\models.py:269 .\rrgg\models.py:422
 msgid "vehicle"
 msgstr "vehículo"
 
@@ -168,79 +168,87 @@ msgstr "impuesto (igv)"
 msgid "emission right"
 msgstr "derecho de emisión"
 
-#: .\rrgg\models.py:342 .\rrgg\models.py:379
+#: .\rrgg\models.py:332 .\rrgg\models.py:447
+msgid "vehicle insurance ratio"
+msgstr "aseguradora"
+
+#: .\rrgg\models.py:333
+msgid "vehicle insurance ratios"
+msgstr "aseguradoras"
+
+#: .\rrgg\models.py:343 .\rrgg\models.py:380
 msgid "risk"
 msgstr "riesgo"
 
-#: .\rrgg\models.py:343
+#: .\rrgg\models.py:344
 msgid "risks"
 msgstr "riesgos"
 
-#: .\rrgg\models.py:359
+#: .\rrgg\models.py:360
 msgid "commission"
 msgstr "comisión"
 
-#: .\rrgg\models.py:371
+#: .\rrgg\models.py:372
 #, fuzzy
 #| msgid "insured amount"
 msgid "insurance plan"
 msgstr "suma asegurada"
 
-#: .\rrgg\models.py:372
+#: .\rrgg\models.py:373
 #, fuzzy
 #| msgid "insured amount"
 msgid "insurance plans"
 msgstr "suma asegurada"
 
-#: .\rrgg\models.py:385 .\rrgg\models.py:563
+#: .\rrgg\models.py:386 .\rrgg\models.py:563
 msgid "registrar"
 msgstr "registrador"
 
-#: .\rrgg\models.py:391 .\rrgg\models.py:569
+#: .\rrgg\models.py:392 .\rrgg\models.py:569
 msgid "seller"
 msgstr "vendedor"
 
-#: .\rrgg\models.py:398
+#: .\rrgg\models.py:399
 msgid "customer"
 msgstr "contratante"
 
-#: .\rrgg\models.py:405
+#: .\rrgg\models.py:406
 msgid "currency"
 msgstr "tipo de moneda"
 
-#: .\rrgg\models.py:412
+#: .\rrgg\models.py:413
 #, fuzzy
 #| msgid "vehicle insurance quotation"
 msgid "insurance quotation"
 msgstr "cotización de seguro vehicular"
 
-#: .\rrgg\models.py:413
+#: .\rrgg\models.py:414
 #, fuzzy
 #| msgid "vehicle insurance quotations"
 msgid "insurance quotations"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:417
+#: .\rrgg\models.py:418
 msgid "insured amount"
 msgstr "suma asegurada"
 
-#: .\rrgg\models.py:426
+#: .\rrgg\models.py:427
 msgid "vehicle insurance quotation"
 msgstr "cotización de seguro vehicular"
 
-#: .\rrgg\models.py:427
+#: .\rrgg\models.py:428
 msgid "vehicle insurance quotations"
 msgstr "cotizaciones de seguros vehiculares"
 
-#: .\rrgg\models.py:440
+#: .\rrgg\models.py:441
 msgid "net premium"
 msgstr "prima neta"
 
-#: .\rrgg\models.py:442
+#: .\rrgg\models.py:443
 msgid "rate"
 msgstr "tasa"
 
-#: .\rrgg\models.py:454
+#: .\rrgg\models.py:455
 msgid "created at"
 msgstr "fecha de creación"
 
