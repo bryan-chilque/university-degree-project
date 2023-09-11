@@ -21,14 +21,23 @@
          href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
-      {% if seller %}
-        <div class="mt-2">
+      <div class="mt-2">
+        {% if seller or customer or vehicle or owner %}
           <h5>
-            <b>Asesor:</b> {{ seller }}
+            Asesor: <b>{{ seller }}</b>
           </h5>
-          <hr class="w-25 mb-3" />
-        </div>
-      {% endif %}
+          <h5>
+            Contratante: <b>{{ customer }}</b>
+          </h5>
+          <h5>
+            Vehículo: <b>{{ vehicle }}</b>
+          </h5>
+          <h5>
+            Asegurado: <b>{{ owner }}</b>
+          </h5>
+          <hr class="w-25" />
+        {% endif %}
+      </div>
       {% if risk_selector %}
         <div>
           <label for="model-choice">Riesgo:</label>

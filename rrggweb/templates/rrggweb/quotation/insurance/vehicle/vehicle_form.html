@@ -17,21 +17,21 @@
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
       <div class="mt-2">
-      {% if seller %}
+      {% if seller or customer %}
         <h5>
           Asesor: <b>{{ seller }}</b>
         </h5>
-      {% endif %}
-      {% if customer %}
         <h5>
           Contratante: <b>{{ customer }}</b>
         </h5>
         <hr class="w-25"/>
       {% endif %}
       </div>
-      <h5>
-        Formulario de vehículo:
-      </h5>
+      {% if body %}
+        <center>
+          <h5 class="mb-3">{{ body }}</h5>
+        </center>
+      {% endif %}
       <div class="mt-4">
         <form method="post">
           {% csrf_token %}

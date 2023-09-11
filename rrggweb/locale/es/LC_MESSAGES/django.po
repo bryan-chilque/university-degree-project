@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-06 09:50-0500\n"
+"POT-Creation-Date: 2023-09-10 20:36-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -32,7 +32,7 @@ msgstr "número de placa"
 
 #: .\rrggweb\forms.py:98
 msgid "does the contractor own the vehicle?"
-msgstr "¿el contratante es propietario del vehículo?"
+msgstr "¿El contratante es el mismo que el asegurado?"
 
 #: .\rrggweb\forms.py:155
 msgid "vehicle registration type"
@@ -46,21 +46,24 @@ msgstr "¿venta nueva tiene cotización previa?"
 msgid "comment"
 msgstr "comentario"
 
-#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:43
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:56
 msgid "emission right"
 msgstr "derecho de emisión"
 
-#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:44
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:57
 msgid "tax (igv)"
 msgstr "igv"
 
-#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:45
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:58
 msgid "vehicle insurance"
 msgstr "aseguradora"
 
-#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:46
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:59
 msgid "created at"
 msgstr "fecha de creación"
+
+#~ msgid "is the contracting party the same as the insured?"
+#~ msgstr "¿el contratante es el mismo que el asegurado?"
 
 #~ msgid "sellers"
 #~ msgstr "asesores"

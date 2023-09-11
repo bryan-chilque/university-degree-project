@@ -343,7 +343,7 @@ class QIVCreateCustomerView(
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Registrar contratante"
-        context["body"] = "Formulario del Contratante:"
+        context["body"] = "Formulario del Contratante"
         context["initial_step"] = 2
         context["final_step"] = 6
         context["seller"] = shortcuts.get_object_or_404(
@@ -435,6 +435,7 @@ class QIVUpdateNaturalPersonViewSupport(
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar contratante"
+        context["body"] = "Formulario del Contratante"
         return context
 
 
@@ -500,6 +501,7 @@ class QIVUpdateLegalPersonViewSupport(
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar contratante"
+        context["body"] = "Formulario del Contratante"
         return context
 
 
@@ -636,6 +638,7 @@ class QIVSearchVehicleView(FormView):
         context["initial_step"] = 3
         context["final_step"] = 6
         context["pretty_style"] = False
+        context["body"] = "Buscar vehículo"
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
@@ -710,6 +713,7 @@ class QIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         context["initial_step"] = 3
         context["final_step"] = 6
         context["pretty_style"] = True
+        context["body"] = "Formulario del vehículo"
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
@@ -746,6 +750,7 @@ class QIVUpdateVehicleViewSupport(
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar vehículo"
+        context["body"] = "Formulario del vehículo"
         return context
 
 
@@ -862,7 +867,7 @@ class QIVDefineOwnerView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
-        context["subtitle"] = "Definir propietario"
+        context["subtitle"] = "Definir asegurado"
         context["initial_step"] = 4
         context["final_step"] = 6
         context["seller"] = shortcuts.get_object_or_404(
@@ -938,9 +943,10 @@ class QIVSearchOwnerView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
-        context["subtitle"] = "Buscar propietario"
+        context["subtitle"] = "Buscar asegurado"
         context["initial_step"] = 4
         context["final_step"] = 6
+        context["body"] = "Buscar asegurado"
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
@@ -994,10 +1000,10 @@ class QIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
-        context["subtitle"] = "Registrar propietario"
-        context["body"] = "Formulario del Propietario:"
+        context["subtitle"] = "Registrar asegurado"
         context["initial_step"] = 4
         context["final_step"] = 6
+        context["body"] = "Formulario del Asegurado"
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
@@ -1030,7 +1036,8 @@ class QIVUpdateOwnerViewSupport(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
-        context["subtitle"] = "Editar propietario"
+        context["subtitle"] = "Editar asegurado"
+        context["body"] = "Formulario del Asegurado"
         return context
 
 
@@ -1050,7 +1057,6 @@ class QIVUpdateOwnerStepView(QIVUpdateOwnerViewSupport):
         context = super().get_context_data(**kwargs)
         context["initial_step"] = 4
         context["final_step"] = 6
-        context["body"] = "Formulario del Propietario:"
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
@@ -1937,6 +1943,14 @@ class IIVPlanFormViewSupport(FormView):
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
+        context["premium"] = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["premium_id"],
+        )
+        context["quotation"] = context["premium"].quotation_insurance_vehicle
+        context["customer"] = context["quotation"].customer
+        context["vehicle"] = context["quotation"].vehicle
+        context["owner"] = context["vehicle"].ownership
         riv = shortcuts.get_object_or_404(
             rrgg.models.RiskInsuranceVehicle,
             id=self.get_form_kwargs()["riv_id"],
@@ -2113,7 +2127,7 @@ class IIVSearchCustomerView(FormView):
                 legal_person__document_number=document_number
             )
             self.success_url = urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:search_vehicle",
+                "rrggweb:issuance:insurance:vehicle:search_vehicle",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -2140,7 +2154,7 @@ class IIVSearchCustomerView(FormView):
         context["initial_step"] = 2
         context["final_step"] = 9
         context["body"] = "Buscar contratante"
-        seller = shortcuts.get_object_or_404(
+        context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant,
             id=self.kwargs["seller_id"],
         )
@@ -2148,7 +2162,7 @@ class IIVSearchCustomerView(FormView):
             "rrggweb:issuance:insurance:vehicle:select_seller_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "role_id": seller.role.id,
+                "role_id": context["seller"].role.id,
             },
         )
         return context
@@ -2189,6 +2203,10 @@ class IIVSelectCustomerFormView(FormView):
         context["subtitle"] = "Definir contratante"
         context["initial_step"] = 2
         context["final_step"] = 9
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant,
+            id=self.kwargs["seller_id"],
+        )
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:search_customer",
             kwargs={
@@ -2216,9 +2234,13 @@ class IIVCreateCustomerView(
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
         context["subtitle"] = "Registrar contratante"
-        context["body"] = "Formulario del Contratante:"
+        context["body"] = "Formulario del Contratante"
         context["initial_step"] = 2
         context["final_step"] = 9
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant,
+            id=self.kwargs["seller_id"],
+        )
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:select_customer",
             kwargs={
@@ -2305,6 +2327,7 @@ class IIVUpdateNaturalPersonViewSupport(
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
         context["subtitle"] = "Editar contratante"
+        context["body"] = "Formulario del Contratante"
         return context
 
 
@@ -2367,6 +2390,7 @@ class IIVUpdateLegalPersonViewSupport(
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
         context["subtitle"] = "Editar contratante"
+        context["body"] = "Formulario del Contratante"
         return context
 
 
@@ -2503,6 +2527,7 @@ class IIVSearchVehicleView(FormView):
         context["initial_step"] = 3
         context["final_step"] = 9
         context["pretty_style"] = False
+        context["body"] = "Buscar vehículo"
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -2573,6 +2598,7 @@ class IIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         context["initial_step"] = 3
         context["final_step"] = 9
         context["pretty_style"] = True
+        context["body"] = "Formulario del vehículo"
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -2606,6 +2632,7 @@ class IIVUpdateVehicleViewSupport(
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
         context["subtitle"] = "Editar vehículo"
+        context["body"] = "Formulario del vehículo"
         return context
 
 
@@ -2719,9 +2746,12 @@ class IIVDefineOwnerView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
-        context["subtitle"] = "Definir propietario"
+        context["subtitle"] = "Definir asegurado"
         context["initial_step"] = 4
         context["final_step"] = 9
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -2792,9 +2822,13 @@ class IIVSearchOwnerView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
-        context["subtitle"] = "Buscar propietario"
+        context["subtitle"] = "Buscar asegurado"
         context["initial_step"] = 4
         context["final_step"] = 9
+        context["body"] = "Buscar asegurado"
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -2845,10 +2879,13 @@ class IIVCreateOwnerView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
-        context["subtitle"] = "Registrar propietario"
-        context["body"] = "Formulario del Propietario:"
+        context["subtitle"] = "Registrar asegurado"
         context["initial_step"] = 4
         context["final_step"] = 9
+        context["body"] = "Formulario del Asegurado"
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -2878,7 +2915,8 @@ class IIVUpdateOwnerViewSupport(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
-        context["subtitle"] = "Editar propietario"
+        context["subtitle"] = "Editar asegurado"
+        context["body"] = "Formulario del Asegurado"
         return context
 
 
@@ -2898,7 +2936,9 @@ class IIVUpdateOwnerStepView(IIVUpdateOwnerViewSupport):
         context = super().get_context_data(**kwargs)
         context["initial_step"] = 4
         context["final_step"] = 9
-        context["body"] = "Formulario del Propietario:"
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -2970,6 +3010,9 @@ class IIVCreateQuotationView(
         context["subtitle"] = "Crear registro vehicular"
         context["initial_step"] = 5
         context["final_step"] = 9
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -3032,6 +3075,9 @@ class IIVUpdateQuotationStepView(IIVUpdateQuotationViewSupport):
         context = super().get_context_data(**kwargs)
         context["initial_step"] = 5
         context["final_step"] = 9
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = self.object.customer
         context["vehicle"] = self.object.vehicle
         context["owner"] = context["vehicle"].ownership
@@ -3153,6 +3199,14 @@ class IIVQuotationPremiumCreateView(
             rrgg.models.QuotationInsuranceVehicle,
             id=self.kwargs["quotation_id"],
         )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.CustomerMembership, id=quotation.customer.id
+        )
+        context["vehicle"] = shortcuts.get_object_or_404(
+            rrgg.models.Vehicle, id=quotation.vehicle.id
+        )
+        context["owner"] = quotation.vehicle.ownership
+
         context["risk_selector"] = forms.RiskForm(risk_id=quotation.risk_id)
         context["insured_amount"] = quotation.insured_amount
         context["previous_page"] = urls.reverse(
@@ -3176,6 +3230,7 @@ class IIVPremiumsUpdateViewSupport(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         context["insured_amount"] = (
             self.object.quotation_insurance_vehicle.insured_amount
         )
@@ -3201,6 +3256,17 @@ class IIVPremiumsUpdateStepView(IIVPremiumsUpdateViewSupport):
         context["subtitle"] = "Editar Prima de Aseguradora"
         context["initial_step"] = 6
         context["final_step"] = 9
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
+        quotation = self.object.quotation_insurance_vehicle
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.CustomerMembership, id=quotation.customer.id
+        )
+        context["vehicle"] = shortcuts.get_object_or_404(
+            rrgg.models.Vehicle, id=quotation.vehicle.id
+        )
+        context["owner"] = context["vehicle"].ownership
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:update_quotation_step",
             kwargs={
@@ -3227,7 +3293,7 @@ class IIVPremiumsUpdateQView(IIVPremiumsUpdateViewSupport):
         context["title"] = "EMISIÓN VEHICULAR"
         context["subtitle"] = "Editar Prima de Aseguradora"
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:create_premium",
+            "rrggweb:issuance:insurance:vehicle:quotation_detail",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "quotation_id": self.object.quotation_insurance_vehicle.id,
@@ -3285,13 +3351,14 @@ class IIVCreateViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
         context["subtitle"] = "Crear emisión"
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["premium"] = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,
             id=self.kwargs["premium_id"],
         )
-        context["seller"] = shortcuts.get_object_or_404(
-            rrgg.models.Consultant, id=self.kwargs["seller_id"]
-        )
+
         context["ratio"] = context["premium"].insurance_vehicle_ratio
         context["insurance_plan"] = shortcuts.get_object_or_404(
             rrgg.models.InsurancePlan, id=self.kwargs["plan_id"]

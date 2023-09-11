@@ -286,7 +286,7 @@ class VehicleOwnership(models.Model):
         if self.owner:
             return f"{self.owner}"
         elif self.customer:
-            return "El contratante es propietario del vehículo."
+            return "El contratante es el asegurado."
 
 
 class InsuranceVehicle(models.Model):
