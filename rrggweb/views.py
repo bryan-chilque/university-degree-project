@@ -2528,6 +2528,9 @@ class IIVSearchVehicleView(FormView):
         context["final_step"] = 9
         context["pretty_style"] = False
         context["body"] = "Buscar vehículo"
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -2599,6 +2602,9 @@ class IIVCreateVehicleView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         context["final_step"] = 9
         context["pretty_style"] = True
         context["body"] = "Formulario del vehículo"
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
@@ -2653,6 +2659,9 @@ class IIVUpdateVehicleStepView(IIVUpdateVehicleViewSupport):
         context["initial_step"] = 3
         context["final_step"] = 9
         context["pretty_style"] = True
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
         context["customer"] = shortcuts.get_object_or_404(
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
