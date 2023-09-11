@@ -64,7 +64,7 @@
           </tr>
           <tr>
             <td>
-              <strong>Propietario:</strong>
+              <strong>Asegurado:</strong>
             </td>
             <td>
               {{ owner }} &nbsp;
@@ -107,13 +107,6 @@
           </tr>
         </table>
       </div>
-      {% if seller %}
-      {% else %}
-      <div class="alert alert-warning" role="alert">
-        <i class="fas fa-exclamation-triangle"></i>
-        El proceso de emisión aún no ha finalizado. Por favor, siga los pasos indicados para completar la emisión.
-      </div>
-      {% endif %}
       <div>
         {% if object.premiums.count == 0 %}
         <p>No hay premiums asociados</p>
@@ -148,7 +141,7 @@
                 <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.rate }}</td>
                 <td class="align-middle d-flex gap-2">
                   <a class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
-                    href="{% url 'rrggweb:issuance:insurance:vehicle:select_role' view.kwargs.registrar_id premium.id %}">
+                    href="{% url 'rrggweb:issuance:insurance:vehicle:select_role_q' view.kwargs.registrar_id premium.id %}">
                     <i class="fa fa-file"></i>
                     Generar Emisión
                   </a>

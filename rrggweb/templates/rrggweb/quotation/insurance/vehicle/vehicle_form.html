@@ -7,29 +7,31 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% if step %}
+      {% if initial_step == 3 and final_step == 6 %}
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=6 %}
+      {% elif initial_step == 3 and final_step == 9 %}
+        {% include "rrggweb/utils/stepper.html" with step=3 max_step=9 %}
       {% endif %}
       <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
       <div class="mt-2">
-      {% if seller %}
+      {% if seller or customer %}
         <h5>
           Asesor: <b>{{ seller }}</b>
         </h5>
-      {% endif %}
-      {% if customer %}
         <h5>
           Contratante: <b>{{ customer }}</b>
         </h5>
         <hr class="w-25"/>
       {% endif %}
       </div>
-      <h5>
-        Formulario de vehículo:
-      </h5>
+      {% if body %}
+        <center>
+          <h5 class="mb-3">{{ body }}</h5>
+        </center>
+      {% endif %}
       <div class="mt-4">
         <form method="post">
           {% csrf_token %}

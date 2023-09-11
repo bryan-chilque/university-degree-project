@@ -386,7 +386,7 @@
     consultant_registrar: 3
     consultant_seller: 2
     customer: 1
-    created: 2023-07-12 07:15:35.485352+00:00
+    created: 2023-09-08 07:15:35.485352+00:00
 - model: rrgg.quotationinsurancevehicle
   pk: 2
   fields:
@@ -397,7 +397,7 @@
     consultant_registrar: 1
     consultant_seller: 2
     customer: 2
-    created: 2023-07-31 06:08:11.485352+00:00
+    created: 2023-09-07 06:08:11.485352+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 1
   fields:
@@ -405,7 +405,7 @@
     rate: 0.95
     insurance_vehicle_ratio: 3
     quotation_insurance_vehicle: 1
-    created: 2023-07-12 09:15:35.928242+00:00
+    created: 2023-09-08 09:15:35.928242+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 2
   fields:
@@ -413,7 +413,7 @@
     rate: 0.95
     insurance_vehicle_ratio: 3
     quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.928242+00:00
+    created: 2023-09-12 06:08:35.928242+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 3
   fields:
@@ -421,7 +421,7 @@
     rate: 0.95
     insurance_vehicle_ratio: 4
     quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.933243+00:00
+    created: 2023-09-12 06:08:35.933243+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 4
   fields:
@@ -429,7 +429,7 @@
     rate: 0.95
     insurance_vehicle_ratio: 1
     quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.936245+00:00
+    created: 2023-09-12 06:08:35.936245+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 5
   fields:
@@ -437,7 +437,7 @@
     rate: 0.95
     insurance_vehicle_ratio: 2
     quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.939988+00:00
+    created: 2023-09-12 06:08:35.939988+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 6
   fields:
@@ -445,7 +445,7 @@
     rate: 0.95
     insurance_vehicle_ratio: 5
     quotation_insurance_vehicle: 2
-    created: 2023-07-31 06:08:35.944033+00:00
+    created: 2023-09-12 06:08:35.944033+00:00
 - model: rrgg.issuanceinsurancestatus
   pk: 1
   fields:

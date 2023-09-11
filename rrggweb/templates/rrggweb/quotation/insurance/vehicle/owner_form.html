@@ -6,8 +6,10 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% if step %}
+      {% if initial_step == 4 and final_step == 6 %}
         {% include "rrggweb/utils/stepper.html" with step=4 max_step=6 %}
+      {% elif initial_step == 4 and final_step == 9 %}
+        {% include "rrggweb/utils/stepper.html" with step=4 max_step=9 %}
       {% endif %}
       <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">
@@ -30,9 +32,9 @@
         {% endif %}
       </div>
       {% if body %}
-        <h5 class="mb-3">
-          {{ body }}
-        </h5>
+        <center>
+          <h5 class="mb-3">{{ body }}</h5>
+        </center>
       {% endif %}
       <div>
         <form method="post">

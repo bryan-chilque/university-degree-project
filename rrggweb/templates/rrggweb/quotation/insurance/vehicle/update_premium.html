@@ -6,10 +6,30 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      <a class="btn btn-outline-dark btn-sm mt-3 mb-4"
+      {% if initial_step == 6 and final_step == 9 %}
+        {% include "rrggweb/utils/stepper.html" with step=6 max_step=9 %}
+      {% endif %}
+      <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
+      <div class="mt-2">
+        {% if seller or customer or vehicle or owner %}
+          <h5>
+            Asesor: <b>{{ seller }}</b>
+          </h5>
+          <h5>
+            Contratante: <b>{{ customer }}</b>
+          </h5>
+          <h5>
+            Vehículo: <b>{{ vehicle }}</b>
+          </h5>
+          <h5>
+            Asegurado: <b>{{ owner }}</b>
+          </h5>
+          <hr class="w-25" />
+        {% endif %}
+      </div>
       <form method="post">
         {% csrf_token %}
         <div id="insured_amount" class="d-none">{{ insured_amount }}</div>

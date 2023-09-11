@@ -46,7 +46,7 @@
           {% if update_owner %}
             <tr>
               <th>Tipo de documento</th>
-              <td>{{ owner.pick.document_type}}</td>
+              <td> dni </td>
             </tr>
             <tr>
               <th>Número de documento</th>
@@ -59,7 +59,7 @@
           {% else %}
             <tr>
               <th>Tipo de documento</th>
-              <td>{{ customer.pick.document_type}}</td>
+              <td>{{ customer.pick.document_type }}</td>
             </tr>
             <tr>
               <th>Número de documento</th>
@@ -82,6 +82,14 @@
           <tr>
             <th>Nombres y apellidos</th>
             <td>{{ seller }}</td>
+          </tr>
+          <tr>
+            <th>Comisión</th>
+            <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
+          </tr>
+          <tr>
+            <th>Monto comisión neto</th>
+            <td>{{ quotation.currency.symbol }}{{ seller_commission }} </td>
           </tr>
         </tbody>
       </table>
@@ -148,7 +156,7 @@
       </table>
     </div>
     <div class="col-md-6">
-      <h5 class="mb-0">Datos de la cotización</h5>
+      <h5 class="mb-0">Datos de la emisión</h5>
       <table class="table table-bordered">
         <tbody>
           <tr>
@@ -191,11 +199,15 @@
             <th>Prima total</th>
             <td>{{quotation.currency.symbol}}{{ quotation_premium.total }}</td>
           </tr>
+          <tr>
+            <th>Plan de seguro</th>
+            <td>{{ object.insurance_plan }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
     <div class="col-md-6">
-      <h5 class="mb-0">Detalle de la emisión</h5>
+      <h5 class="mb-0">Detalle de la poliza</h5>
       <table class="table table-bordered">
         <tbody>
           <tr>
@@ -223,16 +235,16 @@
             <td>{{ object.final_validity|date:'d/m/Y' }}</td>
           </tr>
           <tr>
-            <th>Plan de seguro</th>
-            <td>{{ object.insurance_plan }}</td>
-          </tr>
-          <tr>
-            <th>Porcentaje comisión del plan</th>
+            <th>Porcentaje comisión KCS</th>
             <td>{% widthratio object.plan_commission_percentage 1 100 %}%</td>
           </tr>
           <tr>
             <th>Monto comisión neto</th>
             <td>{{ quotation.currency.symbol }}{{ object.net_commission_amount }}</td>
+          </tr>
+          <tr>
+            <th>Monto comisión KCS</th>
+            <td>{{ quotation.currency.symbol }}{{ kcs_commission }}</td>
           </tr>
           <tr>
             <th>Tipo</th>

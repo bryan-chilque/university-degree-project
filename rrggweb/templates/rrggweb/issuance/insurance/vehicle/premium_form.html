@@ -8,14 +8,10 @@
     <div class="col-md-8 col-lg-6">
       {% if initial_step == 6 and final_step == 9 %}
         {% include "rrggweb/utils/stepper.html" with step=6 max_step=9 %}
-      {% elif initial_step == 7 and final_step == 9 %}
-        {% include "rrggweb/utils/stepper.html" with step=7 max_step=9 %}
       {% elif initial_step == 1 and final_step == 6 %}
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=6 %}
       {% elif initial_step == 1 and final_step == 9 %}
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=9 %}
-      {% elif initial_step == 2 and final_step == 4 %}
-        {% include "rrggweb/utils/stepper.html" with step=2 max_step=4 %}
       {% endif %}
       <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">
@@ -48,23 +44,33 @@
           </select>
         </div>
       {% endif %}
-      {% if insurance_vehicle_selector %}
-        <div>
-          <label for="model-choice">Aseguradora:</label>
-          <select class="form-select mb-3" style="background-color: #e8e8e8;" id="model-choice" disabled>
-              {% for choice in insurance_vehicle_selector %}
-                  <option value={{ choice }}
-              {% endfor %}
-          </select>
-        </div>
-      {% endif %}
-      <div>
-        <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
-        </form>
-      </div>
+      <form method="post">
+        {% csrf_token %}
+        {% if insurance_vehicle_selector %}
+          <div>
+            <label for="model-choice">Aseguradora:</label>
+            <select class="form-select mb-3" style="background-color: #e8e8e8;" id="model-choice" disabled>
+                {% for choice in insurance_vehicle_selector %}
+                    <option value={{ choice }}
+                {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+        <div id="insured_amount" class="d-none">{{ insured_amount }}</div>
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+      </form>
     </div>
   </div>
+  <script>
+    const insuredAmount = Number(document.querySelector('#insured_amount').textContent);
+    const amountInput = document.querySelector('#id_amount');
+    const rateInput = document.querySelector('#id_rate');
+
+    amountInput.addEventListener('input', () => {
+      const amount = Number(amountInput.value);
+      const rate = insuredAmount / amount;
+      rateInput.value = rate.toFixed(2);
+    });
+  </script>
 {% endblock content %}
