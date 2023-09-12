@@ -1,0 +1,42 @@
+{% extends 'rrggweb/dashboard.html' %}
+{% block title_section %}
+{{ title }}
+<h6>{{ subtitle }}</h6>
+{% endblock title_section %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<a href="{% url 'rrggweb:customer_membership:select_customer' view.kwargs.registrar_id %}" class="btn btn-primary">Create</a>
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Customer</th>
+				<th>Pick</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for membership in object_list %}
+			<tr>
+				<td>{{ membership.id }}</td>
+				<td>{{ membership.pick }}</td>
+				<td>{{ membership.customer }}</td>
+				<td>
+					<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id membership.id %}">Detail</a>
+					<a href="{% url 'rrggweb:customer_membership:update' view.kwargs.registrar_id membership.id %}">Update</a>
+					<a href="{% url 'rrggweb:customer_membership:delete' view.kwargs.registrar_id membership.id %}">Delete</a>
+				</td>
+			</tr>
+			{% empty %}
+			<tr>
+				<td colspan="3">No customer memberships found.</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock content %}

@@ -77,18 +77,12 @@ quotation_insurance_vehicle_urlpatterns = (
             name="update_legal_person_step",
         ),
         path(
-            (
-                "search_vehicle/seller/<int:seller_id>/"
-                "customer/<int:customer_id>/"
-            ),
+            ("search_vehicle/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
             views.QIVSearchVehicleView.as_view(),
             name="search_vehicle",
         ),
         path(
-            (
-                "create_vehicle/seller/<int:seller_id>/"
-                "customer/<int:customer_id>/"
-            ),
+            ("create_vehicle/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
             views.QIVCreateVehicleView.as_view(),
             name="create_vehicle",
         ),
@@ -243,10 +237,7 @@ issuance_insurance_vehicle_urlpatterns = (
             name="select_role_q",
         ),
         path(
-            (
-                "select_seller/quotation_premium/<int:premium_id>/"
-                "role/<int:role_id>/"
-            ),
+            ("select_seller/quotation_premium/<int:premium_id>/" "role/<int:role_id>/"),
             views.IIVSelectSellerQFormView.as_view(),
             name="select_seller_q",
         ),
@@ -304,18 +295,12 @@ issuance_insurance_vehicle_urlpatterns = (
             name="update_legal_person",
         ),
         path(
-            (
-                "search_vehicle/seller/<int:seller_id>/"
-                "customer/<int:customer_id>/"
-            ),
+            ("search_vehicle/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
             views.IIVSearchVehicleView.as_view(),
             name="search_vehicle",
         ),
         path(
-            (
-                "create_vehicle/seller/<int:seller_id>/"
-                "customer/<int:customer_id>/"
-            ),
+            ("create_vehicle/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
             views.IIVCreateVehicleView.as_view(),
             name="create_vehicle",
         ),
@@ -388,10 +373,7 @@ issuance_insurance_vehicle_urlpatterns = (
             name="update_quotation",
         ),
         path(
-            (
-                "create_premium/seller/<int:seller_id>/"
-                "quotation/<int:quotation_id>/"
-            ),
+            ("create_premium/seller/<int:seller_id>/" "quotation/<int:quotation_id>/"),
             views.IIVQuotationPremiumCreateView.as_view(),
             name="create_premium",
         ),
@@ -522,6 +504,52 @@ collection_urlpatterns = (
     "collection",
 )
 
+customer_membership_urlpatterns = (
+    [
+        path(
+            "list/",
+            views.CustomerMembershipListView.as_view(),
+            name="list",
+        ),
+        path(
+            "create/",
+            views.CustomerMembershipCreateView.as_view(),
+            name="create",
+        ),
+        path(
+            "select_customer/",
+            views.SelectCustomerMembershipFormView.as_view(),
+            name="select_customer",
+        ),
+        path(
+            "create_natural_person/seller/",
+            views.CMCreateNaturalPersonView.as_view(),
+            name="create_natural_person",
+        ),
+        path(
+            "create_legal_person/seller/",
+            views.CMCreateLegalPersonView.as_view(),
+            name="create_legal_person",
+        ),
+        path(
+            "update/<int:pk>/",
+            views.CustomerMembershipUpdateView.as_view(),
+            name="update",
+        ),
+        path(
+            "delete/<int:pk>/",
+            views.CustomerMembershipDeleteView.as_view(),
+            name="delete",
+        ),
+        path(
+            "detail/<int:pk>/",
+            views.CustomerMembershipDetailView.as_view(),
+            name="detail",
+        ),
+    ],
+    "customer_membership",
+)
+
 app_name = "rrggweb"
 
 urlpatterns = [
@@ -546,4 +574,8 @@ urlpatterns = [
     path("<int:registrar_id>/quotation/", include(quotation_urlpatterns)),
     path("<int:registrar_id>/issuance/", include(issuance_urlpatterns)),
     path("<int:registrar_id>/collection/", include(collection_urlpatterns)),
+    path(
+        "<int:registrar_id>/customer_membership/",
+        include(customer_membership_urlpatterns),
+    ),
 ]

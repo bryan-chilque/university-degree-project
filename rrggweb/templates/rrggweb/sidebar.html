@@ -70,6 +70,19 @@
                     </ul>
                   </li>
 
+                  <li class="menu-title">Clientes</li>
+
+                  <li>
+                    <a class="has-arrow waves-effect">
+                      <i class="fas fa-users"></i>
+                      <span>Clientes</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                      <li>
+                        <a href="{% url 'rrggweb:customer_membership:list' view.kwargs.registrar_id %}">Lista de clientes</a>
+                      </li>
+                    </ul>
+
                 </ul>
               </div>
             </div>

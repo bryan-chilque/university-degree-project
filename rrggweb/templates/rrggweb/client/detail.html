@@ -1,0 +1,27 @@
+{% extends "rrggweb/dashboard.html" %}
+{% block title_section %}
+    {{ title }}
+    <h6>{{ subtitle }}</h6>
+{% endblock title_section %}
+{% block content %}
+  <p><strong>ID:</strong> {{ object.id }}</p>
+  <p><strong>Customer:</strong> {{ object.pick }}</p>
+  {% if object.natural_person %}
+    <p><strong>Given Name:</strong> {{ object.natural_person.given_name }}</p>
+    <p><strong>First Surname:</strong> {{ object.natural_person.first_surname }}</p>
+    <p><strong>Second Surname:</strong> {{ object.natural_person.second_surname }}</p>
+    <p><strong>Birthdate:</strong> {{ object.natural_person.birthdate }}</p>
+		<p><strong>Phone:</strong> {{ object.natural_person.phone_number }}</p>
+		<p><strong>Email:</strong> {{ object.natural_person.email }}</p>
+		<p><strong>Document type:</strong> {{ object.natural_person.document_type }}</p>
+  	<p><strong>Document number:</strong> {{ object.natural_person.document_number }}</p>
+  {% elif object.legal_person %}
+    <p><strong>Registered Name:</strong> {{ object.legal_person.registered_name }}</p>
+    <p><strong>General Manager:</strong> {{ object.legal_person.general_manager }}</p>
+    <p><strong>Anniversary Date:</strong> {{ object.legal_person.anniversary_date }}</p>
+		<p><strong>Phone:</strong> {{ object.legal_person.phone_number }}</p>
+		<p><strong>Email:</strong> {{ object.legal_person.email }}</p>
+		<p><strong>Document type:</strong> {{ object.legal_person.document_type }}</p>
+  	<p><strong>Document number:</strong> {{ object.legal_person.document_number }}</p>
+  {% endif %}
+{% endblock %}
