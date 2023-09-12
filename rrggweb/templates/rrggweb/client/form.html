@@ -1,12 +1,13 @@
 {% extends "rrggweb/dashboard.html" %}
 {% block title_section %}
-    {{ title }}
-    <h6>{{ subtitle }}</h6>
+	{{ title }}
+	<h6>{{ subtitle }}</h6>
 {% endblock title_section %}
+
 {% block content %}
-<form method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Submit">
-</form>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Submit">
+	</form>
 {% endblock content %}

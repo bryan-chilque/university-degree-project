@@ -530,11 +530,6 @@ customer_membership_urlpatterns = (
             name="list",
         ),
         path(
-            "create/",
-            views.CustomerMembershipCreateView.as_view(),
-            name="create",
-        ),
-        path(
             "select_customer/",
             views.SelectCustomerMembershipFormView.as_view(),
             name="select_customer",
@@ -550,9 +545,14 @@ customer_membership_urlpatterns = (
             name="create_legal_person",
         ),
         path(
-            "update/<int:pk>/",
-            views.CustomerMembershipUpdateView.as_view(),
-            name="update",
+            "update_natural_person/natural_person/<int:natural_person_id>",
+            views.CMUpdateNaturalPersonView.as_view(),
+            name="update_natural_person",
+        ),
+        path(
+            "update_legal_person/legal_person/<int:legal_person_id>",
+            views.CMUpdateLegalPersonView.as_view(),
+            name="update_legal_person",
         ),
         path(
             "delete/<int:pk>/",
@@ -567,6 +567,7 @@ customer_membership_urlpatterns = (
     ],
     "customer_membership",
 )
+
 
 app_name = "rrggweb"
 

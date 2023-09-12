@@ -3770,7 +3770,7 @@ class CollectionInsuranceVehicleCreateCollectionView(
 
 # ------------------------------
 
-# CUSTOMEMEMBERSHIP(CLIENT)
+# CUSTOMER MEMBERSHIP(CLIENT)
 
 
 class CustomerMembershipListView(ListView):
@@ -3818,48 +3818,12 @@ class SelectCustomerMembershipFormView(FormView):
         return context
 
 
-class CustomerMembershipCreateView(CreateView):
+class CMCreatePersonSupportView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
     template_name = "rrggweb/client/form.html"
     model = rrgg.models.CustomerMembership
     fields = "__all__"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "CLIENTES"
-        context["subtitle"] = "Crear cliente"
-
-        return context
-
-
-class CMCreateNaturalPersonView(CustomerMembershipCreateView):
-    model = rrgg.models.NaturalPerson
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.fields["second_surname"].required = False
-        return form
-
-    def get_success_url(self):
-        rrgg.models.CustomerMembership.objects.create(
-            natural_person=self.object
-        )
-        return urls.reverse(
-            "rrggweb:customer_membership:list",
-            kwargs={"registrar_id": self.kwargs["registrar_id"]},
-        )
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["type_customer"] = "Persona natural"
-        context["previous_page"] = urls.reverse(
-            "rrggweb:customer_membership:select_customer",
-            kwargs={"registrar_id": self.kwargs["registrar_id"]},
-        )
-        return context
-
-
-class CMCreateLegalPersonView(CustomerMembershipCreateView):
-    model = rrgg.models.LegalPerson
 
     def get_success_url(self):
         rrgg.models.CustomerMembership.objects.create(legal_person=self.object)
@@ -3870,7 +3834,8 @@ class CMCreateLegalPersonView(CustomerMembershipCreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["type_customer"] = "Persona jurídica"
+        context["title"] = "CLIENTES"
+        context["subtitle"] = "Crear cliente"
         context["previous_page"] = urls.reverse(
             "rrggweb:customer_membership:select_customer",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
@@ -3878,20 +3843,75 @@ class CMCreateLegalPersonView(CustomerMembershipCreateView):
         return context
 
 
-class CustomerMembershipUpdateView(UpdateView):
+class CMCreateNaturalPersonView(CMCreatePersonSupportView):
+    model = rrgg.models.NaturalPerson
+
+    def get_initial(self):
+        initial = super().get_initial()
+        dni = rrgg.models.DocumentType.objects.get(code="dni")
+        initial["document_type"] = dni
+        return initial
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["second_surname"].required = False
+        return form
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["type_customer"] = "Persona natural"
+        return context
+
+
+class CMCreateLegalPersonView(CMCreatePersonSupportView):
+    model = rrgg.models.LegalPerson
+
+    def get_initial(self):
+        initial = super().get_initial()
+        ruc = rrgg.models.DocumentType.objects.get(code="ruc")
+        initial["document_type"] = ruc
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["type_customer"] = "Persona jurídica"
+        return context
+
+
+class CMUpdatePersonSupportView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
     template_name = "rrggweb/client/form.html"
-    model = rrgg.models.CustomerMembership
     fields = "__all__"
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:customer_membership:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "CLIENTES"
         context["subtitle"] = "Editar cliente"
-
         return context
 
 
-class CustomerMembershipDeleteView(DeleteView):
+class CMUpdateNaturalPersonView(CMUpdatePersonSupportView):
+    model = rrgg.models.NaturalPerson
+    pk_url_kwarg = "natural_person_id"
+
+
+class CMUpdateLegalPersonView(CMUpdatePersonSupportView):
+    template_name = "rrggweb/client/form.html"
+    model = rrgg.models.LegalPerson
+    fields = "__all__"
+    pk_url_kwarg = "legal_person_id"
+
+
+class CustomerMembershipDeleteView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, DeleteView
+):
     template_name = "rrggweb/client/form.html"
     model = rrgg.models.CustomerMembership
     fields = "__all__"
@@ -3910,7 +3930,9 @@ class CustomerMembershipDeleteView(DeleteView):
         )
 
 
-class CustomerMembershipDetailView(DetailView):
+class CustomerMembershipDetailView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, DetailView
+):
     template_name = "rrggweb/client/detail.html"
     model = rrgg.models.CustomerMembership
     fields = "__all__"

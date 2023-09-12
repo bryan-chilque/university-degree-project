@@ -23,11 +23,15 @@
 			{% for membership in object_list %}
 			<tr>
 				<td>{{ membership.id }}</td>
-				<td>{{ membership.pick }}</td>
+				<td>{{ membership.type_customer }}</td>
 				<td>{{ membership.customer }}</td>
 				<td>
-					<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id membership.id %}">Detail</a>
-					<a href="{% url 'rrggweb:customer_membership:update' view.kwargs.registrar_id membership.id %}">Update</a>
+					<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id membership.id %}">Detalle</a>
+					{% if membership.type_customer == "Persona natural" %}
+						<a href="{% url 'rrggweb:customer_membership:update_natural_person' view.kwargs.registrar_id membership.pick.id %}">Actualizar</a>
+					{% elif membership.type_customer == "Persona jurídica" %}
+						<a href="{% url 'rrggweb:customer_membership:update_legal_person' view.kwargs.registrar_id membership.pick.id %}">Actualizar</a>
+					{% endif %}
 					<a href="{% url 'rrggweb:customer_membership:delete' view.kwargs.registrar_id membership.id %}">Delete</a>
 				</td>
 			</tr>
