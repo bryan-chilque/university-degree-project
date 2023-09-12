@@ -1,0 +1,16 @@
+{% extends "rrggweb/dashboard.html" %}
+{% block title_section %}
+{{ title }}
+<h6>{{ subtitle }}</h6>
+{% endblock title_section %}
+{% block content %}
+{% if error_message %}
+<div class="alert alert-danger">{{ error_message }}</div>
+{% endif %}
+<form method="post">
+	{% csrf_token %}
+	<p>Are you sure you want to delete {{ object }}?</p>
+	<input type="submit" value="Yes, delete" class="btn btn-danger">
+	<a href="{{ previous_page }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

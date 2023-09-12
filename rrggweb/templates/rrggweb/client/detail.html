@@ -4,24 +4,26 @@
     <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
+<a href="{{ previous_page }}">Volver a la lista</a>
   <p><strong>ID:</strong> {{ object.id }}</p>
-  <p><strong>Customer:</strong> {{ object.pick }}</p>
+  <p><strong>Cliente:</strong> {{ object.pick }}</p>
+  <p><strong>Tipo de Persona:</strong> {{ object.person_type }}</p>
   {% if object.natural_person %}
-    <p><strong>Given Name:</strong> {{ object.natural_person.given_name }}</p>
-    <p><strong>First Surname:</strong> {{ object.natural_person.first_surname }}</p>
-    <p><strong>Second Surname:</strong> {{ object.natural_person.second_surname }}</p>
-    <p><strong>Birthdate:</strong> {{ object.natural_person.birthdate }}</p>
-		<p><strong>Phone:</strong> {{ object.natural_person.phone_number }}</p>
-		<p><strong>Email:</strong> {{ object.natural_person.email }}</p>
-		<p><strong>Document type:</strong> {{ object.natural_person.document_type }}</p>
-  	<p><strong>Document number:</strong> {{ object.natural_person.document_number }}</p>
+    <p><strong>Nombre:</strong> {{ object.natural_person.given_name }}</p>
+    <p><strong>Primer Apellido:</strong> {{ object.natural_person.first_surname }}</p>
+    <p><strong>Segundo Apellido:</strong> {{ object.natural_person.second_surname|default:"-" }}</p>
+    <p><strong>Fecha de Nacimiento:</strong> {{ object.natural_person.birthdate }}</p>
+        <p><strong>Teléfono:</strong> {{ object.natural_person.phone_number }}</p>
+        <p><strong>Correo Electrónico:</strong> {{ object.natural_person.email }}</p>
+        <p><strong>Tipo de Documento:</strong> {{ object.natural_person.document_type }}</p>
+      <p><strong>Número de Documento:</strong> {{ object.natural_person.document_number }}</p>
   {% elif object.legal_person %}
-    <p><strong>Registered Name:</strong> {{ object.legal_person.registered_name }}</p>
-    <p><strong>General Manager:</strong> {{ object.legal_person.general_manager }}</p>
-    <p><strong>Anniversary Date:</strong> {{ object.legal_person.anniversary_date }}</p>
-		<p><strong>Phone:</strong> {{ object.legal_person.phone_number }}</p>
-		<p><strong>Email:</strong> {{ object.legal_person.email }}</p>
-		<p><strong>Document type:</strong> {{ object.legal_person.document_type }}</p>
-  	<p><strong>Document number:</strong> {{ object.legal_person.document_number }}</p>
+    <p><strong>Nombre Registrado:</strong> {{ object.legal_person.registered_name }}</p>
+    <p><strong>Gerente General:</strong> {{ object.legal_person.general_manager }}</p>
+    <p><strong>Fecha de Aniversario:</strong> {{ object.legal_person.anniversary_date }}</p>
+        <p><strong>Teléfono:</strong> {{ object.legal_person.phone_number }}</p>
+        <p><strong>Correo Electrónico:</strong> {{ object.legal_person.email }}</p>
+        <p><strong>Tipo de Documento:</strong> {{ object.legal_person.document_type }}</p>
+      <p><strong>Número de Documento:</strong> {{ object.legal_person.document_number }}</p>
   {% endif %}
 {% endblock %}
