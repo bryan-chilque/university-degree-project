@@ -4,8 +4,10 @@
 <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
-{% if error_message %}
-<div class="alert alert-danger">{{ error_message }}</div>
+{% if messages %}
+{% for message in messages %}
+	<div class="alert alert-danger">{{ message }}</div>
+{% endfor %}
 {% endif %}
 <form method="post">
 	{% csrf_token %}

@@ -2,6 +2,7 @@ import re
 
 from django import shortcuts, urls
 from django.contrib import messages
+from django.db.models import ProtectedError
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelformset_factory
@@ -3806,7 +3807,7 @@ class CMUpdateLegalPersonView(CMUpdatePersonSupportView):
 class CustomerMembershipDeleteView(
     rrgg_mixins.RrggBootstrapDisplayMixin, DeleteView
 ):
-    template_name = "rrggweb/client/form.html"
+    template_name = "rrggweb/client/delete_form.html"
     model = rrgg.models.CustomerMembership
     fields = "__all__"
 
@@ -3818,8 +3819,6 @@ class CustomerMembershipDeleteView(
             "rrggweb:customer_membership:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
-        context["error_message"] = "No se puede eliminar este cliente"
-        "porque tiene transacciones asociadas."
         return context
 
     def get_success_url(self):
@@ -3836,7 +3835,7 @@ class CustomerMembershipDeleteView(
                 request,
                 "No se puede eliminar este cliente porque tiene transacciones asociadas.",
             )
-            return redirect(
+            return shortcuts.redirect(
                 "rrggweb:customer_membership:list",
                 registrar_id=self.kwargs["registrar_id"],
             )

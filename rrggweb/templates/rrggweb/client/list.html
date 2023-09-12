@@ -23,8 +23,8 @@
 			{% for membership in object_list %}
 			<tr>
 				<td>{{ membership.id }}</td>
+				<td>{{ membership }}</td>
 				<td>{{ membership.type_customer }}</td>
-				<td>{{ membership.customer }}</td>
 				<td>
 					<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id membership.id %}">Detalle</a>
 					{% if membership.type_customer == "Persona natural" %}
