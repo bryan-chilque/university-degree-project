@@ -4,9 +4,10 @@ from django import shortcuts, urls
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import ProtectedError
+from django.db.models.deletion import ProtectedError
 from django.forms import modelformset_factory
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -3919,52 +3920,28 @@ class CMUpdateLegalPersonView(CMUpdatePersonSupportView):
     pk_url_kwarg = "legal_person_id"
 
 
-class CustomerMembershipDeleteView(
-    rrgg_mixins.RrggBootstrapDisplayMixin, DeleteView
-):
+class CMDeletePersonSupportView(DeleteView):
     template_name = "rrggweb/client/delete_form.html"
-    model = rrgg.models.CustomerMembership
-    fields = "__all__"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "CLIENTES"
-        context["subtitle"] = "Eliminar cliente"
-        context["previous_page"] = urls.reverse(
-            "rrggweb:customer_membership:list",
-            kwargs={"registrar_id": self.kwargs["registrar_id"]},
-        )
-        return context
-
-    def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:customer_membership:list",
-            kwargs={"registrar_id": self.kwargs["registrar_id"]},
-        )
-
-    def delete(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
         try:
-            return super().delete(request, *args, **kwargs)
+            self.object.membership.delete()
+            self.object.delete()
+            return redirect(self.get_success_url())
         except ProtectedError:
             messages.error(
                 request,
                 (
                     "No se puede eliminar este cliente porque tiene"
-                    " transacciones asociadas."
+                    " registros vehiculares asociados."
                 ),
             )
             return shortcuts.redirect(
-                "rrggweb:customer_membership:list",
+                "rrggweb:customer_membership:delete_natural_person",
                 registrar_id=self.kwargs["registrar_id"],
+                pk=self.object.id,
             )
-
-
-class CMDeletePersonSupportView(DeleteView):
-    template_name = "rrggweb/client/delete_form.html"
-
-    def form_valid(self, form):
-        self.object.membership.delete()
-        return super().form_valid(form)
 
     def get_success_url(self):
         return urls.reverse(
