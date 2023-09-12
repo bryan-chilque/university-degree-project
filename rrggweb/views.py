@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.deletion import ProtectedError
+from django.db.models import Q
 from django.forms import modelformset_factory
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -3778,11 +3779,34 @@ class CollectionInsuranceVehicleCreateCollectionView(
 class CustomerMembershipListView(ListView):
     template_name = "rrggweb/client/list.html"
     model = rrgg.models.CustomerMembership
+    context_object_name = "memberships"
+    paginate_by = 8
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            natural_persons = rrgg.models.NaturalPerson.objects.filter(
+                Q(given_name__icontains=query) |
+                Q(first_surname__icontains=query) |
+                Q(second_surname__icontains=query) |
+                Q(birthdate__icontains=query) |
+                Q(document_number__icontains=query)
+            ).distinct()
+            legal_persons = rrgg.models.LegalPerson.objects.filter(
+                Q(registered_name__icontains=query) |
+                Q(general_manager__icontains=query) |
+                Q(anniversary_date__icontains=query) |
+                Q(document_number__icontains=query)
+            ).distinct()
+            return list(natural_persons) + list(legal_persons)
+        else:
+            return super().get_queryset()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "CLIENTES"
         context["subtitle"] = "Lista de clientes"
+        context["search_query"] = self.request.GET.get("q", "")
 
         return context
 
