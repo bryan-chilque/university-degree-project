@@ -555,9 +555,14 @@ customer_membership_urlpatterns = (
             name="update_legal_person",
         ),
         path(
-            "delete/<int:pk>/",
-            views.CustomerMembershipDeleteView.as_view(),
-            name="delete",
+            "delete_natural_person/natural_person/<int:pk>",
+            views.CMDeleteNaturalPersonView.as_view(),
+            name="delete_natural_person",
+        ),
+        path(
+            "delete_legal_person/legal_person/<int:pk>",
+            views.CMDeleteLegalPersonView.as_view(),
+            name="delete_legal_person",
         ),
         path(
             "detail/<int:pk>/",

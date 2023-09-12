@@ -29,10 +29,11 @@
 					<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id membership.id %}">Detalle</a>
 					{% if membership.type_customer == "Persona natural" %}
 						<a href="{% url 'rrggweb:customer_membership:update_natural_person' view.kwargs.registrar_id membership.pick.id %}">Actualizar</a>
+						<a href="{% url 'rrggweb:customer_membership:delete_natural_person' view.kwargs.registrar_id membership.pick.id %}">Eliminar</a>
 					{% elif membership.type_customer == "Persona jurídica" %}
 						<a href="{% url 'rrggweb:customer_membership:update_legal_person' view.kwargs.registrar_id membership.pick.id %}">Actualizar</a>
+						<a href="{% url 'rrggweb:customer_membership:delete_legal_person' view.kwargs.registrar_id membership.pick.id %}">Eliminar</a>
 					{% endif %}
-					<a href="{% url 'rrggweb:customer_membership:delete' view.kwargs.registrar_id membership.id %}">Delete</a>
 				</td>
 			</tr>
 			{% empty %}
