@@ -3982,6 +3982,7 @@ class CMDeletePersonSupportView(DeleteView):
             self.object.membership.delete()
             self.object.delete()
             return redirect(self.get_success_url())
+
         except ProtectedError:
             messages.error(
                 request,
@@ -3990,11 +3991,7 @@ class CMDeletePersonSupportView(DeleteView):
                     " registros vehiculares asociados."
                 ),
             )
-            return shortcuts.redirect(
-                "rrggweb:customer_membership:delete_natural_person",
-                registrar_id=self.kwargs["registrar_id"],
-                pk=self.object.id,
-            )
+            return redirect(request.get_full_path())
 
     def get_success_url(self):
         return urls.reverse(
