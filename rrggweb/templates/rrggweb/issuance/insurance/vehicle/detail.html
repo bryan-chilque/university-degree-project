@@ -168,6 +168,10 @@
             <td>{{ ratio.insurance_vehicle }}</td>
           </tr>
           <tr>
+            <th>Plan de seguro</th>
+            <td>{{ object.insurance_plan }}</td>
+          </tr>
+          <tr>
             <th>Tipo de moneda</th>
             <td>{{ quotation.currency }}</td>
           </tr>
@@ -176,20 +180,20 @@
             <td>{{quotation.currency.symbol}}{{ quotation_premium.quotation_insurance_vehicle.insured_amount }}</td>
           </tr>
           <tr>
-            <th>Prima neta</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.amount }}</td>
-          </tr>
-          <tr>
-            <th>Prima comercial</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.commercial_premium }}</td>
-          </tr>
-          <tr>
             <th>Tasa</th>
             <td>{{quotation.currency.symbol}}{{ quotation_premium.rate }}</td>
           </tr>
           <tr>
+            <th>Prima neta</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.amount }}</td>
+          </tr>
+          <tr>
             <th>Derecho de emisión</th>
             <td>{{quotation.currency.symbol}}{{ quotation_premium.emission_right }}</td>
+          </tr>
+          <tr>
+            <th>Prima comercial</th>
+            <td>{{quotation.currency.symbol}}{{ quotation_premium.commercial_premium }}</td>
           </tr>
           <tr>
             <th>IGV</th>
@@ -198,10 +202,6 @@
           <tr>
             <th>Prima total</th>
             <td>{{quotation.currency.symbol}}{{ quotation_premium.total }}</td>
-          </tr>
-          <tr>
-            <th>Plan de seguro</th>
-            <td>{{ object.insurance_plan }}</td>
           </tr>
         </tbody>
       </table>

@@ -96,13 +96,9 @@ class SearchVehicleForm(forms.Form):
 class DefineOwnerForm(forms.Form):
     is_owner = forms.BooleanField(
         label=_("does the contractor own the vehicle?"),
-        widget=forms.CheckboxInput(
-            attrs={
-                "class": "form-check",
-                "type": "checkbox",
-                "for": "is_owner",
-            }
-        ),
+        widget=forms.RadioSelect(choices=((True, "Si"), (False, "No"))),
+        required=True,
+        initial=True,
     )
 
 
@@ -180,13 +176,9 @@ class InsuranceVehicleForm(forms.Form):
 class DefineNewSaleForm(forms.Form):
     has_quote = forms.BooleanField(
         label=_("new sale has a previous quote?"),
-        widget=forms.CheckboxInput(
-            attrs={
-                "class": "form-check",
-                "type": "checkbox",
-                "for": "has_quote",
-            }
-        ),
+        widget=forms.RadioSelect(choices=((True, "Si"), (False, "No"))),
+        required=True,
+        initial=True,
     )
 
 
