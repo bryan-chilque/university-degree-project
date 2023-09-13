@@ -1,29 +1,95 @@
 {% extends "rrggweb/dashboard.html" %}
+
 {% block title_section %}
-    {{ title }}
-    <h6>{{ subtitle }}</h6>
+{{ title }}
+<h6>{{ subtitle }}</h6>
 {% endblock title_section %}
+
 {% block content %}
-<a href="{{ previous_page }}">Volver a la lista</a>
-  <p><strong>ID:</strong> {{ object.id }}</p>
-  <p><strong>Cliente:</strong> {{ object.pick }}</p>
-  <p><strong>Tipo de Persona:</strong> {{ object.person_type }}</p>
-  {% if object.natural_person %}
-    <p><strong>Nombre:</strong> {{ object.natural_person.given_name }}</p>
-    <p><strong>Primer Apellido:</strong> {{ object.natural_person.first_surname }}</p>
-    <p><strong>Segundo Apellido:</strong> {{ object.natural_person.second_surname|default:"-" }}</p>
-    <p><strong>Fecha de Nacimiento:</strong> {{ object.natural_person.birthdate }}</p>
-        <p><strong>Teléfono:</strong> {{ object.natural_person.phone_number }}</p>
-        <p><strong>Correo Electrónico:</strong> {{ object.natural_person.email }}</p>
-        <p><strong>Tipo de Documento:</strong> {{ object.natural_person.document_type }}</p>
-      <p><strong>Número de Documento:</strong> {{ object.natural_person.document_number }}</p>
-  {% elif object.legal_person %}
-    <p><strong>Nombre Registrado:</strong> {{ object.legal_person.registered_name }}</p>
-    <p><strong>Gerente General:</strong> {{ object.legal_person.general_manager }}</p>
-    <p><strong>Fecha de Aniversario:</strong> {{ object.legal_person.anniversary_date }}</p>
-        <p><strong>Teléfono:</strong> {{ object.legal_person.phone_number }}</p>
-        <p><strong>Correo Electrónico:</strong> {{ object.legal_person.email }}</p>
-        <p><strong>Tipo de Documento:</strong> {{ object.legal_person.document_type }}</p>
-      <p><strong>Número de Documento:</strong> {{ object.legal_person.document_number }}</p>
-  {% endif %}
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
+      <i class="fas fa-long-arrow-alt-left"></i> Volver
+    </a>
+    <table class="table table-striped mt-3">
+      <tbody>
+        <tr>
+          <th>ID:</th>
+          <td>{{ object.id }}</td>
+        </tr>
+        <tr>
+          <th>Cliente:</th>
+          <td>{{ object.pick }}</td>
+        </tr>
+        <tr>
+          <th>Tipo de Persona:</th>
+          <td>{{ object.person_type }}</td>
+        </tr>
+        {% if object.natural_person %}
+        <tr>
+          <th>Nombre:</th>
+          <td>{{ object.natural_person.given_name }}</td>
+        </tr>
+        <tr>
+          <th>Primer Apellido:</th>
+          <td>{{ object.natural_person.first_surname }}</td>
+        </tr>
+        <tr>
+          <th>Segundo Apellido:</th>
+          <td>{{ object.natural_person.second_surname|default:"-" }}</td>
+        </tr>
+        <tr>
+          <th>Fecha de Nacimiento:</th>
+          <td>{{ object.natural_person.birthdate }}</td>
+        </tr>
+        <tr>
+          <th>Teléfono:</th>
+          <td>{{ object.natural_person.phone_number }}</td>
+        </tr>
+        <tr>
+          <th>Correo Electrónico:</th>
+          <td>{{ object.natural_person.email }}</td>
+        </tr>
+        <tr>
+          <th>Tipo de Documento:</th>
+          <td>{{ object.natural_person.document_type }}</td>
+        </tr>
+        <tr>
+          <th>Número de Documento:</th>
+          <td>{{ object.natural_person.document_number }}</td>
+        </tr>
+        {% elif object.legal_person %}
+        <tr>
+          <th>Nombre Registrado:</th>
+          <td>{{ object.legal_person.registered_name }}</td>
+        </tr>
+        <tr>
+          <th>Gerente General:</th>
+          <td>{{ object.legal_person.general_manager }}</td>
+        </tr>
+        <tr>
+          <th>Fecha de Aniversario:</th>
+          <td>{{ object.legal_person.anniversary_date }}</td>
+        </tr>
+        <tr>
+          <th>Teléfono:</th>
+          <td>{{ object.legal_person.phone_number }}</td>
+        </tr>
+        <tr>
+          <th>Correo Electrónico:</th>
+          <td>{{ object.legal_person.email }}</td>
+        </tr>
+        <tr>
+          <th>Tipo de Documento:</th>
+          <td>{{ object.legal_person.document_type }}</td>
+        </tr>
+        <tr>
+          <th>Número de Documento:</th>
+          <td>{{ object.legal_person.document_number }}</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}

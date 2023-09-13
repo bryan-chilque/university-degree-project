@@ -4,19 +4,22 @@
 <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
-<div class="row">
+<div class="row mb-3">
 	<div class="col-md-3">
-			<form class="form-inline">
-					<div class="input-group">
-							<input class="form-control" type="search" placeholder="Search" aria-label="Search" name="q" value="{{ search_query }}">
-							<div class="input-group-append">
-									<button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
-							</div>
-					</div>
-			</form>
+		<form class="form-inline">
+			<div class="input-group">
+				<input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="q" value="{{ search_query }}">
+				<div class="input-group-append">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+					{% if search_query %}
+					<button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="window.location.href='{% url 'rrggweb:customer_membership:list' view.kwargs.registrar_id %}'"><i class="fa fa-times"></i></button>
+					{% endif %}
+				</div>
+			</div>
+		</form>
 	</div>
-	<div class="col-md-9 text-right">
-			<a href="{% url 'rrggweb:customer_membership:select_customer' view.kwargs.registrar_id %}" class="btn btn-primary"><i class="fa fa-plus"></i> Crear</a>
+	<div class="col-md-9 text-end mt-3 mt-md-0">
+		<a href="{% url 'rrggweb:customer_membership:select_customer' view.kwargs.registrar_id %}" class="btn btn-primary"><i class="fa fa-plus"></i> Crear Cliente</a>
 	</div>
 </div>
 <div class="table-responsive">
