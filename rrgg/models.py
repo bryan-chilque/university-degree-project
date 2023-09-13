@@ -169,6 +169,13 @@ class CustomerMembership(models.Model):
             )
         super().save(*args, **kwargs)
 
+    @property
+    def type_customer(self):
+        if self.natural_person:
+            return "Persona natural"
+        elif self.legal_person:
+            return "Persona jurídica"
+
     def __str__(self):
         if self.natural_person:
             return f"{self.natural_person}"

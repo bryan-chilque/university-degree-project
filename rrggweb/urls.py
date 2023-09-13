@@ -522,6 +522,58 @@ collection_urlpatterns = (
     "collection",
 )
 
+customer_membership_urlpatterns = (
+    [
+        path(
+            "list/",
+            views.CustomerMembershipListView.as_view(),
+            name="list",
+        ),
+        path(
+            "select_customer/",
+            views.SelectCustomerMembershipFormView.as_view(),
+            name="select_customer",
+        ),
+        path(
+            "create_natural_person/seller/",
+            views.CMCreateNaturalPersonView.as_view(),
+            name="create_natural_person",
+        ),
+        path(
+            "create_legal_person/seller/",
+            views.CMCreateLegalPersonView.as_view(),
+            name="create_legal_person",
+        ),
+        path(
+            "update_natural_person/natural_person/<int:natural_person_id>",
+            views.CMUpdateNaturalPersonView.as_view(),
+            name="update_natural_person",
+        ),
+        path(
+            "update_legal_person/legal_person/<int:legal_person_id>",
+            views.CMUpdateLegalPersonView.as_view(),
+            name="update_legal_person",
+        ),
+        path(
+            "delete_natural_person/natural_person/<int:pk>",
+            views.CMDeleteNaturalPersonView.as_view(),
+            name="delete_natural_person",
+        ),
+        path(
+            "delete_legal_person/legal_person/<int:pk>",
+            views.CMDeleteLegalPersonView.as_view(),
+            name="delete_legal_person",
+        ),
+        path(
+            "detail/<int:pk>/",
+            views.CustomerMembershipDetailView.as_view(),
+            name="detail",
+        ),
+    ],
+    "customer_membership",
+)
+
+
 app_name = "rrggweb"
 
 urlpatterns = [
@@ -546,4 +598,8 @@ urlpatterns = [
     path("<int:registrar_id>/quotation/", include(quotation_urlpatterns)),
     path("<int:registrar_id>/issuance/", include(issuance_urlpatterns)),
     path("<int:registrar_id>/collection/", include(collection_urlpatterns)),
+    path(
+        "<int:registrar_id>/customer_membership/",
+        include(customer_membership_urlpatterns),
+    ),
 ]
