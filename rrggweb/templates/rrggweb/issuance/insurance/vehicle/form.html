@@ -175,7 +175,7 @@
             <table class="table table-sm table-bordered">
               <thead>
                 <tr>
-                  <th colspan="2" class="font-weight-bold">Datos de la cotización</th>
+                  <th colspan="2" class="font-weight-bold">Datos de la emisión</th>
                 </tr>
               </thead>
               <tbody>
@@ -206,6 +206,10 @@
                   </td>
                 </tr>
                 <tr>
+                  <td class="font-weight-bold">Tasa</td>
+                  <td>{{quotation.currency.symbol}}{{ premium.rate }}</td>
+                </tr>
+                <tr>
                   <td class="font-weight-bold">Prima neta</td>
                   <td>
                     {{quotation.currency.symbol}}{{ premium.amount }}
@@ -216,10 +220,6 @@
                   <td>
                     {{quotation.currency.symbol}}{{ premium.commercial_premium }}
                   </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Tasa</td>
-                  <td>{{quotation.currency.symbol}}{{ premium.rate }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima total</td>
