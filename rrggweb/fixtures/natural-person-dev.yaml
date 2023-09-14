@@ -1,0 +1,2834 @@
+- model: rrgg.naturalperson
+  pk: 10
+  fields:
+    given_name: JORGE LUIS
+    first_surname: ACOSTA
+    second_surname: MENDIETA
+    document_type: 1
+    document_number: 08662249
+    birthdate: 1966-11-03
+    email: JORGE_0187@HOTMAIL.COM
+    email2:
+    address: AV. CALLE LOMA FLOR 214 PROLONGACIÓN- SURCO
+    phone_number: 998194768
+- model: rrgg.customermembership
+  pk: 10
+  fields:
+    natural_person: 10
+    seller: 9
+
+- model: rrgg.naturalperson
+  given_name: MARIA BEATRIZ
+  first_surname: AGUILAR
+  second_surname: GARCIA
+  document_number: 07877727
+  birthdate: 7/8/1971
+  seller: 9
+  email: CROCA@KCS.PE
+  email2:
+  address: CALLE MARTIR OLAYA 439 - LIMA
+  phone_number: 989231399
+- model: rrgg.naturalperson
+  given_name: JOHNNY CARLOS
+  first_surname: AGUILAR
+  second_surname: HERMOSA
+  document_number: 08676520
+  birthdate: 30/10/1968
+  seller: 9
+  email: JCAGUILAH.JA@GMAIL.COM
+  email2:
+  address: JUAN NICOLINI 114 SAN MARTIN DE PORRAS
+  phone_number: 992685015
+- model: rrgg.naturalperson
+  given_name:  MAYBÉE PALMIRA
+  first_surname: ALCÁNTARA
+  second_surname: REZA
+  document_number: 43333287
+  birthdate: 20/3/1980
+  seller: 9
+  email: MAYALRE2012@GMAIL.COM
+  email2:
+  address: URB LOS GIRASOLES MZ F LT 5- LA MOLINA
+  phone_number: 932288215
+- model: rrgg.naturalperson
+  given_name: GLORIA ANGELICA
+  first_surname: ALIAGA
+  second_surname: CANO
+  document_number: 07659006
+  birthdate: 15/10/1965
+  seller: 9
+  email: GALIAGA@INTEGRA.COM.PE
+  email2:
+  address: AV BOLIVIA 211 SAN FERNANDO CHOSICA
+  phone_number: 966182771
+- model: rrgg.naturalperson
+  given_name: HUGO ESTEBENSON
+  first_surname: ALIAGA
+  second_surname: MARIN
+  document_number: 08296740
+  birthdate: 29/8/1957
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: CALLE C 20 URBANIZACIÓN ROCIO DEL GOLF BLOQUE Y 404 LIMA
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: PEDRO JOSE
+  first_surname: ALVA
+  second_surname: MONGE
+  document_number: 42000009
+  birthdate: 1/7/1983
+  seller: 9
+  email: PALVA@AYPLABOGADOS.COM
+  email2:
+  address: CALLE LOS GORRIONES 140 DEPARTAMENTO 303- SAN ISIDRO
+  phone_number: 944661180
+- model: rrgg.naturalperson
+  given_name: IVAN ALEJANDRO
+  first_surname: ALVARADO
+  second_surname: GALLARDO
+  document_number: 08887908
+  birthdate: 17/2/1968
+  seller: 9
+  email: IALVARADOG@GMAIL.COM
+  email2:
+  address: CALLE PUQUINA 272 SALAMANCA ATE
+  phone_number: 949207824
+- model: rrgg.naturalperson
+  given_name: FATIMA CECILIA
+  first_surname: ALVARADO
+  second_surname: PINEDA
+  document_number: 07638647
+  birthdate: 30/1/1964
+  seller: 9
+  email: MGHG07@HOTMAIL.COM
+  email2:
+  address: AV. DEL PARQUE SUR N° 510 – DPTO. 201
+  phone_number: 959054425
+- model: rrgg.naturalperson
+  given_name: JOSE MANUEL
+  first_surname: ALVAREZ
+  second_surname: ROSARIO
+  document_number: 17920760
+  birthdate: 23/7/1966
+  seller: 9
+  email: JOSECOL80@HOTMAIL.COM
+  email2:
+  address: LIMA POLO NRO. 261 TORRE B DPTO. 302  SURCO
+  phone_number: 991065787
+- model: rrgg.naturalperson
+  given_name: JORGE LUIS
+  first_surname: ANGULO
+  second_surname: TEJADA
+  document_number: 19238510
+  birthdate: 29/4/1962
+  seller: 9
+  email: JORANTE2001@HOTMAIL.COM
+  email2:
+  address: GONZALES PRADA DPTOB- SURQUILLO
+  phone_number: 997358670
+- model: rrgg.naturalperson
+  given_name: RAY DEMETRIO
+  first_surname: APAZA
+  second_surname: CONDE
+  document_number: 70290683
+  birthdate: 14/5/1990
+  seller: 9
+  email: YANET_95JC@HOTMAIL.COM
+  email2:
+  address: AV CALLE JERUSALEN NRO CA JERUSALEN ASOC PV SANTIAGO CUSCO
+  phone_number: 984811320
+- model: rrgg.naturalperson
+  given_name: JACINTO HILDEBRANDO
+  first_surname: APAZA
+  second_surname: SORIA
+  document_number: 06862625
+  birthdate: 17/8/1965
+  seller: 9
+  email: HILDEBRANDO1708@HOTMAIL.COM
+  email2:
+  address: AVENIDA LA MERCED 1089 DEPARTAMENTO 302 BLOQUE CH SURCO
+  phone_number: 961449830
+- model: rrgg.naturalperson
+  given_name: LILIANA MARIA
+  first_surname: ARBE
+  second_surname: HORNES
+  document_number: 07701976
+  birthdate: 14/5/1960
+  seller: 9
+  email: LILIANA_ARBE@HOTMAIL.COM
+  email2:
+  address: AV. SAN BORJA NORTE 1333 DPTO. 201 - SAN BORJA
+  phone_number: 2616795
+- model: rrgg.naturalperson
+  given_name: LITA JEANNY
+  first_surname: ARBULU
+  second_surname: DE DIAZ FAJARDO
+  document_number: 10137101
+  birthdate: 5/6/1974
+  seller: 9
+  email:
+  email2:
+  address: CALLE PADRE URRACA 111 TORRE II DPT SAN MIGUEL
+  phone_number: 991033350
+- model: rrgg.naturalperson
+  given_name: ANGELO GIOVANNI
+  first_surname: ARBULU
+  second_surname: ZEGARRA
+  document_number: 42081359
+  birthdate: 20/9/1983
+  seller: 9
+  email: ANGELOARBULU@GMAIL.COM
+  email2:
+  address: NICOLAS DE RIVERA NRO 105 URB SALAMANCA ATE
+  phone_number: 987768721
+- model: rrgg.naturalperson
+  given_name: BUENO EMILIO
+  first_surname: ARCE
+  second_surname: DE LA TORRE
+  document_number: 08536727
+  birthdate: 12/9/1958
+  seller: 9
+  email: ARCETORRE@HOTMAIL.COM
+  email2:
+  address: CA. LOS TAMARINDOS MZ B LT 3 LA
+  phone_number: 943410188
+- model: rrgg.naturalperson
+  given_name: CARLOS AUGUSTO
+  first_surname: ARENAS
+  second_surname: LLONTOP
+  document_number: 07761857
+  birthdate: 23/8/1974
+  seller: 9
+  email: CARENAS74@HOTMAIL.COM
+  email2:
+  address: TARAPACA NRO 209 MAGDALENA DEL MAR
+  phone_number: 2634985
+- model: rrgg.naturalperson
+  given_name: HUGO MARTIN
+  first_surname: ARESTEGUI
+  second_surname: GARCIA
+  document_number: 07199881
+  birthdate: 11/10/1964
+  seller: 9
+  email: HARESTEGUI@JRLINDLEY.COM.PE
+  email2:
+  address: AVENIDA GENERAL SANTA CRUZ 558 DEPARTA SURQUILLO
+  phone_number: 980053526
+- model: rrgg.naturalperson
+  given_name: OSCAR MANUEL
+  first_surname: ARRIOLA
+  second_surname: DELGADO
+  document_number: 16476812
+  birthdate: 10/8/1966
+  seller: 9
+  email: MURPHI_981@HOTMAIL.COM
+  email2:
+  address: CALLE LA DOCENCIA DPT201 URB. COVIDA
+  phone_number: 989214222
+- model: rrgg.naturalperson
+  given_name: MILUSKA IVANA
+  first_surname: ASMAT
+  second_surname: CUTI
+  document_number: 74309942
+  birthdate: 20/7/1995
+  seller: 9
+  email: MILU.ASMAT20@GMAIL.COM
+  email2:
+  address: JR. CURAZAO 587 URB. SANTA PATRICIA ETAPA MOLINA
+  phone_number: 940549658
+- model: rrgg.naturalperson
+  given_name: EDWIN ALBERT
+  first_surname: AVALOS
+  second_surname: ESPINOZA
+  document_number: 32925370
+  birthdate: 6/8/1969
+  seller: 9
+  email: AVALOSEDWIN@HOTMAIL.COM
+  email2:
+  address: JIRÓN CARAVELI 976 - MAGDALENA
+  phone_number: 955819590
+- model: rrgg.naturalperson
+  given_name: MAXS DEYVIS
+  first_surname: AYORA
+  second_surname: INOÑAN
+  document_number: 40262970
+  birthdate: 6/8/1979
+  seller: 9
+  email: MAX_AYORA@HOTMAIL.COM
+  email2:
+  address: CALLE ALFONSO UGARTE 812-3ER PISO CHICLAYO
+  phone_number: 997906177
+- model: rrgg.naturalperson
+  given_name: JOSE ISIDRO
+  first_surname: BAELLA
+  second_surname: MALCA
+  document_number: 09937296
+  birthdate: 11/8/1960
+  seller: 9
+  email: JOBAMA11@YAHOO.ES
+  email2:
+  address: DOÑA HILDA 167 169 DPTO. 102 SANTIAGO DE SURCO
+  phone_number: 989174290
+- model: rrgg.naturalperson
+  given_name: ROGER LUIS
+  first_surname: BASAURI
+  second_surname: ALMANDOZ
+  document_number: 09451258
+  birthdate: 26/5/1954
+  seller: 9
+  email: ROGERBALMAN2@GMAIL.COM
+  email2:
+  address: JIRÓN NAZCA 367 DEPARTAMENTO 1004 - REFERENCIA TORRE A JESUS MARIA
+  phone_number: 987654321
+- model: rrgg.naturalperson
+  given_name: BRENDALY DANAE
+  first_surname: BAUTISTA
+  second_surname: CARBALLIDO
+  document_number: 70838516
+  birthdate: 9/1/1991
+  seller: 9
+  email: BRENDALY.BAUTISTA.C@GMAIL.COM
+  email2:
+  address: SANTA ROSA MZ I LOTE 30 CHANCAY
+  phone_number: 989898989
+- model: rrgg.naturalperson
+  given_name: ROXANA ZARELA
+  first_surname: BEDREGAL
+  second_surname: CUSQUILLO
+  document_number: 41150039
+  birthdate: 27/11/1981
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: CALLE LOS NOGALES NRO 594 LOS FICUS ATE
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: CYNTHIA LORENA
+  first_surname: BEJARANO
+  second_surname: BASURTO
+  document_number: 10003545
+  birthdate: 5/9/1975
+  seller: 9
+  email: CBEJARANOB@HOTMAIL.COM
+  email2:
+  address: ARGENTA 185 DPTO. 102 SAN BORJA
+  phone_number: 994671455
+- model: rrgg.naturalperson
+  given_name: GIANCARLO
+  first_surname: BENFENATI
+  second_surname: PIERANTONI
+  document_number: 43041915
+  birthdate: 6/8/1948
+  seller: 9
+  email: GBENFENATI@HOTMAIL.COM
+  email2:
+  address: CALLE TRECE MZ Ñ LOTE 10 ATE LIMA
+  phone_number: 3520757
+- model: rrgg.naturalperson
+  given_name: MARIO ERNESTO
+  first_surname: BERGHUSEN
+  second_surname: ANTEPARRA
+  document_number: 74022701
+  birthdate: 15/2/1999
+  seller: 9
+  email: MREYNA@KCS.PE
+  email2:
+  address: CALLE RIO TAMBO 281 PUEBLO LIBRE
+  phone_number: 968968855
+- model: rrgg.naturalperson
+  given_name: LUIS OCTAVIO
+  first_surname: BISSO
+  second_surname: PUN
+  document_number: 06785644
+  birthdate: 22/3/1961
+  seller: 9
+  email: LUISBISSOP@GMAIL.COM
+  email2:
+  address: CALLE FEDER GALLESE 601 DEPARTAMENTO D204 SAN MIGUEL
+  phone_number: 997540076
+- model: rrgg.naturalperson
+  given_name: FERNANDO VICENTE
+  first_surname: BISSO
+  second_surname: RAMIREZ
+  document_number: 46752363
+  birthdate: 26/1/1991
+  seller: 9
+  email: LUISBISSOP@GMAIL.COM
+  email2:
+  address: CALLE FEDER GALLESE 601 DEPARTAMENTO D204 SAN MIGUEL
+  phone_number: 997540076
+- model: rrgg.naturalperson
+  given_name: GINO GUILLERMO
+  first_surname: BOURONCLE
+  second_surname: LUQUE
+  document_number: 44415866
+  birthdate: 17/11/1957
+  seller: 9
+  email: SCANATOR_05@YAHOO.ES
+  email2:
+  address: JIRÓN LEONCIO PRADO 318 DPTO 305
+  phone_number: 997574324
+- model: rrgg.naturalperson
+  given_name: GUSTAVO RODOLFO
+  first_surname: BUENDIA
+  second_surname: VILA
+  document_number: 10543082
+  birthdate: 9/6/1977
+  seller: 9
+  email: YSABEL.CABALLERO@UNID.EDU.PE
+  email2:
+  address: AV 28 DE JULIO NRO 687 INT 302 URB SANTA CATALINA REF ALT DE PARQUE LA VICTORIA
+  phone_number: 989021661
+- model: rrgg.naturalperson
+  given_name: CARLOS ENRIQUE
+  first_surname: BUITANO
+  second_surname: MERCADO
+  document_number: 10477107
+  birthdate: 11/4/1977
+  seller: 9
+  email: CARLOSBUITANO@HOTMAIL.COM
+  email2:
+  address: CALLE MORRO SOLAR 352
+  phone_number: 965722449
+- model: rrgg.naturalperson
+  given_name: VILMA ESTHER
+  first_surname: BULNES
+  second_surname: CANEVARO
+  document_number: 08615762
+  birthdate: 8/9/1961
+  seller: 9
+  email: PACHECOSG@HOTMAIL.COM
+  email2:
+  address: CALLE EUGENIO DE LA TORRE 231 - 501 - SAN MIGUEL
+  phone_number: 991109769
+- model: rrgg.naturalperson
+  given_name: JORGE RAUL
+  first_surname: CAFFERATA
+  second_surname: GAMERO
+  document_number: 07875894
+  birthdate: 1/3/1972
+  seller: 9
+  email: J.CAFFERATA@HOTMAIL.COM
+  email2:
+  address: CA.VENECIA 130 URB. SOL DE LA MOLINA - LA MOLINA (LIMA 12) - LIMA
+  phone_number: 945090199
+- model: rrgg.naturalperson
+  given_name: PABLO EDUARDO
+  first_surname: CAMPOS
+  second_surname: MAZA
+  document_number: 43584100
+  birthdate: 14/5/1962
+  seller: 9
+  email: ABLITOEDU@HOTMAIL.COM
+  email2:
+  address: LA MARQUESA NRO 136 URB PROLONGACION BENAVIDES SANTIAGO DE SURCO
+  phone_number: 993546474
+- model: rrgg.naturalperson
+  given_name: JOSE
+  first_surname: CANDIA
+  second_surname: CAHUANA
+  document_number: 43529688
+  birthdate: 1/12/1954
+  seller: 9
+  email: JCANDIA83@YAHOO.ES
+  email2:
+  address: CALLE GUATEMALA 283 SANTA PATRICIA LA MOLINA
+  phone_number: 998703331
+- model: rrgg.naturalperson
+  given_name: JOSE ANTONIO
+  first_surname: CAPA
+  second_surname: GURBILLON
+  document_number: 10176297
+  birthdate: 2/1/1961
+  seller: 9
+  email: JOSCAPA@HOTMAIL.CO M
+  email2:
+  address: CA.JOSE MANUEL QUIROZ 180 DPTO.108 SURCO
+  phone_number: 997558432
+- model: rrgg.naturalperson
+  given_name: ELIZABETH NIEVES
+  first_surname: CARBAJAL
+  second_surname: ARROSPIDE
+  document_number: 09138099
+  birthdate: 13/5/1964
+  seller: 9
+  email: E_CARBAJALAR@YAHOO.COM
+  email2:
+  address: AV. CLLE 6 192 DPTO 101 MONTERRICO NORTE- SAN BORJA
+  phone_number: 993461029
+- model: rrgg.naturalperson
+  given_name: CLARA
+  first_surname: CARBAJAL
+  second_surname: MORENO
+  document_number: 06187883
+  birthdate: 1/5/1966
+  seller: 9
+  email: PHIL_VALVERDE@HOTMAIL.COM
+  email2:
+  address: JIRON CORNELIO BORDA 165 LIMA
+  phone_number: 970651788
+- model: rrgg.naturalperson
+  given_name: MARIO
+  first_surname: CARBAJAL
+  second_surname: MORENO
+  document_number: 09798503
+  birthdate: 19/12/1971
+  seller: 9
+  email: PHIL_VALVERDE@HOTMAIL.COM
+  email2:
+  address: JIRON CORNELIO BORDA 165 LIMA
+  phone_number: 970651788
+- model: rrgg.naturalperson
+  given_name: JOSE JULIO
+  first_surname: CARNEIRO
+  second_surname: AREVALO
+  document_number: 09376615
+  birthdate: 6/6/1967
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: CALLE MIGUEL ANGEL 310 – SAN BORJA
+  phone_number: 920804526
+- model: rrgg.naturalperson
+  given_name: NINFA
+  first_surname: CARPIO
+  second_surname: TICONA
+  document_number: 10713722
+  birthdate: 12/8/1955
+  seller: 9
+  email: BRUCCE.ECHENIQUE@DEGUSTE.COM.PE
+  email2:
+  address: CALLE MARIANO MELGAR NRO 215 DEPARTAMENTO 201
+  phone_number:
+- model: rrgg.naturalperson
+  given_name: JACQUELINE ASTRID
+  first_surname: CARRASCO
+  second_surname: RUIZ
+  document_number: 71033471
+  birthdate: 16/1/1991
+  seller: 9
+  email: ASTRID_CARRASCO@OUTLOOK.COM
+  email2:
+  address: LOS FRUTALES UCV NRO 175 LOTE 55 URB HUAYCAN ATE
+  phone_number: 992096937
+- model: rrgg.naturalperson
+  given_name: FIORELLA LEONOR
+  first_surname: CARRERA
+  second_surname: DIAZ
+  document_number: 42798480
+  birthdate: 10/12/1984
+  seller: 9
+  email: CARRERA.FIORELLA@GMAIL.COM
+  email2:
+  address: REPUBLICA DE PANAMA NRO 348 DPTO 407 BARRANCO
+  phone_number: 993491438
+- model: rrgg.naturalperson
+  given_name: VICTOR DALMIRO
+  first_surname: CARRERA
+  second_surname: QUINTANILLA
+  document_number: 43596536
+  birthdate: 23/5/1959
+  seller: 9
+  email: VCARRERAQ@YAHOO.COM
+  email2:
+  address: CARLOS PORRAS OSORES NRO 284 DPTO 501 SAN ISIDRO
+  phone_number: 997565067
+- model: rrgg.naturalperson
+  given_name: CLAUDIA ROXANA
+  first_surname: CASAS
+  second_surname: CARRION
+  document_number: 40348777
+  birthdate: 19/11/1979
+  seller: 9
+  email: CLAUDIACC20@OUTLOOK.COM
+  email2:
+  address: CIRO ALEGRIA 248 PUEBLO LIBRE
+  phone_number: 982600348
+- model: rrgg.naturalperson
+  given_name: JOSE CARLOS DIONICIO
+  first_surname: CASAS
+  second_surname: CARRION
+  document_number: 45510212
+  birthdate: 18/1/1989
+  seller: 9
+  email: JOSECASAS1981@GMAIL.COM
+  email2:
+  address: JR CIRO ALEGRIA NRO 248 PUEBLO LIBRE
+  phone_number: 975109523
+- model: rrgg.naturalperson
+  given_name: JOSE LUIS
+  first_surname: CASAS
+  second_surname: CARRION
+  document_number: 43275024
+  birthdate: 15/1/1981
+  seller: 9
+  email: JOSECASAS1981@GMAIL.COM
+  email2:
+  address: JR CIRO ALEGRIA NRO 248 PUEBLO LIBRE
+  phone_number: 975109523
+- model: rrgg.naturalperson
+  given_name: YOLANDA
+  first_surname: CELIS
+  second_surname: OCAMPO
+  document_number: 00811918
+  birthdate: 21/9/1954
+  seller: 9
+  email: YOLICELIS.ORIFLAME@HOTMAIL.COM
+  email2:
+  address: CALLE 6 173 URB CORPAC SAN ISIDRO
+  phone_number: 926852888
+- model: rrgg.naturalperson
+  given_name: TULA AMELIA
+  first_surname: CERVERA
+  second_surname: NORIEGA
+  document_number: 27688428
+  birthdate: 16/2/1965
+  seller: 9
+  email: DLETURIA@KCS.PE
+  email2:
+  address: DEL PACIFICO NRO 180 DPTO 601 RESIDENCIAL TORRE 3
+  phone_number: 987540854
+- model: rrgg.naturalperson
+  given_name: CHRISTIAN
+  first_surname: CHAVARRY
+  second_surname: VIGIL
+  document_number: 42795477
+  birthdate: 4/1/1985
+  seller: 9
+  email: CCHAVARRIV@HOTMAIL.COM
+  email2:
+  address: AV DEL PINAR 180 CHACARILLA SANTIAGO DE SURCO
+  phone_number: 982210582
+- model: rrgg.naturalperson
+  given_name: JUAN JOSÉ
+  first_surname: CHIARELLA
+  second_surname: RONDON
+  document_number: 45249646
+  birthdate: 18/8/1988
+  seller: 9
+  email: JUANJO.CHIARELLA@GMAIL.COM
+  email2:
+  address: CALLE LAS TRADICIONES 1 DEPARTAMENTO SN SURCO
+  phone_number: 982210582
+- model: rrgg.naturalperson
+  given_name: CARLOS EDWIN
+  first_surname: CHONG
+  second_surname: CAMPANA
+  document_number: 43265400
+  birthdate: 6/12/1963
+  seller: 9
+  email: ANAPAU105@HOTMAIL.COM
+  email2:
+  address: CALLE DOMODOSSOLA 142 URB SURQUILLO
+  phone_number: 989071438
+- model: rrgg.naturalperson
+  given_name: JAVIER RAMON
+  first_surname: CHUMAN
+  second_surname: ROJAS
+  document_number: 18011854
+  birthdate: 20/1/1972
+  seller: 9
+  email: AYG1965@GMAIL.COM
+  email2:
+  address: MONTE UMBROSO 470 VALLE HERMOSO
+  phone_number: 950305624
+- model: rrgg.naturalperson
+  given_name: YOHANIM OSWALDO
+  first_surname: CHUQUILLANQUI
+  second_surname: OSPINA
+  document_number: 00499415
+  birthdate: 18/4/1961
+  seller: 9
+  email: YCHUQUILLANQUI@HOTMAIL.ES
+  email2:
+  address: CALLE EL BOSQUE MZ E LT 40 URB LA MOLINA
+  phone_number: 989072007
+- model: rrgg.naturalperson
+  given_name: WILMER ENRIQUE
+  first_surname: CISNEROS
+  second_surname: ALFARO
+  document_number: 32814388
+  birthdate: 24/9/1965
+  seller: 9
+  email: WCISNEROS@COVIPERU.COM
+  email2:
+  address: CALLE LOMAS LOS PENSAMIENTOS MZ G LT 14 SURCO
+  phone_number: 989187870
+- model: rrgg.naturalperson
+  given_name: NEYDA ALEJANDRA
+  first_surname: CONTRERAS
+  second_surname: GIRON
+  document_number: 02217644
+  birthdate: 2/1/1981
+  seller: 9
+  email: ALECONTRERAS714@GMAIL.COM
+  email2:
+  address: LOS ABEDULES 285 CAMACHO LA MOLINA
+  phone_number: 932574440
+- model: rrgg.naturalperson
+  given_name: JOSE RAUL
+  first_surname: CORBERA
+  second_surname: TENORIO
+  document_number: 07189644
+  birthdate: 19/1/1960
+  seller: 9
+  email: JRCORBERAT@HOTMAIL.COM
+  email2:
+  address: PARQUE ALMAGRO 130- JESUS MARIA
+  phone_number: 982013914
+- model: rrgg.naturalperson
+  given_name: PERCY ALAN
+  first_surname: CORTEZ
+  second_surname: VELASQUEZ
+  document_number: 44113603
+  birthdate: 15/2/1987
+  seller: 9
+  email: PERCY.CORTEZ@VECOR.COM.PE
+  email2:
+  address: AV PACIFICO MZ A1 LTE 4 URB LAS CASUARINAS ETAPA 2 REF FTE AL MERCADO BUENOS AIRES CHIMBOTE
+  phone_number: 941973203
+- model: rrgg.naturalperson
+  given_name: MARIA FE
+  first_surname: CRUZ
+  second_surname: LLONTO
+  document_number: 73307497
+  birthdate: 1/2/2003
+  seller: 9
+  email: MARIAFECRUZLLONTO@GMAIL.COM
+  email2:
+  address: MALECON PAUL HARRIS 250 - BARRANCO
+  phone_number: 987070310
+- model: rrgg.naturalperson
+  given_name: ROLANDO ANDRES
+  first_surname: CUEVA
+  second_surname: LOPEZ
+  document_number: 43571204
+  birthdate: 4/12/1962
+  seller: 9
+  email: ROLAN_101@HOTMAIL.COM
+  email2:
+  address: CALLE ERNESTO ODRIOZOLA 178 PUEBLO LIBRE
+  phone_number: 993594068
+- model: rrgg.naturalperson
+  given_name: ALEJANDRO FAVIO
+  first_surname: CUZCANO
+  second_surname: CRUZATE
+  document_number: 09441830
+  birthdate: 9/9/1969
+  seller: 9
+  email: AFCC830@GMAIL.COM
+  email2:
+  address: AVENIDA BRASIL 1392 BLOCK A
+  phone_number: 987712440
+- model: rrgg.naturalperson
+  given_name: DENIS JUAN DOMINGO
+  first_surname: DAVILA
+  second_surname: OLIVERO
+  document_number: 20560665
+  birthdate: 22/6/1963
+  seller: 9
+  email: JORGEBENITEZR@HOTMAIL.COM
+  email2:
+  address: CALLE CERRO AZUL 130 URB. SAN IGNACIO SURCO
+  phone_number: 980607766
+- model: rrgg.naturalperson
+  given_name: RENE AUGUSTO
+  first_surname: DE LA FUENTE
+  second_surname: VILLA GARCIA
+  document_number: 07264230
+  birthdate: 31/7/1972
+  seller: 9
+  email: RFUENTESVG@OUTOLOOK.COM
+  email2:
+  address: CALLE BALTAZAR 315 - SAN ISIDRO (LIMA 27) - LIMA (PROV)
+  phone_number: 989046473
+- model: rrgg.naturalperson
+  given_name: OSCAR ENRIQUE
+  first_surname: DEL POZO
+  second_surname: ACOSTA
+  document_number: 25675184
+  birthdate: 11/2/1958
+  seller: 9
+  email: OSCAR.DELPOZOA@GMAIL.COM
+  email2:
+  address: CALLE BOLOGNESI 463 - REFERENCIA CASA 2 LA PUNTA CALLAO
+  phone_number: 977517503
+- model: rrgg.naturalperson
+  given_name: OSCAR AGUSTIN
+  first_surname: DEL POZO
+  second_surname: UGAZ
+  document_number: 73049592
+  birthdate: 8/2/1994
+  seller: 9
+  email: OSCAR.DPU@GMAIL.COM
+  email2:
+  address: EL INCARIO 350 SURCO
+  phone_number: 952077226
+- model: rrgg.naturalperson
+  given_name: LUIS ALFREDO
+  first_surname: DIAZ
+  second_surname: PAREDES
+  document_number: 43301425
+  birthdate: 20/3/1973
+  seller: 9
+  email: LULODP@GMAIL.COM
+  email2:
+  address: FRANCISCO DE ZELA 2579 INT. B - LINCE
+  phone_number: 954416889
+- model: rrgg.naturalperson
+  given_name: GINO ISRAEL
+  first_surname: DIAZ
+  second_surname: ZEVALLOS
+  document_number: 25829690
+  birthdate: 22/7/1974
+  seller: 9
+  email: DIAZGINO2274@GMAIL.COM
+  email2:
+  address: CIUDAD DEL PESCADOR MZ L3 LT. 28-  LIMA
+  phone_number: 986025960
+- model: rrgg.naturalperson
+  given_name: RUBY STELLA
+  first_surname: ESCALANTE
+  second_surname: AZAMBUJA
+  document_number: 45441173
+  birthdate: 3/8/1988
+  seller: 9
+  email: JORGEBENITEZR@HOTMAIL.COM
+  email2:
+  address: CALLE LAS VERBENAS MZ B LOTE 26 - LOS OLIVOS
+  phone_number: 997923960
+- model: rrgg.naturalperson
+  given_name: GUIDO SERGIO
+  first_surname: ESCALANTE
+  second_surname: CHEN
+  document_number: 43433794
+  birthdate: 4/10/1957
+  seller: 9
+  email: GUIDO_ESCALANTE@HOTMAIL.COM
+  email2:
+  address: AV TENIENTE CORONEL CARLOS JIMENEZ CHAVEZ 382 BLOCK C 202 202
+  phone_number: 975467054
+- model: rrgg.naturalperson
+  given_name: ANA ELIZABETH
+  first_surname: ESCALANTE
+  second_surname: KANASHIRO
+  document_number: 09301045
+  birthdate: 13/4/1968
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: CALLE MIGUEL ANGEL 310 – SAN BORJA
+  phone_number: 920804526
+- model: rrgg.naturalperson
+  given_name: LUIS ERNESTO
+  first_surname: ESPEJO
+  second_surname: CESPEDES
+  document_number: 06077900
+  birthdate: 1/6/1956
+  seller: 9
+  email: LUISESPEJO2856@GMAIL.COM
+  email2:
+  address: AV. AV ARNALDO MARQUEZ 1559 INT.M JESUS MARIA
+  phone_number: 997544860
+- model: rrgg.naturalperson
+  given_name: LUIS CARLOS
+  first_surname: ESPEJO
+  second_surname: FLORES
+  document_number: 42946143
+  birthdate: 1/3/1985
+  seller: 9
+  email: LESPEJOF@GMAIL.COM
+  email2:
+  address: AV.ARNALDO MARQUEZ 1559
+  phone_number: 987742741
+- model: rrgg.naturalperson
+  given_name: CARMEN TATIANA
+  first_surname: ESPINOZA
+  second_surname: CHIRINOS
+  document_number: 07286395
+  birthdate: 18/8/1964
+  seller: 9
+  email: TATIESPINOZA@GMAIL.COM
+  email2:
+  address: JR. TACNA 465. REF. PARALELA A AV. SUCRE - ALTURA DE 39. AV. BRASIL
+  phone_number: 999044261
+- model: rrgg.naturalperson
+  given_name: FRANK HUMBERTO
+  first_surname: ESPINOZA
+  second_surname: RAMOS
+  document_number: 08888346
+  birthdate: 7/7/1974
+  seller: 9
+  email: WOALFRANK@HOTMAIL.COM
+  email2:
+  address: IGNACIO COSSIO NRO 1681 DPTO 7 LA VICTORIA
+  phone_number: 958962864
+- model: rrgg.naturalperson
+  given_name: LUIS ALBERTO
+  first_surname: FAJARDO
+  second_surname: CASTILLO
+  document_number: 08190382
+  birthdate: 26/4/1960
+  seller: 9
+  email: LFAJARDOCASTILLO@HOTMAIL.COM
+  email2:
+  address: JUAN LEPEYRE 133 URB VISTA ALEGRE SURCO
+  phone_number: 985850147
+- model: rrgg.naturalperson
+  given_name: FELIPE MANUEL
+  first_surname: FAJARDO
+  second_surname: MORETTI
+  document_number: 72406736
+  birthdate: 15/10/1992
+  seller: 9
+  email: LFAJARDOCASTILLO@HOTMAIL.COM
+  email2:
+  address: JUAN LEPEYRE 133 URB VISTA ALEGRE SURCO
+  phone_number: 985850147
+- model: rrgg.naturalperson
+  given_name: LUIS ROLANDO
+  first_surname: FELICE
+  second_surname: SORIANO
+  document_number: 10545300
+  birthdate: 15/7/1978
+  seller: 9
+  email: RAFFALCC@GMAIL.COM
+  email2:
+  address: CL LOS SAUCES DPTO 286, SAN ISIDRO
+  phone_number: 947946280
+- model: rrgg.naturalperson
+  given_name: CHRISTIAN FERNANDO
+  first_surname: FIGUEROA
+  second_surname: FALCON
+  document_number: 10059910
+  birthdate: 1/5/1973
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: AV. CIRCUNVALACION CLUB GOLF LOS INCAS NO.292 – BLOCK “E” DPTO.
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: RENATA
+  first_surname: FIGUEROA
+  second_surname: SEBASTIAN
+  document_number: 73186491
+  birthdate: 17/5/2000
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: AV. CIRCUNVALACIÓN CLUB GOLF LOS INCAS 292 BLOCK E-103
+  phone_number: 997294322
+- model: rrgg.naturalperson
+  given_name: RENZO CHRISTAN
+  first_surname: FIGUEROA
+  second_surname: SEBASTIAN
+  document_number: 70349516
+  birthdate: 6/1/1994
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: AV. CIRCUNVALACIÓN CLUB GOLF LOS INCAS 292 BLOCK E-103
+  phone_number: 997294322
+- model: rrgg.naturalperson
+  given_name: LITA
+  first_surname: FLORES
+  second_surname: FARFAN
+  document_number: 25318311
+  birthdate: 23/2/1971
+  seller: 9
+  email: ROROJAS@SITELRED.COM
+  email2:
+  address: 103 – CONDOMINIO LOS INCAS – SANTIAGO DE SURCO
+  phone_number: 997516430
+- model: rrgg.naturalperson
+  given_name: LUIS
+  first_surname: FLORES
+  second_surname: OCHOA
+  document_number: 40434089
+  birthdate: 29/8/1963
+  seller: 9
+  email: LUCHITO_FLORES@HOTMAIL.COM
+  email2:
+  address: CALLE MIAMI C/PASAJE 8 N° 105 DPTO 302 - LA MOLINA
+  phone_number: 955614810
+- model: rrgg.naturalperson
+  given_name: SARA NOEMI
+  first_surname: FLORES
+  second_surname: PEREZ
+  document_number: 79784594
+  birthdate: 16/10/1999
+  seller: 9
+  email: JOHANATM26@HOTMAIL.COM
+  email2:
+  address: SECTOR 06 GRUPO 11 MZ F LOTE 05
+  phone_number: 932239676
+- model: rrgg.naturalperson
+  given_name: EMILIA AURELIA
+  first_surname: FULLE
+  second_surname: GUZMAN
+  document_number: 10316626
+  birthdate: 20/10/1954
+  seller: 9
+  email: NELEMYFF@HOTMAIL.COM
+  email2:
+  address: CALLE RAPALLO 154-  LA MOLINA
+  phone_number: 996564639
+- model: rrgg.naturalperson
+  given_name: HELARD ANDRES
+  first_surname: GALDOS
+  second_surname: DE TOMAS
+  document_number: 42692768
+  birthdate: 12/8/1984
+  seller: 9
+  email: HELARDGALDOS@GMAIL.COM
+  email2:
+  address: PASAJE CLORINDA MATTO DE TURNER 522 DP
+  phone_number: 946585869
+- model: rrgg.naturalperson
+  given_name: ALVARO GONZALO
+  first_surname: GANOZA
+  second_surname: HEREDIA
+  document_number: 08188779
+  birthdate: 4/10/1965
+  seller: 9
+  email: AGANOZAH@GMAIL.COM
+  email2:
+  address: CALLE TAMBO REAL 221 DPTO. 301 SURCO
+  phone_number: 997532310
+- model: rrgg.naturalperson
+  given_name: GABRIEL ANTHONNY
+  first_surname: GARCIA
+  second_surname: RODRIGUEZ
+  document_number: 47251369
+  birthdate: 3/8/1992
+  seller: 9
+  email: GABO3892@GMAIL.COM
+  email2:
+  address: AV BRASIL 1578 DPTO 5 PUEBLO LIBRE
+  phone_number: 946542651
+- model: rrgg.naturalperson
+  given_name: GENOVENA
+  first_surname: GARCIA
+  second_surname: VILLACORTA
+  document_number: 09274655
+  birthdate: 14/4/1966
+  seller: 9
+  email: TAMAKUN1@GMAIL.COM
+  email2:
+  address: AV. LA MAR 2252 URB. PANDO SANMIGUEL
+  phone_number: 993549880
+- model: rrgg.naturalperson
+  given_name: RENZO MARCELO
+  first_surname: GAVIÑO
+  second_surname: GALLIANI
+  document_number: 70782969
+  birthdate: 27/9/1990
+  seller: 9
+  email: R.GAVINO@HOTMAIL.COM
+  email2:
+  address: JR. BRIGADIER PUMACAHUA 1623 DPTO. E JESUS MARIA
+  phone_number: 942963091
+- model: rrgg.naturalperson
+  given_name: MELISSA PATRICIA
+  first_surname: GENTILLE
+  second_surname: SANCHEZ
+  document_number: 47089602
+  birthdate: 8/6/1991
+  seller: 9
+  email: PATDEGENT@HOTMAIL.COM
+  email2:
+  address: JR. JR CURAZAO 587 URB SANTA PATRICIA LA MOLINA
+  phone_number: 963751523
+- model: rrgg.naturalperson
+  given_name: PIERO FRANCO
+  first_surname: GENTILLE
+  second_surname: SANCHEZ
+  document_number: 72035316
+  birthdate: 27/6/1995
+  seller: 9
+  email: PRGENTILLE@GMAIL.COM
+  email2:
+  address: JR. JR CURAZAO 587 URB SANTA PATRICIA LA MOLINA
+  phone_number: 963751524
+- model: rrgg.naturalperson
+  given_name: CESAR AUGUSTO
+  first_surname: GENTILLE
+  second_surname: VARGAS
+  document_number: 43461890
+  birthdate: 5/1/1962
+  seller: 9
+  email: CAGV2000@HOTMAIL.COM
+  email2:
+  address: CURAZAO NRO 587 URB SANTA PATRICIA 1 ETAPA LA MOLINA
+  phone_number: 997587934
+- model: rrgg.naturalperson
+  given_name: PAULA
+  first_surname: GOGIN
+  second_surname: RAZURI
+  document_number: 76011468
+  birthdate: 30/8/1998
+  seller: 9
+  email: GOGINPAULA@GMAIL.COM
+  email2:
+  address: CALLE TARAPACA 663 LA PUNTA
+  phone_number: 975455130
+- model: rrgg.naturalperson
+  given_name: DONAL ANDRES
+  first_surname: GOMEZ
+  second_surname: DOMINGUEZ
+  document_number: 70020117
+  birthdate: 17/9/1986
+  seller: 9
+  email: DONALGOMEZDOMINGUEZ@GMAIL.COM
+  email2:
+  address: CALLE KASPERCZAK 138 - REFERENCIA ALTURA DE LA CUADRA 11
+  phone_number: 991160705
+- model: rrgg.naturalperson
+  given_name: WILFREDO JUAN
+  first_surname: GONZALES
+  second_surname: SAAVEDRA
+  document_number: 09651890
+  birthdate: 24/5/1958
+  seller: 9
+  email: PLATINO2405@HOTMAIL.COM
+  email2:
+  address: AVENIDA LAS LOMAS DE LA MOLINA VIEJA 570 LA MOLINA
+  phone_number: 998005678
+- model: rrgg.naturalperson
+  given_name: DORIS  MARIA
+  first_surname: GUERRA
+  second_surname: ARIS
+  document_number: 03881591
+  birthdate: 1/9/1970
+  seller: 9
+  email: DGUERRA1970@HOTMAIL.COM
+  email2:
+  address: DE LA ROCCA DE VERGALLO NRO 229 DPTO 601 MAGDALENA DEL MAR
+  phone_number: 998057712
+- model: rrgg.naturalperson
+  given_name: JOSE LUIS
+  first_surname: GUTIERREZ
+  second_surname: AGUILAR
+  document_number: 29354256
+  birthdate: 20/2/1973
+  seller: 9
+  email: JOSELUISGUTY@HOTMAIL.COM
+  email2:
+  address: AV. LAS LOMAS 1224 C DPTO. 4 - SAN JUAN DE LURIGANCHO (L 36) - LIMA
+  phone_number: 987486638
+- model: rrgg.naturalperson
+  given_name: MENAHEM GUSTAVO HUMBERTO
+  first_surname: HANANEL
+  second_surname: ALVARADO
+  document_number: 70681426
+  birthdate: 13/5/1992
+  seller: 9
+  email: MGHG07@HOTMAIL.COM
+  email2:
+  address: AVENIDA DEL PARQUE SUR 510 DPTO 201 SAN BORJA
+  phone_number: 959054525
+- model: rrgg.naturalperson
+  given_name: SUZETTI JULISSA
+  first_surname: HANANEL
+  second_surname: ALVARADO
+  document_number: 45278887
+  birthdate: 4/9/1988
+  seller: 9
+  email: SUZETTI.HANANEL@GMAIL.COM
+  email2:
+  address: AVENIDA DEL PARQUE SUR 510 DEPARTAMENTO 201 - REFERENCIA CRUCE CON AV GALVEZ SAN BORJA
+  phone_number: 985006084
+- model: rrgg.naturalperson
+  given_name: MENAHEM GUSTAVO
+  first_surname: HANANEL
+  second_surname: GARCIA
+  document_number: 07475360
+  birthdate: 7/6/1961
+  seller: 9
+  email: SUZETTI.HANANEL@GMAIL.COM
+  email2:
+  address: AV. AV .DEL PARQUE SUR NRO. 510-DPTO. 201 SAN BORJA
+  phone_number: 954364016
+- model: rrgg.naturalperson
+  given_name: ALFONSO MIGUEL
+  first_surname: HERMOZA
+  second_surname: MARILUZ
+  document_number: 43327848
+  birthdate: 29/9/1958
+  seller: 9
+  email: MHERMOZA29@GMAIL.COM
+  email2: FABRICIO.MHM@GMAIL.COM
+  address: CARLOS DE LA CONDAMINE 206 URB. SAN JOSE CALLAO
+  phone_number: 997123141
+- model: rrgg.naturalperson
+  given_name: RENAN HUMBERTO
+  first_surname: HERMOZA
+  second_surname: TELLO
+  document_number: 09866569
+  birthdate: 8/6/1934
+  seller: 9
+  email: DLETURIA@KCS.PE
+  email2:
+  address: AVENIDA LOPEZ DE AYALA 1596 SAN BORJA
+  phone_number: 983528132
+- model: rrgg.naturalperson
+  given_name: ALESSANDRA NICOLE
+  first_surname: HIDALGO
+  second_surname: ARESTEGUI
+  document_number: 70666772
+  birthdate: 10/10/1996
+  seller: 9
+  email: ALEHIDALGOA@GMAIL.COM
+  email2:
+  address: CALLE ALFA CISNE 109 DPTO 703 - SURQUILLO
+  phone_number: 940355865
+- model: rrgg.naturalperson
+  given_name: JAIME HUGO
+  first_surname: HIDALGO
+  second_surname: MEJIA
+  document_number: 07464018
+  birthdate: 4/8/1969
+  seller: 9
+  email: HUGOHIDALGO001@GMAIL.COM
+  email2:
+  address: CALLE ALFA CISNE 109703 SURQUILLO
+  phone_number: 992717756
+- model: rrgg.naturalperson
+  given_name: TATIANA DE FATIMA
+  first_surname: HIDALGO
+  second_surname: MEJIA
+  document_number: 05372668
+  birthdate: 13/5/1974
+  seller: 9
+  email: TATIANAHIDALGOM@GMAIL.COM
+  email2:
+  address: CALLE LOMA AMOROSA 102 DPTO 302 SURCO
+  phone_number: 987818860
+- model: rrgg.naturalperson
+  given_name: THIMOTY FRANCISCO ALVERTO
+  first_surname: HUAMAN
+  second_surname: PONCE
+  document_number: 74574336
+  birthdate: 31/3/2002
+  seller: 9
+  email: THIMOTY.HUAMAN@GMAIL.COM
+  email2:
+  address: CA. LAS CARABELAS 139 DPTO 301 - LA MOLINA
+  phone_number: 940507056
+- model: rrgg.naturalperson
+  given_name: MENZER JUAN
+  first_surname: HUAPAYA
+  second_surname: CORDOVA
+  document_number: 42345284
+  birthdate: 22/11/1980
+  seller: 9
+  email: MENZER_15_20@HOTMAIL.CO M
+  email2:
+  address: JR FRANCISCO LUNA PIZARRO 653 LA VICTORIA
+  phone_number: 987342931
+- model: rrgg.naturalperson
+  given_name: ANTUHANET MARIBEL
+  first_surname: IZQUIERDO
+  second_surname: MELGAREJO
+  document_number: 10625969
+  birthdate: 1/7/1977
+  seller: 9
+  email: ANTUHANET@HOTMAIL.COM
+  email2: SMEZARINACUEVA@GMAIL.COM
+  address: BAJADA AGUA DULCE NRO 153 DPTO 402 CHORRILLOS
+  phone_number: 987542147
+- model: rrgg.naturalperson
+  given_name: JESUS FERNANDO
+  first_surname: JULCA
+  second_surname: SUAREZ
+  document_number: 70132025
+  birthdate: 25/12/1988
+  seller: 9
+  email: JESUSFERNA@HOTMAIL.COM
+  email2:
+  address: AV. LAS PALMERAS NÚMERO MZ.O LT.4 LA MOLINA
+  phone_number: 945533459
+- model: rrgg.naturalperson
+  given_name: FANNY
+  first_surname: LADD
+  second_surname: HUARACHI
+  document_number: 06758676
+  birthdate: 11/9/1958
+  seller: 9
+  email: NITALADD@HOTMAIL.COM
+  email2:
+  address: CALLE ANDROMEDA 820 - CHORRILLOS (LIMA 9) - LIMA
+  phone_number: 993141489
+- model: rrgg.naturalperson
+  given_name: CECILIA MONICA
+  first_surname: LAVADO
+  second_surname: LANDEO
+  document_number: 09530276
+  birthdate: 12/4/1965
+  seller: 9
+  email: CECILIA-LAVADO@HOTMAIL.COM
+  email2:
+  address: PLANICIE MZ E LOTE 13 PUNTA HERMOSA LA MOLINA
+  phone_number: 938373450
+- model: rrgg.naturalperson
+  given_name: CARLOS DANIEL
+  first_surname: LECAROS
+  second_surname: ZUÑIGA
+  document_number: 43307736
+  birthdate: 17/7/1981
+  seller: 9
+  email: CARLOSLECAROS03@HOTMAIL.COM
+  email2:
+  address: AV PEDRO DE OSMA 407 BARRANCO
+  phone_number: 989834581
+- model: rrgg.naturalperson
+  given_name: SERGIO WALTER
+  first_surname: LEIBLINGER
+  second_surname: GEREDA
+  document_number: 07702621
+  birthdate: 5/4/1942
+  seller: 9
+  email:
+  email2:
+  address: JOSE GRANDA NRO 590 DPTO 4B  SAN ISIDRO
+  phone_number: 12643025
+- model: rrgg.naturalperson
+  given_name: JUAN LUIS
+  first_surname: LEON
+  second_surname: ALBAN
+  document_number: 10136834
+  birthdate: 3/12/1974
+  seller: 9
+  email: LEONALBAN74@OUTLOOK.COM
+  email2:
+  address: CALLE JORGE ISAACS NÚMERO 236 INTERIOR DPTO 402 LIMA
+  phone_number: 938128316
+- model: rrgg.naturalperson
+  given_name: FLOR DE GUADALUPE SUSANA
+  first_surname: LIAU HING
+  second_surname: YEP
+  document_number: 08747498
+  birthdate: 16/9/1971
+  seller: 9
+  email: LUPELIAU@GMAIL.COM
+  email2:
+  address: LUIS ALDANA 219 DPTO. 103 CORPAC
+  phone_number: 989194317
+- model: rrgg.naturalperson
+  given_name: GUILLERMO
+  first_surname: LLERENA
+  second_surname: PORTAL
+  document_number: 43370962
+  birthdate: 13/1/1966
+  seller: 9
+  email:
+  email2:
+  address: MONTE FICUS DPTO BENAVIDES
+  phone_number: 989244513
+- model: rrgg.naturalperson
+  given_name: MARIA
+  first_surname: LLONTOP
+  second_surname: HEREDIA
+  document_number: 16728275
+  birthdate: 23/8/1974
+  seller: 9
+  email: MLLONTOP@INGESAORIENTE.COM
+  email2:
+  address: CALLE ZAFIROS 194 CHICLAYO
+  phone_number: 944298254
+- model: rrgg.naturalperson
+  given_name: DANIEL ALBERTO
+  first_surname: LOPEZ
+  second_surname: CANSECO
+  document_number: 09279545
+  birthdate: 7/4/1969
+  seller: 9
+  email: LOPEZCANSECO@HOTMAIL.COM
+  email2:
+  address: CALLE DOMINGO DE LA PRESA 334. SANTIAGO SURCO
+  phone_number: 989078262
+- model: rrgg.naturalperson
+  given_name: MILAGROS LEONOR
+  first_surname: LOYOLA
+  second_surname: CARRASCO
+  document_number: 43459197
+  birthdate: 25/1/1986
+  seller: 9
+  email: M.LOYOLA@PUCP.PE
+  email2:
+  address: ARQ. ENRIQUE SEOANE 309, TORRES DE LIMAT - SAN BORJA
+  phone_number: 991118840
+- model: rrgg.naturalperson
+  given_name: JOSE EDUARDO
+  first_surname: LUCA
+  second_surname: CARDENAS
+  document_number: 43371058
+  birthdate: 13/2/1986
+  seller: 9
+  email: JOSELUCA124@GMAIL.COM
+  email2:
+  address: ASOC MARIA REYNA DE LOS APOSTOLES MZ A LT 03 ATE
+  phone_number: 965733823
+- model: rrgg.naturalperson
+  given_name: ELVA MARIA
+  first_surname: MACETAS
+  second_surname: BELLIDO
+  document_number: 10416692
+  birthdate: 2/8/1962
+  seller: 9
+  email: ALOJAHEINER@GMAIL.COM
+  email2:
+  address: CALLE .17 MZ V LOTE 65 URB CARAPONGO CHOSICA
+  phone_number: 992339111
+- model: rrgg.naturalperson
+  given_name: MONICA JESUS
+  first_surname: MANRIQUE
+  second_surname: TALLEDO
+  document_number: 08139308
+  birthdate: 26/2/1965
+  seller: 9
+  email: GNK_03@HOTMAIL.COM
+  email2:
+  address: MALECON DE LA RESERVA NRO 275 MIRAFLORES
+  phone_number: 991269908
+- model: rrgg.naturalperson
+  given_name: CARLOS ALVARO
+  first_surname: MARROQUIN
+  second_surname: ORCADA
+  document_number: 41145348
+  birthdate: 7/3/1981
+  seller: 9
+  email: ALVAROMARROQUIN@HOTMAIL.COM
+  email2:
+  address: URB. BANCO DE LA NACION MZ C LTE 06
+  phone_number: 945140474
+- model: rrgg.naturalperson
+  given_name: KARINA MARIA
+  first_surname: MASIAS
+  second_surname: CARVAJAL
+  document_number: 42069405
+  birthdate: 4/10/1983
+  seller: 9
+  email: STEFANANTONIO1304@GMAIL.COM
+  email2:
+  address: CALLE BELLATRIX NRO 1 MZ C LTE 15 URB MONTERRICO SURCO
+  phone_number: 954744025
+- model: rrgg.naturalperson
+  given_name: DENISSE ROSARIO
+  first_surname: MEDINA
+  second_surname: ADRIANZEN
+  document_number: 45173308
+  birthdate: 27/4/1988
+  seller: 9
+  email:
+  email2:
+  address: CALLE 28 MZ A LOTE 37 URBANIZACION LOS OLIVOS
+  phone_number: 993564555
+- model: rrgg.naturalperson
+  given_name: ROSA
+  first_surname: MEGO
+  second_surname: ALARCON
+  document_number: 08103266
+  birthdate: 16/7/1962
+  seller: 9
+  email: ROSME2001@HOTMAIL.COM
+  email2:
+  address:
+  phone_number: 997358737
+- model: rrgg.naturalperson
+  given_name: GUICELA
+  first_surname: MELGAREJO
+  second_surname: FERNANDEZ
+  document_number: 07469530
+  birthdate: 3/5/1970
+  seller: 9
+  email: GUICELAM@HOTMAIL.COM
+  email2:
+  address: AV JAVIER PRADO OESTE NRO 1238 DPTO 1304 REF JAVIER PRADO OESTE1238 DPTO 1304 SAN ISISDRO
+  phone_number: 982429066
+- model: rrgg.naturalperson
+  given_name: ERICK IVAN
+  first_surname: MENDEZ
+  second_surname: FIGUEROA
+  document_number: 22099496
+  birthdate: 24/2/1963
+  seller: 9
+  email: MENERICK550@GMAIL.COM
+  email2:
+  address: CALLE TERUEL 323 DEPARTAMENTO 301 - MIRAFLORES
+  phone_number: 999881300
+- model: rrgg.naturalperson
+  given_name: OSCAR AUGUSTO
+  first_surname: MENDOZA
+  second_surname: FERNANDEZ
+  document_number: 10493346
+  birthdate: 10/1/1944
+  seller: 9
+  email: ALFONSOJOSE.MM@GMAIL.COM
+  email2:
+  address: LIMA NRO 245 URB SANTA PATRICIA LA MOLINA
+  phone_number: 3499203
+- model: rrgg.naturalperson
+  given_name: YANETH
+  first_surname: MENDOZA
+  second_surname: PAREDES
+  document_number: 03665631
+  birthdate: 22/9/1974
+  seller: 9
+  email: YANETHMENDOZAPAREDES2209@GMAIL.COM
+  email2:
+  address: CLL STA TERESA 286 SULLANA PIURA
+  phone_number: 969929701
+- model: rrgg.naturalperson
+  given_name: LOURDES DEL PILAR
+  first_surname: MENDOZA
+  second_surname: VILLACORTA
+  document_number: 09995939
+  birthdate: 12/2/1974
+  seller: 9
+  email: PILARMV1202@GMAIL.COM
+  email2:
+  address: LAS DROCERAS 186 SALAMANCA ATE
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: NARDA GRACIELA
+  first_surname: MERCADO
+  second_surname: RONDON
+  document_number: 30837208
+  birthdate: 25/11/1974
+  seller: 9
+  email: NARDAGMR@HOTMAIL.COM
+  email2:
+  address:
+  phone_number: 944686505
+- model: rrgg.naturalperson
+  given_name: LUIS ENRIQUE
+  first_surname: MESIAS
+  second_surname: CLAVO
+  document_number: 07712500
+  birthdate: 12/3/1943
+  seller: 9
+  email: DENTALMESIAS@GMAILCOM
+  email2:
+  address: CA. JR PUENTE Y CORTES 476 MAGDALENA
+  phone_number: 981928269
+- model: rrgg.naturalperson
+  given_name: SANTIAGO CARLOS
+  first_surname: MEZARINA
+  second_surname: CUEVA
+  document_number: 09476662
+  birthdate: 9/10/1968
+  seller: 9
+  email: SMEZARINACUEVA@GMAIL.COM
+  email2:
+  address: CALLA BAJADA AGUADULCE NÚMERO 402 INTERIOR 153
+  phone_number: 98742147
+- model: rrgg.naturalperson
+  given_name: FLOR DE MARÍA
+  first_surname: MINAYA
+  second_surname: RAMOS
+  document_number: 09866985
+  birthdate: 27/12/1971
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: LOMA AMOROSA 290 - DPTO 401. SANTIAGO DE SURCO
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: EDUARDO
+  first_surname: MIÑANO
+  second_surname: AGÜERO
+  document_number: 45557708
+  birthdate: 23/2/1989
+  seller: 9
+  email: J.MINANO@EM-TECHNOLOGY.CO
+  email2:
+  address: JIRON PABLO USANDIZAGA 593 DPTO 101 SAN BORJA
+  phone_number: 996963208
+- model: rrgg.naturalperson
+  given_name: MAX ANIBAL
+  first_surname: MIRANDA
+  second_surname: DELGADO
+  document_number: 43432459
+  birthdate: 18/1/1965
+  seller: 9
+  email: MIRANDAMAX2002@GMAIL.COM
+  email2:
+  address: MZ. F LT. 8 URB. SANTO DOMINGO - JOSE LUIS BUSTAMANTE Y RIVERO - AREQUIPA
+  phone_number: 959371936
+- model: rrgg.naturalperson
+  given_name: LUIS MARTIN
+  first_surname: MOGROVEJO
+  second_surname: CASTILLO
+  document_number: 25711119
+  birthdate: 27/10/1962
+  seller: 9
+  email: LUISMOGROVEJO@HOTMAIL.COM
+  email2:
+  address: CALLE LAS CANTUTAS 812 URBANIZACIÓN CASUARINAS SUR SURCO
+  phone_number: 989087266
+- model: rrgg.naturalperson
+  given_name: VICTOR YSAIAS
+  first_surname: MONTOYO
+  second_surname: MORI
+  document_number: 25771807
+  birthdate: 26/10/1960
+  seller: 9
+  email: JORANTE2001@HOTMAIL.COM
+  email2:
+  address: GONZALES PRADA DPTOB SURQUILLO
+  phone_number: 993547651
+- model: rrgg.naturalperson
+  given_name: PATRICIA MILAGROS
+  first_surname: MUÑOZ
+  second_surname: REGIS
+  document_number: 33261510
+  birthdate: 1/11/1971
+  seller: 9
+  email: CEAGUILARMUÑOZ@GMAIL.COM
+  email2:
+  address: LAS DALIAS NRO 251 DPTO 402 MIRAFLORES
+  phone_number: 965703306
+- model: rrgg.naturalperson
+  given_name: XIMENA MERCEDES
+  first_surname: MUÑOZ
+  second_surname: SAN ROMAN
+  document_number: 46838738
+  birthdate: 5/4/1991
+  seller: 9
+  email: XIMENA.MSR@HOTMAIL.COM
+  email2:
+  address: CALLE VOLCAN CHACHANI 1 MZ O LTE 17 URBANIZACIÓN LAS COLINAS LA MOLINA
+  phone_number: 962359654
+- model: rrgg.naturalperson
+  given_name: DELIA EMPERATRIZ
+  first_surname: MURGA
+  second_surname: VELAZQUEZ
+  document_number: 07765593
+  birthdate: 10/10/1968
+  seller: 9
+  email:
+  email2:
+  address: AV FATIMA 280 TRUJILLO
+  phone_number: 945443549
+- model: rrgg.naturalperson
+  given_name: JUAN MANUEL
+  first_surname: NARBASTA
+  second_surname: ALDAVE
+  document_number: 15725081
+  birthdate: 5/5/1961
+  seller: 9
+  email: NARBASTA6AJM6@HOTM AIL.COM
+  email2:
+  address: AVTOMASAL 720 B-8 DPTO403 HUERTOS D E SURCO
+  phone_number: 937022216
+- model: rrgg.naturalperson
+  given_name: LISSETH STAYLEN
+  first_surname: NEYRA
+  second_surname: ASENCIOS
+  document_number: 40609661
+  birthdate: 22/7/1980
+  seller: 9
+  email: LISNEYRA22@GMAIL.COM
+  email2:
+  address: JR VARGAS MACHUCA 421 URB INGENIERIA SAN MARTIN
+  phone_number: 942971969
+- model: rrgg.naturalperson
+  given_name: NILTON
+  first_surname: NIZAMA
+  second_surname: TEIXEIRA
+  document_number: 43310084
+  birthdate: 11/1/1976
+  seller: 9
+  email: NINITE98@GMAIL.COM
+  email2:
+  address: CLL LAS DALIAS MZ M LT 16 SAN MARTIN DE PORRES
+  phone_number: 990187511
+- model: rrgg.naturalperson
+  given_name: ALVARO DANIEL
+  first_surname: NUÑEZ
+  second_surname: NORIEGA
+  document_number: 08274955
+  birthdate: 30/12/1968
+  seller: 9
+  email: CARGARCIA2008@HOTMAIL.COM
+  email2:
+  address: CALLE PAZ Y PERFECTA UNIÓN ( EX CALLE 22 ) NRO 668 DPTO 202 URB. CORPAC SAN ISIDRO
+  phone_number: 942418968
+- model: rrgg.naturalperson
+  given_name: LUIS DENNIS
+  first_surname: OCAS
+  second_surname: VASQUEZ
+  document_number: 70196861
+  birthdate: 4/1/1995
+  seller: 9
+  email: TIWIN04@GMAIL.COM
+  email2:
+  address: ASOC. VIV. MARKO JARA SCHENONE MZ P1 ANCON
+  phone_number: 942704966
+- model: rrgg.naturalperson
+  given_name: ROBERTO GERARDO
+  first_surname: OLIVEROS
+  second_surname: ITURRARAN
+  document_number: 43310975
+  birthdate: 9/10/1985
+  seller: 9
+  email: ROGOLIVEROS@GMAIL.COM
+  email2:
+  address: JR. JACARANDA NRO. 715 URB. VALLE - SANTIAGO DE SURCO (LIMA 33) - LIMA
+  phone_number: 965481164
+- model: rrgg.naturalperson
+  given_name: PEDRO FERNANDO
+  first_surname: ORAHULIO
+  second_surname: ALARCON
+  document_number: 43570908
+  birthdate: 5/3/1959
+  seller: 9
+  email: PEDROORA@HOTMAIL.COM
+  email2:
+  address: CALLE SANTA ISABEL 150 PISO 1 PUEBLO LIBRE
+  phone_number: 997529950
+- model: rrgg.naturalperson
+  given_name: TEODORO MARCOS
+  first_surname: ORDOÑEZ
+  second_surname: PALACIN
+  document_number: 10057604
+  birthdate: 21/11/1965
+  seller: 9
+  email: ELTARMENO65@HOTMAIL.COM
+  email2:
+  address: URB. ALAMEDA II ETAPA MZ. CH LOTE 8 NÚMERO LT 8
+  phone_number: 996809293
+- model: rrgg.naturalperson
+  given_name: JAVIER LUIS
+  first_surname: ORMEÑO
+  second_surname: MEJIA
+  document_number: 07538848
+  birthdate: 15/3/1977
+  seller: 9
+  email: JORMENO.ODO@GMAIL.COM
+  email2:
+  address: CLL 1 DE JULIO 244 MAGDALENA
+  phone_number: 943022220
+- model: rrgg.naturalperson
+  given_name: RODOLFO ERNESTO
+  first_surname: ORTIZ
+  second_surname: DE LA CRUZ
+  document_number: 07404327
+  birthdate: 14/1/1956
+  seller: 9
+  email: RORTIZXYZ@HOTMAIL.COM
+  email2:
+  address: AVENIDA ARQ MALACHOWSKI 436 INTERIOR 501 SAN BORJA
+  phone_number: 957349462
+- model: rrgg.naturalperson
+  given_name: ALEJANDRA KIARA
+  first_surname: ORTIZ
+  second_surname: RODRIGUEZ
+  document_number: 74175245
+  birthdate: 20/6/1995
+  seller: 9
+  email: KIARALOPEZG2000@GMAIL.COM
+  email2:
+  address: SOL DE ICA MZ B LOTE 38 ICA
+  phone_number: 934940893
+- model: rrgg.naturalperson
+  given_name: DORIS CAROLINA
+  first_surname: PACHECO
+  second_surname: KOIZUMI
+  document_number: 09176513
+  birthdate: 4/11/1958
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: CALLE MARBELLA 259 – DPTO. 702 – MAYORAZGO - ATE
+  phone_number: 927158938
+- model: rrgg.naturalperson
+  given_name: MANUEL ALBERTO
+  first_surname: PACHECO
+  second_surname: LEDESMA
+  document_number: 09447050
+  birthdate: 17/12/1955
+  seller: 9
+  email: AMANUEL178@HOTMAIL.COM
+  email2:
+  address: CALLE LOMA UMBROSA NÚMERO 522 SURCO
+  phone_number: 998947542
+- model: rrgg.naturalperson
+  given_name: LUIS HUMBERTO
+  first_surname: PACHECO
+  second_surname: MESIAS
+  document_number: 29581748
+  birthdate: 5/1/1962
+  seller: 9
+  email: PACHECOSG@HOTMAIL.COM
+  email2:
+  address: CALLE EUGENIO DE LA TORRE 231 - 501 - SAN MIGUEL
+  phone_number: 997540164
+- model: rrgg.naturalperson
+  given_name: ROBERTO JESUS
+  first_surname: PADILLA
+  second_surname: DEL VALLE
+  document_number: 42816309
+  birthdate: 6/1/1985
+  seller: 9
+  email: RPADILLADV@GMAIL.COM
+  email2:
+  address: AVENIDA PRINCIPAL 972 SAN ISIDRO
+  phone_number: 959380086
+- model: rrgg.naturalperson
+  given_name: STEFANIA BELEN
+  first_surname: PADILLA
+  second_surname: DEL VALLE
+  document_number: 70310494
+  birthdate: 27/1/1991
+  seller: 9
+  email: SPADILLADELVALLE@GMAIL.COM
+  email2:
+  address: JR. YUNGAY N 450 DPTO 302 MAGDALENA
+  phone_number: 949712587
+- model: rrgg.naturalperson
+  given_name: JORGE LUIS
+  first_surname: PADILLA
+  second_surname: MINAYA
+  document_number: 73199467
+  birthdate: 09/03/2004
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: LOMA AMOROSA 290 - DPTO 401. SANTIAGO DE SURCO
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: JORGE LUIS
+  first_surname: PALACIOS
+  second_surname: DE LA CRUZ
+  document_number: 06590947
+  birthdate: 18/8/1962
+  seller: 9
+  email: ARQUITECTO37@HOTMAIL.COM
+  email2:
+  address: CALLE CENTENARIO SN DEPARTAMENTO 202 URBANIZACIÓN SAN PATRICIA LA MOLINA
+  phone_number: 953722941
+- model: rrgg.naturalperson
+  given_name: ROGER ENRIQUE MARTIN
+  first_surname: PAREDES
+  second_surname: JESSEN
+  document_number: 43668627
+  birthdate: 15/9/1964
+  seller: 9
+  email: RPAREDESJESSEN@GMAIL.COM
+  email2:
+  address: PARQUE ALMAGRO 130 JESUS MARIA
+  phone_number: 997536384
+- model: rrgg.naturalperson
+  given_name: JULIO DAVID
+  first_surname: PASTOR
+  second_surname: CASTRO
+  document_number: 43343116
+  birthdate: 23/8/1971
+  seller: 9
+  email: JPASTORC31@HOTMAIL.COM
+  email2:
+  address: ALAMEDA CIRO ALEGRIA DPTO LIMA
+  phone_number: 990639677
+- model: rrgg.naturalperson
+  given_name: ERIKA PATRICIA
+  first_surname: PASTOR
+  second_surname: FOLEY
+  document_number: 06673778
+  birthdate: 26/10/1975
+  seller: 9
+  email: EPASTOR@WCAPITAL.COM.PE
+  email2:
+  address: CA. ENRIQUE CANAVAL Y MOREYRA NRO. 522
+  phone_number: 942130030
+- model: rrgg.naturalperson
+  given_name: ANA RITA
+  first_surname: PECHE
+  second_surname: BECERRA
+  document_number: 08137034
+  birthdate: 10/6/1970
+  seller: 9
+  email: PILARMV1202@GMAIL.COM
+  email2:
+  address: AV. JOSE BASADRE 880 - SAN ISIDRO
+  phone_number: 950305624
+- model: rrgg.naturalperson
+  given_name: KAREN SOLANGE
+  first_surname: PEÑA
+  second_surname: ABREGU
+  document_number: 72521615
+  birthdate: 13/6/1992
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: AV. LA MARGINAL 509 - URB. JAVIER PRADO 6TA ETAPA - ATE
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: ROLANDO EFRAIN
+  first_surname: PERALTA
+  second_surname: RAMOS
+  document_number: 43260854
+  birthdate: 24/9/1952
+  seller: 9
+  email: REPERALTAR@HOTMAIL.COM
+  email2:
+  address: JR. JR MANCO SEGUNDO 2270 DPTO 202 LINCE
+  phone_number: 989193081
+- model: rrgg.naturalperson
+  given_name: MARTIN
+  first_surname: PERAMAS
+  second_surname: VELASQUEZ
+  document_number: 43378901
+  birthdate: 29/11/1970
+  seller: 9
+  email: VIOBEDI@HOTMAIL.COM
+  email2:
+  address: AVENIDA PROLONGACION MIGUEL ECHENIQUE 1311 LIMA
+  phone_number: 944757189
+- model: rrgg.naturalperson
+  given_name: CARLOS VIDAL
+  first_surname: PEREZ
+  second_surname: MILLAN
+  document_number: 03299321
+  birthdate: 19/9/1984
+  seller: 9
+  email: CARLOS84VIDAL@GMAIL.COM
+  email2:
+  address: CALLE LA CALERA MZ A LOTE 5 ASOC EL CARMEN SURQUILLO
+  phone_number: 938546666
+- model: rrgg.naturalperson
+  given_name: KARINA DEL PILAR
+  first_surname: PEREZ
+  second_surname: PINEDO
+  document_number: 44059670
+  birthdate: 25/1/1987
+  seller: 9
+  email: KARIMELY@HOTMAIL.COM
+  email2:
+  address: MZ A LT 18 CRUZ DE MOTUPE SAN JUAN DE LURIGANCHO
+  phone_number: 941973203
+- model: rrgg.naturalperson
+  given_name: ANDRE PHILIPPE
+  first_surname: PETIT
+  second_surname: MOSCA
+  document_number: 45090995
+  birthdate: 16/6/1988
+  seller: 9
+  email: ANDREPETIT116@HOTMAIL.COM
+  email2:
+  address: URBANIZACIÓN LOS ALAMOS DE MONTERRICO - REFERENCIA CONDOMINIO EL MIRADOR F-101
+  phone_number: 980063873
+- model: rrgg.naturalperson
+  given_name: ADOLFO JAVIER
+  first_surname: PINILLOS
+  second_surname: CORDOVA
+  document_number: 10635180
+  birthdate: 17/6/1977
+  seller: 9
+  email: ADOLFO.PINILLOS@ME.COM
+  email2:
+  address: JIRON TINAJONES 265 DEPARTAMENTO 401- LIMA
+  phone_number: 967788099
+- model: rrgg.naturalperson
+  given_name: CRISTIAN ALBERTO
+  first_surname: PINILLOS
+  second_surname: CORDOVA
+  document_number: 40466295
+  birthdate: 14/3/1979
+  seller: 9
+  email: PINILLOS.CHRISTIAN@GMAIL.COM
+  email2:
+  address: ENRIQUE CANAVAL Y MOREYRA NRO. 522 URB SAN ISIDRO
+  phone_number: 987654323
+- model: rrgg.naturalperson
+  given_name: JUAN JOSE
+  first_surname: PINTO
+  second_surname: CRIOLLO
+  document_number: 29408541
+  birthdate: 11/11/1967
+  seller: 9
+  email: LUPICKBE7@GMAIL.COM
+  email2:
+  address: S1 MZ. -J11 LOS CEDROS DE VILLA - CHORRILLOS
+  phone_number: 987185279
+- model: rrgg.naturalperson
+  given_name: JUAN RODOLFO
+  first_surname: POZO
+  second_surname: GUTIERREZ
+  document_number: 10760847
+  birthdate: 4/5/1977
+  seller: 9
+  email: RODOLFOPOZO4@GMAIL.COM
+  email2:
+  address: CALLE LOS INCAS 122 DPTO 303 - LA MOLINA (LIMA 12) - LIMA
+  phone_number: 992552921
+- model: rrgg.naturalperson
+  given_name: SILVIA NORMA
+  first_surname: PRINCIPE
+  second_surname: RUIZ
+  document_number: 08251785
+  birthdate: 10/7/1962
+  seller: 9
+  email: SILVIAPRINCIPER@GMAIL.COM
+  email2:
+  address: JOSE GALVEZ2320 LINCE
+  phone_number: 989188692
+- model: rrgg.naturalperson
+  given_name: LUIS MIGUEL
+  first_surname: QUINTANA
+  second_surname: FERREYRA
+  document_number: 40216145
+  birthdate: 17/6/1979
+  seller: 9
+  email: MTAPIA@MAPFRE.COM.PE
+  email2:
+  address: MORRO SOLAR NRO 352 DPTO 502 URB CHACARILLA SANTIAGO DE SURCO
+  phone_number: 932908549
+- model: rrgg.naturalperson
+  given_name: LUIS ALBERTO
+  first_surname: QUISPE
+  second_surname: QUISPE
+  document_number: 43268053
+  birthdate: 28/10/1974
+  seller: 9
+  email: LUCHOCOANF15@GMAIL.COM
+  email2:
+  address: D LOTE 3 AA.HH CHORRILLOS
+  phone_number: 920137437
+- model: rrgg.naturalperson
+  given_name: HECTOR ANIBAL
+  first_surname: RAMIREZ
+  second_surname: PEÑA
+  document_number: 70334374
+  birthdate: 19/6/1996
+  seller: 9
+  email: RUFASTO3@GMAIL.COM
+  email2: HEC.RAMIREZ96@GMAIL.COM
+  address: BRASIL NRO 1836 PUEBLO LIBRE
+  phone_number: 954747852
+- model: rrgg.naturalperson
+  given_name: CESAR AUGUSTO
+  first_surname: RASMUSSEN
+  second_surname: VICENTE
+  document_number: 07885861
+  birthdate: 14/3/1967
+  seller: 9
+  email: CESAR.RASMUSSEN@GMAIL.COM
+  email2:
+  address: CALLE CAMILLE COROT 169 SAN BORJA
+  phone_number: 975092276
+- model: rrgg.naturalperson
+  given_name: LUIS ENRIQUE
+  first_surname: REATEGUI
+  second_surname: CASTILLO
+  document_number: 76183233
+  birthdate: 13/12/1998
+  seller: 9
+  email: LUIS.REATEGUI_2@HOTMAIL.COM
+  email2:
+  address: CALLE TENIENTE JIMENEZ NÚMERO 382 CHORRILLOS
+  phone_number: 992447133
+- model: rrgg.naturalperson
+  given_name: CESAR RAMIRO
+  first_surname: REQUEJO
+  second_surname: LLAJA
+  document_number: 08039790
+  birthdate: 17/11/1958
+  seller: 9
+  email: REQUEJO17CESAR@GMAIL.COM
+  email2:
+  address: AV.JAVIER MARAITEGUI-865-DP.306 JESUS MARIA
+  phone_number: 993531388
+- model: rrgg.naturalperson
+  given_name: FLOR MARIA
+  first_surname: RETIS
+  second_surname: SILVA
+  document_number: 40226801
+  birthdate: 4/5/1979
+  seller: 9
+  email: YTORO@LANCASTER.COM.PE
+  email2:
+  address: CIUDAD DEL PESCADOR MZ. A1 LT. 8 - BELLAVISTA (CALLAO 2) - CALLAO
+  phone_number: 970651788
+- model: rrgg.naturalperson
+  given_name: ERASMO ALEJANDRO
+  first_surname: REYNA
+  second_surname: ALCANTARA
+  document_number: 09565161
+  birthdate: 8/6/1969
+  seller: 9
+  email: EREYNAABOGADO@HOTMAIL.COM
+  email2:
+  address: CALLE NICARAGUA 110 JESUS MARIA
+  phone_number: 990418181
+- model: rrgg.naturalperson
+  given_name: ROBERT HERNAN
+  first_surname: REYNA
+  second_surname: PEREZ
+  document_number: 32919492
+  birthdate: 5/11/1969
+  seller: 9
+  email: robertreynaperez1@gmail.com
+  email2:
+  address: JIRÓN VILLAVICENCIO 1198
+  phone_number: 14729444
+- model: rrgg.naturalperson
+  given_name: RAFAEL
+  first_surname: REYNA
+  second_surname: TERRONES
+  document_number: 32923015
+  birthdate: 8/12/1967
+  seller: 9
+  email: RREYNA@KCS.PE
+  email2:
+  address: FERMIN TANGUIS 145 OF 302
+  phone_number: 987816701
+- model: rrgg.naturalperson
+  given_name: MARIANA ALEJANDRA
+  first_surname: REYNA
+  second_surname: ZEGARRA
+  document_number: 70041677
+  birthdate: 5/4/1996
+  seller: 9
+  email: MREYNA@KCS.PE
+  email2:
+  address: FERMIN TANGUIS 145 OF 302
+  phone_number: 968968855
+- model: rrgg.naturalperson
+  given_name: MARIO CLODOMIRO
+  first_surname: RIVAS
+  second_surname: CHAVEZ
+  document_number: 10812797
+  birthdate: 19/7/1958
+  seller: 9
+  email: MARIORIVASCHAVEZ@HOTMAIL.COM
+  email2:
+  address: ALLE LOS ALAMOS 378 DEPARTAMENTO 301 URBANIZACIÓN MONTERRICO RESTO MONTERRICO
+  phone_number: 997536911
+- model: rrgg.naturalperson
+  given_name: ZORAIDA NELLY
+  first_surname: RIVAS
+  second_surname: COYURE
+  document_number: 40527903
+  birthdate: 15/2/1980
+  seller: 9
+  email: zorarivas@hotmail.com
+  email2:
+  address: MZ D LT 7 COOP VIV HERRERA
+  phone_number: 979585358
+- model: rrgg.naturalperson
+  given_name: NOELIA SALOME
+  first_surname: RIVAS
+  second_surname: COYURI
+  document_number: 09903389
+  birthdate: 3/10/1974
+  seller: 9
+  email: NOESAL3@HOTMAIL.COM
+  email2:
+  address: SANTIAGO DE SURCO
+  phone_number: 989649318
+- model: rrgg.naturalperson
+  given_name: JORGE ALEJANDRO
+  first_surname: RIVASPLATA
+  second_surname: ZARATE
+  document_number: 08363463
+  birthdate: 5/2/1959
+  seller: 9
+  email: JRIVASPLATA@TABOADAYASOC.COM
+  email2:
+  address: AVENIDA VIVIANO PAREDES 351, DISTRITO DE LIMA,
+  phone_number: 999778644
+- model: rrgg.naturalperson
+  given_name: MARIO CARLOS
+  first_surname: RIVERA
+  second_surname: PEREZ
+  document_number: 08747543
+  birthdate: 24/5/1964
+  seller: 9
+  email: MARIOCARLOSRIVERA1@GMAIL.COM
+  email2:
+  address: CALLE LUIS ALDANA 219 DEPARTAMENTO 203 URBANIZACIÓN CORPAC
+  phone_number: 987570048
+- model: rrgg.naturalperson
+  given_name: CARLOS RAFAEL
+  first_surname: RIVERA
+  second_surname: TAPIA
+  document_number: 07972657
+  birthdate: 21/5/1969
+  seller: 9
+  email: CARLOS.TAPIAR@GMAIL.COM
+  email2:
+  address: CALLE VALLE RIESTRA NRO 629
+  phone_number: 956739939
+- model: rrgg.naturalperson
+  given_name: EDUARDO RUBEN
+  first_surname: RIVERO
+  second_surname: PONCE
+  document_number: 06034620
+  birthdate: 12/11/2022
+  seller: 9
+  email: RIVERO_ER@UP.EDU.PE
+  email2:
+  address: CALLE LOS OSOS NRO 437 URB RINCONADA DEL LAGO LA
+  phone_number: 945066182
+- model: rrgg.naturalperson
+  given_name: JESUS ARQUIMEDES DARIO
+  first_surname: ROJAS
+  second_surname: ALEGRIA
+  document_number: 43421046
+  birthdate: 2/8/1965
+  seller: 9
+  email: JESUSROJAS65@OUTLOOK.COM
+  email2:
+  address: LIMA POLO NRO. 261 TORRE B DPTO. 302  SURCO
+  phone_number: 993546526
+- model: rrgg.naturalperson
+  given_name: JULIO CESAR
+  first_surname: ROMERO
+  second_surname: PORTOCARRERO
+  document_number: 08910178
+  birthdate: 11/4/1964
+  seller: 9
+  email: LUIS.AMORETTI.V@GMAIL.COM
+  email2:
+  address: 23 MZ L LOTE 14 SECTOR 1 VILLA EL SALVADOR
+  phone_number: 2681396
+- model: rrgg.naturalperson
+  given_name: WILLY MANUEL
+  first_surname: SACIO
+  second_surname: MATUTE
+  document_number: 08203570
+  birthdate: 8/7/1947
+  seller: 9
+  email: wsaciom@gmail.com
+  email2:
+  address: Jirón Jose Antonio 164 Departamento 101 LA MOLINA
+  phone_number: 945050863
+- model: rrgg.naturalperson
+  given_name: KATHIA
+  first_surname: SALAZAR
+  second_surname: CORRALES
+  document_number: 46556673
+  birthdate: 29/9/1990
+  seller: 9
+  email: KATHIASALAZARC@HOT MAIL.COM
+  email2:
+  address: AV. ASOC PROVIVIENDA FAP JORGE CHAVEZ SURCO
+  phone_number: 904297577
+- model: rrgg.naturalperson
+  given_name: MARIA DEL PILAR
+  first_surname: SALVADOR
+  second_surname: RIOS
+  document_number: 73113268
+  birthdate: 19/5/2001
+  seller: 9
+  email: MARIADELPILARSALVADORIOS@GMAIL.COM
+  email2:
+  address: JR. JEAN FRANCOIS MILLET MZ. D-7 LT. 2 URB STA MARIA
+  phone_number: 981518398
+- model: rrgg.naturalperson
+  given_name: RUIZ LUIS ENRIQUE
+  first_surname: SAN ROMAN
+  second_surname: RUIZ
+  document_number: 10318416
+  birthdate: 28/11/1938
+  seller: 9
+  email: MILISANROMAN@HOTMAIL.COM
+  email2:
+  address: AVENIDA ALAMEDA DEL CORREGIDOR 1818 URBANIZACIÓN LAS VIÑAS DE LA MOLINA
+  phone_number: 944202478
+- model: rrgg.naturalperson
+  given_name: DE GENTILLE DORIS
+  first_surname: SANCHEZ
+  second_surname: BERMUDEZ
+  document_number: 06598300
+  birthdate: 12/12/1964
+  seller: 9
+  email: PATDEGENT@HOTMAIL.COM
+  email2:
+  address: JR. JR CURAZAO 587 URB SANTA PATRICIA LA MOLINA
+  phone_number: 963751534
+- model: rrgg.naturalperson
+  given_name: FRIDA
+  first_surname: SANCHEZ
+  second_surname: CALCURIAN
+  document_number: 91668520
+  birthdate: 6/1/2020
+  seller: 9
+  email: JOHANATM26@HOTMAIL.COM
+  email2:
+  address: JR TENIENTE DIEGO FERRE RMZ LT COCVIECMA
+  phone_number: 932239676
+- model: rrgg.naturalperson
+  given_name: VICENTE
+  first_surname: SANCHEZ
+  second_surname: GARAY
+  document_number: 43431644
+  birthdate: 27/9/1961
+  seller: 9
+  email: B_SAGAVIC@YAHOO.ES
+  email2:
+  address: DANIEL ALIAGA 109 111 MZ.E2 LT.29 COMAS
+  phone_number: 991033902
+- model: rrgg.naturalperson
+  given_name: JUAN ARQUIMIDES
+  first_surname: SANCHEZ
+  second_surname: MOYANO
+  document_number: 25839547
+  birthdate: 14/7/1977
+  seller: 9
+  email: JSANCHEZ@GALENA.COM.PE
+  email2:
+  address: AVENIDA CALLE ELIAS AGUIRRE 155, DISTRITO DE LA PUNTA,
+  phone_number: 986601350
+- model: rrgg.naturalperson
+  given_name: JOSE LUIS
+  first_surname: SANGUINETI
+  second_surname: NOVARO
+  document_number: 43295331
+  birthdate: 3/1/1958
+  seller: 9
+  email: GFAJARDO_8@HOTMAIL.COM
+  email2:
+  address: CALLE JUAN GERMAN LAPEYRE 352 DEPARTAMENTO 101 SURCO
+  phone_number: 999449568
+- model: rrgg.naturalperson
+  given_name: MEYER MARCELO ELOY
+  first_surname: SANTOLALLA
+  second_surname: VILANUEVA
+  document_number: 10225134
+  birthdate: 29/6/1950
+  seller: 9
+  email: MARSANT17@GMAIL.COM
+  email2:
+  address: CALLE AV ARAMBURU 987 DPTO 302 INDEPENDENCIA
+  phone_number: 980022478
+- model: rrgg.naturalperson
+  given_name: JOSE CARLOS
+  first_surname: SCHROTH
+  second_surname: CAFFERATA
+  document_number: 41839868
+  birthdate: 21/3/1983
+  seller: 9
+  email: JOSECARLOSSCHROTH@YAHOO.COM
+  email2:
+  address: 15 DE ENERO NRO 536 MIRAFLORES
+  phone_number: 994826647
+- model: rrgg.naturalperson
+  given_name: LOURDES MARIA
+  first_surname: SEBASTIAN
+  second_surname: PRADO
+  document_number: 08135438
+  birthdate: 15/2/1970
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: AV. CIRCUNVALACION CLUB GOLF LOS INCAS NO.292 – BLOCK “E” DPTO.
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: ROMAN CARMEN DELIA
+  first_surname: SERKOVIC
+  second_surname: SAN ROMAN
+  document_number: 08748134
+  birthdate: 15/7/1945
+  seller: 9
+  email: FMECKLENBURG@ME.COM
+  email2:
+  address: 103 – CONDOMINIO LOS INCAS – SANTIAGO DE SURCO
+  phone_number: 991884494
+- model: rrgg.naturalperson
+  given_name: SANCHEZ CALCURIAN
+  first_surname: SILVIA
+  second_surname: CAROLINA
+  document_number: 03707044
+  birthdate: 13/12/1983
+  seller: 9
+  email: SILVIACALCURIAN@GMAIL.COM
+  email2:
+  address: JR TENIENTE DIEGO FERRE RMZ LT COCVIECMA
+  phone_number: 993636810
+- model: rrgg.naturalperson
+  given_name: RICHARD
+  first_surname: SMITH
+  second_surname: ROCCA
+  document_number: 07661227
+  birthdate: 21/2/1964
+  seller: 9
+  email: YSABEL.08.01@HOTMAIL.COM
+  email2:
+  address: UNION CHALACA NRO 150 LURIGANCHO
+  phone_number: 952639822
+- model: rrgg.naturalperson
+  given_name: FERNANDO JEAN PIERRE
+  first_surname: SOLIS
+  second_surname: CARVAJAL
+  document_number: 48355183
+  birthdate: 16/10/1993
+  seller: 9
+  email: FSOLIS@KCS.PE
+  email2:
+  address: MARIATEGUI NÚMERO 865 INTERIOR 25 JESUS MARIA
+  phone_number: 994330174
+- model: rrgg.naturalperson
+  given_name: JULIO CESAR
+  first_surname: SOTOMAYOR
+  second_surname: RIOS
+  document_number: 43596944
+  birthdate: 17/2/1967
+  seller: 9
+  email: JCSOTOMAYORR@HOTMAIL.COM
+  email2:
+  address: CALLE ESPARCETA 115 SANTIAGO DE SURCO
+  phone_number: 999916851
+- model: rrgg.naturalperson
+  given_name: LUIS EDUARDO
+  first_surname: SOTOMAYOR
+  second_surname: RIOS
+  document_number: 43457941
+  birthdate: 23/1/1964
+  seller: 9
+  email: LUISESOTOMAYOR@OUTLOOK.COM
+  email2:
+  address:
+  phone_number: 966193601
+- model: rrgg.naturalperson
+  given_name: JORGE GREGORIO
+  first_surname: SUCNO
+  second_surname: TOVAR
+  document_number: 09334542
+  birthdate: 9/5/1968
+  seller: 9
+  email: JORSUCTOV@YAHOO.ES
+  email2:
+  address: GRAN CHIMU NRO 337 SAN JUAN DE LURIGANCHO
+  phone_number: 987712439
+- model: rrgg.naturalperson
+  given_name: SERGIO
+  first_surname: TAPIA
+  second_surname: OVIEDO
+  document_number: 09890639
+  birthdate: 8/10/1967
+  seller: 9
+  email: D_TAOVSE@YAHOO.ES
+  email2:
+  address: AV BRASIL 1392 LIMA
+  phone_number: 974781275
+- model: rrgg.naturalperson
+  given_name: CARLOS RAFAEL
+  first_surname: TAPIA
+  second_surname: RIVERA
+  document_number: 07972657
+  birthdate: 21/5/1969
+  seller: 9
+  email: CARLOS.TAPIAR@GMAIL.COM
+  email2:
+  address: VALLE RIESTRA NRO 629 PUEBLO LIBRE
+  phone_number: 956739939
+- model: rrgg.naturalperson
+  given_name: OCTAVIO ROLANDO
+  first_surname: TAPIA
+  second_surname: RIVERA
+  document_number: 07967663
+  birthdate: 15/5/1968
+  seller: 9
+  email: ROLANDOTAPIARIVERA@GMAIL.COM
+  email2:
+  address: ORRANTIA NRO 1435 DPTO 201 SAN ISIDRO
+  phone_number: 985019363
+- model: rrgg.naturalperson
+  given_name: FREDY TULIO
+  first_surname: TARA
+  second_surname: ARMAS
+  document_number: 43572563
+  birthdate: 26/9/1961
+  seller: 9
+  email: FRED_TARA@HOTMAIL.COM
+  email2:
+  address: FRED_TARA@HOTMAIL.COM
+  phone_number: 997906024
+- model: rrgg.naturalperson
+  given_name: ABEL JOSE
+  first_surname: TARAZONA
+  second_surname: MELITON
+  document_number: 74840159
+  birthdate: 13/10/1996
+  seller: 9
+  email: ABELJOSETR@GMAIL.COM
+  email2:
+  address: JR. SUCRE 580 BLOCK 5 DPTO. C URB SAN MIGUEL
+  phone_number: 999449568
+- model: rrgg.naturalperson
+  given_name: CLAUDIO VICTOR
+  first_surname: TELLO
+  second_surname: BENITES
+  document_number: 09594431
+  birthdate: 30/10/1958
+  seller: 9
+  email: CVTELLOB@HOTMAIL.COM
+  email2:
+  address: JR. LUIS DEXTRE MZ X LOTE 1 URB. HONOR SURCO
+  phone_number: 997358660
+- model: rrgg.naturalperson
+  given_name: DE CRUZADO ROXANA
+  first_surname: TORRES
+  second_surname: BENAVIDES
+  document_number: 43605148
+  birthdate: 21/3/1959
+  seller: 9
+  email: ROXANATORRES.AJ@GMAIL.COM
+  email2:
+  address: AV OLAVEGOYA NÚMERO 1955 INTERIOR DPTO 702
+  phone_number: 993013582
+- model: rrgg.naturalperson
+  given_name: SUSAHNE CELESTE
+  first_surname: TORRES
+  second_surname: CARRASCO
+  document_number: 07640161
+  birthdate: 19/10/1976
+  seller: 9
+  email: M.HUAMAN.P99@GMAIL.COM
+  email2:
+  address: MONACO 180 - LA MOLINA
+  phone_number: 995060653
+- model: rrgg.naturalperson
+  given_name: ROSA MARIA VITA
+  first_surname: UGAZ
+  second_surname: LA ROSA
+  document_number: 08785762
+  birthdate: 19/5/1964
+  seller: 9
+  email: MARIELLA_UGAZLAROSA@HOTMAIL.COM
+  email2:
+  address: JR EL INCARIO NRO 350 URB EL DERBY MONTERRICO SURCO
+  phone_number: 997584090
+- model: rrgg.naturalperson
+  given_name: CARLOS MAX
+  first_surname: URIBE
+  second_surname: RIOS
+  document_number: 41581751
+  birthdate: 8/4/1982
+  seller: 9
+  email: CARLOS.URIBE@CRC-ASOCIADOS.COM
+  email2:
+  address: JR BERNINI 440   SAN BORJA
+  phone_number: 975114460
+- model: rrgg.naturalperson
+  given_name: SONIA GRACIELA
+  first_surname: URQUIZO
+  second_surname: JARA
+  document_number: 09110992
+  birthdate: 5/6/1964
+  seller: 9
+  email: SONIA_05_10@HOTMAIL.ES
+  email2:
+  address: AVENIDA SAN JOSE 1091 VILLA MARIA DEL TRIUNFO
+  phone_number: 936112123
+- model: rrgg.naturalperson
+  given_name: OSWALDO MIGUEL
+  first_surname: URTECHO
+  second_surname: ENRIQUEZ
+  document_number: 08464463
+  birthdate: 20/2/1958
+  seller: 9
+  email: OURTECHO@GMAIL.COM
+  email2:
+  address: CALLE JORGE CANTUARIAS 469, URBANIZACIÓN SAN MARTIN
+  phone_number: 997444036
+- model: rrgg.naturalperson
+  given_name: JORGE MIGUEL
+  first_surname: VALDERRAMA
+  second_surname: ANCHANTE
+  document_number: 25531090
+  birthdate: 29/9/1959
+  seller: 9
+  email: JVALDERRAMA13@HOTMAIL.COM
+  email2:
+  address: CA 29 MZ. A3 LT. 16 PISO 2 - BELLAVISTA
+  phone_number: 994124382
+- model: rrgg.naturalperson
+  given_name: WILDER
+  first_surname: VALDIVIA
+  second_surname: ROJAS
+  document_number: 10126927
+  birthdate: 17/5/1975
+  seller: 9
+  email: CORP.NETCOMSAC@GMAIL.COM
+  email2:
+  address: AV. NICANOR ARTEAGA 463 - SAN BORJA
+  phone_number: 3567429
+- model: rrgg.naturalperson
+  given_name: CATHERINE
+  first_surname: VALENTE
+  second_surname: AZURZA
+  document_number: 09931933
+  birthdate: 12/8/1973
+  seller: 9
+  email:  CVALENTE85@HOTMAIL.COM
+  email2:
+  address: CL TOMASAL 830 SURCO
+  phone_number: 968355350
+- model: rrgg.naturalperson
+  given_name: OSCAR JAVIER
+  first_surname: VALENZUELA
+  second_surname: DOMINGUEZ
+  document_number: 32905242
+  birthdate: 14/4/1967
+  seller: 9
+  email: OJVALENZUELAD@GMAIL.COM
+  email2:
+  address: CA. LAS MARGARITAS 127 - LINCE
+  phone_number: 993083786
+- model: rrgg.naturalperson
+  given_name: PHIL
+  first_surname: VALVERDE
+  second_surname: WOOLCOTT
+  document_number: 09438435
+  birthdate: 7/5/1967
+  seller: 9
+  email: PHIL_VALVERDE@HOTMAIL.COM
+  email2:
+  address: PHIL_VALVERDE@HOTMAIL.COM
+  phone_number: 970651788
+- model: rrgg.naturalperson
+  given_name: MARIELA CRISTINA
+  first_surname: VARGAS
+  second_surname: CAPA
+  document_number: 47188272
+  birthdate: 14/8/1991
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: MANUEL AMAT Y JUNIET 236-238 URB LA VIRREYNA
+  phone_number: 940402537
+- model: rrgg.naturalperson
+  given_name: ARRESE CARLOS MARTIN
+  first_surname: VARGAS
+  second_surname: MACHUCA
+  document_number: 07703437
+  birthdate: 6/5/1966
+  seller: 9
+  email: CVARGASM@LANEY.COM.PE
+  email2:
+  address: CALLE SINCHI ROCA 2532 1401 LINCE, LINCE
+  phone_number: 992060985
+- model: rrgg.naturalperson
+  given_name: FELIX AUGUSTO
+  first_surname: VASQUEZ
+  second_surname: LAPEL
+  document_number: 43633018
+  birthdate: 12/5/1986
+  seller: 9
+  email: LAPELMED@GMAIL.COM
+  email2:
+  address: AV LA MERCED 183 MIRAFLORES
+  phone_number: 979780527
+- model: rrgg.naturalperson
+  given_name: MARICARMEN
+  first_surname: VASQUEZ
+  second_surname: RODRIGUEZ
+  document_number: 47497262
+  birthdate: 6/4/1991
+  seller: 9
+  email: VASRODRIMARICARMEN91@GMAIL.COM
+  email2:
+  address: ERNESTO MONTAGNE 241 203 MIRAFLORES
+  phone_number: 965346535
+- model: rrgg.naturalperson
+  given_name: ELISA GUADALUPE
+  first_surname: VELARDE
+  second_surname: LEAL
+  document_number: 09398774
+  birthdate: 27/4/1969
+  seller: 9
+  email: ELISA.VELARDE@ASTRAZENECA.COM
+  email2:
+  address: AVENIDA ALAMEDA DE LA PAZ 110 DEPARTAMENTO 104 URBANIZACIÓN EL REMANSO LA MOLINA
+  phone_number: 989143580
+- model: rrgg.naturalperson
+  given_name: KAREN
+  first_surname: VELASQUEZ
+  second_surname: ALMEIDA
+  document_number: 40381989
+  birthdate: 1/8/2020
+  seller: 9
+  email: VK404@HOTMAIL.COM
+  email2:
+  address: AV MALECON CHECA 1709 LIMA ZARATE
+  phone_number: 969968406
+- model: rrgg.naturalperson
+  given_name: NILDA CORINA
+  first_surname: VELASQUEZ
+  second_surname: ZAVALA
+  document_number: 40720989
+  birthdate: 24/9/1980
+  seller: 9
+  email: NICOZ_2@HOTMAIL.COM
+  email2:
+  address: CALLE LA SILICA CIUDAD NUEVA 0 DEPARTAMENTO 5 MZ F7 LTE 2 URBANIZACIÓN MAGISTERIAL ILO
+  phone_number: 941039156
+- model: rrgg.naturalperson
+  given_name: ALISSON
+  first_surname: VERGARAY
+  second_surname: HUERTA
+  document_number: 47052628
+  birthdate: 12/2/1991
+  seller: 9
+  email: JOSECASAS1981@GMAIL.COM
+  email2:
+  address: CIRO ALEGRIA NRO 248 PUEBLO LIBRE
+  phone_number: 975109523
+- model: rrgg.naturalperson
+  given_name: SERGIO
+  first_surname: VERNAL
+  second_surname: BUTRON
+  document_number: 43310610
+  birthdate: 1/2/1965
+  seller: 9
+  email: SERGIOVERNAL1265@HOTMAIL.COM
+  email2:
+  address: CA. ROBERTO CARPIO 194 URB. LOS - SANTIAGO DE SURCO
+  phone_number: 999965294
+- model: rrgg.naturalperson
+  given_name: JEFFERSON ALBERTO
+  first_surname: VICHARRA
+  second_surname: FIGUEROA
+  document_number: 43792570
+  birthdate: 21/11/1984
+  seller: 9
+  email: JEFFER2111@GMAIL.COM
+  email2:
+  address: MZ UCV 101 LT15 ZONA F HUAYCAN ATE
+  phone_number: 949870105
+- model: rrgg.naturalperson
+  given_name: GISELA TATIANA
+  first_surname: VICTOR
+  second_surname: MENDOZA
+  document_number: 20112050
+  birthdate: 15/12/1977
+  seller: 9
+  email: GTVM@HOTMAIL.COM
+  email2:
+  address: CALLE LOMA AIROSA 175 SURCO
+  phone_number: 949500991
+- model: rrgg.naturalperson
+  given_name: CLAUDIA PATRICIA
+  first_surname: VIDANGOS
+  second_surname: GOMEZ
+  document_number: 73263730
+  birthdate: 18/4/1995
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: JR. LA MADRILEÑA 234 DPTO. 502 – URB. VILLA JARDIN – SAN LUIS
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: BENITO
+  first_surname: VILLANUEVA
+  second_surname: GUTIERREZ
+  document_number: 07536051
+  birthdate: 15/2/1968
+  seller: 9
+  email: TAMAKUN1@GMAIL.COM
+  email2:
+  address: LA MAR 2252 SAN MIGUEL - SAN MIGUEL (LIMA 32) - LIMA
+  phone_number: 993549880
+- model: rrgg.naturalperson
+  given_name: MARIA MONICA DEL CARMEN
+  first_surname: VILLANUEVA
+  second_surname: PATRON
+  document_number: 07830089
+  birthdate: 28/9/1966
+  seller: 9
+  email: MMCVILLANUEVA@GMAIL.COM
+  email2:
+  address: AVENIDA PEDRO VENTURO 679 DEPARTAMENTO 201 REFERENCIA
+  phone_number: 945069607
+- model: rrgg.naturalperson
+  given_name: ANDREE HAJIME
+  first_surname: YTOMURA
+  second_surname: ESPINAR
+  document_number: 48808265
+  birthdate: 11/2/1996
+  seller: 9
+  email: KATHYESPINAR30@HOTMAIL.COM
+  email2:
+  address: AV VALLES DEL SUR 170 DPTO 101 - SURCO
+  phone_number: 968257667
+- model: rrgg.naturalperson
+  given_name: ISMAEL
+  first_surname: ZAMORA
+  second_surname: PICHILING
+  document_number: 08162746
+  birthdate: 19/2/1975
+  seller: 9
+  email: ISMAELZAMORA501@GMAIL.COM
+  email2:
+  address: AV AVIACION 2340 DPTO 501 SAN BORJA
+  phone_number: 932863252
+- model: rrgg.naturalperson
+  given_name: EDWAR JORGE
+  first_surname: ZAVALETA
+  second_surname: LOPEZ
+  document_number: 43559283
+  birthdate: 3/6/1974
+  seller: 9
+  email: JORGITO367@HOTMAIL.COM
+  email2:
+  address: JIRÓN AMAZONAS 543 SANTA ANCASH
+  phone_number: 953259788
+- model: rrgg.naturalperson
+  given_name: CARMEN MARIA
+  first_surname: ZEGARRA
+  second_surname: NOBLECILLA
+  document_number: 06605159
+  birthdate: 18/5/1959
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: NICOLÀS DE RIVERA 105 SALAMANCA, ATE
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: DORA ANGELICA
+  first_surname: ZEGARRA
+  second_surname: NOBLECILLA
+  document_number: 10491344
+  birthdate: 13/11/1951
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: CA. MARIA PARADO DE BELLIDO 315 - LA MOLINA
+  phone_number: 13489208
+- model: rrgg.naturalperson
+  given_name: MANUEL
+  first_surname: ZEGARRA
+  second_surname: NOBLECILLA
+  document_number: 18217564
+  birthdate: 21/12/1964
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  email2:
+  address: CARZON 163 SAN BORJA
+  phone_number: 997502786
+- model: rrgg.naturalperson
+  given_name: PATRICIA MARIA TERESA
+  first_surname: ZEGARRA
+  second_surname: NOBLECILLA
+  document_number: 06599574
+  birthdate: 19/7/1966
+  seller: 9
+  email: PATTYZN9699@YAHOO.ES
+  address: JOSE GRANDA NRO 590 INTERIOR 2A SAN ISIDRO
+  phone_number: 999634819
+- model: rrgg.naturalperson
+  given_name: ALICIA
+  first_surname: ZUBIATE
+  second_surname: LOPEZ
+  document_number: 08245911
+  birthdate: 3/3/1958
+  seller: 9
+  email: URZULO@HOTMAIL.COM
+  email2:
+  address: AV. AV GUARDIA CIVIL 1220 CORPAC. SAN ISIDRO
+  phone_number: 962357404

@@ -43,6 +43,16 @@
     - 1
     - 2
     - 3
+- model: rrgg.consultant
+  pk: 9
+  fields:
+    given_name: Dante
+    first_surname: Reyna
+    role: 1
+    area:
+    - 1
+    - 2
+    - 3  
 - model: rrgg.area
   pk: 1
   fields:

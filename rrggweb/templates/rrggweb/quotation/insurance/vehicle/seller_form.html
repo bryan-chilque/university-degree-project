@@ -8,6 +8,8 @@
     <div class="col-md-8 col-lg-6">
       {% if initial_step == 1 and final_step == 4 %}
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=4 %}
+      {% elif initial_step == 1 and final_step == 3 %}
+        {% include "rrggweb/utils/stepper.html" with step=1 max_step=3 %}
       {% elif initial_step == 1 and final_step == 6 %}
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=6 %}
       {% elif initial_step == 1 and final_step == 9 %}

@@ -530,17 +530,27 @@ customer_membership_urlpatterns = (
             name="list",
         ),
         path(
-            "select_customer/",
+            "select_role/",
+            views.CMSelectRoleFormView.as_view(),
+            name="select_role",
+        ),
+        path(
+            "select_seller/role/<int:role_id>/",
+            views.CMSelectSellerFormView.as_view(),
+            name="select_seller",
+        ),
+        path(
+            "select_customer/seller/<int:seller_id>/",
             views.SelectCustomerMembershipFormView.as_view(),
             name="select_customer",
         ),
         path(
-            "create_natural_person/seller/",
+            "create_natural_person/seller/<int:seller_id>/",
             views.CMCreateNaturalPersonView.as_view(),
             name="create_natural_person",
         ),
         path(
-            "create_legal_person/seller/",
+            "create_legal_person/seller/<int:seller_id>/",
             views.CMCreateLegalPersonView.as_view(),
             name="create_legal_person",
         ),

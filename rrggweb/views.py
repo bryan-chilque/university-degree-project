@@ -3806,6 +3806,10 @@ class CustomerMembershipListView(ListView):
         context = super().get_context_data(**kwargs)
         context["title"] = "CLIENTES"
         context["subtitle"] = "Lista de clientes"
+        context["register"] = urls.reverse(
+            "rrggweb:customer_membership:select_role",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
         context["search_query"] = self.request.GET.get("q", "")
         return context
 
@@ -3828,6 +3832,71 @@ class CustomerMembershipDetailView(
         return context
 
 
+class CMSelectRoleFormView(FormView):
+    template_name = "rrggweb/quotation/insurance/vehicle/seller_form.html"
+    form_class = forms.RoleForm
+
+    def form_valid(self, form: forms.RoleForm):
+        role = form.cleaned_data["roles"]
+        self.success_url = urls.reverse(
+            "rrggweb:customer_membership:select_seller",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "role_id": role.id,
+            },
+        )
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "CLIENTES"
+        context["subtitle"] = "Seleccionar responsable"
+        context["initial_step"] = 1
+        context["final_step"] = 3
+        context["previous_page"] = urls.reverse(
+            "rrggweb:customer_membership:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        return context
+
+
+class CMSelectSellerFormView(FormView):
+    template_name = "rrggweb/quotation/insurance/vehicle/seller_form.html"
+    form_class = forms.SellerForm
+
+    def form_valid(self, form: forms.SellerForm):
+        seller = form.cleaned_data["asesores"]
+        self.success_url = urls.reverse(
+            "rrggweb:customer_membership:select_customer",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": seller.id,
+            },
+        )
+        return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        role_id = self.kwargs.get("role_id")
+        kwargs["role_id"] = role_id
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "CLIENTES"
+        context["subtitle"] = "Seleccionar responsable"
+        context["initial_step"] = 1
+        context["final_step"] = 3
+        context["role_selector"] = forms.RoleForm(
+            role_id=self.kwargs.get("role_id")
+        )
+        context["previous_page"] = urls.reverse(
+            "rrggweb:customer_membership:select_role",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        return context
+
+
 class SelectCustomerMembershipFormView(FormView):
     template_name = "rrggweb/quotation/insurance/vehicle/customer_form.html"
     form_class = forms.SelectCustomerForm
@@ -3837,13 +3906,19 @@ class SelectCustomerMembershipFormView(FormView):
         if type_customer == "persona_natural":
             create_customer_url = urls.reverse(
                 "rrggweb:customer_membership:create_natural_person",
-                kwargs={"registrar_id": self.kwargs["registrar_id"]},
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "seller_id": self.kwargs["seller_id"],
+                },
             )
             self.success_url = create_customer_url
         elif type_customer == "persona_jurídica":
             create_customer_url = urls.reverse(
                 "rrggweb:customer_membership:create_legal_person",
-                kwargs={"registrar_id": self.kwargs["registrar_id"]},
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "seller_id": self.kwargs["seller_id"],
+                },
             )
             self.success_url = create_customer_url
         else:
@@ -3854,8 +3929,10 @@ class SelectCustomerMembershipFormView(FormView):
         context = super().get_context_data(**kwargs)
         context["title"] = "CLIENTES"
         context["subtitle"] = "Seleccionar cliente"
+        context["initial_step"] = 2
+        context["final_step"] = 3
         context["previous_page"] = urls.reverse(
-            "rrggweb:customer_membership:list",
+            "rrggweb:customer_membership:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         return context
@@ -3868,13 +3945,24 @@ class CMCreatePersonSupportView(
     model = rrgg.models.CustomerMembership
     fields = "__all__"
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["email2"].required = False
+        form.fields["address"].required = False
+        return form
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "CLIENTES"
         context["subtitle"] = "Crear cliente"
+        context["initial_step"] = 3
+        context["final_step"] = 3
         context["previous_page"] = urls.reverse(
             "rrggweb:customer_membership:select_customer",
-            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+            },
         )
         return context
 
@@ -3895,7 +3983,8 @@ class CMCreateNaturalPersonView(CMCreatePersonSupportView):
 
     def get_success_url(self):
         rrgg.models.CustomerMembership.objects.create(
-            natural_person=self.object
+            natural_person=self.object,
+            seller_id=self.kwargs["seller_id"],
         )
         return urls.reverse(
             "rrggweb:customer_membership:list",
@@ -3918,7 +4007,10 @@ class CMCreateLegalPersonView(CMCreatePersonSupportView):
         return initial
 
     def get_success_url(self):
-        rrgg.models.CustomerMembership.objects.create(legal_person=self.object)
+        rrgg.models.CustomerMembership.objects.create(
+            legal_person=self.object,
+            seller_id=self.kwargs["seller_id"],
+        )
         return urls.reverse(
             "rrggweb:customer_membership:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
