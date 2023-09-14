@@ -97,7 +97,10 @@ class DocumentType(models.Model):
 
 class Person(models.Model):
     phone_number = models.CharField(
-        _("phone number"), max_length=32, validators=[validators.only_int], null=True
+        _("phone number"),
+        max_length=32,
+        validators=[validators.only_int],
+        null=True,
     )
     email = models.EmailField(_("email"), max_length=64, null=True)
     email2 = models.EmailField(_("email 2"), max_length=64, null=True)
