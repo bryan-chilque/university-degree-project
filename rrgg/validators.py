@@ -24,3 +24,7 @@ def validate_document_number(document_type, document_number):
                 f" {document_type.max_length} dígitos."
             )
         raise ValidationError({"document_number": [message]})
+
+    if document_type.code == "ruc" and document_number[:2] not in ["10", "20"]:
+        message = "El número de ruc debe comenzar con 10 o 20"
+        raise ValidationError({"document_number": [message]})
