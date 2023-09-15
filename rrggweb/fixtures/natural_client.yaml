@@ -825,7 +825,7 @@
     document_number: '10713722'
     email: 'BRUCCE.ECHENIQUE@DEGUSTE.COM.PE'
     address: 'CALLE MARIANO MELGAR NRO 215 DEPARTAMENTO 201'
-    phone_number: 
+    phone_number:
 
 - model: rrgg.customermembership
   pk: 133
