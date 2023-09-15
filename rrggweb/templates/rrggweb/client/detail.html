@@ -12,12 +12,8 @@
       <table class="table table-striped mt-3">
         <tbody>
           <tr>
-            <th>ID:</th>
-            <td>{{ object.id }}</td>
-          </tr>
-          <tr>
-            <th>Cliente:</th>
-            <td>{{ object.pick }}</td>
+            <th>Ejecutivo de venta:</th>
+            <td>{{ object.seller }}</td>
           </tr>
           <tr>
             <th>Tipo de Persona:</th>
@@ -45,8 +41,16 @@
               <td>{{ object.natural_person.phone_number }}</td>
             </tr>
             <tr>
+              <th>Dirección:</th>
+              <td>{{ object.natural_person.address }}</td>
+            </tr>
+            <tr>
               <th>Correo Electrónico:</th>
               <td>{{ object.natural_person.email }}</td>
+            </tr>
+            <tr>
+              <th>Correo Electrónico Alternativo:</th>
+              <td>{{ object.natural_person.email2|default:'-' }}</td>
             </tr>
             <tr>
               <th>Tipo de Documento:</th>
@@ -63,7 +67,7 @@
             </tr>
             <tr>
               <th>Gerente General:</th>
-              <td>{{ object.legal_person.general_manager }}</td>
+              <td>{{ object.legal_person.general_manager|default:'-' }}</td>
             </tr>
             <tr>
               <th>Fecha de Aniversario:</th>
@@ -74,8 +78,16 @@
               <td>{{ object.legal_person.phone_number }}</td>
             </tr>
             <tr>
+              <th>Dirección:</th>
+              <td>{{ object.legal_person.address }}</td>
+            </tr>
+            <tr>
               <th>Correo Electrónico:</th>
               <td>{{ object.legal_person.email }}</td>
+            </tr>
+            <tr>
+              <th>Correo Electrónico Alternativo:</th>
+              <td>{{ object.legal_person.email2|default:'-' }}</td>
             </tr>
             <tr>
               <th>Tipo de Documento:</th>

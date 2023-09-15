@@ -97,9 +97,13 @@ class DocumentType(models.Model):
 
 class Person(models.Model):
     phone_number = models.CharField(
-        _("phone number"), max_length=32, validators=[validators.only_int]
+        _("phone number"),
+        max_length=32,
+        validators=[validators.only_int],
+        null=True,
     )
-    email = models.EmailField(_("email"), max_length=64)
+    email = models.EmailField(_("email"), max_length=64, null=True)
+    email2 = models.EmailField(_("email 2"), max_length=64, null=True)
     document_type = models.ForeignKey(
         DocumentType,
         on_delete=models.PROTECT,
@@ -111,6 +115,7 @@ class Person(models.Model):
         unique=True,
         validators=[validators.only_int],
     )
+    address = models.CharField(_("address"), max_length=128, null=True)
 
     def clean(self):
         validators.validate_document_number(
@@ -137,7 +142,7 @@ class LegalPerson(Person):
     # razón social
     registered_name = models.CharField(_("registered name"), max_length=64)
     general_manager = models.CharField(_("general manager"), max_length=64)
-    anniversary_date = models.DateField(_("anniversary date"))
+    anniversary_date = models.DateField(_("anniversary date"), null=True)
 
     def __str__(self):
         return self.registered_name
@@ -155,6 +160,12 @@ class CustomerMembership(models.Model):
         on_delete=models.PROTECT,
         null=True,
         related_name="membership",
+    )
+    seller = models.ForeignKey(
+        Consultant,
+        on_delete=models.PROTECT,
+        related_name="customers",
+        default=9,
     )
 
     @property
