@@ -28,11 +28,11 @@
               <tbody>
                 <tr>
                   <td class="font-weight-bold">Tipo de documento</td>
-                  <td>{{ customer.pick.document_type}}</td>
+                  <td>{{ customer.document_type}}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Número de documento</td>
-                  <td>{{ customer.pick.document_number }}</td>
+                  <td>{{ customer.document_number }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Nombres y apellidos</td>
@@ -51,14 +51,14 @@
                 </tr>
               </thead>
               <tbody>
-                {% if update_owner %}
+                {% if owner %}
                   <tr>
                     <td class="font-weight-bold">Tipo de documento</td>
-                    <td>{{ owner.pick.document_type}}</td>
+                    <td>{{ owner.document_type}}</td>
                   </tr>
                   <tr>
                     <td class="font-weight-bold">Número de documento</td>
-                    <td>{{ owner.pick.document_number }}</td>
+                    <td>{{ owner.document_number }}</td>
                   </tr>
                   <tr>
                     <td class="font-weight-bold">Nombres y apellidos</td>
@@ -67,11 +67,11 @@
                 {% else %}
                   <tr>
                     <td class="font-weight-bold">Tipo de documento</td>
-                    <td>{{ customer.pick.document_type}}</td>
+                    <td>{{ customer.document_type}}</td>
                   </tr>
                   <tr>
                     <td class="font-weight-bold">Número de documento</td>
-                    <td>{{ customer.pick.document_number }}</td>
+                    <td>{{ customer.document_number }}</td>
                   </tr>
                   <tr>
                     <td class="font-weight-bold">Nombres y apellidos</td>

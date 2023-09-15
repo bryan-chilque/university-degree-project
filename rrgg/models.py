@@ -196,23 +196,6 @@ class CustomerMembership(models.Model):
             return f"{self.legal_person}"
 
 
-class Owner(models.Model):
-    given_name = models.CharField(_("given name"), max_length=64)
-    first_surname = models.CharField(_("first surname"), max_length=64)
-    second_surname = models.CharField(
-        _("second surname"), max_length=64, blank=True
-    )
-    document_number = models.CharField(
-        _("document number"), max_length=32, unique=True
-    )
-    birthdate = models.DateField(_("birthdate"))
-    phone_number = models.CharField(_("phone number"), max_length=32)
-    email = models.EmailField(_("email"), max_length=64)
-
-    def __str__(self):
-        return f"{self.given_name} {self.first_surname}"
-
-
 class UseType(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
@@ -281,7 +264,10 @@ class VehicleOwnership(models.Model):
         on_delete=models.PROTECT,
     )
     owner = models.ForeignKey(
-        Owner, null=True, related_name="ownership", on_delete=models.PROTECT
+        NaturalPerson,
+        null=True,
+        related_name="ownership",
+        on_delete=models.PROTECT,
     )
     vehicle = models.OneToOneField(
         Vehicle,
@@ -327,7 +313,7 @@ class InsuranceVehicle(models.Model):
         verbose_name_plural = _("vehicle insurance")
 
 
-# relación precio - aseguradora
+# relación precio - aseguradoras
 class InsuranceVehicleRatio(models.Model):
     tax = models.DecimalField(_("tax (igv)"), decimal_places=2, max_digits=10)
     emission_right = models.DecimalField(
@@ -561,7 +547,7 @@ class IssuanceInsuranceVehicle(models.Model):
     initial_validity = models.DateField(_("initial validity"))
     # fecha de vigencia final
     final_validity = models.DateField(_("final validity"))
-
+    # porcentaje de comisión del plan de seguro
     plan_commission_percentage = models.DecimalField(
         _("plan commission percentage"),
         decimal_places=3,

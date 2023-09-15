@@ -72,6 +72,20 @@
     renewal: '0.45'
     consultant: 1
     created: 2023-07-21 19:36:30.639471+00:00
+- model: rrgg.consultantrate
+  pk: 2
+  fields:
+    new_sale: '0.7'
+    renewal: '0.6'
+    consultant: 2
+    created: 2023-07-21 19:36:30.639471+00:00
+- model: rrgg.consultantrate
+  pk: 3
+  fields:
+    new_sale: '0'
+    renewal: '0'
+    consultant: 9
+    created: 2023-07-21 19:36:30.639471+00:00
 - model: auth.user
   pk: 1
   fields:
