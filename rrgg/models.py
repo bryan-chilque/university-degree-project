@@ -140,8 +140,10 @@ class NaturalPerson(Person):
 
 class LegalPerson(Person):
     # razón social
-    registered_name = models.CharField(_("registered name"), max_length=64)
-    general_manager = models.CharField(_("general manager"), max_length=64)
+    registered_name = models.CharField(_("registered name"), max_length=128)
+    general_manager = models.CharField(
+        _("general manager"), max_length=64, null=True
+    )
     anniversary_date = models.DateField(_("anniversary date"), null=True)
 
     def __str__(self):
