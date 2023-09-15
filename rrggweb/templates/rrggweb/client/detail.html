@@ -16,10 +16,6 @@
             <td>{{ object.seller }}</td>
           </tr>
           <tr>
-            <th>Cliente:</th>
-            <td>{{ object.pick }}</td>
-          </tr>
-          <tr>
             <th>Tipo de Persona:</th>
             <td>{{ object.type_customer }}</td>
           </tr>
@@ -71,7 +67,7 @@
             </tr>
             <tr>
               <th>Gerente General:</th>
-              <td>{{ object.legal_person.general_manager }}</td>
+              <td>{{ object.legal_person.general_manager|default:'-' }}</td>
             </tr>
             <tr>
               <th>Fecha de Aniversario:</th>

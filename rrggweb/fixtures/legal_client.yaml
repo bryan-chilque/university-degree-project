@@ -64,7 +64,7 @@
   pk: 13
   fields:
     legal_person: 13
-    seller: 9
+    seller: 3
 
 - model: rrgg.legalperson
   pk: 14
@@ -133,7 +133,7 @@
   pk: 17
   fields:
     legal_person: 17
-    seller: 9
+    seller: 33
 
 - model: rrgg.legalperson
   pk: 18
@@ -221,19 +221,6 @@
     seller: 9
 
 - model: rrgg.legalperson
-  pk: 23
-  fields:
-    document_type: 3
-    address: 'LOS ALAMOS'
-    phone_number:
-
-- model: rrgg.customermembership
-  pk: 23
-  fields:
-    legal_person: 23
-    seller: 9
-
-- model: rrgg.legalperson
   pk: 24
   fields:
     registered_name: 'CEAE BREÑA SAC'
@@ -299,7 +286,7 @@
   pk: 27
   fields:
     legal_person: 27
-    seller: 9
+    seller: 27
 
 - model: rrgg.legalperson
   pk: 28
@@ -316,7 +303,7 @@
   pk: 28
   fields:
     legal_person: 28
-    seller: 9
+    seller: 25
 
 - model: rrgg.legalperson
   pk: 29
@@ -333,7 +320,7 @@
   pk: 29
   fields:
     legal_person: 29
-    seller: 9
+    seller: 27
 
 - model: rrgg.legalperson
   pk: 30
@@ -350,7 +337,7 @@
   pk: 30
   fields:
     legal_person: 30
-    seller: 9
+    seller: 23
 
 - model: rrgg.legalperson
   pk: 31
@@ -377,14 +364,14 @@
     document_number: '20601173388'
     anniversary_date: '2016-04-22'
     email: 'FRAKOMHINGENIEROS@GMAIL.COM'
-    address: 'JR. SANDIA NRO 904 SANTA BARBARA - PUNO - SAN ROMAN - JULIACA,'
+    address: 'JR. SANDIA NRO 904 SANTA BARBARA - PUNO - SAN ROMAN - JULIACA'
     phone_number: 991159305
 
 - model: rrgg.customermembership
   pk: 32
   fields:
     legal_person: 32
-    seller: 9
+    seller: 27
 
 - model: rrgg.legalperson
   pk: 33
@@ -435,7 +422,7 @@
   pk: 35
   fields:
     legal_person: 35
-    seller: 9
+    seller: 3
 
 - model: rrgg.legalperson
   pk: 36
@@ -486,7 +473,7 @@
   pk: 38
   fields:
     legal_person: 38
-    seller: 9
+    seller: 3
 
 - model: rrgg.legalperson
   pk: 39
@@ -503,7 +490,7 @@
   pk: 39
   fields:
     legal_person: 39
-    seller: 9
+    seller: 3
 
 - model: rrgg.legalperson
   pk: 40
@@ -554,7 +541,7 @@
   pk: 42
   fields:
     legal_person: 42
-    seller: 9
+    seller: 27
 
 - model: rrgg.legalperson
   pk: 43
@@ -622,7 +609,7 @@
   pk: 46
   fields:
     legal_person: 46
-    seller: 9
+    seller: 5
 
 - model: rrgg.legalperson
   pk: 47
@@ -639,7 +626,7 @@
   pk: 47
   fields:
     legal_person: 47
-    seller: 9
+    seller: 27
 
 - model: rrgg.legalperson
   pk: 48
@@ -649,7 +636,7 @@
     document_number: '20608158147'
     anniversary_date: '2021-07-01'
     email: 'csanchez@icmon.com.pe'
-    address: 'CALLE PANAMERICANA SUR KM 46 MZA LOTE 78 GRU X, PUNTA NEGRA '
+    address: 'CALLE PANAMERICANA SUR KM 46 MZA LOTE 78 GRU X, PUNTA NEGRA'
     phone_number: 987542147
 
 - model: rrgg.customermembership
@@ -810,7 +797,7 @@
   pk: 57
   fields:
     legal_person: 57
-    seller: 9
+    seller: 25
 
 - model: rrgg.legalperson
   pk: 58
@@ -820,7 +807,7 @@
     document_number: '20601958644'
     anniversary_date: '2017-03-14'
     email: 'LCONCHA@MACADAMPERU.COM'
-    address: 'HIPÓLITO UNANUE NRO. 225 INT. 303 - LIMA - LIMA - MIRAFLORES,'
+    address: 'HIPÓLITO UNANUE NRO. 225 INT. 303 - LIMA - LIMA - MIRAFLORES'
     phone_number: 988382587
 
 - model: rrgg.customermembership
@@ -861,7 +848,7 @@
   pk: 60
   fields:
     legal_person: 60
-    seller: 9
+    seller: 3
 
 - model: rrgg.legalperson
   pk: 61
@@ -878,7 +865,7 @@
   pk: 61
   fields:
     legal_person: 61
-    seller: 9
+    seller: 27
 
 - model: rrgg.legalperson
   pk: 62
@@ -895,7 +882,7 @@
   pk: 62
   fields:
     legal_person: 62
-    seller: 9
+    seller: 33
 
 - model: rrgg.legalperson
   pk: 63
@@ -946,7 +933,7 @@
   pk: 65
   fields:
     legal_person: 65
-    seller: 9
+    seller: 8
 
 - model: rrgg.legalperson
   pk: 66
@@ -1048,7 +1035,7 @@
   pk: 71
   fields:
     legal_person: 71
-    seller: 9
+    seller: 27
 
 - model: rrgg.legalperson
   pk: 72
@@ -1065,7 +1052,7 @@
   pk: 72
   fields:
     legal_person: 72
-    seller: 9
+    seller: 3
 
 - model: rrgg.legalperson
   pk: 73
@@ -1117,7 +1104,7 @@
   pk: 75
   fields:
     legal_person: 75
-    seller: 9
+    seller: 26
 
 - model: rrgg.legalperson
   pk: 76
@@ -1133,7 +1120,7 @@
   pk: 76
   fields:
     legal_person: 76
-    seller: 9
+    seller: 26
 
 - model: rrgg.legalperson
   pk: 77
@@ -1184,7 +1171,7 @@
   pk: 79
   fields:
     legal_person: 79
-    seller: 9
+    seller: 3
 
 - model: rrgg.legalperson
   pk: 80
@@ -1270,7 +1257,7 @@
   pk: 84
   fields:
     legal_person: 84
-    seller: 9
+    seller: 29
 
 - model: rrgg.legalperson
   pk: 85
@@ -1321,7 +1308,7 @@
   pk: 87
   fields:
     legal_person: 87
-    seller: 9
+    seller: 3
 
 - model: rrgg.legalperson
   pk: 88

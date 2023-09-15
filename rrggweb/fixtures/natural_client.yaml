@@ -1,0 +1,4783 @@
+- model: rrgg.naturalperson
+  pk: 90
+  fields:
+    given_name: 'JORGE LUIS'
+    first_surname: 'PALACIOS'
+    second_surname: 'DE LA CRUZ'
+    birthdate: '1962-08-18'
+    document_type: 1
+    document_number: '06590947'
+    email: 'ARQUITECTO37@HOTMAIL.COM'
+    address: 'CALLE CENTENARIO SN DEPARTAMENTO 202 URBANIZACIÓN SAN PATRICIA LA MOLINA'
+    phone_number: 953722941
+
+- model: rrgg.customermembership
+  pk: 90
+  fields:
+    natural_person: 90
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 91
+  fields:
+    given_name: 'MARIA BEATRIZ'
+    first_surname: 'AGUILAR'
+    second_surname: 'GARCIA'
+    birthdate: '1971-08-07'
+    document_type: 1
+    document_number: '07877727'
+    email: 'CROCA@KCS.PE'
+    address: 'CALLE MARTIR OLAYA 439 - LIMA'
+    phone_number: 989231399
+
+- model: rrgg.customermembership
+  pk: 91
+  fields:
+    natural_person: 91
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 92
+  fields:
+    given_name: 'JOHNNY CARLOS'
+    first_surname: 'AGUILAR'
+    second_surname: 'HERMOSA'
+    birthdate: '1968-10-30'
+    document_type: 1
+    document_number: '08676520'
+    email: 'JCAGUILAH.JA@GMAIL.COM'
+    address: 'JUAN NICOLINI 114 SAN MARTIN DE PORRAS'
+    phone_number: 992685015
+
+- model: rrgg.customermembership
+  pk: 92
+  fields:
+    natural_person: 92
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 93
+  fields:
+    given_name: 'MAYBÉE PALMIRA'
+    first_surname: 'ALCÁNTARA'
+    second_surname: 'REZA'
+    birthdate: '1980-03-20'
+    document_type: 1
+    document_number: '43333287'
+    email: 'MAYALRE2012@GMAIL.COM'
+    address: 'URB LOS GIRASOLES MZ F LT 5- LA MOLINA'
+    phone_number: 932288215
+
+- model: rrgg.customermembership
+  pk: 93
+  fields:
+    natural_person: 93
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 94
+  fields:
+    given_name: 'GLORIA ANGELICA'
+    first_surname: 'ALIAGA'
+    second_surname: 'CANO'
+    birthdate: '1965-10-15'
+    document_type: 1
+    document_number: '07659006'
+    email: 'GALIAGA@INTEGRA.COM.PE'
+    address: 'AV BOLIVIA 211 SAN FERNANDO CHOSICA'
+    phone_number: 966182771
+
+- model: rrgg.customermembership
+  pk: 94
+  fields:
+    natural_person: 94
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 95
+  fields:
+    given_name: 'HUGO ESTEBENSON'
+    first_surname: 'ALIAGA'
+    second_surname: 'MARIN'
+    birthdate: '1957-08-29'
+    document_type: 1
+    document_number: '08296740'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'CALLE C 20 URBANIZACIÓN ROCIO DEL GOLF BLOQUE Y 404 LIMA '
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 95
+  fields:
+    natural_person: 95
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 96
+  fields:
+    given_name: 'PEDRO JOSE'
+    first_surname: 'ALVA'
+    second_surname: 'MONGE'
+    birthdate: '1983-07-01'
+    document_type: 1
+    document_number: '42000009'
+    email: 'PALVA@AYPLABOGADOS.COM'
+    address: 'CALLE LOS GORRIONES 140 DEPARTAMENTO 303- SAN ISIDRO '
+    phone_number: 944661180
+
+- model: rrgg.customermembership
+  pk: 96
+  fields:
+    natural_person: 96
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 97
+  fields:
+    given_name: 'IVAN ALEJANDRO'
+    first_surname: 'ALVARADO'
+    second_surname: 'GALLARDO'
+    birthdate: '1968-02-17'
+    document_type: 1
+    document_number: '08887908'
+    email: 'IALVARADOG@GMAIL.COM'
+    address: 'CALLE PUQUINA 272 SALAMANCA ATE '
+    phone_number: 949207824
+
+- model: rrgg.customermembership
+  pk: 97
+  fields:
+    natural_person: 97
+    seller: 8
+
+- model: rrgg.naturalperson
+  pk: 98
+  fields:
+    given_name: 'FATIMA CECILIA'
+    first_surname: 'ALVARADO'
+    second_surname: 'PINEDA'
+    birthdate: '1964-01-30'
+    document_type: 1
+    document_number: '07638647'
+    email: 'MGHG07@HOTMAIL.COM'
+    address: 'AV. DEL PARQUE SUR N° 510 – DPTO. 201'
+    phone_number: 959054425
+
+- model: rrgg.customermembership
+  pk: 98
+  fields:
+    natural_person: 98
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 99
+  fields:
+    given_name: 'JOSE MANUEL'
+    first_surname: 'ALVAREZ'
+    second_surname: 'ROSARIO'
+    birthdate: '1966-07-23'
+    document_type: 1
+    document_number: '17920760'
+    email: 'JOSECOL80@HOTMAIL.COM'
+    address: 'LIMA POLO NRO. 261 TORRE B DPTO. 302  SURCO '
+    phone_number: 991065787
+
+- model: rrgg.customermembership
+  pk: 99
+  fields:
+    natural_person: 99
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 100
+  fields:
+    given_name: 'RAY DEMETRIO'
+    first_surname: 'APAZA'
+    second_surname: 'CONDE'
+    birthdate: '1990-05-14'
+    document_type: 1
+    document_number: '70290683'
+    email: 'YANET_95JC@HOTMAIL.COM'
+    address: 'AV CALLE JERUSALEN NRO CA JERUSALEN ASOC PV SANTIAGO CUSCO'
+    phone_number: 984811320
+
+- model: rrgg.customermembership
+  pk: 100
+  fields:
+    natural_person: 100
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 101
+  fields:
+    given_name: 'JACINTO HILDEBRANDO'
+    first_surname: 'APAZA'
+    second_surname: 'SORIA'
+    birthdate: '1965-08-17'
+    document_type: 1
+    document_number: '06862625'
+    email: 'HILDEBRANDO1708@HOTMAIL.COM'
+    address: 'AVENIDA LA MERCED 1089 DEPARTAMENTO 302 BLOQUE CH SURCO '
+    phone_number: 961449830
+
+- model: rrgg.customermembership
+  pk: 101
+  fields:
+    natural_person: 101
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 102
+  fields:
+    given_name: 'LILIANA MARIA'
+    first_surname: 'ARBE'
+    second_surname: 'HORNES'
+    birthdate: '1960-05-14'
+    document_type: 1
+    document_number: '07701976'
+    email: 'LILIANA_ARBE@HOTMAIL.COM'
+    address: 'AV. SAN BORJA NORTE 1333 DPTO. 201 - SAN BORJA'
+    phone_number: 2616795
+
+- model: rrgg.customermembership
+  pk: 102
+  fields:
+    natural_person: 102
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 103
+  fields:
+    given_name: 'LITA JEANNY'
+    first_surname: 'ARBULU'
+    second_surname: 'DE DIAZ FAJARDO'
+    birthdate: '1974-06-05'
+    document_type: 1
+    document_number: '10137101'
+    address: 'CALLE PADRE URRACA 111 TORRE II DPT SAN MIGUEL '
+    phone_number: 991033350
+
+- model: rrgg.customermembership
+  pk: 103
+  fields:
+    natural_person: 103
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 104
+  fields:
+    given_name: 'ANGELO GIOVANNI'
+    first_surname: 'ARBULU'
+    second_surname: 'ZEGARRA'
+    birthdate: '1983-09-20'
+    document_type: 1
+    document_number: '42081359'
+    email: 'ANGELOARBULU@GMAIL.COM'
+    address: 'NICOLAS DE RIVERA NRO 105 URB SALAMANCA ATE'
+    phone_number: 987768721
+
+- model: rrgg.customermembership
+  pk: 104
+  fields:
+    natural_person: 104
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 105
+  fields:
+    given_name: 'BUENO EMILIO'
+    first_surname: 'ARCE'
+    second_surname: 'DE LA TORRE'
+    birthdate: '1958-09-12'
+    document_type: 1
+    document_number: '08536727'
+    email: 'ARCETORRE@HOTMAIL.COM'
+    address: 'CA. LOS TAMARINDOS MZ B LT 3 LA'
+    phone_number: 943410188
+
+- model: rrgg.customermembership
+  pk: 105
+  fields:
+    natural_person: 105
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 106
+  fields:
+    given_name: 'CARLOS AUGUSTO'
+    first_surname: 'ARENAS'
+    second_surname: 'LLONTOP'
+    birthdate: '1974-08-23'
+    document_type: 1
+    document_number: '07761857'
+    email: 'CARENAS74@HOTMAIL.COM'
+    address: 'TARAPACA NRO 209 MAGDALENA DEL MAR'
+    phone_number: 2634985
+
+- model: rrgg.customermembership
+  pk: 106
+  fields:
+    natural_person: 106
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 107
+  fields:
+    given_name: 'HUGO MARTIN'
+    first_surname: 'ARESTEGUI'
+    second_surname: 'GARCIA'
+    birthdate: '1964-10-11'
+    document_type: 1
+    document_number: '07199881'
+    email: 'HARESTEGUI@JRLINDLEY.COM.PE'
+    address: 'AVENIDA GENERAL SANTA CRUZ 558 DEPARTA SURQUILLO '
+    phone_number: 980053 526
+
+- model: rrgg.customermembership
+  pk: 107
+  fields:
+    natural_person: 107
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 108
+  fields:
+    given_name: 'OSCAR MANUEL'
+    first_surname: 'ARRIOLA'
+    second_surname: 'DELGADO'
+    birthdate: '1966-08-10'
+    document_type: 1
+    document_number: '16476812'
+    email: 'MURPHI_981@HOTMAIL.COM'
+    address: 'CALLE LA DOCENCIA DPT201 URB. COVIDA'
+    phone_number: 989214222
+
+- model: rrgg.customermembership
+  pk: 108
+  fields:
+    natural_person: 108
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 109
+  fields:
+    given_name: 'MILUSKA IVANA'
+    first_surname: 'ASMAT'
+    second_surname: 'CUTI'
+    birthdate: '1995-07-20'
+    document_type: 1
+    document_number: '74309942'
+    email: 'MILU.ASMAT20@GMAIL.COM'
+    address: 'JR. CURAZAO 587 URB. SANTA PATRICIA ETAPA MOLINA'
+    phone_number: 940549658
+
+- model: rrgg.customermembership
+  pk: 109
+  fields:
+    natural_person: 109
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 110
+  fields:
+    given_name: 'EDWIN ALBERT'
+    first_surname: 'AVALOS'
+    second_surname: 'ESPINOZA'
+    birthdate: '1969-08-06'
+    document_type: 1
+    document_number: '32925370'
+    email: 'AVALOSEDWIN@HOTMAIL.COM '
+    address: 'JIRÓN CARAVELI 976 - MAGDALENA'
+    phone_number: 955819590
+
+- model: rrgg.customermembership
+  pk: 110
+  fields:
+    natural_person: 110
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 111
+  fields:
+    given_name: 'MAXS DEYVIS'
+    first_surname: 'AYORA'
+    second_surname: 'INOÑAN'
+    birthdate: '1979-08-06'
+    document_type: 1
+    document_number: '40262970'
+    email: 'MAX_AYORA@HOTMAIL.COM'
+    address: 'CALLE ALFONSO UGARTE 812-3ER PISO CHICLAYO '
+    phone_number: 997906177
+
+- model: rrgg.customermembership
+  pk: 111
+  fields:
+    natural_person: 111
+    seller: 25
+
+- model: rrgg.naturalperson
+  pk: 112
+  fields:
+    given_name: 'JOSE ISIDRO'
+    first_surname: 'BAELLA'
+    second_surname: 'MALCA'
+    birthdate: '1960-08-11'
+    document_type: 1
+    document_number: '09937296'
+    email: 'JOBAMA11@YAHOO.ES'
+    address: 'DOÑA HILDA 167 169 DPTO. 102 SANTIAGO DE SURCO '
+    phone_number: 989174290
+
+- model: rrgg.customermembership
+  pk: 112
+  fields:
+    natural_person: 112
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 113
+  fields:
+    given_name: 'ROGER LUIS'
+    first_surname: 'BASAURI'
+    second_surname: 'ALMANDOZ'
+    birthdate: '1954-05-26'
+    document_type: 1
+    document_number: '09451258'
+    email: 'ROGERBALMAN2@GMAIL.COM'
+    address: 'JIRÓN NAZCA 367 DEPARTAMENTO 1004 - REFERENCIA TORRE A JESUS MARIA '
+    phone_number: 987654321
+
+- model: rrgg.customermembership
+  pk: 113
+  fields:
+    natural_person: 113
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 114
+  fields:
+    given_name: 'BRENDALY DANAE'
+    first_surname: 'BAUTISTA'
+    second_surname: 'CARBALLIDO'
+    birthdate: '1991-01-09'
+    document_type: 1
+    document_number: '70838516'
+    email: 'BRENDALY.BAUTISTA.C@GMAIL.COM'
+    address: 'SANTA ROSA MZ I LOTE 30 CHANCAY'
+    phone_number: 989898989
+
+- model: rrgg.customermembership
+  pk: 114
+  fields:
+    natural_person: 114
+    seller: 24
+
+- model: rrgg.naturalperson
+  pk: 115
+  fields:
+    given_name: 'ROXANA ZARELA'
+    first_surname: 'BEDREGAL'
+    second_surname: 'CUSQUILLO'
+    birthdate: '1981-11-27'
+    document_type: 1
+    document_number: '41150039'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'CALLE LOS NOGALES NRO 594 LOS FICUS ATE'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 115
+  fields:
+    natural_person: 115
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 116
+  fields:
+    given_name: 'CYNTHIA LORENA'
+    first_surname: 'BEJARANO'
+    second_surname: 'BASURTO '
+    birthdate: '1975-09-05'
+    document_type: 1
+    document_number: '10003545'
+    email: 'CBEJARANOB@HOTMAIL.COM'
+    address: 'ARGENTA 185 DPTO. 102 SAN BORJA '
+    phone_number: 994671455
+
+- model: rrgg.customermembership
+  pk: 116
+  fields:
+    natural_person: 116
+    seller: 8
+
+- model: rrgg.naturalperson
+  pk: 117
+  fields:
+    given_name: 'GIANCARLO'
+    first_surname: 'BENFENATI'
+    second_surname: 'PIERANTONI'
+    birthdate: '1948-08-06'
+    document_type: 1
+    document_number: '43041915'
+    email: 'GBENFENATI@HOTMAIL.COM'
+    address: 'CALLE TRECE MZ Ñ LOTE 10 ATE LIMA'
+    phone_number: 3520757
+
+- model: rrgg.customermembership
+  pk: 117
+  fields:
+    natural_person: 117
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 118
+  fields:
+    given_name: 'MARIO ERNESTO'
+    first_surname: 'BERGHUSEN'
+    second_surname: 'ANTEPARRA'
+    birthdate: '1999-02-15'
+    document_type: 1
+    document_number: '74022701'
+    email: 'MREYNA@KCS.PE'
+    address: 'CALLE RIO TAMBO 281 PUEBLO LIBRE '
+    phone_number: 968 968 855
+
+- model: rrgg.customermembership
+  pk: 118
+  fields:
+    natural_person: 118
+    seller: 19
+
+- model: rrgg.naturalperson
+  pk: 119
+  fields:
+    given_name: 'LUIS OCTAVIO'
+    first_surname: 'BISSO'
+    second_surname: 'PUN'
+    birthdate: '1961-03-22'
+    document_type: 1
+    document_number: '06785644'
+    email: 'LUISBISSOP@GMAIL.COM'
+    address: 'CALLE FEDER GALLESE 601 DEPARTAMENTO D204 SAN MIGUEL'
+    phone_number: 997540076
+
+- model: rrgg.customermembership
+  pk: 119
+  fields:
+    natural_person: 119
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 120
+  fields:
+    given_name: 'FERNANDO VICENTE'
+    first_surname: 'BISSO'
+    second_surname: 'RAMIREZ'
+    birthdate: '1991-01-26'
+    document_type: 1
+    document_number: '46752363'
+    email: 'LUISBISSOP@GMAIL.COM'
+    address: 'CALLE FEDER GALLESE 601 DEPARTAMENTO D204 SAN MIGUEL '
+    phone_number: 997540076
+
+- model: rrgg.customermembership
+  pk: 120
+  fields:
+    natural_person: 120
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 121
+  fields:
+    given_name: 'GINO GUILLERMO'
+    first_surname: 'BOURONCLE'
+    second_surname: 'LUQUE'
+    birthdate: '1957-11-17'
+    document_type: 1
+    document_number: '44415866'
+    email: 'SCANATOR_05@YAHOO.ES'
+    address: 'JIRÓN LEONCIO PRADO 318 DPTO 305'
+    phone_number: 997574324
+
+- model: rrgg.customermembership
+  pk: 121
+  fields:
+    natural_person: 121
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 122
+  fields:
+    given_name: 'GUSTAVO RODOLFO'
+    first_surname: 'BUENDIA'
+    second_surname: 'VILA'
+    birthdate: '1977-06-09'
+    document_type: 1
+    document_number: '10543082'
+    email: 'YSABEL.CABALLERO@UNID.EDU.PE'
+    address: 'AV 28 DE JULIO NRO 687 INT 302 URB SANTA CATALINA REF ALT DE PARQUE LA VICTORIA '
+    phone_number: 989021661
+
+- model: rrgg.customermembership
+  pk: 122
+  fields:
+    natural_person: 122
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 123
+  fields:
+    given_name: 'CARLOS ENRIQUE'
+    first_surname: 'BUITANO'
+    second_surname: 'MERCADO'
+    birthdate: '1977-04-11'
+    document_type: 1
+    document_number: '10477107'
+    email: 'CARLOSBUITANO@HOTMAIL.COM'
+    address: 'CALLE MORRO SOLAR 352'
+    phone_number: 965722449
+
+- model: rrgg.customermembership
+  pk: 123
+  fields:
+    natural_person: 123
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 124
+  fields:
+    given_name: 'VILMA ESTHER'
+    first_surname: 'BULNES'
+    second_surname: 'CANEVARO'
+    birthdate: '1961-09-08'
+    document_type: 1
+    document_number: '08615762'
+    email: 'PACHECOSG@HOTMAIL.COM'
+    address: 'CALLE EUGENIO DE LA TORRE 231 - 501 - SAN MIGUEL'
+    phone_number: 991109769
+
+- model: rrgg.customermembership
+  pk: 124
+  fields:
+    natural_person: 124
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 125
+  fields:
+    given_name: 'JORGE RAUL'
+    first_surname: 'CAFFERATA'
+    second_surname: 'GAMERO'
+    birthdate: '1972-03-01'
+    document_type: 1
+    document_number: '07875894'
+    email: 'J.CAFFERATA@HOTMAIL.COM'
+    address: 'CA.VENECIA 130 URB. SOL DE LA MOLINA - LA MOLINA (LIMA 12) - LIMA'
+    phone_number: 945090199
+
+- model: rrgg.customermembership
+  pk: 125
+  fields:
+    natural_person: 125
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 126
+  fields:
+    given_name: 'PABLO EDUARDO'
+    first_surname: 'CAMPOS'
+    second_surname: 'MAZA'
+    birthdate: '1962-05-14'
+    document_type: 1
+    document_number: '43584100'
+    email: 'ABLITOEDU@HOTMAIL.COM'
+    address: 'LA MARQUESA NRO 136 URB PROLONGACION BENAVIDES SANTIAGO DE SURCO'
+    phone_number: 993546474
+
+- model: rrgg.customermembership
+  pk: 126
+  fields:
+    natural_person: 126
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 127
+  fields:
+    given_name: 'JOSE'
+    first_surname: 'CANDIA'
+    second_surname: 'CAHUANA'
+    birthdate: '1954-12-01'
+    document_type: 1
+    document_number: '43529688'
+    email: 'JCANDIA83@YAHOO.ES'
+    address: 'CALLE GUATEMALA 283 SANTA PATRICIA LA MOLINA'
+    phone_number: 998703331
+
+- model: rrgg.customermembership
+  pk: 127
+  fields:
+    natural_person: 127
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 128
+  fields:
+    given_name: 'JOSE ANTONIO'
+    first_surname: 'CAPA'
+    second_surname: 'GURBILLON '
+    birthdate: '1961-01-02'
+    document_type: 1
+    document_number: '10176297'
+    email: 'JOSCAPA@HOTMAIL.CO M'
+    address: 'CA.JOSE MANUEL QUIROZ 180 DPTO.108 SURCO '
+    phone_number: 997558432
+
+- model: rrgg.customermembership
+  pk: 128
+  fields:
+    natural_person: 128
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 129
+  fields:
+    given_name: 'ELIZABETH NIEVES'
+    first_surname: 'CARBAJAL'
+    second_surname: 'ARROSPIDE'
+    birthdate: '1964-05-13'
+    document_type: 1
+    document_number: '09138099'
+    email: 'E_CARBAJALAR@YAHOO.COM'
+    address: 'AV. CLLE 6 192 DPTO 101 MONTERRICO NORTE- SAN BORJA '
+    phone_number: 993461029
+
+- model: rrgg.customermembership
+  pk: 129
+  fields:
+    natural_person: 129
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 130
+  fields:
+    given_name: 'CLARA'
+    first_surname: 'CARBAJAL'
+    second_surname: 'MORENO'
+    birthdate: '1966-05-01'
+    document_type: 1
+    document_number: '06187883'
+    email: 'PHIL_VALVERDE@HOTMAIL.COM'
+    address: 'JIRON CORNELIO BORDA 165 LIMA'
+    phone_number: 970651788
+
+- model: rrgg.customermembership
+  pk: 130
+  fields:
+    natural_person: 130
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 131
+  fields:
+    given_name: 'MARIO'
+    first_surname: 'CARBAJAL'
+    second_surname: 'MORENO'
+    birthdate: '1971-12-19'
+    document_type: 1
+    document_number: '09798503'
+    email: 'PHIL_VALVERDE@HOTMAIL.COM'
+    address: 'JIRON CORNELIO BORDA 165 LIMA'
+    phone_number: 970651788
+
+- model: rrgg.customermembership
+  pk: 131
+  fields:
+    natural_person: 131
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 132
+  fields:
+    given_name: 'JOSE JULIO'
+    first_surname: 'CARNEIRO'
+    second_surname: 'AREVALO'
+    birthdate: '1967-06-06'
+    document_type: 1
+    document_number: '09376615'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'CALLE MIGUEL ANGEL 310 – SAN BORJA'
+    phone_number: 920804526
+
+- model: rrgg.customermembership
+  pk: 132
+  fields:
+    natural_person: 132
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 133
+  fields:
+    given_name: 'NINFA'
+    first_surname: 'CARPIO'
+    second_surname: 'TICONA'
+    birthdate: '1955-08-12'
+    document_type: 1
+    document_number: '10713722'
+    email: 'BRUCCE.ECHENIQUE@DEGUSTE.COM.PE'
+    address: 'CALLE MARIANO MELGAR NRO 215 DEPARTAMENTO 201'
+    phone_number: 
+
+- model: rrgg.customermembership
+  pk: 133
+  fields:
+    natural_person: 133
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 134
+  fields:
+    given_name: 'JACQUELINE ASTRID'
+    first_surname: 'CARRASCO'
+    second_surname: 'RUIZ'
+    birthdate: '1991-01-16'
+    document_type: 1
+    document_number: '71033471'
+    email: 'ASTRID_CARRASCO@OUTLOOK.COM'
+    address: 'LOS FRUTALES UCV NRO 175 LOTE 55 URB HUAYCAN ATE'
+    phone_number: 992096937
+
+- model: rrgg.customermembership
+  pk: 134
+  fields:
+    natural_person: 134
+    seller: 8
+
+- model: rrgg.naturalperson
+  pk: 135
+  fields:
+    given_name: 'FIORELLA LEONOR'
+    first_surname: 'CARRERA'
+    second_surname: 'DIAZ'
+    birthdate: '1984-12-10'
+    document_type: 1
+    document_number: '42798480'
+    email: 'CARRERA.FIORELLA@GMAIL.COM'
+    address: 'REPUBLICA DE PANAMA NRO 348 DPTO 407 BARRANCO'
+    phone_number: 993491438
+
+- model: rrgg.customermembership
+  pk: 135
+  fields:
+    natural_person: 135
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 136
+  fields:
+    given_name: 'VICTOR DALMIRO'
+    first_surname: 'CARRERA'
+    second_surname: 'QUINTANILLA'
+    birthdate: '1959-05-23'
+    document_type: 1
+    document_number: '43596536'
+    email: 'VCARRERAQ@YAHOO.COM'
+    address: 'CARLOS PORRAS OSORES NRO 284 DPTO 501 SAN ISIDRO'
+    phone_number: 997565067
+
+- model: rrgg.customermembership
+  pk: 136
+  fields:
+    natural_person: 136
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 137
+  fields:
+    given_name: 'CLAUDIA ROXANA'
+    first_surname: 'CASAS'
+    second_surname: 'CARRION'
+    birthdate: '1979-11-19'
+    document_type: 1
+    document_number: '40348777'
+    email: 'CLAUDIACC20@OUTLOOK.COM'
+    address: 'CIRO ALEGRIA 248 PUEBLO LIBRE'
+    phone_number: 982600348
+
+- model: rrgg.customermembership
+  pk: 137
+  fields:
+    natural_person: 137
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 138
+  fields:
+    given_name: 'JOSE CARLOS DIONICIO'
+    first_surname: 'CASAS'
+    second_surname: 'CARRION'
+    birthdate: '1989-01-18'
+    document_type: 1
+    document_number: '45510212'
+    email: 'JOSECASAS1981@GMAIL.COM'
+    address: 'JR CIRO ALEGRIA NRO 248 PUEBLO LIBRE '
+    phone_number: 975109523
+
+- model: rrgg.customermembership
+  pk: 138
+  fields:
+    natural_person: 138
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 139
+  fields:
+    given_name: 'JOSE LUIS'
+    first_surname: 'SANGUINETI'
+    second_surname: 'NOVARO'
+    birthdate: '1958-01-03'
+    document_type: 1
+    document_number: '43295331'
+    email: 'GFAJARDO_8@HOTMAIL.COM'
+    address: 'CALLE JUAN GERMAN LAPEYRE 352 DEPARTAMENTO 101 SURCO '
+    phone_number: 999449568
+
+- model: rrgg.customermembership
+  pk: 139
+  fields:
+    natural_person: 139
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 140
+  fields:
+    given_name: 'YOLANDA'
+    first_surname: 'CELIS'
+    second_surname: 'OCAMPO'
+    birthdate: '1954-09-21'
+    document_type: 1
+    document_number: '00811918'
+    email: 'YOLICELIS.ORIFLAME@HOTMAIL.COM'
+    address: 'CALLE 6 173 URB CORPAC SAN ISIDRO'
+    phone_number: 926852888
+
+- model: rrgg.customermembership
+  pk: 140
+  fields:
+    natural_person: 140
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 141
+  fields:
+    given_name: 'TULA AMELIA'
+    first_surname: 'CERVERA'
+    second_surname: 'NORIEGA'
+    birthdate: '1965-02-16'
+    document_type: 1
+    document_number: '27688428'
+    email: 'DLETURIA@KCS.PE'
+    address: 'DEL PACIFICO NRO 180 DPTO 601 RESIDENCIAL TORRE 3'
+    phone_number: 987540854
+
+- model: rrgg.customermembership
+  pk: 141
+  fields:
+    natural_person: 141
+    seller: 10
+
+- model: rrgg.naturalperson
+  pk: 142
+  fields:
+    given_name: 'CHRISTIAN'
+    first_surname: 'CHAVARRY'
+    second_surname: 'VIGIL'
+    birthdate: '1985-01-04'
+    document_type: 1
+    document_number: '42795477'
+    email: 'CCHAVARRIV@HOTMAIL.COM'
+    address: 'AV DEL PINAR 180 CHACARILLA SANTIAGO DE SURCO'
+    phone_number: 982210582
+
+- model: rrgg.customermembership
+  pk: 142
+  fields:
+    natural_person: 142
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 143
+  fields:
+    given_name: 'JUAN JOSÉ'
+    first_surname: 'CHIARELLA'
+    second_surname: 'RONDON'
+    birthdate: '1988-08-18'
+    document_type: 1
+    document_number: '45249646'
+    email: 'JUANJO.CHIARELLA@GMAIL.COM'
+    address: 'CALLE LAS TRADICIONES 1 DEPARTAMENTO SN SURCO'
+    phone_number: 982210582
+
+- model: rrgg.customermembership
+  pk: 143
+  fields:
+    natural_person: 143
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 144
+  fields:
+    given_name: 'CARLOS EDWIN'
+    first_surname: 'CHONG'
+    second_surname: 'CAMPANA'
+    birthdate: '1963-12-06'
+    document_type: 1
+    document_number: '43265400'
+    email: 'ANAPAU105@HOTMAIL.COM'
+    address: 'CALLE DOMODOSSOLA 142 URB SURQUILLO '
+    phone_number: 989071438
+
+- model: rrgg.customermembership
+  pk: 144
+  fields:
+    natural_person: 144
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 145
+  fields:
+    given_name: 'JAVIER RAMON'
+    first_surname: 'CHUMAN'
+    second_surname: 'ROJAS'
+    birthdate: '1972-01-20'
+    document_type: 1
+    document_number: '18011854'
+    email: 'AYG1965@GMAIL.COM'
+    address: 'MONTE UMBROSO 470 VALLE HERMOSO'
+    phone_number: 950305624
+
+- model: rrgg.customermembership
+  pk: 145
+  fields:
+    natural_person: 145
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 146
+  fields:
+    given_name: 'YOHANIM OSWALDO'
+    first_surname: 'CHUQUILLANQUI'
+    second_surname: 'OSPINA'
+    birthdate: '1961-04-18'
+    document_type: 1
+    document_number: '00499415'
+    email: 'YCHUQUILLANQUI@HOTMAIL.ES'
+    address: 'CALLE EL BOSQUE MZ E LT 40 URB LA MOLINA'
+    phone_number: 989072007
+
+- model: rrgg.customermembership
+  pk: 146
+  fields:
+    natural_person: 146
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 147
+  fields:
+    given_name: 'WILMER ENRIQUE'
+    first_surname: 'CISNEROS'
+    second_surname: 'ALFARO'
+    birthdate: '1965-09-24'
+    document_type: 1
+    document_number: '32814388'
+    email: 'WCISNEROS@COVIPERU.COM'
+    address: 'CALLE LOMAS LOS PENSAMIENTOS MZ G LT 14 SURCO '
+    phone_number: 989187870
+
+- model: rrgg.customermembership
+  pk: 147
+  fields:
+    natural_person: 147
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 148
+  fields:
+    given_name: 'NEYDA ALEJANDRA'
+    first_surname: 'CONTRERAS'
+    second_surname: 'GIRON'
+    birthdate: '1981-01-02'
+    document_type: 1
+    document_number: '02217644'
+    email: 'ALECONTRERAS714@GMAIL.COM'
+    address: 'LOS ABEDULES 285 CAMACHO LA MOLINA'
+    phone_number: 932574440
+
+- model: rrgg.customermembership
+  pk: 148
+  fields:
+    natural_person: 148
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 149
+  fields:
+    given_name: 'JOSE RAUL'
+    first_surname: 'CORBERA'
+    second_surname: 'TENORIO'
+    birthdate: '1960-01-19'
+    document_type: 1
+    document_number: '07189644'
+    email: 'JRCORBERAT@HOTMAIL.COM'
+    address: 'PARQUE ALMAGRO 130- JESUS MARIA '
+    phone_number: 982013914
+
+- model: rrgg.customermembership
+  pk: 149
+  fields:
+    natural_person: 149
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 150
+  fields:
+    given_name: 'PERCY ALAN'
+    first_surname: 'CORTEZ'
+    second_surname: 'VELASQUEZ'
+    birthdate: '1987-02-15'
+    document_type: 1
+    document_number: '44113603'
+    email: 'PERCY.CORTEZ@VECOR.COM.PE'
+    address: 'AV PACIFICO MZ A1 LTE 4 URB LAS CASUARINAS ETAPA 2 REF FTE AL MERCADO BUENOS AIRES CHIMBOTE'
+    phone_number: 941973203
+
+- model: rrgg.customermembership
+  pk: 150
+  fields:
+    natural_person: 150
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 151
+  fields:
+    given_name: 'MARIA FE'
+    first_surname: 'CRUZ'
+    second_surname: 'LLONTO'
+    birthdate: '2003-02-01'
+    document_type: 1
+    document_number: '73307497'
+    email: 'MARIAFECRUZLLONTO@GMAIL.COM'
+    address: 'MALECON PAUL HARRIS 250 - BARRANCO'
+    phone_number: 987070310
+
+- model: rrgg.customermembership
+  pk: 151
+  fields:
+    natural_person: 151
+    seller: 25
+
+- model: rrgg.naturalperson
+  pk: 152
+  fields:
+    given_name: 'ROLANDO ANDRES'
+    first_surname: 'CUEVA'
+    second_surname: 'LOPEZ'
+    birthdate: '1962-12-04'
+    document_type: 1
+    document_number: '43571204'
+    email: 'ROLAN_101@HOTMAIL.COM'
+    address: 'CALLE ERNESTO ODRIOZOLA 178 PUEBLO LIBRE '
+    phone_number: 993594068
+
+- model: rrgg.customermembership
+  pk: 152
+  fields:
+    natural_person: 152
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 153
+  fields:
+    given_name: 'ALEJANDRO FAVIO'
+    first_surname: 'CUZCANO'
+    second_surname: 'CRUZATE'
+    birthdate: '1969-09-09'
+    document_type: 1
+    document_number: '09441830'
+    email: 'AFCC830@GMAIL.COM'
+    address: 'AVENIDA BRASIL 1392 BLOCK A'
+    phone_number: 987712440
+
+- model: rrgg.customermembership
+  pk: 153
+  fields:
+    natural_person: 153
+    seller: 28
+
+- model: rrgg.naturalperson
+  pk: 154
+  fields:
+    given_name: 'DENIS JUAN DOMINGO'
+    first_surname: 'DAVILA'
+    second_surname: 'OLIVERO'
+    birthdate: '1963-06-22'
+    document_type: 1
+    document_number: '20560665'
+    email: 'JORGEBENITEZR@HOTMAIL.COM '
+    address: 'CALLE CERRO AZUL 130 URB. SAN IGNACIO SURCO '
+    phone_number: 980607766
+
+- model: rrgg.customermembership
+  pk: 154
+  fields:
+    natural_person: 154
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 155
+  fields:
+    given_name: 'RENE AUGUSTO'
+    first_surname: 'DE LA FUENTE'
+    second_surname: 'VILLA GARCIA'
+    birthdate: '1972-07-31'
+    document_type: 1
+    document_number: '07264230'
+    email: 'RFUENTESVG@OUTOLOOK.COM'
+    address: 'CALLE BALTAZAR 315 - SAN ISIDRO (LIMA 27) - LIMA (PROV)'
+    phone_number: 989046473
+
+- model: rrgg.customermembership
+  pk: 155
+  fields:
+    natural_person: 155
+    seller: 33
+
+- model: rrgg.naturalperson
+  pk: 156
+  fields:
+    given_name: 'OSCAR ENRIQUE'
+    first_surname: 'DEL POZO'
+    second_surname: 'ACOSTA'
+    birthdate: '1958-02-11'
+    document_type: 1
+    document_number: '25675184'
+    email: 'OSCAR.DELPOZOA@GMAIL.COM'
+    address: 'CALLE BOLOGNESI 463 - REFERENCIA CASA 2 LA PUNTA CALLAO'
+    phone_number: 977517503
+
+- model: rrgg.customermembership
+  pk: 156
+  fields:
+    natural_person: 156
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 157
+  fields:
+    given_name: 'OSCAR AGUSTIN'
+    first_surname: 'DEL POZO'
+    second_surname: 'UGAZ'
+    birthdate: '1994-02-08'
+    document_type: 1
+    document_number: '73049592'
+    email: 'OSCAR.DPU@GMAIL.COM'
+    address: 'EL INCARIO 350 SURCO '
+    phone_number: 952077226
+
+- model: rrgg.customermembership
+  pk: 157
+  fields:
+    natural_person: 157
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 158
+  fields:
+    given_name: 'LUIS ALFREDO'
+    first_surname: 'DIAZ'
+    second_surname: 'PAREDES'
+    birthdate: '1973-03-20'
+    document_type: 1
+    document_number: '43301425'
+    email: 'LULODP@GMAIL.COM'
+    address: 'FRANCISCO DE ZELA 2579 INT. B - LINCE'
+    phone_number: 954416 889
+
+- model: rrgg.customermembership
+  pk: 158
+  fields:
+    natural_person: 158
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 159
+  fields:
+    given_name: 'GINO ISRAEL'
+    first_surname: 'DIAZ'
+    second_surname: 'ZEVALLOS'
+    birthdate: '1974-07-22'
+    document_type: 1
+    document_number: '25829690'
+    email: 'DIAZGINO2274@GMAIL.COM'
+    address: 'CIUDAD DEL PESCADOR MZ L3 LT. 28-  LIMA '
+    phone_number: 986025960
+
+- model: rrgg.customermembership
+  pk: 159
+  fields:
+    natural_person: 159
+    seller: 5
+
+- model: rrgg.naturalperson
+  pk: 160
+  fields:
+    given_name: 'RUBY STELLA'
+    first_surname: 'ESCALANTE'
+    second_surname: 'AZAMBUJA'
+    birthdate: '1988-08-03'
+    document_type: 1
+    document_number: '45441173'
+    email: 'JORGEBENITEZR@HOTMAIL.COM '
+    address: 'CALLE LAS VERBENAS MZ B LOTE 26 - LOS OLIVOS'
+    phone_number: 997923960
+
+- model: rrgg.customermembership
+  pk: 160
+  fields:
+    natural_person: 160
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 161
+  fields:
+    given_name: 'GUIDO SERGIO'
+    first_surname: 'ESCALANTE'
+    second_surname: 'CHEN'
+    birthdate: '1957-10-04'
+    document_type: 1
+    document_number: '43433794'
+    email: 'GUIDO_ESCALANTE@HOTMAIL.COM'
+    address: 'AV TENIENTE CORONEL CARLOS JIMENEZ CHAVEZ 382 BLOCK C 202 202'
+    phone_number: 975467054
+
+- model: rrgg.customermembership
+  pk: 161
+  fields:
+    natural_person: 161
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 162
+  fields:
+    given_name: 'ANA ELIZABETH'
+    first_surname: 'ESCALANTE'
+    second_surname: 'KANASHIRO'
+    birthdate: '1968-04-13'
+    document_type: 1
+    document_number: '09301045'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'CALLE MIGUEL ANGEL 310 – SAN BORJA'
+    phone_number: 920804526
+
+- model: rrgg.customermembership
+  pk: 162
+  fields:
+    natural_person: 162
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 163
+  fields:
+    given_name: 'LUIS ERNESTO'
+    first_surname: 'ESPEJO'
+    second_surname: 'CESPEDES'
+    birthdate: '1956-06-01'
+    document_type: 1
+    document_number: '06077900'
+    email: 'LUISESPEJO2856@GMAIL.COM'
+    address: 'AV. AV ARNALDO MARQUEZ 1559 INT.M JESUS MARIA'
+    phone_number: 997544860
+
+- model: rrgg.customermembership
+  pk: 163
+  fields:
+    natural_person: 163
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 164
+  fields:
+    given_name: 'LUIS CARLOS'
+    first_surname: 'ESPEJO'
+    second_surname: 'FLORES'
+    birthdate: '1985-03-01'
+    document_type: 1
+    document_number: '42946143'
+    email: 'LESPEJOF@GMAIL.COM'
+    address: 'AV.ARNALDO MARQUEZ 1559'
+    phone_number: 987742741
+
+- model: rrgg.customermembership
+  pk: 164
+  fields:
+    natural_person: 164
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 165
+  fields:
+    given_name: 'CARMEN TATIANA'
+    first_surname: 'ESPINOZA'
+    second_surname: 'CHIRINOS'
+    birthdate: '1964-08-18'
+    document_type: 1
+    document_number: '07286395'
+    email: 'TATIESPINOZA@GMAIL.COM'
+    address: 'JR. TACNA 465. REF. PARALELA A AV. SUCRE - ALTURA DE 39. AV. BRASIL'
+    phone_number: 999044261
+
+- model: rrgg.customermembership
+  pk: 165
+  fields:
+    natural_person: 165
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 166
+  fields:
+    given_name: 'FRANK HUMBERTO'
+    first_surname: 'ESPINOZA'
+    second_surname: 'RAMOS'
+    birthdate: '1974-07-07'
+    document_type: 1
+    document_number: '08888346'
+    email: 'WOALFRANK@HOTMAIL.COM'
+    address: 'IGNACIO COSSIO NRO 1681 DPTO 7 LA VICTORIA'
+    phone_number: 958962864
+
+- model: rrgg.customermembership
+  pk: 166
+  fields:
+    natural_person: 166
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 167
+  fields:
+    given_name: 'LUIS ALBERTO'
+    first_surname: 'QUISPE'
+    second_surname: 'QUISPE'
+    birthdate: '1974-10-28'
+    document_type: 1
+    document_number: '43268053'
+    email: 'LUCHOCOANF15@GMAIL.COM'
+    address: 'D LOTE 3 AA.HH CHORRILLOS'
+    phone_number: 920137437
+
+- model: rrgg.customermembership
+  pk: 167
+  fields:
+    natural_person: 167
+    seller: 30
+
+- model: rrgg.naturalperson
+  pk: 168
+  fields:
+    given_name: 'FELIPE MANUEL'
+    first_surname: 'FAJARDO'
+    second_surname: 'MORETTI'
+    birthdate: '1992-10-15'
+    document_type: 1
+    document_number: '72406736'
+    email: 'LFAJARDOCASTILLO@HOTMAIL.COM'
+    address: 'JUAN LEPEYRE 133 URB VISTA ALEGRE SURCO '
+    phone_number: 985850147
+
+- model: rrgg.customermembership
+  pk: 168
+  fields:
+    natural_person: 168
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 169
+  fields:
+    given_name: 'LUIS ROLANDO'
+    first_surname: 'FELICE'
+    second_surname: 'SORIANO'
+    birthdate: '1978-07-15'
+    document_type: 1
+    document_number: '10545300'
+    email: 'RAFFALCC@GMAIL.COM'
+    address: 'CL LOS SAUCES DPTO 286, SAN ISIDRO'
+    phone_number: 947946280
+
+- model: rrgg.customermembership
+  pk: 169
+  fields:
+    natural_person: 169
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 170
+  fields:
+    given_name: 'CHRISTIAN FERNANDO'
+    first_surname: 'FIGUEROA'
+    second_surname: 'FALCON'
+    birthdate: '1973-05-01'
+    document_type: 1
+    document_number: '10059910'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'AV. CIRCUNVALACION CLUB GOLF LOS INCAS NO.292 – BLOCK “E” DPTO.'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 170
+  fields:
+    natural_person: 170
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 171
+  fields:
+    given_name: 'RENATA'
+    first_surname: 'FIGUEROA'
+    second_surname: 'SEBASTIAN '
+    birthdate: '2000-05-17'
+    document_type: 1
+    document_number: '73186491'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'AV. CIRCUNVALACIÓN CLUB GOLF LOS INCAS 292 BLOCK E-103'
+    phone_number: 997294322
+
+- model: rrgg.customermembership
+  pk: 171
+  fields:
+    natural_person: 171
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 172
+  fields:
+    given_name: 'RENZO CHRISTAN'
+    first_surname: 'FIGUEROA'
+    second_surname: 'SEBASTIAN'
+    birthdate: '1994-01-06'
+    document_type: 1
+    document_number: '70349516'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'AV. CIRCUNVALACIÓN CLUB GOLF LOS INCAS 292 BLOCK E-103'
+    phone_number: 997294322
+
+- model: rrgg.customermembership
+  pk: 172
+  fields:
+    natural_person: 172
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 173
+  fields:
+    given_name: 'LITA'
+    first_surname: 'FLORES'
+    second_surname: 'FARFAN'
+    birthdate: '1971-02-23'
+    document_type: 1
+    document_number: '25318311'
+    email: 'ROROJAS@SITELRED.COM'
+    address: '103 – CONDOMINIO LOS INCAS – SANTIAGO DE SURCO'
+    phone_number: 997516430
+
+- model: rrgg.customermembership
+  pk: 173
+  fields:
+    natural_person: 173
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 174
+  fields:
+    given_name: 'LUIS'
+    first_surname: 'FLORES'
+    second_surname: 'OCHOA'
+    birthdate: '1963-08-29'
+    document_type: 1
+    document_number: '40434089'
+    email: 'LUCHITO_FLORES@HOTMAIL.COM'
+    address: 'CALLE MIAMI C/PASAJE 8 N° 105 DPTO 302 - LA MOLINA'
+    phone_number: 955614810
+
+- model: rrgg.customermembership
+  pk: 174
+  fields:
+    natural_person: 174
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 175
+  fields:
+    given_name: 'SARA NOEMI'
+    first_surname: 'FLORES'
+    second_surname: 'PEREZ'
+    birthdate: '1999-10-16'
+    document_type: 1
+    document_number: '79784594'
+    email: 'JOHANATM26@HOTMAIL.COM '
+    address: 'SECTOR 06 GRUPO 11 MZ F LOTE 05'
+    phone_number: 932239676
+
+- model: rrgg.customermembership
+  pk: 175
+  fields:
+    natural_person: 175
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 176
+  fields:
+    given_name: 'EMILIA AURELIA'
+    first_surname: 'FULLE'
+    second_surname: 'GUZMAN'
+    birthdate: '1954-10-20'
+    document_type: 1
+    document_number: '10316626'
+    email: 'NELEMYFF@HOTMAIL.COM'
+    address: 'CALLE RAPALLO 154-  LA MOLINA '
+    phone_number: 996564639
+
+- model: rrgg.customermembership
+  pk: 176
+  fields:
+    natural_person: 176
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 177
+  fields:
+    given_name: 'HELARD ANDRES'
+    first_surname: 'GALDOS'
+    second_surname: 'DE TOMAS'
+    birthdate: '1984-08-12'
+    document_type: 1
+    document_number: '42692768'
+    email: 'HELARDGALDOS@GMAIL.COM'
+    address: 'PASAJE CLORINDA MATTO DE TURNER 522 DP'
+    phone_number: 946585869
+
+- model: rrgg.customermembership
+  pk: 177
+  fields:
+    natural_person: 177
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 178
+  fields:
+    given_name: 'ALVARO GONZALO'
+    first_surname: 'GANOZA'
+    second_surname: 'HEREDIA'
+    birthdate: '1965-10-04'
+    document_type: 1
+    document_number: '08188779'
+    email: 'AGANOZAH@GMAIL.COM'
+    address: 'CALLE TAMBO REAL 221 DPTO. 301 SURCO'
+    phone_number: 997532310
+
+- model: rrgg.customermembership
+  pk: 178
+  fields:
+    natural_person: 178
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 179
+  fields:
+    given_name: 'GABRIEL ANTHONNY'
+    first_surname: 'GARCIA'
+    second_surname: 'RODRIGUEZ'
+    birthdate: '1992-08-03'
+    document_type: 1
+    document_number: '47251369'
+    email: 'GABO3892@GMAIL.COM'
+    address: 'AV BRASIL 1578 DPTO 5 PUEBLO LIBRE'
+    phone_number: 946542651
+
+- model: rrgg.customermembership
+  pk: 179
+  fields:
+    natural_person: 179
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 180
+  fields:
+    given_name: 'GENOVENA'
+    first_surname: 'GARCIA'
+    second_surname: 'VILLACORTA'
+    birthdate: '1966-04-14'
+    document_type: 1
+    document_number: '09274655'
+    email: 'TAMAKUN1@GMAIL.COM'
+    address: 'AV. LA MAR 2252 URB. PANDO SANMIGUEL'
+    phone_number: 993549880
+
+- model: rrgg.customermembership
+  pk: 180
+  fields:
+    natural_person: 180
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 181
+  fields:
+    given_name: 'RENZO MARCELO'
+    first_surname: 'GAVIÑO'
+    second_surname: 'GALLIANI'
+    birthdate: '1990-09-27'
+    document_type: 1
+    document_number: '70782969'
+    email: 'R.GAVINO@HOTMAIL.COM'
+    address: 'JR. BRIGADIER PUMACAHUA 1623 DPTO. E JESUS MARIA '
+    phone_number: 942963091
+
+- model: rrgg.customermembership
+  pk: 181
+  fields:
+    natural_person: 181
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 182
+  fields:
+    given_name: 'MELISSA PATRICIA'
+    first_surname: 'GENTILLE'
+    second_surname: 'SANCHEZ'
+    birthdate: '1991-06-08'
+    document_type: 1
+    document_number: '47089602'
+    email: 'PATDEGENT@HOTMAIL.COM'
+    address: 'JR. JR CURAZAO 587 URB SANTA PATRICIA LA MOLINA'
+    phone_number: 963751523
+
+- model: rrgg.customermembership
+  pk: 182
+  fields:
+    natural_person: 182
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 183
+  fields:
+    given_name: 'PIERO FRANCO'
+    first_surname: 'GENTILLE'
+    second_surname: 'SANCHEZ'
+    birthdate: '1995-06-27'
+    document_type: 1
+    document_number: '72035316'
+    email: 'PRGENTILLE@GMAIL.COM'
+    address: 'JR. JR CURAZAO 587 URB SANTA PATRICIA LA MOLINA'
+    phone_number: 963751524
+
+- model: rrgg.customermembership
+  pk: 183
+  fields:
+    natural_person: 183
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 184
+  fields:
+    given_name: 'CESAR AUGUSTO'
+    first_surname: 'GENTILLE'
+    second_surname: 'VARGAS'
+    birthdate: '1962-01-05'
+    document_type: 1
+    document_number: '43461890'
+    email: 'CAGV2000@HOTMAIL.COM'
+    address: 'CURAZAO NRO 587 URB SANTA PATRICIA 1 ETAPA LA MOLINA'
+    phone_number: 997587934
+
+- model: rrgg.customermembership
+  pk: 184
+  fields:
+    natural_person: 184
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 185
+  fields:
+    given_name: 'PAULA'
+    first_surname: 'GOGIN'
+    second_surname: 'RAZURI'
+    birthdate: '1998-08-30'
+    document_type: 1
+    document_number: '76011468'
+    email: 'GOGINPAULA@GMAIL.COM'
+    address: 'CALLE TARAPACA 663 LA PUNTA '
+    phone_number: 975455130
+
+- model: rrgg.customermembership
+  pk: 185
+  fields:
+    natural_person: 185
+    seller: 19
+
+- model: rrgg.naturalperson
+  pk: 186
+  fields:
+    given_name: 'DONAL ANDRES'
+    first_surname: 'GOMEZ'
+    second_surname: 'DOMINGUEZ'
+    birthdate: '1986-09-17'
+    document_type: 1
+    document_number: '70020117'
+    email: 'DONALGOMEZDOMINGUEZ@GMAIL.COM'
+    address: 'CALLE KASPERCZAK 138 - REFERENCIA ALTURA DE LA CUADRA 11'
+    phone_number: 991160705
+
+- model: rrgg.customermembership
+  pk: 186
+  fields:
+    natural_person: 186
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 187
+  fields:
+    given_name: 'WILFREDO JUAN'
+    first_surname: 'GONZALES'
+    second_surname: 'SAAVEDRA'
+    birthdate: '1958-05-24'
+    document_type: 1
+    document_number: '09651890'
+    email: 'PLATINO2405@HOTMAIL.COM'
+    address: 'AVENIDA LAS LOMAS DE LA MOLINA VIEJA 570 LA MOLINA'
+    phone_number: 998005678
+
+- model: rrgg.customermembership
+  pk: 187
+  fields:
+    natural_person: 187
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 188
+  fields:
+    given_name: 'DORIS  MARIA '
+    first_surname: 'GUERRA'
+    second_surname: 'ARIS'
+    birthdate: '1970-09-01'
+    document_type: 1
+    document_number: '03881591'
+    email: 'DGUERRA1970@HOTMAIL.COM'
+    address: 'DE LA ROCCA DE VERGALLO NRO 229 DPTO 601 MAGDALENA DEL MAR'
+    phone_number: 998057712
+
+- model: rrgg.customermembership
+  pk: 188
+  fields:
+    natural_person: 188
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 189
+  fields:
+    given_name: 'MENAHEM GUSTAVO HUMBERTO'
+    first_surname: 'HANANEL'
+    second_surname: 'ALVARADO'
+    birthdate: '1992-05-13'
+    document_type: 1
+    document_number: '70681426'
+    email: 'MGHG07@HOTMAIL.COM'
+    address: 'AVENIDA DEL PARQUE SUR 510 DPTO 201 SAN BORJA'
+    phone_number: 959054525
+
+- model: rrgg.customermembership
+  pk: 189
+  fields:
+    natural_person: 189
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 190
+  fields:
+    given_name: 'SUZETTI JULISSA'
+    first_surname: 'HANANEL'
+    second_surname: 'ALVARADO'
+    birthdate: '1988-09-04'
+    document_type: 1
+    document_number: '45278887'
+    email: 'SUZETTI.HANANEL@GMAIL.COM '
+    address: 'AVENIDA DEL PARQUE SUR 510 DEPARTAMENTO 201 - REFERENCIA CRUCE CON AV GALVEZ SAN BORJA'
+    phone_number: 985006084
+
+- model: rrgg.customermembership
+  pk: 190
+  fields:
+    natural_person: 190
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 191
+  fields:
+    given_name: 'MENAHEM GUSTAVO'
+    first_surname: 'HANANEL'
+    second_surname: 'GARCIA'
+    birthdate: '1961-06-07'
+    document_type: 1
+    document_number: '07475360'
+    email: 'SUZETTI.HANANEL@GMAIL.COM'
+    address: 'AV. AV .DEL PARQUE SUR NRO. 510-DPTO. 201 SAN BORJA '
+    phone_number: 954364016
+
+- model: rrgg.customermembership
+  pk: 191
+  fields:
+    natural_person: 191
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 192
+  fields:
+    given_name: 'ALFONSO MIGUEL'
+    first_surname: 'HERMOZA'
+    second_surname: 'MARILUZ'
+    birthdate: '1958-09-29'
+    document_type: 1
+    document_number: '43327848'
+    email: 'MHERMOZA29@GMAIL.COM'
+    email2: 'FABRICIO.MHM@GMAIL.COM'
+    address: 'CARLOS DE LA CONDAMINE 206 URB. SAN JOSE CALLAO '
+    phone_number: 997123141
+
+- model: rrgg.customermembership
+  pk: 192
+  fields:
+    natural_person: 192
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 193
+  fields:
+    given_name: 'RENAN HUMBERTO'
+    first_surname: 'HERMOZA'
+    second_surname: 'TELLO'
+    birthdate: '1934-06-08'
+    document_type: 1
+    document_number: '09866569'
+    email: 'DLETURIA@KCS.PE'
+    address: 'AVENIDA LOPEZ DE AYALA 1596 SAN BORJA'
+    phone_number: 983528132
+
+- model: rrgg.customermembership
+  pk: 193
+  fields:
+    natural_person: 193
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 194
+  fields:
+    given_name: 'ALESSANDRA NICOLE'
+    first_surname: 'HIDALGO'
+    second_surname: 'ARESTEGUI'
+    birthdate: '1996-10-10'
+    document_type: 1
+    document_number: '70666772'
+    email: 'ALEHIDALGOA@GMAIL.COM'
+    address: 'CALLE ALFA CISNE 109 DPTO 703 - SURQUILLO'
+    phone_number: 940355865
+
+- model: rrgg.customermembership
+  pk: 194
+  fields:
+    natural_person: 194
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 195
+  fields:
+    given_name: 'JAIME HUGO'
+    first_surname: 'HIDALGO'
+    second_surname: 'MEJIA'
+    birthdate: '1969-08-04'
+    document_type: 1
+    document_number: '07464018'
+    email: 'HUGOHIDALGO001@GMAIL.COM'
+    address: 'CALLE ALFA CISNE 109703 SURQUILLO'
+    phone_number: 992717756
+
+- model: rrgg.customermembership
+  pk: 195
+  fields:
+    natural_person: 195
+    seller: 23
+
+- model: rrgg.naturalperson
+  pk: 196
+  fields:
+    given_name: 'TATIANA DE FATIMA'
+    first_surname: 'HIDALGO'
+    second_surname: 'MEJIA'
+    birthdate: '1974-05-13'
+    document_type: 1
+    document_number: '05372668'
+    email: 'TATIANAHIDALGOM@GMAIL.COM'
+    address: 'CALLE LOMA AMOROSA 102 DPTO 302 SURCO '
+    phone_number: 987818860
+
+- model: rrgg.customermembership
+  pk: 196
+  fields:
+    natural_person: 196
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 197
+  fields:
+    given_name: 'THIMOTY FRANCISCO ALVERTO'
+    first_surname: 'HUAMAN'
+    second_surname: 'PONCE'
+    birthdate: '2002-03-31'
+    document_type: 1
+    document_number: '74574336'
+    email: 'THIMOTY.HUAMAN@GMAIL.COM'
+    address: 'CA. LAS CARABELAS 139 DPTO 301 - LA MOLINA'
+    phone_number: 940507056
+
+- model: rrgg.customermembership
+  pk: 197
+  fields:
+    natural_person: 197
+    seller: 24
+
+- model: rrgg.naturalperson
+  pk: 198
+  fields:
+    given_name: 'MENZER JUAN'
+    first_surname: 'HUAPAYA'
+    second_surname: 'CORDOVA'
+    birthdate: '1980-11-22'
+    document_type: 1
+    document_number: '42345284'
+    email: 'MENZER_15_20@HOTMAIL.CO M'
+    address: 'JR FRANCISCO LUNA PIZARRO 653 LA VICTORIA '
+    phone_number: 987342931
+
+- model: rrgg.customermembership
+  pk: 198
+  fields:
+    natural_person: 198
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 199
+  fields:
+    given_name: 'ANTUHANET MARIBEL'
+    first_surname: 'IZQUIERDO'
+    second_surname: 'MELGAREJO'
+    birthdate: '1977-07-01'
+    document_type: 1
+    document_number: '10625969'
+    email: 'ANTUHANET@HOTMAIL.COM'
+    email2: 'SMEZARINACUEVA@GMAIL.COM'
+    address: 'BAJADA AGUA DULCE NRO 153 DPTO 402 CHORRILLOS'
+    phone_number: 987542147
+
+- model: rrgg.customermembership
+  pk: 199
+  fields:
+    natural_person: 199
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 200
+  fields:
+    given_name: 'JESUS FERNANDO'
+    first_surname: 'JULCA'
+    second_surname: 'SUAREZ'
+    birthdate: '1988-12-25'
+    document_type: 1
+    document_number: '70132025'
+    email: 'JESUSFERNA@HOTMAIL.COM'
+    address: 'AV. LAS PALMERAS NÚMERO: MZ.O LT.4 LA MOLINA'
+    phone_number: 945533459
+
+- model: rrgg.customermembership
+  pk: 200
+  fields:
+    natural_person: 200
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 201
+  fields:
+    given_name: 'FANNY'
+    first_surname: 'LADD'
+    second_surname: 'HUARACHI'
+    birthdate: '1958-09-11'
+    document_type: 1
+    document_number: '06758676'
+    email: 'NITALADD@HOTMAIL.COM'
+    address: 'CALLE ANDROMEDA 820 - CHORRILLOS (LIMA 9) - LIMA'
+    phone_number: 993141489
+
+- model: rrgg.customermembership
+  pk: 201
+  fields:
+    natural_person: 201
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 202
+  fields:
+    given_name: 'CECILIA MONICA'
+    first_surname: 'LAVADO'
+    second_surname: 'LANDEO'
+    birthdate: '1965-04-12'
+    document_type: 1
+    document_number: '09530276'
+    email: 'CECILIA-LAVADO@HOTMAIL.COM'
+    address: 'PLANICIE MZ E LOTE 13 PUNTA HERMOSA LA MOLINA'
+    phone_number: 938373450
+
+- model: rrgg.customermembership
+  pk: 202
+  fields:
+    natural_person: 202
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 203
+  fields:
+    given_name: 'CARLOS DANIEL'
+    first_surname: 'LECAROS'
+    second_surname: 'ZUÑIGA'
+    birthdate: '1981-07-17'
+    document_type: 1
+    document_number: '43307736'
+    email: 'CARLOSLECAROS03@HOTMAIL.COM'
+    address: 'AV PEDRO DE OSMA 407 BARRANCO'
+    phone_number: 989834581
+
+- model: rrgg.customermembership
+  pk: 203
+  fields:
+    natural_person: 203
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 204
+  fields:
+    given_name: 'SERGIO WALTER'
+    first_surname: 'LEIBLINGER'
+    second_surname: 'GEREDA'
+    birthdate: '1942-04-05'
+    document_type: 1
+    document_number: '07702621'
+    address: 'JOSE GRANDA NRO 590 DPTO 4B  SAN ISIDRO'
+    phone_number: 12643025
+
+- model: rrgg.customermembership
+  pk: 204
+  fields:
+    natural_person: 204
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 205
+  fields:
+    given_name: 'JUAN LUIS'
+    first_surname: 'LEON'
+    second_surname: 'ALBAN'
+    birthdate: '1974-12-03'
+    document_type: 1
+    document_number: '10136834'
+    email: 'LEONALBAN74@OUTLOOK.COM'
+    address: 'CALLE JORGE ISAACS NÚMERO: 236 INTERIOR: DPTO 402 LIMA'
+    phone_number: 938128316
+
+- model: rrgg.customermembership
+  pk: 205
+  fields:
+    natural_person: 205
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 206
+  fields:
+    given_name: 'FLOR DE GUADALUPE SUSANA'
+    first_surname: 'LIAU HING'
+    second_surname: 'YEP'
+    birthdate: '1971-09-16'
+    document_type: 1
+    document_number: '08747498'
+    email: 'LUPELIAU@GMAIL.COM'
+    address: 'LUIS ALDANA 219 DPTO. 103 CORPAC'
+    phone_number: 989194317
+
+- model: rrgg.customermembership
+  pk: 206
+  fields:
+    natural_person: 206
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 207
+  fields:
+    given_name: 'GUILLERMO'
+    first_surname: 'LLERENA'
+    second_surname: 'PORTAL'
+    birthdate: '1966-01-13'
+    document_type: 1
+    document_number: '43370962'
+    address: 'MONTE FICUS DPTO BENAVIDES'
+    phone_number: 989244513
+
+- model: rrgg.customermembership
+  pk: 207
+  fields:
+    natural_person: 207
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 208
+  fields:
+    given_name: 'MARIA'
+    first_surname: 'LLONTOP'
+    second_surname: 'HEREDIA'
+    birthdate: '1974-08-23'
+    document_type: 1
+    document_number: '16728275'
+    email: 'MLLONTOP@INGESAORIENTE.COM'
+    address: 'CALLE ZAFIROS 194 CHICLAYO '
+    phone_number: 944298254
+
+- model: rrgg.customermembership
+  pk: 208
+  fields:
+    natural_person: 208
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 209
+  fields:
+    given_name: 'DANIEL ALBERTO'
+    first_surname: 'LOPEZ'
+    second_surname: 'CANSECO'
+    birthdate: '1969-04-07'
+    document_type: 1
+    document_number: '09279545'
+    email: 'LOPEZCANSECO@HOTM'
+    address: 'CALLE DOMINGO DE LA PRESA 334. SANTIAGO SURCO'
+    phone_number: 989078262
+
+- model: rrgg.customermembership
+  pk: 209
+  fields:
+    natural_person: 209
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 210
+  fields:
+    given_name: 'MILAGROS LEONOR'
+    first_surname: 'LOYOLA'
+    second_surname: 'CARRASCO '
+    birthdate: '1986-01-25'
+    document_type: 1
+    document_number: '43459197'
+    email: 'M.LOYOLA@PUCP.PE'
+    address: 'ARQ. ENRIQUE SEOANE 309, TORRES DE LIMAT - SAN BORJA'
+    phone_number: 991118840
+
+- model: rrgg.customermembership
+  pk: 210
+  fields:
+    natural_person: 210
+    seller: 8
+
+- model: rrgg.naturalperson
+  pk: 211
+  fields:
+    given_name: 'JOSE EDUARDO'
+    first_surname: 'LUCA'
+    second_surname: 'CARDENAS'
+    birthdate: '1986-02-13'
+    document_type: 1
+    document_number: '43371058'
+    email: 'JOSELUCA124@GMAIL.COM'
+    address: 'ASOC MARIA REYNA DE LOS APOSTOLES MZ A LT 03 ATE '
+    phone_number: 965733823
+
+- model: rrgg.customermembership
+  pk: 211
+  fields:
+    natural_person: 211
+    seller: 12
+
+- model: rrgg.naturalperson
+  pk: 212
+  fields:
+    given_name: 'ELVA MARIA'
+    first_surname: 'MACETAS'
+    second_surname: 'BELLIDO'
+    birthdate: '1962-08-02'
+    document_type: 1
+    document_number: '10416692'
+    email: 'ALOJAHEINER@GMAIL.COM'
+    address: 'CALLE .17 MZ V LOTE 65 URB CARAPONGO CHOSICA'
+    phone_number: 992339111
+
+- model: rrgg.customermembership
+  pk: 212
+  fields:
+    natural_person: 212
+    seller: 8
+
+- model: rrgg.naturalperson
+  pk: 213
+  fields:
+    given_name: 'MONICA JESUS'
+    first_surname: 'MANRIQUE'
+    second_surname: 'TALLEDO'
+    birthdate: '1965-02-26'
+    document_type: 1
+    document_number: '08139308'
+    email: 'GNK_03@HOTMAIL.COM'
+    address: 'MALECON DE LA RESERVA NRO 275 MIRAFLORES'
+    phone_number: 991269908
+
+- model: rrgg.customermembership
+  pk: 213
+  fields:
+    natural_person: 213
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 214
+  fields:
+    given_name: 'CARLOS ALVARO'
+    first_surname: 'MARROQUIN'
+    second_surname: 'ORCADA'
+    birthdate: '1981-03-07'
+    document_type: 1
+    document_number: '41145348'
+    email: 'ALVAROMARROQUIN@HOTMAIL.COM'
+    address: 'URB. BANCO DE LA NACION MZ C LTE 06'
+    phone_number: 945140474
+
+- model: rrgg.customermembership
+  pk: 214
+  fields:
+    natural_person: 214
+    seller: 24
+
+- model: rrgg.naturalperson
+  pk: 215
+  fields:
+    given_name: 'KARINA MARIA'
+    first_surname: 'MASIAS'
+    second_surname: 'CARVAJAL'
+    birthdate: '1983-10-04'
+    document_type: 1
+    document_number: '42069405'
+    email: 'STEFANANTONIO1304@GMAIL.COM'
+    address: 'CALLE BELLATRIX NRO 1 MZ C LTE 15 URB MONTERRICO SURCO '
+    phone_number: 954744025
+
+- model: rrgg.customermembership
+  pk: 215
+  fields:
+    natural_person: 215
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 216
+  fields:
+    given_name: 'DENISSE ROSARIO'
+    first_surname: 'MEDINA'
+    second_surname: 'ADRIANZEN'
+    birthdate: '1988-04-27'
+    document_type: 1
+    document_number: '45173308'
+    address: 'CALLE 28 MZ A LOTE 37 URBANIZACION LOS OLIVOS'
+    phone_number: 993564555
+
+- model: rrgg.customermembership
+  pk: 216
+  fields:
+    natural_person: 216
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 217
+  fields:
+    given_name: 'ROSA'
+    first_surname: 'MEGO'
+    second_surname: 'ALARCON'
+    birthdate: '1962-07-16'
+    document_type: 1
+    document_number: '08103266'
+    email: 'ROSME2001@HOTMAIL.COM'
+    address: 'FALTA DIRECCION '
+    phone_number: 997358737
+
+- model: rrgg.customermembership
+  pk: 217
+  fields:
+    natural_person: 217
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 218
+  fields:
+    given_name: 'GUICELA'
+    first_surname: 'MELGAREJO'
+    second_surname: 'FERNANDEZ'
+    birthdate: '1970-05-03'
+    document_type: 1
+    document_number: '07469530'
+    email: 'GUICELAM@HOTMAIL.COM'
+    address: 'AV JAVIER PRADO OESTE NRO 1238 DPTO 1304 REF JAVIER PRADO OESTE1238 DPTO 1304 SAN ISISDRO '
+    phone_number: 982429066
+
+- model: rrgg.customermembership
+  pk: 218
+  fields:
+    natural_person: 218
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 219
+  fields:
+    given_name: 'ERICK IVAN'
+    first_surname: 'MENDEZ'
+    second_surname: 'FIGUEROA'
+    birthdate: '1963-02-24'
+    document_type: 1
+    document_number: '22099496'
+    email: 'MENERICK550@GMAIL.COM'
+    address: 'CALLE TERUEL 323 DEPARTAMENTO 301 - MIRAFLORES'
+    phone_number: 999881300
+
+- model: rrgg.customermembership
+  pk: 219
+  fields:
+    natural_person: 219
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 220
+  fields:
+    given_name: 'OSCAR AUGUSTO'
+    first_surname: 'MENDOZA'
+    second_surname: 'FERNANDEZ'
+    birthdate: '1944-01-10'
+    document_type: 1
+    document_number: '10493346'
+    email: 'ALFONSOJOSE.MM@GMAIL.COM'
+    address: 'LIMA NRO 245 URB SANTA PATRICIA LA MOLINA'
+    phone_number: 3499203
+
+- model: rrgg.customermembership
+  pk: 220
+  fields:
+    natural_person: 220
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 221
+  fields:
+    given_name: 'YANETH'
+    first_surname: 'MENDOZA'
+    second_surname: 'PAREDES'
+    birthdate: '1974-09-22'
+    document_type: 1
+    document_number: '03665631'
+    email: 'YANETHMENDOZAPAREDES2209@GMAIL.COM '
+    address: 'CLL STA TERESA 286 SULLANA PIURA'
+    phone_number: 969929701
+
+- model: rrgg.customermembership
+  pk: 221
+  fields:
+    natural_person: 221
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 222
+  fields:
+    given_name: 'LOURDES DEL PILAR'
+    first_surname: 'MENDOZA'
+    second_surname: 'VILLACORTA'
+    birthdate: '1974-02-12'
+    document_type: 1
+    document_number: '09995939'
+    email: 'PILARMV1202@GMAIL.COM'
+    address: 'LAS DROCERAS 186 SALAMANCA ATE'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 222
+  fields:
+    natural_person: 222
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 223
+  fields:
+    given_name: 'NARDA GRACIELA'
+    first_surname: 'MERCADO'
+    second_surname: 'RONDON'
+    birthdate: '1974-11-25'
+    document_type: 1
+    document_number: '30837208'
+    email: 'NARDAGMR@HOTMAIL.COM'
+    phone_number: 944686505
+
+- model: rrgg.customermembership
+  pk: 223
+  fields:
+    natural_person: 223
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 224
+  fields:
+    given_name: 'LUIS ENRIQUE'
+    first_surname: 'REATEGUI'
+    second_surname: 'CASTILLO'
+    birthdate: '1998-12-13'
+    document_type: 1
+    document_number: '76183233'
+    email: 'LUIS.REATEGUI_2@HOTMAIL.COM'
+    address: 'CALLE TENIENTE JIMENEZ NÚMERO 382 CHORRILLOS'
+    phone_number: 992447133
+
+- model: rrgg.customermembership
+  pk: 224
+  fields:
+    natural_person: 224
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 225
+  fields:
+    given_name: 'SANTIAGO CARLOS'
+    first_surname: 'MEZARINA'
+    second_surname: 'CUEVA'
+    birthdate: '1968-10-09'
+    document_type: 1
+    document_number: '09476662'
+    email: 'SMEZARINACUEVA@GMAIL.COM'
+    address: 'CALLA BAJADA AGUADULCE NÚMERO: 402 INTERIOR: 153'
+    phone_number: 987 42147
+
+- model: rrgg.customermembership
+  pk: 225
+  fields:
+    natural_person: 225
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 226
+  fields:
+    given_name: 'FLOR DE MARÍA'
+    first_surname: 'MINAYA'
+    second_surname: 'RAMOS'
+    birthdate: '1971-12-27'
+    document_type: 1
+    document_number: '09866985'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'LOMA AMOROSA 290 - DPTO 401. SANTIAGO DE SURCO'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 226
+  fields:
+    natural_person: 226
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 227
+  fields:
+    given_name: 'EDUARDO'
+    first_surname: 'MIÑANO'
+    second_surname: 'AGÜERO'
+    birthdate: '1989-02-23'
+    document_type: 1
+    document_number: '45557708'
+    email: 'J.MINANO@EM-TECHNOLOGY.CO'
+    address: 'JIRON PABLO USANDIZAGA 593 DPTO 101 SAN BORJA '
+    phone_number: 996963208
+
+- model: rrgg.customermembership
+  pk: 227
+  fields:
+    natural_person: 227
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 228
+  fields:
+    given_name: 'MAX ANIBAL'
+    first_surname: 'MIRANDA'
+    second_surname: 'DELGADO'
+    birthdate: '1965-01-18'
+    document_type: 1
+    document_number: '43432459'
+    email: 'MIRANDAMAX2002@GMAIL.COM'
+    address: 'MZ. F LT. 8 URB. SANTO DOMINGO - JOSE LUIS BUSTAMANTE Y RIVERO - AREQUIPA'
+    phone_number: 959371936
+
+- model: rrgg.customermembership
+  pk: 228
+  fields:
+    natural_person: 228
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 229
+  fields:
+    given_name: 'LUIS MARTIN'
+    first_surname: 'MOGROVEJO'
+    second_surname: 'CASTILLO'
+    birthdate: '1962-10-27'
+    document_type: 1
+    document_number: '25711119'
+    email: 'LUISMOGROVEJO@HOTMAIL.COM'
+    address: 'CALLE LAS CANTUTAS 812 URBANIZACIÓN CASUARINAS SUR SURCO '
+    phone_number: 989087266
+
+- model: rrgg.customermembership
+  pk: 229
+  fields:
+    natural_person: 229
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 230
+  fields:
+    given_name: 'VICTOR YSAIAS'
+    first_surname: 'MONTOYO'
+    second_surname: 'MORI'
+    birthdate: '1960-10-26'
+    document_type: 1
+    document_number: '25771807'
+    email: 'JORANTE2001@HOTMAIL.COM'
+    address: 'GONZALES PRADA DPTOB SURQUILLO'
+    phone_number: 993547651
+
+- model: rrgg.customermembership
+  pk: 230
+  fields:
+    natural_person: 230
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 231
+  fields:
+    given_name: 'PATRICIA MILAGROS'
+    first_surname: 'MUÑOZ'
+    second_surname: 'REGIS'
+    birthdate: '1971-11-01'
+    document_type: 1
+    document_number: '33261510'
+    email: 'CEAGUILARMUÑOZ@GMAIL.COM'
+    address: 'LAS DALIAS NRO 251 DPTO 402 MIRAFLORES'
+    phone_number: 965703306
+
+- model: rrgg.customermembership
+  pk: 231
+  fields:
+    natural_person: 231
+    seller: 25
+
+- model: rrgg.naturalperson
+  pk: 232
+  fields:
+    given_name: 'XIMENA MERCEDES'
+    first_surname: 'MUÑOZ'
+    second_surname: 'SAN ROMAN'
+    birthdate: '1991-04-05'
+    document_type: 1
+    document_number: '46838738'
+    email: 'XIMENA.MSR@HOTMAIL.COM'
+    address: 'CALLE VOLCAN CHACHANI 1 MZ O LTE 17 URBANIZACIÓN LAS COLINAS LA MOLINA '
+    phone_number: 962359654
+
+- model: rrgg.customermembership
+  pk: 232
+  fields:
+    natural_person: 232
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 233
+  fields:
+    given_name: 'DELIA EMPERATRIZ'
+    first_surname: 'MURGA'
+    second_surname: 'VELAZQUEZ'
+    birthdate: '1968-10-10'
+    document_type: 1
+    document_number: '07765593'
+    address: 'AV FATIMA 280 TRUJILLO '
+    phone_number: 945443549
+
+- model: rrgg.customermembership
+  pk: 233
+  fields:
+    natural_person: 233
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 234
+  fields:
+    given_name: 'JUAN MANUEL'
+    first_surname: 'NARBASTA'
+    second_surname: 'ALDAVE'
+    birthdate: '1961-05-05'
+    document_type: 1
+    document_number: '15725081'
+    email: 'NARBASTA6AJM6@HOTM AIL.COM'
+    address: 'AVTOMASAL 720 B-8 DPTO403 HUERTOS D E SURCO'
+    phone_number: 937022216
+
+- model: rrgg.customermembership
+  pk: 234
+  fields:
+    natural_person: 234
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 235
+  fields:
+    given_name: 'LISSETH STAYLEN'
+    first_surname: 'NEYRA'
+    second_surname: 'ASENCIOS'
+    birthdate: '1980-07-22'
+    document_type: 1
+    document_number: '40609661'
+    email: 'LISNEYRA22@GMAIL.COM'
+    address: 'JR VARGAS MACHUCA 421 URB INGENIERIA SAN MARTIN '
+    phone_number: 942 971 969
+
+- model: rrgg.customermembership
+  pk: 235
+  fields:
+    natural_person: 235
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 236
+  fields:
+    given_name: 'NILTON'
+    first_surname: 'NIZAMA'
+    second_surname: 'TEIXEIRA'
+    birthdate: '1976-01-11'
+    document_type: 1
+    document_number: '43310084'
+    email: 'NINITE98@GMAIL.COM'
+    address: 'CLL LAS DALIAS MZ M LT 16 SAN MARTIN DE PORRES'
+    phone_number: 990187511
+
+- model: rrgg.customermembership
+  pk: 236
+  fields:
+    natural_person: 236
+    seller: 30
+
+- model: rrgg.naturalperson
+  pk: 237
+  fields:
+    given_name: 'ALVARO DANIEL'
+    first_surname: 'NUÑEZ'
+    second_surname: 'NORIEGA'
+    birthdate: '1968-12-30'
+    document_type: 1
+    document_number: '08274955'
+    email: 'CARGARCIA2008@HOTMAIL.COM'
+    address: 'CALLE PAZ Y PERFECTA UNIÓN ( EX CALLE 22 ) NRO 668 DPTO 202 URB. CORPAC SAN ISIDRO'
+    phone_number: 942418968
+
+- model: rrgg.customermembership
+  pk: 237
+  fields:
+    natural_person: 237
+    seller: 23
+
+- model: rrgg.naturalperson
+  pk: 238
+  fields:
+    given_name: 'LUIS DENNIS'
+    first_surname: 'OCAS'
+    second_surname: 'VASQUEZ'
+    birthdate: '1995-01-04'
+    document_type: 1
+    document_number: '70196861'
+    email: 'TIWIN04@GMAIL.COM'
+    address: 'ASOC. VIV. MARKO JARA SCHENONE MZ P1 ANCON'
+    phone_number: 942704966
+
+- model: rrgg.customermembership
+  pk: 238
+  fields:
+    natural_person: 238
+    seller: 12
+
+- model: rrgg.naturalperson
+  pk: 239
+  fields:
+    given_name: 'ROBERTO GERARDO'
+    first_surname: 'OLIVEROS'
+    second_surname: 'ITURRARAN'
+    birthdate: '1985-10-09'
+    document_type: 1
+    document_number: '43310975'
+    email: 'ROGOLIVEROS@GMAIL.COM'
+    address: 'JR. JACARANDA NRO. 715 URB. VALLE - SANTIAGO DE SURCO (LIMA 33) - LIMA'
+    phone_number: 965481164
+
+- model: rrgg.customermembership
+  pk: 239
+  fields:
+    natural_person: 239
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 240
+  fields:
+    given_name: 'PEDRO FERNANDO'
+    first_surname: 'ORAHULIO'
+    second_surname: 'ALARCON'
+    birthdate: '1959-03-05'
+    document_type: 1
+    document_number: '43570908'
+    email: 'PEDROORA@HOTMAIL.COM'
+    address: 'CALLE SANTA ISABEL 150 PISO 1 PUEBLO LIBRE'
+    phone_number: 997529950
+
+- model: rrgg.customermembership
+  pk: 240
+  fields:
+    natural_person: 240
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 241
+  fields:
+    given_name: 'TEODORO MARCOS'
+    first_surname: 'ORDOÑEZ'
+    second_surname: 'PALACIN'
+    birthdate: '1965-11-21'
+    document_type: 1
+    document_number: '10057604'
+    email: 'ELTARMENO65@HOTMAIL.COM'
+    address: 'URB. ALAMEDA II ETAPA MZ. CH LOTE 8 NÚMERO: LT 8'
+    phone_number: 996809293
+
+- model: rrgg.customermembership
+  pk: 241
+  fields:
+    natural_person: 241
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 242
+  fields:
+    given_name: 'JAVIER LUIS'
+    first_surname: 'ORMEÑO'
+    second_surname: 'MEJIA'
+    birthdate: '1977-03-15'
+    document_type: 1
+    document_number: '07538848'
+    email: 'JORMENO.ODO@GMAIL.COM'
+    address: 'CLL 1 DE JULIO 244 MAGDALENA '
+    phone_number: 943022220
+
+- model: rrgg.customermembership
+  pk: 242
+  fields:
+    natural_person: 242
+    seller: 8
+
+- model: rrgg.naturalperson
+  pk: 243
+  fields:
+    given_name: 'RODOLFO ERNESTO'
+    first_surname: 'ORTIZ'
+    second_surname: 'DE LA CRUZ'
+    birthdate: '1956-01-14'
+    document_type: 1
+    document_number: '7404327'
+    email: 'RORTIZXYZ@HOTMAIL.COM'
+    address: 'AVENIDA ARQ MALACHOWSKI 436 INTERIOR 501 SAN BORJA '
+    phone_number: 957349462
+
+- model: rrgg.customermembership
+  pk: 243
+  fields:
+    natural_person: 243
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 244
+  fields:
+    given_name: 'ALEJANDRA KIARA'
+    first_surname: 'ORTIZ'
+    second_surname: 'RODRIGUEZ'
+    birthdate: '1995-06-20'
+    document_type: 1
+    document_number: '74175245'
+    email: 'KIARALOPEZG2000@GMAIL.COM '
+    address: 'SOL DE ICA MZ B LOTE 38 ICA'
+    phone_number: 934940893
+
+- model: rrgg.customermembership
+  pk: 244
+  fields:
+    natural_person: 244
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 245
+  fields:
+    given_name: 'DORIS CAROLINA'
+    first_surname: 'PACHECO'
+    second_surname: 'KOIZUMI'
+    birthdate: '1958-11-04'
+    document_type: 1
+    document_number: '09176513'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'CALLE MARBELLA 259 – DPTO. 702 – MAYORAZGO - ATE'
+    phone_number: 927158938
+
+- model: rrgg.customermembership
+  pk: 245
+  fields:
+    natural_person: 245
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 246
+  fields:
+    given_name: 'MANUEL ALBERTO'
+    first_surname: 'PACHECO'
+    second_surname: 'LEDESMA'
+    birthdate: '1955-12-17'
+    document_type: 1
+    document_number: '09447050'
+    email: 'AMANUEL178@HOTMAIL.COM'
+    address: 'CALLE LOMA UMBROSA NÚMERO: 522 SURCO'
+    phone_number: 998947542
+
+- model: rrgg.customermembership
+  pk: 246
+  fields:
+    natural_person: 246
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 247
+  fields:
+    given_name: 'LUIS HUMBERTO'
+    first_surname: 'PACHECO'
+    second_surname: 'MESIAS'
+    birthdate: '1962-01-05'
+    document_type: 1
+    document_number: '29581748'
+    email: 'PACHECOSG@HOTMAIL.COM'
+    address: 'CALLE EUGENIO DE LA TORRE 231 - 501 - SAN MIGUEL'
+    phone_number: 997540164
+
+- model: rrgg.customermembership
+  pk: 247
+  fields:
+    natural_person: 247
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 248
+  fields:
+    given_name: 'ROBERTO JESUS'
+    first_surname: 'PADILLA'
+    second_surname: 'DEL VALLE'
+    birthdate: '1985-01-06'
+    document_type: 1
+    document_number: '42816309'
+    email: 'RPADILLADV@GMAIL.COM'
+    address: 'AVENIDA PRINCIPAL 972 SAN ISIDRO'
+    phone_number: 959380086
+
+- model: rrgg.customermembership
+  pk: 248
+  fields:
+    natural_person: 248
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 249
+  fields:
+    given_name: 'STEFANIA BELEN'
+    first_surname: 'PADILLA'
+    second_surname: 'DEL VALLE'
+    birthdate: '1991-01-27'
+    document_type: 1
+    document_number: '70310494'
+    email: 'SPADILLADELVALLE@GMAIL.COM'
+    address: 'JR. YUNGAY N 450 DPTO 302 MAGDALENA'
+    phone_number: 949712587
+
+- model: rrgg.customermembership
+  pk: 249
+  fields:
+    natural_person: 249
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 250
+  fields:
+    given_name: 'JORGE LUIS'
+    first_surname: 'PADILLA'
+    second_surname: 'MINAYA'
+    birthdate: '2004-03-09'
+    document_type: 1
+    document_number: '73199467'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'LOMA AMOROSA 290 - DPTO 401. SANTIAGO DE SURCO'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 250
+  fields:
+    natural_person: 250
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 251
+  fields:
+    given_name: 'ROGER ENRIQUE MARTIN'
+    first_surname: 'PAREDES'
+    second_surname: 'JESSEN'
+    birthdate: '1964-09-15'
+    document_type: 1
+    document_number: '43668627'
+    email: 'RPAREDESJESSEN@GMAIL.COM'
+    address: 'PARQUE ALMAGRO 130 JESUS MARIA '
+    phone_number: 997536384
+
+- model: rrgg.customermembership
+  pk: 251
+  fields:
+    natural_person: 251
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 252
+  fields:
+    given_name: 'JULIO DAVID'
+    first_surname: 'PASTOR'
+    second_surname: 'CASTRO'
+    birthdate: '1971-08-23'
+    document_type: 1
+    document_number: '43343116'
+    email: 'JPASTORC31@HOTMAIL.COM'
+    address: 'ALAMEDA CIRO ALEGRIA DPTO LIMA'
+    phone_number: 990639677
+
+- model: rrgg.customermembership
+  pk: 252
+  fields:
+    natural_person: 252
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 253
+  fields:
+    given_name: 'ERIKA PATRICIA'
+    first_surname: 'PASTOR'
+    second_surname: 'FOLEY'
+    birthdate: '1975-10-26'
+    document_type: 1
+    document_number: '06673778'
+    email: 'EPASTOR@WCAPITAL.COM.PE'
+    address: 'CA. ENRIQUE CANAVAL Y MOREYRA NRO. 522'
+    phone_number: 942130030
+
+- model: rrgg.customermembership
+  pk: 253
+  fields:
+    natural_person: 253
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 254
+  fields:
+    given_name: 'ANA RITA'
+    first_surname: 'PECHE'
+    second_surname: 'BECERRA'
+    birthdate: '1970-06-10'
+    document_type: 1
+    document_number: '08137034'
+    email: 'PILARMV1202@GMAIL.COM'
+    address: 'AV. JOSE BASADRE 880 - SAN ISIDRO'
+    phone_number: 950305624
+
+- model: rrgg.customermembership
+  pk: 254
+  fields:
+    natural_person: 254
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 255
+  fields:
+    given_name: 'KAREN SOLANGE'
+    first_surname: 'PEÑA'
+    second_surname: 'ABREGU '
+    birthdate: '1992-06-13'
+    document_type: 1
+    document_number: '72521615'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'AV. LA MARGINAL 509 - URB. JAVIER PRADO 6TA: ETAPA - ATE'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 255
+  fields:
+    natural_person: 255
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 256
+  fields:
+    given_name: 'ROLANDO EFRAIN'
+    first_surname: 'PERALTA'
+    second_surname: 'RAMOS'
+    birthdate: '1952-09-24'
+    document_type: 1
+    document_number: '43260854'
+    email: 'REPERALTAR@HOTMAIL.COM'
+    address: 'JR. JR MANCO SEGUNDO 2270 DPTO 202 LINCE '
+    phone_number: 989193081
+
+- model: rrgg.customermembership
+  pk: 256
+  fields:
+    natural_person: 256
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 257
+  fields:
+    given_name: 'MARTIN'
+    first_surname: 'PERAMAS'
+    second_surname: 'VELASQUEZ'
+    birthdate: '1970-11-29'
+    document_type: 1
+    document_number: '43378901'
+    email: 'VIOBEDI@HOTMAIL.COM'
+    address: 'AVENIDA PROLONGACION MIGUEL ECHENIQUE 1311 LIMA'
+    phone_number: 944757189
+
+- model: rrgg.customermembership
+  pk: 257
+  fields:
+    natural_person: 257
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 258
+  fields:
+    given_name: 'CARLOS VIDAL'
+    first_surname: 'PEREZ'
+    second_surname: 'MILLAN'
+    birthdate: '1984-09-19'
+    document_type: 1
+    document_number: '03299321'
+    email: 'CARLOS84VIDAL@GMAIL.COM'
+    address: 'CALLE LA CALERA MZ A LOTE 5 ASOC EL CARMEN SURQUILLO'
+    phone_number: 938546666
+
+- model: rrgg.customermembership
+  pk: 258
+  fields:
+    natural_person: 258
+    seller: 8
+
+- model: rrgg.naturalperson
+  pk: 259
+  fields:
+    given_name: 'KARINA DEL PILAR'
+    first_surname: 'PEREZ'
+    second_surname: 'PINEDO'
+    birthdate: '1987-01-25'
+    document_type: 1
+    document_number: '44059670'
+    email: 'KARIMELY@HOTMAIL.COM'
+    address: 'MZ A LT 18 CRUZ DE MOTUPE SAN JUAN DE LURIGANCHO '
+    phone_number: 941973203
+
+- model: rrgg.customermembership
+  pk: 259
+  fields:
+    natural_person: 259
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 260
+  fields:
+    given_name: 'ANDRE PHILIPPE'
+    first_surname: 'PETIT'
+    second_surname: 'MOSCA'
+    birthdate: '1988-06-16'
+    document_type: 1
+    document_number: '45090995'
+    email: 'ANDREPETIT116@HOTMAIL.COM'
+    address: 'URBANIZACIÓN LOS ALAMOS DE MONTERRICO - REFERENCIA CONDOMINIO EL MIRADOR F-101'
+    phone_number: 980063873
+
+- model: rrgg.customermembership
+  pk: 260
+  fields:
+    natural_person: 260
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 261
+  fields:
+    given_name: 'ADOLFO JAVIER'
+    first_surname: 'PINILLOS'
+    second_surname: 'CORDOVA'
+    birthdate: '1977-06-17'
+    document_type: 1
+    document_number: '10635180'
+    email: 'ADOLFO.PINILLOS@ME.COM'
+    address: 'JIRON TINAJONES 265 DEPARTAMENTO 401- LIMA '
+    phone_number: 967788099
+
+- model: rrgg.customermembership
+  pk: 261
+  fields:
+    natural_person: 261
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 262
+  fields:
+    given_name: 'CRISTIAN ALBERTO'
+    first_surname: 'PINILLOS'
+    second_surname: 'CORDOVA'
+    birthdate: '1979-03-14'
+    document_type: 1
+    document_number: '40466295'
+    email: 'PINILLOS.CHRISTIAN@GMAIL.COM'
+    address: 'ENRIQUE CANAVAL Y MOREYRA NRO. 522 URB SAN ISIDRO '
+    phone_number: 987654323
+
+- model: rrgg.customermembership
+  pk: 262
+  fields:
+    natural_person: 262
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 263
+  fields:
+    given_name: 'JUAN JOSE'
+    first_surname: 'PINTO'
+    second_surname: 'CRIOLLO'
+    birthdate: '1967-11-11'
+    document_type: 1
+    document_number: '29408541'
+    email: 'LUPICKBE7@GMAIL.COM'
+    address: 'S1 MZ. -J11 LOS CEDROS DE VILLA - CHORRILLOS'
+    phone_number: 987185279
+
+- model: rrgg.customermembership
+  pk: 263
+  fields:
+    natural_person: 263
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 264
+  fields:
+    given_name: 'JUAN RODOLFO'
+    first_surname: 'POZO'
+    second_surname: 'GUTIERREZ'
+    birthdate: '1977-05-04'
+    document_type: 1
+    document_number: '10760847'
+    email: 'RODOLFOPOZO4@GMAIL.COM'
+    address: 'CALLE LOS INCAS 122 DPTO 303 - LA MOLINA (LIMA 12) - LIMA'
+    phone_number: 992552921
+
+- model: rrgg.customermembership
+  pk: 264
+  fields:
+    natural_person: 264
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 265
+  fields:
+    given_name: 'SILVIA NORMA'
+    first_surname: 'PRINCIPE'
+    second_surname: 'RUIZ'
+    birthdate: '1962-07-10'
+    document_type: 1
+    document_number: '08251785'
+    email: 'SILVIAPRINCIPER@GMAIL.COM'
+    address: 'JOSE GALVEZ2320 LINCE'
+    phone_number: 989188692
+
+- model: rrgg.customermembership
+  pk: 265
+  fields:
+    natural_person: 265
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 266
+  fields:
+    given_name: 'LUIS MIGUEL'
+    first_surname: 'QUINTANA'
+    second_surname: 'FERREYRA'
+    birthdate: '1979-06-17'
+    document_type: 1
+    document_number: '40216145'
+    email: 'MTAPIA@MAPFRE.COM.PE'
+    address: 'MORRO SOLAR NRO 352 DPTO 502 URB CHACARILLA SANTIAGO DE SURCO'
+    phone_number: 932908549
+
+- model: rrgg.customermembership
+  pk: 266
+  fields:
+    natural_person: 266
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 267
+  fields:
+    given_name: 'HECTOR ANIBAL'
+    first_surname: 'RAMIREZ'
+    second_surname: 'PEÑA'
+    birthdate: '1996-06-19'
+    document_type: 1
+    document_number: '70334374'
+    email: 'RUFASTO3@GMAIL.COM'
+    email2: 'HEC.RAMIREZ96@GMAIL.COM'
+    address: 'BRASIL NRO 1836 PUEBLO LIBRE'
+    phone_number: 954747852
+
+- model: rrgg.customermembership
+  pk: 267
+  fields:
+    natural_person: 267
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 268
+  fields:
+    given_name: 'CESAR AUGUSTO'
+    first_surname: 'RASMUSSEN'
+    second_surname: 'VICENTE'
+    birthdate: '1967-03-14'
+    document_type: 1
+    document_number: '07885861'
+    email: 'CESAR.RASMUSSEN@GMAIL.COM'
+    address: 'CALLE CAMILLE COROT 169 SAN BORJA'
+    phone_number: 975092276
+
+- model: rrgg.customermembership
+  pk: 268
+  fields:
+    natural_person: 268
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 269
+  fields:
+    given_name: 'CESAR RAMIRO'
+    first_surname: 'REQUEJO'
+    second_surname: 'LLAJA'
+    birthdate: '1958-11-17'
+    document_type: 1
+    document_number: '08039790'
+    email: 'REQUEJO17CESAR@GMAIL.COM'
+    address: 'AV.JAVIER MARAITEGUI-865-DP.306 JESUS MARIA'
+    phone_number: 993531388
+
+- model: rrgg.customermembership
+  pk: 269
+  fields:
+    natural_person: 269
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 270
+  fields:
+    given_name: 'FLOR MARIA'
+    first_surname: 'RETIS'
+    second_surname: 'SILVA'
+    birthdate: '1979-05-04'
+    document_type: 1
+    document_number: '40226801'
+    email: 'YTORO@LANCASTER.COM.PE'
+    address: 'CIUDAD DEL PESCADOR MZ. A1 LT. 8 - BELLAVISTA (CALLAO 2) - CALLAO'
+    phone_number: 970651788
+
+- model: rrgg.customermembership
+  pk: 270
+  fields:
+    natural_person: 270
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 271
+  fields:
+    given_name: 'ERASMO ALEJANDRO'
+    first_surname: 'REYNA'
+    second_surname: 'ALCANTARA'
+    birthdate: '1969-06-08'
+    document_type: 1
+    document_number: '09565161'
+    email: 'EREYNAABOGADO@HOTMAIL.COM'
+    address: 'CALLE NICARAGUA 110 JESUS MARIA '
+    phone_number: 990418181
+
+- model: rrgg.customermembership
+  pk: 271
+  fields:
+    natural_person: 271
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 272
+  fields:
+    given_name: 'ROBERT HERNAN'
+    first_surname: 'REYNA'
+    second_surname: 'PEREZ'
+    birthdate: '1969-11-05'
+    document_type: 1
+    document_number: '32919492'
+    email: 'robertreynaperez1@gmail.com'
+    address: 'JIRÓN VILLAVICENCIO 1198'
+    phone_number: 14729444
+
+- model: rrgg.customermembership
+  pk: 272
+  fields:
+    natural_person: 272
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 273
+  fields:
+    given_name: 'RAFAEL'
+    first_surname: 'REYNA'
+    second_surname: 'TERRONES'
+    birthdate: '1967-12-08'
+    document_type: 1
+    document_number: '32923015'
+    email: 'RREYNA@KCS.PE'
+    address: 'FERMIN TANGUIS 145 OF 302'
+    phone_number: 987816701
+
+- model: rrgg.customermembership
+  pk: 273
+  fields:
+    natural_person: 273
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 274
+  fields:
+    given_name: 'MARIANA ALEJANDRA'
+    first_surname: 'REYNA'
+    second_surname: 'ZEGARRA'
+    birthdate: '1996-04-05'
+    document_type: 1
+    document_number: '70041677'
+    email: 'MREYNA@KCS.PE'
+    address: 'FERMIN TANGUIS 145 OF 302'
+    phone_number: 968968855
+
+- model: rrgg.customermembership
+  pk: 274
+  fields:
+    natural_person: 274
+    seller: 19
+
+- model: rrgg.naturalperson
+  pk: 275
+  fields:
+    given_name: 'MARIO CLODOMIRO'
+    first_surname: 'RIVAS'
+    second_surname: 'CHAVEZ'
+    birthdate: '1958-07-19'
+    document_type: 1
+    document_number: '10812797'
+    email: 'MARIORIVASCHAVEZ@HOTMAIL.COM'
+    address: 'ALLE LOS ALAMOS 378 DEPARTAMENTO 301 URBANIZACIÓN MONTERRICO RESTO MONTERRICO'
+    phone_number: 997536911
+
+- model: rrgg.customermembership
+  pk: 275
+  fields:
+    natural_person: 275
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 276
+  fields:
+    given_name: 'ZORAIDA NELLY'
+    first_surname: 'RIVAS'
+    second_surname: 'COYURE'
+    birthdate: '1980-02-15'
+    document_type: 1
+    document_number: '40527903'
+    email: 'zorarivas@hotmail.com'
+    address: 'MZ D LT 7 COOP VIV HERRERA'
+    phone_number: 979585358
+
+- model: rrgg.customermembership
+  pk: 276
+  fields:
+    natural_person: 276
+    seller: 23
+
+- model: rrgg.naturalperson
+  pk: 277
+  fields:
+    given_name: 'NOELIA SALOME'
+    first_surname: 'RIVAS'
+    second_surname: 'COYURI'
+    birthdate: '1974-10-03'
+    document_type: 1
+    document_number: '09903389'
+    email: 'NOESAL3@HOTMAIL.COM'
+    address: 'SANTIAGO DE SURCO'
+    phone_number: 989649318
+
+- model: rrgg.customermembership
+  pk: 277
+  fields:
+    natural_person: 277
+    seller: 23
+
+- model: rrgg.naturalperson
+  pk: 278
+  fields:
+    given_name: 'JORGE ALEJANDRO'
+    first_surname: 'RIVASPLATA'
+    second_surname: 'ZARATE'
+    birthdate: '1959-02-05'
+    document_type: 1
+    document_number: '08363463'
+    email: 'JRIVASPLATA@TABOADAYASOC.COM'
+    address: 'AVENIDA VIVIANO PAREDES 351, DISTRITO DE LIMA'
+    phone_number: 999778644
+
+- model: rrgg.customermembership
+  pk: 278
+  fields:
+    natural_person: 278
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 279
+  fields:
+    given_name: 'MARIO CARLOS'
+    first_surname: 'RIVERA'
+    second_surname: 'PEREZ'
+    birthdate: '1964-05-24'
+    document_type: 1
+    document_number: '08747543'
+    email: 'MARIOCARLOSRIVERA1@GMAIL.COM'
+    address: 'CALLE LUIS ALDANA 219 DEPARTAMENTO 203 URBANIZACIÓN CORPAC'
+    phone_number: 987570048
+
+- model: rrgg.customermembership
+  pk: 279
+  fields:
+    natural_person: 279
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 280
+  fields:
+    given_name: 'EDUARDO RUBEN'
+    first_surname: 'RIVERO'
+    second_surname: 'PONCE'
+    birthdate: '2022-11-12'
+    document_type: 1
+    document_number: '06034620'
+    email: 'RIVERO_ER@UP.EDU.PE'
+    address: 'CALLE LOS OSOS NRO 437 URB RINCONADA DEL LAGO LA'
+    phone_number: 945066182
+
+- model: rrgg.customermembership
+  pk: 280
+  fields:
+    natural_person: 280
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 281
+  fields:
+    given_name: 'JESUS ARQUIMEDES DARIO'
+    first_surname: 'ROJAS'
+    second_surname: 'ALEGRIA'
+    birthdate: '1965-08-02'
+    document_type: 1
+    document_number: '43421046'
+    email: 'JESUSROJAS65@OUTLOOK.COM'
+    address: 'LIMA POLO NRO. 261 TORRE B DPTO. 302  SURCO '
+    phone_number: 993546526
+
+- model: rrgg.customermembership
+  pk: 281
+  fields:
+    natural_person: 281
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 282
+  fields:
+    given_name: 'JULIO CESAR'
+    first_surname: 'ROMERO'
+    second_surname: 'PORTOCARRERO'
+    birthdate: '1964-04-11'
+    document_type: 1
+    document_number: '08910178'
+    email: 'LUIS.AMORETTI.V@GMAIL.COM'
+    address: '23 MZ L LOTE 14 SECTOR 1 VILLA EL SALVADOR'
+    phone_number: 2681396
+
+- model: rrgg.customermembership
+  pk: 282
+  fields:
+    natural_person: 282
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 283
+  fields:
+    given_name: 'WILLY MANUEL'
+    first_surname: 'SACIO'
+    second_surname: 'MATUTE'
+    birthdate: '1947-07-08'
+    document_type: 1
+    document_number: '08203570'
+    email: 'wsaciom@gmail.com'
+    address: 'Jirón Jose Antonio 164 Departamento 101 LA MOLINA '
+    phone_number: 945050863
+
+- model: rrgg.customermembership
+  pk: 283
+  fields:
+    natural_person: 283
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 284
+  fields:
+    given_name: 'KATHIA '
+    first_surname: 'SALAZAR'
+    second_surname: 'CORRALES'
+    birthdate: '1990-09-29'
+    document_type: 1
+    document_number: '46556673'
+    email: 'KATHIASALAZARC@HOT MAIL.COM'
+    address: 'AV. ASOC PROVIVIENDA FAP JORGE CHAVEZ SURCO '
+    phone_number: 904297577
+
+- model: rrgg.customermembership
+  pk: 284
+  fields:
+    natural_person: 284
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 285
+  fields:
+    given_name: 'MARIA DEL PILAR'
+    first_surname: 'SALVADOR'
+    second_surname: 'RIOS'
+    birthdate: '2001-05-19'
+    document_type: 1
+    document_number: '73113268'
+    email: 'MARIADELPILARSALVADORIOS@GMAIL.COM'
+    address: 'JR. JEAN FRANCOIS MILLET MZ. D-7 LT. 2 URB STA MARIA'
+    phone_number: 981518398
+
+- model: rrgg.customermembership
+  pk: 285
+  fields:
+    natural_person: 285
+    seller: 6
+
+- model: rrgg.naturalperson
+  pk: 286
+  fields:
+    given_name: 'RUIZ LUIS ENRIQUE'
+    first_surname: 'SAN ROMAN'
+    second_surname: 'RUIZ'
+    birthdate: '1938-11-28'
+    document_type: 1
+    document_number: '10318416'
+    email: 'MILISANROMAN@HOTMAIL.COM'
+    address: 'AVENIDA ALAMEDA DEL CORREGIDOR 1818 URBANIZACIÓN LAS VIÑAS DE LA MOLINA'
+    phone_number: 944202478
+
+- model: rrgg.customermembership
+  pk: 286
+  fields:
+    natural_person: 286
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 287
+  fields:
+    given_name: 'DE GENTILLE DORIS'
+    first_surname: 'SANCHEZ'
+    second_surname: 'BERMUDEZ'
+    birthdate: '1964-12-12'
+    document_type: 1
+    document_number: '06598300'
+    email: 'PATDEGENT@HOTMAIL.COM'
+    address: 'JR. JR CURAZAO 587 URB SANTA PATRICIA LA MOLINA'
+    phone_number: 963751534
+
+- model: rrgg.customermembership
+  pk: 287
+  fields:
+    natural_person: 287
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 288
+  fields:
+    given_name: 'FRIDA'
+    first_surname: 'SANCHEZ'
+    second_surname: 'CALCURIAN'
+    birthdate: '2020-01-06'
+    document_type: 1
+    document_number: '91668520'
+    email: 'JOHANATM26@HOTMAIL.COM '
+    address: 'JR TENIENTE DIEGO FERRE RMZ LT COCVIECMA'
+    phone_number: 932239676
+
+- model: rrgg.customermembership
+  pk: 288
+  fields:
+    natural_person: 288
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 289
+  fields:
+    given_name: 'VICENTE'
+    first_surname: 'SANCHEZ'
+    second_surname: 'GARAY'
+    birthdate: '1961-09-27'
+    document_type: 1
+    document_number: '43431644'
+    email: 'B_SAGAVIC@YAHOO.ES'
+    address: 'DANIEL ALIAGA 109 111 MZ.E2 LT.29 COMAS'
+    phone_number: 991033902
+
+- model: rrgg.customermembership
+  pk: 289
+  fields:
+    natural_person: 289
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 290
+  fields:
+    given_name: 'JUAN ARQUIMIDES'
+    first_surname: 'SANCHEZ'
+    second_surname: 'MOYANO'
+    birthdate: '1977-07-14'
+    document_type: 1
+    document_number: '25839547'
+    email: 'JSANCHEZ@GALENA.COM.PE'
+    address: 'AVENIDA CALLE ELIAS AGUIRRE 155, DISTRITO DE LA PUNTA'
+    phone_number: 986601350
+
+- model: rrgg.customermembership
+  pk: 290
+  fields:
+    natural_person: 290
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 291
+  fields:
+    given_name: 'MEYER MARCELO ELOY'
+    first_surname: 'SANTOLALLA'
+    second_surname: 'VILANUEVA'
+    birthdate: '1950-06-29'
+    document_type: 1
+    document_number: '10225134'
+    email: 'MARSANT17@GMAIL.COM'
+    address: 'CALLE AV ARAMBURU 987 DPTO 302 INDEPENDENCIA '
+    phone_number: 980022478
+
+- model: rrgg.customermembership
+  pk: 291
+  fields:
+    natural_person: 291
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 292
+  fields:
+    given_name: 'JOSE CARLOS'
+    first_surname: 'SCHROTH'
+    second_surname: 'CAFFERATA'
+    birthdate: '1983-03-21'
+    document_type: 1
+    document_number: '41839868'
+    email: 'JOSECARLOSSCHROTH@YAHOO.COM'
+    address: '15 DE ENERO NRO 536 MIRAFLORES'
+    phone_number: 994826647
+
+- model: rrgg.customermembership
+  pk: 292
+  fields:
+    natural_person: 292
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 293
+  fields:
+    given_name: 'LOURDES MARIA'
+    first_surname: 'SEBASTIAN'
+    second_surname: 'PRADO'
+    birthdate: '1970-02-15'
+    document_type: 1
+    document_number: '08135438'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'AV. CIRCUNVALACION CLUB GOLF LOS INCAS NO.292 – BLOCK “E” DPTO.'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 293
+  fields:
+    natural_person: 293
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 294
+  fields:
+    given_name: 'ROMAN CARMEN DELIA'
+    first_surname: 'SERKOVIC'
+    second_surname: 'SAN ROMAN'
+    birthdate: '1945-07-15'
+    document_type: 1
+    document_number: '08748134'
+    email: 'FMECKLENBURG@ME.COM'
+    address: '103 – CONDOMINIO LOS INCAS – SANTIAGO DE SURCO'
+    phone_number: 991884494
+
+- model: rrgg.customermembership
+  pk: 294
+  fields:
+    natural_person: 294
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 295
+  fields:
+    given_name: 'SANCHEZ CALCURIAN'
+    first_surname: 'SILVIA'
+    second_surname: 'CAROLINA'
+    birthdate: '1983-12-13'
+    document_type: 1
+    document_number: '03707044'
+    email: 'SILVIACALCURIAN@GMAIL.COM'
+    address: 'JR TENIENTE DIEGO FERRE RMZ LT COCVIECMA'
+    phone_number: 993636810
+
+- model: rrgg.customermembership
+  pk: 295
+  fields:
+    natural_person: 295
+    seller: 26
+
+- model: rrgg.naturalperson
+  pk: 296
+  fields:
+    given_name: 'RICHARD'
+    first_surname: 'SMITH'
+    second_surname: 'ROCCA'
+    birthdate: '1964-02-21'
+    document_type: 1
+    document_number: '07661227'
+    email: 'YSABEL.08.01@HOTMAIL.COM'
+    address: 'UNION CHALACA NRO 150 LURIGANCHO'
+    phone_number: 952639822
+
+- model: rrgg.customermembership
+  pk: 296
+  fields:
+    natural_person: 296
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 297
+  fields:
+    given_name: 'FERNANDO JEAN PIERRE'
+    first_surname: 'SOLIS'
+    second_surname: 'CARVAJAL'
+    birthdate: '1993-10-16'
+    document_type: 1
+    document_number: '48355183'
+    email: 'FSOLIS@KCS.PE '
+    address: 'MARIATEGUI NÚMERO: 865 INTERIOR: 25 JESUS MARIA'
+    phone_number: 994330174
+
+- model: rrgg.customermembership
+  pk: 297
+  fields:
+    natural_person: 297
+    seller: 12
+
+- model: rrgg.naturalperson
+  pk: 298
+  fields:
+    given_name: 'JULIO CESAR'
+    first_surname: 'SOTOMAYOR'
+    second_surname: 'RIOS'
+    birthdate: '1967-02-17'
+    document_type: 1
+    document_number: '43596944'
+    email: 'JCSOTOMAYORR@HOTMAIL.COM'
+    address: 'CALLE ESPARCETA 115 SANTIAGO DE SURCO '
+    phone_number: 999916851
+
+- model: rrgg.customermembership
+  pk: 298
+  fields:
+    natural_person: 298
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 299
+  fields:
+    given_name: 'LUIS EDUARDO'
+    first_surname: 'SOTOMAYOR'
+    second_surname: 'RIOS'
+    birthdate: '1964-01-23'
+    document_type: 1
+    document_number: '43457941'
+    email: 'LUISESOTOMAYOR@OUTLOOK.COM'
+    phone_number: 966193601
+
+- model: rrgg.customermembership
+  pk: 299
+  fields:
+    natural_person: 299
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 300
+  fields:
+    given_name: 'JORGE GREGORIO'
+    first_surname: 'SUCNO'
+    second_surname: 'TOVAR'
+    birthdate: '1968-05-09'
+    document_type: 1
+    document_number: '09334542'
+    email: 'JORSUCTOV@YAHOO.ES'
+    address: 'GRAN CHIMU NRO 337 SAN JUAN DE LURIGANCHO'
+    phone_number: 987712439
+
+- model: rrgg.customermembership
+  pk: 300
+  fields:
+    natural_person: 300
+    seller: 28
+
+- model: rrgg.naturalperson
+  pk: 301
+  fields:
+    given_name: 'SERGIO'
+    first_surname: 'TAPIA'
+    second_surname: 'OVIEDO'
+    birthdate: '1967-10-08'
+    document_type: 1
+    document_number: '09890639'
+    email: 'D_TAOVSE@YAHOO.ES'
+    address: 'AV BRASIL 1392 LIMA'
+    phone_number: 974781275
+
+- model: rrgg.customermembership
+  pk: 301
+  fields:
+    natural_person: 301
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 302
+  fields:
+    given_name: 'CARLOS RAFAEL'
+    first_surname: 'TAPIA'
+    second_surname: 'RIVERA'
+    birthdate: '1969-05-21'
+    document_type: 1
+    document_number: '07972657'
+    email: 'CARLOS.TAPIAR@GMAIL.COM'
+    address: 'VALLE RIESTRA NRO 629 PUEBLO LIBRE'
+    phone_number: 956739939
+
+- model: rrgg.customermembership
+  pk: 302
+  fields:
+    natural_person: 302
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 303
+  fields:
+    given_name: 'OCTAVIO ROLANDO'
+    first_surname: 'TAPIA'
+    second_surname: 'RIVERA'
+    birthdate: '1968-05-15'
+    document_type: 1
+    document_number: '07967663'
+    email: 'ROLANDOTAPIARIVERA@GMAIL.COM'
+    address: 'ORRANTIA NRO 1435 DPTO 201 SAN ISIDRO'
+    phone_number: 985019363
+
+- model: rrgg.customermembership
+  pk: 303
+  fields:
+    natural_person: 303
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 304
+  fields:
+    given_name: 'FREDY TULIO'
+    first_surname: 'TARA'
+    second_surname: 'ARMAS'
+    birthdate: '1961-09-26'
+    document_type: 1
+    document_number: '43572563'
+    email: 'FRED_TARA@HOTMAIL.COM'
+    address: 'FRED_TARA@HOTMAIL.COM'
+    phone_number: 997906024
+
+- model: rrgg.customermembership
+  pk: 304
+  fields:
+    natural_person: 304
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 305
+  fields:
+    given_name: 'ABEL JOSE'
+    first_surname: 'TARAZONA'
+    second_surname: 'MELITON'
+    birthdate: '1996-10-13'
+    document_type: 1
+    document_number: '74840159'
+    email: 'ABELJOSETR@GMAIL.COM'
+    address: 'JR. SUCRE 580 BLOCK 5 DPTO. C URB SAN MIGUEL'
+    phone_number: 999449568
+
+- model: rrgg.customermembership
+  pk: 305
+  fields:
+    natural_person: 305
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 306
+  fields:
+    given_name: 'CLAUDIO VICTOR'
+    first_surname: 'TELLO'
+    second_surname: 'BENITES'
+    birthdate: '1958-10-30'
+    document_type: 1
+    document_number: '09594431'
+    email: 'CVTELLOB@HOTMAIL.COM'
+    address: 'JR. LUIS DEXTRE MZ X LOTE 1 URB. HONOR SURCO '
+    phone_number: 997358660
+
+- model: rrgg.customermembership
+  pk: 306
+  fields:
+    natural_person: 306
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 307
+  fields:
+    given_name: 'DE CRUZADO ROXANA'
+    first_surname: 'TORRES'
+    second_surname: 'BENAVIDES'
+    birthdate: '1959-03-21'
+    document_type: 1
+    document_number: '43605148'
+    email: 'ROXANATORRES.AJ@GMAIL.COM'
+    address: 'AV OLAVEGOYA NÚMERO: 1955 INTERIOR: DPTO 702'
+    phone_number: 993013582
+
+- model: rrgg.customermembership
+  pk: 307
+  fields:
+    natural_person: 307
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 308
+  fields:
+    given_name: 'SUSAHNE CELESTE'
+    first_surname: 'TORRES'
+    second_surname: 'CARRASCO'
+    birthdate: '1976-10-19'
+    document_type: 1
+    document_number: '07640161'
+    email: 'M.HUAMAN.P99@GMAIL.COM'
+    address: 'MONACO 180 - LA MOLINA'
+    phone_number: 995060653
+
+- model: rrgg.customermembership
+  pk: 308
+  fields:
+    natural_person: 308
+    seller: 24
+
+- model: rrgg.naturalperson
+  pk: 309
+  fields:
+    given_name: 'ROSA MARIA VITA'
+    first_surname: 'UGAZ'
+    second_surname: 'LA ROSA'
+    birthdate: '1964-05-19'
+    document_type: 1
+    document_number: '08785762'
+    email: 'MARIELLA_UGAZLAROSA@HOTMAIL.COM'
+    address: 'JR EL INCARIO NRO 350 URB EL DERBY MONTERRICO SURCO '
+    phone_number: 997584090
+
+- model: rrgg.customermembership
+  pk: 309
+  fields:
+    natural_person: 309
+    seller: 27
+
+- model: rrgg.naturalperson
+  pk: 310
+  fields:
+    given_name: 'CARLOS MAX'
+    first_surname: 'URIBE'
+    second_surname: 'RIOS'
+    birthdate: '1982-04-08'
+    document_type: 1
+    document_number: '41581751'
+    email: 'CARLOS.URIBE@CRC-ASOCIADOS.COM'
+    address: 'JR BERNINI 440   SAN BORJA'
+    phone_number: 975114460
+
+- model: rrgg.customermembership
+  pk: 310
+  fields:
+    natural_person: 310
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 311
+  fields:
+    given_name: 'SONIA GRACIELA'
+    first_surname: 'URQUIZO'
+    second_surname: 'JARA'
+    birthdate: '1964-06-05'
+    document_type: 1
+    document_number: '09110992'
+    email: 'SONIA_05_10@HOTMAIL.ES'
+    address: 'AVENIDA SAN JOSE 1091 VILLA MARIA DEL TRIUNFO '
+    phone_number: 936112123
+
+- model: rrgg.customermembership
+  pk: 311
+  fields:
+    natural_person: 311
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 312
+  fields:
+    given_name: 'OSWALDO MIGUEL'
+    first_surname: 'URTECHO'
+    second_surname: 'ENRIQUEZ'
+    birthdate: '1958-02-20'
+    document_type: 1
+    document_number: '08464463'
+    email: 'OURTECHO@GMAIL.COM'
+    address: 'CALLE JORGE CANTUARIAS 469, URBANIZACIÓN SAN MARTIN'
+    phone_number: 997444036
+
+- model: rrgg.customermembership
+  pk: 312
+  fields:
+    natural_person: 312
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 313
+  fields:
+    given_name: 'JORGE MIGUEL'
+    first_surname: 'VALDERRAMA'
+    second_surname: 'ANCHANTE'
+    birthdate: '1959-09-29'
+    document_type: 1
+    document_number: '25531090'
+    email: 'JVALDERRAMA13@HOTMAIL.COM'
+    address: 'CA 29 MZ. A3 LT. 16 PISO 2 - BELLAVISTA '
+    phone_number: 994124382
+
+- model: rrgg.customermembership
+  pk: 313
+  fields:
+    natural_person: 313
+    seller: 5
+
+- model: rrgg.naturalperson
+  pk: 314
+  fields:
+    given_name: 'WILDER'
+    first_surname: 'VALDIVIA'
+    second_surname: 'ROJAS'
+    birthdate: '1975-05-17'
+    document_type: 1
+    document_number: '10126927'
+    email: 'CORP.NETCOMSAC@GMAIL.COM'
+    address: 'AV. NICANOR ARTEAGA 463 - SAN BORJA'
+    phone_number: 3567429
+
+- model: rrgg.customermembership
+  pk: 314
+  fields:
+    natural_person: 314
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 315
+  fields:
+    given_name: 'CATHERINE'
+    first_surname: 'VALENTE'
+    second_surname: 'AZURZA'
+    birthdate: '1973-08-12'
+    document_type: 1
+    document_number: '09931933'
+    email: ' CVALENTE85@HOTMAIL.COM'
+    address: 'CL TOMASAL 830 SURCO'
+    phone_number: 968355350
+
+- model: rrgg.customermembership
+  pk: 315
+  fields:
+    natural_person: 315
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 316
+  fields:
+    given_name: 'OSCAR JAVIER'
+    first_surname: 'VALENZUELA'
+    second_surname: 'DOMINGUEZ'
+    birthdate: '1967-04-14'
+    document_type: 1
+    document_number: '32905242'
+    email: 'OJVALENZUELAD@GMAIL.COM'
+    address: 'CA. LAS MARGARITAS 127 - LINCE'
+    phone_number: 993083786
+
+- model: rrgg.customermembership
+  pk: 316
+  fields:
+    natural_person: 316
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 317
+  fields:
+    given_name: 'PHIL'
+    first_surname: 'VALVERDE'
+    second_surname: 'WOOLCOTT'
+    birthdate: '1967-05-07'
+    document_type: 1
+    document_number: '09438435'
+    email: 'PHIL_VALVERDE@HOTMAIL.COM '
+    address: 'PHIL_VALVERDE@HOTMAIL.COM'
+    phone_number: 970651788
+
+- model: rrgg.customermembership
+  pk: 317
+  fields:
+    natural_person: 317
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 318
+  fields:
+    given_name: 'MARIELA CRISTINA'
+    first_surname: 'VARGAS'
+    second_surname: 'CAPA'
+    birthdate: '1991-08-14'
+    document_type: 1
+    document_number: '47188272'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'MANUEL AMAT Y JUNIET 236-238 URB LA VIRREYNA '
+    phone_number: 940402537
+
+- model: rrgg.customermembership
+  pk: 318
+  fields:
+    natural_person: 318
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 319
+  fields:
+    given_name: 'ARRESE CARLOS MARTIN'
+    first_surname: 'VARGAS'
+    second_surname: 'MACHUCA'
+    birthdate: '1966-05-06'
+    document_type: 1
+    document_number: '07703437'
+    email: 'CVARGASM@LANEY.COM.PE'
+    address: 'CALLE SINCHI ROCA 2532 1401 LINCE, LINCE'
+    phone_number: 992060985
+
+- model: rrgg.customermembership
+  pk: 319
+  fields:
+    natural_person: 319
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 320
+  fields:
+    given_name: 'FELIX AUGUSTO'
+    first_surname: 'VASQUEZ'
+    second_surname: 'LAPEL'
+    birthdate: '1986-05-12'
+    document_type: 1
+    document_number: '43633018'
+    email: 'LAPELMED@GMAIL.COM'
+    address: 'AV LA MERCED 183 MIRAFLORES'
+    phone_number: 979780527
+
+- model: rrgg.customermembership
+  pk: 320
+  fields:
+    natural_person: 320
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 321
+  fields:
+    given_name: 'MARICARMEN'
+    first_surname: 'VASQUEZ'
+    second_surname: 'RODRIGUEZ'
+    birthdate: '1991-04-06'
+    document_type: 1
+    document_number: '47497262'
+    email: 'VASRODRIMARICARMEN91@GMAIL.COM'
+    address: 'ERNESTO MONTAGNE 241 203 MIRAFLORES'
+    phone_number: 965346535
+
+- model: rrgg.customermembership
+  pk: 321
+  fields:
+    natural_person: 321
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 322
+  fields:
+    given_name: 'ELISA GUADALUPE'
+    first_surname: 'VELARDE'
+    second_surname: 'LEAL'
+    birthdate: '1969-04-27'
+    document_type: 1
+    document_number: '09398774'
+    email: 'ELISA.VELARDE@ASTRAZENECA.COM'
+    address: 'AVENIDA ALAMEDA DE LA PAZ 110 DEPARTAMENTO 104 URBANIZACIÓN EL REMANSO LA MOLINA'
+    phone_number: 989143580
+
+- model: rrgg.customermembership
+  pk: 322
+  fields:
+    natural_person: 322
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 323
+  fields:
+    given_name: 'KAREN'
+    first_surname: 'VELASQUEZ'
+    second_surname: 'ALMEIDA'
+    birthdate: '2020-08-01'
+    document_type: 1
+    document_number: '40381989'
+    email: 'VK404@HOTMAIL.COM'
+    address: 'AV MALECON CHECA 1709 LIMA ZARATE '
+    phone_number: 969968406
+
+- model: rrgg.customermembership
+  pk: 323
+  fields:
+    natural_person: 323
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 324
+  fields:
+    given_name: 'NILDA CORINA'
+    first_surname: 'VELASQUEZ'
+    second_surname: 'ZAVALA'
+    birthdate: '1980-09-24'
+    document_type: 1
+    document_number: '40720989'
+    email: 'NICOZ_2@HOTMAIL.COM'
+    address: 'CALLE LA SILICA CIUDAD NUEVA 0 DEPARTAMENTO 5 MZ F7 LTE 2 URBANIZACIÓN MAGISTERIAL ILO '
+    phone_number: 941039156
+
+- model: rrgg.customermembership
+  pk: 324
+  fields:
+    natural_person: 324
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 325
+  fields:
+    given_name: 'ALISSON'
+    first_surname: 'VERGARAY'
+    second_surname: 'HUERTA'
+    birthdate: '1991-02-12'
+    document_type: 1
+    document_number: '47052628'
+    email: 'JOSECASAS1981@GMAIL.COM'
+    address: 'CIRO ALEGRIA NRO 248 PUEBLO LIBRE'
+    phone_number: 975109523
+
+- model: rrgg.customermembership
+  pk: 325
+  fields:
+    natural_person: 325
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 326
+  fields:
+    given_name: 'SERGIO'
+    first_surname: 'VERNAL'
+    second_surname: 'BUTRON'
+    birthdate: '1965-02-01'
+    document_type: 1
+    document_number: '43310610'
+    email: 'SERGIOVERNAL1265@HOTMAIL.COM'
+    address: 'CA. ROBERTO CARPIO 194 URB. LOS - SANTIAGO DE SURCO'
+    phone_number: 999965294
+
+- model: rrgg.customermembership
+  pk: 326
+  fields:
+    natural_person: 326
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 327
+  fields:
+    given_name: 'JEFFERSON ALBERTO'
+    first_surname: 'VICHARRA'
+    second_surname: 'FIGUEROA'
+    birthdate: '1984-11-21'
+    document_type: 1
+    document_number: '43792570'
+    email: 'JEFFER2111@GMAIL.COM'
+    address: 'MZ UCV 101 LT15 ZONA F HUAYCAN ATE'
+    phone_number: 949870105
+
+- model: rrgg.customermembership
+  pk: 327
+  fields:
+    natural_person: 327
+    seller: 3
+
+- model: rrgg.naturalperson
+  pk: 328
+  fields:
+    given_name: 'GISELA TATIANA'
+    first_surname: 'VICTOR'
+    second_surname: 'MENDOZA'
+    birthdate: '1977-12-15'
+    document_type: 1
+    document_number: '20112050'
+    email: 'GTVM@HOTMAIL.COM'
+    address: 'CALLE LOMA AIROSA 175 SURCO '
+    phone_number: 949500991
+
+- model: rrgg.customermembership
+  pk: 328
+  fields:
+    natural_person: 328
+    seller: 5
+
+- model: rrgg.naturalperson
+  pk: 329
+  fields:
+    given_name: 'CLAUDIA PATRICIA'
+    first_surname: 'VIDANGOS'
+    second_surname: 'GOMEZ'
+    birthdate: '1995-04-18'
+    document_type: 1
+    document_number: '73263730'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'JR. LA MADRILEÑA 234 DPTO. 502 – URB. VILLA JARDIN – SAN LUIS'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 329
+  fields:
+    natural_person: 329
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 330
+  fields:
+    given_name: 'BENITO'
+    first_surname: 'VILLANUEVA'
+    second_surname: 'GUTIERREZ'
+    birthdate: '1968-02-15'
+    document_type: 1
+    document_number: '07536051'
+    email: 'TAMAKUN1@GMAIL.COM'
+    address: 'LA MAR 2252 SAN MIGUEL - SAN MIGUEL (LIMA 32) - LIMA'
+    phone_number: 993549880
+
+- model: rrgg.customermembership
+  pk: 330
+  fields:
+    natural_person: 330
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 331
+  fields:
+    given_name: 'MARIA MONICA DEL CARMEN'
+    first_surname: 'VILLANUEVA'
+    second_surname: 'PATRON'
+    birthdate: '1966-09-28'
+    document_type: 1
+    document_number: '07830089'
+    email: 'MMCVILLANUEVA@GMAIL.COM'
+    address: 'AVENIDA PEDRO VENTURO 679 DEPARTAMENTO 201 REFERENCIA'
+    phone_number: 945069607
+
+- model: rrgg.customermembership
+  pk: 331
+  fields:
+    natural_person: 331
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 332
+  fields:
+    given_name: 'ANDREE HAJIME '
+    first_surname: 'YTOMURA'
+    second_surname: 'ESPINAR'
+    birthdate: '1996-02-11'
+    document_type: 1
+    document_number: '48808265'
+    email: 'KATHYESPINAR30@HOTMAIL.COM'
+    address: 'AV VALLES DEL SUR 170 DPTO 101 - SURCO'
+    phone_number: 968257667
+
+- model: rrgg.customermembership
+  pk: 332
+  fields:
+    natural_person: 332
+    seller: 15
+
+- model: rrgg.naturalperson
+  pk: 333
+  fields:
+    given_name: 'ISMAEL'
+    first_surname: 'ZAMORA'
+    second_surname: 'PICHILING'
+    birthdate: '1975-02-19'
+    document_type: 1
+    document_number: '08162746'
+    email: 'ISMAELZAMORA501@GMAIL.COM'
+    address: 'AV AVIACION 2340 DPTO 501 SAN BORJA '
+    phone_number: 932863252
+
+- model: rrgg.customermembership
+  pk: 333
+  fields:
+    natural_person: 333
+    seller: 8
+
+- model: rrgg.naturalperson
+  pk: 334
+  fields:
+    given_name: 'EDWAR JORGE'
+    first_surname: 'ZAVALETA'
+    second_surname: 'LOPEZ'
+    birthdate: '1974-06-03'
+    document_type: 1
+    document_number: '43559283'
+    email: 'JORGITO367@HOTMAIL.COM'
+    address: 'JIRÓN AMAZONAS 543 SANTA ANCASH'
+    phone_number: 953259788
+
+- model: rrgg.customermembership
+  pk: 334
+  fields:
+    natural_person: 334
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 335
+  fields:
+    given_name: 'CARMEN MARIA'
+    first_surname: 'ZEGARRA'
+    second_surname: 'NOBLECILLA'
+    birthdate: '1959-05-18'
+    document_type: 1
+    document_number: '06605159'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'NICOLÀS DE RIVERA 105 SALAMANCA, ATE'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 335
+  fields:
+    natural_person: 335
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 336
+  fields:
+    given_name: 'DORA ANGELICA'
+    first_surname: 'ZEGARRA'
+    second_surname: 'NOBLECILLA'
+    birthdate: '1951-11-13'
+    document_type: 1
+    document_number: '10491344'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'CA. MARIA PARADO DE BELLIDO 315 - LA MOLINA'
+    phone_number: 13489208
+
+- model: rrgg.customermembership
+  pk: 336
+  fields:
+    natural_person: 336
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 337
+  fields:
+    given_name: 'MANUEL'
+    first_surname: 'ZEGARRA'
+    second_surname: 'NOBLECILLA'
+    birthdate: '1964-12-21'
+    document_type: 1
+    document_number: '18217564'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'CARZON 163 SAN BORJA'
+    phone_number: 997502786
+
+- model: rrgg.customermembership
+  pk: 337
+  fields:
+    natural_person: 337
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 338
+  fields:
+    given_name: 'PATRICIA MARIA TERESA'
+    first_surname: 'ZEGARRA'
+    second_surname: 'NOBLECILLA'
+    birthdate: '1966-07-19'
+    document_type: 1
+    document_number: '06599574'
+    email: 'PATTYZN9699@YAHOO.ES'
+    address: 'JOSE GRANDA NRO 590 INTERIOR 2A SAN ISIDRO'
+    phone_number: 999634819
+
+- model: rrgg.customermembership
+  pk: 338
+  fields:
+    natural_person: 338
+    seller: 20
+
+- model: rrgg.naturalperson
+  pk: 339
+  fields:
+    given_name: 'ALICIA'
+    first_surname: 'ZUBIATE'
+    second_surname: 'LOPEZ'
+    birthdate: '1958-03-03'
+    document_type: 1
+    document_number: '08245911'
+    email: 'URZULO@HOTMAIL.COM'
+    address: 'AV. AV GUARDIA CIVIL 1220 CORPAC. SAN ISIDRO '
+    phone_number: 962357404
+
+- model: rrgg.customermembership
+  pk: 339
+  fields:
+    natural_person: 339
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 340
+  fields:
+    given_name: 'JORGE LUIS'
+    first_surname: 'ANGULO'
+    second_surname: 'TEJADA'
+    birthdate: '1962-04-29'
+    document_type: 1
+    document_number: '19238510'
+    email: 'JORANTE2001@HOTMAIL.COM'
+    address: 'GONZALES PRADA DPTOB- SURQUILLO'
+    phone_number: 997358670
+
+- model: rrgg.customermembership
+  pk: 340
+  fields:
+    natural_person: 340
+    seller: 9
+
+- model: rrgg.naturalperson
+  pk: 341
+  fields:
+    given_name: 'JOSE LUIS'
+    first_surname: 'GUTIERREZ'
+    second_surname: 'AGUILAR'
+    birthdate: '1973-02-20'
+    document_type: 1
+    document_number: '29354256'
+    email: 'JOSELUISGUTY@HOTMAIL.COM'
+    address: 'AV. LAS LOMAS 1224 C DPTO. 4 - SAN JUAN DE LURIGANCHO (L 36) - LIMA'
+    phone_number: 987486638
+
+- model: rrgg.customermembership
+  pk: 341
+  fields:
+    natural_person: 341
+    seller: 9

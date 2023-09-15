@@ -3811,6 +3811,8 @@ class CustomerMembershipListView(ListView):
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         context["search_query"] = self.request.GET.get("q", "")
+        context["num_results"] = len(context["memberships"])
+        context["num_registers"] = self.model.objects.count()
         return context
 
 
