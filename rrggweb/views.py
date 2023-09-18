@@ -3847,6 +3847,8 @@ class CustomerMembershipListView(ListView):
         context["search_query"] = self.request.GET.get("q", "")
         context["num_results"] = len(context["memberships"])
         context["num_registers"] = self.model.objects.count()
+        if self.request.GET.get("page"):
+            context["page_number"] = int(self.request.GET.get("page"))
         return context
 
 
@@ -3861,10 +3863,12 @@ class CustomerMembershipDetailView(
         context = super().get_context_data(**kwargs)
         context["title"] = "CLIENTES"
         context["subtitle"] = "Detalle de cliente"
-        context["previous_page"] = urls.reverse(
+        return_url = urls.reverse(
             "rrggweb:customer_membership:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
+        page_number = self.request.GET.get("page")
+        context["previous_page"] = f"{return_url}?page={page_number}"
         return context
 
 
