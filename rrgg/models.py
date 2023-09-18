@@ -167,6 +167,7 @@ class CustomerMembership(models.Model):
         Consultant,
         on_delete=models.PROTECT,
         related_name="customers",
+        verbose_name=_("seller"),
         default=9,
     )
 

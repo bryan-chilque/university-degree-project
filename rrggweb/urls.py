@@ -575,6 +575,11 @@ customer_membership_urlpatterns = (
             name="delete_legal_person",
         ),
         path(
+            "change_consultant/<int:customer_id>",
+            views.CMChangeConsultantView.as_view(),
+            name="change_consultant",
+        ),
+        path(
             "detail/<int:pk>/",
             views.CustomerMembershipDetailView.as_view(),
             name="detail",

@@ -1,0 +1,20 @@
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% block title_section %}
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
+{% endblock title_section %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <a class="btn btn-outline-dark btn-sm mb-3"
+        href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i>Volver
+      </a>
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary btn-block mt-3" type="submit">Editar</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

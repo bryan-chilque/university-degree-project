@@ -3867,8 +3867,11 @@ class CustomerMembershipDetailView(
             "rrggweb:customer_membership:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
-        page_number = self.request.GET.get("page")
-        context["previous_page"] = f"{return_url}?page={page_number}"
+        if self.request.GET.get("page"):
+            page_number = self.request.GET.get("page")
+            context["previous_page"] = f"{return_url}?page={page_number}"
+        else:
+            context["previous_page"] = return_url
         return context
 
 
@@ -3890,7 +3893,7 @@ class CMSelectRoleFormView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "CLIENTES"
-        context["subtitle"] = "Seleccionar ejecutivo de venta"
+        context["subtitle"] = "Seleccionar asesor"
         context["initial_step"] = 1
         context["final_step"] = 3
         context["previous_page"] = urls.reverse(
@@ -3924,7 +3927,7 @@ class CMSelectSellerFormView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "CLIENTES"
-        context["subtitle"] = "Seleccionar ejecutivo de venta"
+        context["subtitle"] = "Seleccionar asesor"
         context["initial_step"] = 1
         context["final_step"] = 3
         context["role_selector"] = forms.RoleForm(
@@ -4068,6 +4071,12 @@ class CMUpdatePersonSupportView(
     template_name = "rrggweb/quotation/insurance/vehicle/customer_form.html"
     fields = "__all__"
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["email2"].required = False
+        form.fields["address"].required = False
+        return form
+
     def get_success_url(self):
         return urls.reverse(
             "rrggweb:customer_membership:list",
@@ -4089,6 +4098,11 @@ class CMUpdateNaturalPersonView(CMUpdatePersonSupportView):
     model = rrgg.models.NaturalPerson
     pk_url_kwarg = "natural_person_id"
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["second_surname"].required = False
+        return form
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["type_customer"] = "Persona natural"
@@ -4099,9 +4113,49 @@ class CMUpdateLegalPersonView(CMUpdatePersonSupportView):
     model = rrgg.models.LegalPerson
     pk_url_kwarg = "legal_person_id"
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["general_manager"].required = False
+        return form
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["type_customer"] = "Persona jurídica"
+        return context
+
+
+class CMChangeConsultantView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
+    template_name = "rrggweb/client/form.html"
+    model = rrgg.models.CustomerMembership
+    fields = ["seller"]
+    pk_url_kwarg = "customer_id"
+
+    def get_success_url(self):
+        success_url = urls.reverse(
+            "rrggweb:customer_membership:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        if self.request.GET.get("page"):
+            page_number = self.request.GET.get("page")
+            return f"{success_url}?page={page_number}"
+        else:
+            return success_url
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "CLIENTES"
+        context["subtitle"] = "Cambiar asesor"
+        return_url = urls.reverse(
+            "rrggweb:customer_membership:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        if self.request.GET.get("page"):
+            page_number = self.request.GET.get("page")
+            context["previous_page"] = f"{return_url}?page={page_number}"
+        else:
+            context["previous_page"] = return_url
         return context
 
 

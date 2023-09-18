@@ -33,6 +33,7 @@
             <th style="width: 200px;">Nombre</th>
             <th style="width: 150px;">Documento</th>
             <th style="width: 150px;">Tipo de cliente</th>
+			<th style="width: 150px;">Asesor</th>
             <th style="width: 150px;">Acciones</th>
         </tr>
 		</thead>
@@ -44,13 +45,16 @@
 						<td>{{ customer }}</td>
 						<td>{{ customer.pick.document_type }} - {{ customer.pick.document_number }}</td>
 						<td>{{ customer.type_customer }}</td>
+						<td>{{ customer.seller }}</td>
 						<td>
 							<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-primary"><i class="fas fa-info-circle"></i> Detalle</a>
 							{% if customer.type_customer == "Persona natural" %}
 								<a href="{% url 'rrggweb:customer_membership:update_natural_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
+								<a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-success"><i class="fa fa-handshake-o"></i> Cambiar asesor</a>
 								<a href="{% url 'rrggweb:customer_membership:delete_natural_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
 							{% elif customer.type_customer == "Persona jurídica" %}
 								<a href="{% url 'rrggweb:customer_membership:update_legal_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
+								<a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-success"><i class="fa fa-handshake-o"></i> Cambiar asesor</a>
 								<a href="{% url 'rrggweb:customer_membership:delete_legal_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
 							{% endif %}
 						</td>
@@ -64,9 +68,11 @@
 							<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-primary"><i class="fas fa-info-circle"></i> Detalle</a>
 							{% if customer.membership.type_customer == "Persona natural" %}
 								<a href="{% url 'rrggweb:customer_membership:update_natural_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
+								<a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-success"><i class="fa fa-handshake-o"></i> Cambiar asesor</a>
 								<a href="{% url 'rrggweb:customer_membership:delete_natural_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
 							{% elif customer.membership.type_customer == "Persona jurídica" %}
 								<a href="{% url 'rrggweb:customer_membership:update_legal_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
+								<a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-success"><i class="fa fa-handshake-o"></i> Cambiar asesor</a>
 								<a href="{% url 'rrggweb:customer_membership:delete_legal_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
 							{% endif %}
 						</td>
