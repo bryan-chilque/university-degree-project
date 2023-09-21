@@ -1,12 +1,12 @@
 {% extends 'rrggadmin/dashboard.html' %}
 
 {% block titlebar_title %}
-{% include 'rrggadmin/navbar.html' %}
+    {% include 'rrggadmin/navbar.html' %}
 {% endblock %}
 
 {% block container %}
-<a href="{% url menu.list_name %}" class="btn btn-outline-dark btn-sm mt-3 mb-4"">
-    <i class=" fas fa-arrow-left"></i> Volver
-</a>
-{% include "rrggadmin/common/form.html" %}
-{% endblock %}
+    <a href="{% url menu.list_name %}" class="btn btn-outline-dark btn-sm mt-3 mb-4"">
+                                                                                     <i class=" fas fa-arrow-left"></i> Volver
+                                        </a>
+                                        {% include "rrggadmin/common/form.html" %}
+                                    {% endblock %}

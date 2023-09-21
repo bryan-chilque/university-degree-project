@@ -1,179 +1,175 @@
 {% extends "rrggweb/dashboard.html" %}
 {% load nomos %}
 {% block head %}
-{{ block.super }}
-<style>
-  #{% nomos_sk 'rrggweb-quotation-detail-table' %} tr td:first-child {
-    padding-right: 2em;
-  }
-</style>
+  {{ block.super }}
+  <style>
+    #{% nomos_sk 'rrggweb-quotation-detail-table' %} tr td:first-child {
+      padding-right: 2em;
+    }
+  </style>
 {% endblock head %}
 {% block title_section %}
-{{ title }}
-<h6>{{ subtitle }}</h6>
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
-<div class="container">
-  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-    <a class="btn btn-outline-dark btn-sm" href="{{ previous_page }}">
-      <i class="fas fa-long-arrow-alt-left"></i> Volver a la lista
-    </a>
-    <div class="d-flex gap-2">
-      {% if report_xlsx or report_pdf %}
-        <a href="{{ report_xlsx }}" class="btn btn-success">
-          <i class="fa fa-file-excel"></i>
-          Exportar a Excel
-        </a>
-        <a href="{{ report_pdf }}" class="btn btn-danger">
-          <i class="fa fa-file-pdf"></i>
-          Exportar a PDF
-        </a>
-      {% endif %}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="mb-4">
-        <table id="{% nomos_sk 'rrggweb-quotation-detail-table' %}" class="table table-bordered">
-          <tr>
-            <td>
-              <strong>Contratante:</strong>
-            </td>
-            <td>
-              {{ customer }} &nbsp;
-              <a href="{{ update_customer }}"><i class="fas fa-pencil-alt"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Monto Asegurado:</strong>
-            </td>
-            <td>
-              {{ object.currency.symbol }}{{ object.insured_amount }} &nbsp;
-              <a href="{{ update }}"><i class="fas fa-pencil-alt"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Vehiculo:</strong>
-            </td>
-            <td>
-              {{ vehicle }} &nbsp;
-              <a href="{{ update_vehicle }}"><i class="fas fa-pencil-alt"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Asegurado:</strong>
-            </td>
-            <td>
-              {{ owner }} &nbsp;
-              {% if update_owner %}
-              <a href="{{ update_owner }}">
-                <i class="fas fa-pencil-alt"></i>
-              </a>
-              {% endif %}
-            </td>
-          </tr>
-          {% if seller %}
-          <tr>
-            <td>
-              <strong>Asesor:</strong>
-            </td>
-            <td>
-              {{ seller }} &nbsp;
-              <a href="{{ update_seller }}"><i class="fas fa-pencil-alt"></i></a>
-            </td>
-
-          </tr>
-          {% endif %}
-          <tr>
-            <td>
-              <strong>Fecha de Registro:</strong>
-            </td>
-            <td>{{ object.created|date:'d/m/Y' }}</td>
-          </tr>
-          <tr>
-            <td>
-              <strong>¿Expiró?:</strong>
-            </td>
-            <td>
-              {% if object.expired %}
-              Sí
-              {% else %}
-              No
-              {% endif %}
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-        <strong>Lista de cotización por aseguradoras:</strong>
-        <a class="btn btn-outline-success btn-sm d-flex align-items-center justify-content-center gap-2"
-          href="{{ create_premium }}">
-          <i class="fas fa-plus"></i>
-          Agregar prima
-        </a>
-      </div>
-      <div>
-        {% if object.premiums.count == 0 %}
-        <p>No hay primas asociadas</p>
-        {% else %}
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Aseguradora</th>
-                <th>Prima Neta</th>
-                <th>% Derecho de Emisión</th>
-                <th>Derecho de Emisión</th>
-                <th>% IGV</th>
-                <th>IGV</th>
-                <th>Prima Total</th>
-                <th>Tasa</th>
-                <th colspan="3"><center>Acciones</center></th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for premium in object.premiums.all %}
-              <tr>
-                <td class="align-middle">{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</td>
-                <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.amount }}
-                </td>
-                <td class="align-middle">{% widthratio premium.insurance_vehicle_ratio.emission_right 1 100 %}%</td>
-                <td class="align-middle">
-                  {{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.emission_right }}</td>
-                <td class="align-middle">{% widthratio premium.insurance_vehicle_ratio.tax 1 100 %}%</td>
-                <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.tax }}</td>
-                <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.total }}</td>
-                <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.rate }}</td>
-                <td class="align-middle d-flex gap-2">
-                  <a class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
-                    href="{% url 'rrggweb:issuance:insurance:vehicle:select_role_q' view.kwargs.registrar_id premium.id %}">
-                    <i class="fa fa-file"></i>
-                    Generar Emisión
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
-                    <i class="fas fa-pencil-alt"></i>
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="{% url 'rrggweb:quotation:insurance:vehicle:delete_premium' view.kwargs.registrar_id premium.id %}">
-                    <i class="fas fa-trash-alt"></i>
-                  </a>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+      <a class="btn btn-outline-dark btn-sm" href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i> Volver a la lista
+      </a>
+      <div class="d-flex gap-2">
+        {% if report_xlsx or report_pdf %}
+          <a href="{{ report_xlsx }}" class="btn btn-success">
+            <i class="fa fa-file-excel"></i>
+            Exportar a Excel
+          </a>
+          <a href="{{ report_pdf }}" class="btn btn-danger">
+            <i class="fa fa-file-pdf"></i>
+            Exportar a PDF
+          </a>
         {% endif %}
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mb-4">
+          <table id="{% nomos_sk 'rrggweb-quotation-detail-table' %}" class="table table-bordered">
+            <tr>
+              <td>
+                <strong>Contratante:</strong>
+              </td>
+              <td>
+                {{ customer }} &nbsp;
+                <a href="{{ update_customer }}"><i class="fas fa-pencil-alt"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Monto Asegurado:</strong>
+              </td>
+              <td>
+                {{ object.currency.symbol }}{{ object.insured_amount }} &nbsp;
+                <a href="{{ update }}"><i class="fas fa-pencil-alt"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Vehiculo:</strong>
+              </td>
+              <td>
+                {{ vehicle }} &nbsp;
+                <a href="{{ update_vehicle }}"><i class="fas fa-pencil-alt"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Asegurado:</strong>
+              </td>
+              <td>
+                {{ owner }} &nbsp;
+                {% if update_owner %}
+                  <a href="{{ update_owner }}">
+                    <i class="fas fa-pencil-alt"></i>
+                  </a>
+                {% endif %}
+              </td>
+            </tr>
+            {% if seller %}
+              <tr>
+                <td>
+                  <strong>Asesor:</strong>
+                </td>
+                <td>
+                  {{ seller }} &nbsp;
+                  <a href="{{ update_seller }}"><i class="fas fa-pencil-alt"></i></a>
+                </td>
+
+              </tr>
+            {% endif %}
+            <tr>
+              <td>
+                <strong>Fecha de Registro:</strong>
+              </td>
+              <td>{{ object.created|date:'d/m/Y' }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>¿Expiró?:</strong>
+              </td>
+              <td>
+                {% if object.expired %}
+                  Sí
+                {% else %}
+                  No
+                {% endif %}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+          <strong>Lista de cotización por aseguradoras:</strong>
+          <a class="btn btn-outline-success btn-sm d-flex align-items-center justify-content-center gap-2"
+             href="{{ create_premium }}">
+            <i class="fas fa-plus"></i>
+            Agregar prima
+          </a>
+        </div>
+        <div>
+          {% if object.premiums.count == 0 %}
+            <p>No hay primas asociadas</p>
+          {% else %}
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Aseguradora</th>
+                    <th>Prima Neta</th>
+                    <th>% Derecho de Emisión</th>
+                    <th>Derecho de Emisión</th>
+                    <th>% IGV</th>
+                    <th>IGV</th>
+                    <th>Prima Total</th>
+                    <th>Tasa</th>
+                    <th><center>Acciones</center></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for premium in object.premiums.all %}
+                    <tr>
+                      <td class="align-middle">{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</td>
+                      <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.amount }}
+                      </td>
+                      <td class="align-middle">{% widthratio premium.insurance_vehicle_ratio.emission_right 1 100 %}%</td>
+                      <td class="align-middle">
+                        {{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.emission_right }}</td>
+                      <td class="align-middle">{% widthratio premium.insurance_vehicle_ratio.tax 1 100 %}%</td>
+                      <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.tax }}</td>
+                      <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.total }}</td>
+                      <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.rate }}</td>
+                      <td class="align-middle d-flex gap-2">
+                        <a class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
+                           href="{% url 'rrggweb:issuance:insurance:vehicle:select_role_q' view.kwargs.registrar_id premium.id %}">
+                          <i class="fa fa-file"></i>
+                          Generar Emisión
+                        </a>
+                        <a
+                          href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
+                          <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a
+                          href="{% url 'rrggweb:quotation:insurance:vehicle:delete_premium' view.kwargs.registrar_id premium.id %}">
+                          <i class="fas fa-trash-alt"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 {% endblock content %}

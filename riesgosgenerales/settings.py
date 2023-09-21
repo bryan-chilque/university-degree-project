@@ -2,6 +2,7 @@
 
 import os
 import sys
+import environ
 from pathlib import Path
 from typing import List
 
@@ -10,6 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = (
     "django-insecure-hgcdf2#o+%k*6q(+=!$@3r$rok$4p=h9%azlf=g+8jh4rx*t_w"
 )
+
+env = environ.Env()
+environ.Env.read_env()
 
 ENV_DEBUG: str = os.environ.get("RRGG_DEBUG", "on")
 ENV_DEBUG = ENV_DEBUG.lower()
@@ -77,10 +81,10 @@ DATABASES = {
     "default": (
         {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ["LOCAL_DB_NAME"],
-            "USER": os.environ["LOCAL_DB_USER"],
-            "PASSWORD": os.environ["LOCAL_DB_PASSWORD"],
-            "HOST": os.environ["LOCAL_DB_HOST"],
+            "NAME": env("DATABASE_NAME"),
+            "USER": env("DATABASE_USER"),
+            "PASSWORD": env("DATABASE_PASS"),
+            "HOST": env("DATABASE_HOST"),
             "PORT": "5432",
         }
         if DEBUG

@@ -4,21 +4,21 @@
 {% endblock title_section %}
 {% block content %}
   <div class="row">
-      {% for seguro in seguros %}
-        <div class="col-xl-3 col-md-6">
-          <div class="card mini-stat bg-primary-subtle text-white">
-            <div class="card-body">
-              <div class="mb-4">
-                <h5 class="font-size-16 text-uppercase text-black-50">{{ seguro.name }}</h5>
-              </div>
-              <div class="pt-2">
-                <div class="float-end">
-                  <a href="{{ seguro.url }}" class="text-black-50"><i class="mdi mdi-arrow-right h5 text-black-50"></i></a>
-                </div>
+    {% for seguro in seguros %}
+      <div class="col-xl-3 col-md-6">
+        <div class="card mini-stat bg-primary-subtle text-white">
+          <div class="card-body">
+            <div class="mb-4">
+              <h5 class="font-size-16 text-uppercase text-black-50">{{ seguro.name }}</h5>
+            </div>
+            <div class="pt-2">
+              <div class="float-end">
+                <a href="{{ seguro.url }}" class="text-black-50"><i class="mdi mdi-arrow-right h5 text-black-50"></i></a>
               </div>
             </div>
           </div>
         </div>
-      {% endfor %}
+      </div>
+    {% endfor %}
   </div>
 {% endblock content %}

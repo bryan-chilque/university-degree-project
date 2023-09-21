@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block container %}
-<ul>
-    {% for price in object_list %}
-    <li><a href="{% url 'rrggadmin:insurance:vehicle:price:detail' view.kwargs.insurance_vehicle_id price.id %}">{{ price }}</a></li>
-    {% endfor %}
-  </ul>
+    <ul>
+        {% for price in object_list %}
+            <li><a href="{% url 'rrggadmin:insurance:vehicle:price:detail' view.kwargs.insurance_vehicle_id price.id %}">{{ price }}</a></li>
+        {% endfor %}
+    </ul>
 
-<a class="btn btn-primary" href="{% url 'rrggadmin:insurance:vehicle:price:create' view.kwargs.insurance_vehicle_id %}">Crear nuevo</a>
+    <a class="btn btn-primary" href="{% url 'rrggadmin:insurance:vehicle:price:create' view.kwargs.insurance_vehicle_id %}">Crear nuevo</a>
 {% endblock container %}

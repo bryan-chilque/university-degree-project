@@ -1,17 +1,17 @@
 <span class="navbar-brand mb-0 h1">
     {% if 'list' in request.resolver_match.view_name  %}
-    Lista
+        Lista
     {% elif 'detail' in request.resolver_match.view_name  %}
-    Detalle
+        Detalle
     {% elif 'create' in request.resolver_match.view_name  %}
-    Crear
+        Crear
     {% elif request.resolver_match.view_name == 'rrggadmin:home' %}
-    Opciones
+        Opciones
     {% elif 'update' in request.resolver_match.view_name  %}
-    Actualizar
+        Actualizar
     {% elif 'delete' in request.resolver_match.view_name  %}
-    Eliminar
+        Eliminar
     {% else %}
-    {{ request.resolver_match.view_name }}
+        {{ request.resolver_match.view_name }}
     {% endif %}
 </span>

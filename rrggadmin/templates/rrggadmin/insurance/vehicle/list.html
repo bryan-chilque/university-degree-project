@@ -5,32 +5,32 @@
 {% endblock %}
 
 {% block container %}
-<a href="{% url 'rrggadmin:home' %}">🏠</a>
-<a href="{% url menu.create_name %}">🆕</a>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            {% for field in object_fields %}<th>{{ field }}</th>{% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for obj in object_items %}
-        <tr>
-            {% for field in obj.fields %}
-            <td>
-                <a href="{% url menu.detail_name obj.pk %}">{{ field }}</a>
-            </td>
+    <a href="{% url 'rrggadmin:home' %}">🏠</a>
+    <a href="{% url menu.create_name %}">🆕</a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                {% for field in object_fields %}<th>{{ field }}</th>{% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in object_items %}
+                <tr>
+                    {% for field in obj.fields %}
+                        <td>
+                            <a href="{% url menu.detail_name obj.pk %}">{{ field }}</a>
+                        </td>
+                    {% endfor %}
+                    <td>
+                        {% if obj.fields.2 %}
+                            <img src="{{ obj.fields.2.url }}" width="50px"/>
+                        {% endif %}
+
+                    </td>
+                </tr>
             {% endfor %}
-            <td>
-                {% if obj.fields.2 %}
-                <img src="{{ obj.fields.2.url }}" width="50px"/>
-                {% endif %}
+        </tbody>
+    </table>
 
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-{% include 'rrggadmin/pagination.html' %}
+    {% include 'rrggadmin/pagination.html' %}
 {% endblock %}

@@ -1,39 +1,39 @@
 {% extends 'rrggadmin/dashboard.html' %}
 {% load i18n %}
 {% block titlebar_title %}
-Lista
+    Lista
 {% endblock %}
 
 {% block titlebar_button %}
-<a class="btn btn-primary" href="{% url menu.create_name %}">
-    <i class="fa fa-plus"></i>
-    Crear
-</a>
+    <a class="btn btn-primary" href="{% url menu.create_name %}">
+        <i class="fa fa-plus"></i>
+        Crear
+    </a>
 {% endblock %}
 
 {% block container %}
-<table class="table table-hover">
-    <thead>
-        <tr>
-            {% for field in object_fields %}<th>{{ field }}</th>{% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for obj in object_items %}
-        <tr>
-            {% for field in obj.fields %}
-            <td>
-                <a href="{% url menu.detail_name obj.pk %}">{{ field|default:"-" }}</a>
-            </td>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                {% for field in object_fields %}<th>{{ field }}</th>{% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in object_items %}
+                <tr>
+                    {% for field in obj.fields %}
+                        <td>
+                            <a href="{% url menu.detail_name obj.pk %}">{{ field|default:"-" }}</a>
+                        </td>
+                    {% endfor %}
+                    <td>
+                        <img src="{{ object_items.5.fields.2.url }}" />
+                    </td>
+                </tr>
             {% endfor %}
-            <td>
-                <img src="{{ object_items.5.fields.2.url }}" />
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% if page_obj.has_other_pages %}
-{% include 'rrggadmin/pagination.html' %}
-{% endif %}
+        </tbody>
+    </table>
+    {% if page_obj.has_other_pages %}
+        {% include 'rrggadmin/pagination.html' %}
+    {% endif %}
 {% endblock %}

@@ -2,3 +2,5 @@ coverage==7.2.5
 Markdown==3.4.3
 pre-commit==3.2.2
 tblib==1.7.0
+djhtml==3.0.6
+django-environ==0.11.2

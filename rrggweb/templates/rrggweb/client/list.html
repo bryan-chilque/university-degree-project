@@ -1,125 +1,125 @@
 {% extends 'rrggweb/dashboard.html' %}
 {% block title_section %}
-{{ title }}
-<h6>{{ subtitle }}</h6>
+    {{ title }}
+    <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
-<div class="row mb-3">
-	<div class="col-md-3">
-		<form class="form-inline">
-			<div class="input-group">
-				<input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="q" value="{{ search_query }}">
-				<div class="input-group-append">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-					{% if search_query %}
-					<button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="window.location.href='{% url 'rrggweb:customer_membership:list' view.kwargs.registrar_id %}'"><i class="fa fa-times"></i></button>
-					{% endif %}
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="col-md-9 text-end mt-3 mt-md-0">
-		<a href="{{ register }}" class="btn btn-primary"><i class="fa fa-plus"></i> Crear Cliente</a>
-	</div>
-</div>
-<div class="col-md-6 text-start mt-3 mt-md-0">
-	<p class="text-muted">Mostrando {{ num_results }} de {{ num_registers }} clientes</p>
-</div>
-<div class="table-responsive">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th style="width: 50px;">#</th>
-            <th style="width: 200px;">Nombre</th>
-            <th style="width: 150px;">Documento</th>
-            <th style="width: 150px;">Tipo de cliente</th>
-			<th style="width: 150px;">Asesor</th>
-            <th style="width: 150px;">Acciones</th>
-        </tr>
-		</thead>
-		<tbody>
-			{% for customer in object_list %}
-				{% if customer.pick %}
-					<tr>
-						<td>{{ customer.id }}</td>
-						<td>{{ customer }}</td>
-						<td>{{ customer.pick.document_type }} - {{ customer.pick.document_number }}</td>
-						<td>{{ customer.type_customer }}</td>
-						<td>{{ customer.seller }}</td>
-						<td>
-							<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-primary"><i class="fas fa-info-circle"></i> Detalle </a>
-							{% if customer.type_customer == "Persona natural" %}
-								<a href="{% url 'rrggweb:customer_membership:update_natural_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar </a>
-								<a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-success"> Cambiar asesor </a>
-								<a href="{% url 'rrggweb:customer_membership:delete_natural_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar </a>
-							{% elif customer.type_customer == "Persona jurídica" %}
-								<a href="{% url 'rrggweb:customer_membership:update_legal_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
-								<a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-success"> Cambiar asesor </a>
-								<a href="{% url 'rrggweb:customer_membership:delete_legal_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar </a>
-							{% endif %}
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td>{{ customer }}</td>
-						<td>{{ customer.document_type }} - {{ customer.document_number }}</td>
-						<td>{{ customer.membership.type_customer }}</td>
-						<td>
-							<a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-primary"><i class="fas fa-info-circle"></i> Detalle</a>
-							{% if customer.membership.type_customer == "Persona natural" %}
-								<a href="{% url 'rrggweb:customer_membership:update_natural_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
-								<a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-success"><i class="fa fa-handshake-o"></i> Cambiar asesor</a>
-								<a href="{% url 'rrggweb:customer_membership:delete_natural_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
-							{% elif customer.membership.type_customer == "Persona jurídica" %}
-								<a href="{% url 'rrggweb:customer_membership:update_legal_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
-								<a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-success"><i class="fa fa-handshake-o"></i> Cambiar asesor</a>
-								<a href="{% url 'rrggweb:customer_membership:delete_legal_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
-							{% endif %}
-						</td>
-					</tr>
-				{% endif %}
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <form class="form-inline">
+                <div class="input-group">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="q" value="{{ search_query }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                        {% if search_query %}
+                            <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="window.location.href='{% url 'rrggweb:customer_membership:list' view.kwargs.registrar_id %}'"><i class="fa fa-times"></i></button>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-9 text-end mt-3 mt-md-0">
+            <a href="{{ register }}" class="btn btn-primary"><i class="fa fa-plus"></i> Crear Cliente</a>
+        </div>
+    </div>
+    <div class="col-md-6 text-start mt-3 mt-md-0">
+        <p class="text-muted">Mostrando {{ num_results }} de {{ num_registers }} clientes</p>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th style="width: 200px;">Nombre</th>
+                    <th style="width: 150px;">Documento</th>
+                    <th style="width: 150px;">Tipo de cliente</th>
+                    <th style="width: 150px;">Asesor</th>
+                    <th style="width: 150px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in object_list %}
+                    {% if customer.pick %}
+                        <tr>
+                            <td>{{ customer.id }}</td>
+                            <td>{{ customer }}</td>
+                            <td>{{ customer.pick.document_type }} - {{ customer.pick.document_number }}</td>
+                            <td>{{ customer.type_customer }}</td>
+                            <td>{{ customer.seller }}</td>
+                            <td>
+                                <a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-primary"><i class="fas fa-info-circle"></i> Detalle </a>
+                                {% if customer.type_customer == "Persona natural" %}
+                                    <a href="{% url 'rrggweb:customer_membership:update_natural_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar </a>
+                                    <a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-success"> Cambiar asesor </a>
+                                    <a href="{% url 'rrggweb:customer_membership:delete_natural_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar </a>
+                                {% elif customer.type_customer == "Persona jurídica" %}
+                                    <a href="{% url 'rrggweb:customer_membership:update_legal_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
+                                    <a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}?page={{ page_number }}" class="btn btn-sm btn-success"> Cambiar asesor </a>
+                                    <a href="{% url 'rrggweb:customer_membership:delete_legal_person' view.kwargs.registrar_id customer.pick.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ customer }}</td>
+                            <td>{{ customer.document_type }} - {{ customer.document_number }}</td>
+                            <td>{{ customer.membership.type_customer }}</td>
+                            <td>
+                                <a href="{% url 'rrggweb:customer_membership:detail' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-primary"><i class="fas fa-info-circle"></i> Detalle</a>
+                                {% if customer.membership.type_customer == "Persona natural" %}
+                                    <a href="{% url 'rrggweb:customer_membership:update_natural_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
+                                    <a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-success"><i class="fa fa-handshake-o"></i> Cambiar asesor</a>
+                                    <a href="{% url 'rrggweb:customer_membership:delete_natural_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                {% elif customer.membership.type_customer == "Persona jurídica" %}
+                                    <a href="{% url 'rrggweb:customer_membership:update_legal_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Actualizar</a>
+                                    <a href="{% url 'rrggweb:customer_membership:change_consultant' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-success"><i class="fa fa-handshake-o"></i> Cambiar asesor</a>
+                                    <a href="{% url 'rrggweb:customer_membership:delete_legal_person' view.kwargs.registrar_id customer.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
 
-			{% empty %}
-			<tr>
-				<td colspan="3">No customer memberships found.</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	{% if page_obj.has_other_pages %}
-	<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-					{% if page_obj.has_previous %}
-					<li class="page-item">
-							<a class="page-link" href="?page=1" aria-label="First">
-									<span aria-hidden="true">&laquo;</span>
-							</a>
-					</li>
-					<li class="page-item">
-							<a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-									<span aria-hidden="true">&lsaquo;</span>
-							</a>
-					</li>
-					{% endif %}
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No customer memberships found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if page_obj.has_other_pages %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" aria-label="First">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&lsaquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
 
-					<li class="page-item active">
-							<a class="page-link" href="#">{{ page_obj.number }}</a>
-					</li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">{{ page_obj.number }}</a>
+                    </li>
 
-					{% if page_obj.has_next %}
-					<li class="page-item">
-							<a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-									<span aria-hidden="true">&rsaquo;</span>
-							</a>
-					</li>
-					<li class="page-item">
-							<a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
-									<span aria-hidden="true">&raquo;</span>
-							</a>
-					</li>
-					{% endif %}
-			</ul>
-	</nav>
-{% endif %}
-</div>
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&rsaquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
 {% endblock content %}

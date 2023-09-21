@@ -1,214 +1,214 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% load i18n %}
 {% block title_section %}
-{{ title }}
-<h6>{{ subtitle }}</h6>
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
-<div class="row justify-content-center">
-  <div class="col-md-12 col-lg-10">
-    {% if step %}
-    {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
-    {% endif %}
-    <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
-      <i class="fas fa-long-arrow-alt-left"></i>Volver
-    </a>
-    <div class="mt-2">
-      {% if seller %}
-      <h5>
-        Asesor: <b>{{ seller }}</b>
-      </h5>
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-10">
+      {% if step %}
+        {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
       {% endif %}
-      {% if customer or vehicle or quotation %}
-      <h5>
-        Contratante: <b>{{ customer }}</b>
-      </h5>
-      <h5>
-        Vehículo: <b>{{ vehicle }}</b>
-      </h5>
-      <h5>
-        Asegurado: <b>{{ owner }}</b>
-      </h5>
-      <h5>
-        Tipo de moneda: <b>{{ quotation.currency.name }}</b>
-      </h5>
-      <h5>
-        Suma Asegurada: <b><span id="insured_amount">{{ quotation.insured_amount }}</span></b>
-      </h5>
-      <hr class="w-25" />
-      {% endif %}
-    </div>
-    <div id="insurance-selector" class="row mb-3">
-      <div class="col-8 col-lg-3">
-        <select class="form-select" id="insurance-select">
-          <option value="" hidden>Seleccione un seguro</option>
-          {% for insurance in insurances %}
-          <option value="{{ insurance.id }}">{{ insurance.name }}</option>
-          {% endfor %}
-        </select>
+      <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i>Volver
+      </a>
+      <div class="mt-2">
+        {% if seller %}
+          <h5>
+            Asesor: <b>{{ seller }}</b>
+          </h5>
+        {% endif %}
+        {% if customer or vehicle or quotation %}
+          <h5>
+            Contratante: <b>{{ customer }}</b>
+          </h5>
+          <h5>
+            Vehículo: <b>{{ vehicle }}</b>
+          </h5>
+          <h5>
+            Asegurado: <b>{{ owner }}</b>
+          </h5>
+          <h5>
+            Tipo de moneda: <b>{{ quotation.currency.name }}</b>
+          </h5>
+          <h5>
+            Suma Asegurada: <b><span id="insured_amount">{{ quotation.insured_amount }}</span></b>
+          </h5>
+          <hr class="w-25" />
+        {% endif %}
       </div>
-      <div class="col-4 col-lg-3">
-        <button class="btn btn-primary" id="show-rows-btn">Mostrar fila</button>
-      </div>
-    </div>
-    <form method="post">
-      {% csrf_token %}
-      {% translate "emission right" as emission_right_text %}
-      {% translate "tax (igv)" as tax_text %}
-      {% translate "vehicle insurance" as vehicle_insurance_text %}
-      {% translate "created at" as created_at_text %}
-      <div id="table-insurances" class="table-responsive">
-        <table class="table table-striped table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th>{{ emission_right_text|capfirst }}</th>
-              <th>{{ tax_text|capfirst }}</th>
-              <th>{{ vehicle_insurance_text|capfirst }}</th>
-              <th>Prima neta</th>
-              <th>Tasa</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for ratio, form in last_ratio_forms %}
-            <tr data-insurance="{{ ratio.insurance_vehicle.id }}">
-              <td>{% widthratio ratio.emission_right 1 100 %}%</td>
-              <td>{% widthratio ratio.tax 1 100 %}%</td>
-              <td>{{ ratio.insurance_vehicle.name }}</td>
-              <td>
-                <div class="input-group">
-                  {{ form.amount }}
-                  {% if form.errors %}
-                  <div class="alert alert-danger" role="alert">
-                    {{ form.errors }}
-                  </div>
-                  {% endif %}
-                  {{ form.insurance_vehicle_ratio }}
-                  {{ form.quotation_insurance_vehicle }}
-                  {{ form.id }}
-                </div>
-              </td>
-              <td>{{ form.rate }}</td>
-              <td>
-                <a class="btn btn-outline-danger btn-sm remove-row-btn">
-                  <i class="fas fa-trash-alt"></i>
-                </a>
-              </td>
-            </tr>
+      <div id="insurance-selector" class="row mb-3">
+        <div class="col-8 col-lg-3">
+          <select class="form-select" id="insurance-select">
+            <option value="" hidden>Seleccione un seguro</option>
+            {% for insurance in insurances %}
+              <option value="{{ insurance.id }}">{{ insurance.name }}</option>
             {% endfor %}
-          </tbody>
-          {{ form.management_form }}
-        </table>
+          </select>
+        </div>
+        <div class="col-4 col-lg-3">
+          <button class="btn btn-primary" id="show-rows-btn">Mostrar fila</button>
+        </div>
       </div>
-      <div class="alert alert-danger mt-2" role="alert" id="note" style="display: none;">
-        <i class="fas fa-exclamation-triangle"></i>
-        Por favor complete al menos un campo antes de continuar.
-      </div>
-      <button id="btn-create-premium" class="btn btn-primary btn-block mt-3" type="submit" disabled>Finalizar</button>
-    </form>
+      <form method="post">
+        {% csrf_token %}
+        {% translate "emission right" as emission_right_text %}
+        {% translate "tax (igv)" as tax_text %}
+        {% translate "vehicle insurance" as vehicle_insurance_text %}
+        {% translate "created at" as created_at_text %}
+        <div id="table-insurances" class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>{{ emission_right_text|capfirst }}</th>
+                <th>{{ tax_text|capfirst }}</th>
+                <th>{{ vehicle_insurance_text|capfirst }}</th>
+                <th>Prima neta</th>
+                <th>Tasa</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ratio, form in last_ratio_forms %}
+                <tr data-insurance="{{ ratio.insurance_vehicle.id }}">
+                  <td>{% widthratio ratio.emission_right 1 100 %}%</td>
+                  <td>{% widthratio ratio.tax 1 100 %}%</td>
+                  <td>{{ ratio.insurance_vehicle.name }}</td>
+                  <td>
+                    <div class="input-group">
+                      {{ form.amount }}
+                      {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                          {{ form.errors }}
+                        </div>
+                      {% endif %}
+                      {{ form.insurance_vehicle_ratio }}
+                      {{ form.quotation_insurance_vehicle }}
+                      {{ form.id }}
+                    </div>
+                  </td>
+                  <td>{{ form.rate }}</td>
+                  <td>
+                    <a class="btn btn-outline-danger btn-sm remove-row-btn">
+                      <i class="fas fa-trash-alt"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+            {{ form.management_form }}
+          </table>
+        </div>
+        <div class="alert alert-danger mt-2" role="alert" id="note" style="display: none;">
+          <i class="fas fa-exclamation-triangle"></i>
+          Por favor complete al menos un campo antes de continuar.
+        </div>
+        <button id="btn-create-premium" class="btn btn-primary btn-block mt-3" type="submit" disabled>Finalizar</button>
+      </form>
+    </div>
   </div>
-</div>
-<script>
-  const insuranceSelect = document.querySelector('#insurance-select');
-  const showRowsBtn = document.querySelector('#show-rows-btn');
-  const tableRows = document.querySelectorAll('table tbody tr');
+  <script>
+    const insuranceSelect = document.querySelector('#insurance-select');
+    const showRowsBtn = document.querySelector('#show-rows-btn');
+    const tableRows = document.querySelectorAll('table tbody tr');
 
-  tableRows.forEach(row => {
-    row.style.display = 'none';
-  });
-
-  showRowsBtn.addEventListener('click', () => {
-    const selectedOption = insuranceSelect.value;
-    if (selectedOption) {
-      const selectedRows = document.querySelectorAll(`table tbody tr[data-insurance="${selectedOption}"]`);
-      selectedRows.forEach(row => {
-        row.style.display = 'table-row';
-      });
-    }
-  });
-
-  const insuredAmount = Number(document.querySelector('#insured_amount').textContent);
-
-  for (let i = 0; i <= 4; i++) {
-    const amountInput = document.querySelector(`#id_form-${i}-amount`);
-    const rateInput = document.querySelector(`#id_form-${i}-rate`);
-    const removeRowBtns = document.querySelectorAll('.remove-row-btn');
-
-    amountInput.classList.add('form-control');
-    rateInput.classList.add('form-control');
-
-    amountInput.addEventListener('input', () => {
-      const amount = Number(amountInput.value);
-      const rate = insuredAmount / amount;
-      rateInput.value = rate.toFixed(2);
+    tableRows.forEach(row => {
+      row.style.display = 'none';
     });
 
-    removeRowBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const row = btn.closest('tr');
-        amountInput.value = 0;
-        rateInput.value = '';
-        row.style.display = 'none';
-      });
-    });
-  }
-
-
-  const amountInputs = document.querySelectorAll('[id^="id_form-"][id$="-amount"]');
-  const submitButton = document.querySelector('#btn-create-premium');
-  const note = document.querySelector('#note');
-
-  function checkAmountInputs() {
-    let hasValueGreaterThanOne = false;
-    amountInputs.forEach((input) => {
-      const amount = Number(input.value);
-      if (amount > 1) {
-        hasValueGreaterThanOne = true;
+    showRowsBtn.addEventListener('click', () => {
+      const selectedOption = insuranceSelect.value;
+      if (selectedOption) {
+        const selectedRows = document.querySelectorAll(`table tbody tr[data-insurance="${selectedOption}"]`);
+        selectedRows.forEach(row => {
+          row.style.display = 'table-row';
+        });
       }
     });
-    submitButton.disabled = !hasValueGreaterThanOne;
-    note.style.display = hasValueGreaterThanOne ? 'none' : 'block';
-  }
 
-  amountInputs.forEach((input) => {
-    input.addEventListener('input', () => {
-      checkAmountInputs();
+    const insuredAmount = Number(document.querySelector('#insured_amount').textContent);
+
+    for (let i = 0; i <= 4; i++) {
+      const amountInput = document.querySelector(`#id_form-${i}-amount`);
+      const rateInput = document.querySelector(`#id_form-${i}-rate`);
+      const removeRowBtns = document.querySelectorAll('.remove-row-btn');
+
+      amountInput.classList.add('form-control');
+      rateInput.classList.add('form-control');
+
+      amountInput.addEventListener('input', () => {
+        const amount = Number(amountInput.value);
+        const rate = insuredAmount / amount;
+        rateInput.value = rate.toFixed(2);
+      });
+
+      removeRowBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const row = btn.closest('tr');
+          amountInput.value = 0;
+          rateInput.value = '';
+          row.style.display = 'none';
+        });
+      });
+    }
+
+
+    const amountInputs = document.querySelectorAll('[id^="id_form-"][id$="-amount"]');
+    const submitButton = document.querySelector('#btn-create-premium');
+    const note = document.querySelector('#note');
+
+    function checkAmountInputs() {
+      let hasValueGreaterThanOne = false;
+      amountInputs.forEach((input) => {
+        const amount = Number(input.value);
+        if (amount > 1) {
+          hasValueGreaterThanOne = true;
+        }
+      });
+      submitButton.disabled = !hasValueGreaterThanOne;
+      note.style.display = hasValueGreaterThanOne ? 'none' : 'block';
+    }
+
+    amountInputs.forEach((input) => {
+      input.addEventListener('input', () => {
+        checkAmountInputs();
+      });
     });
-  });
 
-  checkAmountInputs();
+    checkAmountInputs();
 
-  var intro =
-    introJs().setOptions({
-      nextLabel: 'Siguiente',
-      prevLabel: 'Anterior',
-      doneLabel: 'Finalizar',
-      steps: [{
+    var intro =
+      introJs().setOptions({
+        nextLabel: 'Siguiente',
+        prevLabel: 'Anterior',
+        doneLabel: 'Finalizar',
+        steps: [{
           intro: "Bienvenido a la cotización de vehículos. 😊👌"
         },
-        {
-          element: document.querySelector('#table-insurances'),
-          intro: "En esta tabla se muestran los seguros que se pueden cotizar. 😊👌"
-        },
-        {
-          element: document.querySelector('#insurance-select'),
-          intro: "Selecciona la aseguradora que vas a cotizar. 😊👌"
-        },
-        {
-          element: document.querySelector('#show-rows-btn'),
-          intro: "Muestra las filas de la aseguradora seleccionada. 😊👌"
-        },
-        {
-          element: document.querySelector('#table-insurances'),
-          intro: "En esta tabla se muestran los seguros que se pueden cotizar. 😊👌"
-        },
-        {
-          element: document.querySelector('#btn-create-premium'),
-          intro: "Finaliza la cotización. 😊👌"
-        },
-      ]
-    });
+          {
+            element: document.querySelector('#table-insurances'),
+            intro: "En esta tabla se muestran los seguros que se pueden cotizar. 😊👌"
+          },
+          {
+            element: document.querySelector('#insurance-select'),
+            intro: "Selecciona la aseguradora que vas a cotizar. 😊👌"
+          },
+          {
+            element: document.querySelector('#show-rows-btn'),
+            intro: "Muestra las filas de la aseguradora seleccionada. 😊👌"
+          },
+          {
+            element: document.querySelector('#table-insurances'),
+            intro: "En esta tabla se muestran los seguros que se pueden cotizar. 😊👌"
+          },
+          {
+            element: document.querySelector('#btn-create-premium'),
+            intro: "Finaliza la cotización. 😊👌"
+          },
+        ]
+      });
 
-  intro.start();
-</script>
+    intro.start();
+  </script>
 {% endblock content %}
