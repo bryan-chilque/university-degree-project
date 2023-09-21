@@ -166,8 +166,9 @@ if not DEBUG:
 
 # Media files (user uploaded files)
 
-MEDIA_URL = "media/"
-MEDIAFILES_DIRS = [BASE_DIR / "media"]
+MEDIA_URL = "mediafiles/"
+MEDIAFILES_DIRS = [BASE_DIR / "mediafiles"]
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
 if not DEBUG:
     MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
