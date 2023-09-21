@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.contrib.staticfiles.views import serve
+from django.urls import include, path, re_path
 from django.views.generic import RedirectView
 
 urlpatterns = [
@@ -10,14 +11,11 @@ urlpatterns = [
     path("web/", include("rrggweb.urls")),
     path("admin/", include("rrggadmin.urls")),
     path("_/", admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if not settings.DEBUG:
-    from django.conf.urls import url
-    from django.views.static import serve
-
     urlpatterns += [
-        url(
+        re_path(
             r"^media/(?P<path>.*)$",
             serve,
             {
@@ -25,7 +23,3 @@ if not settings.DEBUG:
             },
         ),
     ]
-else:
-    urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-    )
