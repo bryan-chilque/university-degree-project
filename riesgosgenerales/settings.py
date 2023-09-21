@@ -166,8 +166,14 @@ if not DEBUG:
 
 # Media files (user uploaded files)
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "media/"
+MEDIAFILES_DIRS = [BASE_DIR / "media"]
+
+if not DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+    STATICFILES_STORAGE = (
+        "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    )
 
 # Default primary key field type
 
