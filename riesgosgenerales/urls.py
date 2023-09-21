@@ -10,14 +10,11 @@ urlpatterns = [
     path("web/", include("rrggweb.urls")),
     path("admin/", include("rrggadmin.urls")),
     path("_/", admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if not settings.DEBUG:
-    from django.conf.urls import url
-    from django.views.static import serve
-
     urlpatterns += [
-        url(
+        re_path(
             r"^media/(?P<path>.*)$",
             serve,
             {
@@ -25,7 +22,3 @@ if not settings.DEBUG:
             },
         ),
     ]
-else:
-    urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-    )
