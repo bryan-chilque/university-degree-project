@@ -2,9 +2,10 @@
 
 import os
 import sys
-import environ
 from pathlib import Path
 from typing import List
+
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
