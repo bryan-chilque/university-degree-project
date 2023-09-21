@@ -1,43 +1,43 @@
 {% include 'rrggadmin/base.html' %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-3">
-            {% for field in form %}
-            <div class="form-group mb-1">
-                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="col-md-3">
-            {% for field in form %}
-            <div class="form-group mb-1">
-                {{ field }}
-                {% for error in field.errors %}
-                <div class="invalid-feedback">{{ error }}</div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-3">
+                {% for field in form %}
+                    <div class="form-group mb-1">
+                        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    </div>
                 {% endfor %}
             </div>
-            {% endfor %}
+
+            <div class="col-md-3">
+                {% for field in form %}
+                    <div class="form-group mb-1">
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <button class="btn btn-primary" type="submit" class="btn btn-primary">Editar</button>
-</form>
-<script>
+        <button class="btn btn-primary" type="submit" class="btn btn-primary">Editar</button>
+    </form>
+    <script>
     // Prefix IDs of input, select, and textarea elements with "id_"
-    const fields = document.querySelectorAll('input, select, textarea');
-    fields.forEach(field => {
-        if (field.id) {
-            field.id = 'id_' + field.id;
-        }
-        if (field.tagName === 'INPUT') {
-            field.classList.add('form-control');
-        }
-        if (field.tagName === 'SELECT') {
-            field.classList.add('form-select');
-        }
-    });
-</script>
+        const fields = document.querySelectorAll('input, select, textarea');
+        fields.forEach(field => {
+            if (field.id) {
+                field.id = 'id_' + field.id;
+            }
+            if (field.tagName === 'INPUT') {
+                field.classList.add('form-control');
+            }
+            if (field.tagName === 'SELECT') {
+                field.classList.add('form-select');
+            }
+        });
+    </script>
 {% endblock %}

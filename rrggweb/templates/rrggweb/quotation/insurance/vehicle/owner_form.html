@@ -1,7 +1,7 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% block title_section %}
-    {{ title }}
-    <h6> {{ subtitle }}</h6>
+  {{ title }}
+  <h6> {{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
@@ -17,18 +17,18 @@
       </a>
       <div class="mt-2">
         {% if seller %}
-            <h5>
+          <h5>
             Asesor: <b>{{ seller }}</b>
-            </h5>
+          </h5>
         {% endif %}
         {% if customer or vehicle %}
-            <h5>
-              Contratante: <b>{{ customer }}</b>
-            </h5>
-            <h5>
-              Vehículo: <b>{{ vehicle }}</b>
-            </h5>
-            <hr class="w-25" />
+          <h5>
+            Contratante: <b>{{ customer }}</b>
+          </h5>
+          <h5>
+            Vehículo: <b>{{ vehicle }}</b>
+          </h5>
+          <hr class="w-25" />
         {% endif %}
       </div>
       {% if body %}
@@ -44,9 +44,9 @@
               <strong>Error:</strong> Por favor corrija los siguientes errores:
               <ul>
                 {% for field in form %}
-                {% for error in field.errors %}
-                <li>{{ field.label_tag }} {{ error }}</li>
-                {% endfor %}
+                  {% for error in field.errors %}
+                    <li>{{ field.label_tag }} {{ error }}</li>
+                  {% endfor %}
                 {% endfor %}
               </ul>
             </div>

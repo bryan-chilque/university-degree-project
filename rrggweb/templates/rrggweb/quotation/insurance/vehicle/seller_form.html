@@ -23,11 +23,11 @@
         <div>
           <label for="model-choice">Roles:</label>
           <select class="form-select" style="background-color: #e8e8e8;" id="model-choice" disabled>
-              {% for choice in role_selector %}
-                  <option value={{ choice }}
-              {% endfor %}
-          </select>
-        </div>
+            {% for choice in role_selector %}
+              <option value={{ choice }}
+                    {% endfor %}
+                    </select>
+            </div>
       {% endif %}
       <div>
         <form method="post">

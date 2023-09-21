@@ -1,32 +1,32 @@
 {% extends 'rrggadmin/dashboard.html' %}
 
 {% block titlebar_title %}
-Lista de membresías de consultores
+    Lista de membresías de consultores
 {% endblock %}
 
 {% block titlebar_button %}
-<a href="{% url 'rrggadmin:consultant_membership:create' %}" class="btn btn-primary">
-    <i class="fa fa-plus"></i>
-    Crear nuevo asesor
-</a>
+    <a href="{% url 'rrggadmin:consultant_membership:create' %}" class="btn btn-primary">
+        <i class="fa fa-plus"></i>
+        Crear nuevo asesor
+    </a>
 {% endblock %}
 
 {% block container %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre de Asesor</th>
-            <th>Usuario Asignado</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for membership in object_list %}
-        <tr>
-            <td>{{ membership.consultant }}</td>
-            <td>{{ membership.user }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre de Asesor</th>
+                <th>Usuario Asignado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for membership in object_list %}
+                <tr>
+                    <td>{{ membership.consultant }}</td>
+                    <td>{{ membership.user }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock container %}

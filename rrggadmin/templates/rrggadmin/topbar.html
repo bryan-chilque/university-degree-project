@@ -24,13 +24,13 @@
 
       <div class="dropdown d-inline-block">
         <button type="button" class="btn header-item waves-effect d-flex align-items-center gap-2" id="page-header-user-dropdown"
-          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="mdi mdi-account-circle font-size-24"></i>
           {{ user.username }}
         </button>
         <div class="dropdown-menu dropdown-menu-end">
           <a class="dropdown-item d-flex align-items-center" href="#"><i
-              class="mdi mdi-cog font-size-17 align-middle me-1"></i> Ajustes</a>
+            class="mdi mdi-cog font-size-17 align-middle me-1"></i> Ajustes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item text-danger" href="{% url 'rrggadmin:logout' %}">
             <i class="mdi mdi-logout font-size-17 text-danger align-middle me-1"></i>

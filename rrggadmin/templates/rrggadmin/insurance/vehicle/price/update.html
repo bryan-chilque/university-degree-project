@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block container %}
-<form method="post">{% csrf_token %}
-    <table>{{ form }}</table>
-    <input type="submit"/>
-</form>
+    <form method="post">{% csrf_token %}
+        <table>{{ form }}</table>
+        <input type="submit"/>
+    </form>
 {% endblock container %}

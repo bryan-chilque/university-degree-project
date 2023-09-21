@@ -1,62 +1,62 @@
 {% extends 'rrggadmin/dashboard.html' %}
 
 {% block titlebar_title %}
-{% include 'rrggadmin/navbar.html' %}
+  {% include 'rrggadmin/navbar.html' %}
 {% endblock %}
 
 {% block container %}
-<div class="row mt-2">
-  <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Asesores</h5>
-        <p class="card-text">Gestión de los asesores registrados en el sistema</p>
-        <a href="{% url 'rrggadmin:consultant:list' %}" class="btn btn-primary">Ver Lista</a>
-        <a href="#" class="btn btn-primary">Registrar</a>
+  <div class="row mt-2">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Asesores</h5>
+          <p class="card-text">Gestión de los asesores registrados en el sistema</p>
+          <a href="{% url 'rrggadmin:consultant:list' %}" class="btn btn-primary">Ver Lista</a>
+          <a href="#" class="btn btn-primary">Registrar</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Contratantes</h5>
+          <p class="card-text">Gestión de los contratantes registrados en el sistema</p>
+          <a href="{% url 'rrggadmin:user:list' %}" class="btn btn-primary">Ver Lista</a>
+          <a href="{% url 'rrggadmin:user:create' %}" class="btn btn-primary">Registrar</a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Contratantes</h5>
-        <p class="card-text">Gestión de los contratantes registrados en el sistema</p>
-        <a href="{% url 'rrggadmin:user:list' %}" class="btn btn-primary">Ver Lista</a>
-        <a href="{% url 'rrggadmin:user:create' %}" class="btn btn-primary">Registrar</a>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="row mt-2">
-  <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Seguros Vehiculares</h5>
-        <a href="{% url 'rrggadmin:insurance:vehicle:list' %}" class="btn btn-primary">Ver Lista</a>
-        <a href="#" class="btn btn-primary">Registrar</a>
+  <div class="row mt-2">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Seguros Vehiculares</h5>
+          <a href="{% url 'rrggadmin:insurance:vehicle:list' %}" class="btn btn-primary">Ver Lista</a>
+          <a href="#" class="btn btn-primary">Registrar</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Tipos de uso de Vehicular</h5>
+          <a href="{% url 'rrggadmin:use_type:list' %}" class="btn btn-primary">Ver Lista</a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Tipos de uso de Vehicular</h5>
-        <a href="{% url 'rrggadmin:use_type:list' %}" class="btn btn-primary">Ver Lista</a>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="row mt-2">
-  <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Registro de Asesores</h5>
-        <a href="{% url 'rrggadmin:consultant_membership:list' %}" class="btn btn-primary">Ver Lista</a>
-        <a href="#" class="btn btn-primary">Registrar</a>
+  <div class="row mt-2">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Registro de Asesores</h5>
+          <a href="{% url 'rrggadmin:consultant_membership:list' %}" class="btn btn-primary">Ver Lista</a>
+          <a href="#" class="btn btn-primary">Registrar</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock container %}

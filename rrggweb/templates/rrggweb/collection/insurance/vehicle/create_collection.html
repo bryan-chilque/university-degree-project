@@ -1,77 +1,77 @@
 {% extends 'rrggweb/dashboard.html' %} {% block title_section %}Crear Cobranza Vehicular{% endblock %}
 {% block content %}
 
-<div class="row mb-3">
-  <div class="col-6">
-    <a
-    href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.registrar_id view.kwargs.issuance_id %}"
-    class="btn btn-outline-secondary">
-      <i class="fas fa-arrow-left"></i> Volver
-    </a>
+  <div class="row mb-3">
+    <div class="col-6">
+      <a
+        href="{% url 'rrggweb:issuance:insurance:vehicle:detail' view.kwargs.registrar_id view.kwargs.issuance_id %}"
+        class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Volver
+      </a>
+    </div>
   </div>
-</div>
 
-<div class="row mb-3">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-title mb-0">Datos del contratante</h5>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Datos del contratante</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Tipo de documento: DNI</p>
+          <p class="card-text">Número de documento: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer.document_number }}</p>
+          <p class="card-text">Nombres y apellidos: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</p>
+        </div>
       </div>
-      <div class="card-body">
-        <p class="card-text">Tipo de documento: DNI</p>
-        <p class="card-text">Número de documento: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer.document_number }}</p>
-        <p class="card-text">Nombres y apellidos: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</p>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Datos del vehículo</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Placa: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.plate }}</p>
+          <p class="card-text">Marca: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.brand }}</p>
+          <p class="card-text">Uso: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.use_type }}</p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-title mb-0">Datos del vehículo</h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">Placa: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.plate }}</p>
-        <p class="card-text">Marca: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.brand }}</p>
-        <p class="card-text">Uso: {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.use_type }}</p>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="row mb-3">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-title mb-0">Datos de la cotización</h5>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Datos de la cotización</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Aseguradora: {{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</p>
+          <p class="card-text">Prima total: ${{ issuance.quotation_vehicle_premium.total }}</p>
+          <p class="card-text">Cuotas: {{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.fee }} meses</p>
+          <p class="card-text">Monto por cuota: ${{ issuance.quotation_vehicle_premium.fee }}</p>
+        </div>
       </div>
-      <div class="card-body">
-        <p class="card-text">Aseguradora: {{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</p>
-        <p class="card-text">Prima total: ${{ issuance.quotation_vehicle_premium.total }}</p>
-        <p class="card-text">Cuotas: {{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.fee }} meses</p>
-        <p class="card-text">Monto por cuota: ${{ issuance.quotation_vehicle_premium.fee }}</p>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Datos de la emisión</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Poliza: {{ issuance.policy }}</p>
+          <p class="card-text">Documento de cobranza: {{ issuance.collection_document }}</p>
+          <p class="card-text">Fecha de vigencia inicial: {{ issuance.initial_validity|date:'d/m/Y' }}</p>
+          <p class="card-text">Fecha de vigencia final: {{ issuance.final_validity|date:'d/m/Y' }}</p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-title mb-0">Datos de la emisión</h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">Poliza: {{ issuance.policy }}</p>
-        <p class="card-text">Documento de cobranza: {{ issuance.collection_document }}</p>
-        <p class="card-text">Fecha de vigencia inicial: {{ issuance.initial_validity|date:'d/m/Y' }}</p>
-        <p class="card-text">Fecha de vigencia final: {{ issuance.final_validity|date:'d/m/Y' }}</p>
-      </div>
-    </div>
-  </div>
-</div>
 
-<form method="post">
-  {% csrf_token %}
-  <table>
-    {{ form }}
-  </table>
-  <input class="btn btn-primary" type="submit" />
-</form>
+  <form method="post">
+    {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <input class="btn btn-primary" type="submit" />
+  </form>
 {% endblock content %}

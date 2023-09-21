@@ -51,9 +51,9 @@
                         <td class="align-middle">{{ issuance.issuance_type.name }}</td>
                         <td class="align-middle">
                             {% if issuance.status.name == "Vigente" %}
-                            <span class="badge bg-success align-middle">{{ issuance.status.name |slice:":7"}}</span>
+                                <span class="badge bg-success align-middle">{{ issuance.status.name |slice:":7"}}</span>
                             {% else %}
-                            <span class="badge bg-danger align-middle">{{ issuance.status.name |slice:":7"}}</span>
+                                <span class="badge bg-danger align-middle">{{ issuance.status.name |slice:":7"}}</span>
                             {% endif %}
                         </td>
                         <td class="align-middle">
@@ -76,16 +76,16 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page=1" aria-label="First">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" aria-label="First">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&lsaquo;</span>
+                            </a>
+                        </li>
                     {% endif %}
 
                     <li class="page-item active">
@@ -93,16 +93,16 @@
                     </li>
 
                     {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                            <span aria-hidden="true">&rsaquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&rsaquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
             </nav>

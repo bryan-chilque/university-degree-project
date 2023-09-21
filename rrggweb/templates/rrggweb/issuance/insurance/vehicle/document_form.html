@@ -1,94 +1,94 @@
 {% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
 {% block title_section %}
-{{ title }}
-<h6> {{ subtitle }}</h6>
+  {{ title }}
+  <h6> {{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      {% if initial_step == 4 and final_step == 4 %}
-        {% include "rrggweb/utils/stepper.html" with step=4 max_step=4 %}
-      {% elif initial_step == 9 and final_step == 9 %}
-        {% include "rrggweb/utils/stepper.html" with step=9 max_step=9 %}
-      {% endif %}
-      {% if previous_page %}
-        <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
-          <i class="fas fa-long-arrow-alt-left"></i>Volver
-        </a>
-      {% endif %}
-      {% if type == 'create' %}
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">Subir documentos</h5>
-          </div>
-          <div class="card-body">
-            <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="mb-3">
-                <label for="{{ form.file.id_for_label }}" class="form-label">Archivo</label>
-                {{ form.file }}
-              </div>
-              {% if documents %}
-              {% else %}
-              <div class="alert alert-info" role="alert">
-                <i class="fas fa-info-circle"></i> Sube al menos un archivo para continuar
-              </div>
-              {% endif %}
-              <button type="submit" class="btn btn-primary">Agregar archivo</button>
-              {% if documents %}
-              <a href="{{ finish }}" class="btn btn-secondary">Finalizar</a>
-              {% endif %}
-              <input type="hidden" name="issuance" value="{{ view.kwargs.issuance_id }}" />
-            </form>
-          </div>
-        </div>
-        {% if documents %}
-          <div class="card mt-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        {% if initial_step == 4 and final_step == 4 %}
+          {% include "rrggweb/utils/stepper.html" with step=4 max_step=4 %}
+        {% elif initial_step == 9 and final_step == 9 %}
+          {% include "rrggweb/utils/stepper.html" with step=9 max_step=9 %}
+        {% endif %}
+        {% if previous_page %}
+          <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
+            <i class="fas fa-long-arrow-alt-left"></i>Volver
+          </a>
+        {% endif %}
+        {% if type == 'create' %}
+          <div class="card">
             <div class="card-header">
-              <h5 class="card-title">Documentos</h5>
+              <h5 class="card-title">Subir documentos</h5>
             </div>
-            <ul class="list-group list-group-flush">
-              {% for document in documents %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="{{ document.file.url }}" class="text-decoration-none">
-                    <i class="fas fa-file-{{ document.file.extension|default:'alt' }}"></i> {{ document.file.name }}
-                  </a>
-                  {% if final_step == 4 %}
-                    <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_q' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
-                      class="btn btn-danger">
-                      <i class="fas fa-trash-alt"></i> Eliminar
+            <div class="card-body">
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="{{ form.file.id_for_label }}" class="form-label">Archivo</label>
+                  {{ form.file }}
+                </div>
+                {% if documents %}
+                {% else %}
+                  <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle"></i> Sube al menos un archivo para continuar
+                  </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Agregar archivo</button>
+                {% if documents %}
+                  <a href="{{ finish }}" class="btn btn-secondary">Finalizar</a>
+                {% endif %}
+                <input type="hidden" name="issuance" value="{{ view.kwargs.issuance_id }}" />
+              </form>
+            </div>
+          </div>
+          {% if documents %}
+            <div class="card mt-4">
+              <div class="card-header">
+                <h5 class="card-title">Documentos</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                {% for document in documents %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{{ document.file.url }}" class="text-decoration-none">
+                      <i class="fas fa-file-{{ document.file.extension|default:'alt' }}"></i> {{ document.file.name }}
                     </a>
-                  {% elif final_step == 9 %}
-                    <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_ns' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
-                      class="btn btn-danger">
-                      <i class="fas fa-trash-alt"></i> Eliminar
-                    </a>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            </ul>
+                    {% if final_step == 4 %}
+                      <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_q' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
+                         class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                      </a>
+                    {% elif final_step == 9 %}
+                      <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_ns' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
+                         class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                      </a>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        {% elif type == 'delete'%}
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Eliminar documento</h5>
+            </div>
+            <div class="card-body">
+              <form method="post">
+                {% csrf_token %}
+                <p>¿Estás seguro de que quieres eliminar "{{ object.file }}"?</p>
+                {{ form }}
+                <div class="d-flex justify-content-between">
+                  <input type="submit" value="Confirmar" class="btn btn-danger">
+                  <a href="{{ return }}" class="btn btn-secondary">Cancelar</a>
+                </div>
+              </form>
+            </div>
           </div>
         {% endif %}
-      {% elif type == 'delete'%}
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">Eliminar documento</h5>
-          </div>
-          <div class="card-body">
-            <form method="post">
-              {% csrf_token %}
-              <p>¿Estás seguro de que quieres eliminar "{{ object.file }}"?</p>
-              {{ form }}
-              <div class="d-flex justify-content-between">
-                <input type="submit" value="Confirmar" class="btn btn-danger">
-                <a href="{{ return }}" class="btn btn-secondary">Cancelar</a>
-              </div>
-            </form>
-          </div>
-        </div>
-      {% endif %}
+      </div>
     </div>
   </div>
-</div>
 {% endblock content %}

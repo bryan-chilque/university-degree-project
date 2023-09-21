@@ -2,36 +2,36 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Panel web de Riesgos Generales" />
-  <meta name="author" content="KCS" />
-  <meta name="keywords" content="KCS, Riesgos Generales, Panel Web" />
-  <title>
-    KCS |
-    {% block title %}
-    {% endblock %}
-  </title>
-  <link rel="icon" href="https://kcs.pe/View/img/Icon/KCS-Icono.png" type="image/x-icon" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Panel web de Riesgos Generales" />
+    <meta name="author" content="KCS" />
+    <meta name="keywords" content="KCS, Riesgos Generales, Panel Web" />
+    <title>
+      KCS |
+      {% block title %}
+      {% endblock %}
+    </title>
+    <link rel="icon" href="https://kcs.pe/View/img/Icon/KCS-Icono.png" type="image/x-icon" />
   {% comment %} Local Stylesheets and Javascripts {% endcomment %}
-  <link rel="stylesheet" href='{% static "web/css/bootstrap.min.css" %}' />
-  <link rel="stylesheet" href='{% static "web/css/app.min.css" %}' />
-  <link rel="stylesheet" href='{% static "web/css/icons.min.css" %}' />
-  <link rel="stylesheet" href='{% static "web/css/waves.min.css" %}' />
-  <link rel="stylesheet" href='{% static "web/css/styles.css" %}' />
-  <script src='{% static "web/js/jquery.min.js" %}'></script>
-  <script src='{% static "web/js/bootstrap.bundle.min.js" %}'></script>
-  <script src='{% static "web/js/metisMenu.min.js" %}'></script>
-  <script src='{% static "web/js/waves.min.js" %}'></script>
-  {% block head %}
-  {% endblock %}
-</head>
+    <link rel="stylesheet" href='{% static "web/css/bootstrap.min.css" %}' />
+    <link rel="stylesheet" href='{% static "web/css/app.min.css" %}' />
+    <link rel="stylesheet" href='{% static "web/css/icons.min.css" %}' />
+    <link rel="stylesheet" href='{% static "web/css/waves.min.css" %}' />
+    <link rel="stylesheet" href='{% static "web/css/styles.css" %}' />
+    <script src='{% static "web/js/jquery.min.js" %}'></script>
+    <script src='{% static "web/js/bootstrap.bundle.min.js" %}'></script>
+    <script src='{% static "web/js/metisMenu.min.js" %}'></script>
+    <script src='{% static "web/js/waves.min.js" %}'></script>
+    {% block head %}
+    {% endblock %}
+  </head>
 
-<body data-sidebar="dark" data-topbar="light" data-bs-theme="light">
-  {% block body %}
-  {% endblock %}
-  <script src='{% static "web/js/app.js" %}'></script>
-</body>
+  <body data-sidebar="dark" data-topbar="light" data-bs-theme="light">
+    {% block body %}
+    {% endblock %}
+    <script src='{% static "web/js/app.js" %}'></script>
+  </body>
 
 </html>

@@ -2,50 +2,50 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Panel web de Riesgos Generales" />
-  <meta name="author" content="KCS" />
-  <meta name="keywords" content="KCS, Riesgos Generales, Panel Web" />
-  <title>
-    KCS |
-    {% block title %}
-    {% endblock title %}
-  </title>
-  <link rel="icon" href="https://kcs.pe/View/img/Icon/KCS-Icono.png" type="image/x-icon" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Panel web de Riesgos Generales" />
+    <meta name="author" content="KCS" />
+    <meta name="keywords" content="KCS, Riesgos Generales, Panel Web" />
+    <title>
+      KCS |
+      {% block title %}
+      {% endblock title %}
+    </title>
+    <link rel="icon" href="https://kcs.pe/View/img/Icon/KCS-Icono.png" type="image/x-icon" />
   {% comment %} Local Stylesheets and Javascripts {% endcomment %}
-  <link rel="stylesheet" href='{% static "web/css/bootstrap.min.css" %}' />
-  <link rel="stylesheet" href='{% static "web/css/app.min.css" %}' />
-  <link rel="stylesheet" href='{% static "web/css/icons.min.css" %}' />
-  <link rel="stylesheet" href='{% static "web/css/waves.min.css" %}' />
-  <link rel="stylesheet" href="{% static 'web/css/styles.css' %}" />
-  <script src='{% static "web/js/jquery.min.js" %}'></script>
-  <script src='{% static "web/js/bootstrap.bundle.min.js" %}'></script>
-  <script src='{% static "web/js/metisMenu.min.js" %}'></script>
-  <script src='{% static "web/js/waves.min.js" %}'></script>
+    <link rel="stylesheet" href='{% static "web/css/bootstrap.min.css" %}' />
+    <link rel="stylesheet" href='{% static "web/css/app.min.css" %}' />
+    <link rel="stylesheet" href='{% static "web/css/icons.min.css" %}' />
+    <link rel="stylesheet" href='{% static "web/css/waves.min.css" %}' />
+    <link rel="stylesheet" href="{% static 'web/css/styles.css' %}" />
+    <script src='{% static "web/js/jquery.min.js" %}'></script>
+    <script src='{% static "web/js/bootstrap.bundle.min.js" %}'></script>
+    <script src='{% static "web/js/metisMenu.min.js" %}'></script>
+    <script src='{% static "web/js/waves.min.js" %}'></script>
   {% comment %} Online Stylesheets and Javascripts {% endcomment %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.css"
-    integrity="sha512-5k2n0KtbytaKmxjJVf3we8oDR34XEaWP2pibUtul47dDvz+BGAhoktxn7SJRQCHNT5aJXlxzVd45BxMDlCgtcA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.css"
-    integrity="sha512-4OzqLjfh1aJa7M33b5+h0CSx0Q3i9Qaxlrr1T/Z+Vz+9zs5A7GM3T3MFKXoreghi3iDOSbkPMXiMBhFO7UBW/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js"
-    integrity="sha512-f26fxKZJiF0AjutUaQHNJ5KnXSisqyUQ3oyfaoen2apB1wLa5ccW3lmtaRe2jdP5kh4LF2gAHP9xQbx7wYhU5w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.js"
-    integrity="sha512-bp/xZXR0Wn5q5TgPtz7EbgZlRrIU3tsqoROPe9sLwdY6Z+0p6XRzr7/JzqQUfTSD3rWanL6WUVW7peD4zSY/vQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  {% block head %}
-  {% endblock head %}
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.css"
+          integrity="sha512-5k2n0KtbytaKmxjJVf3we8oDR34XEaWP2pibUtul47dDvz+BGAhoktxn7SJRQCHNT5aJXlxzVd45BxMDlCgtcA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.css"
+          integrity="sha512-4OzqLjfh1aJa7M33b5+h0CSx0Q3i9Qaxlrr1T/Z+Vz+9zs5A7GM3T3MFKXoreghi3iDOSbkPMXiMBhFO7UBW/g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js"
+            integrity="sha512-f26fxKZJiF0AjutUaQHNJ5KnXSisqyUQ3oyfaoen2apB1wLa5ccW3lmtaRe2jdP5kh4LF2gAHP9xQbx7wYhU5w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.js"
+            integrity="sha512-bp/xZXR0Wn5q5TgPtz7EbgZlRrIU3tsqoROPe9sLwdY6Z+0p6XRzr7/JzqQUfTSD3rWanL6WUVW7peD4zSY/vQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% block head %}
+    {% endblock head %}
+  </head>
 
-<body data-sidebar="light" data-topbar="dark" data-bs-theme="light">
-  {% block body %}
-  {% endblock body %}
-  <script src='{% static "web/js/app.js" %}'></script>
-</body>
+  <body data-sidebar="light" data-topbar="dark" data-bs-theme="light">
+    {% block body %}
+    {% endblock body %}
+    <script src='{% static "web/js/app.js" %}'></script>
+  </body>
 
 </html>

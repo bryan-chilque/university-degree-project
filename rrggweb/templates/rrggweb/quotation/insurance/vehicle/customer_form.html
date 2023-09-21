@@ -4,57 +4,57 @@
   <h6>{{ subtitle }}</h6>
 {% endblock title_section %}
 {% block content %}
-<div class="row justify-content-center">
-  <div class="col-md-8 col-lg-6">
-    {% if initial_step == 2 and final_step == 6 %}
-      {% include "rrggweb/utils/stepper.html" with step=2 max_step=6 %}
-    {% elif initial_step == 2 and final_step == 9 %}
-      {% include "rrggweb/utils/stepper.html" with step=2 max_step=9 %}
-    {% elif initial_step == 2 and final_step == 3 %}
-      {% include "rrggweb/utils/stepper.html" with step=2 max_step=3 %}
-    {% elif initial_step == 3 and final_step == 3 %}
-      {% include "rrggweb/utils/stepper.html" with step=3 max_step=3 %}
-    {% endif %}
-    <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
-      <i class="fas fa-long-arrow-alt-left"></i>Volver
-    </a>
-    {% if seller %}
-      <div class="mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% if initial_step == 2 and final_step == 6 %}
+        {% include "rrggweb/utils/stepper.html" with step=2 max_step=6 %}
+      {% elif initial_step == 2 and final_step == 9 %}
+        {% include "rrggweb/utils/stepper.html" with step=2 max_step=9 %}
+      {% elif initial_step == 2 and final_step == 3 %}
+        {% include "rrggweb/utils/stepper.html" with step=2 max_step=3 %}
+      {% elif initial_step == 3 and final_step == 3 %}
+        {% include "rrggweb/utils/stepper.html" with step=3 max_step=3 %}
+      {% endif %}
+      <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i>Volver
+      </a>
+      {% if seller %}
+        <div class="mt-2">
+          <h5>
+            Asesor: <b>{{ seller }}</b>
+          </h5>
+          <hr class="w-25"/>
+        </div>
+      {% endif %}
+      {% if body %}
+        <center>
+          <h5 class="mb-3">{{ body }}</h5>
+        </center>
+      {% endif %}
+      {% if type_customer %}
         <h5>
-          Asesor: <b>{{ seller }}</b>
+          Tipo: <b>{{ type_customer }}</b>
         </h5>
-        <hr class="w-25"/>
-      </div>
-    {% endif %}
-    {% if body %}
-      <center>
-        <h5 class="mb-3">{{ body }}</h5>
-      </center>
-    {% endif %}
-    {% if type_customer %}
-      <h5>
-        Tipo: <b>{{ type_customer }}</b>
-      </h5>
-    {% endif %}
-    <div class="mt-4">
-      <form method="post">
-        {% csrf_token %}
-        {% if form.errors %}
-          <div class="alert alert-danger">
-            <strong>Error:</strong> Por favor corrija los siguientes errores:
-            <ul>
-              {% for field in form %}
-                {% for error in field.errors %}
-                  <li>{{ field.label_tag }} {{ error }}</li>
+      {% endif %}
+      <div class="mt-4">
+        <form method="post">
+          {% csrf_token %}
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <strong>Error:</strong> Por favor corrija los siguientes errores:
+              <ul>
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    <li>{{ field.label_tag }} {{ error }}</li>
+                  {% endfor %}
                 {% endfor %}
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-        {{ form.as_p }}
-        <button class="btn btn-primary btn-block mt-3" type="submit" id="next_button">Siguiente</button>
-      </form>
+              </ul>
+            </div>
+          {% endif %}
+          {{ form.as_p }}
+          <button class="btn btn-primary btn-block mt-3" type="submit" id="next_button">Siguiente</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 {% endblock content %}

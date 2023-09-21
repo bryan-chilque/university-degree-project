@@ -42,21 +42,21 @@
         <div>
           <label for="model-choice">Riesgo:</label>
           <select class="form-select mb-3" style="background-color: #e8e8e8;" id="model-choice" disabled>
-              {% for choice in risk_selector %}
-                  <option value={{ choice }}
-              {% endfor %}
-          </select>
-        </div>
+            {% for choice in risk_selector %}
+              <option value={{ choice }}
+                    {% endfor %}
+                    </select>
+            </div>
       {% endif %}
       {% if insurance_vehicle_selector %}
         <div>
           <label for="model-choice">Aseguradora:</label>
           <select class="form-select mb-3" style="background-color: #e8e8e8;" id="model-choice" disabled>
-              {% for choice in insurance_vehicle_selector %}
-                  <option value={{ choice }}
-              {% endfor %}
-          </select>
-        </div>
+            {% for choice in insurance_vehicle_selector %}
+              <option value={{ choice }}
+                    {% endfor %}
+                    </select>
+            </div>
       {% endif %}
       <div>
         <form method="post">

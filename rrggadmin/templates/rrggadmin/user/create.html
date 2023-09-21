@@ -1,20 +1,20 @@
 {% extends 'rrggadmin/dashboard.html' %}
 
 {% block titlebar_title %}
-Crear Usuario
+  Crear Usuario
 {% endblock %}
 
 {% block container %}
-<a href="{{ previous_page }}" class="btn btn-outline-dark btn-sm mt-3 mb-4"">
-      <i class=" fas fa-arrow-left"></i> Volver
-</a>
-<form method="post">
-  {% csrf_token %}
-  <div class="row">
-    <div class="col-md-6">
-      {{ form.as_p }}
-    </div>
-  </div>
-  <button class="btn btn-primary" type="submit">Crear</button>
-</form>
-{% endblock container %}
+  <a href="{{ previous_page }}" class="btn btn-outline-dark btn-sm mt-3 mb-4"">
+                                                                              <i class=" fas fa-arrow-left"></i> Volver
+                                        </a>
+                                        <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                       <div class="col-md-6">
+                              {{ form.as_p }}
+                              </div>
+                              </div>
+                              <button class="btn btn-primary" type="submit">Crear</button>
+                                                    </form>
+                                                  {% endblock container %}
