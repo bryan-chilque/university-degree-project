@@ -309,8 +309,6 @@
   fields:
     emission_right: 0.03
     tax: 0.18
-    fee: 4
-    direct_debit: 12
     created: 2023-07-21 19:36:30.639471+00:00
     insurance_vehicle: 1
 - model: rrgg.insurancevehicleratio
@@ -318,8 +316,6 @@
   fields:
     emission_right: 0.03
     tax: 0.18
-    fee: 6
-    direct_debit: 12
     created: 2023-07-21 19:37:45.639471+00:00
     insurance_vehicle: 2
 - model: rrgg.insurancevehicleratio
@@ -327,8 +323,6 @@
   fields:
     emission_right: 0.03
     tax: 0.18
-    fee: 12
-    direct_debit: 12
     created: 2023-07-21 19:38:15.639471+00:00
     insurance_vehicle: 3
 - model: rrgg.insurancevehicleratio
@@ -336,8 +330,6 @@
   fields:
     emission_right: 0.03
     tax: 0.18
-    fee: 4
-    direct_debit: 12
     created: 2023-07-21 19:38:45.639471+00:00
     insurance_vehicle: 4
 - model: rrgg.insurancevehicleratio
@@ -345,8 +337,6 @@
   fields:
     emission_right: 0.03
     tax: 0.18
-    fee: 6
-    direct_debit: 12
     created: 2023-07-21 19:39:15.639471+00:00
     insurance_vehicle: 5
 - model: rrgg.risk

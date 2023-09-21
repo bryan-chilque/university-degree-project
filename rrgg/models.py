@@ -320,11 +320,6 @@ class InsuranceVehicleRatio(models.Model):
     emission_right = models.DecimalField(
         _("emission right"), decimal_places=2, max_digits=10
     )
-    # cuotas
-    fee = models.PositiveIntegerField(null=True)
-    # débito automático
-    direct_debit = models.PositiveIntegerField(null=True)
-
     created = models.DateTimeField(auto_now_add=True)
     insurance_vehicle = models.ForeignKey(
         InsuranceVehicle, related_name="ratios", on_delete=models.PROTECT
@@ -473,8 +468,7 @@ class QuotationInsuranceVehiclePremium(models.Model):
     # prima comercial
     @property
     def commercial_premium(self):
-        q = self.insurance_vehicle_ratio
-        return round(self.amount + q.emission_right, 2)
+        return round(self.amount + self.emission_right, 2)
 
     # prima total
     @property
@@ -484,14 +478,12 @@ class QuotationInsuranceVehiclePremium(models.Model):
     # fee
     @property
     def fee(self):
-        q = self.insurance_vehicle_ratio
-        return round(self.total / q.fee, 2)
+        return round(self.total / 4, 2)
 
     # direct_debit
     @property
     def direct_debit(self):
-        q = self.insurance_vehicle_ratio
-        return round(self.total / q.direct_debit, 2)
+        return round(self.total / 12, 2)
 
     def __str__(self) -> str:
         return (
