@@ -171,9 +171,19 @@ quotation_insurance_vehicle_urlpatterns = (
             name="create_premiums",
         ),
         path(
+            "create_premium/quotation/<int:quotation_id>",
+            views.QIVPremiumCreateView.as_view(),
+            name="create_premium",
+        ),
+        path(
             "update_premium/<int:premium_id>/",
             views.QIVPremiumsUpdateView.as_view(),
             name="update_premium",
+        ),
+        path(
+            "delete_premium/<int:pk>/",
+            views.QIVPremiumsDeleteView.as_view(),
+            name="delete_premium",
         ),
         path(
             "report_xlsx/<int:quotation_id>/",

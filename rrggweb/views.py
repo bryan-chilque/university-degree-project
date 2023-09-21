@@ -1347,6 +1347,13 @@ class QIVDetailView(DetailView):
                 "quotation_id": self.object.id,
             },
         )
+        context["create_premium"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:create_premium",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.id,
+            },
+        )
         context["report_xlsx"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:report_xlsx",
             kwargs={
@@ -1400,6 +1407,7 @@ class QIVPremiumsFormView(FormView):
                 rrgg.models.QuotationInsuranceVehicle,
                 id=self.kwargs["quotation_id"],
             )
+            # print(insurance_vehicle_ratio.initial.tax)
             insurance_vehicle_ratio.widget = forms.forms.HiddenInput()
             quotation_insurance_vehicle.widget = forms.forms.HiddenInput()
 
@@ -1448,12 +1456,51 @@ class QIVPremiumsFormView(FormView):
         )
 
 
+class QIVPremiumCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
+    template_name = "rrggweb/quotation/insurance/vehicle/premium_form.html"
+    model = rrgg.models.QuotationInsuranceVehiclePremium
+    fields = ["insurance_vehicle_ratio", "amount", "rate"]
+
+    def form_valid(self, form):
+        form.instance.quotation_insurance_vehicle_id = self.kwargs[
+            "quotation_id"
+        ]
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return urls.reverse_lazy(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.kwargs["quotation_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "COTIZACIÓN VEHICULAR"
+        context["subtitle"] = "Registrar prima"
+        quotation = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehicle,
+            id=self.kwargs["quotation_id"],
+        )
+        context["insured_amount"] = quotation.insured_amount
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.kwargs["quotation_id"],
+            },
+        )
+        return context
+
+
 class QIVPremiumsUpdateViewSupport(
     rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
 ):
-    template_name = "rrggweb/quotation/insurance/vehicle/update_premium.html"
+    template_name = "rrggweb/quotation/insurance/vehicle/premium_form.html"
     model = rrgg.models.QuotationInsuranceVehiclePremium
-    fields = ["amount", "rate"]
+    fields = ["insurance_vehicle_ratio", "amount", "rate"]
     pk_url_kwarg = "premium_id"
 
     def get_context_data(self, **kwargs):
@@ -1466,7 +1513,7 @@ class QIVPremiumsUpdateViewSupport(
 
 class QIVPremiumsUpdateView(QIVPremiumsUpdateViewSupport):
     def get_success_url(self):
-        return urls.reverse(
+        return urls.reverse_lazy(
             "rrggweb:quotation:insurance:vehicle:detail",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
@@ -1478,6 +1525,33 @@ class QIVPremiumsUpdateView(QIVPremiumsUpdateViewSupport):
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
         context["subtitle"] = "Editar Prima de Aseguradora"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.quotation_insurance_vehicle.id,
+            },
+        )
+        return context
+
+
+class QIVPremiumsDeleteView(DeleteView):
+    template_name = "rrggweb/quotation/insurance/vehicle/delete_form.html"
+    model = rrgg.models.QuotationInsuranceVehiclePremium
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "quotation_id": self.object.quotation_insurance_vehicle.id,
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR"
+        context["subtitle"] = "Eliminar Prima de Aseguradora"
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:detail",
             kwargs={
@@ -3264,7 +3338,7 @@ class IIVQuotationPremiumCreateView(
 class IIVPremiumsUpdateViewSupport(
     rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
 ):
-    template_name = "rrggweb/quotation/insurance/vehicle/update_premium.html"
+    template_name = "rrggweb/quotation/insurance/vehicle/premium_form.html"
     model = rrgg.models.QuotationInsuranceVehiclePremium
     fields = ["amount", "rate"]
     pk_url_kwarg = "premium_id"

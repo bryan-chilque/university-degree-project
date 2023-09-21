@@ -1,0 +1,22 @@
+{% extends 'rrggweb/dashboard.html' %}
+{% block title_section %}
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
+{% endblock %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <p>¿Está seguro de que desea eliminar la cotización de {{ object.insurance_vehicle_ratio }}?</p>
+        <input type="submit" value="Sí, eliminar" class="btn btn-danger" />
+        <a href="{{ previous_page }}" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}
