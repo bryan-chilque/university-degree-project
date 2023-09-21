@@ -468,7 +468,7 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             "delete_document_q/<int:document_id>/issuance/<int:issuance_id>/",
-            views.IIVAddDocumentQCreateView.as_view(),
+            views.IIVDeleteDocumentQView.as_view(),
             name="delete_document_q",
         ),
         path(
