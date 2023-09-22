@@ -1761,6 +1761,13 @@ class IIVDetailIssuanceView(DetailView):
         context["kcs_commission"] = round(
             self.object.net_commission_amount - context["seller_commission"], 2
         )
+        context["create_document"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:create_document_ed",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.object.id,
+            },
+        )
         context["documents"] = self.object.documents.all()
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:list",
@@ -3243,40 +3250,6 @@ class IIVUpdateQuotationView(IIVUpdateQuotationViewSupport):
         return context
 
 
-# class IIVQuotationSelectInsuranceFormView(FormView):
-#     template_name = "rrggweb/issuance/insurance/vehicle/basic_form.html"
-#     form_class = forms.InsuranceVehicleForm
-
-#     def form_valid(self, form: forms.InsuranceVehicleForm):
-#         insurance = form.cleaned_data["aseguradoras"]
-#         self.success_url = urls.reverse(
-#             "rrggweb:issuance:insurance:vehicle:create_premium",
-#             kwargs={
-#                 "registrar_id": self.kwargs["registrar_id"],
-#                 "seller_id": self.kwargs["seller_id"],
-#                 "quotation_id": self.kwargs["quotation_id"],
-#                 "insurance_id": insurance.id,
-#             },
-#         )
-#         return super().form_valid(form)
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["title"] = "EMISIÓN VEHICULAR"
-#         context["subtitle"] = "Seleccionar aseguradora"
-#         context["initial_step"] = 6
-#         context["final_step"] = 9
-#         context["previous_page"] = urls.reverse(
-#             "rrggweb:issuance:insurance:vehicle:update_quotation_step",
-#             kwargs={
-#                 "registrar_id": self.kwargs["registrar_id"],
-#                 "seller_id": self.kwargs["seller_id"],
-#                 "quotation_id": self.kwargs["quotation_id"],
-#             },
-#         )
-#         return context
-
-
 class IIVQuotationPremiumCreateView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
@@ -3662,19 +3635,6 @@ class IIVAddDocumentQCreateView(IIVAddDocumentSupportCreateView):
         return context
 
 
-class IIVGetDocumentView(View):
-    def get(self, request, *args, **kwargs):
-        document_id = self.kwargs["document_id"]
-        instance = get_object_or_404(
-            rrgg.models.IssuanceInsuranceVehicleDocument, pk=document_id
-        )
-        file_name = instance.file.name
-
-        response = FileResponse(instance.file, content_type="application/pdf")
-        response["Content-Disposition"] = f'inline; filename="{file_name}"'
-        return response
-
-
 class IIVAddDocumentNSCreateView(IIVAddDocumentSupportCreateView):
     def get_success_url(self):
         return urls.reverse(
@@ -3698,6 +3658,41 @@ class IIVAddDocumentNSCreateView(IIVAddDocumentSupportCreateView):
             },
         )
         return context
+
+
+class IIVAddDocumentEDCreateView(IIVAddDocumentSupportCreateView):
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:create_document_ed",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+
+    # import
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+        return context
+
+
+class IIVGetDocumentView(View):
+    def get(self, request, *args, **kwargs):
+        document_id = self.kwargs["document_id"]
+        instance = get_object_or_404(
+            rrgg.models.IssuanceInsuranceVehicleDocument, pk=document_id
+        )
+        file_name = instance.file.name
+        response = FileResponse(instance.file, content_type="application/pdf")
+        response["Content-Disposition"] = f'inline; filename="{file_name}"'
+        return response
 
 
 class IIVDeleteDocumentSupportView(DeleteView):
@@ -3753,6 +3748,28 @@ class IIVDeleteDocumentNSView(IIVDeleteDocumentSupportView):
         context["final_step"] = 9
         context["return"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:create_document_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+        return context
+
+
+class IIVDeleteDocumentEDView(IIVDeleteDocumentSupportView):
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["return"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:detail",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "issuance_id": self.kwargs["issuance_id"],

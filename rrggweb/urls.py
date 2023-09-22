@@ -469,6 +469,16 @@ issuance_insurance_vehicle_urlpatterns = (
             name="create_document_ns",
         ),
         path(
+            "create_document_ed/<int:issuance_id>/",
+            views.IIVAddDocumentEDCreateView.as_view(),
+            name="create_document_ed",
+        ),
+        path(
+            "get_document/<int:document_id>/",
+            views.IIVGetDocumentView.as_view(),
+            name="get_document",
+        ),
+        path(
             "delete_document_q/<int:document_id>/issuance/<int:issuance_id>/",
             views.IIVDeleteDocumentQView.as_view(),
             name="delete_document_q",
@@ -479,6 +489,11 @@ issuance_insurance_vehicle_urlpatterns = (
             name="delete_document_ns",
         ),
         path(
+            "delete_document_ed/<int:document_id>/issuance/<int:issuance_id>/",
+            views.IIVDeleteDocumentEDView.as_view(),
+            name="delete_document_ed",
+        ),
+        path(
             "update/<int:issuance_id>/",
             views.IIVUpdateIssuanceView.as_view(),
             name="update",
@@ -487,11 +502,6 @@ issuance_insurance_vehicle_urlpatterns = (
             "update_status/<int:issuance_id>/",
             views.IIVUpdateStatusFormView.as_view(),
             name="update_status",
-        ),
-        path(
-            "documents/<int:document_id>/",
-            views.IIVGetDocumentView.as_view(),
-            name="get_iiv_document",
         ),
     ],
     "vehicle",
