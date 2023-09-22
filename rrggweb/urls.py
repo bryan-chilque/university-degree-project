@@ -488,6 +488,11 @@ issuance_insurance_vehicle_urlpatterns = (
             views.IIVUpdateStatusFormView.as_view(),
             name="update_status",
         ),
+        path(
+            "documents/<int:document_id>",
+            views.IIVGetDocumentView.as_view(),
+            name="get_iiv_document",
+        ),
     ],
     "vehicle",
 )
