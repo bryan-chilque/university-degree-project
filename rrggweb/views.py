@@ -7,8 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.db.models.deletion import ProtectedError
 from django.forms import modelformset_factory
-from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.http import FileResponse, HttpResponse
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -3662,6 +3662,19 @@ class IIVAddDocumentQCreateView(IIVAddDocumentSupportCreateView):
         return context
 
 
+class IIVGetDocumentView(View):
+    def get(self, request, *args, **kwargs):
+        document_id = self.kwargs["document_id"]
+        instance = get_object_or_404(
+            rrgg.models.IssuanceInsuranceVehicleDocument, pk=document_id
+        )
+        file_name = instance.file.name
+
+        response = FileResponse(instance.file, content_type="application/pdf")
+        response["Content-Disposition"] = f'inline; filename="{file_name}"'
+        return response
+
+
 class IIVAddDocumentNSCreateView(IIVAddDocumentSupportCreateView):
     def get_success_url(self):
         return urls.reverse(
@@ -3672,6 +3685,7 @@ class IIVAddDocumentNSCreateView(IIVAddDocumentSupportCreateView):
             },
         )
 
+    # import
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["initial_step"] = 9
