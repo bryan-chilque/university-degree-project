@@ -3663,20 +3663,16 @@ class IIVAddDocumentQCreateView(IIVAddDocumentSupportCreateView):
 
 
 class IIVGetDocumentView(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         document_id = self.kwargs["document_id"]
         instance = get_object_or_404(
             rrgg.models.IssuanceInsuranceVehicleDocument, pk=document_id
         )
-        file_path = instance.file.path
         file_name = instance.file.name
 
-        with open(file_path, mode="w") as file:
-            response = FileResponse(file, content_type="application/pdf")
-            response["Content-Disposition"] = (
-                f'attachment; filename="{file_name}"'
-            )
-            return response
+        response = FileResponse(instance.file, content_type="application/pdf")
+        response["Content-Disposition"] = f'inline; filename="{file_name}"'
+        return response
 
 
 class IIVAddDocumentNSCreateView(IIVAddDocumentSupportCreateView):
@@ -3688,7 +3684,8 @@ class IIVAddDocumentNSCreateView(IIVAddDocumentSupportCreateView):
                 "issuance_id": self.kwargs["issuance_id"],
             },
         )
-    #import
+
+    # import
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["initial_step"] = 9
