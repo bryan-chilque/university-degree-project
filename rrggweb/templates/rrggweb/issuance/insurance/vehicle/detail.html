@@ -270,13 +270,21 @@
   </div>
   <div class="row mb-3">
     <div class="col-md-6">
-      <h5 class="mb-0">Documentos</h5>
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+        <h5 class="mb-0">Documentos</h5>
+        <a
+          class="btn btn-outline-success btn-sm d-flex align-items-center justify-content-center gap-2"
+          href="{{ create_document }}"
+          >Subir documentos
+          <i class="fas fa-upload"></i>
+        </a>
+      </div>
       {% if documents %}
         <table class="table table-bordered">
           <thead>
             <tr>
               <th>Nombre</th>
-              <th>Descargar</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -285,8 +293,19 @@
                 <td>
                   <i class="fas fa-file-pdf"></i> {{ document.file.name }}
                 </td>
-                <td>
-                  <a href="{{ document.file.url }}" class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Descargar</a>
+                <td class="align-middle d-flex gap-2">
+                  <a
+                    href="{% url 'rrggweb:issuance:insurance:vehicle:get_document' view.kwargs.registrar_id document.id %}"
+                    class="btn btn-primary btn-sm"
+                    >
+                      <i class="fas fa-download"></i>
+                  </a>
+                  <a
+                    href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_ed' view.kwargs.registrar_id document.id object.id%}"
+                    class="btn btn-primary btn-sm"
+                    >
+                      <i class="fas fa-trash"></i>
+                  </a>
                 </td>
               </tr>
             {% endfor %}
