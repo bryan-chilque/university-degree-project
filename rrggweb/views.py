@@ -1,6 +1,8 @@
+import os
 import re
 
 from django import shortcuts, urls
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -3699,6 +3701,13 @@ class IIVDeleteDocumentSupportView(DeleteView):
     template_name = "rrggweb/issuance/insurance/vehicle/document_form.html"
     model = rrgg.models.IssuanceInsuranceVehicleDocument
     pk_url_kwarg = "document_id"
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        file_path = os.path.join(settings.MEDIA_ROOT, self.object.file.name)
+        os.remove(file_path)
+        self.object.delete()
+        return redirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
