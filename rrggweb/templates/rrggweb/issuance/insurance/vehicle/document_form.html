@@ -55,7 +55,7 @@
                       href="{% url 'rrggweb:issuance:insurance:vehicle:get_document' view.kwargs.registrar_id document.id %}"
                       class="text-decoration-none"
                       target="_blank"
-                      >
+                    >
                       <i class="fas fa-file-{{ document.file.extension|default:'alt' }}"></i> {{ document.file.name }}
                     </a>
                     {% if final_step == 4 %}
