@@ -441,6 +441,15 @@ class QuotationInsuranceVehiclePremium(models.Model):
         _("net premium"), decimal_places=2, max_digits=10, default=0
     )
     rate = models.DecimalField(_("rate"), decimal_places=2, max_digits=10)
+    tax_percentage = models.DecimalField(
+        _("tax percentage"), decimal_places=2, max_digits=10, default=0.18
+    )
+    emission_right_percentage = models.DecimalField(
+        _("emission right percentage"),
+        decimal_places=2,
+        max_digits=10,
+        default=0.03,
+    )
     insurance_vehicle_ratio = models.ForeignKey(
         InsuranceVehicleRatio,
         related_name="quotation_insurance_vehicle_premiums",
@@ -456,14 +465,12 @@ class QuotationInsuranceVehiclePremium(models.Model):
 
     @property
     def emission_right(self):
-        return round(
-            self.amount * self.insurance_vehicle_ratio.emission_right, 2
-        )
+        return round(self.amount * self.emission_right_percentage, 2)
 
     @property
     def tax(self):
         value = self.amount + self.emission_right
-        return round(value * self.insurance_vehicle_ratio.tax, 2)
+        return round(value * self.tax_percentage, 2)
 
     # prima comercial
     @property

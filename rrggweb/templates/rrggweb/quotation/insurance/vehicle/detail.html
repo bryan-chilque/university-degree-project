@@ -140,10 +140,10 @@
                       <td class="align-middle">{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</td>
                       <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.amount }}
                       </td>
-                      <td class="align-middle">{% widthratio premium.insurance_vehicle_ratio.emission_right 1 100 %}%</td>
+                      <td class="align-middle">{% widthratio premium.emission_right_percentage 1 100 %}%</td>
                       <td class="align-middle">
                         {{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.emission_right }}</td>
-                      <td class="align-middle">{% widthratio premium.insurance_vehicle_ratio.tax 1 100 %}%</td>
+                      <td class="align-middle">{% widthratio premium.tax_percentage 1 100 %}%</td>
                       <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.tax }}</td>
                       <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.total }}</td>
                       <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.rate }}</td>

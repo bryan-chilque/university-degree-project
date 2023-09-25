@@ -400,7 +400,7 @@
     consultant_registrar: 3
     consultant_seller: 2
     customer: 1
-    created: 2023-09-08 07:15:35.485352+00:00
+    created: 2023-09-22 07:15:35.485352+00:00
 - model: rrgg.quotationinsurancevehicle
   pk: 2
   fields:
@@ -411,20 +411,24 @@
     consultant_registrar: 1
     consultant_seller: 2
     customer: 2
-    created: 2023-09-07 06:08:11.485352+00:00
+    created: 2023-09-23 06:08:11.485352+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 1
   fields:
     amount: '2850.00'
     rate: 0.95
+    emission_right_percentage: 0.03
+    tax_percentage: 0.18
     insurance_vehicle_ratio: 3
     quotation_insurance_vehicle: 1
-    created: 2023-09-08 09:15:35.928242+00:00
+    created: 2023-09-22 09:15:35.928242+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 2
   fields:
     amount: '2550.00'
     rate: 0.95
+    emission_right_percentage: 0.03
+    tax_percentage: 0.18
     insurance_vehicle_ratio: 3
     quotation_insurance_vehicle: 2
     created: 2023-09-12 06:08:35.928242+00:00
@@ -433,6 +437,8 @@
   fields:
     amount: '2500.00'
     rate: 0.95
+    emission_right_percentage: 0.03
+    tax_percentage: 0.18
     insurance_vehicle_ratio: 4
     quotation_insurance_vehicle: 2
     created: 2023-09-12 06:08:35.933243+00:00
@@ -441,6 +447,8 @@
   fields:
     amount: '2450.00'
     rate: 0.95
+    emission_right_percentage: 0.03
+    tax_percentage: 0.18
     insurance_vehicle_ratio: 1
     quotation_insurance_vehicle: 2
     created: 2023-09-12 06:08:35.936245+00:00
@@ -449,6 +457,8 @@
   fields:
     amount: '2600.00'
     rate: 0.95
+    emission_right_percentage: 0.03
+    tax_percentage: 0.18
     insurance_vehicle_ratio: 2
     quotation_insurance_vehicle: 2
     created: 2023-09-12 06:08:35.939988+00:00
@@ -457,6 +467,8 @@
   fields:
     amount: '2700.00'
     rate: 0.95
+    emission_right_percentage: 0.03
+    tax_percentage: 0.18
     insurance_vehicle_ratio: 5
     quotation_insurance_vehicle: 2
     created: 2023-09-12 06:08:35.944033+00:00

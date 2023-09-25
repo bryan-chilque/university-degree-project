@@ -1392,7 +1392,12 @@ class QIVPremiumsFormView(FormView):
         form_class = modelformset_factory(
             rrgg.models.QuotationInsuranceVehiclePremium,
             extra=rrgg.models.InsuranceVehicle.objects.count(),
-            fields="__all__",
+            fields=[
+                "insurance_vehicle_ratio",
+                "quotation_insurance_vehicle",
+                "amount",
+                "rate",
+            ],
         )
         formset = super().get_form(form_class)
         # Mantener el orden: Ver ABC123
@@ -1409,7 +1414,10 @@ class QIVPremiumsFormView(FormView):
                 rrgg.models.QuotationInsuranceVehicle,
                 id=self.kwargs["quotation_id"],
             )
-            # print(insurance_vehicle_ratio.initial.tax)
+            form.tax_percentage = insurance_vehicle_ratio.initial.tax
+            form.emission_right_percentage = (
+                insurance_vehicle_ratio.initial.emission_right
+            )
             insurance_vehicle_ratio.widget = forms.forms.HiddenInput()
             quotation_insurance_vehicle.widget = forms.forms.HiddenInput()
 
@@ -1467,6 +1475,12 @@ class QIVPremiumCreateView(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         form.instance.quotation_insurance_vehicle_id = self.kwargs[
             "quotation_id"
         ]
+        ivr = shortcuts.get_object_or_404(
+            rrgg.models.InsuranceVehicleRatio,
+            id=form.instance.insurance_vehicle_ratio.id,
+        )
+        form.instance.tax_percentage = ivr.tax
+        form.instance.emission_right_percentage = ivr.emission_right
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -3260,6 +3274,12 @@ class IIVQuotationPremiumCreateView(
     fields = ["insurance_vehicle_ratio", "amount", "rate"]
 
     def form_valid(self, form):
+        ivr = shortcuts.get_object_or_404(
+            rrgg.models.InsuranceVehicleRatio,
+            id=form.cleaned_data["insurance_vehicle_ratio"].id,
+        )
+        form.instance.tax_percentage = ivr.tax
+        form.instance.emission_right_percentage = ivr.emission_right
         form.instance.quotation_insurance_vehicle_id = self.kwargs[
             "quotation_id"
         ]
@@ -3415,29 +3435,31 @@ class IIVCreateViewSupport(rrgg_mixins.RrggBootstrapDisplayMixin, CreateView):
         return initial
 
     def form_valid(self, form):
-        form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
-        form.instance.consultant_seller_id = self.kwargs["seller_id"]
-        form.instance.insurance_plan_id = self.kwargs["plan_id"]
-        form.instance.quotation_vehicle_premium_id = self.kwargs["premium_id"]
-        raw_percentage = form.cleaned_data["plan_commission_percentage"]
-        form.instance.plan_commission_percentage = raw_percentage / 100
-        seller = shortcuts.get_object_or_404(
-            rrgg.models.Consultant, id=self.kwargs["seller_id"]
-        )
-        # TODO: comisión del vendedor por ahora solo tomara de referencia la
-        # comisión actual registrada en el momento de la creación
-        form.instance.seller_commission_percentage = (
-            seller.commission_rate.new_sale
-        )
-        # validate expiration date
-        quotation_premium = shortcuts.get_object_or_404(
+        premium = shortcuts.get_object_or_404(
             rrgg.models.QuotationInsuranceVehiclePremium,
             id=self.kwargs["premium_id"],
         )
-        if quotation_premium.quotation_insurance_vehicle.expired:
+        if premium.quotation_insurance_vehicle.expired:
             messages.warning(self.request, "Esta cotización ya expiró")
             return self.form_invalid(form)
-        return super().form_valid(form)
+        else:
+            form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
+            form.instance.consultant_seller_id = self.kwargs["seller_id"]
+            form.instance.insurance_plan_id = self.kwargs["plan_id"]
+            form.instance.quotation_vehicle_premium_id = self.kwargs[
+                "premium_id"
+            ]
+            raw_percentage = form.cleaned_data["plan_commission_percentage"]
+            form.instance.plan_commission_percentage = raw_percentage / 100
+            seller = shortcuts.get_object_or_404(
+                rrgg.models.Consultant, id=self.kwargs["seller_id"]
+            )
+            # TODO: comisión del vendedor por ahora solo tomara de referencia
+            # la comisión actual registrada en el momento de la creación
+            form.instance.seller_commission_percentage = (
+                seller.commission_rate.new_sale
+            )
+            return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
