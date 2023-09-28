@@ -552,7 +552,7 @@
           {% for i in my_range %}
             {% for premium in premiums %}
               {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == i %}
-                <th>{{ premium.insurance_vehicle_ratio.fee }}&nbsp;|&nbsp;${{ premium.fee }}</th>
+                <th>4&nbsp;|&nbsp;${{ premium.fee }}</th>
               {% else %}
                 <th>---</th>
               {% endif %}
@@ -560,7 +560,7 @@
           {% endfor %}
         {% else %}
           {% for premium in premiums %}
-            <th>{{ premium.insurance_vehicle_ratio.fee }}&nbsp;|&nbsp;${{ premium.fee }}</th>
+            <th>4&nbsp;|&nbsp;${{ premium.fee }}</th>
           {% endfor %}
         {% endif %}
       </tr>
@@ -570,7 +570,7 @@
           {% for i in my_range %}
             {% for premium in premiums %}
               {% if premium.insurance_vehicle_ratio.insurance_vehicle.id == i %}
-                <th>{{ premium.insurance_vehicle_ratio.direct_debit }}&nbsp;|&nbsp;${{ premium.direct_debit }}</th>
+                <th>12&nbsp;|&nbsp;${{ premium.direct_debit }}</th>
               {% else %}
                 <th>---</th>
               {% endif %}
@@ -578,7 +578,7 @@
           {% endfor %}
         {% else %}
           {% for premium in premiums %}
-            <th>{{ premium.insurance_vehicle_ratio.direct_debit }}&nbsp;|&nbsp;${{ premium.direct_debit }}</th>
+            <th>12&nbsp;|&nbsp;${{ premium.direct_debit }}</th>
           {% endfor %}
         {% endif %}
       </tr>
