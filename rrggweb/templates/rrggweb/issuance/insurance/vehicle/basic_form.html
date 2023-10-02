@@ -16,6 +16,8 @@
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=9 %}
       {% elif initial_step == 2 and final_step == 4 %}
         {% include "rrggweb/utils/stepper.html" with step=2 max_step=4 %}
+      {% elif initial_step == 3 and final_step == 5 %}
+        {% include "rrggweb/utils/stepper.html" with step=3 max_step=5 %}
       {% endif %}
       <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">

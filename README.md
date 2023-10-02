@@ -11,3 +11,4 @@
 * Actualizar data: `python manage.py dumpdata --format yaml rrgg auth.user -o rrggweb/fixtures/web-snapshot.yaml`.
 * Generar nueva traducción: `python manage.py makemessages -l es`
 * Guardar la traducción: `python manage.py compilemessages -l es`
+* Formatear html: `djhtml rrggweb/templates`

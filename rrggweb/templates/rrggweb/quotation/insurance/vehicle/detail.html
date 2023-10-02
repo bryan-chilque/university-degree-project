@@ -109,11 +109,13 @@
         </div>
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
           <strong>Lista de cotización por aseguradoras:</strong>
-          <a class="btn btn-outline-success btn-sm d-flex align-items-center justify-content-center gap-2"
-             href="{{ create_premium }}">
-            <i class="fas fa-plus"></i>
-            Agregar prima
-          </a>
+          {% if manage_premiums %}
+            <a class="btn btn-outline-success btn-sm d-flex align-items-center justify-content-center gap-2"
+               href="{{ create_premium }}">
+              <i class="fas fa-plus"></i>
+              Agregar prima
+            </a>
+          {% endif %}
         </div>
         <div>
           {% if object.premiums.count == 0 %}
@@ -153,14 +155,16 @@
                           <i class="fa fa-file"></i>
                           Generar Emisión
                         </a>
-                        <a
-                          href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
-                          <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <a
-                          href="{% url 'rrggweb:quotation:insurance:vehicle:delete_premium' view.kwargs.registrar_id premium.id %}">
-                          <i class="fas fa-trash-alt"></i>
-                        </a>
+                        {% if manage_premiums %}
+                          <a
+                            href="{% url 'rrggweb:quotation:insurance:vehicle:update_premium' view.kwargs.registrar_id premium.id %}">
+                            <i class="fas fa-pencil-alt"></i>
+                          </a>
+                          <a
+                            href="{% url 'rrggweb:quotation:insurance:vehicle:delete_premium' view.kwargs.registrar_id premium.id %}">
+                            <i class="fas fa-trash-alt"></i>
+                          </a>
+                        {% endif %}
                       </td>
                     </tr>
                   {% endfor %}

@@ -22,6 +22,9 @@
                 <tr>
                   <th colspan="2" class="font-weight-bold">
                     Datos del contratante
+                    {% if update_customer %}
+                      <a href="{{ update_customer }}"><i class="fas fa-pencil-alt"></i></a>
+                    {% endif %}
                   </th>
                 </tr>
               </thead>
@@ -47,6 +50,9 @@
                 <tr>
                   <th colspan="2" class="font-weight-bold">
                     Datos del asegurado
+                    {% if update_owner %}
+                      <a href="{{ update_owner }}"><i class="fas fa-pencil-alt"></i></a>
+                    {% endif %}
                   </th>
                 </tr>
               </thead>
@@ -89,7 +95,12 @@
             <table class="table table-sm table-bordered">
               <thead>
                 <tr>
-                  <th colspan="2" class="font-weight-bold">Datos del Bien Asegurado</th>
+                  <th colspan="2" class="font-weight-bold">
+                    Datos del Bien Asegurado
+                    {% if update_vehicle %}
+                      <a href="{{ update_vehicle }}"><i class="fas fa-pencil-alt"></i></a>
+                    {% endif %}
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -167,8 +178,13 @@
                   <td>{{ seller }}</td>
                 </tr>
                 <tr>
-                  <td class="font-weight-bold">Comisión</td>
-                  <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
+                  {% if renewal_form or new_renewal_form%}
+                    <td class="font-weight-bold">Comisión por renovación</td>
+                    <td>{% widthratio seller.commission_rate.renewal 1 100 %}%</td>
+                  {% else %}
+                    <td class="font-weight-bold">Comisión por venta nueva</td>
+                    <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
+                  {% endif %}
                 </tr>
               </tbody>
             </table>
@@ -247,15 +263,34 @@
       </form>
     </div>
   </div>
-  <script>
-    const initialValidity = document.querySelector('#id_initial_validity');
-    const finalValidity = document.querySelector('#id_final_validity');
+  {% if renewal_form %}
+    <script>
+      document.querySelector('#id_policy').style.backgroundColor = '#e8e8e8';
+      document.querySelector('#id_policy').setAttribute("readonly", "readonly");
 
-    initialValidity.addEventListener('change', () => {
+      const initialValidity = document.querySelector('#id_initial_validity');
+      const finalValidity = document.querySelector('#id_final_validity');
+
       const date = new Date(initialValidity.value);
       date.setFullYear(date.getFullYear() + 1);
       finalValidity.value = date.toISOString().slice(0, 10);
-    });
 
-  </script>
+      initialValidity.addEventListener('change', () => {
+        const date = new Date(initialValidity.value);
+        date.setFullYear(date.getFullYear() + 1);
+        finalValidity.value = date.toISOString().slice(0, 10);
+      });
+    </script>
+  {% else %}
+    <script>
+      const initialValidity = document.querySelector('#id_initial_validity');
+      const finalValidity = document.querySelector('#id_final_validity');
+
+      initialValidity.addEventListener('change', () => {
+        const date = new Date(initialValidity.value);
+        date.setFullYear(date.getFullYear() + 1);
+        finalValidity.value = date.toISOString().slice(0, 10);
+      });
+    </script>
+  {% endif %}
 {% endblock content %}

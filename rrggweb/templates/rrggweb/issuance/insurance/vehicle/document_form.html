@@ -58,7 +58,17 @@
                     >
                       <i class="fas fa-file-{{ document.file.extension|default:'alt' }}"></i> {{ document.file.name }}
                     </a>
-                    {% if final_step == 4 %}
+                    {% if renewal_form %}
+                      <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_r' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
+                         class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                      </a>
+                    {% elif new_renewal_form %}
+                      <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_nr' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
+                         class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                      </a>
+                    {% elif final_step == 4 %}
                       <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_q' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
                          class="btn btn-danger">
                         <i class="fas fa-trash-alt"></i> Eliminar

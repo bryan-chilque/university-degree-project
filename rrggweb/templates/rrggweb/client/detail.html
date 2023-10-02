@@ -12,10 +12,6 @@
       <table class="table table-striped mt-3">
         <tbody>
           <tr>
-            <th>Ejecutivo de venta:</th>
-            <td>{{ object.seller }}</td>
-          </tr>
-          <tr>
             <th>Tipo de Persona:</th>
             <td>{{ object.type_customer }}</td>
           </tr>
@@ -60,6 +56,10 @@
               <th>Número de Documento:</th>
               <td>{{ object.natural_person.document_number }}</td>
             </tr>
+            <tr>
+              <th>Ejecutivo de venta:</th>
+              <td>{{ object.seller }}</td>
+            </tr>
           {% elif object.legal_person %}
             <tr>
               <th>Nombre Registrado:</th>
@@ -96,6 +96,10 @@
             <tr>
               <th>Número de Documento:</th>
               <td>{{ object.legal_person.document_number }}</td>
+            </tr>
+            <tr>
+              <th>Ejecutivo de venta:</th>
+              <td>{{ object.seller }}</td>
             </tr>
           {% endif %}
         </tbody>

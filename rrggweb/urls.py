@@ -174,17 +174,17 @@ quotation_insurance_vehicle_urlpatterns = (
         ),
         path(
             "create_premium/quotation/<int:quotation_id>",
-            views.QIVPremiumCreateView.as_view(),
+            views.QIVCreatePremiumView.as_view(),
             name="create_premium",
         ),
         path(
             "update_premium/<int:premium_id>/",
-            views.QIVPremiumsUpdateView.as_view(),
+            views.QIVUpdatePremiumView.as_view(),
             name="update_premium",
         ),
         path(
             "delete_premium/<int:pk>/",
-            views.QIVPremiumsDeleteView.as_view(),
+            views.QIVDeletePremiumView.as_view(),
             name="delete_premium",
         ),
         path(
@@ -240,18 +240,8 @@ issuance_insurance_vehicle_urlpatterns = (
             name="quotation_detail",
         ),
         path(
-            "select_role/",
-            views.IIVSelectRoleNSFormView.as_view(),
-            name="select_role_ns",
-        ),
-        path(
-            "select_seller/role/<int:role_id>/",
-            views.IIVSelectSellerNSFormView.as_view(),
-            name="select_seller_ns",
-        ),
-        path(
             "select_role/quotation_premium/<int:premium_id>/",
-            views.IIVSelectRoleQFormView.as_view(),
+            views.IIVSelectRoleQuotationFormView.as_view(),
             name="select_role_q",
         ),
         path(
@@ -259,28 +249,38 @@ issuance_insurance_vehicle_urlpatterns = (
                 "select_seller/quotation_premium/<int:premium_id>/"
                 "role/<int:role_id>/"
             ),
-            views.IIVSelectSellerQFormView.as_view(),
+            views.IIVSelectSellerQuotationView.as_view(),
             name="select_seller_q",
         ),
         # NEW SALE
         path(
+            "select_role/",
+            views.IIVSelectRoleNewSaleView.as_view(),
+            name="select_role_ns",
+        ),
+        path(
+            "select_seller/role/<int:role_id>/",
+            views.IIVSelectSellerNewSaleView.as_view(),
+            name="select_seller_ns",
+        ),
+        path(
             "search_customer/seller/<int:seller_id>/",
-            views.IIVSearchCustomerView.as_view(),
+            views.IIVSearchCustomerNewSaleView.as_view(),
             name="search_customer",
         ),
         path(
             "select_customer/seller/<int:seller_id>/",
-            views.IIVSelectCustomerFormView.as_view(),
+            views.IIVSelectCustomerNewSaleView.as_view(),
             name="select_customer",
         ),
         path(
             "create_natural_person/seller/<int:seller_id>/",
-            views.IIVCreateNaturalPersonView.as_view(),
+            views.IIVCreateNaturalPersonNewSaleView.as_view(),
             name="create_natural_person",
         ),
         path(
             "create_legal_person/seller/<int:seller_id>/",
-            views.IIVCreateLegalPersonView.as_view(),
+            views.IIVCreateLegalPersonNewSaleView.as_view(),
             name="create_legal_person",
         ),
         path(
@@ -288,7 +288,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "update_natural_person_step/<int:natural_person_id>/"
                 "seller/<int:seller_id>/"
             ),
-            views.IIVUpdateNaturalPersonStepView.as_view(),
+            views.IIVUpdateNaturalPersonNewSaleStepView.as_view(),
             name="update_natural_person_step",
         ),
         path(
@@ -296,7 +296,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "update_natural_person/<int:natural_person_id>/"
                 "quotation/<int:quotation_id>/"
             ),
-            views.IIVUpdateNaturalPersonQView.as_view(),
+            views.IIVUpdateNaturalPersonQuotationView.as_view(),
             name="update_natural_person",
         ),
         path(
@@ -304,7 +304,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "update_legal_person_step/<int:legal_person_id>/"
                 "seller/<int:seller_id>/"
             ),
-            views.IIVUpdateLegalPersonStepView.as_view(),
+            views.IIVUpdateLegalPersonNewSaleStepView.as_view(),
             name="update_legal_person_step",
         ),
         path(
@@ -312,7 +312,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "update_legal_person/<int:legal_person_id>/"
                 "quotation/<int:quotation_id>/"
             ),
-            views.IIVUpdateLegalPersonQView.as_view(),
+            views.IIVUpdateLegalPersonQuotationView.as_view(),
             name="update_legal_person",
         ),
         path(
@@ -320,7 +320,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "search_vehicle/seller/<int:seller_id>/"
                 "customer/<int:customer_id>/"
             ),
-            views.IIVSearchVehicleView.as_view(),
+            views.IIVSearchVehicleNewSaleView.as_view(),
             name="search_vehicle",
         ),
         path(
@@ -328,7 +328,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "create_vehicle/seller/<int:seller_id>/"
                 "customer/<int:customer_id>/"
             ),
-            views.IIVCreateVehicleView.as_view(),
+            views.IIVCreateVehicleNewSaleView.as_view(),
             name="create_vehicle",
         ),
         path(
@@ -336,12 +336,12 @@ issuance_insurance_vehicle_urlpatterns = (
                 "update_vehicle/<int:vehicle_id>/seller/"
                 "<int:seller_id>/customer/<int:customer_id>/"
             ),
-            views.IIVUpdateVehicleStepView.as_view(),
+            views.IIVUpdateVehicleNewSaleStepView.as_view(),
             name="update_vehicle_step",
         ),
         path(
-            "update_vehicle/<int:vehicle_id>//quotation/<int:quotation_id>/",
-            views.IIVUpdateVehicleQView.as_view(),
+            "update_vehicle/<int:vehicle_id>/quotation/<int:quotation_id>/",
+            views.IIVUpdateVehicleQuotationView.as_view(),
             name="update_vehicle",
         ),
         path(
@@ -349,7 +349,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "define_owner/seller/<int:seller_id>/"
                 "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
             ),
-            views.IIVDefineOwnerView.as_view(),
+            views.IIVDefineOwnerNewSaleView.as_view(),
             name="define_owner",
         ),
         path(
@@ -357,7 +357,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "search_owner/seller/<int:seller_id>/customer/"
                 "<int:customer_id>/vehicle/<int:vehicle_id>/"
             ),
-            views.IIVSearchOwnerView.as_view(),
+            views.IIVSearchOwnerNewSaleView.as_view(),
             name="search_owner",
         ),
         path(
@@ -365,7 +365,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "create_owner/seller/<int:seller_id>/customer/"
                 "<int:customer_id>/vehicle/<int:vehicle_id>/"
             ),
-            views.IIVCreateOwnerView.as_view(),
+            views.IIVCreateOwnerNewSaleView.as_view(),
             name="create_owner",
         ),
         path(
@@ -373,25 +373,25 @@ issuance_insurance_vehicle_urlpatterns = (
                 "update_owner/<int:owner_id>/seller/<int:seller_id>/customer/"
                 "<int:customer_id>/vehicle/<int:vehicle_id>/"
             ),
-            views.IIVUpdateOwnerStepView.as_view(),
+            views.IIVUpdateOwnerNewSaleStepView.as_view(),
             name="update_owner_step",
         ),
         path(
             "update_owner/<int:owner_id>/quotation/<int:quotation_id>/",
-            views.IIVUpdateOwnerQView.as_view(),
+            views.IIVUpdateOwnerQuotationView.as_view(),
             name="update_owner",
         ),
         path(
             (
-                "create_quotation/seller/<int:seller_id>/customer/"
+                "create_quotation_ns/seller/<int:seller_id>/customer/"
                 "<int:customer_id>/vehicle/<int:vehicle_id>/"
             ),
-            views.IIVCreateQuotationView.as_view(),
-            name="create_quotation",
+            views.IIVCreateQuotationNewSaleView.as_view(),
+            name="create_quotation_ns",
         ),
         path(
-            "update_quotation/<int:quotation_id>/seller/<int:seller_id>/",
-            views.IIVUpdateQuotationStepView.as_view(),
+            "update_quotation_step/<int:quotation_id>/seller/<int:seller_id>/",
+            views.IIVUpdateQuotationStepNewSaleView.as_view(),
             name="update_quotation_step",
         ),
         path(
@@ -404,27 +404,22 @@ issuance_insurance_vehicle_urlpatterns = (
                 "create_premium/seller/<int:seller_id>/"
                 "quotation/<int:quotation_id>/"
             ),
-            views.IIVQuotationPremiumCreateView.as_view(),
+            views.IIVCreatePremiumNewSaleView.as_view(),
             name="create_premium",
         ),
         path(
             "update_premium_step/<int:premium_id>/seller/<int:seller_id>/",
-            views.IIVPremiumsUpdateStepView.as_view(),
+            views.IIVUpdatePremiumStepNewSaleView.as_view(),
             name="update_premium_step",
         ),
         path(
-            "update_premium/<int:premium_id>/",
-            views.IIVPremiumsUpdateQView.as_view(),
-            name="update_premium",
-        ),
-        path(
             "select_plan_q/premium/<int:premium_id>/seller/<int:seller_id>/",
-            views.IIVPlanFormQView.as_view(),
+            views.IIVSelectPlanQuotationView.as_view(),
             name="select_plan_q",
         ),
         path(
             "select_plan_ns/premium/<int:premium_id>/seller/<int:seller_id>/",
-            views.IIVPlanFormNSView.as_view(),
+            views.IIVSelectPlanNewSaleView.as_view(),
             name="select_plan_ns",
         ),
         path(
@@ -432,7 +427,7 @@ issuance_insurance_vehicle_urlpatterns = (
                 "create_step_q/premium/<int:premium_id>/"
                 "seller/<int:seller_id>/plan/<int:plan_id>"
             ),
-            views.IIVCreateStepQView.as_view(),
+            views.IIVCreateStepQuotationView.as_view(),
             name="create_step_q",
         ),
         path(
@@ -440,57 +435,57 @@ issuance_insurance_vehicle_urlpatterns = (
                 "create_step_ns/premium/<int:premium_id>/"
                 "seller/<int:seller_id>/plan/<int:plan_id>"
             ),
-            views.IIVCreateStepNSView.as_view(),
+            views.IIVCreateStepNewSaleView.as_view(),
             name="create_step_ns",
         ),
         path(
             "detail/<int:issuance_id>/",
-            views.IIVDetailIssuanceView.as_view(),
+            views.IIVDetailView.as_view(),
             name="detail",
         ),
         path(
             "update_step_q/<int:issuance_id>/",
-            views.IIVUpdateIssuanceStepQView.as_view(),
+            views.IIVUpdateStepQuotationView.as_view(),
             name="update_step_q",
         ),
         path(
             "update_step_ns/<int:issuance_id>/",
-            views.IIVUpdateIssuanceStepNSView.as_view(),
+            views.IIVUpdateStepNewSaleView.as_view(),
             name="update_step_ns",
         ),
         path(
             "create_document_q/<int:issuance_id>/",
-            views.IIVAddDocumentQCreateView.as_view(),
+            views.IIVAddDocumentQuotationStepView.as_view(),
             name="create_document_q",
         ),
         path(
             "create_document_ns/<int:issuance_id>/",
-            views.IIVAddDocumentNSCreateView.as_view(),
+            views.IIVAddDocumentNewSaleView.as_view(),
             name="create_document_ns",
         ),
         path(
             "create_document_ed/<int:issuance_id>/",
-            views.IIVAddDocumentEDCreateView.as_view(),
+            views.IIVAddDocumentDetailView.as_view(),
             name="create_document_ed",
         ),
         path(
             "get_document/<int:document_id>/",
-            views.IIVGetDocumentView.as_view(),
+            views.GetDocumentView.as_view(),
             name="get_document",
         ),
         path(
             "delete_document_q/<int:document_id>/issuance/<int:issuance_id>/",
-            views.IIVDeleteDocumentQView.as_view(),
+            views.IIVDeleteDocumentQuotationStepView.as_view(),
             name="delete_document_q",
         ),
         path(
             "delete_document_ns/<int:document_id>/issuance/<int:issuance_id>/",
-            views.IIVDeleteDocumentNSView.as_view(),
+            views.IIVDeleteDocumentNewSaleView.as_view(),
             name="delete_document_ns",
         ),
         path(
             "delete_document_ed/<int:document_id>/issuance/<int:issuance_id>/",
-            views.IIVDeleteDocumentEDView.as_view(),
+            views.IIVDeleteDocumentDetailView.as_view(),
             name="delete_document_ed",
         ),
         path(
@@ -500,8 +495,265 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             "update_status/<int:issuance_id>/",
-            views.IIVUpdateStatusFormView.as_view(),
+            views.IIVUpdateStatusDetailView.as_view(),
             name="update_status",
+        ),
+        path(
+            "list_renewal/",
+            views.IIVRenewalListView.as_view(),
+            name="list_renewal",
+        ),
+        # RENEWAL 1
+        path(
+            "select_role_nr/",
+            views.IIVSelectRoleNewRenewalView.as_view(),
+            name="select_role_nr",
+        ),
+        path(
+            "select_seller_nr/role/<int:role_id>/",
+            views.IIVSelectSellerNewRenewalView.as_view(),
+            name="select_seller_nr",
+        ),
+        path(
+            "search_customer_nr/seller/<int:seller_id>/",
+            views.IIVSearchCustomerNewRenewalView.as_view(),
+            name="search_customer_nr",
+        ),
+        path(
+            "select_customer_nr/seller/<int:seller_id>/",
+            views.IIVSelectCustomerNewRenewalView.as_view(),
+            name="select_customer_nr",
+        ),
+        path(
+            "create_natural_person_nr/seller/<int:seller_id>/",
+            views.IIVCreateNaturalPersonNewRenewalView.as_view(),
+            name="create_natural_person_nr",
+        ),
+        path(
+            "create_legal_person_nr/seller/<int:seller_id>/",
+            views.IIVCreateLegalPersonNewRenewalView.as_view(),
+            name="create_legal_person_nr",
+        ),
+        path(
+            (
+                "update_natural_person_step_nr/<int:natural_person_id>/"
+                "seller/<int:seller_id>/"
+            ),
+            views.IIVUpdateNaturalPersonNewRenewalStepView.as_view(),
+            name="update_natural_person_step_nr",
+        ),
+        path(
+            (
+                "update_legal_person_step_nr/<int:legal_person_id>/"
+                "seller/<int:seller_id>/"
+            ),
+            views.IIVUpdateLegalPersonNewRenewalStepView.as_view(),
+            name="update_legal_person_step_nr",
+        ),
+        path(
+            (
+                "search_vehicle_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
+            views.IIVSearchVehicleNewRenewalView.as_view(),
+            name="search_vehicle_nr",
+        ),
+        path(
+            (
+                "create_vehicle_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
+            views.IIVCreateVehicleNewRenewalView.as_view(),
+            name="create_vehicle_nr",
+        ),
+        path(
+            (
+                "update_vehicle_nr/<int:vehicle_id>/seller/"
+                "<int:seller_id>/customer/<int:customer_id>/"
+            ),
+            views.IIVUpdateVehicleNewRenewalStepView.as_view(),
+            name="update_vehicle_step_nr",
+        ),
+        path(
+            (
+                "define_owner_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVDefineOwnerNewRenewalView.as_view(),
+            name="define_owner_nr",
+        ),
+        path(
+            (
+                "search_owner_nr/seller/<int:seller_id>/customer/"
+                "<int:customer_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVSearchOwnerNewRenewalView.as_view(),
+            name="search_owner_nr",
+        ),
+        path(
+            (
+                "create_owner_nr/seller/<int:seller_id>/customer/"
+                "<int:customer_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVCreateOwnerNewRenewalView.as_view(),
+            name="create_owner_nr",
+        ),
+        path(
+            (
+                "update_owner_nr/<int:owner_id>/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVUpdateOwnerNewRenewalStepView.as_view(),
+            name="update_owner_step_nr",
+        ),
+        path(
+            (
+                "create_quotation_nr/seller/<int:seller_id>/customer/"
+                "<int:customer_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVCreateQuotationNewRenewalView.as_view(),
+            name="create_quotation_nr",
+        ),
+        path(
+            (
+                "update_quotation_step_nr/<int:quotation_id>/"
+                "seller/<int:seller_id>/"
+            ),
+            views.IIVUpdateQuotationStepNewRenewalView.as_view(),
+            name="update_quotation_step_nr",
+        ),
+        path(
+            (
+                "create_premium_nr/seller/<int:seller_id>/"
+                "quotation/<int:quotation_id>/"
+            ),
+            views.IIVCreatePremiumNewRenewalView.as_view(),
+            name="create_premium_nr",
+        ),
+        path(
+            "update_premium_step_nr/<int:premium_id>/seller/<int:seller_id>/",
+            views.IIVUpdatePremiumStepNewRenewalView.as_view(),
+            name="update_premium_step_nr",
+        ),
+        path(
+            "select_plan_nr/premium/<int:premium_id>/seller/<int:seller_id>/",
+            views.IIVSelectPlanNewRenewalView.as_view(),
+            name="select_plan_nr",
+        ),
+        path(
+            (
+                "create_step_nr/premium/<int:premium_id>/"
+                "seller/<int:seller_id>/plan/<int:plan_id>"
+            ),
+            views.IIVCreateStepNewRenewalView.as_view(),
+            name="create_step_nr",
+        ),
+        path(
+            "update_step_nr/<int:issuance_id>/",
+            views.IIVUpdateStepNewRenewalView.as_view(),
+            name="update_step_nr",
+        ),
+        path(
+            "create_document_nr/<int:issuance_id>/",
+            views.IIVAddDocumentNewRenewalView.as_view(),
+            name="create_document_nr",
+        ),
+        path(
+            "delete_document_nr/<int:document_id>/issuance/<int:issuance_id>/",
+            views.IIVDeleteDocumentNewRenewalView.as_view(),
+            name="delete_document_nr",
+        ),
+        # RENEWAL 2
+        # path(
+        #     "select_role/customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
+        #     views.IIVSelectRoleNewSaleStepView.as_view(),
+        #     name="select_role_ns",
+        # ),
+        # path(
+        #     "select_seller/role/<int:role_id>/",
+        #     views.IIVSelectSellerNewSaleView.as_view(),
+        #     name="select_seller_ns",
+        # ),
+        path(
+            "create_quotation_r/emission/<int:issuance_id>/",
+            views.IIVCreateQuotationRenewalView.as_view(),
+            name="create_quotation_r",
+        ),
+        path(
+            (
+                "update_quotation_step/<int:quotation_id>/"
+                "issuance/<int:issuance_id>/"
+            ),
+            views.IIVUpdateQuotationStepRenewalView.as_view(),
+            name="update_quotation_step",
+        ),
+        path(
+            (
+                "create_premium/issuance/<int:issuance_id>/"
+                "quotation/<int:quotation_id>/"
+            ),
+            views.IIVCreatePremiumRenewalView.as_view(),
+            name="create_premium",
+        ),
+        path(
+            "update_premium_step/<int:premium_id>/issuance/<int:issuance_id>/",
+            views.IIVPremiumsUpdateStepRenewalView.as_view(),
+            name="update_premium_step",
+        ),
+        path(
+            (
+                "update_natural_person/<int:natural_person_id>/"
+                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+            ),
+            views.IIVUpdateNaturalPersonRenewalView.as_view(),
+            name="update_natural_person",
+        ),
+        path(
+            (
+                "update_legal_person/<int:legal_person_id>/"
+                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+            ),
+            views.IIVUpdateLegalPersonRenewalView.as_view(),
+            name="update_legal_person",
+        ),
+        path(
+            (
+                "update_vehicle/<int:vehicle_id>/"
+                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+            ),
+            views.IIVUpdateVehicleRenewalView.as_view(),
+            name="update_vehicle",
+        ),
+        path(
+            (
+                "update_owner/<int:owner_id>/"
+                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+            ),
+            views.IIVUpdateOwnerRenewalView.as_view(),
+            name="update_owner",
+        ),
+        path(
+            (
+                "create_step_r/issuance/<int:issuance_id>/"
+                "premium/<int:premium_id>/"
+            ),
+            views.IIVCreateStepRenewalView.as_view(),
+            name="create_step_r",
+        ),
+        path(
+            "update_step_r/<int:issuance_id>/",
+            views.IIVUpdateIssuanceStepRenewalView.as_view(),
+            name="update_step_r",
+        ),
+        path(
+            "create_document_r/<int:issuance_id>/",
+            views.IIVCreateDocumentRenewalView.as_view(),
+            name="create_document_r",
+        ),
+        path(
+            "delete_document_r/<int:document_id>/issuance/<int:issuance_id>/",
+            views.IIVDeleteDocumentRenewalView.as_view(),
+            name="delete_document_r",
         ),
     ],
     "vehicle",
@@ -568,7 +820,7 @@ customer_membership_urlpatterns = (
         ),
         path(
             "select_customer/seller/<int:seller_id>/",
-            views.SelectCustomerMembershipFormView.as_view(),
+            views.CMSelectCustomerFormView.as_view(),
             name="select_customer",
         ),
         path(
@@ -603,7 +855,7 @@ customer_membership_urlpatterns = (
         ),
         path(
             "change_consultant/<int:customer_id>",
-            views.CMChangeConsultantView.as_view(),
+            views.CMChangeAssociateConsultantView.as_view(),
             name="change_consultant",
         ),
         path(

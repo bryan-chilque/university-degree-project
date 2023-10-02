@@ -613,9 +613,6 @@ class IssuanceInsuranceVehicle(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
-            self.issuance_type = IssuanceInsuranceType.objects.get(
-                name="Venta nueva"
-            )
         super().save(*args, **kwargs)
 
     class Meta:
