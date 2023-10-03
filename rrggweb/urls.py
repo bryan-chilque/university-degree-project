@@ -664,16 +664,6 @@ issuance_insurance_vehicle_urlpatterns = (
             name="delete_document_nr",
         ),
         # RENEWAL 2
-        # path(
-        #     "select_role/customer/<int:customer_id>/vehicle/<int:vehicle_id>/",
-        #     views.IIVSelectRoleNewSaleStepView.as_view(),
-        #     name="select_role_ns",
-        # ),
-        # path(
-        #     "select_seller/role/<int:role_id>/",
-        #     views.IIVSelectSellerNewSaleView.as_view(),
-        #     name="select_seller_ns",
-        # ),
         path(
             "create_quotation_r/emission/<int:issuance_id>/",
             views.IIVCreateQuotationRenewalView.as_view(),
@@ -697,13 +687,14 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             "update_premium_step/<int:premium_id>/issuance/<int:issuance_id>/",
-            views.IIVPremiumsUpdateStepRenewalView.as_view(),
+            views.IIVUpdatePremiumStepRenewalView.as_view(),
             name="update_premium_step",
         ),
         path(
             (
                 "update_natural_person/<int:natural_person_id>/"
                 "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+                "seller/<int:seller_id>/"
             ),
             views.IIVUpdateNaturalPersonRenewalView.as_view(),
             name="update_natural_person",
@@ -712,6 +703,7 @@ issuance_insurance_vehicle_urlpatterns = (
             (
                 "update_legal_person/<int:legal_person_id>/"
                 "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+                "seller/<int:seller_id>/"
             ),
             views.IIVUpdateLegalPersonRenewalView.as_view(),
             name="update_legal_person",
@@ -720,6 +712,7 @@ issuance_insurance_vehicle_urlpatterns = (
             (
                 "update_vehicle/<int:vehicle_id>/"
                 "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+                "seller/<int:seller_id>/"
             ),
             views.IIVUpdateVehicleRenewalView.as_view(),
             name="update_vehicle",
@@ -728,14 +721,23 @@ issuance_insurance_vehicle_urlpatterns = (
             (
                 "update_owner/<int:owner_id>/"
                 "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+                "seller/<int:seller_id>/"
             ),
             views.IIVUpdateOwnerRenewalView.as_view(),
             name="update_owner",
         ),
         path(
             (
+                "change_seller_r/<int:seller_id>"
+                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
+            ),
+            views.IIVChangeSellerRenewalView.as_view(),
+            name="change_seller_r",
+        ),
+        path(
+            (
                 "create_step_r/issuance/<int:issuance_id>/"
-                "premium/<int:premium_id>/"
+                "premium/<int:premium_id>/seller/<int:seller_id>"
             ),
             views.IIVCreateStepRenewalView.as_view(),
             name="create_step_r",

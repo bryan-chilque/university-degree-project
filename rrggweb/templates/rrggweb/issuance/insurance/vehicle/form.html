@@ -165,7 +165,12 @@
             <table class="table table-sm table-bordered">
               <thead>
                 <tr>
-                  <th colspan="2" class="font-weight-bold">Datos del asesor</th>
+                  <th colspan="2" class="font-weight-bold">
+                    Datos del asesor
+                    {% if change_seller %}
+                      <a href="{{ change_seller }}"><i class="fas fa-pencil-alt"></i></a>
+                    {% endif %}
+                  </th>
                 </tr>
               </thead>
               <tbody>

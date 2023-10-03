@@ -406,6 +406,7 @@ class QuotationInsurance(models.Model):
         verbose_name=_("currency"),
         on_delete=models.PROTECT,
     )
+    source = models.CharField(_("source"), max_length=64)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
