@@ -191,38 +191,5 @@
     });
 
     checkAmountInputs();
-
-    var intro =
-      introJs().setOptions({
-        nextLabel: 'Siguiente',
-        prevLabel: 'Anterior',
-        doneLabel: 'Finalizar',
-        steps: [{
-          intro: "Bienvenido a la cotización de vehículos. 😊👌"
-        },
-          {
-            element: document.querySelector('#table-insurances'),
-            intro: "En esta tabla se muestran los seguros que se pueden cotizar. 😊👌"
-          },
-          {
-            element: document.querySelector('#insurance-select'),
-            intro: "Selecciona la aseguradora que vas a cotizar. 😊👌"
-          },
-          {
-            element: document.querySelector('#show-rows-btn'),
-            intro: "Muestra las filas de la aseguradora seleccionada. 😊👌"
-          },
-          {
-            element: document.querySelector('#table-insurances'),
-            intro: "En esta tabla se muestran los seguros que se pueden cotizar. 😊👌"
-          },
-          {
-            element: document.querySelector('#btn-create-premium'),
-            intro: "Finaliza la cotización. 😊👌"
-          },
-        ]
-      });
-
-    intro.start();
   </script>
 {% endblock content %}

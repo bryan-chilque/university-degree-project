@@ -103,3 +103,20 @@
       </div>
     </div>
   </div>
+
+  <script>
+    $(document).ready(function() {
+      var sidebarState = localStorage.getItem('sidebarState');
+      if (sidebarState === 'collapsed') {
+        $('body').addClass('vertical-collpsed');
+      }
+      $('#vertical-menu-btn').click(function() {
+        console.log('clicked');
+        if ($('body').hasClass('vertical-collpsed')) {
+          localStorage.setItem('sidebarState', 'collapsed');
+        } else {
+          localStorage.setItem('sidebarState', 'expanded');
+        }
+      });
+    });
+  </script>

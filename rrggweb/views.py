@@ -761,6 +761,24 @@ class QIVListView(LoginRequiredMixin, ListView):
     model = rrgg.models.QuotationInsuranceVehicle
     paginate_by = 10
 
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return rrgg.models.QuotationInsuranceVehicle.objects.filter(
+                Q(customer__natural_person__given_name__icontains=query)
+                | Q(customer__natural_person__first_surname__icontains=query)
+                | Q(customer__natural_person__second_surname__icontains=query)
+                | Q(customer__natural_person__document_number__icontains=query)
+                | Q(customer__legal_person__registered_name__icontains=query)
+                | Q(customer__legal_person__general_manager__icontains=query)
+                | Q(customer__legal_person__document_number__icontains=query)
+                | Q(consultant_seller__given_name__icontains=query)
+                | Q(consultant_seller__first_surname__icontains=query)
+                | Q(vehicle__plate__icontains=query)
+            )
+        else:
+            return super().get_queryset()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
@@ -769,8 +787,13 @@ class QIVListView(LoginRequiredMixin, ListView):
             "rrggweb:quotation:insurance:vehicle:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
+        context["search_query"] = self.request.GET.get("q", "")
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        context["previous_list"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         return context
