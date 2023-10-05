@@ -29,7 +29,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th style="width: 50px;">#</th>
                     <th style="width: 200px;">Nombre</th>
                     <th style="width: 150px;">Documento</th>
                     <th style="width: 150px;">Tipo de cliente</th>
@@ -41,7 +40,6 @@
                 {% for customer in object_list %}
                     {% if customer.pick %}
                         <tr>
-                            <td>{{ customer.id }}</td>
                             <td>{{ customer }}</td>
                             <td>{{ customer.pick.document_type }} - {{ customer.pick.document_number }}</td>
                             <td>{{ customer.type_customer }}</td>
