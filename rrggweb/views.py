@@ -598,6 +598,7 @@ class IssuanceListSupportView(LoginRequiredMixin, ListView):
                 Q(policy__icontains=query)
                 | Q(collection_document__icontains=query)
                 | Q(issuance_date__icontains=query)
+                | Q(issuance_type__name__icontains=query)
                 | Q(initial_validity__icontains=query)
                 | Q(final_validity__icontains=query)
                 | Q(payment_method__name__icontains=query)
@@ -611,10 +612,19 @@ class IssuanceListSupportView(LoginRequiredMixin, ListView):
                     quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__first_surname__icontains=query  # noqa: E501
                 )
                 | Q(
+                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__second_surname__icontains=query  # noqa: E501
+                )
+                | Q(
+                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__document_number__icontains=query  # noqa: E501
+                )
+                | Q(
                     quotation_vehicle_premium__quotation_insurance_vehicle__customer__legal_person__registered_name__icontains=query  # noqa: E501
                 )
                 | Q(
                     quotation_vehicle_premium__quotation_insurance_vehicle__customer__legal_person__general_manager__icontains=query  # noqa: E501
+                )
+                | Q(
+                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__legal_person__document_number__icontains=query  # noqa: E501
                 )
                 | Q(
                     quotation_vehicle_premium__quotation_insurance_vehicle__vehicle__plate__icontains=query  # noqa: E501

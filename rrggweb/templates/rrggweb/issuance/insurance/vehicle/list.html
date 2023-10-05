@@ -14,18 +14,22 @@
         </div>
     {% endif %}
     <div class="d-flex justify-content-between mb-3">
-        <form class="d-flex" method="get">
-            <input class="form-control me-2"
-                   type="search"
-                   placeholder="Buscar"
-                   aria-label="Search"
-                   name="q"
-                   value="{{ request.GET.q }}">
-            <div class="d-flex gap-2">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-                {% if request.GET.q %}<a class="btn btn-outline-danger" href="?">Limpiar</a>{% endif %}
-            </div>
-        </form>
+        <div class="col-md-3">
+            <form class="d-flex" method="get">
+                <div class="input-group">
+                    <input class="form-control me-2"
+                           type="search"
+                           placeholder="Buscar"
+                           aria-label="Search"
+                           name="q"
+                           value="{{ request.GET.q }}">
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
+                        {% if request.GET.q %}<a class="btn btn-outline-danger" href="?"><i class="fa fa-times"></i></a>{% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
         {% if new_register %}
             <div>
                 <a class="btn btn-primary"
@@ -47,8 +51,8 @@
             <thead>
                 <tr>
                     <th>Contratante</th>
-                    <th>Nº de documento</th>
-                    <th>Vehiculo</th>
+                    <th>Nº de poliza</th>
+                    <th>Vehículo</th>
                     <th>Vigencia</th>
                     <th>Aseguradora</th>
                     <th>Tipo</th>
@@ -61,9 +65,9 @@
                     <tr>
                         <td class="align-middle" scope="row">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</td>
                         <td class="align-middle">
-                            {{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer.pick.document_number }}
+                            {{ issuance.policy }}
                         </td>
-                        <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle }}</td>
+                        <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.plate }}</td>
                         <td class="align-middle">{{ issuance.final_validity | date:'d/m/Y' }}</td>
                         <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
                         <td class="align-middle">{{ issuance.issuance_type.name }}</td>
