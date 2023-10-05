@@ -591,6 +591,38 @@ class IssuanceListSupportView(LoginRequiredMixin, ListView):
     model = rrgg.models.IssuanceInsuranceVehicle
     paginate_by = 10
 
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return rrgg.models.IssuanceInsuranceVehicle.objects.filter(
+                Q(policy__icontains=query)
+                | Q(collection_document__icontains=query)
+                | Q(issuance_date__icontains=query)
+                | Q(initial_validity__icontains=query)
+                | Q(final_validity__icontains=query)
+                | Q(payment_method__name__icontains=query)
+                | Q(consultant_seller__given_name__icontains=query)
+                | Q(consultant_seller__first_surname__icontains=query)
+                | Q(status__name__icontains=query)
+                | Q(
+                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__given_name__icontains=query  # noqa: E501
+                )
+                | Q(
+                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__first_surname__icontains=query  # noqa: E501
+                )
+                | Q(
+                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__legal_person__registered_name__icontains=query  # noqa: E501
+                )
+                | Q(
+                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__legal_person__general_manager__icontains=query  # noqa: E501
+                )
+                | Q(
+                    quotation_vehicle_premium__quotation_insurance_vehicle__vehicle__plate__icontains=query  # noqa: E501
+                )
+            ).order_by("-id")
+        else:
+            return super().get_queryset().order_by("-id")
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
@@ -764,20 +796,41 @@ class QIVListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         query = self.request.GET.get("q")
         if query:
-            return rrgg.models.QuotationInsuranceVehicle.objects.filter(
-                Q(customer__natural_person__given_name__icontains=query)
-                | Q(customer__natural_person__first_surname__icontains=query)
-                | Q(customer__natural_person__second_surname__icontains=query)
-                | Q(customer__natural_person__document_number__icontains=query)
-                | Q(customer__legal_person__registered_name__icontains=query)
-                | Q(customer__legal_person__general_manager__icontains=query)
-                | Q(customer__legal_person__document_number__icontains=query)
-                | Q(consultant_seller__given_name__icontains=query)
-                | Q(consultant_seller__first_surname__icontains=query)
-                | Q(vehicle__plate__icontains=query)
+            return (
+                rrgg.models.QuotationInsuranceVehicle.objects.filter(
+                    Q(customer__natural_person__given_name__icontains=query)
+                    | Q(
+                        customer__natural_person__first_surname__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__natural_person__second_surname__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__natural_person__document_number__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__registered_name__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__general_manager__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__document_number__icontains=query  # noqa: E501
+                    )
+                    | Q(consultant_seller__given_name__icontains=query)
+                    | Q(consultant_seller__first_surname__icontains=query)
+                    | Q(vehicle__plate__icontains=query)
+                )
+                .exclude(consultant_seller=None)
+                .order_by("-id")
             )
         else:
-            return super().get_queryset()
+            return (
+                super()
+                .get_queryset()
+                .exclude(consultant_seller=None)
+                .order_by("-id")
+            )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -2299,10 +2352,54 @@ class IIVListQuotationView(LoginRequiredMixin, ListView):
     model = rrgg.models.QuotationInsuranceVehicle
     paginate_by = 10
 
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return (
+                rrgg.models.QuotationInsuranceVehicle.objects.filter(
+                    Q(customer__natural_person__given_name__icontains=query)
+                    | Q(
+                        customer__natural_person__first_surname__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__natural_person__second_surname__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__natural_person__document_number__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__registered_name__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__general_manager__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__document_number__icontains=query  # noqa: E501
+                    )
+                    | Q(consultant_seller__given_name__icontains=query)
+                    | Q(consultant_seller__first_surname__icontains=query)
+                    | Q(vehicle__plate__icontains=query)
+                )
+                .exclude(consultant_seller=None)
+                .order_by("-id")
+            )
+        else:
+            return (
+                super()
+                .get_queryset()
+                .exclude(consultant_seller=None)
+                .order_by("-id")
+            )
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR - COTIZACIÓN"
         context["subtitle"] = "Lista de cotizaciones vehiculares"
+        context["search_query"] = self.request.GET.get("q", "")
+        context["previous_list"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list_quotations",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:define_new_sale",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
@@ -5405,6 +5502,7 @@ class CustomerMembershipListView(ListView):
     model = rrgg.models.CustomerMembership
     context_object_name = "memberships"
     paginate_by = 10
+    ordering = ["-id"]
 
     def get_queryset(self):
         query = self.request.GET.get("q")
