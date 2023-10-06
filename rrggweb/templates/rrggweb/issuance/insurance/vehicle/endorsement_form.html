@@ -1,0 +1,40 @@
+{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% block title_section %}
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
+{% endblock title_section %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <a class="btn btn-outline-dark btn-sm mb-3"
+         href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i>Volver
+      </a>
+      {% if body %}
+        <center>
+          <h5 class="mb-3">{{ body }}</h5>
+        </center>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    document.querySelector('#id_final_validity').style.backgroundColor = '#e8e8e8';
+    document.querySelector('#id_final_validity').setAttribute("readonly", "readonly");
+
+    const insuredAmountInput = document.querySelector('#id_insured_amount');
+    const netPremiumInput = document.querySelector('#id_net_premium');
+    const rateInput = document.querySelector('#id_rate');
+
+    netPremiumInput.addEventListener('input', () => {
+      const netPremium = Number(netPremiumInput.value);
+      const insuredAmount = Number(insuredAmountInput.value);
+      const rate = insuredAmount / netPremium;
+      rateInput.value = rate.toFixed(2);
+    });
+  </script>
+{% endblock content %}

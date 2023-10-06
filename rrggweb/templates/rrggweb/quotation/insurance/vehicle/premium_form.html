@@ -36,6 +36,11 @@
           <hr class="w-25" />
         {% endif %}
       </div>
+      {% if body %}
+        <center>
+          <h5 class="mb-3">{{ body }}</h5>
+        </center>
+      {% endif %}
       {% if risk_selector %}
         <div>
           <label for="model-choice">Riesgo:</label>

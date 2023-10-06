@@ -51,5 +51,12 @@ class RrggBootstrapDisplayMixin:
                 ),
                 **common_kwargs,
             )
+        elif isinstance(model_field, models.TextField):
+            return forms.CharField(
+                widget=forms.Textarea(
+                    attrs={"class": "form-control mb-2", "rows": 2}
+                ),
+                **common_kwargs,
+            )
         else:
             return model_field.formfield(**common_kwargs)

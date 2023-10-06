@@ -548,7 +548,7 @@ class IssuanceInsuranceVehicle(models.Model):
     initial_validity = models.DateField(_("initial validity"))
     # fecha de vigencia final
     final_validity = models.DateField(_("final validity"))
-    # porcentaje de comisión del plan de seguro
+    # kcs_commission
     plan_commission_percentage = models.DecimalField(
         _("plan commission percentage"),
         decimal_places=3,
@@ -607,9 +607,19 @@ class IssuanceInsuranceVehicle(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     @property
-    def net_commission_amount(self):
+    def net_commission(self):
         q = self.quotation_vehicle_premium
         return round(q.amount * self.plan_commission_percentage, 2)
+
+    @property
+    def seller_commission(self):
+        return round(
+            self.seller_commission_percentage * self.net_commission, 2
+        )
+
+    @property
+    def kcs_commission(self):
+        return round(self.net_commission - self.seller_commission, 2)
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -629,6 +639,106 @@ class IssuanceInsuranceVehicleDocument(models.Model):
     )
     file = models.FileField(upload_to="documents/")
     created = models.DateTimeField(auto_now_add=True)
+
+
+class IssuanceInsuranceEndorsement(models.Model):
+    insured_amount = models.PositiveIntegerField(_("insured amount"))
+    net_premium = models.DecimalField(
+        _("net premium"), decimal_places=2, max_digits=10, default=0
+    )
+    rate = models.DecimalField(_("rate"), decimal_places=2, max_digits=10)
+    tax_percentage = models.DecimalField(
+        _("tax percentage"), decimal_places=2, max_digits=10, default=0.18
+    )
+    emission_right_percentage = models.DecimalField(
+        _("emission right percentage"),
+        decimal_places=2,
+        max_digits=10,
+        default=0.03,
+    )
+    # documento de cobranza
+    collection_document = models.CharField(
+        _("collection document"), max_length=64
+    )
+    # fecha de emisión de la póliza
+    issuance_date = models.DateField(_("issuance date"))
+    # fecha de vigencia inicio
+    initial_validity = models.DateField(_("initial validity"))
+    # fecha de vigencia final
+    final_validity = models.DateField(_("final validity"))
+    # porcentaje de comisión del plan de seguro
+    plan_commission_percentage = models.DecimalField(
+        _("plan commission percentage"),
+        decimal_places=3,
+        max_digits=10,
+    )
+    seller_commission_percentage = models.DecimalField(
+        _("seller commission percentage"),
+        decimal_places=2,
+        max_digits=10,
+    )
+    detail = models.TextField(_("detail"))
+    currency = models.ForeignKey(
+        Currency,
+        related_name="endorsements",
+        verbose_name=_("currency"),
+        on_delete=models.PROTECT,
+    )
+    # forma de pago
+    payment_method = models.ForeignKey(
+        PaymentMethod,
+        related_name="endorsements",
+        verbose_name=_("payment method"),
+        on_delete=models.PROTECT,
+    )
+
+    @property
+    def emission_right(self):
+        return round(self.net_premium * self.emission_right_percentage, 2)
+
+    @property
+    def tax(self):
+        value = self.net_premium + self.emission_right
+        return round(value * self.tax_percentage, 2)
+
+    # prima comercial
+    @property
+    def commercial_premium(self):
+        return round(self.net_premium + self.emission_right, 2)
+
+    # prima total
+    @property
+    def total(self):
+        return self.net_premium + self.emission_right + self.tax
+
+    @property
+    def net_commission(self):
+        return round(self.net_premium * self.plan_commission_percentage, 2)
+
+    @property
+    def seller_commission(self):
+        return round(
+            self.seller_commission_percentage * self.net_commission, 2
+        )
+
+    @property
+    def kcs_commission(self):
+        return round(self.net_commission - self.seller_commission, 2)
+
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        abstract = True
+        verbose_name = _("issuance insurance endorsement")
+        verbose_name_plural = _("issuance insurance endorsements")
+
+
+class IssuanceInsuranceVehicleEndorsement(IssuanceInsuranceEndorsement):
+    issuance = models.ForeignKey(
+        IssuanceInsuranceVehicle,
+        related_name="endorsements",
+        on_delete=models.CASCADE,
+    )
 
 
 class CollectionInsuranceVehicle(models.Model):

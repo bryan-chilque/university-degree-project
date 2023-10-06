@@ -5,17 +5,12 @@
 {% endblock title_section %}
 {% block content %}
   <div class="row mb-3">
-    <div class="col-4">
+    <div class="col-6">
       <a class="btn btn-outline-dark btn-sm" href="{{ previous_page }}">
         <i class="fas fa-arrow-left"></i> Volver a la lista
       </a>
     </div>
-    <div class="col-4">
-      <a href="" class="btn btn-success">
-        <i class="ion ion-ios-checkmark-circle"></i> Crear endoso
-      </a>
-    </div>
-    <div class="col-4">
+    <div class="col-6">
       <a href="{{ anular }}" class="btn btn-danger">
         <i class="ion ion-md-alert"></i> Anular
       </a>
@@ -89,7 +84,7 @@
           </tr>
           <tr>
             <th>Monto comisión neto</th>
-            <td>{{ quotation.currency.symbol }}{{ seller_commission }} </td>
+            <td>{{ quotation.currency.symbol }}{{ object.seller_commission }} </td>
           </tr>
         </tbody>
       </table>
@@ -219,19 +214,15 @@
             <td>{{ object.collection_document }}</td>
           </tr>
           <tr>
-            <th>Fecha de registro</th>
-            <td>{{ object.created|date:'d/m/Y' }}</td>
-          </tr>
-          <tr>
             <th>Fecha de emisión de la póliza</th>
             <td>{{ object.issuance_date|date:'d/m/Y' }}</td>
           </tr>
           <tr>
-            <th>Fecha de vigencia inicio</th>
+            <th>Fecha inicio de vigencia</th>
             <td>{{ object.initial_validity|date:'d/m/Y' }}</td>
           </tr>
           <tr>
-            <th>Fecha de vigencia fin</th>
+            <th>Fecha fin de vigencia</th>
             <td>{{ object.final_validity|date:'d/m/Y' }}</td>
           </tr>
           <tr>
@@ -240,11 +231,11 @@
           </tr>
           <tr>
             <th>Monto comisión neto</th>
-            <td>{{ quotation.currency.symbol }}{{ object.net_commission_amount }}</td>
+            <td>{{ quotation.currency.symbol }}{{ object.net_commission }}</td>
           </tr>
           <tr>
             <th>Monto comisión KCS</th>
-            <td>{{ quotation.currency.symbol }}{{ kcs_commission }}</td>
+            <td>{{ quotation.currency.symbol }}{{ object.kcs_commission }}</td>
           </tr>
           <tr>
             <th>Tipo</th>
@@ -301,7 +292,7 @@
                     <i class="fas fa-download"></i>
                   </a>
                   <a
-                    href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_ed' view.kwargs.registrar_id document.id object.id%}"
+                    href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_ed' view.kwargs.registrar_id document.id object.id %}"
                     class="btn btn-primary btn-sm"
                   >
                     <i class="fas fa-trash"></i>
@@ -314,6 +305,54 @@
       {% else %}
         <div class="alert alert-info" role="alert">
           <i class="fas fa-info-circle"></i> No se han subido documentos a esta emisión.
+        </div>
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+        <h5 class="mb-0">Endosos con movimiento de prima</h5>
+        <a
+          class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
+          href="{{ create_endorsement }}"
+        >Crear endoso
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+      {% if endorsements %}
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Detalle</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for endorsement in endorsements %}
+              <tr>
+                <td>
+                  {{ endorsement.detail }}
+                </td>
+                <td class="align-middle d-flex gap-2">
+                  <a
+                    href="{% url 'rrggweb:issuance:insurance:vehicle:endorsement_detail' view.kwargs.registrar_id endorsement.id object.id %}"
+                    class="btn btn-primary btn-sm"
+                  >
+                    <i class="fas fa-eye"></i>
+                  </a>
+                  <a
+                    href="{% url 'rrggweb:issuance:insurance:vehicle:update_endorsement' view.kwargs.registrar_id endorsement.id object.id %}"
+                    class="btn btn-primary btn-sm"
+                  >
+                    <i class="fas fa-pencil-alt"></i>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="alert alert-info" role="alert">
+          <i class="fas fa-info-circle"></i> No se ha registrado endosos en esta emisión.
         </div>
       {% endif %}
     </div>

@@ -757,6 +757,24 @@ issuance_insurance_vehicle_urlpatterns = (
             views.IIVDeleteDocumentRenewalView.as_view(),
             name="delete_document_r",
         ),
+        path(
+            "create_endorsement/<int:issuance_id>/",
+            views.IIVCreateEndorsementDetailView.as_view(),
+            name="create_endorsement",
+        ),
+        path(
+            "endorsement_detail/<int:pk>/issuance/<int:issuance_id>/",
+            views.IIVDetailEndorsementView.as_view(),
+            name="endorsement_detail",
+        ),
+        path(
+            (
+                "update_endorsement/<int:endorsement_id>/"
+                "issuance/<int:issuance_id>/"
+            ),
+            views.IIVUpdateEndorsementView.as_view(),
+            name="update_endorsement",
+        ),
     ],
     "vehicle",
 )

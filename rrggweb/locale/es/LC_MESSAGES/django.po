@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-18 13:19-0500\n"
+"POT-Creation-Date: 2023-10-05 14:01-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -61,6 +61,10 @@ msgstr "aseguradora"
 #: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:59
 msgid "created at"
 msgstr "fecha de creación"
+
+#: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:72
+msgid "Please correct the errors below."
+msgstr "Por favor corrija los errores a continuación."
 
 #~ msgid "is the contracting party the same as the insured?"
 #~ msgstr "¿el contratante es el mismo que el asegurado?"
