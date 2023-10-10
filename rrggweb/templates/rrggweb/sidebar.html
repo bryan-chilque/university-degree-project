@@ -61,12 +61,12 @@
                       <span>Cobranzas</span>
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                      <li>
+                      {% comment %} <li>
                         <a href="{% url 'rrggweb:collection' view.kwargs.registrar_id %}">Lista de cobranzas</a>
                       </li>
                       <li>
                         <a href="{% url 'rrggweb:collection:insurance:vehicle:list' view.kwargs.registrar_id %}">Cobranza vehicular</a>
-                      </li>
+                      </li> {% endcomment %}
                     </ul>
                   </li>
 

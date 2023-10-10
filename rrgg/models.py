@@ -20,12 +20,12 @@ class Role(models.Model):
 class Area(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = _("area")
         verbose_name_plural = _("areas")
+
+    def __str__(self):
+        return self.name
 
 
 class Consultant(models.Model):
@@ -66,6 +66,9 @@ class ConsultantRate(models.Model):
         on_delete=models.PROTECT,
     )
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"venta nueva={self.new_sale}, renovación= {self.renewal}"
 
 
 class ConsultantMembership(models.Model):
@@ -244,17 +247,17 @@ class Vehicle(models.Model):
         on_delete=models.PROTECT,
     )
 
-    class Meta:
-        verbose_name = _("vehicle")
-        verbose_name_plural = _("vehicles")
-
     def save(self, *args, **kwargs):
         if not self.has_endorsee:
             self.endorsee_bank = None
         super().save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = _("vehicle")
+        verbose_name_plural = _("vehicles")
+
     def __str__(self):
-        return f"{self.brand} {self.vehicle_model} {self.plate}"
+        return f"{self.plate}"
 
 
 class VehicleOwnership(models.Model):
@@ -302,9 +305,6 @@ class InsuranceVehicle(models.Model):
         _("logo"), upload_to="insurance_vehicle_images/", blank=True, null=True
     )
 
-    def __str__(self):
-        return self.name
-
     @property
     def last_ratio(self):
         return self.ratios.order_by("-created").first()
@@ -312,6 +312,9 @@ class InsuranceVehicle(models.Model):
     class Meta:
         verbose_name = _("vehicle insurance")
         verbose_name_plural = _("vehicle insurance")
+
+    def __str__(self):
+        return self.name
 
 
 # relación precio - aseguradoras
@@ -325,23 +328,23 @@ class InsuranceVehicleRatio(models.Model):
         InsuranceVehicle, related_name="ratios", on_delete=models.PROTECT
     )
 
-    def __str__(self):
-        return f"{self.insurance_vehicle}"
-
     class Meta:
         verbose_name = _("vehicle insurance ratio")
         verbose_name_plural = _("vehicle insurance ratios")
+
+    def __str__(self):
+        return f"{self.insurance_vehicle}"
 
 
 class Risk(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = _("risk")
         verbose_name_plural = _("risks")
+
+    def __str__(self):
+        return self.name
 
 
 class RiskInsuranceVehicle(models.Model):
@@ -365,12 +368,12 @@ class InsurancePlan(models.Model):
         on_delete=models.PROTECT,
     )
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = _("insurance plan")
         verbose_name_plural = _("insurance plans")
+
+    def __str__(self):
+        return self.name
 
 
 class QuotationInsurance(models.Model):
@@ -493,49 +496,45 @@ class QuotationInsuranceVehiclePremium(models.Model):
     def direct_debit(self):
         return round(self.total / 12, 2)
 
-    def __str__(self) -> str:
-        return (
-            f"premium={self.amount},"
-            f" er={self.emission_right},"
-            f" tax={self.tax} total={self.total}"
-        )
+    def __str__(self):
+        return f"prima neta={self.amount}, total={self.total}"
 
 
 class IssuanceInsuranceStatus(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = _("issuance insurance status")
         verbose_name_plural = _("issuance insurance status")
+
+    def __str__(self):
+        return self.name
 
 
 class IssuanceInsuranceType(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = _("issuance insurance type")
         verbose_name_plural = _("issuance insurance type")
+
+    def __str__(self):
+        return self.name
 
 
 class PaymentMethod(models.Model):
     name = models.CharField(_("name"), max_length=64, unique=True)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = _("payment method")
         verbose_name_plural = _("payment methods")
 
+    def __str__(self):
+        return self.name
 
-# Issuance
-class IssuanceInsuranceVehicle(models.Model):
+
+# emisión de seguro / póliza
+class IssuanceInsurance(models.Model):
     # numero de póliza
     policy = models.CharField(_("policy number"), max_length=64)
     # documento de cobranza
@@ -597,14 +596,26 @@ class IssuanceInsuranceVehicle(models.Model):
         verbose_name=_("payment method"),
         on_delete=models.PROTECT,
     )
+    # fecha de registro
+    created = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
+        super().save(*args, **kwargs)
+
+    class Meta:
+        abstract = True
+        verbose_name = _("issuance insurance vehicle")
+        verbose_name_plural = _("issues insurance vehicle")
+
+
+class IssuanceInsuranceVehicle(IssuanceInsurance):
     quotation_vehicle_premium = models.ForeignKey(
         QuotationInsuranceVehiclePremium,
         related_name="issuance",
         on_delete=models.PROTECT,
     )
-    # fecha de registro
-    created = models.DateTimeField(auto_now_add=True)
 
     @property
     def net_commission(self):
@@ -620,15 +631,6 @@ class IssuanceInsuranceVehicle(models.Model):
     @property
     def kcs_commission(self):
         return round(self.net_commission - self.seller_commission, 2)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
-        super().save(*args, **kwargs)
-
-    class Meta:
-        verbose_name = _("issuance insurance vehicle")
-        verbose_name_plural = _("issues insurance vehicle")
 
 
 class IssuanceInsuranceVehicleDocument(models.Model):

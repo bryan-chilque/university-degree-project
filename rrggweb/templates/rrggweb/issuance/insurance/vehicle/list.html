@@ -55,6 +55,7 @@
                     <th>Vehículo</th>
                     <th>Vigencia</th>
                     <th>Aseguradora</th>
+                    <th>Asesor</th>
                     <th>Tipo</th>
                     <th>Estado</th>
                     <th>Acciones</th>
@@ -64,12 +65,11 @@
                 {% for issuance in object_list %}
                     <tr>
                         <td class="align-middle" scope="row">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.customer }}</td>
-                        <td class="align-middle">
-                            {{ issuance.policy }}
-                        </td>
+                        <td class="align-middle">{{ issuance.policy }}</td>
                         <td class="align-middle">{{ issuance.quotation_vehicle_premium.quotation_insurance_vehicle.vehicle.plate }}</td>
                         <td class="align-middle">{{ issuance.final_validity | date:'d/m/Y' }}</td>
                         <td class="align-middle">{{ issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+                        <td class="align-middle">{{ issuance.consultant_seller }}</td>
                         <td class="align-middle">{{ issuance.issuance_type.name }}</td>
                         <td class="align-middle">
                             {% if issuance.status.name == "Vigente" %}

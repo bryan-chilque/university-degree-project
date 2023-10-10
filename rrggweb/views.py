@@ -419,6 +419,60 @@ class UpdateOwnerSupportView(PersonFormSupportView, UpdateView):
 # QUOTATION
 
 
+class QuotationListSupportView(LoginRequiredMixin, ListView):
+    model = rrgg.models.QuotationInsuranceVehicle
+    paginate_by = 10
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return (
+                rrgg.models.QuotationInsuranceVehicle.objects.filter(
+                    Q(customer__natural_person__given_name__icontains=query)
+                    | Q(
+                        customer__natural_person__first_surname__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__natural_person__second_surname__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__natural_person__document_number__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__registered_name__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__general_manager__icontains=query  # noqa: E501
+                    )
+                    | Q(
+                        customer__legal_person__document_number__icontains=query  # noqa: E501
+                    )
+                    | Q(consultant_seller__given_name__icontains=query)
+                    | Q(consultant_seller__first_surname__icontains=query)
+                    | Q(vehicle__plate__icontains=query)
+                )
+                .exclude(consultant_seller=None)
+                .order_by("-id")
+            )
+        else:
+            return (
+                super()
+                .get_queryset()
+                .exclude(consultant_seller=None)
+                .order_by("-id")
+            )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Lista de cotizaciones"
+        context["new_register"] = urls.reverse(
+            "rrggweb:quotation:insurance:vehicle:select_role",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        context["search_query"] = self.request.GET.get("q", "")
+        return context
+
+
 class CreateQuotationSupportView(
     LoginRequiredMixin, rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
@@ -799,59 +853,16 @@ class QuotationView(TemplateView):
         return context
 
 
-class QIVListView(LoginRequiredMixin, ListView):
+class QIVListView(QuotationListSupportView):
     template_name = "rrggweb/quotation/insurance/vehicle/list.html"
-    model = rrgg.models.QuotationInsuranceVehicle
-    paginate_by = 10
-
-    def get_queryset(self):
-        query = self.request.GET.get("q")
-        if query:
-            return (
-                rrgg.models.QuotationInsuranceVehicle.objects.filter(
-                    Q(customer__natural_person__given_name__icontains=query)
-                    | Q(
-                        customer__natural_person__first_surname__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__natural_person__second_surname__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__natural_person__document_number__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__registered_name__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__general_manager__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__document_number__icontains=query  # noqa: E501
-                    )
-                    | Q(consultant_seller__given_name__icontains=query)
-                    | Q(consultant_seller__first_surname__icontains=query)
-                    | Q(vehicle__plate__icontains=query)
-                )
-                .exclude(consultant_seller=None)
-                .order_by("-id")
-            )
-        else:
-            return (
-                super()
-                .get_queryset()
-                .exclude(consultant_seller=None)
-                .order_by("-id")
-            )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "COTIZACIÓN VEHICULAR"
-        context["subtitle"] = "Lista de cotizaciones"
         context["new_register"] = urls.reverse(
             "rrggweb:quotation:insurance:vehicle:select_role",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
-        context["search_query"] = self.request.GET.get("q", "")
         context["previous_page"] = urls.reverse(
             "rrggweb:quotation",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
@@ -2528,55 +2539,12 @@ class IIVDefineNewSaleView(LoginRequiredMixin, FormView):
 # ISSUANCE - QUOTATION - MAIN
 
 
-class IIVListQuotationView(LoginRequiredMixin, ListView):
+class IIVListQuotationView(QuotationListSupportView):
     template_name = "rrggweb/issuance/insurance/vehicle/list_quotations.html"
-    model = rrgg.models.QuotationInsuranceVehicle
-    paginate_by = 10
-
-    def get_queryset(self):
-        query = self.request.GET.get("q")
-        if query:
-            return (
-                rrgg.models.QuotationInsuranceVehicle.objects.filter(
-                    Q(customer__natural_person__given_name__icontains=query)
-                    | Q(
-                        customer__natural_person__first_surname__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__natural_person__second_surname__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__natural_person__document_number__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__registered_name__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__general_manager__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__document_number__icontains=query  # noqa: E501
-                    )
-                    | Q(consultant_seller__given_name__icontains=query)
-                    | Q(consultant_seller__first_surname__icontains=query)
-                    | Q(vehicle__plate__icontains=query)
-                )
-                .exclude(consultant_seller=None)
-                .order_by("-id")
-            )
-        else:
-            return (
-                super()
-                .get_queryset()
-                .exclude(consultant_seller=None)
-                .order_by("-id")
-            )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR - COTIZACIÓN"
-        context["subtitle"] = "Lista de cotizaciones vehiculares"
-        context["search_query"] = self.request.GET.get("q", "")
         context["previous_list"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:list_quotations",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
