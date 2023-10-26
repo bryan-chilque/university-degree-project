@@ -787,3 +787,46 @@ class CollectionInsuranceVehicle(models.Model):
 
     def __str__(self):
         return f"status={self.status()}"
+
+## Modelo para la data historica
+
+class HistoricalData(models.Model):
+    register_date = models.CharField(max_length=64, null=True)
+    collection_record_date = models.CharField(max_length=64, null=True)
+    customer = models.CharField(max_length=128, null=True)
+    document_number = models.CharField(max_length=32, null=True)
+    birth_date = models.CharField(max_length=64, null=True)
+    consultant = models.CharField(max_length=64, null=True)
+    consultant_type = models.CharField(max_length=64, null=True)
+    risk = models.CharField(max_length=64, null=True)
+    policy = models.CharField(max_length=64, null=True)
+    insurance_plan = models.CharField(max_length=64, null=True)
+    insurance_vehicle = models.CharField(max_length=64, null=True)
+    issuance_date = models.CharField(max_length=64, null=True)
+    payment_document = models.CharField(max_length=64, null=True)
+    expiration_date_first_coupon = models.CharField(max_length=64, null=True)
+    initial_validity = models.CharField(max_length=64, null=True)
+    final_validity = models.CharField(max_length=64, null=True)
+    payment_date = models.CharField(max_length=64, null=True)
+    payment_status_first_coupon = models.CharField(max_length=64, null=True)
+    currency = models.CharField(max_length=64, null=True)
+    status = models.CharField(max_length=64, null=True)
+    observations = models.CharField(max_length=64, null=True)
+    insured_amount = models.CharField(max_length=64, null=True)
+    kcs_commission_percentage = models.CharField(max_length=64, null=True)
+    net_premium = models.CharField(max_length=64, null=True)
+    commercial_premium = models.CharField(max_length=64, null=True)
+    total_premium = models.CharField(max_length=64, null=True)
+    net_commission_amount = models.CharField(max_length=64, null=True)
+    payment_method = models.CharField(max_length=64, null=True)
+    months = models.CharField(max_length=64, null=True)
+    year = models.CharField(max_length=64, null=True)
+    dolar_premium = models.CharField(max_length=64, null=True)
+    dolar_commission = models.CharField(max_length=64, null=True)
+    email = models.CharField(max_length=64, null=True)
+    policy_address = models.CharField(max_length=64, null=True)
+    phone_number = models.CharField(max_length=64, null=True)
+    phone_number2 = models.CharField(max_length=64, null=True)
+
+
+
