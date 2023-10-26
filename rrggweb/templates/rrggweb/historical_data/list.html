@@ -1,0 +1,48 @@
+{% extends "rrggweb/dashboard.html" %}
+
+{% block title_section %}Historical Data{% endblock title_section %}
+{% block content %}
+<h1>Historical Data</h1>
+<div class="dataTables_filter">
+    <label>Search:
+        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="historical-data-table">
+    </label>
+</div>
+<table id="historical-data-table">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Policy</th>
+            <th>Insurance Plan</th>
+            <th>Payment Status First Coupon</th>
+            <th>Total Premium</th>
+            <th>Expiration Date First Coupon</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in data %}
+        <tr>
+            <td>{{ record.customer }}</td>
+            <td>{{ record.policy }}</td>
+            <td>{{ record.insurance_plan }}</td>
+            <td>{{ record.payment_status_first_coupon }}</td>
+            <td>{{ record.total_premium }}</td>
+            <td>{{ record.expiration_date_first_coupon }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#historical-data-table').DataTable({
+            "pageLength": 10, // Display 10 records per page
+            "searching": true // Enable search functionality
+        });
+    });
+</script>
+{% endblock %}

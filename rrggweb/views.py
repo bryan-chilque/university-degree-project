@@ -5965,3 +5965,10 @@ class CMCreateLegalPersonView(CreateLegalPersonSupportView):
             },
         )
         return context
+
+## View para la data historica
+
+class HistoricalDataListView(ListView):
+    model = rrgg.models.HistoricalData
+    template_name = 'rrggweb/historical_data/list.html'
+    context_object_name = 'data'
