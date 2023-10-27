@@ -307,6 +307,7 @@ class UpdateVehicleSupportView(
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
+        form.fields["class_type"].required = False
         form.fields["has_gps"].required = False
         form.fields["has_endorsee"].required = False
         form.fields["endorsement_bank"].required = False
