@@ -182,6 +182,19 @@ class DefineNewSaleForm(forms.Form):
     )
 
 
+class SelectRegistrationTypeForm(forms.Form):
+    TYPE_CHOICES = (
+        ("single_registration", "Registro único"),
+        ("multiple_registration", "Registro múltiple"),
+    )
+
+    type_registration = forms.ChoiceField(
+        choices=TYPE_CHOICES,
+        label=_("type registration"),
+        widget=forms.RadioSelect,
+    )
+
+
 class InsurancePlanForm(forms.Form):
     def __init__(self, riv_id=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -209,3 +222,56 @@ class IssuanceStatusForm(forms.Form):
         label=_("comment"),
         widget=forms.Textarea(attrs={"class": "form-control"}),
     )
+
+
+class PremiumQuotationForm(forms.ModelForm):
+    class Meta:
+        model = rrgg.models.QuotationInsuranceVehiclePremium
+        fields = ["amount", "rate"]
+
+    insured_amount = forms.IntegerField(
+        label=_("insured amount"),
+        widget=forms.NumberInput(attrs={"class": "form-control mb-2"}),
+    )
+    rate = forms.DecimalField(
+        label=_("rate"),
+        widget=forms.NumberInput(attrs={"class": "form-control mb-2"}),
+    )
+    amount = forms.DecimalField(
+        label=_("net premium"),
+        widget=forms.NumberInput(attrs={"class": "form-control mb-2"}),
+    )
+
+
+class CurrencyInsuranceForm(forms.Form):
+    def __init__(self, ivr_id=None, currency_id=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        insurance_vehicle = rrgg.models.InsuranceVehicleRatio.objects.all()
+        self.fields["aseguradoras"] = forms.ModelChoiceField(
+            queryset=insurance_vehicle,
+            empty_label=None,
+            widget=forms.Select(attrs={"class": "form-select mb-2"}),
+        )
+        if ivr_id:
+            try:
+                selected_ivr = rrgg.models.InsuranceVehicle.objects.get(
+                    pk=ivr_id
+                )
+                self.fields["aseguradoras"].initial = selected_ivr
+            except rrgg.models.InsuranceVehicleRatio.DoesNotExist:
+                pass
+
+        currencies = rrgg.models.Currency.objects.all()
+        self.fields["moneda"] = forms.ModelChoiceField(
+            queryset=currencies,
+            empty_label=None,
+            widget=forms.Select(attrs={"class": "form-select mb-2"}),
+        )
+        if currency_id:
+            try:
+                selected_currency = rrgg.models.Currency.objects.get(
+                    pk=currency_id
+                )
+                self.fields["moneda"].initial = selected_currency
+            except rrgg.models.Currency.DoesNotExist:
+                pass

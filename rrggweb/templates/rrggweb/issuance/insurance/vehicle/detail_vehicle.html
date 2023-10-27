@@ -1,0 +1,157 @@
+{% extends 'rrggweb/dashboard.html' %}
+{% block title_section %}
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
+{% endblock title_section %}
+{% block content %}
+  <div class="row mb-3">
+    <div class="col-12">
+      <a class="btn btn-outline-dark btn-sm" href="{{ previous_page }}">
+        <i class="fas fa-arrow-left"></i> Volver a la póliza
+      </a>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <h5 class="mb-2">Detalle del bien asegurado</h5>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Asegurado</th>
+            <td>{{ object.ownership.pick }}</td>
+          </tr>
+          <tr>
+            <th>Placa</th>
+            <td>{{ object.plate }}</td>
+          </tr>
+          <tr>
+            <th>Marca</th>
+            <td>{{ object.brand }}</td>
+          </tr>
+          <tr>
+            <th>Modelo</th>
+            <td>{{ object.vehicle_model }}</td>
+          </tr>
+          <tr>
+            <th>Año de fabricación</th>
+            <td>{{ object.fabrication_year }}</td>
+          </tr>
+          <tr>
+            <th>Número de motor</th>
+            <td>{{ object.engine }}</td>
+          </tr>
+          <tr>
+            <th>Número de chasis</th>
+            <td>{{ object.chassis }}</td>
+          </tr>
+          <tr>
+            <th>Número de asientos</th>
+            <td>{{ object.seat_number }}</td>
+          </tr>
+          <tr>
+            <th>Tipo de uso</th>
+            <td>{{ object.use_type }}</td>
+          </tr>
+          <tr>
+            <th>Clase</th>
+            {% if object.class_type %}
+              <td>{{ object.class_type }}</td>
+            {% else %}
+              <td>-</td>
+            {% endif %}
+          </tr>
+          <tr>
+            <th>¿Requiere gps?</th>
+            {% if object.has_gps %}
+              <td>Sí</td>
+            {% else %}
+              <td>No</td>
+            {% endif %}
+          </tr>
+          <tr>
+            <th>¿Es endosado?</th>
+            {% if object.has_endorsee %}
+              <td>Sí</td>
+            {% else %}
+              <td>No</td>
+            {% endif %}
+          </tr>
+          {% if object.has_endorsee %}
+            <tr>
+              <th >Banco</th>
+              <td>{{ object.endorsement_bank }}</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <h5 class="mb-2">Detalle de la póliza</h5>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Suma asegurada</th>
+              <td> {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.quotation_insurance_vehicle.insured_amount }} </td>
+            </tr>
+            <tr>
+              <th>Prima neta</th>
+              <td> {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.amount }} </td>
+            </tr>
+            <tr>
+              <th>Tasa</th>
+              <td> {{ premium.rate }} %</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row-md-6">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+          <h5 class="mb-0">Endosos con movimiento de prima</h5>
+          <a
+            class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
+            href="{% url 'rrggweb:issuance:insurance:vehicle:create_endorsement_v' view.kwargs.registrar_id view.kwargs.premium_id view.kwargs.issuance_id %}"
+          >Crear endoso
+            <i class="fas fa-plus"></i>
+          </a>
+        </div>
+        {% if object.endorsements.all %}
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Detalle</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for endorsement in object.endorsements.all %}
+                <tr>
+                  <td>
+                    {{ endorsement.detail }}
+                  </td>
+                  <td class="align-middle d-flex gap-2">
+                    <a
+                      href="{% url 'rrggweb:issuance:insurance:vehicle:endorsement_detail_v' view.kwargs.registrar_id endorsement.id view.kwargs.premium_id view.kwargs.issuance_id %}"
+                      class="btn btn-primary btn-sm"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    <a
+                      href="{% url 'rrggweb:issuance:insurance:vehicle:update_endorsement_v' view.kwargs.registrar_id endorsement.id view.kwargs.premium_id view.kwargs.issuance_id %}"
+                      class="btn btn-primary btn-sm"
+                    >
+                      <i class="fas fa-pencil-alt"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle"></i> No se ha registrado endosos en esta emisión.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+{% endblock %}

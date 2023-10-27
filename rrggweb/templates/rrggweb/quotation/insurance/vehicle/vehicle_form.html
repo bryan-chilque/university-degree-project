@@ -11,6 +11,8 @@
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=6 %}
       {% elif initial_step == 3 and final_step == 9 %}
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=9 %}
+      {% elif initial_step == 4 and final_step == 9 %}
+        {% include "rrggweb/utils/stepper.html" with step=4 max_step=9 %}
       {% endif %}
       <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">
@@ -83,6 +85,15 @@
                 {% endif %}
               </div>
               <div class="col-md-4 mb-2">
+                <label for="id_class_type">{{ form.class_type.label|capfirst }}:</label>
+                {{ form.class_type }}
+                {% if form.class_type.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {% for error in form.class_type.errors %}{{ error }}{% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="col-md-4 mb-2">
                 <label for="id_chassis">{{ form.chassis.label|capfirst }}:</label>
                 {{ form.chassis }}
                 {% if form.chassis.errors %}
@@ -127,12 +138,12 @@
                   </div>
                 {% endif %}
               </div>
-              <div class="col-md-4 mb-2 d-none" id="endorsee-bank-container">
-                <label for="id_endorsee_bank">Banco endosado:</label>
-                {{ form.endorsee_bank }}
-                {% if form.endorsee_bank.errors %}
+              <div class="col-md-4 mb-2 d-none" id="endorsement-bank-container">
+                <label for="id_endorsement_bank">Banco endosatario:</label>
+                {{ form.endorsement_bank }}
+                {% if form.endorsement_bank.errors %}
                   <div class="alert alert-danger" role="alert">
-                    {% for error in form.endorsee_bank.errors %}{{ error }}{% endfor %}
+                    {% for error in form.endorsement_bank.errors %}{{ error }}{% endfor %}
                   </div>
                 {% endif %}
               </div>
@@ -159,8 +170,8 @@
   </div>
   <script>
     const checkbox = document.querySelector('#id_has_endorsee');
-    const container = document.querySelector('#endorsee-bank-container');
-    const input = document.querySelector('#id_endorsee_bank');
+    const container = document.querySelector('#endorsement-bank-container');
+    const input = document.querySelector('#id_endorsement_bank');
 
     // Check if the checkbox is checked when the page loads
     if (checkbox.checked) {

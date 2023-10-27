@@ -114,6 +114,10 @@
   pk: 8
   fields:
     name: Comercial
+- model: rrgg.usetype
+  pk: 9
+  fields:
+    name: Ambulancia
 - model: rrgg.currency
   pk: 1
   fields:

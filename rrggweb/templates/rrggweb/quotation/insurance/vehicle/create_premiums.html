@@ -141,8 +141,8 @@
       }
     });
 
-    const insuredAmount = Number(document.querySelector('#insured_amount').textContent);
-
+    const insuredAmountString = document.querySelector('#insured_amount').textContent;
+    const insuredAmount = parseInt(insuredAmountString.replace(',', '.'))
     for (let i = 0; i <= 4; i++) {
       const amountInput = document.querySelector(`#id_form-${i}-amount`);
       const rateInput = document.querySelector(`#id_form-${i}-rate`);
@@ -153,7 +153,7 @@
 
       amountInput.addEventListener('input', () => {
         const amount = Number(amountInput.value);
-        const rate = insuredAmount / amount;
+        const rate =  amount / insuredAmount;
         rateInput.value = rate.toFixed(2);
       });
 

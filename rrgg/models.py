@@ -234,9 +234,9 @@ class Vehicle(models.Model):
     has_gps = models.BooleanField(_("has gps?"), default=False)
     # vehículo tiene endoso
     has_endorsee = models.BooleanField(_("has endorsee?"), default=False)
-    endorsee_bank = models.ForeignKey(
+    endorsement_bank = models.ForeignKey(
         Bank,
-        verbose_name=_("endorsee bank"),
+        verbose_name=_("endorsement bank"),
         on_delete=models.PROTECT,
         null=True,
     )
@@ -246,6 +246,7 @@ class Vehicle(models.Model):
         verbose_name=_("usage"),
         on_delete=models.PROTECT,
     )
+    class_type = models.CharField(_("class"), max_length=64, null=True)
 
     def save(self, *args, **kwargs):
         if not self.has_endorsee:
@@ -419,7 +420,9 @@ class QuotationInsurance(models.Model):
 
 
 class QuotationInsuranceVehicle(QuotationInsurance):
-    insured_amount = models.PositiveIntegerField(_("insured amount"))
+    insured_amount = models.DecimalField(
+        _("insured amount"), decimal_places=2, max_digits=10
+    )
     vehicle = models.ForeignKey(
         Vehicle,
         related_name="quotation_insurance_vehicles",
@@ -465,26 +468,27 @@ class QuotationInsuranceVehiclePremium(models.Model):
         related_name="premiums",
         on_delete=models.PROTECT,
     )
+    # para venta múltiple
+    in_progress = models.BooleanField(_("in progress"), default=False)
     created = models.DateTimeField(_("created at"), auto_now_add=True)
 
     @property
     def emission_right(self):
         return round(self.amount * self.emission_right_percentage, 2)
 
-    @property
-    def tax(self):
-        value = self.amount + self.emission_right
-        return round(value * self.tax_percentage, 2)
-
     # prima comercial
     @property
     def commercial_premium(self):
         return round(self.amount + self.emission_right, 2)
 
+    @property
+    def tax(self):
+        return round(self.commercial_premium * self.tax_percentage, 2)
+
     # prima total
     @property
     def total(self):
-        return self.amount + self.emission_right + self.tax
+        return self.commercial_premium + self.tax
 
     # fee
     @property
@@ -601,7 +605,7 @@ class IssuanceInsurance(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.status = IssuanceInsuranceStatus.objects.get(name="Vigente")
+            self.status_id = 1
         super().save(*args, **kwargs)
 
     class Meta:
@@ -611,16 +615,57 @@ class IssuanceInsurance(models.Model):
 
 
 class IssuanceInsuranceVehicle(IssuanceInsurance):
-    quotation_vehicle_premium = models.ForeignKey(
+    quotation_vehicle_premiums = models.ManyToManyField(
         QuotationInsuranceVehiclePremium,
-        related_name="issuance",
-        on_delete=models.PROTECT,
+        related_name="issuances",
     )
 
     @property
+    def insured_amount(self):
+        premiums = self.quotation_vehicle_premiums.all()
+        quotations = []
+        for premium in premiums:
+            quotations.append(premium.quotation_insurance_vehicle)
+        amount = sum(quotation.insured_amount for quotation in quotations)
+        return round(amount, 2)
+
+    @property
+    def rate(self):
+        premiums = self.quotation_vehicle_premiums.all()
+        amount = sum(premium.rate for premium in premiums) / len(premiums)
+        return round(amount, 2)
+
+    @property
+    def net_premium(self):
+        premiums = self.quotation_vehicle_premiums.all()
+        amount = sum(premium.amount for premium in premiums)
+        return round(amount, 2)
+
+    @property
+    def emission_right(self):
+        premium = self.quotation_vehicle_premiums.first()
+        amount = self.net_premium * premium.emission_right_percentage
+        return round(amount, 2)
+
+    @property
+    def commercial_premium(self):
+        return round(self.net_premium + self.emission_right, 2)
+
+    @property
+    def tax(self):
+        premium = self.quotation_vehicle_premiums.first()
+        amount = self.commercial_premium * premium.tax_percentage
+        return round(amount, 2)
+
+    @property
+    def total_premium(self):
+        return round(self.commercial_premium + self.tax, 2)
+
+    @property
     def net_commission(self):
-        q = self.quotation_vehicle_premium
-        return round(q.amount * self.plan_commission_percentage, 2)
+        premiums = self.quotation_vehicle_premiums.all()
+        amount = sum(premium.amount for premium in premiums)
+        return round(amount * self.plan_commission_percentage, 2)
 
     @property
     def seller_commission(self):
@@ -643,7 +688,7 @@ class IssuanceInsuranceVehicleDocument(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
 
-class IssuanceInsuranceEndorsement(models.Model):
+class Endorsement(models.Model):
     insured_amount = models.PositiveIntegerField(_("insured amount"))
     net_premium = models.DecimalField(
         _("net premium"), decimal_places=2, max_digits=10, default=0
@@ -700,8 +745,8 @@ class IssuanceInsuranceEndorsement(models.Model):
 
     @property
     def tax(self):
-        value = self.net_premium + self.emission_right
-        return round(value * self.tax_percentage, 2)
+        amount = self.net_premium + self.emission_right
+        return round(amount * self.tax_percentage, 2)
 
     # prima comercial
     @property
@@ -731,13 +776,13 @@ class IssuanceInsuranceEndorsement(models.Model):
 
     class Meta:
         abstract = True
-        verbose_name = _("issuance insurance endorsement")
-        verbose_name_plural = _("issuance insurance endorsements")
+        verbose_name = _("endorsement")
+        verbose_name_plural = _("endorsements")
 
 
-class IssuanceInsuranceVehicleEndorsement(IssuanceInsuranceEndorsement):
-    issuance = models.ForeignKey(
-        IssuanceInsuranceVehicle,
+class EndorsementVehicle(Endorsement):
+    vehicle = models.ForeignKey(
+        Vehicle,
         related_name="endorsements",
         on_delete=models.CASCADE,
     )

@@ -17,150 +17,236 @@
     </div>
   </div>
   <div class="row mb-3">
-    <div class="col-md-6">
-      <h5 class="mb-0">Datos del contratante</h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>Tipo de documento</th>
-            <td>{{ customer.pick.document_type}}</td>
-          </tr>
-          <tr>
-            <th>Número de documento</th>
-            <td>{{ customer.pick.document_number }}</td>
-          </tr>
-          <tr>
-            <th>Nombres y apellidos</th>
-            <td>{{ customer }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <h5 class="mb-0">Datos del asegurado</h5>
-      <table class="table table-bordered">
-        <tbody>
-          {% if update_owner %}
+    {% if object.quotation_vehicle_premiums.all|length == 1 %}
+      <div class="col-md-6">
+        <h5 class="mb-0">Datos del contratante</h5>
+        <table class="table table-bordered">
+          <tbody>
             <tr>
               <th>Tipo de documento</th>
-              <td> dni </td>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer.pick.document_type}}</td>
             </tr>
             <tr>
               <th>Número de documento</th>
-              <td>{{ owner.pick.document_number }}</td>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer.pick.document_number }}</td>
             </tr>
             <tr>
               <th>Nombres y apellidos</th>
-              <td>{{ owner }}</td>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer }}</td>
             </tr>
-          {% else %}
+          </tbody>
+        </table>
+        <h5 class="mb-0">Datos del asegurado</h5>
+        <table class="table table-bordered">
+          <tbody>
+            {% if object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.ownership.owner %}
+              <tr>
+                <th>Tipo de documento</th>
+                <td> {{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.ownership.pick.document_type }} </td>
+              </tr>
+              <tr>
+                <th>Número de documento</th>
+                <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.ownership.pick.document_number }}</td>
+              </tr>
+              <tr>
+                <th>Nombres y apellidos</th>
+                <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.ownership }}</td>
+              </tr>
+            {% else %}
+              <tr>
+                <th>Tipo de documento</th>
+                <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer.pick.document_type }}</td>
+              </tr>
+              <tr>
+                <th>Número de documento</th>
+                <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer.pick.document_number }}</td>
+              </tr>
+              <tr>
+                <th>Nombres y apellidos</th>
+                <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer }}</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+        <h5 class="mb-0">Datos del asesor</h5>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Tipo de asesor</th>
+              <td>{{ seller.role }}</td>
+            </tr>
+            <tr>
+              <th>Nombres y apellidos</th>
+              <td>{{ seller }}</td>
+            </tr>
+            <tr>
+              <th>Comisión</th>
+              <td>{% widthratio object.seller_commission_percentage 1 100 %}%</td>
+            </tr>
+            <tr>
+              <th>Monto comisión neto</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.seller_commission }} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h5 class="mb-0">Datos del Bien Asegurado</h5>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Placa</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.plate }}</td>
+            </tr>
+            <tr>
+              <th>Marca</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.brand }}</td>
+            </tr>
+            <tr>
+              <th>Modelo</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.vehicle_model }}</td>
+            </tr>
+            <tr>
+              <th>Año de fabricación</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.fabrication_year }}</td>
+            </tr>
+            <tr>
+              <th>Número de motor</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.engine }}</td>
+            </tr>
+            <tr>
+              <th>Número de chasis</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.chassis }}</td>
+            </tr>
+            <tr>
+              <th>Número de asientos</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.seat_number }}</td>
+            </tr>
+            <tr>
+              <th>Tipo de uso</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.use_type }}</td>
+            </tr>
+            <tr>
+              <th>Clase</th>
+              {% if object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.class_type %}
+                <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.class_type }}</td>
+              {% else %}
+                <td>-</td>
+              {% endif %}
+            </tr>
+            <tr>
+              <th>¿Requiere gps?</th>
+              {% if object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.has_gps %}
+                <td>Sí</td>
+              {% else %}
+                <td>No</td>
+              {% endif %}
+            </tr>
+            <tr>
+              <th>¿Es endosado?</th>
+              {% if object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.has_endorsee %}
+                <td>Sí</td>
+              {% else %}
+                <td>No</td>
+              {% endif %}
+            </tr>
+            {% if object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.has_endorsee %}
+              <tr>
+                <th >Banco</th>
+                <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.endorsement_bank }}</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="col-md-6">
+        <h5 class="mb-0">Datos del contratante</h5>
+        <table class="table table-bordered">
+          <tbody>
             <tr>
               <th>Tipo de documento</th>
-              <td>{{ customer.pick.document_type }}</td>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer.pick.document_type}}</td>
             </tr>
             <tr>
               <th>Número de documento</th>
-              <td>{{ customer.pick.document_number }}</td>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer.pick.document_number }}</td>
             </tr>
             <tr>
               <th>Nombres y apellidos</th>
-              <td>{{ customer }}</td>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.customer }}</td>
             </tr>
-          {% endif %}
-        </tbody>
-      </table>
-      <h5 class="mb-0">Datos del asesor</h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>Tipo de asesor</th>
-            <td>{{ seller.role }}</td>
-          </tr>
-          <tr>
-            <th>Nombres y apellidos</th>
-            <td>{{ seller }}</td>
-          </tr>
-          <tr>
-            <th>Comisión</th>
-            <td>{% widthratio object.seller_commission_percentage 1 100 %}%</td>
-          </tr>
-          <tr>
-            <th>Monto comisión neto</th>
-            <td>{{ quotation.currency.symbol }}{{ object.seller_commission }} </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-6">
-      <h5 class="mb-0">Datos del Bien Asegurado</h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>Placa</th>
-            <td>{{ vehicle.plate }}</td>
-          </tr>
-          <tr>
-            <th>Marca</th>
-            <td>{{ vehicle.brand }}</td>
-          </tr>
-          <tr>
-            <th>Modelo</th>
-            <td>{{ vehicle.vehicle_model }}</td>
-          </tr>
-          <tr>
-            <th>Año de fabricación</th>
-            <td>{{vehicle.fabrication_year }}</td>
-          </tr>
-          <tr>
-            <th>Número de motor</th>
-            <td>{{ vehicle.engine }}</td>
-          </tr>
-          <tr>
-            <th>Número de chasis</th>
-            <td>{{ vehicle.chassis }}</td>
-          </tr>
-          <tr>
-            <th>Número de asientos</th>
-            <td>{{ vehicle.seat_number }}</td>
-          </tr>
-          <tr>
-            <th>Tipo de uso</th>
-            <td>{{ vehicle.use_type }}</td>
-          </tr>
-          <tr>
-            <th>¿Requiere gps?</th>
-            {% if vehicle.has_gps %}
-              <td>Sí</td>
-            {% else %}
-              <td>No</td>
-            {% endif %}
-          </tr>
-          <tr>
-            <th>¿Es endosado?</th>
-            {% if vehicle.has_endorsee %}
-              <td>Sí</td>
-            {% else %}
-              <td>No</td>
-            {% endif %}
-          </tr>
-          {% if vehicle.has_endorsee %}
+          </tbody>
+        </table>
+        <h5 class="mb-0">Datos del asesor</h5>
+        <table class="table table-bordered">
+          <tbody>
             <tr>
-              <th >Banco</th>
-              <td>{{ vehicle.endorsee_bank }}</td>
+              <th>Tipo de asesor</th>
+              <td>{{ seller.role }}</td>
             </tr>
-          {% endif %}
-        </tbody>
-      </table>
-    </div>
+            <tr>
+              <th>Nombres y apellidos</th>
+              <td>{{ seller }}</td>
+            </tr>
+            <tr>
+              <th>Comisión</th>
+              <td>{% widthratio object.seller_commission_percentage 1 100 %}%</td>
+            </tr>
+            <tr>
+              <th>Monto comisión neto</th>
+              <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.seller_commission }} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h5 class="mb-0">Datos de los Bienes Asegurados</h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Placa</th>
+              <th>Suma Asegurada</th>
+              <th>Prima neta<th>
+              </tr>
+              </thead>
+              <tbody>
+                {% for premium in premiums %}
+                  <tr>
+                    <td>
+                      {{ premium.quotation_insurance_vehicle.vehicle }}
+                    </td>
+                    <td>
+                      {{ premium.quotation_insurance_vehicle.insured_amount }}
+                    </td>
+                    <td>
+                      {{ premium.amount }}
+                    </td>
+                    <td class="align-middle d-flex gap-2">
+                      <a
+                        href="{% url 'rrggweb:issuance:insurance:vehicle:vehicle_detail' view.kwargs.registrar_id premium.quotation_insurance_vehicle.vehicle.id premium.id object.id%}"
+                        class="btn btn-primary btn-sm"
+                      >
+                        <i class="fas fa-eye"></i>
+                      </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+    {% endif %}
     <div class="col-md-6">
       <h5 class="mb-0">Datos de la emisión</h5>
       <table class="table table-bordered">
         <tbody>
           <tr>
             <th>Ramo</th>
-            <td>{{ quotation.risk }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.risk }}</td>
           </tr>
           <tr>
             <th>Aseguradora</th>
-            <td>{{ ratio.insurance_vehicle }}</td>
+            <td>{{ premiums.0.insurance_vehicle_ratio.insurance_vehicle }}</td>
           </tr>
           <tr>
             <th>Plan de seguro</th>
@@ -168,35 +254,35 @@
           </tr>
           <tr>
             <th>Tipo de moneda</th>
-            <td>{{ quotation.currency }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency }}</td>
           </tr>
           <tr>
             <th>Suma asegurada</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.quotation_insurance_vehicle.insured_amount }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.insured_amount }}</td>
           </tr>
           <tr>
             <th>Tasa</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.rate }}</td>
+            <td>{{ object.rate }} %</td>
           </tr>
           <tr>
             <th>Prima neta</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.amount }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.net_premium }}</td>
           </tr>
           <tr>
             <th>Derecho de emisión</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.emission_right }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.emission_right }}</td>
           </tr>
           <tr>
             <th>Prima comercial</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.commercial_premium }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.commercial_premium }}</td>
           </tr>
           <tr>
             <th>IGV</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.tax }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.tax }}</td>
           </tr>
           <tr>
             <th>Prima total</th>
-            <td>{{quotation.currency.symbol}}{{ quotation_premium.total }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.total_premium }}</td>
           </tr>
         </tbody>
       </table>
@@ -231,11 +317,11 @@
           </tr>
           <tr>
             <th>Monto comisión neto</th>
-            <td>{{ quotation.currency.symbol }}{{ object.net_commission }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.net_commission }}</td>
           </tr>
           <tr>
             <th>Monto comisión KCS</th>
-            <td>{{ quotation.currency.symbol }}{{ object.kcs_commission }}</td>
+            <td>{{ object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ object.kcs_commission }}</td>
           </tr>
           <tr>
             <th>Tipo</th>
@@ -308,53 +394,55 @@
         </div>
       {% endif %}
     </div>
-    <div class="col-md-6">
-      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-        <h5 class="mb-0">Endosos con movimiento de prima</h5>
-        <a
-          class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
-          href="{{ create_endorsement }}"
-        >Crear endoso
-          <i class="fas fa-plus"></i>
-        </a>
-      </div>
-      {% if endorsements %}
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Detalle</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for endorsement in endorsements %}
-              <tr>
-                <td>
-                  {{ endorsement.detail }}
-                </td>
-                <td class="align-middle d-flex gap-2">
-                  <a
-                    href="{% url 'rrggweb:issuance:insurance:vehicle:endorsement_detail' view.kwargs.registrar_id endorsement.id object.id %}"
-                    class="btn btn-primary btn-sm"
-                  >
-                    <i class="fas fa-eye"></i>
-                  </a>
-                  <a
-                    href="{% url 'rrggweb:issuance:insurance:vehicle:update_endorsement' view.kwargs.registrar_id endorsement.id object.id %}"
-                    class="btn btn-primary btn-sm"
-                  >
-                    <i class="fas fa-pencil-alt"></i>
-                  </a>
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      {% else %}
-        <div class="alert alert-info" role="alert">
-          <i class="fas fa-info-circle"></i> No se ha registrado endosos en esta emisión.
+    {% if object.quotation_vehicle_premiums.all|length == 1 %}
+      <div class="col-md-6">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+          <h5 class="mb-0">Endosos con movimiento de prima</h5>
+          <a
+            class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
+            href="{% url 'rrggweb:issuance:insurance:vehicle:create_endorsement' view.kwargs.registrar_id object.quotation_vehicle_premiums.first.id object.id %}"
+          >Crear endoso
+            <i class="fas fa-plus"></i>
+          </a>
         </div>
-      {% endif %}
-    </div>
+        {% if object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.endorsements.all %}
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Detalle</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for endorsement in object.quotation_vehicle_premiums.first.quotation_insurance_vehicle.vehicle.endorsements.all %}
+                <tr>
+                  <td>
+                    {{ endorsement.detail }}
+                  </td>
+                  <td class="align-middle d-flex gap-2">
+                    <a
+                      href="{% url 'rrggweb:issuance:insurance:vehicle:endorsement_detail' view.kwargs.registrar_id endorsement.id object.quotation_vehicle_premiums.first.id object.id %}"
+                      class="btn btn-primary btn-sm"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    <a
+                      href="{% url 'rrggweb:issuance:insurance:vehicle:update_endorsement' view.kwargs.registrar_id endorsement.id object.quotation_vehicle_premiums.first.id object.id %}"
+                      class="btn btn-primary btn-sm"
+                    >
+                      <i class="fas fa-pencil-alt"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle"></i> No se ha registrado endosos en esta emisión.
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 {% endblock content %}

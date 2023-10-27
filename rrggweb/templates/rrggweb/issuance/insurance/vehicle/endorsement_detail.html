@@ -28,11 +28,11 @@
           </tr>
           <tr>
             <th>Ramo</th>
-            <td>{{ object.issuance.insurance_plan.risk_insurance_vehicle.risk }}</td>
+            <td>{{ issuance.insurance_plan.risk_insurance_vehicle.risk }}</td>
           </tr>
           <tr>
             <th>Aseguradora</th>
-            <td>{{ object.issuance.quotation_vehicle_premium.insurance_vehicle_ratio.insurance_vehicle }}</td>
+            <td>{{ issuance.quotation_vehicle_premiums.first.insurance_vehicle_ratio.insurance_vehicle }}</td>
           </tr>
           <tr>
             <th>Suma asegurada</th>
@@ -69,57 +69,56 @@
       <h5 class="mb-2">Datos de la emisión</h5>
       <table class="table table-bordered">
         <tbody>
-          <tbody>
-            <tr>
-              <th>Documento de cobranza</th>
-              <td>{{ object.collection_document }}</td>
-            </tr>
-            <tr>
-              <th>Tipo de moneda</th>
-              <td>{{ object.currency }}</td>
-            </tr>
-            <tr>
-              <th>Método de pago</th>
-              <td>{{ object.payment_method }}</td>
-            </tr>
-            <tr>
-              <th>Fecha de emisión</th>
-              <td>{{ object.issuance_date }}</td>
-            </tr>
-            <tr>
-              <th>Fecha inicio de vigencia</th>
-              <td>{{ object.initial_validity }}</td>
-            </tr>
-            <tr>
-              <th>Fecha fin de vigencia</th>
-              <td>{{ object.final_validity }}</td>
-            </tr>
-            <tr>
-              <th>Porcentaje de comisión KCS</th>
-              <td> {{ kcs_commission_percentage }}%</td>
-            </tr>
-            <tr>
-              <th>Monto comisión neto</th>
-              <td>{{ object.currency.symbol }}{{ object.net_commission }}</td>
-            </tr>
-            <tr>
-              <th>Monto comisión KCS</th>
-              <td>{{ object.currency.symbol }}{{ object.kcs_commission }}</td>
-            </tr>
-            <tr>
-              <th>Asesor</th>
-              <td>{{ object.issuance.consultant_seller }}</td>
-            </tr>
-            <tr>
-              <th>Porcentaje comisión del asesor</th>
-              <td>{% widthratio object.seller_commission_percentage 1 100 %}%</td>
-            </tr>
-            <tr>
-              <th>Monto comisión del asesor</th>
-              <td>{{ object.currency.symbol }}{{ object.seller_commission }} </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+          <tr>
+            <th>Documento de cobranza</th>
+            <td>{{ object.collection_document }}</td>
+          </tr>
+          <tr>
+            <th>Tipo de moneda</th>
+            <td>{{ object.currency }}</td>
+          </tr>
+          <tr>
+            <th>Método de pago</th>
+            <td>{{ object.payment_method }}</td>
+          </tr>
+          <tr>
+            <th>Fecha de emisión</th>
+            <td>{{ object.issuance_date }}</td>
+          </tr>
+          <tr>
+            <th>Fecha inicio de vigencia</th>
+            <td>{{ object.initial_validity }}</td>
+          </tr>
+          <tr>
+            <th>Fecha fin de vigencia</th>
+            <td>{{ object.final_validity }}</td>
+          </tr>
+          <tr>
+            <th>Porcentaje de comisión KCS</th>
+            <td> {{ kcs_commission_percentage }}%</td>
+          </tr>
+          <tr>
+            <th>Monto comisión neto</th>
+            <td>{{ object.currency.symbol }}{{ object.net_commission }}</td>
+          </tr>
+          <tr>
+            <th>Monto comisión KCS</th>
+            <td>{{ object.currency.symbol }}{{ object.kcs_commission }}</td>
+          </tr>
+          <tr>
+            <th>Asesor</th>
+            <td>{{ issuance.consultant_seller }}</td>
+          </tr>
+          <tr>
+            <th>Porcentaje comisión del asesor</th>
+            <td>{% widthratio object.seller_commission_percentage 1 100 %}%</td>
+          </tr>
+          <tr>
+            <th>Monto comisión del asesor</th>
+            <td>{{ object.currency.symbol }}{{ object.seller_commission }} </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 {% endblock %}

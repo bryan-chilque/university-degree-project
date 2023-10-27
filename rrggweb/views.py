@@ -263,7 +263,8 @@ class CreateVehicleSupportView(
         form.fields["plate"].required = False
         form.fields["has_gps"].required = False
         form.fields["has_endorsee"].required = False
-        form.fields["endorsee_bank"].required = False
+        form.fields["endorsement_bank"].required = False
+        form.fields["class_type"].required = False
         return form
 
     def get_success_url(self):
@@ -308,7 +309,7 @@ class UpdateVehicleSupportView(
         form = super().get_form(form_class)
         form.fields["has_gps"].required = False
         form.fields["has_endorsee"].required = False
-        form.fields["endorsee_bank"].required = False
+        form.fields["endorsement_bank"].required = False
         return form
 
     def get_context_data(self, **kwargs):
@@ -426,39 +427,36 @@ class QuotationListSupportView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         query = self.request.GET.get("q")
         if query:
-            return (
-                rrgg.models.QuotationInsuranceVehicle.objects.filter(
-                    Q(customer__natural_person__given_name__icontains=query)
-                    | Q(
-                        customer__natural_person__first_surname__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__natural_person__second_surname__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__natural_person__document_number__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__registered_name__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__general_manager__icontains=query  # noqa: E501
-                    )
-                    | Q(
-                        customer__legal_person__document_number__icontains=query  # noqa: E501
-                    )
-                    | Q(consultant_seller__given_name__icontains=query)
-                    | Q(consultant_seller__first_surname__icontains=query)
-                    | Q(vehicle__plate__icontains=query)
+            return rrgg.models.QuotationInsuranceVehicle.objects.filter(
+                Q(source="quotation"),
+                Q(customer__natural_person__given_name__icontains=query)
+                | Q(
+                    customer__natural_person__first_surname__icontains=query  # noqa: E501
                 )
-                .exclude(consultant_seller=None)
-                .order_by("-id")
-            )
+                | Q(
+                    customer__natural_person__second_surname__icontains=query  # noqa: E501
+                )
+                | Q(
+                    customer__natural_person__document_number__icontains=query  # noqa: E501
+                )
+                | Q(
+                    customer__legal_person__registered_name__icontains=query  # noqa: E501
+                )
+                | Q(
+                    customer__legal_person__general_manager__icontains=query  # noqa: E501
+                )
+                | Q(
+                    customer__legal_person__document_number__icontains=query  # noqa: E501
+                )
+                | Q(consultant_seller__given_name__icontains=query)
+                | Q(consultant_seller__first_surname__icontains=query)
+                | Q(vehicle__plate__icontains=query),
+            ).order_by("-id")
         else:
             return (
                 super()
                 .get_queryset()
-                .exclude(consultant_seller=None)
+                .filter(source="quotation")
                 .order_by("-id")
             )
 
@@ -481,8 +479,9 @@ class CreateQuotationSupportView(
     fields = ["insured_amount", "currency"]
 
     def form_valid(self, form):
-        form.instance.risk = rrgg.models.Risk.objects.get(name="Vehicular")
+        form.instance.risk_id = 1
         form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
+        form.instance.consultant_seller_id = self.kwargs["seller_id"]
         form.instance.customer_id = self.kwargs["customer_id"]
         form.instance.vehicle_id = self.kwargs["vehicle_id"]
         return super().form_valid(form)
@@ -541,6 +540,16 @@ class DetailQuotationSupportView(LoginRequiredMixin, DetailView):
 # PREMIUM
 
 
+class PremiumListSupportView(LoginRequiredMixin, ListView):
+    model = rrgg.models.QuotationInsuranceVehiclePremium
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Lista de primas vehiculares"
+        return context
+
+
 class CreatePremiumSupportView(
     LoginRequiredMixin, rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
@@ -591,6 +600,135 @@ class DeletePremiumSupportView(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["subtitle"] = "Eliminar Prima de Aseguradora"
+        return context
+
+
+# PREMIUM - QUOTATION - MULTIPLE SALE
+
+
+class CreatePremiumQuotationSupportView(LoginRequiredMixin, CreateView):
+    template_name = "rrggweb/issuance/insurance/vehicle/premium_form.html"
+    model = rrgg.models.QuotationInsuranceVehiclePremium
+    form_class = forms.PremiumQuotationForm
+
+    def form_valid(self, form):
+        quotation = rrgg.models.QuotationInsuranceVehicle(
+            risk_id=1,
+            consultant_registrar_id=self.kwargs["seller_id"],
+            consultant_seller_id=self.kwargs["seller_id"],
+            customer_id=self.kwargs["customer_id"],
+            currency_id=1,
+            source="new_sale",
+            vehicle_id=self.kwargs["vehicle_id"],
+            insured_amount=form.cleaned_data["insured_amount"],
+        )
+        quotation.save()
+        form.instance.amount = form.cleaned_data["amount"]
+        form.instance.rate = form.cleaned_data["rate"]
+        form.instance.insurance_vehicle_ratio_id = 1
+        form.instance.quotation_insurance_vehicle_id = quotation.id
+        form.instance.in_progress = True
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Registrar Prima vehicular"
+        return context
+
+
+class UpdatePremiumQuotationSupportView(LoginRequiredMixin, UpdateView):
+    template_name = "rrggweb/issuance/insurance/vehicle/premium_form.html"
+    model = rrgg.models.QuotationInsuranceVehiclePremium
+    form_class = forms.PremiumQuotationForm
+
+    def get_object(self, queryset=None):
+        return rrgg.models.QuotationInsuranceVehiclePremium.objects.get(
+            pk=self.kwargs["premium_id"]
+        )
+
+    def _get_data(self):
+        premium = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["premium_id"],
+        )
+        quotation = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehicle,
+            id=premium.quotation_insurance_vehicle.id,
+        )
+        return premium, quotation
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["insured_amount"] = self._get_data()[1].insured_amount
+        return initial
+
+    def form_valid(self, form):
+        quotation = rrgg.models.QuotationInsuranceVehicle.objects.get(
+            pk=self.object.quotation_insurance_vehicle.id
+        )
+        quotation.insured_amount = form.cleaned_data["insured_amount"]
+        quotation.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": (
+                    self.object.quotation_insurance_vehicle.consultant_seller.id  # noqa: E501
+                ),
+                "customer_id": (
+                    self.object.quotation_insurance_vehicle.customer.id
+                ),
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Editar Prima vehicular"
+        return context
+
+
+class DeletePremiumQuotationSupportView(LoginRequiredMixin, DeleteView):
+    template_name = "rrggweb/issuance/insurance/vehicle/delete_premium.html"
+    model = rrgg.models.QuotationInsuranceVehicle
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            self.object.premiums.first().delete()
+            self.object.delete()
+            return redirect(self.get_success_url())
+        except ProtectedError:
+            messages.error(
+                request, "No se puede eliminar este registro vehicular"
+            )
+            return redirect(request.get_full_path())
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Eliminar registro vehicular"
+        return context
+
+
+class SelectCurrencyInsuranceSupportView(LoginRequiredMixin, FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/basic_form.html"
+    form_class = forms.CurrencyInsuranceForm
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:select_plan_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Seleccionar compañía y moneda"
         return context
 
 
@@ -661,28 +799,28 @@ class IssuanceListSupportView(LoginRequiredMixin, ListView):
                 | Q(consultant_seller__first_surname__icontains=query)
                 | Q(status__name__icontains=query)
                 | Q(
-                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__given_name__icontains=query  # noqa: E501
+                    quotation_vehicle_premiums__quotation_insurance_vehicle__customer__natural_person__given_name__icontains=query  # noqa: E501
                 )
                 | Q(
-                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__first_surname__icontains=query  # noqa: E501
+                    quotation_vehicle_premiums__quotation_insurance_vehicle__customer__natural_person__first_surname__icontains=query  # noqa: E501
                 )
                 | Q(
-                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__second_surname__icontains=query  # noqa: E501
+                    quotation_vehicle_premiums__quotation_insurance_vehicle__customer__natural_person__second_surname__icontains=query  # noqa: E501
                 )
                 | Q(
-                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__natural_person__document_number__icontains=query  # noqa: E501
+                    quotation_vehicle_premiums__quotation_insurance_vehicle__customer__natural_person__document_number__icontains=query  # noqa: E501
                 )
                 | Q(
-                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__legal_person__registered_name__icontains=query  # noqa: E501
+                    quotation_vehicle_premiums__quotation_insurance_vehicle__customer__legal_person__registered_name__icontains=query  # noqa: E501
                 )
                 | Q(
-                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__legal_person__general_manager__icontains=query  # noqa: E501
+                    quotation_vehicle_premiums__quotation_insurance_vehicle__customer__legal_person__general_manager__icontains=query  # noqa: E501
                 )
                 | Q(
-                    quotation_vehicle_premium__quotation_insurance_vehicle__customer__legal_person__document_number__icontains=query  # noqa: E501
+                    quotation_vehicle_premiums__quotation_insurance_vehicle__customer__legal_person__document_number__icontains=query  # noqa: E501
                 )
                 | Q(
-                    quotation_vehicle_premium__quotation_insurance_vehicle__vehicle__plate__icontains=query  # noqa: E501
+                    quotation_vehicle_premiums__quotation_insurance_vehicle__vehicle__plate__icontains=query  # noqa: E501
                 )
             ).order_by("-id")
         else:
@@ -818,6 +956,150 @@ class DeleteDocumentSupportView(LoginRequiredMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context["subtitle"] = "Eliminar documento"
         context["type"] = "delete"
+        return context
+
+
+# ENDORSEMENTS
+
+
+class CreateEndorsementSupportView(
+    LoginRequiredMixin, rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/endorsement_form.html"
+    model = rrgg.models.EndorsementVehicle
+    fields = [
+        "insured_amount",
+        "net_premium",
+        "rate",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+        "plan_commission_percentage",
+        "currency",
+        "payment_method",
+        "detail",
+    ]
+
+    def _get_data(self):
+        issuance = shortcuts.get_object_or_404(
+            rrgg.models.IssuanceInsuranceVehicle,
+            id=self.kwargs["issuance_id"],
+        )
+        premium = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["premium_id"],
+        )
+        ivr = premium.insurance_vehicle_ratio
+        vehicle = premium.quotation_insurance_vehicle.vehicle
+        return issuance, ivr, vehicle
+
+    def get_initial(self):
+        initial = super().get_initial()
+        plan = shortcuts.get_object_or_404(
+            rrgg.models.InsurancePlan, id=self._get_data()[0].insurance_plan.id
+        )
+        # conversion a porcentaje
+        initial["plan_commission_percentage"] = round(plan.commission * 100, 1)
+        initial["final_validity"] = self._get_data()[0].final_validity
+        return initial
+
+    def form_valid(self, form):
+        form.instance.vehicle_id = self._get_data()[2].id
+        # obtener porcentaje actual de comisión de la aseguradora
+        form.instance.tax_percentage = self._get_data()[1].tax
+        form.instance.emission_right_percentage = self._get_data()[
+            1
+        ].emission_right
+        raw_percentage = form.cleaned_data["plan_commission_percentage"]
+        form.instance.plan_commission_percentage = raw_percentage / 100
+        # obtener comisión actual del vendedor
+        form.instance.seller_commission_percentage = self._get_data()[
+            0
+        ].consultant_seller.commission_rate.new_sale
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Crear endoso con movimiento de prima"
+        context["body"] = "Formulario endoso vehicular"
+        return context
+
+
+class UpdateEndorsementSupportView(
+    rrgg_mixins.RrggBootstrapDisplayMixin, LoginRequiredMixin, UpdateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/endorsement_form.html"
+    model = rrgg.models.EndorsementVehicle
+    fields = [
+        "insured_amount",
+        "net_premium",
+        "rate",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+        "plan_commission_percentage",
+        "currency",
+        "payment_method",
+        "detail",
+    ]
+    pk_url_kwarg = "endorsement_id"
+
+    def get_initial(self):
+        initial = super().get_initial()
+        # conversion a porcentaje
+        initial["plan_commission_percentage"] = round(
+            self.object.plan_commission_percentage * 100, 1
+        )
+        initial["final_validity"] = self.object.final_validity
+        return initial
+
+    def form_valid(self, form):
+        # obtener porcentaje actual de comisión de la aseguradora
+        form.instance.tax_percentage = self.object.tax_percentage
+        form.instance.emission_right_percentage = (
+            self.object.emission_right_percentage
+        )
+        raw_percentage = form.cleaned_data["plan_commission_percentage"]
+        form.instance.plan_commission_percentage = raw_percentage / 100
+        # obtener comisión actual del vendedor
+        form.instance.seller_commission_percentage = (
+            self.object.seller_commission_percentage
+        )
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Actualizar endoso"
+        context["body"] = "Formulario endoso vehicular"
+        return context
+
+
+class EndorsementDetailSupportView(LoginRequiredMixin, DetailView):
+    template_name = (
+        "rrggweb/issuance/insurance/vehicle/endorsement_detail.html"
+    )
+    model = rrgg.models.EndorsementVehicle
+    fields = "__all__"
+
+    def _get_data(self):
+        premium = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["premium_id"],
+        )
+        return premium.quotation_insurance_vehicle.vehicle
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subtitle"] = "Detalle de endoso"
+        context["kcs_commission_percentage"] = round(
+            self.object.plan_commission_percentage * 100, 1
+        )
+        context["issuance"] = shortcuts.get_object_or_404(
+            rrgg.models.IssuanceInsuranceVehicle,
+            id=self.kwargs["issuance_id"],
+        )
         return context
 
 
@@ -1917,7 +2199,6 @@ class QIVUpdateOwnerStepView(UpdateOwnerSupportView):
 
 class QIVCreateView(CreateQuotationSupportView):
     def form_valid(self, form):
-        form.instance.consultant_seller_id = self.kwargs["seller_id"]
         form.instance.source = "quotation"
         return super().form_valid(form)
 
@@ -2129,7 +2410,7 @@ class IIVListView(IssuanceListSupportView):
         return context
 
 
-class IIVUpdateIssuanceView(UpdateIssuanceSupportView):
+class IIVUpdateIssuanceDetailView(UpdateIssuanceSupportView):
     def get_success_url(self):
         return urls.reverse(
             "rrggweb:issuance:insurance:vehicle:list",
@@ -2156,23 +2437,7 @@ class IIVDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
         context["subtitle"] = "Detalle de la emisión"
-        context["quotation_premium"] = self.object.quotation_vehicle_premium
-        context["ratio"] = context["quotation_premium"].insurance_vehicle_ratio
-        context["quotation"] = context[
-            "quotation_premium"
-        ].quotation_insurance_vehicle
-        context["customer"] = context["quotation"].customer
-        context["vehicle"] = context["quotation"].vehicle
-        context["owner"] = context["vehicle"].ownership
-        if isinstance(context["owner"].pick, rrgg.models.NaturalPerson):
-            context["update_owner"] = urls.reverse(
-                "rrggweb:quotation:insurance:vehicle:update_owner",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "owner_id": context["owner"].owner.id,
-                    "quotation_id": self.object.id,
-                },
-            )
+        context["premiums"] = self.object.quotation_vehicle_premiums.all()
         context["seller"] = self.object.consultant_seller
         context["kcs_commission_percentage"] = round(
             self.object.plan_commission_percentage * 100, 1
@@ -2185,14 +2450,6 @@ class IIVDetailView(LoginRequiredMixin, DetailView):
             },
         )
         context["documents"] = self.object.documents.all()
-        context["endorsements"] = self.object.endorsements.all()
-        context["create_endorsement"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:create_endorsement",
-            kwargs={
-                "registrar_id": self.kwargs["registrar_id"],
-                "issuance_id": self.object.id,
-            },
-        )
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
@@ -2296,65 +2553,14 @@ class IIVDeleteDocumentDetailView(DeleteDocumentSupportView):
         return context
 
 
-class IIVCreateEndorsementDetailView(
-    LoginRequiredMixin, rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
-):
-    template_name = "rrggweb/issuance/insurance/vehicle/endorsement_form.html"
-    model = rrgg.models.IssuanceInsuranceVehicleEndorsement
-    fields = [
-        "insured_amount",
-        "net_premium",
-        "rate",
-        "collection_document",
-        "issuance_date",
-        "initial_validity",
-        "final_validity",
-        "plan_commission_percentage",
-        "currency",
-        "payment_method",
-        "detail",
-    ]
-
-    def _get_data(self):
-        issuance = shortcuts.get_object_or_404(
-            rrgg.models.IssuanceInsuranceVehicle,
-            id=self.kwargs["issuance_id"],
-        )
-        premium = issuance.quotation_vehicle_premium
-        ivr = premium.insurance_vehicle_ratio
-        return issuance, ivr
-
-    def get_initial(self):
-        initial = super().get_initial()
-        plan = shortcuts.get_object_or_404(
-            rrgg.models.InsurancePlan, id=self._get_data()[0].insurance_plan.id
-        )
-        # conversion a porcentaje
-        initial["plan_commission_percentage"] = round(plan.commission * 100, 1)
-        initial["final_validity"] = self._get_data()[0].final_validity
-        return initial
-
-    def form_valid(self, form):
-        form.instance.issuance = self._get_data()[0]
-        # obtener porcentaje actual de comisión de la aseguradora
-        form.instance.tax_percentage = self._get_data()[1].tax
-        form.instance.emission_right_percentage = self._get_data()[
-            1
-        ].emission_right
-        raw_percentage = form.cleaned_data["plan_commission_percentage"]
-        form.instance.plan_commission_percentage = raw_percentage / 100
-        # obtener comisión actual del vendedor
-        form.instance.seller_commission_percentage = self._get_data()[
-            0
-        ].consultant_seller.commission_rate.new_sale
-        return super().form_valid(form)
-
+class IIVCreateEndorsementDetailView(CreateEndorsementSupportView):
     def get_success_url(self):
         return urls.reverse(
             "rrggweb:issuance:insurance:vehicle:endorsement_detail",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "pk": self.object.id,
+                "premium_id": self.kwargs["premium_id"],
                 "issuance_id": self.kwargs["issuance_id"],
             },
         )
@@ -2362,8 +2568,6 @@ class IIVCreateEndorsementDetailView(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR"
-        context["subtitle"] = "Crear endoso con movimiento de prima"
-        context["body"] = "Formulario endoso vehicular"
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:detail",
             kwargs={
@@ -2374,17 +2578,62 @@ class IIVCreateEndorsementDetailView(
         return context
 
 
-class IIVDetailEndorsementView(LoginRequiredMixin, DetailView):
-    template_name = (
-        "rrggweb/issuance/insurance/vehicle/endorsement_detail.html"
-    )
-    model = rrgg.models.IssuanceInsuranceVehicleEndorsement
+class IIVDetailEndorsementDetailView(EndorsementDetailSupportView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+        return context
+
+
+class IIVUpdateEndorsementDetailView(UpdateEndorsementSupportView):
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:endorsement_detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "pk": self.object.id,
+                "premium_id": self.kwargs["premium_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+        return context
+
+
+class IIVDetailVehicleDetailView(LoginRequiredMixin, DetailView):
+    template_name = "rrggweb/issuance/insurance/vehicle/detail_vehicle.html"
+    model = rrgg.models.Vehicle
     fields = "__all__"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "EMISIÓN VEHICULAR"
-        context["subtitle"] = "Detalle de endoso"
+        context["title"] = "EMISIÓN VEHICULAR - BIEN ASEGURADO"
+        context["subtitle"] = "Detalle del bien asegurado"
+        context["issuance"] = shortcuts.get_object_or_404(
+            rrgg.models.IssuanceInsuranceVehicle,
+            id=self.kwargs["issuance_id"],
+        )
+        context["premium"] = shortcuts.get_object_or_404(
+            rrgg.models.QuotationInsuranceVehiclePremium,
+            id=self.kwargs["premium_id"],
+        )
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:detail",
             kwargs={
@@ -2392,74 +2641,73 @@ class IIVDetailEndorsementView(LoginRequiredMixin, DetailView):
                 "issuance_id": self.kwargs["issuance_id"],
             },
         )
-        context["kcs_commission_percentage"] = round(
-            self.object.plan_commission_percentage * 100, 1
-        )
         return context
 
 
-class IIVUpdateEndorsementView(
-    rrgg_mixins.RrggBootstrapDisplayMixin, LoginRequiredMixin, UpdateView
-):
-    template_name = "rrggweb/issuance/insurance/vehicle/endorsement_form.html"
-    model = rrgg.models.IssuanceInsuranceVehicleEndorsement
-    fields = [
-        "insured_amount",
-        "net_premium",
-        "rate",
-        "collection_document",
-        "issuance_date",
-        "initial_validity",
-        "final_validity",
-        "plan_commission_percentage",
-        "currency",
-        "payment_method",
-        "detail",
-    ]
-    pk_url_kwarg = "endorsement_id"
-
-    def get_initial(self):
-        initial = super().get_initial()
-        # conversion a porcentaje
-        initial["plan_commission_percentage"] = round(
-            self.object.plan_commission_percentage * 100, 1
-        )
-        initial["final_validity"] = self.object.final_validity
-        return initial
-
-    def form_valid(self, form):
-        # obtener porcentaje actual de comisión de la aseguradora
-        form.instance.tax_percentage = self.object.tax_percentage
-        form.instance.emission_right_percentage = (
-            self.object.emission_right_percentage
-        )
-        raw_percentage = form.cleaned_data["plan_commission_percentage"]
-        form.instance.plan_commission_percentage = raw_percentage / 100
-        # obtener comisión actual del vendedor
-        form.instance.seller_commission_percentage = (
-            self.object.seller_commission_percentage
-        )
-        return super().form_valid(form)
-
+class IIVCreateEndorsementVehicleView(CreateEndorsementSupportView):
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:endorsement_detail",
+            "rrggweb:issuance:insurance:vehicle:endorsement_detail_v",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "pk": self.object.id,
+                "premium_id": self.kwargs["premium_id"],
                 "issuance_id": self.kwargs["issuance_id"],
             },
         )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "EMISIÓN VEHICULAR"
-        context["subtitle"] = "Actualizar endoso con movimiento de prima"
-        context["body"] = "Formulario endoso vehicular"
+        context["title"] = "EMISIÓN VEHICULAR - BIEN ASEGURADO"
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:detail",
+            "rrggweb:issuance:insurance:vehicle:vehicle_detail",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
+                "pk": self._get_data()[2].id,
+                "premium_id": self.kwargs["premium_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+        return context
+
+
+class IIVUpdateEndorsementVehicleView(UpdateEndorsementSupportView):
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:endorsement_detail_v",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "pk": self.object.id,
+                "premium_id": self.kwargs["premium_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR - BIEN ASEGURADO"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:vehicle_detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "pk": self.object.vehicle.id,
+                "premium_id": self.kwargs["premium_id"],
+                "issuance_id": self.kwargs["issuance_id"],
+            },
+        )
+        return context
+
+
+class IIVDetailEndorsementVehicleView(EndorsementDetailSupportView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR - BIEN ASEGURADO"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:vehicle_detail",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "pk": self.object.vehicle.id,
+                "premium_id": self.kwargs["premium_id"],
                 "issuance_id": self.kwargs["issuance_id"],
             },
         )
@@ -2833,31 +3081,31 @@ class IIVCreateStepQuotationView(CreateIssuanceSupportView):
             rrgg.models.QuotationInsuranceVehiclePremium,
             id=self.kwargs["premium_id"],
         )
-        if premium.quotation_insurance_vehicle.expired:
+        quotation = premium.quotation_insurance_vehicle
+        if quotation.expired:
             messages.warning(self.request, "Esta cotización ya expiró")
             return self.form_invalid(form)
         else:
-            form.instance.issuance_type = (
-                rrgg.models.IssuanceInsuranceType.objects.get(
-                    name="Venta nueva"
-                )
-            )
-            form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
-            form.instance.consultant_seller_id = self.kwargs["seller_id"]
-            form.instance.insurance_plan_id = self.kwargs["plan_id"]
-            form.instance.quotation_vehicle_premium_id = self.kwargs[
-                "premium_id"
-            ]
+            quotation.source = "new_sale-quotation"
+            quotation.save()
+            issuance = form.save(commit=False)
+            issuance.issuance_type_id = 1
+            issuance.consultant_registrar_id = self.kwargs["registrar_id"]
+            issuance.consultant_seller_id = self.kwargs["seller_id"]
+            issuance.insurance_plan_id = self.kwargs["plan_id"]
+
             raw_percentage = form.cleaned_data["plan_commission_percentage"]
-            form.instance.plan_commission_percentage = raw_percentage / 100
+            issuance.plan_commission_percentage = raw_percentage / 100
             seller = shortcuts.get_object_or_404(
                 rrgg.models.Consultant, id=self.kwargs["seller_id"]
             )
             # TODO: comisión del vendedor por ahora solo tomara de referencia
             # la comisión actual registrada en el momento de la creación
-            form.instance.seller_commission_percentage = (
+            issuance.seller_commission_percentage = (
                 seller.commission_rate.new_sale
             )
+            issuance.save()
+            issuance.quotation_vehicle_premiums.add(premium)
             return super().form_valid(form)
 
     def get_success_url(self):
@@ -2995,7 +3243,7 @@ class IIVSelectSellerNewSaleView(SelectSellerSupportView):
     def form_valid(self, form: forms.SellerForm):
         seller = form.cleaned_data["asesores"]
         self.success_url = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_customer",
+            "rrggweb:issuance:insurance:vehicle:search_customer_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": seller.id,
@@ -3031,7 +3279,7 @@ class IIVSearchCustomerNewSaleView(SearchCustomerSupportView):
                 natural_person__document_number=document_number
             )
             self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:search_vehicle",
+                "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3043,7 +3291,7 @@ class IIVSearchCustomerNewSaleView(SearchCustomerSupportView):
                 legal_person__document_number=document_number
             )
             self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:search_vehicle",
+                "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3052,7 +3300,7 @@ class IIVSearchCustomerNewSaleView(SearchCustomerSupportView):
             )
         else:
             select_customer_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:select_customer",
+                "rrggweb:issuance:insurance:vehicle:select_customer_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3084,7 +3332,7 @@ class IIVSelectCustomerNewSaleView(SelectCustomerSupportView):
         dn = self.request.GET.get("document_number", "")
         if type_customer == "persona_natural":
             create_customer_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_natural_person",
+                "rrggweb:issuance:insurance:vehicle:create_natural_person_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3093,7 +3341,7 @@ class IIVSelectCustomerNewSaleView(SelectCustomerSupportView):
             self.success_url = f"{create_customer_url}?document_number={dn}"
         elif type_customer == "persona_jurídica":
             create_customer_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_legal_person",
+                "rrggweb:issuance:insurance:vehicle:create_legal_person_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3110,7 +3358,7 @@ class IIVSelectCustomerNewSaleView(SelectCustomerSupportView):
         context["initial_step"] = 2
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_customer",
+            "rrggweb:issuance:insurance:vehicle:search_customer_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3126,7 +3374,7 @@ class IIVCreateNaturalPersonNewSaleView(CreateNaturalPersonSupportView):
             seller_id=self.kwargs["seller_id"],
         )
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_vehicle",
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3140,7 +3388,7 @@ class IIVCreateNaturalPersonNewSaleView(CreateNaturalPersonSupportView):
         context["initial_step"] = 2
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:select_customer",
+            "rrggweb:issuance:insurance:vehicle:select_customer_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3156,7 +3404,7 @@ class IIVCreateLegalPersonNewSaleView(CreateLegalPersonSupportView):
             seller_id=self.kwargs["seller_id"],
         )
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_vehicle",
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3170,7 +3418,7 @@ class IIVCreateLegalPersonNewSaleView(CreateLegalPersonSupportView):
         context["initial_step"] = 2
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:select_customer",
+            "rrggweb:issuance:insurance:vehicle:select_customer_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3182,7 +3430,7 @@ class IIVCreateLegalPersonNewSaleView(CreateLegalPersonSupportView):
 class IIVUpdateNaturalPersonNewSaleStepView(UpdateNaturalPersonSupportView):
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_vehicle",
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3196,7 +3444,7 @@ class IIVUpdateNaturalPersonNewSaleStepView(UpdateNaturalPersonSupportView):
         context["initial_step"] = 2
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_customer",
+            "rrggweb:issuance:insurance:vehicle:search_customer_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3208,7 +3456,7 @@ class IIVUpdateNaturalPersonNewSaleStepView(UpdateNaturalPersonSupportView):
 class IIVUpdateLegalPersonNewSaleStepView(UpdateLegalPersonSupportView):
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_vehicle",
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3219,15 +3467,125 @@ class IIVUpdateLegalPersonNewSaleStepView(UpdateLegalPersonSupportView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
-        context["initial_step"] = 2
+        context["initial_step"] = 3
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_customer",
+            "rrggweb:issuance:insurance:vehicle:search_customer_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
             },
         )
+        return context
+
+
+class IIVPremiumListNewSaleStepView(PremiumListSupportView):
+    template_name = "rrggweb/issuance/insurance/vehicle/list_premium.html"
+
+    def get_queryset(self):
+        customer_id = self.kwargs["customer_id"]
+        seller_id = self.kwargs["seller_id"]
+        return rrgg.models.QuotationInsuranceVehiclePremium.objects.filter(
+            quotation_insurance_vehicle__customer_id=customer_id,
+            quotation_insurance_vehicle__consultant_seller_id=seller_id,
+            in_progress=True,
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
+        context["initial_step"] = 3
+        context["final_step"] = 9
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
+        )
+        context["new_register"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:search_vehicle_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+            },
+        )
+        context["select_currency_ivr"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:select_currency_ivr_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+            },
+        )
+        if isinstance(context["customer"].pick, rrgg.models.NaturalPerson):
+            context["previous_page"] = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:update_natural_person_ns",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "seller_id": self.kwargs["seller_id"],
+                    "natural_person_id": context["customer"].pick.id,
+                },
+            )
+        elif isinstance(context["customer"].pick, rrgg.models.LegalPerson):
+            context["previous_page"] = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:update_legal_person_ns",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "seller_id": self.kwargs["seller_id"],
+                    "legal_person_id": context["customer"].pick.id,
+                },
+            )
+        else:
+            pass
+        return context
+
+
+class IIVUpdatePremiumNewSaleStepView(UpdatePremiumQuotationSupportView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": (
+                    self.object.quotation_insurance_vehicle.consultant_seller.id  # noqa: E501
+                ),
+                "customer_id": (
+                    self.object.quotation_insurance_vehicle.customer.id
+                ),
+            },
+        )
+        context["initial_step"] = 3
+        context["final_step"] = 9
+        return context
+
+
+class IIVDeletePremiumNewSaleStepView(DeletePremiumQuotationSupportView):
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+            },
+        )
+        context["initial_step"] = 3
+        context["final_step"] = 9
         return context
 
 
@@ -3256,7 +3614,7 @@ class IIVSearchVehicleNewSaleView(SearchVehicleSupportView):
                         self.success_url = urls.reverse(
                             (
                                 "rrggweb:issuance:insurance:"
-                                "vehicle:create_quotation_ns"
+                                "vehicle:create_premium_ns"
                             ),
                             kwargs={
                                 "registrar_id": self.kwargs["registrar_id"],
@@ -3287,7 +3645,7 @@ class IIVSearchVehicleNewSaleView(SearchVehicleSupportView):
                     )
             else:
                 self.success_url = urls.reverse(
-                    "rrggweb:issuance:insurance:vehicle:define_owner",
+                    "rrggweb:issuance:insurance:vehicle:define_owner_ns",
                     kwargs={
                         "registrar_id": self.kwargs["registrar_id"],
                         "seller_id": self.kwargs["seller_id"],
@@ -3297,7 +3655,7 @@ class IIVSearchVehicleNewSaleView(SearchVehicleSupportView):
                 )
         else:
             create_vehicle_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_vehicle",
+                "rrggweb:issuance:insurance:vehicle:create_vehicle_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3310,38 +3668,23 @@ class IIVSearchVehicleNewSaleView(SearchVehicleSupportView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
-        context["initial_step"] = 3
+        context["initial_step"] = 4
         context["final_step"] = 9
-        if isinstance(context["customer"].pick, rrgg.models.NaturalPerson):
-            context["previous_page"] = urls.reverse(
-                (
-                    "rrggweb:issuance:insurance:vehicle:"
-                    "update_natural_person_step"
-                ),
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "seller_id": self.kwargs["seller_id"],
-                    "natural_person_id": context["customer"].pick.id,
-                },
-            )
-        elif isinstance(context["customer"].pick, rrgg.models.LegalPerson):
-            context["previous_page"] = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:update_legal_person_step",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "seller_id": self.kwargs["seller_id"],
-                    "legal_person_id": context["customer"].pick.id,
-                },
-            )
-        else:
-            pass
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+            },
+        )
         return context
 
 
 class IIVCreateVehicleNewSaleView(CreateVehicleSupportView):
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:define_owner",
+            "rrggweb:issuance:insurance:vehicle:define_owner_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3353,10 +3696,10 @@ class IIVCreateVehicleNewSaleView(CreateVehicleSupportView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
-        context["initial_step"] = 3
+        context["initial_step"] = 4
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_vehicle",
+            "rrggweb:issuance:insurance:vehicle:search_vehicle_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3369,7 +3712,7 @@ class IIVCreateVehicleNewSaleView(CreateVehicleSupportView):
 class IIVUpdateVehicleNewSaleStepView(UpdateVehicleSupportView):
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:define_owner",
+            "rrggweb:issuance:insurance:vehicle:define_owner_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3381,7 +3724,7 @@ class IIVUpdateVehicleNewSaleStepView(UpdateVehicleSupportView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
-        context["initial_step"] = 3
+        context["initial_step"] = 4
         context["final_step"] = 9
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
@@ -3390,7 +3733,7 @@ class IIVUpdateVehicleNewSaleStepView(UpdateVehicleSupportView):
             rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_vehicle",
+            "rrggweb:issuance:insurance:vehicle:search_vehicle_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3422,7 +3765,7 @@ class IIVDefineOwnerNewSaleView(DefineOwnerSupportView):
                 customer=customer, vehicle=vehicle
             )
             self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_quotation_ns",
+                "rrggweb:issuance:insurance:vehicle:create_premium_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3432,7 +3775,7 @@ class IIVDefineOwnerNewSaleView(DefineOwnerSupportView):
             )
         else:
             self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:search_owner",
+                "rrggweb:issuance:insurance:vehicle:search_owner_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3448,7 +3791,7 @@ class IIVDefineOwnerNewSaleView(DefineOwnerSupportView):
         context["initial_step"] = 4
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:update_vehicle_step",
+            "rrggweb:issuance:insurance:vehicle:update_vehicle_step_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "vehicle_id": self.kwargs["vehicle_id"],
@@ -3482,7 +3825,7 @@ class IIVSearchOwnerNewSaleView(SearchOwnerSupportView):
                 owner=owner, vehicle=vehicle
             )
             self.success_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_quotation_ns",
+                "rrggweb:issuance:insurance:vehicle:create_premium_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3492,7 +3835,7 @@ class IIVSearchOwnerNewSaleView(SearchOwnerSupportView):
             )
         else:
             create_owner_url = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:create_owner",
+                "rrggweb:issuance:insurance:vehicle:create_owner_ns",
                 kwargs={
                     "registrar_id": self.kwargs["registrar_id"],
                     "seller_id": self.kwargs["seller_id"],
@@ -3511,7 +3854,7 @@ class IIVSearchOwnerNewSaleView(SearchOwnerSupportView):
         context["initial_step"] = 4
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:define_owner",
+            "rrggweb:issuance:insurance:vehicle:define_owner_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3531,7 +3874,7 @@ class IIVCreateOwnerNewSaleView(CreateOwnerSupportView):
             owner=self.object, vehicle=vehicle
         )
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:create_quotation_ns",
+            "rrggweb:issuance:insurance:vehicle:create_premium_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3546,7 +3889,7 @@ class IIVCreateOwnerNewSaleView(CreateOwnerSupportView):
         context["initial_step"] = 4
         context["final_step"] = 9
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:search_owner",
+            "rrggweb:issuance:insurance:vehicle:search_owner_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3560,7 +3903,7 @@ class IIVCreateOwnerNewSaleView(CreateOwnerSupportView):
 class IIVUpdateOwnerNewSaleStepView(UpdateOwnerSupportView):
     def get_success_url(self):
         return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:create_quotation_ns",
+            "rrggweb:issuance:insurance:vehicle:create_premium_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3584,7 +3927,7 @@ class IIVUpdateOwnerNewSaleStepView(UpdateOwnerSupportView):
             rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
         )
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:define_owner",
+            "rrggweb:issuance:insurance:vehicle:define_owner_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
                 "seller_id": self.kwargs["seller_id"],
@@ -3595,189 +3938,149 @@ class IIVUpdateOwnerNewSaleStepView(UpdateOwnerSupportView):
         return context
 
 
-class IIVCreateQuotationNewSaleView(CreateQuotationSupportView):
-    def form_valid(self, form):
-        form.instance.consultant_seller_id = None
-        form.instance.source = "new_sale"
+class IIVCreatePremiumNewSaleView(CreatePremiumQuotationSupportView):
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
+            },
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
+        context["initial_step"] = 6
+        context["final_step"] = 9
+        context["seller"] = shortcuts.get_object_or_404(
+            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+        )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
+        )
+        context["vehicle"] = shortcuts.get_object_or_404(
+            rrgg.models.Vehicle, id=self.kwargs["vehicle_id"]
+        )
+        context["owner"] = context["vehicle"].ownership
+        if isinstance(context["owner"].pick, rrgg.models.NaturalPerson):
+            context["previous_page"] = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:update_owner_step_ns",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "seller_id": self.kwargs["seller_id"],
+                    "customer_id": self.kwargs["customer_id"],
+                    "vehicle_id": self.kwargs["vehicle_id"],
+                    "owner_id": context["owner"].owner.id,
+                },
+            )
+        else:
+            context["previous_page"] = urls.reverse(
+                "rrggweb:issuance:insurance:vehicle:define_owner_ns",
+                kwargs={
+                    "registrar_id": self.kwargs["registrar_id"],
+                    "seller_id": self.kwargs["seller_id"],
+                    "customer_id": self.kwargs["customer_id"],
+                    "vehicle_id": self.kwargs["vehicle_id"],
+                },
+            )
+        return context
+
+
+class IIVSelectCurrencyInsuranceNewSaleView(
+    SelectCurrencyInsuranceSupportView
+):
+    def get_queryset(self):
+        customer_id = self.kwargs["customer_id"]
+        seller_id = self.kwargs["seller_id"]
+        return rrgg.models.QuotationInsuranceVehiclePremium.objects.filter(
+            quotation_insurance_vehicle__customer_id=customer_id,
+            quotation_insurance_vehicle__consultant_seller_id=seller_id,
+            in_progress=True,
+        )
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        qivp = self.get_queryset().first()
+        kwargs["currency_id"] = qivp.quotation_insurance_vehicle.currency.id
+        kwargs["ivr_id"] = qivp.insurance_vehicle_ratio.id
+        return kwargs
+
+    def form_valid(self, form: forms.CurrencyInsuranceForm):
+        currency = form.cleaned_data["moneda"]
+        ivr = form.cleaned_data["aseguradoras"]
+
+        for premium in self.get_queryset():
+            quotation = premium.quotation_insurance_vehicle
+            quotation.currency = currency
+            quotation.save()
+            premium.insurance_vehicle_ratio = ivr
+            premium.emission_right_percentage = ivr.emission_right
+            premium.tax_percentage = ivr.tax
+            premium.save()
         return super().form_valid(form)
 
-    def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:create_premium",
-            kwargs={
-                "registrar_id": self.kwargs["registrar_id"],
-                "quotation_id": self.object.id,
-                "seller_id": self.kwargs["seller_id"],
-            },
-        )
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
-        context["subtitle"] = "Registrar suma asegurada"
-        context["initial_step"] = 5
-        context["final_step"] = 9
-        if isinstance(context["owner"].pick, rrgg.models.NaturalPerson):
-            context["previous_page"] = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:update_owner_step",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "seller_id": self.kwargs["seller_id"],
-                    "customer_id": self.kwargs["customer_id"],
-                    "vehicle_id": self.kwargs["vehicle_id"],
-                    "owner_id": context["owner"].owner.id,
-                },
-            )
-        else:
-            context["previous_page"] = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:define_owner",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "seller_id": self.kwargs["seller_id"],
-                    "customer_id": self.kwargs["customer_id"],
-                    "vehicle_id": self.kwargs["vehicle_id"],
-                },
-            )
-        return context
-
-
-class IIVUpdateQuotationStepNewSaleView(UpdateQuotationSupportView):
-    def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:create_premium",
-            kwargs={
-                "registrar_id": self.kwargs["registrar_id"],
-                "seller_id": self.kwargs["seller_id"],
-                "quotation_id": self.object.id,
-            },
-        )
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
-        context["initial_step"] = 5
-        context["final_step"] = 9
-        context["seller"] = shortcuts.get_object_or_404(
-            rrgg.models.Consultant, id=self.kwargs["seller_id"]
-        )
-        context["customer"] = self.object.customer
-        context["vehicle"] = self.object.vehicle
-        context["owner"] = context["vehicle"].ownership
-
-        if isinstance(context["owner"].pick, rrgg.models.NaturalPerson):
-            context["previous_page"] = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:update_owner_step",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "seller_id": self.kwargs["seller_id"],
-                    "customer_id": self.object.customer.id,
-                    "vehicle_id": self.object.vehicle.id,
-                    "owner_id": context["owner"].owner.id,
-                },
-            )
-        else:
-            context["previous_page"] = urls.reverse(
-                "rrggweb:issuance:insurance:vehicle:define_owner",
-                kwargs={
-                    "registrar_id": self.kwargs["registrar_id"],
-                    "seller_id": self.kwargs["seller_id"],
-                    "customer_id": self.object.customer.id,
-                    "vehicle_id": self.object.vehicle.id,
-                },
-            )
-        return context
-
-
-class IIVCreatePremiumNewSaleView(CreatePremiumSupportView):
-    def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:select_plan_ns",
-            kwargs={
-                "registrar_id": self.kwargs["registrar_id"],
-                "premium_id": self.object.id,
-                "seller_id": self.kwargs["seller_id"],
-            },
-        )
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
+        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA MÚLTIPLE"
         context["initial_step"] = 6
         context["final_step"] = 9
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
-        quotation = shortcuts.get_object_or_404(
-            rrgg.models.QuotationInsuranceVehicle,
-            id=self.kwargs["quotation_id"],
-        )
         context["customer"] = shortcuts.get_object_or_404(
-            rrgg.models.CustomerMembership, id=quotation.customer.id
+            rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
         )
-        context["vehicle"] = shortcuts.get_object_or_404(
-            rrgg.models.Vehicle, id=quotation.vehicle.id
+        context["risk_selector"] = forms.RiskForm(
+            risk_id=self.get_queryset()
+            .first()
+            .quotation_insurance_vehicle.risk_id
         )
-        context["owner"] = quotation.vehicle.ownership
-        context["risk_selector"] = forms.RiskForm(risk_id=quotation.risk_id)
-        context["insured_amount"] = quotation.insured_amount
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:update_quotation_step",
+            "rrggweb:issuance:insurance:vehicle:list_premiums_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "quotation_id": self.kwargs["quotation_id"],
                 "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
             },
         )
         return context
 
 
-class IIVUpdatePremiumStepNewSaleView(UpdatePremiumSupportView):
-    def get_success_url(self):
-        return urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:select_plan_ns",
-            kwargs={
-                "registrar_id": self.kwargs["registrar_id"],
-                "premium_id": self.object.id,
-                "seller_id": self.kwargs["seller_id"],
-            },
+class IIVSelectPlanNewSaleView(LoginRequiredMixin, FormView):
+    template_name = "rrggweb/issuance/insurance/vehicle/basic_form.html"
+    form_class = forms.InsurancePlanForm
+
+    def _get_data(self):
+        customer_id = self.kwargs["customer_id"]
+        seller_id = self.kwargs["seller_id"]
+        return rrgg.models.QuotationInsuranceVehiclePremium.objects.filter(
+            quotation_insurance_vehicle__customer_id=customer_id,
+            quotation_insurance_vehicle__consultant_seller_id=seller_id,
+            in_progress=True,
         )
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
-        context["initial_step"] = 6
-        context["final_step"] = 9
-        context["seller"] = shortcuts.get_object_or_404(
-            rrgg.models.Consultant, id=self.kwargs["seller_id"]
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        qivp = self._get_data().first()
+        ivr = qivp.insurance_vehicle_ratio
+        riv = shortcuts.get_object_or_404(
+            rrgg.models.RiskInsuranceVehicle,
+            insurance_vehicle_id=ivr.insurance_vehicle_id,
+            risk_id=qivp.quotation_insurance_vehicle.risk_id,
         )
-        quotation = self.object.quotation_insurance_vehicle
-        context["customer"] = shortcuts.get_object_or_404(
-            rrgg.models.CustomerMembership, id=quotation.customer.id
-        )
-        context["vehicle"] = shortcuts.get_object_or_404(
-            rrgg.models.Vehicle, id=quotation.vehicle.id
-        )
-        context["owner"] = context["vehicle"].ownership
-        context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:update_quotation_step",
-            kwargs={
-                "registrar_id": self.kwargs["registrar_id"],
-                "quotation_id": self.object.quotation_insurance_vehicle.id,
-                "seller_id": self.kwargs["seller_id"],
-            },
-        )
-        return context
+        kwargs["riv_id"] = riv.id
+        return kwargs
 
-
-class IIVSelectPlanNewSaleView(SelectPlanSupportView):
     def form_valid(self, form: forms.InsurancePlanForm):
         plan = form.cleaned_data["planes de seguro"]
         self.success_url = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:create_step_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "premium_id": self.kwargs["premium_id"],
                 "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
                 "plan_id": plan.id,
             },
         )
@@ -3785,54 +4088,95 @@ class IIVSelectPlanNewSaleView(SelectPlanSupportView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
+        context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA MULTIPLE"
+        context["subtitle"] = "Seleccionar plan de seguro"
         context["initial_step"] = 7
         context["final_step"] = 9
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
+        )
+        riv = shortcuts.get_object_or_404(
+            rrgg.models.RiskInsuranceVehicle,
+            id=self.get_form_kwargs()["riv_id"],
+        )
+        context["risk_selector"] = forms.RiskForm(risk_id=riv.risk_id)
+        context["insurance_vehicle_selector"] = forms.InsuranceVehicleForm(
+            iv_id=riv.insurance_vehicle_id
+        )
         context["previous_page"] = urls.reverse(
-            "rrggweb:issuance:insurance:vehicle:update_premium_step",
+            "rrggweb:issuance:insurance:vehicle:select_currency_ivr_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "premium_id": self.kwargs["premium_id"],
                 "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
             },
         )
         return context
 
 
-class IIVCreateStepNewSaleView(CreateIssuanceSupportView):
-    def form_valid(self, form):
-        premium = shortcuts.get_object_or_404(
-            rrgg.models.QuotationInsuranceVehiclePremium,
-            id=self.kwargs["premium_id"],
+class IIVCreateStepNewSaleView(
+    LoginRequiredMixin, rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/form_multiple.html"
+    model = rrgg.models.IssuanceInsuranceVehicle
+    fields = [
+        "policy",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+        "plan_commission_percentage",
+        "payment_method",
+    ]
+
+    def get_initial(self):
+        initial = super().get_initial()
+        plan = shortcuts.get_object_or_404(
+            rrgg.models.InsurancePlan, id=self.kwargs["plan_id"]
         )
-        if premium.quotation_insurance_vehicle.expired:
+        kcs_commission_percentage = round(plan.commission * 100, 1)
+        initial["plan_commission_percentage"] = kcs_commission_percentage
+        return initial
+
+    def _get_data(self):
+        customer_id = self.kwargs["customer_id"]
+        seller_id = self.kwargs["seller_id"]
+        return rrgg.models.QuotationInsuranceVehiclePremium.objects.filter(
+            quotation_insurance_vehicle__customer_id=customer_id,
+            quotation_insurance_vehicle__consultant_seller_id=seller_id,
+            in_progress=True,
+        )
+
+    def form_valid(self, form):
+        premiums = self._get_data()
+        if premiums.first().quotation_insurance_vehicle.expired:
             messages.warning(self.request, "Esta cotización ya expiró")
             return self.form_invalid(form)
         else:
-            form.instance.issuance_type = (
-                rrgg.models.IssuanceInsuranceType.objects.get(
-                    name="Venta nueva"
-                )
-            )
-            form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
-            form.instance.consultant_seller_id = self.kwargs["seller_id"]
-            form.instance.insurance_plan_id = self.kwargs["plan_id"]
-            form.instance.quotation_vehicle_premium_id = self.kwargs[
-                "premium_id"
-            ]
+            issuance = form.save(commit=False)
+            issuance.issuance_type_id = 1
+            issuance.consultant_registrar_id = self.kwargs["registrar_id"]
+            issuance.consultant_seller_id = self.kwargs["seller_id"]
+            issuance.insurance_plan_id = self.kwargs["plan_id"]
+
             raw_percentage = form.cleaned_data["plan_commission_percentage"]
-            form.instance.plan_commission_percentage = raw_percentage / 100
+            issuance.plan_commission_percentage = raw_percentage / 100
             seller = shortcuts.get_object_or_404(
                 rrgg.models.Consultant, id=self.kwargs["seller_id"]
             )
             # TODO: comisión del vendedor por ahora solo tomara de referencia
             # la comisión actual registrada en el momento de la creación
-            form.instance.seller_commission_percentage = (
+            issuance.seller_commission_percentage = (
                 seller.commission_rate.new_sale
             )
+            issuance.save()
+            for premium in premiums:
+                premium.in_progress = False
+                premium.save()
+                issuance.quotation_vehicle_premiums.add(premium)
             return super().form_valid(form)
 
     def get_success_url(self):
@@ -3847,23 +4191,72 @@ class IIVCreateStepNewSaleView(CreateIssuanceSupportView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
+        context["subtitle"] = "Crear emisión"
         context["initial_step"] = 8
         context["final_step"] = 9
         context["seller"] = shortcuts.get_object_or_404(
             rrgg.models.Consultant, id=self.kwargs["seller_id"]
         )
+        context["customer"] = shortcuts.get_object_or_404(
+            rrgg.models.CustomerMembership, id=self.kwargs["customer_id"]
+        )
+        context["premiums"] = self._get_data()
+        context["insured_amount"] = sum(
+            p.quotation_insurance_vehicle.insured_amount
+            for p in context["premiums"]
+        )
+        context["net_premium"] = sum(p.amount for p in context["premiums"])
+        context["rate"] = round(
+            sum(p.rate for p in context["premiums"])
+            / len(context["premiums"]),
+            2,
+        )
+        context["emission_right"] = round(
+            context["net_premium"]
+            * context["premiums"].first().emission_right_percentage,
+            2,
+        )
+        context["commercial_premium"] = (
+            context["net_premium"] + context["emission_right"]
+        )
+        context["tax"] = round(
+            context["commercial_premium"]
+            * context["premiums"].first().tax_percentage,
+            2,
+        )
+        context["total_premium"] = (
+            context["commercial_premium"] + context["tax"]
+        )
+        context["insurance_plan"] = shortcuts.get_object_or_404(
+            rrgg.models.InsurancePlan, id=self.kwargs["plan_id"]
+        )
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:select_plan_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "premium_id": self.kwargs["premium_id"],
                 "seller_id": self.kwargs["seller_id"],
+                "customer_id": self.kwargs["customer_id"],
             },
         )
         return context
 
 
-class IIVUpdateStepNewSaleView(UpdateIssuanceSupportView):
+class IIVUpdateStepNewSaleView(
+    LoginRequiredMixin, rrgg_mixins.RrggBootstrapDisplayMixin, UpdateView
+):
+    template_name = "rrggweb/issuance/insurance/vehicle/form_multiple.html"
+    model = rrgg.models.IssuanceInsuranceVehicle
+    fields = [
+        "policy",
+        "collection_document",
+        "issuance_date",
+        "initial_validity",
+        "final_validity",
+        "plan_commission_percentage",
+        "payment_method",
+    ]
+    pk_url_kwarg = "issuance_id"
+
     def get_success_url(self):
         return urls.reverse(
             "rrggweb:issuance:insurance:vehicle:create_document_ns",
@@ -3876,14 +4269,16 @@ class IIVUpdateStepNewSaleView(UpdateIssuanceSupportView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "EMISIÓN VEHICULAR - VENTA NUEVA"
+        context["subtitle"] = "Editar Emisión"
         context["initial_step"] = 8
         context["final_step"] = 9
+        premium = self.object.quotation_vehicle_premiums.first()
         context["previous_page"] = urls.reverse(
             "rrggweb:issuance:insurance:vehicle:select_plan_ns",
             kwargs={
                 "registrar_id": self.kwargs["registrar_id"],
-                "premium_id": self.object.quotation_vehicle_premium.id,
-                "seller_id": self.object.consultant_seller.id,
+                "seller_id": self.object.consultant_seller_id,
+                "customer_id": premium.quotation_insurance_vehicle.customer.id,
             },
         )
         return context
@@ -4594,7 +4989,6 @@ class IIVUpdateOwnerNewRenewalStepView(UpdateOwnerSupportView):
 
 class IIVCreateQuotationNewRenewalView(CreateQuotationSupportView):
     def form_valid(self, form):
-        form.instance.consultant_seller_id = None
         form.instance.source = "new_renewal"
         return super().form_valid(form)
 
@@ -4809,27 +5203,24 @@ class IIVCreateStepNewRenewalView(CreateIssuanceSupportView):
             messages.warning(self.request, "Esta cotización ya expiró")
             return self.form_invalid(form)
         else:
-            form.instance.issuance_type = (
-                rrgg.models.IssuanceInsuranceType.objects.get(
-                    name="Renovación"
-                )
-            )
-            form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
-            form.instance.consultant_seller_id = self.kwargs["seller_id"]
-            form.instance.insurance_plan_id = self.kwargs["plan_id"]
-            form.instance.quotation_vehicle_premium_id = self.kwargs[
-                "premium_id"
-            ]
+            issuance = form.save(commit=False)
+            issuance.issuance_type_id = 2
+            issuance.consultant_registrar_id = self.kwargs["registrar_id"]
+            issuance.consultant_seller_id = self.kwargs["seller_id"]
+            issuance.insurance_plan_id = self.kwargs["plan_id"]
+
             raw_percentage = form.cleaned_data["plan_commission_percentage"]
-            form.instance.plan_commission_percentage = raw_percentage / 100
+            issuance.plan_commission_percentage = raw_percentage / 100
             seller = shortcuts.get_object_or_404(
                 rrgg.models.Consultant, id=self.kwargs["seller_id"]
             )
             # TODO: comisión del vendedor por ahora solo tomara de referencia
             # la comisión actual registrada en el momento de la creación
-            form.instance.seller_commission_percentage = (
+            issuance.seller_commission_percentage = (
                 seller.commission_rate.renewal
             )
+            issuance.save()
+            issuance.quotation_vehicle_premiums.add(premium)
             return super().form_valid(form)
 
     def get_success_url(self):
@@ -4941,6 +5332,52 @@ class IIVDeleteDocumentNewRenewalView(DeleteDocumentSupportView):
 # ISSUANCE - RENEWAL 2
 
 
+class IIVPremiumListRenewalStepView(PremiumListSupportView):
+    template_name = (
+        "rrggweb/issuance/insurance/vehicle/renewal/list_premium.html"
+    )
+
+    def _get_data(self):
+        issuance = shortcuts.get_object_or_404(
+            rrgg.models.IssuanceInsuranceVehicle,
+            id=self.kwargs["issuance_id"],
+        )
+        seller = issuance.consultant_seller
+        premium = issuance.quotation_vehicle_premiums.first()
+        customer = premium.quotation_insurance_vehicle.customer.pick
+        return issuance, seller, customer
+
+    def get_queryset(self):
+        return self._get_data()[0].quotation_vehicle_premiums.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "EMISIÓN VEHICULAR - RENOVACIÓN"
+        context["seller"] = self._get_data()[1]
+        context["customer"] = self._get_data()[2]
+        context["new_register"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:search_vehicle_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": context["seller"].id,
+                "customer_id": context["customer"].id,
+            },
+        )
+        context["select_currency_ivr"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:select_currency_ivr_ns",
+            kwargs={
+                "registrar_id": self.kwargs["registrar_id"],
+                "seller_id": context["seller"].id,
+                "customer_id": context["customer"].id,
+            },
+        )
+        context["previous_page"] = urls.reverse(
+            "rrggweb:issuance:insurance:vehicle:list_renewal",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        return context
+
+
 class IIVCreateQuotationRenewalView(
     rrgg_mixins.RrggBootstrapDisplayMixin, CreateView
 ):
@@ -4953,7 +5390,7 @@ class IIVCreateQuotationRenewalView(
             rrgg.models.IssuanceInsuranceVehicle,
             id=self.kwargs["issuance_id"],
         )
-        premium = previous_renewal.quotation_vehicle_premium
+        premium = previous_renewal.quotation_vehicle_premiums.first()
         quotation = premium.quotation_insurance_vehicle
         return previous_renewal, quotation
 
@@ -4964,9 +5401,9 @@ class IIVCreateQuotationRenewalView(
         return initial
 
     def form_valid(self, form):
-        form.instance.risk = rrgg.models.Risk.objects.get(name="Vehicular")
+        form.instance.risk_id = 1
         form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
-        form.instance.consultant_seller_id = None
+        form.instance.consultant_seller_id = self.kwargs["registrar_id"]
         form.instance.customer_id = self._get_data()[1].customer.id
         form.instance.vehicle_id = self._get_data()[1].vehicle.id
         form.instance.source = "renewal"
@@ -5053,7 +5490,7 @@ class IIVCreatePremiumRenewalView(
             rrgg.models.IssuanceInsuranceVehicle,
             id=self.kwargs["issuance_id"],
         )
-        premium = issuance.quotation_vehicle_premium
+        premium = issuance.quotation_vehicle_premiums.first()
         ivr = premium.insurance_vehicle_ratio
         return issuance, ivr
 
@@ -5128,7 +5565,7 @@ class IIVUpdatePremiumStepRenewalView(UpdatePremiumSupportView):
             rrgg.models.IssuanceInsuranceVehicle,
             id=self.kwargs["issuance_id"],
         )
-        premium = issuance.quotation_vehicle_premium
+        premium = issuance.quotation_vehicle_premiums.first()
         ivr = premium.insurance_vehicle_ratio
         return issuance, ivr
 
@@ -5363,28 +5800,23 @@ class IIVCreateStepRenewalView(
             messages.warning(self.request, "Esta cotización ya expiró")
             return self.form_invalid(form)
         else:
-            form.instance.issuance_type = (
-                rrgg.models.IssuanceInsuranceType.objects.get(
-                    name="Renovación"
-                )
-            )
-            form.instance.insurance_plan_id = (
-                self._get_data().insurance_plan.id
-            )
-            form.instance.quotation_vehicle_premium_id = self.kwargs[
-                "premium_id"
-            ]
+            issuance = form.save(commit=False)
+            issuance.issuance_type_id = 2
+            issuance.insurance_plan_id = self._get_data().insurance_plan.id
+
             raw_percentage = form.cleaned_data["plan_commission_percentage"]
-            form.instance.plan_commission_percentage = raw_percentage / 100
-            form.instance.consultant_registrar_id = self.kwargs["registrar_id"]
+            issuance.plan_commission_percentage = raw_percentage / 100
+            issuance.consultant_registrar_id = self.kwargs["registrar_id"]
             seller = shortcuts.get_object_or_404(
                 rrgg.models.Consultant,
                 id=self.kwargs["seller_id"],
             )
-            form.instance.consultant_seller_id = seller.id
-            form.instance.seller_commission_percentage = (
+            issuance.consultant_seller_id = seller.id
+            issuance.seller_commission_percentage = (
                 seller.commission_rate.renewal
             )
+            issuance.save()
+            issuance.quotation_vehicle_premiums.add(premium)
             return super().form_valid(form)
 
     def get_success_url(self):

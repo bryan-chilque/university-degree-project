@@ -173,6 +173,10 @@
   pk: 8
   fields:
     name: Comercial
+- model: rrgg.usetype
+  pk: 9
+  fields:
+    name: Ambulancia
 - model: rrgg.currency
   pk: 1
   fields:
@@ -400,6 +404,7 @@
     consultant_registrar: 3
     consultant_seller: 2
     customer: 1
+    source: "quotation"
     created: 2023-10-02 07:15:35.485352+00:00
 - model: rrgg.quotationinsurancevehicle
   pk: 2
@@ -411,6 +416,7 @@
     consultant_registrar: 1
     consultant_seller: 2
     customer: 2
+    source: "new_sale"
     created: 2023-10-03 06:08:11.485352+00:00
 - model: rrgg.quotationinsurancevehiclepremium
   pk: 1
@@ -524,9 +530,12 @@
     status: 1
     insurance_plan: 1
     payment_method: 2
-    quotation_vehicle_premium: 2
     created: 2023-07-31 07:24:08.278816+00:00
-
+- model: rrgg.issuanceinsurancevehicle_quotation_vehicle_premiums
+  pk: 1
+  fields:
+    issuanceinsurancevehicle_id: 1
+    quotationinsurancevehiclepremium_id: 2
 - model: rrgg.collectioninsurancevehicle
   pk: 1
   fields:

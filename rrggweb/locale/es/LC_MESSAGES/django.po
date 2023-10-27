@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-05 14:01-0500\n"
+"POT-Creation-Date: 2023-10-25 09:24-0500\n"
 "PO-Revision-Date: 2023-07-25 16:40+0000\n"
 "Last-Translator: Cristhian Gonzales <gcca@gcca.dev>\n"
 "Language-Team: Riesgos Devs <devs@crd.pe>\n"
@@ -18,33 +18,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\rrggweb\forms.py:75
+#: .\rrggweb\forms.py:73
 msgid "type customer"
 msgstr "tipo de contratante"
 
-#: .\rrggweb\forms.py:83
+#: .\rrggweb\forms.py:81
 msgid "document number"
 msgstr "documento de identidad"
 
-#: .\rrggweb\forms.py:91
+#: .\rrggweb\forms.py:89
 msgid "plate"
 msgstr "número de placa"
 
-#: .\rrggweb\forms.py:98
+#: .\rrggweb\forms.py:96
 msgid "does the contractor own the vehicle?"
 msgstr "¿El contratante es el mismo que el asegurado?"
 
-#: .\rrggweb\forms.py:151
+#: .\rrggweb\forms.py:149
 msgid "vehicle registration type"
 msgstr "tipo de registro vehicular"
 
-#: .\rrggweb\forms.py:178
+#: .\rrggweb\forms.py:176
 msgid "new sale has a previous quote?"
 msgstr "¿venta nueva tiene cotización previa?"
 
-#: .\rrggweb\forms.py:209
+#: .\rrggweb\forms.py:191
+#, fuzzy
+#| msgid "vehicle registration type"
+msgid "type registration"
+msgstr "tipo de registro vehicular"
+
+#: .\rrggweb\forms.py:220
 msgid "comment"
 msgstr "comentario"
+
+#: .\rrggweb\forms.py:230
+#, fuzzy
+#| msgid "insurance"
+msgid "insured amount"
+msgstr "aseguradora"
+
+#: .\rrggweb\forms.py:234
+msgid "rate"
+msgstr "tasa"
+
+#: .\rrggweb\forms.py:238
+msgid "net premium"
+msgstr "prima neta"
 
 #: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:56
 msgid "emission right"
@@ -55,6 +75,8 @@ msgid "tax (igv)"
 msgstr "igv"
 
 #: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:58
+#, fuzzy
+#| msgid "insurance"
 msgid "vehicle insurance"
 msgstr "aseguradora"
 
@@ -65,6 +87,9 @@ msgstr "fecha de creación"
 #: .\rrggweb\templates\rrggweb\quotation\insurance\vehicle\create_premiums.html:72
 msgid "Please correct the errors below."
 msgstr "Por favor corrija los errores a continuación."
+
+#~ msgid "currency"
+#~ msgstr "moenda"
 
 #~ msgid "is the contracting party the same as the insured?"
 #~ msgstr "¿el contratante es el mismo que el asegurado?"

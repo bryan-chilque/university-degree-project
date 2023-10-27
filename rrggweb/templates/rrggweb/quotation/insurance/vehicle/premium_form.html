@@ -74,25 +74,27 @@
       document.querySelector('#id_insurance_vehicle_ratio').style.backgroundColor = '#e8e8e8';
       document.querySelector('#id_insurance_vehicle_ratio').setAttribute("disabled", "disabled");
 
-      const insuredAmount = Number(document.querySelector('#insured_amount').textContent);
+      const insuredAmountString = document.querySelector('#insured_amount').textContent;
+      const insuredAmount = parseInt(insuredAmountString.replace(',', '.'))
       const amountInput = document.querySelector('#id_amount');
       const rateInput = document.querySelector('#id_rate');
 
       amountInput.addEventListener('input', () => {
         const amount = Number(amountInput.value);
-        const rate = insuredAmount / amount;
+        const rate = amount / insuredAmount;
         rateInput.value = rate.toFixed(2);
       });
     </script>
   {% else %}
     <script>
-      const insuredAmount = Number(document.querySelector('#insured_amount').textContent);
+      const insuredAmountString = document.querySelector('#insured_amount').textContent;
+      const insuredAmount = parseInt(insuredAmountString.replace(',', '.'))
       const amountInput = document.querySelector('#id_amount');
       const rateInput = document.querySelector('#id_rate');
 
       amountInput.addEventListener('input', () => {
         const amount = Number(amountInput.value);
-        const rate = insuredAmount / amount;
+        const rate = amount / insuredAmount;
         rateInput.value = rate.toFixed(2);
       });
     </script>

@@ -31,11 +31,11 @@
               <tbody>
                 <tr>
                   <td class="font-weight-bold">Tipo de documento</td>
-                  <td>{{ customer.document_type}}</td>
+                  <td>{{ customer.pick.document_type}}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Número de documento</td>
-                  <td>{{ customer.document_number }}</td>
+                  <td>{{ customer.pick.document_number }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Nombres y apellidos</td>
@@ -43,125 +43,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="col-md-6">
-            <table class="table table-sm table-bordered">
-              <thead>
-                <tr>
-                  <th colspan="2" class="font-weight-bold">
-                    Datos del asegurado
-                    {% if update_owner %}
-                      <a href="{{ update_owner }}"><i class="fas fa-pencil-alt"></i></a>
-                    {% endif %}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {% if owner %}
-                  <tr>
-                    <td class="font-weight-bold">Tipo de documento</td>
-                    <td>{{ owner.document_type}}</td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">Número de documento</td>
-                    <td>{{ owner.document_number }}</td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">Nombres y apellidos</td>
-                    <td>{{ owner }}</td>
-                  </tr>
-                {% else %}
-                  <tr>
-                    <td class="font-weight-bold">Tipo de documento</td>
-                    <td>{{ customer.document_type}}</td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">Número de documento</td>
-                    <td>{{ customer.document_number }}</td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">Nombres y apellidos</td>
-                    <td>{{ customer }}</td>
-                  </tr>
-                {% endif %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      {% endif %}
-      {% if customer %}
-        <div class="row">
-          <div class="col-md-6">
-            <table class="table table-sm table-bordered">
-              <thead>
-                <tr>
-                  <th colspan="2" class="font-weight-bold">
-                    Datos del Bien Asegurado
-                    {% if update_vehicle %}
-                      <a href="{{ update_vehicle }}"><i class="fas fa-pencil-alt"></i></a>
-                    {% endif %}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="font-weight-bold">Placa</td>
-                  <td>{{ vehicle.plate }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Marca</td>
-                  <td>{{ vehicle.brand }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Modelo</td>
-                  <td>{{ vehicle.vehicle_model }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Año de fabricación</td>
-                  <td>{{ vehicle.fabrication_year }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Número de motor</td>
-                  <td>{{ vehicle.engine }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Número de chasis</td>
-                  <td>{{ vehicle.chassis }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Número de asientos</td>
-                  <td>{{ vehicle.seat_number }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Tipo de uso</td>
-                  <td>{{ vehicle.use_type }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">¿Requiere gps?</td>
-                  {% if vehicle.has_gps %}
-                    <td>Sí</td>
-                  {% else %}
-                    <td>No</td>
-                  {% endif %}
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">¿Es endosado?</td>
-                  {% if vehicle.has_endorsee %}
-                    <td>Sí</td>
-                  {% else %}
-                    <td>No</td>
-                  {% endif %}
-                </tr>
-                {% if vehicle.has_endorsee %}
-                  <tr>
-                    <td class="font-weight-bold">Banco</td>
-                    <td>{{ vehicle.endorsement_bank }}</td>
-                  </tr>
-                {% endif %}
-              </tbody>
-            </table>
-          </div>
-          <div class="col-md-6">
             <table class="table table-sm table-bordered">
               <thead>
                 <tr>
@@ -193,6 +74,8 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div class="col-md-6">
             <table class="table table-sm table-bordered">
               <thead>
                 <tr>
@@ -201,14 +84,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="font-weight-bold">Ramo</td>
-                  <td>
-                    {{ quotation.risk }}
-                  </td>
-                </tr>
-                <tr>
                   <td class="font-weight-bold">Aseguradora</td>
-                  <td>{{ ratio.insurance_vehicle }}</td>
+                  <td>{{ premiums.first.insurance_vehicle_ratio.insurance_vehicle }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Plan de seguro</td>
@@ -217,39 +94,92 @@
                 <tr>
                   <td class="font-weight-bold">Tipo de moneda</td>
                   <td>
-                    {{ quotation.currency }}
+                    {{ premiums.first.quotation_insurance_vehicle.currency }}
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Suma asegurada</td>
                   <td>
-                    {{quotation.currency.symbol}}{{ premium.quotation_insurance_vehicle.insured_amount }}
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ insured_amount }}
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Tasa</td>
-                  <td>{{quotation.currency.symbol}}{{ premium.rate }}</td>
+                  <td>{{ rate }}%</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima neta</td>
                   <td>
-                    {{quotation.currency.symbol}}{{ premium.amount }}
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ net_premium }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Derecho de emisión</td>
+                  <td>
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ emission_right }}
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima comercial</td>
                   <td>
-                    {{quotation.currency.symbol}}{{ premium.commercial_premium }}
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ commercial_premium }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="font-weight-bold">Prima total</td>
-                  <td>{{quotation.currency.symbol}}{{ premium.total }}</td>
-                </tr>
-              </tbody>
-            </table>
+                  <td class="font-weight-bold">IGV</td>
+                  <td>
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ tax }}
+                  </td>
+                  <tr>
+                    <td class="font-weight-bold">Prima total</td>
+                    <td>{{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ total_premium }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Vehiculo</th>
+                        <th>Asegurado</th>
+                        <th>Suma asegurada</th>
+                        <th>Prima Neta</th>
+                        <th>Tasa</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if premiums|length == 0 %}
+                        <tr>
+                          <td colspan="9" class="text-center">No hay primas registradas</td>
+                        </tr>
+                      {% else %}
+                        {% for premium in premiums %}
+                          <tr>
+                            <td class="align-middle">{{ premium.quotation_insurance_vehicle.vehicle }}</td>
+                            <td class="align-middle">{{ premium.quotation_insurance_vehicle.vehicle.ownership.pick }}</td>
+                            <td class="align-middle">
+                              {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.quotation_insurance_vehicle.insured_amount }}
+                            </td>
+                            <td class="align-middle">
+                              {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.amount }}
+                            </td>
+                            <td class="align-middle">
+                              {{ premium.rate }}%
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
       {% endif %}
       <form method="post">
         {% csrf_token %}

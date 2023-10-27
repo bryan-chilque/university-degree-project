@@ -1,4 +1,4 @@
-{% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
+{% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -6,10 +6,32 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
+      {% if initial_step == 3 and final_step == 9 %}
+        {% include "rrggweb/utils/stepper.html" with step=3 max_step=9 %}
+      {% elif initial_step == 6 and final_step == 9 %}
+        {% include "rrggweb/utils/stepper.html" with step=6 max_step=9 %}
+      {% endif %}
       <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
+      <div class="mt-2">
+        {% if seller or customer or vehicle or owner %}
+          <h5>
+            Asesor: <b>{{ seller }}</b>
+          </h5>
+          <h5>
+            Contratante: <b>{{ customer }}</b>
+          </h5>
+          <h5>
+            Vehículo: <b>{{ vehicle }}</b>
+          </h5>
+          <h5>
+            Asegurado: <b>{{ owner }}</b>
+          </h5>
+          <hr class="w-25" />
+        {% endif %}
+      </div>
       {% if body %}
         <center>
           <h5 class="mb-3">{{ body }}</h5>
@@ -17,17 +39,33 @@
       {% endif %}
       <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <table>
+          <tr>
+            <th>{{ form.insured_amount.label_tag }}</th>
+          </tr>
+          <tr>
+            <td>{{ form.insured_amount }}</td>
+          </tr>
+          <tr>
+            <th>{{ form.amount.label_tag }}</th>
+          </tr>
+          <tr>
+            <td>{{ form.amount }}</td>
+          </tr>
+          <tr>
+            <th>{{ form.rate.label_tag }}</th>
+          </tr>
+          <tr>
+            <td>{{ form.rate }}</td>
+          </tr>
+        </table>
         <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
       </form>
     </div>
   </div>
   <script>
-    document.querySelector('#id_final_validity').style.backgroundColor = '#e8e8e8';
-    document.querySelector('#id_final_validity').setAttribute("readonly", "readonly");
-
     const insuredAmountInput = document.querySelector('#id_insured_amount');
-    const netPremiumInput = document.querySelector('#id_net_premium');
+    const netPremiumInput = document.querySelector('#id_amount');
     const rateInput = document.querySelector('#id_rate');
 
     netPremiumInput.addEventListener('input', () => {
