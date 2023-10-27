@@ -887,6 +887,27 @@ customer_membership_urlpatterns = (
     "customer_membership",
 )
 
+historical_data_urlpatterns = (
+    [
+        path(
+            "list/",
+            views.HistoricalDataListView.as_view(),
+            name="list",
+        ),
+        path(
+            "detail/<int:pk>/",
+            views.HistoricalDataDetailView.as_view(),
+            name="detail",
+        ),
+        path(
+            "update/<int:historical_data_id>/",
+            views.HistoricalDataUpdateView.as_view(),
+            name="update",
+        ),
+    ],
+    "historical_data",
+)
+
 
 app_name = "rrggweb"
 
@@ -912,6 +933,10 @@ urlpatterns = [
     path("<int:registrar_id>/quotation/", include(quotation_urlpatterns)),
     path("<int:registrar_id>/issuance/", include(issuance_urlpatterns)),
     path("<int:registrar_id>/collection/", include(collection_urlpatterns)),
+    path(
+        "<int:registrar_id>/historical_data/",
+        include(historical_data_urlpatterns),
+    ),
     path(
         "<int:registrar_id>/customer_membership/",
         include(customer_membership_urlpatterns),

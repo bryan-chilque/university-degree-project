@@ -1,0 +1,115 @@
+{% extends "rrggweb/dashboard.html" %}
+
+{% block title_section %}Detalle de Riesgo{% endblock title_section %}
+
+{% block content %}
+    <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i> Volver a la lista
+    </a>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Información del Cliente</h5>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Cliente:</th>
+                        <td>{{ record.customer|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Número de Documento:</th>
+                        <td>{{ record.document_number|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Nacimiento:</th>
+                        <td>{{ record.birth_date|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Correo Electrónico:</th>
+                        <td>{{ record.email|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dirección de la Póliza:</th>
+                        <td>{{ record.policy_address|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Número de Teléfono:</th>
+                        <td>{{ record.phone_number|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Número de Teléfono 2:</th>
+                        <td>{{ record.phone_number2|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Consultor:</th>
+                        <td>{{ record.consultant|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo de Consultor:</th>
+                        <td>{{ record.consultant_type|default_if_none:"-" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Información de la Póliza</h5>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Póliza:</th>
+                        <td>{{ record.policy|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Plan de Seguro:</th>
+                        <td>{{ record.insurance_plan|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Vehículo Asegurado:</th>
+                        <td>{{ record.insurance_vehicle|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Emisión:</th>
+                        <td>{{ record.issuance_date|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Vencimiento del Primer Cupón:</th>
+                        <td>{{ record.expiration_date_first_coupon|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Validez Inicial:</th>
+                        <td>{{ record.initial_validity|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Validez Final:</th>
+                        <td>{{ record.final_validity|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Documento de Pago:</th>
+                        <td>{{ record.payment_document|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Pago:</th>
+                        <td>{{ record.payment_date|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estado de Pago del Primer Cupón:</th>
+                        <td>{{ record.payment_status_first_coupon|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Moneda:</th>
+                        <td>{{ record.currency|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estado:</th>
+                        <td>{{ record.status|default_if_none:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Observaciones:</th>
+                        <td>{{ record.observations|default_if_none:"-" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
