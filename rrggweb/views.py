@@ -1,5 +1,6 @@
 import os
 import re
+from typing import Any
 
 from django import shortcuts, urls
 from django.conf import settings
@@ -5972,3 +5973,36 @@ class HistoricalDataListView(ListView):
     model = rrgg.models.HistoricalData
     template_name = 'rrggweb/historical_data/list.html'
     context_object_name = 'data'
+
+class HistoricalDataDetailView(DetailView):
+    model = rrgg.models.HistoricalData
+    template_name = 'rrggweb/historical_data/detail.html'
+    context_object_name = 'record'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:historical_data:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        return context
+
+class HistoricalDataUpdateView(UpdateView):
+    model = rrgg.models.HistoricalData
+    template_name = 'rrggweb/historical_data/form.html'
+    pk_url_kwarg = 'historical_data_id' 
+    fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["previous_page"] = urls.reverse(
+            "rrggweb:historical_data:list",
+            kwargs={"registrar_id": self.kwargs["registrar_id"]},
+        )
+        return context
+
+    def get_success_url(self):
+        return urls.reverse(
+            "rrggweb:historical_data:detail",
+            kwargs={"pk": self.object.id},
+        )

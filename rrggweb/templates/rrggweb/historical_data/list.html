@@ -1,48 +1,64 @@
 {% extends "rrggweb/dashboard.html" %}
 
-{% block title_section %}Historical Data{% endblock title_section %}
-{% block content %}
-<h1>Historical Data</h1>
-<div class="dataTables_filter">
-    <label>Search:
-        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="historical-data-table">
-    </label>
-</div>
-<table id="historical-data-table">
-    <thead>
-        <tr>
-            <th>Customer</th>
-            <th>Policy</th>
-            <th>Insurance Plan</th>
-            <th>Payment Status First Coupon</th>
-            <th>Total Premium</th>
-            <th>Expiration Date First Coupon</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for record in data %}
-        <tr>
-            <td>{{ record.customer }}</td>
-            <td>{{ record.policy }}</td>
-            <td>{{ record.insurance_plan }}</td>
-            <td>{{ record.payment_status_first_coupon }}</td>
-            <td>{{ record.total_premium }}</td>
-            <td>{{ record.expiration_date_first_coupon }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
+{% block title_section %}Data Histórica{% endblock title_section %}
 
-{% block scripts %}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#historical-data-table').DataTable({
-            "pageLength": 10, // Display 10 records per page
-            "searching": true // Enable search functionality
+{% block content %}
+    <div id="loader" class="d-flex justify-content-center align-items-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <table id="historical-data-table" class="d-none">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Póliza</th>
+                <th>Aseguradora</th>
+                <th>Asesor</th>
+                <th>Prima Total</th>
+                <th>Año</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in data %}
+                <tr>
+                    <td>{{ record.customer }}</td>
+                    <td>{{ record.policy }}</td>
+                    <td>{{ record.insurance_vehicle }}</td>
+                    <td>{{ record.consultant }}</td>
+                    <td>{{ record.total_premium }}</td>
+                    <td>{{ record.year }}</td>
+                    <td><a href="{% url 'rrggweb:historical_data:detail' view.kwargs.registrar_id record.pk %}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-eye"></i> Ver detalle
+                    </a>
+                    <a href="{% url 'rrggweb:historical_data:update' view.kwargs.registrar_id record.pk %}" class="btn btn-warning btn-sm">
+                        <i class="fa fa-edit"></i> Editar
+                    </a>
+                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function() {
+            $('#historical-data-table').DataTable({
+                "pageLength": 10,
+                "searching": true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                },
+                "columnDefs": [
+                    {
+                        "targets": 0,
+                        "width": "350px",
+                    }
+                ],
+                "initComplete": function(settings, json) {
+                    $('#loader').addClass('d-none');
+                    $('#historical-data-table').removeClass('d-none').removeAttr('style');
+                }
+            });
         });
-    });
-</script>
+    </script>
 {% endblock %}

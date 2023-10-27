@@ -1,0 +1,161 @@
+{% extends "rrggweb/dashboard.html" %}
+
+{% block title_section %}Actualizar Datos Históricos{% endblock title_section %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label for="register_date">Fecha de registro:</label>
+                    <input type="text" name="register_date" id="register_date" class="form-control" value="{{ object.register_date }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="collection_record_date">Fecha de registro de cobro:</label>
+                    <input type="text" name="collection_record_date" id="collection_record_date" class="form-control" value="{{ object.collection_record_date }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="customer">Cliente:</label>
+                    <input type="text" name="customer" id="customer" class="form-control" value="{{ object.customer }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="document_number">Número de documento:</label>
+                    <input type="text" name="document_number" id="document_number" class="form-control" value="{{ object.document_number }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="birth_date">Fecha de nacimiento:</label>
+                    <input type="text" name="birth_date" id="birth_date" class="form-control" value="{{ object.birth_date }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="consultant">Consultor:</label>
+                    <input type="text" name="consultant" id="consultant" class="form-control" value="{{ object.consultant }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="consultant_type">Tipo de consultor:</label>
+                    <input type="text" name="consultant_type" id="consultant_type" class="form-control" value="{{ object.consultant_type }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="risk">Riesgo:</label>
+                    <input type="text" name="risk" id="risk" class="form-control" value="{{ object.risk }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="policy">Póliza:</label>
+                    <input type="text" name="policy" id="policy" class="form-control" value="{{ object.policy }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="insurance_plan">Plan de seguro:</label>
+                    <input type="text" name="insurance_plan" id="insurance_plan" class="form-control" value="{{ object.insurance_plan }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="insurance_vehicle">Vehículo asegurado:</label>
+                    <input type="text" name="insurance_vehicle" id="insurance_vehicle" class="form-control" value="{{ object.insurance_vehicle }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="issuance_date">Fecha de emisión:</label>
+                    <input type="text" name="issuance_date" id="issuance_date" class="form-control" value="{{ object.issuance_date }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="payment_document">Documento de pago:</label>
+                    <input type="text" name="payment_document" id="payment_document" class="form-control" value="{{ object.payment_document }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="expiration_date_first_coupon">Fecha de vencimiento del primer cupón:</label>
+                    <input type="text" name="expiration_date_first_coupon" id="expiration_date_first_coupon" class="form-control" value="{{ object.expiration_date_first_coupon }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="initial_validity">Validez inicial:</label>
+                    <input type="text" name="initial_validity" id="initial_validity" class="form-control" value="{{ object.initial_validity }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="final_validity">Validez final:</label>
+                    <input type="text" name="final_validity" id="final_validity" class="form-control" value="{{ object.final_validity }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="payment_date">Fecha de pago:</label>
+                    <input type="text" name="payment_date" id="payment_date" class="form-control" value="{{ object.payment_date }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="payment_status_first_coupon">Estado de pago del primer cupón:</label>
+                    <input type="text" name="payment_status_first_coupon" id="payment_status_first_coupon" class="form-control" value="{{ object.payment_status_first_coupon }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label for="currency">Moneda:</label>
+                    <input type="text" name="currency" id="currency" class="form-control" value="{{ object.currency }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="status-kcs">Estado:</label>
+                    <input type="text" name="status" id="status-kcs" class="form-control" value="{{ object.status }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="observations">Observaciones:</label>
+                    <input type="text" name="observations" id="observations" class="form-control" value="{{ object.observations }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="insured_amount">Monto asegurado:</label>
+                    <input type="text" name="insured_amount" id="insured_amount" class="form-control" value="{{ object.insured_amount }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="kcs_commission_percentage">Porcentaje de comisión de KCS:</label>
+                    <input type="text" name="kcs_commission_percentage" id="kcs_commission_percentage" class="form-control" value="{{ object.kcs_commission_percentage }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="net_premium">Prima neta:</label>
+                    <input type="text" name="net_premium" id="net_premium" class="form-control" value="{{ object.net_premium }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="commercial_premium">Prima comercial:</label>
+                    <input type="text" name="commercial_premium" id="commercial_premium" class="form-control" value="{{ object.commercial_premium }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="total_premium">Prima total:</label>
+                    <input type="text" name="total_premium" id="total_premium" class="form-control" value="{{ object.total_premium }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="net_commission_amount">Monto neto de comisión:</label>
+                    <input type="text" name="net_commission_amount" id="net_commission_amount" class="form-control" value="{{ object.net_commission_amount }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="payment_method">Método de pago:</label>
+                    <input type="text" name="payment_method" id="payment_method" class="form-control" value="{{ object.payment_method }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="months">Meses:</label>
+                    <input type="text" name="months" id="months" class="form-control" value="{{ object.months }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="year">Año:</label>
+                    <input type="text" name="year" id="year" class="form-control" value="{{ object.year }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="dolar_premium">Prima en dólares:</label>
+                    <input type="text" name="dolar_premium" id="dolar_premium" class="form-control" value="{{ object.dolar_premium }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="dolar_commission">Comisión en dólares:</label>
+                    <input type="text" name="dolar_commission" id="dolar_commission" class="form-control" value="{{ object.dolar_commission }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="text" name="email" id="email" class="form-control" value="{{ object.email }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="policy_address">Dirección de la póliza:</label>
+                    <input type="text" name="policy_address" id="policy_address" class="form-control" value="{{ object.policy_address }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="phone_number">Número de teléfono:</label>
+                    <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ object.phone_number }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="phone_number2">Número de teléfono 2:</label>
+                    <input type="text" name="phone_number2" id="phone_number2" class="form-control" value="{{ object.phone_number2 }}">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="{{ previous_page }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}
