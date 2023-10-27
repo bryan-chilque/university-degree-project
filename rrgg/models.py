@@ -788,7 +788,9 @@ class CollectionInsuranceVehicle(models.Model):
     def __str__(self):
         return f"status={self.status()}"
 
-## Modelo para la data historica
+
+# Modelo para la data historica
+
 
 class HistoricalData(models.Model):
     register_date = models.CharField(max_length=64, null=True)
@@ -827,6 +829,3 @@ class HistoricalData(models.Model):
     policy_address = models.CharField(max_length=64, null=True)
     phone_number = models.CharField(max_length=64, null=True)
     phone_number2 = models.CharField(max_length=64, null=True)
-
-
-

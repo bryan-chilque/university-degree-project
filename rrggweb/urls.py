@@ -79,12 +79,18 @@ quotation_insurance_vehicle_urlpatterns = (
             name="update_legal_person_step",
         ),
         path(
-            ("search_vehicle/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
+            (
+                "search_vehicle/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
             views.QIVSearchVehicleView.as_view(),
             name="search_vehicle",
         ),
         path(
-            ("create_vehicle/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
+            (
+                "create_vehicle/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
             views.QIVCreateVehicleView.as_view(),
             name="create_vehicle",
         ),
@@ -239,7 +245,10 @@ issuance_insurance_vehicle_urlpatterns = (
             name="select_role_q",
         ),
         path(
-            ("select_seller/quotation_premium/<int:premium_id>/" "role/<int:role_id>/"),
+            (
+                "select_seller/quotation_premium/<int:premium_id>/"
+                "role/<int:role_id>/"
+            ),
             views.IIVSelectSellerQuotationView.as_view(),
             name="select_seller_q",
         ),
@@ -307,12 +316,18 @@ issuance_insurance_vehicle_urlpatterns = (
             name="update_legal_person",
         ),
         path(
-            ("search_vehicle/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
+            (
+                "search_vehicle/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
             views.IIVSearchVehicleNewSaleView.as_view(),
             name="search_vehicle",
         ),
         path(
-            ("create_vehicle/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
+            (
+                "create_vehicle/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
             views.IIVCreateVehicleNewSaleView.as_view(),
             name="create_vehicle",
         ),
@@ -385,7 +400,10 @@ issuance_insurance_vehicle_urlpatterns = (
             name="update_quotation",
         ),
         path(
-            ("create_premium/seller/<int:seller_id>/" "quotation/<int:quotation_id>/"),
+            (
+                "create_premium/seller/<int:seller_id>/"
+                "quotation/<int:quotation_id>/"
+            ),
             views.IIVCreatePremiumNewSaleView.as_view(),
             name="create_premium",
         ),
@@ -533,12 +551,18 @@ issuance_insurance_vehicle_urlpatterns = (
             name="update_legal_person_step_nr",
         ),
         path(
-            ("search_vehicle_nr/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
+            (
+                "search_vehicle_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
             views.IIVSearchVehicleNewRenewalView.as_view(),
             name="search_vehicle_nr",
         ),
         path(
-            ("create_vehicle_nr/seller/<int:seller_id>/" "customer/<int:customer_id>/"),
+            (
+                "create_vehicle_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
             views.IIVCreateVehicleNewRenewalView.as_view(),
             name="create_vehicle_nr",
         ),
@@ -591,7 +615,10 @@ issuance_insurance_vehicle_urlpatterns = (
             name="create_quotation_nr",
         ),
         path(
-            ("update_quotation_step_nr/<int:quotation_id>/" "seller/<int:seller_id>/"),
+            (
+                "update_quotation_step_nr/<int:quotation_id>/"
+                "seller/<int:seller_id>/"
+            ),
             views.IIVUpdateQuotationStepNewRenewalView.as_view(),
             name="update_quotation_step_nr",
         ),
@@ -643,7 +670,10 @@ issuance_insurance_vehicle_urlpatterns = (
             name="create_quotation_r",
         ),
         path(
-            ("update_quotation_step/<int:quotation_id>/" "issuance/<int:issuance_id>/"),
+            (
+                "update_quotation_step/<int:quotation_id>/"
+                "issuance/<int:issuance_id>/"
+            ),
             views.IIVUpdateQuotationStepRenewalView.as_view(),
             name="update_quotation_step",
         ),
@@ -738,7 +768,10 @@ issuance_insurance_vehicle_urlpatterns = (
             name="endorsement_detail",
         ),
         path(
-            ("update_endorsement/<int:endorsement_id>/" "issuance/<int:issuance_id>/"),
+            (
+                "update_endorsement/<int:endorsement_id>/"
+                "issuance/<int:issuance_id>/"
+            ),
             views.IIVUpdateEndorsementView.as_view(),
             name="update_endorsement",
         ),
@@ -900,7 +933,10 @@ urlpatterns = [
     path("<int:registrar_id>/quotation/", include(quotation_urlpatterns)),
     path("<int:registrar_id>/issuance/", include(issuance_urlpatterns)),
     path("<int:registrar_id>/collection/", include(collection_urlpatterns)),
-    path("<int:registrar_id>/historical_data/", include(historical_data_urlpatterns)),
+    path(
+        "<int:registrar_id>/historical_data/",
+        include(historical_data_urlpatterns),
+    ),
     path(
         "<int:registrar_id>/customer_membership/",
         include(customer_membership_urlpatterns),

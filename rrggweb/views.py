@@ -1,6 +1,5 @@
 import os
 import re
-from typing import Any
 
 from django import shortcuts, urls
 from django.conf import settings
@@ -5967,17 +5966,20 @@ class CMCreateLegalPersonView(CreateLegalPersonSupportView):
         )
         return context
 
-## View para la data historica
+
+# View para la data historica
+
 
 class HistoricalDataListView(ListView):
     model = rrgg.models.HistoricalData
-    template_name = 'rrggweb/historical_data/list.html'
-    context_object_name = 'data'
+    template_name = "rrggweb/historical_data/list.html"
+    context_object_name = "data"
+
 
 class HistoricalDataDetailView(DetailView):
     model = rrgg.models.HistoricalData
-    template_name = 'rrggweb/historical_data/detail.html'
-    context_object_name = 'record'
+    template_name = "rrggweb/historical_data/detail.html"
+    context_object_name = "record"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -5987,11 +5989,12 @@ class HistoricalDataDetailView(DetailView):
         )
         return context
 
+
 class HistoricalDataUpdateView(UpdateView):
     model = rrgg.models.HistoricalData
-    template_name = 'rrggweb/historical_data/form.html'
-    pk_url_kwarg = 'historical_data_id' 
-    fields = '__all__'
+    template_name = "rrggweb/historical_data/form.html"
+    pk_url_kwarg = "historical_data_id"
+    fields = "__all__"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
