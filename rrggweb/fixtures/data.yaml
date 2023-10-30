@@ -29206,7 +29206,7 @@
     email: ''
     expiration_date_first_coupon: 1/09/2022
     final_validity: ''
-    initial_validity: '###############################################################################################################################################################################################################################################################'
+    initial_validity: ''
     insurance_plan: EQUIPO DE CONTRATISTAS
     insurance_vehicle: MAPFRE
     insured_amount: '81000'
@@ -29245,7 +29245,7 @@
     email: ''
     expiration_date_first_coupon: 1/09/2022
     final_validity: ''
-    initial_validity: '###############################################################################################################################################################################################################################################################'
+    initial_validity: ''
     insurance_plan: EQUIPO DE CONTRATISTAS
     insurance_vehicle: MAPFRE
     insured_amount: '81000'

@@ -12,10 +12,12 @@
         <thead>
             <tr>
                 <th>Cliente</th>
+                <td>Documento</td>
                 <th>Póliza</th>
                 <th>Aseguradora</th>
                 <th>Asesor</th>
                 <th>Prima Total</th>
+                <th>Tipo de riesgo</th>
                 <th>Año</th>
                 <th>Acciones</th>
             </tr>
@@ -24,10 +26,12 @@
             {% for record in data %}
                 <tr>
                     <td>{{ record.customer }}</td>
+                    <td>{{ record.document_number }}</td>
                     <td>{{ record.policy }}</td>
                     <td>{{ record.insurance_vehicle }}</td>
                     <td>{{ record.consultant }}</td>
                     <td>{{ record.total_premium }}</td>
+                    <td>{{ record.risk }}</td>
                     <td>{{ record.year }}</td>
                     <td><a href="{% url 'rrggweb:historical_data:detail' view.kwargs.registrar_id record.pk %}" class="btn btn-primary btn-sm">
                         <i class="fa fa-eye"></i> Ver detalle
