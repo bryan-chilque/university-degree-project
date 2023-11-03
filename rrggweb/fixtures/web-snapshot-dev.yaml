@@ -262,7 +262,7 @@
     seat_number: 5
     has_gps: false
     has_endorsee: false
-    endorsee_bank: 1
+    endorsement_bank: 1
     use_type: 1
 - model: rrgg.vehicle
   pk: 2
@@ -276,7 +276,7 @@
     seat_number: 4
     has_gps: false
     has_endorsee: false
-    endorsee_bank: 2
+    endorsement_bank: 2
     use_type: 3
 - model: rrgg.vehicleownership
   pk: 1

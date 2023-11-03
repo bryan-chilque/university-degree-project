@@ -744,80 +744,114 @@ issuance_insurance_vehicle_urlpatterns = (
             name="list_premiums_r",
         ),
         path(
-            "create_quotation_r/emission/<int:issuance_id>/",
-            views.IIVCreateQuotationRenewalView.as_view(),
-            name="create_quotation_r",
-        ),
-        path(
             (
-                "update_quotation_step/<int:quotation_id>/"
+                "update_premium_step_r/<int:premium_id>/"
                 "issuance/<int:issuance_id>/"
             ),
-            views.IIVUpdateQuotationStepRenewalView.as_view(),
-            name="update_quotation_step",
+            views.IIVUpdatePremiumRenewalStepView.as_view(),
+            name="update_premium_step_r",
+        ),
+        path(
+            "delete_premium_step_r/<int:pk>/issuance/<int:issuance_id>/",
+            views.IIVDeletePremiumRenewalStepView.as_view(),
+            name="delete_premium_step_r",
+        ),
+        path(
+            "search_vehicle_r/issuance/<int:issuance_id>/",
+            views.IIVSearchVehicleRenewalView.as_view(),
+            name="search_vehicle_r",
+        ),
+        path(
+            "create_vehicle_r/issuance/<int:issuance_id>/",
+            views.IIVCreateVehicleRenewalView.as_view(),
+            name="create_vehicle_r",
         ),
         path(
             (
-                "create_premium/issuance/<int:issuance_id>/"
-                "quotation/<int:quotation_id>/"
+                "update_vehicle_step_r/<int:vehicle_id>/seller/"
+                "issuance/<int:issuance_id>/"
+            ),
+            views.IIVUpdateVehicleRenewalStepView.as_view(),
+            name="update_vehicle_step_r",
+        ),
+        path(
+            (
+                "define_owner_r/seller/issuance/<int:issuance_id>/"
+                "vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVDefineOwnerRenewalView.as_view(),
+            name="define_owner_r",
+        ),
+        path(
+            (
+                "search_owner_r/issuance/<int:issuance_id>/"
+                "vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVSearchOwnerRenewalView.as_view(),
+            name="search_owner_r",
+        ),
+        path(
+            (
+                "create_owner_r/issuance/<int:issuance_id>/"
+                "vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVCreateOwnerRenewalView.as_view(),
+            name="create_owner_r",
+        ),
+        path(
+            (
+                "update_owner_step_r/<int:owner_id>/issuance/"
+                "<int:issuance_id>/vehicle/<int:vehicle_id>/"
+            ),
+            views.IIVUpdateOwnerRenewalStepView.as_view(),
+            name="update_owner_step_r",
+        ),
+        path(
+            (
+                "create_premium_r/issuance/<int:issuance_id>/"
+                "vehicle/<int:vehicle_id>/"
             ),
             views.IIVCreatePremiumRenewalView.as_view(),
-            name="create_premium",
+            name="create_premium_r",
         ),
         path(
-            "update_premium_step/<int:premium_id>/issuance/<int:issuance_id>/",
-            views.IIVUpdatePremiumStepRenewalView.as_view(),
-            name="update_premium_step",
+            "select_currency_r/issuance/<int:issuance_id>/",
+            views.IIVSelectCurrencyRenewalView.as_view(),
+            name="select_currency_r",
         ),
         path(
             (
-                "update_natural_person/<int:natural_person_id>/"
-                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
-                "seller/<int:seller_id>/"
+                "update_natural_person_r/<int:natural_person_id>/"
+                "issuance/<int:issuance_id>/"
             ),
             views.IIVUpdateNaturalPersonRenewalView.as_view(),
-            name="update_natural_person",
+            name="update_natural_person_r",
         ),
         path(
             (
-                "update_legal_person/<int:legal_person_id>/"
-                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
-                "seller/<int:seller_id>/"
+                "update_legal_person_r/<int:legal_person_id>/"
+                "issuance/<int:issuance_id>/"
             ),
             views.IIVUpdateLegalPersonRenewalView.as_view(),
-            name="update_legal_person",
+            name="update_legal_person_r",
         ),
         path(
-            (
-                "update_vehicle/<int:vehicle_id>/"
-                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
-                "seller/<int:seller_id>/"
-            ),
+            "update_vehicle_r/<int:vehicle_id>/issuance/<int:issuance_id>/",
             views.IIVUpdateVehicleRenewalView.as_view(),
-            name="update_vehicle",
+            name="update_vehicle_r",
         ),
         path(
-            (
-                "update_owner/<int:owner_id>/"
-                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
-                "seller/<int:seller_id>/"
-            ),
+            "update_owner_r/<int:owner_id>/issuance/<int:issuance_id>/",
             views.IIVUpdateOwnerRenewalView.as_view(),
-            name="update_owner",
+            name="update_owner_r",
         ),
         path(
-            (
-                "change_seller_r/<int:seller_id>"
-                "issuance/<int:issuance_id>/premium/<int:premium_id>/"
-            ),
+            "change_seller_r/issuance/<int:issuance_id>/",
             views.IIVChangeSellerRenewalView.as_view(),
             name="change_seller_r",
         ),
         path(
-            (
-                "create_step_r/issuance/<int:issuance_id>/"
-                "premium/<int:premium_id>/seller/<int:seller_id>"
-            ),
+            "create_step_r/issuance/<int:issuance_id>/",
             views.IIVCreateStepRenewalView.as_view(),
             name="create_step_r",
         ),

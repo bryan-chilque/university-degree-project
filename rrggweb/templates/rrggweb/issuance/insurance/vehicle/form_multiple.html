@@ -5,7 +5,7 @@
 {% endblock title_section %}
 {% block content %}
   <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
+    <div class="col-md-8 col-lg-8">
       {% if initial_step == 8 and final_step == 9 %}
         {% include "rrggweb/utils/stepper.html" with step=8 max_step=9 %}
       {% elif initial_step == 3 and final_step == 4 %}
@@ -160,8 +160,22 @@
                       {% else %}
                         {% for premium in premiums %}
                           <tr>
-                            <td class="align-middle">{{ premium.quotation_insurance_vehicle.vehicle }}</td>
-                            <td class="align-middle">{{ premium.quotation_insurance_vehicle.vehicle.ownership.pick }}</td>
+                            <td class="align-middle">
+                              {{ premium.quotation_insurance_vehicle.vehicle }} &nbsp;
+                              {% if update_vehicle %}
+                                <a href="{% url 'rrggweb:issuance:insurance:vehicle:update_vehicle_r' view.kwargs.registrar_id premium.quotation_insurance_vehicle.vehicle.id view.kwargs.issuance_id %}">
+                                  <i class="fas fa-pencil-alt"></i>
+                                </a>
+                              {% endif %}
+                            </td>
+                            <td class="align-middle">
+                              {{ premium.quotation_insurance_vehicle.vehicle.ownership.pick }} &nbsp;
+                              {% if premium.quotation_insurance_vehicle.vehicle.ownership.pick !=  premium.quotation_insurance_vehicle.customer %}
+                                <a href="{% url 'rrggweb:issuance:insurance:vehicle:update_owner_r' view.kwargs.registrar_id premium.quotation_insurance_vehicle.vehicle.ownership.pick.id view.kwargs.issuance_id %}">
+                                  <i class="fas fa-pencil-alt"></i>
+                                </a>
+                              {% endif %}
+                            </td>
                             <td class="align-middle">
                               {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.quotation_insurance_vehicle.insured_amount }}
                             </td>
