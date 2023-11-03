@@ -36,10 +36,10 @@
                     <td><a href="{% url 'rrggweb:historical_data:detail' view.kwargs.registrar_id record.pk %}" class="btn btn-primary btn-sm">
                         <i class="fa fa-eye"></i> Ver detalle
                     </a>
-                    <a href="{% url 'rrggweb:historical_data:update' view.kwargs.registrar_id record.pk %}" class="btn btn-warning btn-sm">
-                        <i class="fa fa-edit"></i> Editar
-                    </a>
-                </td>
+                        <a href="{% url 'rrggweb:historical_data:update' view.kwargs.registrar_id record.pk %}" class="btn btn-warning btn-sm">
+                            <i class="fa fa-edit"></i> Editar
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

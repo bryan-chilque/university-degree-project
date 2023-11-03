@@ -82,41 +82,56 @@
                         <a href="{% url 'rrggweb:customer_membership:list' view.kwargs.registrar_id %}">Lista de clientes</a>
                       </li>
                     </ul>
+                  </li>
 
-                  </ul>
-                </div>
+                  <li class="menu-title">Data histórica</li>
+
+                  <li>
+                    <a class="has-arrow waves-effect">
+                      <i class="fas fa-history"></i>
+                      <span>Histórica</span>
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="{% url 'rrggweb:historical_data:list' view.kwargs.registrar_id %}">Lista de data histórica</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="simplebar-placeholder" style="width: auto; height: 1096px"></div>
       </div>
-      <div class="simplebar-track simplebar-horizontal" style="visibility: hidden">
-        <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none"></div>
-      </div>
-      <div class="simplebar-track simplebar-vertical" style="visibility: visible">
-        <div class="simplebar-scrollbar" style="
-                                                height: 721px;
-                                                transform: translate3d(0px, 0px, 0px);
-                                                display: block;
-                                               "></div>
-      </div>
+      <div class="simplebar-placeholder" style="width: auto; height: 1096px"></div>
+    </div>
+    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden">
+      <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none"></div>
+    </div>
+    <div class="simplebar-track simplebar-vertical" style="visibility: visible">
+      <div class="simplebar-scrollbar" style="
+                                              height: 721px;
+                                              transform: translate3d(0px, 0px, 0px);
+                                              display: block;
+                                             "></div>
     </div>
   </div>
+</div>
 
-  <script>
-    $(document).ready(function() {
-      var sidebarState = localStorage.getItem('sidebarState');
-      if (sidebarState === 'collapsed') {
-        $('body').addClass('vertical-collpsed');
+<script>
+  $(document).ready(function() {
+    var sidebarState = localStorage.getItem('sidebarState');
+    if (sidebarState === 'collapsed') {
+      $('body').addClass('vertical-collpsed');
+    }
+    $('#vertical-menu-btn').click(function() {
+      console.log('clicked');
+      if ($('body').hasClass('vertical-collpsed')) {
+        localStorage.setItem('sidebarState', 'collapsed');
+      } else {
+        localStorage.setItem('sidebarState', 'expanded');
       }
-      $('#vertical-menu-btn').click(function() {
-        console.log('clicked');
-        if ($('body').hasClass('vertical-collpsed')) {
-          localStorage.setItem('sidebarState', 'collapsed');
-        } else {
-          localStorage.setItem('sidebarState', 'expanded');
-        }
-      });
     });
-  </script>
+  });
+</script>

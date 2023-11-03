@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
+from django.db.models import Q, Sum, Avg, Count, Case, When, Value, CharField
 from django.db.models.deletion import ProtectedError
 from django.forms import modelformset_factory
 from django.http import FileResponse, HttpResponse
@@ -1109,6 +1109,34 @@ class EndorsementDetailSupportView(LoginRequiredMixin, DetailView):
 
 class HomeView(TemplateView):
     template_name = "rrggweb/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        data = rrgg.models.HistoricalData.objects.annotate(
+            risk_group=Case(
+                When(risk__isnull=True, then=Value('Otros')),
+                When(risk__exact='', then=Value('Otros')),
+                default='risk',
+                output_field=CharField(),
+            )
+        ).values('risk_group').annotate(total_premium=Sum('total_premium'))
+        data2 = rrgg.models.HistoricalData.objects.values('insurance_vehicle').annotate(avg_commission=Avg('kcs_commission_percentage'))
+
+        categories = [item['insurance_vehicle'] for item in data2]
+        series_data = [item['avg_commission'] for item in data2]
+        for item in data:
+            item['total_premium'] = round(float(item['total_premium']), 2)
+        
+        # Count policies by consultant
+        policy_count_by_consultant = list(rrgg.models.HistoricalData.objects.values('consultant').annotate(policy_count=Count('policy')))
+
+        context['data'] = data
+        context['chart'] = {
+            'categories': categories,
+            'series': [{'name': 'Procentaje de comisión de KCS', 'data': series_data}]
+        }
+        context['policy_count_by_consultant'] = policy_count_by_consultant  # Add policy count by consultant to context
+        return context
 
 
 # ------------------------------

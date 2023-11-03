@@ -3,124 +3,94 @@
   Seguros
 {% endblock title_section %}
 {% block content %}
-  <div id="chart"></div>
-  <div id="columnChart"></div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div id="chart" style="max-width: 900px;"></div>
+    </div>
+    <div class="col-lg-6">
+      <div id="new_chart" style="max-width: 900px;"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div id="line_chart" style="max-width: 900px;"></div>
+    </div>
+  </div>
   <script>
     var options = {
-      series: [
-        {
-          name: "Desktops",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
-        },
-      ],
       chart: {
-        height: 350,
-        type: "line",
-        zoom: {
-          enabled: false,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: "straight",
+        type: 'pie'
       },
       title: {
-        text: "Product Trends by Month",
-        align: "left",
+        text: 'Riesgo por Prima Total',
+        align: 'center'
       },
-      grid: {
-        row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5,
-        },
-      },
-      xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-        ],
-      },
-    };
-
-    var optionsColumn = {
       series: [
-        {
-          name: "Net Profit",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-        },
-        {
-          name: "Revenue",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-        },
-        {
-          name: "Free Cash Flow",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
-        },
+        {% for item in data %}
+          {{ item.total_premium }},
+        {% endfor %}
       ],
-      chart: {
-        type: "bar",
-        height: 350,
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "55%",
-          endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"],
-      },
-      xaxis: {
-        categories: [
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-        ],
-      },
-      yaxis: {
-        title: {
-          text: "$ (thousands)",
-        },
-      },
-      fill: {
-        opacity: 1,
-      },
-      tooltip: {
-        y: {
-          formatter: function (val) {
-            return "$ " + val + " thousands";
-          },
-        },
-      },
+      labels: [
+        {% for item in data %}
+        '{{ item.risk_group }}',
+        {% endfor %}
+      ]
     };
 
-    var columnChart = new ApexCharts(
-      document.querySelector("#columnChart"),
-      optionsColumn
-    );
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
-    columnChart.render();
+
+    var newOptions = {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'Cia de seguro por comisión',
+        align: 'center'
+      },
+      series: [
+        {
+          name: 'Porcentaje de Comisión de KCS',
+          data: {{ chart.series.0.data|safe }}.map(function(num) { return parseFloat(num.toFixed(2)); })
+        }
+      ],
+      xaxis: {
+        categories: {{ chart.categories|safe }}
+      },
+      yaxis: {
+        labels: {
+          formatter: function (value) {
+            return value + "%";
+          }
+        }
+      },
+      colors: ['#7e9a6b', '#7e9a6b', '#7e9a6b', '#7e9a6b', '#7e9a6b', '#7e9a6b']
+    };
+
+    var newChart = new ApexCharts(document.querySelector("#new_chart"), newOptions);
+    newChart.render();
+
+    var lineOptions = {
+      chart: {
+        type: 'line'
+      },
+      title: {
+        text: 'Conteo de Pólizas por Asesor',
+        align: 'center'
+      },
+      series: [
+        {
+          name: 'Conteo de Pólizas',
+          data: {{ policy_count_by_consultant|safe }}.map(function(item) { return item.policy_count; })
+        }
+      ],
+      xaxis: {
+        categories: {{ policy_count_by_consultant|safe }}.map(function(item) { return item.consultant; })
+      },
+      colors: ['#3c6aff']
+    };
+
+    var lineChart = new ApexCharts(document.querySelector("#line_chart"), lineOptions);
+    lineChart.render();
   </script>
 {% endblock content %}
