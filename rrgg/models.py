@@ -470,6 +470,10 @@ class QuotationInsuranceVehiclePremium(models.Model):
     )
     # para venta múltiple
     in_progress = models.BooleanField(_("in progress"), default=False)
+    # para renovación múltiple
+    renewal_in_progress = models.BooleanField(
+        _("renewal in progress"), default=False
+    )
     created = models.DateTimeField(_("created at"), auto_now_add=True)
 
     @property
