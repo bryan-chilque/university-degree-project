@@ -1,96 +1,120 @@
 {% extends "rrggweb/dashboard.html" %}
 {% block title_section %}
-  Seguros
+    Seguros
 {% endblock title_section %}
 {% block content %}
   <div class="row">
-    <div class="col-lg-6">
-      <div id="chart" style="max-width: 900px;"></div>
-    </div>
-    <div class="col-lg-6">
-      <div id="new_chart" style="max-width: 900px;"></div>
-    </div>
+      <div class="col-lg-6">
+          <div id="pieChart"></div>
+      </div>
+      <div class="col-lg-6">
+          <div id="barChart"></div>
+      </div>
   </div>
   <div class="row">
-    <div class="col-lg-6">
-      <div id="line_chart" style="max-width: 900px;"></div>
-    </div>
+      <div class="col-lg-6">
+          <div id="lineChart"></div>
+      </div>
+      <div class="col-lg-6">
+          <div id="histogramChart"></div>
+      </div>
   </div>
-  <script>
-    var options = {
-      chart: {
-        type: 'pie'
-      },
-      title: {
-        text: 'Riesgo por Prima Total',
-        align: 'center'
-      },
-      series: [
-        {% for item in data %}
-          {{ item.total_premium }},
-        {% endfor %}
-      ],
-      labels: [
-        {% for item in data %}
-        '{{ item.risk_group }}',
-        {% endfor %}
-      ]
-    };
+  <div class="row">
+      <div class="col-lg-12">
+          <div id="heatmapChart"></div>
+      </div>
+  </div>
+    <script>
+    // Gráfico de tarta
+      var pieOptions = {
+        series: {{ pie_series|safe }},
+        labels: {{ pie_labels|safe }},
+        chart: {
+          type: 'pie',
+        },
+        title: {
+          text: 'Distribución del Tipo de Consultor'
+        },
+      };
+      var pieChart = new ApexCharts(document.querySelector("#pieChart"), pieOptions);
+      pieChart.render();
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
+    // Gráfico de barras
+      var barOptions = {
+        series: [{
+          name: 'Pólizas',
+          data: {{ bar_series|safe }}
+        }],
+        chart: {
+          type: 'bar',
+        },
+        xaxis: {
+          categories: {{ bar_labels|safe }},
+        },
+        title: {
+          text: 'Número de Pólizas por Año'
+        },
+      };
+      var barChart = new ApexCharts(document.querySelector("#barChart"), barOptions);
+      barChart.render();
 
-    var newOptions = {
-      chart: {
-        type: 'bar'
-      },
-      title: {
-        text: 'Cia de seguro por comisión',
-        align: 'center'
-      },
-      series: [
-        {
-          name: 'Porcentaje de Comisión de KCS',
-          data: {{ chart.series.0.data|safe }}.map(function(num) { return parseFloat(num.toFixed(2)); })
-        }
-      ],
-      xaxis: {
-        categories: {{ chart.categories|safe }}
-      },
-      yaxis: {
-        labels: {
-          formatter: function (value) {
-            return value + "%";
+    // Gráfico de líneas
+      var lineOptions = {
+        series: [{
+          name: 'Prima Total',
+          data: {{ line_series|safe }}
+        }],
+        chart: {
+          type: 'line',
+        },
+        xaxis: {
+          categories: {{ line_labels|safe }},
+        },
+        title: {
+          text: 'Prima Total por Año'
+        },
+      };
+      var lineChart = new ApexCharts(document.querySelector("#lineChart"), lineOptions);
+      lineChart.render();
+
+    // Histograma
+      var histogramOptions = {
+        series: [{
+          name: 'Riesgo',
+          data: {{ histogram_series|safe }}
+        }],
+        chart: {
+          type: 'bar',
+        },
+        plotOptions: {
+          bar: {
+            horizontal: true,
           }
-        }
-      },
-      colors: ['#7e9a6b', '#7e9a6b', '#7e9a6b', '#7e9a6b', '#7e9a6b', '#7e9a6b']
-    };
+        },
+        xaxis: {
+          categories: {{ histogram_labels|safe }},
+        },
+        title: {
+          text: 'Distribución de Riesgo'
+        },
+      };
+      var histogramChart = new ApexCharts(document.querySelector("#histogramChart"), histogramOptions);
+      histogramChart.render();
 
-    var newChart = new ApexCharts(document.querySelector("#new_chart"), newOptions);
-    newChart.render();
-
-    var lineOptions = {
-      chart: {
-        type: 'line'
-      },
-      title: {
-        text: 'Conteo de Pólizas por Asesor',
-        align: 'center'
-      },
-      series: [
-        {
-          name: 'Conteo de Pólizas',
-          data: {{ policy_count_by_consultant|safe }}.map(function(item) { return item.policy_count; })
-        }
-      ],
-      xaxis: {
-        categories: {{ policy_count_by_consultant|safe }}.map(function(item) { return item.consultant; })
-      },
-      colors: ['#3c6aff']
-    };
-
-    var lineChart = new ApexCharts(document.querySelector("#line_chart"), lineOptions);
-    lineChart.render();
-  </script>
+      // Mapa de calor
+      var heatmapOptions = {
+        series: {{ heatmap_series|safe }},
+        chart: {
+          type: 'heatmap',
+        },
+        xaxis: {
+          categories: {{ heatmap_labels|safe }},
+        },
+        title: {
+          text: 'Mapa de Calor de Correlación'
+        },
+      };
+      var heatmapChart = new ApexCharts(document.querySelector("#heatmapChart"), heatmapOptions);
+      heatmapChart.render();
+    </script>
 {% endblock content %}
