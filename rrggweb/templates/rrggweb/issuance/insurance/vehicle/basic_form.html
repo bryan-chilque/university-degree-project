@@ -18,6 +18,9 @@
         {% include "rrggweb/utils/stepper.html" with step=2 max_step=4 %}
       {% elif initial_step == 3 and final_step == 5 %}
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=5 %}
+      {% comment %} select_currency_r {% endcomment %}
+      {% elif initial_step == 5 and final_step == 7 %}
+        {% include "rrggweb/utils/stepper.html" with step=5 max_step=7 %}
       {% endif %}
       <a class="btn btn-outline-dark btn-sm mb-3"
          href="{{ previous_page }}">

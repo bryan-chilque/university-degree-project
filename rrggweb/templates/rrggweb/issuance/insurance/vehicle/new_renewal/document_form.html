@@ -7,6 +7,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
+        {% include "rrggweb/utils/stepper.html" with step=9 max_step=9 %}
         {% if previous_page %}
           <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
             <i class="fas fa-long-arrow-alt-left"></i>Volver
@@ -53,7 +54,7 @@
                     >
                       <i class="fas fa-file-{{ document.file.extension|default:'alt' }}"></i> {{ document.file.name }}
                     </a>
-                    <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_ed' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
+                    <a href="{% url 'rrggweb:issuance:insurance:vehicle:delete_document_nr' view.kwargs.registrar_id document.id view.kwargs.issuance_id %}"
                        class="btn btn-danger">
                       <i class="fas fa-trash-alt"></i> Eliminar
                     </a>

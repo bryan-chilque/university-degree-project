@@ -6,11 +6,7 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-8">
-      {% if initial_step == 8 and final_step == 9 %}
-        {% include "rrggweb/utils/stepper.html" with step=8 max_step=9 %}
-      {% elif initial_step == 3 and final_step == 4 %}
-        {% include "rrggweb/utils/stepper.html" with step=3 max_step=4 %}
-      {% endif %}
+      {% include "rrggweb/utils/stepper.html" with step=8 max_step=9 %}
       <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i> Volver
       </a>
@@ -48,9 +44,6 @@
                 <tr>
                   <th colspan="2" class="font-weight-bold">
                     Datos del asesor
-                    {% if change_seller %}
-                      <a href="{{ change_seller }}"><i class="fas fa-pencil-alt"></i></a>
-                    {% endif %}
                   </th>
                 </tr>
               </thead>
@@ -64,13 +57,8 @@
                   <td>{{ seller }}</td>
                 </tr>
                 <tr>
-                  {% if renewal_form or new_renewal_form%}
-                    <td class="font-weight-bold">Comisión por renovación</td>
-                    <td>{% widthratio seller.commission_rate.renewal 1 100 %}%</td>
-                  {% else %}
-                    <td class="font-weight-bold">Comisión por venta nueva</td>
-                    <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
-                  {% endif %}
+                  <td class="font-weight-bold">Comisión por renovación</td>
+                  <td>{% widthratio seller.commission_rate.renewal 1 100 %}%</td>
                 </tr>
               </tbody>
             </table>
@@ -162,19 +150,9 @@
                           <tr>
                             <td class="align-middle">
                               {{ premium.quotation_insurance_vehicle.vehicle }} &nbsp;
-                              {% if update_vehicle %}
-                                <a href="{% url 'rrggweb:issuance:insurance:vehicle:update_vehicle_r' view.kwargs.registrar_id premium.quotation_insurance_vehicle.vehicle.id view.kwargs.issuance_id %}">
-                                  <i class="fas fa-pencil-alt"></i>
-                                </a>
-                              {% endif %}
                             </td>
                             <td class="align-middle">
                               {{ premium.quotation_insurance_vehicle.vehicle.ownership.pick }} &nbsp;
-                              {% if premium.quotation_insurance_vehicle.vehicle.ownership.pick !=  premium.quotation_insurance_vehicle.customer %}
-                                <a href="{% url 'rrggweb:issuance:insurance:vehicle:update_owner_r' view.kwargs.registrar_id premium.quotation_insurance_vehicle.vehicle.ownership.pick.id view.kwargs.issuance_id %}">
-                                  <i class="fas fa-pencil-alt"></i>
-                                </a>
-                              {% endif %}
                             </td>
                             <td class="align-middle">
                               {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.quotation_insurance_vehicle.insured_amount }}
@@ -212,34 +190,14 @@
       </form>
     </div>
   </div>
-  {% if renewal_form %}
-    <script>
-      document.querySelector('#id_policy').style.backgroundColor = '#e8e8e8';
-      document.querySelector('#id_policy').setAttribute("readonly", "readonly");
+  <script>
+    const initialValidity = document.querySelector('#id_initial_validity');
+    const finalValidity = document.querySelector('#id_final_validity');
 
-      const initialValidity = document.querySelector('#id_initial_validity');
-      const finalValidity = document.querySelector('#id_final_validity');
-
+    initialValidity.addEventListener('change', () => {
       const date = new Date(initialValidity.value);
       date.setFullYear(date.getFullYear() + 1);
       finalValidity.value = date.toISOString().slice(0, 10);
-
-      initialValidity.addEventListener('change', () => {
-        const date = new Date(initialValidity.value);
-        date.setFullYear(date.getFullYear() + 1);
-        finalValidity.value = date.toISOString().slice(0, 10);
-      });
-    </script>
-  {% else %}
-    <script>
-      const initialValidity = document.querySelector('#id_initial_validity');
-      const finalValidity = document.querySelector('#id_final_validity');
-
-      initialValidity.addEventListener('change', () => {
-        const date = new Date(initialValidity.value);
-        date.setFullYear(date.getFullYear() + 1);
-        finalValidity.value = date.toISOString().slice(0, 10);
-      });
-    </script>
-  {% endif %}
+    });
+  </script>
 {% endblock content %}

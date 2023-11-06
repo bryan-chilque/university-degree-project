@@ -6,12 +6,13 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
+      {% comment %} issuance: new quotation {% endcomment %}
       {% if initial_step == 1 and final_step == 4 %}
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=4 %}
-      {% elif initial_step == 1 and final_step == 3 %}
-        {% include "rrggweb/utils/stepper.html" with step=1 max_step=3 %}
+      {% comment %} quotation {% endcomment %}
       {% elif initial_step == 1 and final_step == 6 %}
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=6 %}
+      {% comment %} issuance: new sale / new renewal {% endcomment %}
       {% elif initial_step == 1 and final_step == 9 %}
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=9 %}
       {% endif %}

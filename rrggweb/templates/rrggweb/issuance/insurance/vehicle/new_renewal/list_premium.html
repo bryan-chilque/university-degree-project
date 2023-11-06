@@ -1,0 +1,95 @@
+{% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
+{% block title_section %}
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
+{% endblock title_section %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="row">
+      {% include "rrggweb/utils/stepper.html" with step=3 max_step=9 %}
+      <div class="col-3">
+        <a class="btn btn-outline-dark btn-sm mb-3"
+           href="{{ previous_page }}">
+          <i class="fas fa-long-arrow-alt-left"></i>Volver
+        </a>
+      </div>
+      <div class="mt-2">
+        {% if seller or customer %}
+          <h5>
+            Asesor: <b>{{ seller }}</b>
+          </h5>
+          <h5>
+            Contratante: <b>{{ customer }}</b>
+          </h5>
+          <hr class="w-25"/>
+        {% endif %}
+      </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+      <h5>Primas</h5>
+      <a class="btn btn-outline-success btn-sm d-flex align-items-center justify-content-center"
+         href="{{ new_register }}">
+        <i class="fas fa-plus"></i>
+        Nuevo registro
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Vehiculo</th>
+                  <th>Suma asegurada</th>
+                  <th>Prima Neta</th>
+                  <th>Tasa</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if object_list|length == 0 %}
+                  <tr>
+                    <td colspan="9" class="text-center">No hay primas registradas</td>
+                  </tr>
+                {% else %}
+                  {% for premium in object_list %}
+                    <tr>
+                      <td class="align-middle">{{ premium.quotation_insurance_vehicle.vehicle }}</td>
+                      <td class="align-middle">
+                        {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.quotation_insurance_vehicle.insured_amount }}
+                      </td>
+                      <td class="align-middle">
+                        {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.amount }}
+                      </td>
+                      <td class="align-middle">
+                        {{ premium.rate }} %
+                      </td>
+                      <td class="align-middle d-flex gap-2">
+                        <a
+                          href="{% url 'rrggweb:issuance:insurance:vehicle:update_premium_step_nr' view.kwargs.registrar_id premium.id %}">
+                          <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a
+                          href="{% url 'rrggweb:issuance:insurance:vehicle:delete_premium_step_nr' view.kwargs.registrar_id premium.quotation_insurance_vehicle.id  view.kwargs.seller_id  view.kwargs.customer_id %}">
+                          <i class="fas fa-trash-alt"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+            <a class="btn btn-outline-success btn-sm d-flex align-items-center justify-content-center"
+               href="{{ select_currency_ivr }}">
+              <i class="fas fa-plus"></i>
+              Emitir primas
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

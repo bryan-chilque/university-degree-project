@@ -1,0 +1,200 @@
+{% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
+{% block title_section %}
+  {{ title }}
+  <h6>{{ subtitle }}</h6>
+{% endblock title_section %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-8">
+      {% include "rrggweb/utils/stepper.html" with step=8 max_step=9 %}
+      <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
+        <i class="fas fa-long-arrow-alt-left"></i> Volver
+      </a>
+      {% if customer %}
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th colspan="2" class="font-weight-bold">
+                    Datos del contratante
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-weight-bold">Tipo de documento</td>
+                  <td>{{ customer.pick.document_type}}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Número de documento</td>
+                  <td>{{ customer.pick.document_number }}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Nombres y apellidos</td>
+                  <td>{{ customer }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th colspan="2" class="font-weight-bold">
+                    Datos del asesor
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-weight-bold">Tipo de asesor</td>
+                  <td>{{ seller.role }}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Nombres y apellidos</td>
+                  <td>{{ seller }}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Comisión por venta nueva</td>
+                  <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th colspan="2" class="font-weight-bold">Datos de la emisión</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-weight-bold">Aseguradora</td>
+                  <td>{{ premiums.first.insurance_vehicle_ratio.insurance_vehicle }}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Plan de seguro</td>
+                  <td>{{ insurance_plan }}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Tipo de moneda</td>
+                  <td>
+                    {{ premiums.first.quotation_insurance_vehicle.currency }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Suma asegurada</td>
+                  <td>
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ insured_amount }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Tasa</td>
+                  <td>{{ rate }}%</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Prima neta</td>
+                  <td>
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ net_premium }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Derecho de emisión</td>
+                  <td>
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ emission_right }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Prima comercial</td>
+                  <td>
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ commercial_premium }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">IGV</td>
+                  <td>
+                    {{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ tax }}
+                  </td>
+                  <tr>
+                    <td class="font-weight-bold">Prima total</td>
+                    <td>{{ premiums.first.quotation_insurance_vehicle.currency.symbol }}{{ total_premium }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Vehiculo</th>
+                        <th>Asegurado</th>
+                        <th>Suma asegurada</th>
+                        <th>Prima Neta</th>
+                        <th>Tasa</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if premiums|length == 0 %}
+                        <tr>
+                          <td colspan="9" class="text-center">No hay primas registradas</td>
+                        </tr>
+                      {% else %}
+                        {% for premium in premiums %}
+                          <tr>
+                            <td class="align-middle">
+                              {{ premium.quotation_insurance_vehicle.vehicle }} &nbsp;
+                            </td>
+                            <td class="align-middle">
+                              {{ premium.quotation_insurance_vehicle.vehicle.ownership.pick }} &nbsp;
+                            </td>
+                            <td class="align-middle">
+                              {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.quotation_insurance_vehicle.insured_amount }}
+                            </td>
+                            <td class="align-middle">
+                              {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.amount }}
+                            </td>
+                            <td class="align-middle">
+                              {{ premium.rate }}%
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        {% if messages %}
+          <ul class="messages list-unstyled">
+            {% for message in messages %}
+              <alert class="alert alert-{{ message.tags }} alert-dismissible fade show d-flex gap-2 w-25" role="alert">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                {{ message }}
+              </alert>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-block mt-3" type="submit">Siguiente</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    const initialValidity = document.querySelector('#id_initial_validity');
+    const finalValidity = document.querySelector('#id_final_validity');
+
+    initialValidity.addEventListener('change', () => {
+      const date = new Date(initialValidity.value);
+      date.setFullYear(date.getFullYear() + 1);
+      finalValidity.value = date.toISOString().slice(0, 10);
+    });
+  </script>
+{% endblock content %}

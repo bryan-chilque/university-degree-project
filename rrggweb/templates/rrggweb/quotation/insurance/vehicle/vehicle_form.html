@@ -7,15 +7,13 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
+      {% comment %} quotation {% endcomment %}
       {% if initial_step == 3 and final_step == 6 %}
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=6 %}
-      {% elif initial_step == 3 and final_step == 9 %}
-        {% include "rrggweb/utils/stepper.html" with step=3 max_step=9 %}
+      {% comment %} issuance: new sale / renovacion {% endcomment %}
       {% elif initial_step == 4 and final_step == 9 %}
         {% include "rrggweb/utils/stepper.html" with step=4 max_step=9 %}
-      {% elif initial_step == 2 and final_step == 7 %}
-        {% include "rrggweb/utils/stepper.html" with step=2 max_step=7 %}
-      {% comment %} renovacion {% endcomment %}
+      {% comment %} issuance: renovacion {% endcomment %}
       {% elif initial_step == 3 and final_step == 7 %}
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=7 %}
       {% endif %}

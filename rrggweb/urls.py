@@ -610,19 +610,40 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             (
-                "update_natural_person_step_nr/<int:natural_person_id>/"
+                "update_natural_person_nr/<int:natural_person_id>/"
                 "seller/<int:seller_id>/"
             ),
             views.IIVUpdateNaturalPersonNewRenewalStepView.as_view(),
-            name="update_natural_person_step_nr",
+            name="update_natural_person_nr",
         ),
         path(
             (
-                "update_legal_person_step_nr/<int:legal_person_id>/"
+                "update_legal_person_nr/<int:legal_person_id>/"
                 "seller/<int:seller_id>/"
             ),
             views.IIVUpdateLegalPersonNewRenewalStepView.as_view(),
-            name="update_legal_person_step_nr",
+            name="update_legal_person_nr",
+        ),
+        path(
+            (
+                "list_premiums_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
+            views.IIVPremiumListNewRenewalStepView.as_view(),
+            name="list_premiums_nr",
+        ),
+        path(
+            "update_premium_step_nr/<int:premium_id>/",
+            views.IIVUpdatePremiumNewRenewalStepView.as_view(),
+            name="update_premium_step_nr",
+        ),
+        path(
+            (
+                "delete_premium_step_nr/<int:pk>/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
+            views.IIVDeletePremiumNewRenewalStepView.as_view(),
+            name="delete_premium_step_nr",
         ),
         path(
             (
@@ -682,42 +703,32 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             (
-                "create_quotation_nr/seller/<int:seller_id>/customer/"
+                "create_premium_nr/seller/<int:seller_id>/customer/"
                 "<int:customer_id>/vehicle/<int:vehicle_id>/"
-            ),
-            views.IIVCreateQuotationNewRenewalView.as_view(),
-            name="create_quotation_nr",
-        ),
-        path(
-            (
-                "update_quotation_step_nr/<int:quotation_id>/"
-                "seller/<int:seller_id>/"
-            ),
-            views.IIVUpdateQuotationStepNewRenewalView.as_view(),
-            name="update_quotation_step_nr",
-        ),
-        path(
-            (
-                "create_premium_nr/seller/<int:seller_id>/"
-                "quotation/<int:quotation_id>/"
             ),
             views.IIVCreatePremiumNewRenewalView.as_view(),
             name="create_premium_nr",
         ),
         path(
-            "update_premium_step_nr/<int:premium_id>/seller/<int:seller_id>/",
-            views.IIVUpdatePremiumStepNewRenewalView.as_view(),
-            name="update_premium_step_nr",
+            (
+                "select_currency_ivr_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
+            views.IIVSelectCurrencyInsuranceNewRenewalView.as_view(),
+            name="select_currency_ivr_nr",
         ),
         path(
-            "select_plan_nr/premium/<int:premium_id>/seller/<int:seller_id>/",
+            (
+                "select_plan_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/"
+            ),
             views.IIVSelectPlanNewRenewalView.as_view(),
             name="select_plan_nr",
         ),
         path(
             (
-                "create_step_nr/premium/<int:premium_id>/"
-                "seller/<int:seller_id>/plan/<int:plan_id>"
+                "create_step_nr/seller/<int:seller_id>/"
+                "customer/<int:customer_id>/plan/<int:plan_id>/"
             ),
             views.IIVCreateStepNewRenewalView.as_view(),
             name="create_step_nr",
@@ -862,7 +873,7 @@ issuance_insurance_vehicle_urlpatterns = (
         ),
         path(
             "create_document_r/<int:issuance_id>/",
-            views.IIVCreateDocumentRenewalView.as_view(),
+            views.IIVAddDocumentRenewalView.as_view(),
             name="create_document_r",
         ),
         path(
