@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Count, Q, Sum
+from django.db.models import Q
 from django.db.models.deletion import ProtectedError
 from django.forms import modelformset_factory
 from django.http import FileResponse, HttpResponse
@@ -1017,48 +1017,48 @@ class EndorsementDetailSupportView(LoginRequiredMixin, DetailView):
 class HomeView(TemplateView):
     template_name = "rrggweb/home.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
 
-        # Pie chart data
-        pie_data = rrgg.models.HistoricalData.objects.values(
-            "consultant_type"
-        ).annotate(dcount=Count("consultant_type"))
-        context["pie_series"] = [item["dcount"] for item in pie_data]
-        context["pie_labels"] = [item["consultant_type"] for item in pie_data]
+    #     # Pie chart data
+    #     pie_data = rrgg.models.HistoricalData.objects.values(
+    #         "consultant_type"
+    #     ).annotate(dcount=Count("consultant_type"))
+    #     context["pie_series"] = [item["dcount"] for item in pie_data]
+    #     context["pie_labels"] = [item["consultant_type"] for item in pie_data] # noqa: E501
 
-        # Bar chart data
-        bar_data = (
-            rrgg.models.HistoricalData.objects.values("year")
-            .annotate(dcount=Count("year"))
-            .order_by("year")
-        )
-        context["bar_series"] = [item["dcount"] for item in bar_data]
-        context["bar_labels"] = [item["year"] for item in bar_data]
+    #     # Bar chart data
+    #     bar_data = (
+    #         rrgg.models.HistoricalData.objects.values("year")
+    #         .annotate(dcount=Count("year"))
+    #         .order_by("year")
+    #     )
+    #     context["bar_series"] = [item["dcount"] for item in bar_data]
+    #     context["bar_labels"] = [item["year"] for item in bar_data]
 
-        # Line chart data
-        line_data = (
-            rrgg.models.HistoricalData.objects.values("year")
-            .annotate(total=Sum("total_premium"))
-            .order_by("year")
-        )
-        context["line_series"] = [
-            round(item["total"], 2) for item in line_data
-        ]
-        context["line_labels"] = [item["year"] for item in line_data]
+    #     # Line chart data
+    #     line_data = (
+    #         rrgg.models.HistoricalData.objects.values("year")
+    #         .annotate(total=Sum("total_premium"))
+    #         .order_by("year")
+    #     )
+    #     context["line_series"] = [
+    #         round(item["total"], 2) for item in line_data
+    #     ]
+    #     context["line_labels"] = [item["year"] for item in line_data]
 
-        # Histogram data
-        histogram_data = (
-            rrgg.models.HistoricalData.objects.values("risk")
-            .annotate(dcount=Count("risk"))
-            .order_by("risk")
-        )
-        context["histogram_series"] = [
-            item["dcount"] for item in histogram_data
-        ]
-        context["histogram_labels"] = [item["risk"] for item in histogram_data]
+    #     # Histogram data
+    #     histogram_data = (
+    #         rrgg.models.HistoricalData.objects.values("risk")
+    #         .annotate(dcount=Count("risk"))
+    #         .order_by("risk")
+    #     )
+    #     context["histogram_series"] = [
+    #         item["dcount"] for item in histogram_data
+    #     ]
+    #     context["histogram_labels"] = [item["risk"] for item in histogram_data] # noqa: E501
 
-        return context
+    #     return context
 
 
 # ------------------------------
