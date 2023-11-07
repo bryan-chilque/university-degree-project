@@ -1056,7 +1056,7 @@ class HomeView(TemplateView):
     #     context["histogram_series"] = [
     #         item["dcount"] for item in histogram_data
     #     ]
-    #     context["histogram_labels"] = [item["risk"] for item in histogram_data]
+    #     context["histogram_labels"] = [item["risk"] for item in histogram_data] # noqa: E501
 
     #     return context
 
