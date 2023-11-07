@@ -5760,8 +5760,8 @@ class IIVUpdatePremiumRenewalStepView(UpdatePremiumQuotationSupportView):
                 "issuance_id": self.kwargs["issuance_id"],
             },
         )
-        context["initial_step"] = 3
-        context["final_step"] = 9
+        context["initial_step"] = 1
+        context["final_step"] = 7
         return context
 
 
@@ -5785,6 +5785,8 @@ class IIVDeletePremiumRenewalStepView(DeletePremiumQuotationSupportView):
                 "issuance_id": self.kwargs["issuance_id"],
             },
         )
+        context["initial_step"] = 1
+        context["final_step"] = 7
         return context
 
 

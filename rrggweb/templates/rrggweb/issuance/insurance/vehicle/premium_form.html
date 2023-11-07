@@ -6,11 +6,16 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
+      {% comment %} issuance: new_sale/new_renewal: update/delete {% endcomment %}
       {% if initial_step == 3 and final_step == 9 %}
         {% include "rrggweb/utils/stepper.html" with step=3 max_step=9 %}
+      {% comment %} issuance: new_sale/new_renewal: create premiums {% endcomment %}
       {% elif initial_step == 6 and final_step == 9 %}
         {% include "rrggweb/utils/stepper.html" with step=6 max_step=9 %}
-      {% comment %} renovacion - crear cotizacion/prima {% endcomment %}
+      {% comment %} issuance: renewal: update/delete {% endcomment %}
+      {% elif initial_step == 1 and final_step == 7 %}
+        {% include "rrggweb/utils/stepper.html" with step=1 max_step=7 %}
+      {% comment %} issuance: renewal: create premiums {% endcomment %}
       {% elif initial_step == 4 and final_step == 7 %}
         {% include "rrggweb/utils/stepper.html" with step=4 max_step=7 %}
       {% endif %}

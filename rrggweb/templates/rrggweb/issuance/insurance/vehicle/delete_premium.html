@@ -13,7 +13,10 @@
       {% endif %}
       <form method="post">
         {% csrf_token %}
-        <p>¿Está seguro de que desea eliminar la prima de este vehículo?</p>
+        <p>¿Está seguro de que desea eliminar la prima de este vehículo?
+          <br />
+          <strong>{{ object }}</strong>
+        </p>
         <input type="submit" value="Sí, eliminar" class="btn btn-danger" />
         <a href="{{ previous_page }}" class="btn btn-secondary">Cancelar</a>
       </form>
