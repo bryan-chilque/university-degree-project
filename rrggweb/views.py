@@ -1,7 +1,6 @@
 import os
 import re
 
-import pandas as pd
 from django import shortcuts, urls
 from django.conf import settings
 from django.contrib import messages
@@ -1058,74 +1057,6 @@ class HomeView(TemplateView):
             item["dcount"] for item in histogram_data
         ]
         context["histogram_labels"] = [item["risk"] for item in histogram_data]
-
-        # Heatmap data
-        df = pd.DataFrame.from_records(
-            rrgg.models.HistoricalData.objects.values()
-        )
-        df[
-            [
-                "insured_amount",
-                "net_premium",
-                "commercial_premium",
-                "total_premium",
-                "net_commission_amount",
-                "dolar_premium",
-                "dolar_commission",
-            ]
-        ] = df[
-            [
-                "insured_amount",
-                "net_premium",
-                "commercial_premium",
-                "total_premium",
-                "net_commission_amount",
-                "dolar_premium",
-                "dolar_commission",
-            ]
-        ].apply(
-            pd.to_numeric, errors="coerce"
-        )
-        df.fillna(0, inplace=True)
-        correlation = df[
-            [
-                "insured_amount",
-                "net_premium",
-                "commercial_premium",
-                "total_premium",
-                "net_commission_amount",
-                "dolar_premium",
-                "dolar_commission",
-            ]
-        ].corr()
-
-        heatmap_series = []
-        for i, row_label in enumerate(correlation.index):
-            for j, col_label in enumerate(correlation.columns):
-                heatmap_series.append(
-                    {
-                        "name": row_label,
-                        "data": [[j, correlation.loc[row_label, col_label]]],
-                    }
-                )
-
-        # Translate heatmap labels to Spanish
-        translation_dict = {
-            "insured_amount": "monto_asegurado",
-            "net_premium": "prima_neta",
-            "commercial_premium": "prima_comercial",
-            "total_premium": "prima_total",
-            "net_commission_amount": "monto_comision_neta",
-            "dolar_premium": "prima_dolar",
-            "dolar_commission": "comision_dolar",
-        }
-        context["heatmap_series"] = [
-            {**item, "name": translation_dict.get(item["name"], item["name"])}
-            for item in heatmap_series
-        ]
-        context["heatmap_labels"] = [
-            translation_dict.get(label, label) for label in correlation.columns
-        ]
 
         return context
 

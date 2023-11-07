@@ -100,21 +100,5 @@
       };
       var histogramChart = new ApexCharts(document.querySelector("#histogramChart"), histogramOptions);
       histogramChart.render();
-
-      // Mapa de calor
-      var heatmapOptions = {
-        series: {{ heatmap_series|safe }},
-        chart: {
-          type: 'heatmap',
-        },
-        xaxis: {
-          categories: {{ heatmap_labels|safe }},
-        },
-        title: {
-          text: 'Mapa de Calor de Correlación'
-        },
-      };
-      var heatmapChart = new ApexCharts(document.querySelector("#heatmapChart"), heatmapOptions);
-      heatmapChart.render();
     </script>
 {% endblock content %}
