@@ -1,5 +1,5 @@
 {% extends 'rrggweb/dashboard.html' %}
-
+{% load custom_filters %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -44,7 +44,7 @@
           </tr>
           <tr>
             <th>Tasa</th>
-            <td>{{ object.currency.symbol }}{{ object.rate }}</td>
+            <td>{{ object.rate|to_percentage }}</td>
           </tr>
           <tr>
             <th>Derecho de emisión</th>
@@ -111,7 +111,7 @@
           </tr>
           <tr>
             <th>Porcentaje comisión del asesor</th>
-            <td>{% widthratio object.seller_commission_percentage 1 100 %}%</td>
+            <td>{{ object.seller_commission_percentage|to_percentage }}</td>
           </tr>
           <tr>
             <th>Monto comisión del asesor</th>

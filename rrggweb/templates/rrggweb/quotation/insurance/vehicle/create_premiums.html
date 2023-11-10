@@ -1,5 +1,6 @@
 {% extends "rrggweb/quotation/insurance/vehicle/base.html" %}
 {% load i18n %}
+{% load custom_filters %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -7,9 +8,7 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-10">
-      {% if step %}
-        {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
-      {% endif %}
+      {% include "rrggweb/utils/stepper.html" with step=6 max_step=6 %}
       <a class="btn btn-outline-dark btn-sm mb-3" href="{{ previous_page }}">
         <i class="fas fa-long-arrow-alt-left"></i>Volver
       </a>
@@ -86,8 +85,8 @@
             <tbody>
               {% for ratio, form in last_ratio_forms %}
                 <tr data-insurance="{{ ratio.insurance_vehicle.id }}">
-                  <td>{% widthratio ratio.emission_right 1 100 %}%</td>
-                  <td>{% widthratio ratio.tax 1 100 %}%</td>
+                  <td>{{ ratio.emission_right|to_percentage }}</td>
+                  <td>{{ ratio.tax|to_percentage }}</td>
                   <td>{{ ratio.insurance_vehicle.name }}</td>
                   <td>
                     <div class="input-group">
@@ -153,8 +152,8 @@
 
       amountInput.addEventListener('input', () => {
         const amount = Number(amountInput.value);
-        const rate =  amount / insuredAmount;
-        rateInput.value = rate.toFixed(2);
+        const rate =  amount / insuredAmount * 100;
+        rateInput.value = Math.floor((rate) * 100) / 100;
       });
 
       removeRowBtns.forEach(btn => {

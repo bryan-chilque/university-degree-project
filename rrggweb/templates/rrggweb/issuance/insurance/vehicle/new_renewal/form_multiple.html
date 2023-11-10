@@ -1,4 +1,5 @@
 {% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
+{% load custom_filters %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -58,7 +59,7 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Comisión por renovación</td>
-                  <td>{% widthratio seller.commission_rate.renewal 1 100 %}%</td>
+                  <td>{{ seller.commission_rate.renewal|to_percentage }}</td>
                 </tr>
               </tbody>
             </table>
@@ -93,7 +94,7 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Tasa</td>
-                  <td>{{ rate }}%</td>
+                  <td>{{ rate|to_percentage }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima neta</td>

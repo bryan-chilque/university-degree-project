@@ -1,104 +1,104 @@
 {% extends "rrggweb/dashboard.html" %}
 {% block title_section %}
-    Seguros
+  Seguros
 {% endblock title_section %}
 {% block content %}
   <div class="row">
-      <div class="col-lg-6">
-          <div id="pieChart"></div>
-      </div>
-      <div class="col-lg-6">
-          <div id="barChart"></div>
-      </div>
+    <div class="col-lg-6">
+      <div id="pieChart"></div>
+    </div>
+    <div class="col-lg-6">
+      <div id="barChart"></div>
+    </div>
   </div>
   <div class="row">
-      <div class="col-lg-6">
-          <div id="lineChart"></div>
-      </div>
-      <div class="col-lg-6">
-          <div id="histogramChart"></div>
-      </div>
+    <div class="col-lg-6">
+      <div id="lineChart"></div>
+    </div>
+    <div class="col-lg-6">
+      <div id="histogramChart"></div>
+    </div>
   </div>
   <div class="row">
-      <div class="col-lg-12">
-          <div id="heatmapChart"></div>
-      </div>
+    <div class="col-lg-12">
+      <div id="heatmapChart"></div>
+    </div>
   </div>
-    <script>
+  <script>
     // Gráfico de tarta
-      var pieOptions = {
-        series: {{ pie_series|safe }},
-        labels: {{ pie_labels|safe }},
-        chart: {
-          type: 'pie',
-        },
-        title: {
-          text: 'Distribución del Tipo de Consultor'
-        },
-      };
-      var pieChart = new ApexCharts(document.querySelector("#pieChart"), pieOptions);
-      pieChart.render();
+    var pieOptions = {
+      series: {{ pie_series|safe }},
+      labels: {{ pie_labels|safe }},
+      chart: {
+        type: 'pie',
+      },
+      title: {
+        text: 'Distribución del Tipo de Consultor'
+      },
+    };
+    var pieChart = new ApexCharts(document.querySelector("#pieChart"), pieOptions);
+    pieChart.render();
 
     // Gráfico de barras
-      var barOptions = {
-        series: [{
-          name: 'Pólizas',
-          data: {{ bar_series|safe }}
-        }],
-        chart: {
-          type: 'bar',
-        },
-        xaxis: {
-          categories: {{ bar_labels|safe }},
-        },
-        title: {
-          text: 'Número de Pólizas por Año'
-        },
-      };
-      var barChart = new ApexCharts(document.querySelector("#barChart"), barOptions);
-      barChart.render();
+    var barOptions = {
+      series: [{
+        name: 'Pólizas',
+        data: {{ bar_series|safe }}
+      }],
+      chart: {
+        type: 'bar',
+      },
+      xaxis: {
+        categories: {{ bar_labels|safe }},
+      },
+      title: {
+        text: 'Número de Pólizas por Año'
+      },
+    };
+    var barChart = new ApexCharts(document.querySelector("#barChart"), barOptions);
+    barChart.render();
 
     // Gráfico de líneas
-      var lineOptions = {
-        series: [{
-          name: 'Prima Total',
-          data: {{ line_series|safe }}
-        }],
-        chart: {
-          type: 'line',
-        },
-        xaxis: {
-          categories: {{ line_labels|safe }},
-        },
-        title: {
-          text: 'Prima Total por Año'
-        },
-      };
-      var lineChart = new ApexCharts(document.querySelector("#lineChart"), lineOptions);
-      lineChart.render();
+    var lineOptions = {
+      series: [{
+        name: 'Prima Total',
+        data: {{ line_series|safe }}
+      }],
+      chart: {
+        type: 'line',
+      },
+      xaxis: {
+        categories: {{ line_labels|safe }},
+      },
+      title: {
+        text: 'Prima Total por Año'
+      },
+    };
+    var lineChart = new ApexCharts(document.querySelector("#lineChart"), lineOptions);
+    lineChart.render();
 
     // Histograma
-      var histogramOptions = {
-        series: [{
-          name: 'Riesgo',
-          data: {{ histogram_series|safe }}
-        }],
-        chart: {
-          type: 'bar',
-        },
-        plotOptions: {
-          bar: {
-            horizontal: true,
-          }
-        },
-        xaxis: {
-          categories: {{ histogram_labels|safe }},
-        },
-        title: {
-          text: 'Distribución de Riesgo'
-        },
-      };
-      var histogramChart = new ApexCharts(document.querySelector("#histogramChart"), histogramOptions);
-      histogramChart.render();
-    </script>
+    var histogramOptions = {
+      series: [{
+        name: 'Riesgo',
+        data: {{ histogram_series|safe }}
+      }],
+      chart: {
+        type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        }
+      },
+      xaxis: {
+        categories: {{ histogram_labels|safe }},
+      },
+      title: {
+        text: 'Distribución de Riesgo'
+      },
+    };
+    var histogramChart = new ApexCharts(document.querySelector("#histogramChart"), histogramOptions);
+    histogramChart.render();
+  </script>
 {% endblock content %}

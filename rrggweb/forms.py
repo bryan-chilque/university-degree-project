@@ -106,7 +106,7 @@ class CurrencyForm(forms.Form):
     def __init__(self, currency_id=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         currencies = rrgg.models.Currency.objects.all()
-        self.fields["currencies"] = forms.ModelChoiceField(
+        self.fields["moneda"] = forms.ModelChoiceField(
             queryset=currencies,
             empty_label=None,
             widget=forms.Select(attrs={"class": "form-select mb-2"}),
@@ -117,7 +117,7 @@ class CurrencyForm(forms.Form):
                 selected_currency = rrgg.models.Currency.objects.get(
                     pk=currency_id
                 )
-                self.fields["currencies"].initial = selected_currency
+                self.fields["moneda"].initial = selected_currency
             except rrgg.models.Currency.DoesNotExist:
                 pass
 
@@ -229,7 +229,7 @@ class PremiumQuotationForm(forms.ModelForm):
         model = rrgg.models.QuotationInsuranceVehiclePremium
         fields = ["amount", "rate"]
 
-    insured_amount = forms.IntegerField(
+    insured_amount = forms.DecimalField(
         label=_("insured amount"),
         widget=forms.NumberInput(attrs={"class": "form-control mb-2"}),
     )
@@ -275,3 +275,21 @@ class CurrencyInsuranceForm(forms.Form):
                 self.fields["moneda"].initial = selected_currency
             except rrgg.models.Currency.DoesNotExist:
                 pass
+
+
+class QuotationInsuranceVehiclePremiumForm(forms.ModelForm):
+    class Meta:
+        model = rrgg.models.QuotationInsuranceVehiclePremium
+        fields = [
+            "insurance_vehicle_ratio",
+            "quotation_insurance_vehicle",
+            "amount",
+            "rate",
+        ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        rate = cleaned_data.get("rate")
+        if rate is not None:
+            cleaned_data["rate"] = rate / 100
+        return cleaned_data

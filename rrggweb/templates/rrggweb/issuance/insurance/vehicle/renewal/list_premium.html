@@ -1,4 +1,5 @@
 {% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
+{% load custom_filters %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -63,7 +64,7 @@
                         {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.amount }}
                       </td>
                       <td class="align-middle">
-                        {{ premium.rate }} %
+                        {{ premium.rate|to_percentage }}
                       </td>
                       <td class="align-middle d-flex gap-2">
                         <a

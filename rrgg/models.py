@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from rrggweb.utils import to_decimal
+
 from . import validators
 
 
@@ -54,10 +56,10 @@ class Consultant(models.Model):
 
 class ConsultantRate(models.Model):
     new_sale = models.DecimalField(
-        _("new sale"), decimal_places=2, max_digits=10
+        _("new sale"), decimal_places=4, max_digits=10
     )
     renewal = models.DecimalField(
-        _("renewal"), decimal_places=2, max_digits=10
+        _("renewal"), decimal_places=4, max_digits=10
     )
     consultant = models.OneToOneField(
         Consultant,
@@ -320,9 +322,9 @@ class InsuranceVehicle(models.Model):
 
 # relación precio - aseguradoras
 class InsuranceVehicleRatio(models.Model):
-    tax = models.DecimalField(_("tax (igv)"), decimal_places=2, max_digits=10)
+    tax = models.DecimalField(_("tax (igv)"), decimal_places=4, max_digits=10)
     emission_right = models.DecimalField(
-        _("emission right"), decimal_places=2, max_digits=10
+        _("emission right"), decimal_places=4, max_digits=10
     )
     created = models.DateTimeField(auto_now_add=True)
     insurance_vehicle = models.ForeignKey(
@@ -361,7 +363,7 @@ class RiskInsuranceVehicle(models.Model):
 class InsurancePlan(models.Model):
     name = models.CharField(_("name"), max_length=64)
     commission = models.DecimalField(
-        _("commission"), decimal_places=3, max_digits=10
+        _("commission"), decimal_places=4, max_digits=10
     )
     risk_insurance_vehicle = models.ForeignKey(
         RiskInsuranceVehicle,
@@ -439,7 +441,7 @@ class QuotationInsuranceVehicle(QuotationInsurance):
         return timezone.now() - self.created > timezone.timedelta(days=15)
 
     def __str__(self):
-        return f"insured_amount={self.insured_amount}, vehicle={self.vehicle}"
+        return f"suma asegurada={self.insured_amount}, vehículo={self.vehicle}"
 
 
 class QuotationInsuranceVehiclePremium(models.Model):
@@ -447,13 +449,13 @@ class QuotationInsuranceVehiclePremium(models.Model):
     amount = models.DecimalField(
         _("net premium"), decimal_places=2, max_digits=10, default=0
     )
-    rate = models.DecimalField(_("rate"), decimal_places=2, max_digits=10)
+    rate = models.DecimalField(_("rate"), decimal_places=4, max_digits=10)
     tax_percentage = models.DecimalField(
-        _("tax percentage"), decimal_places=2, max_digits=10, default=0.18
+        _("tax percentage"), decimal_places=4, max_digits=10, default=0.18
     )
     emission_right_percentage = models.DecimalField(
         _("emission right percentage"),
-        decimal_places=2,
+        decimal_places=4,
         max_digits=10,
         default=0.03,
     )
@@ -478,21 +480,25 @@ class QuotationInsuranceVehiclePremium(models.Model):
 
     @property
     def emission_right(self):
-        return round(self.amount * self.emission_right_percentage, 2)
+        amount = self.amount * self.emission_right_percentage
+        return to_decimal(amount)
 
     # prima comercial
     @property
     def commercial_premium(self):
-        return round(self.amount + self.emission_right, 2)
+        amount = self.amount + self.emission_right
+        return to_decimal(amount)
 
     @property
     def tax(self):
-        return round(self.commercial_premium * self.tax_percentage, 2)
+        amount = self.commercial_premium * self.tax_percentage
+        return to_decimal(amount)
 
     # prima total
     @property
     def total(self):
-        return self.commercial_premium + self.tax
+        amount = self.commercial_premium + self.tax
+        return to_decimal(amount)
 
     # fee
     @property
@@ -558,7 +564,7 @@ class IssuanceInsurance(models.Model):
     # kcs_commission
     plan_commission_percentage = models.DecimalField(
         _("plan commission percentage"),
-        decimal_places=3,
+        decimal_places=4,
         max_digits=10,
     )
     comment = models.TextField(_("comment"), null=True)
@@ -583,7 +589,7 @@ class IssuanceInsurance(models.Model):
     )
     seller_commission_percentage = models.DecimalField(
         _("seller commission percentage"),
-        decimal_places=2,
+        decimal_places=4,
         max_digits=10,
     )
     # estado
@@ -631,55 +637,58 @@ class IssuanceInsuranceVehicle(IssuanceInsurance):
         for premium in premiums:
             quotations.append(premium.quotation_insurance_vehicle)
         amount = sum(quotation.insured_amount for quotation in quotations)
-        return round(amount, 2)
+        return to_decimal(amount)
 
     @property
     def rate(self):
         premiums = self.quotation_vehicle_premiums.all()
-        amount = sum(premium.rate for premium in premiums) / len(premiums)
-        return round(amount, 2)
+        return sum(premium.rate for premium in premiums) / len(premiums)
 
     @property
     def net_premium(self):
         premiums = self.quotation_vehicle_premiums.all()
         amount = sum(premium.amount for premium in premiums)
-        return round(amount, 2)
+        return to_decimal(amount)
 
     @property
     def emission_right(self):
         premium = self.quotation_vehicle_premiums.first()
         amount = self.net_premium * premium.emission_right_percentage
-        return round(amount, 2)
+        return to_decimal(amount)
 
     @property
     def commercial_premium(self):
-        return round(self.net_premium + self.emission_right, 2)
+        amount = self.net_premium + self.emission_right
+        return to_decimal(amount)
 
     @property
     def tax(self):
         premium = self.quotation_vehicle_premiums.first()
         amount = self.commercial_premium * premium.tax_percentage
-        return round(amount, 2)
+        return to_decimal(amount)
 
     @property
     def total_premium(self):
-        return round(self.commercial_premium + self.tax, 2)
+        return self.commercial_premium + self.tax
 
     @property
     def net_commission(self):
         premiums = self.quotation_vehicle_premiums.all()
-        amount = sum(premium.amount for premium in premiums)
-        return round(amount * self.plan_commission_percentage, 2)
+        amount = (
+            sum(premium.amount for premium in premiums)
+            * self.plan_commission_percentage
+        )  # noqa
+        return to_decimal(amount)
 
     @property
     def seller_commission(self):
-        return round(
-            self.seller_commission_percentage * self.net_commission, 2
-        )
+        amount = self.seller_commission_percentage * self.net_commission
+        return to_decimal(amount)
 
     @property
     def kcs_commission(self):
-        return round(self.net_commission - self.seller_commission, 2)
+        amount = self.net_commission - self.seller_commission
+        return to_decimal(amount)
 
 
 class IssuanceInsuranceVehicleDocument(models.Model):
@@ -693,17 +702,19 @@ class IssuanceInsuranceVehicleDocument(models.Model):
 
 
 class Endorsement(models.Model):
-    insured_amount = models.PositiveIntegerField(_("insured amount"))
+    insured_amount = models.DecimalField(
+        _("insured amount"), decimal_places=2, max_digits=10
+    )
     net_premium = models.DecimalField(
         _("net premium"), decimal_places=2, max_digits=10, default=0
     )
-    rate = models.DecimalField(_("rate"), decimal_places=2, max_digits=10)
+    rate = models.DecimalField(_("rate"), decimal_places=4, max_digits=10)
     tax_percentage = models.DecimalField(
-        _("tax percentage"), decimal_places=2, max_digits=10, default=0.18
+        _("tax percentage"), decimal_places=4, max_digits=10, default=0.18
     )
     emission_right_percentage = models.DecimalField(
         _("emission right percentage"),
-        decimal_places=2,
+        decimal_places=4,
         max_digits=10,
         default=0.03,
     )
@@ -720,12 +731,12 @@ class Endorsement(models.Model):
     # porcentaje de comisión del plan de seguro
     plan_commission_percentage = models.DecimalField(
         _("plan commission percentage"),
-        decimal_places=3,
+        decimal_places=4,
         max_digits=10,
     )
     seller_commission_percentage = models.DecimalField(
         _("seller commission percentage"),
-        decimal_places=2,
+        decimal_places=4,
         max_digits=10,
     )
     detail = models.TextField(_("detail"))
@@ -745,36 +756,38 @@ class Endorsement(models.Model):
 
     @property
     def emission_right(self):
-        return round(self.net_premium * self.emission_right_percentage, 2)
+        amount = self.net_premium * self.emission_right_percentage
+        return to_decimal(amount)
+
+    @property
+    def commercial_premium(self):
+        amount = self.net_premium + self.emission_right
+        return to_decimal(amount)
 
     @property
     def tax(self):
-        amount = self.net_premium + self.emission_right
-        return round(amount * self.tax_percentage, 2)
+        amount = self.commercial_premium * self.tax_percentage
+        return to_decimal(amount)
 
-    # prima comercial
-    @property
-    def commercial_premium(self):
-        return round(self.net_premium + self.emission_right, 2)
-
-    # prima total
     @property
     def total(self):
-        return self.net_premium + self.emission_right + self.tax
+        amount = self.commercial_premium + self.tax
+        return to_decimal(amount)
 
     @property
     def net_commission(self):
-        return round(self.net_premium * self.plan_commission_percentage, 2)
+        amount = self.net_premium * self.plan_commission_percentage
+        return to_decimal(amount)
 
     @property
     def seller_commission(self):
-        return round(
-            self.seller_commission_percentage * self.net_commission, 2
-        )
+        amount = self.seller_commission_percentage * self.net_commission
+        return to_decimal(amount)
 
     @property
     def kcs_commission(self):
-        return round(self.net_commission - self.seller_commission, 2)
+        amount = self.net_commission - self.seller_commission
+        return to_decimal(amount)
 
     created = models.DateTimeField(auto_now_add=True)
 
@@ -838,7 +851,7 @@ class CollectionInsuranceVehicle(models.Model):
         return f"status={self.status()}"
 
 
-# Modelo para la data historica
+# Modelo para la data histórica
 
 
 class HistoricalData(models.Model):

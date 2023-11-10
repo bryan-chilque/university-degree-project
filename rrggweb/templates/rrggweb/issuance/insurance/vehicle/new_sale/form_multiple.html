@@ -1,4 +1,5 @@
 {% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
+{% load custom_filters %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -55,7 +56,7 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Comisión por venta nueva</td>
-                  <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
+                  <td>{{ seller.commission_rate.new_sale|to_percentage }}</td>
                 </tr>
               </tbody>
             </table>
@@ -90,7 +91,7 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Tasa</td>
-                  <td>{{ rate }}%</td>
+                  <td>{{ rate|to_percentage }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima neta</td>
@@ -158,7 +159,7 @@
                               {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.amount }}
                             </td>
                             <td class="align-middle">
-                              {{ premium.rate }}%
+                              {{ premium.rate|to_percentage }}
                             </td>
                           </tr>
                         {% endfor %}

@@ -1,4 +1,5 @@
 {% extends "rrggweb/dashboard.html" %}
+{% load custom_filters %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -81,7 +82,7 @@
             </tr>
             <tr>
               <th>Comisión</th>
-              <td>{% widthratio object.seller_commission_percentage 1 100 %}%</td>
+              <td>{{ object.seller_commission_percentage|to_percentage }}</td>
             </tr>
             <tr>
               <th>Monto comisión neto</th>
@@ -191,7 +192,7 @@
             </tr>
             <tr>
               <th>Comisión</th>
-              <td>{% widthratio object.seller_commission_percentage 1 100 %}%</td>
+              <td>{{ object.seller_commission_percentage|to_percentage }}</td>
             </tr>
             <tr>
               <th>Monto comisión neto</th>
@@ -217,10 +218,10 @@
                       {{ premium.quotation_insurance_vehicle.vehicle }}
                     </td>
                     <td>
-                      {{ premium.quotation_insurance_vehicle.insured_amount }}
+                      {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.quotation_insurance_vehicle.insured_amount }}
                     </td>
                     <td>
-                      {{ premium.amount }}
+                      {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.amount }}
                     </td>
                     <td class="align-middle d-flex gap-2">
                       <a
@@ -262,7 +263,7 @@
           </tr>
           <tr>
             <th>Tasa</th>
-            <td>{{ object.rate }} %</td>
+            <td>{{ object.rate|to_percentage }}</td>
           </tr>
           <tr>
             <th>Prima neta</th>
@@ -313,7 +314,7 @@
           </tr>
           <tr>
             <th>Porcentaje comisión KCS</th>
-            <td>{{ kcs_commission_percentage }}%</td>
+            <td>{{ object.plan_commission_percentage|to_percentage }}</td>
           </tr>
           <tr>
             <th>Monto comisión neto</th>

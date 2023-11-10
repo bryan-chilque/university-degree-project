@@ -1,4 +1,5 @@
 {% extends 'rrggweb/dashboard.html' %}
+{% load custom_filters %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -100,7 +101,7 @@
             </tr>
             <tr>
               <th>Tasa</th>
-              <td> {{ premium.rate }} %</td>
+              <td> {{ premium.rate|to_percentage }}</td>
             </tr>
           </tbody>
         </table>

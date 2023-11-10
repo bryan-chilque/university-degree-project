@@ -1,5 +1,6 @@
 {% extends "rrggweb/dashboard.html" %}
 {% load nomos %}
+{% load custom_filters %}
 {% block head %}
   {{ block.super }}
   <style>
@@ -142,13 +143,13 @@
                       <td class="align-middle">{{ premium.insurance_vehicle_ratio.insurance_vehicle.name }}</td>
                       <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.amount }}
                       </td>
-                      <td class="align-middle">{% widthratio premium.emission_right_percentage 1 100 %}%</td>
+                      <td class="align-middle">{{ premium.emission_right_percentage|to_percentage }}</td>
                       <td class="align-middle">
                         {{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.emission_right }}</td>
-                      <td class="align-middle">{% widthratio premium.tax_percentage 1 100 %}%</td>
-                      <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.tax }}</td>
-                      <td class="align-middle">{{premium.quotation_insurance_vehicle.currency.symbol}}{{ premium.total }}</td>
-                      <td class="align-middle">{% widthratio premium.rate 1 100 %}%</td>
+                      <td class="align-middle">{{ premium.tax_percentage|to_percentage }}</td>
+                      <td class="align-middle">{{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.tax }}</td>
+                      <td class="align-middle">{{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.total }}</td>
+                      <td class="align-middle">{{ premium.rate|to_percentage }}</td>
                       <td class="align-middle d-flex gap-2">
                         <a class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2"
                            href="{% url 'rrggweb:issuance:insurance:vehicle:select_role_q' view.kwargs.registrar_id premium.id %}">

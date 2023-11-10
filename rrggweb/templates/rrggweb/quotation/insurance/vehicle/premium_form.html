@@ -6,12 +6,10 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      {% if initial_step == 6 and final_step == 9 %}
-        {% include "rrggweb/utils/stepper.html" with step=6 max_step=9 %}
-      {% elif initial_step == 1 and final_step == 6 %}
+      {% comment %} quotation: edit premium {% endcomment %}
+      {% if initial_step == 1 and final_step == 6 %}
         {% include "rrggweb/utils/stepper.html" with step=1 max_step=6 %}
-      {% elif initial_step == 1 and final_step == 9 %}
-        {% include "rrggweb/utils/stepper.html" with step=1 max_step=9 %}
+      {% comment %} issuance: quotation: create {% endcomment %}
       {% elif initial_step == 2 and final_step == 4 %}
         {% include "rrggweb/utils/stepper.html" with step=2 max_step=4 %}
       {% endif %}
@@ -69,35 +67,16 @@
       </form>
     </div>
   </div>
-  {% if renewal_form %}
-    <script>
-      // TODO: QUITAR ESTO
-      document.querySelector('#id_insurance_vehicle_ratio').style.backgroundColor = '#e8e8e8';
-      document.querySelector('#id_insurance_vehicle_ratio').setAttribute("disabled", "disabled");
+  <script>
+    const insuredAmountString = document.querySelector('#insured_amount').textContent;
+    const insuredAmount = parseInt(insuredAmountString.replace(',', '.'))
+    const amountInput = document.querySelector('#id_amount');
+    const rateInput = document.querySelector('#id_rate');
 
-      const insuredAmountString = document.querySelector('#insured_amount').textContent;
-      const insuredAmount = parseInt(insuredAmountString.replace(',', '.'))
-      const amountInput = document.querySelector('#id_amount');
-      const rateInput = document.querySelector('#id_rate');
-
-      amountInput.addEventListener('input', () => {
-        const amount = Number(amountInput.value);
-        const rate = amount / insuredAmount;
-        rateInput.value = rate.toFixed(2);
-      });
-    </script>
-  {% else %}
-    <script>
-      const insuredAmountString = document.querySelector('#insured_amount').textContent;
-      const insuredAmount = parseInt(insuredAmountString.replace(',', '.'))
-      const amountInput = document.querySelector('#id_amount');
-      const rateInput = document.querySelector('#id_rate');
-
-      amountInput.addEventListener('input', () => {
-        const amount = Number(amountInput.value);
-        const rate = amount / insuredAmount;
-        rateInput.value = rate.toFixed(2);
-      });
-    </script>
-  {% endif %}
+    amountInput.addEventListener('input', () => {
+      const netPremium = Number(amountInput.value);
+      const rate = (netPremium / insuredAmount) * 100;
+      rateInput.value = Math.floor((rate) * 100) / 100;
+    });
+  </script>
 {% endblock content %}

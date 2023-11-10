@@ -178,13 +178,8 @@
                   <td>{{ seller }}</td>
                 </tr>
                 <tr>
-                  {% if renewal_form or new_renewal_form%}
-                    <td class="font-weight-bold">Comisión por renovación</td>
-                    <td>{% widthratio seller.commission_rate.renewal 1 100 %}%</td>
-                  {% else %}
-                    <td class="font-weight-bold">Comisión por venta nueva</td>
-                    <td>{% widthratio seller.commission_rate.new_sale 1 100 %}%</td>
-                  {% endif %}
+                  <td class="font-weight-bold">Comisión por venta nueva</td>
+                  <td>{{ seller.commission_rate.new_sale|to_percentage }}</td>
                 </tr>
               </tbody>
             </table>
