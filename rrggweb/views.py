@@ -7083,13 +7083,19 @@ class CMCreateLegalPersonView(CreateLegalPersonSupportView):
         return context
 
 
-# View para la data historica
-
-
 class HistoricalDataListView(ListView):
     model = rrgg.models.HistoricalData
     template_name = "rrggweb/historical_data/list.html"
     context_object_name = "data"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        years = rrgg.models.HistoricalData.objects.values_list(
+            "year", flat=True
+        ).distinct()
+        context["years"] = years
+        context["search_query"] = self.request.GET.get("q", "")
+        return context
 
 
 class HistoricalDataDetailView(DetailView):

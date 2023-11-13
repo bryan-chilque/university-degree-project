@@ -1,8 +1,19 @@
 {% extends "rrggweb/dashboard.html" %}
 
-{% block title_section %}Data Histórica{% endblock title_section %}
+{% block title_section %}<h3>DATA HISTÓRICA</h3>{% endblock title_section %}
 
 {% block content %}
+    <div>
+        <p>Años:
+            <select id="year-filter">
+                <option value="">Todos</option>
+                {% for year in years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+    </div>
     <div id="loader" class="d-flex justify-content-center align-items-center">
         <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -12,13 +23,14 @@
         <thead>
             <tr>
                 <th>Cliente</th>
-                <td>Documento</td>
+                <th>Documento</th>
                 <th>Póliza</th>
-                <th>Aseguradora</th>
                 <th>Asesor</th>
                 <th>Prima Total</th>
                 <th>Tipo de riesgo</th>
+                <th>Mes</th>
                 <th>Año</th>
+                <th>Estado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -28,11 +40,12 @@
                     <td>{{ record.customer }}</td>
                     <td>{{ record.document_number }}</td>
                     <td>{{ record.policy }}</td>
-                    <td>{{ record.insurance_vehicle }}</td>
                     <td>{{ record.consultant }}</td>
                     <td>{{ record.total_premium }}</td>
                     <td>{{ record.risk }}</td>
+                    <td>{{ record.months }}</td>
                     <td>{{ record.year }}</td>
+                    <td>{{ record.observations }}</td>
                     <td><a href="{% url 'rrggweb:historical_data:detail' view.kwargs.registrar_id record.pk %}" class="btn btn-primary btn-sm">
                         <i class="fa fa-eye"></i> Ver detalle
                     </a>
@@ -46,7 +59,7 @@
     </table>
     <script>
         $(document).ready(function() {
-            $('#historical-data-table').DataTable({
+            var table = $('#historical-data-table').DataTable({
                 "pageLength": 10,
                 "searching": true,
                 language: {
@@ -63,6 +76,16 @@
                     $('#historical-data-table').removeClass('d-none').removeAttr('style');
                 }
             });
+
+            $('#year-filter').change(function() {
+                var year = $(this).val();
+                if (year) {
+                    table.column(7).search('^' + year + '$', true, false).draw();
+                } else {
+                    table.column(7).search('').draw();
+                }
+            });
+
         });
     </script>
 {% endblock %}
