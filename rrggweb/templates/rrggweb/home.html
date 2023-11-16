@@ -1,22 +1,45 @@
 {% extends "rrggweb/dashboard.html" %}
 {% block title_section %}
-  Seguros
+  <h2>ESTADÍSTICA GENERALES</h2
 {% endblock title_section %}
 {% block content %}
+  <div class = "row mb-3">
+    <form method="get">
+      <label for="year">Año:</label>
+      <select name="year">
+          {% for year in years %}
+              <option value="{{ year }}"
+                {% if year == selected_year %}selected
+                {% endif %}>{{ year }}
+              </option>
+          {% endfor %}
+      </select>
+      <select name="months">
+        {% for month in months %}
+            <option value="{{ month }}"
+              {% if month == selected_month %}selected
+              {% endif %}>{{ month }}
+            </option>
+        {% endfor %}
+        <!-- Add more options as needed -->
+      </select>
+      <input type="submit" value="Mostrar reporte">
+    </form>
+  </div>
   <div class="row">
     <div class="col-lg-6">
-      <div id="pieChart"></div>
+      <div id="histogramChart1"></div>
     </div>
     <div class="col-lg-6">
-      <div id="barChart"></div>
+      <div id="histogramChart2"></div>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-6">
-      <div id="lineChart"></div>
+      <div id="histogramChart3"></div>
     </div>
     <div class="col-lg-6">
-      <div id="histogramChart"></div>
+      <div id="histogramChart4"></div>
     </div>
   </div>
   <div class="row">
@@ -25,63 +48,11 @@
     </div>
   </div>
   <script>
-    // Gráfico de tarta
-    var pieOptions = {
-      series: {{ pie_series|safe }},
-      labels: {{ pie_labels|safe }},
-      chart: {
-        type: 'pie',
-      },
-      title: {
-        text: 'Distribución del Tipo de Consultor'
-      },
-    };
-    var pieChart = new ApexCharts(document.querySelector("#pieChart"), pieOptions);
-    pieChart.render();
-
-    // Gráfico de barras
-    var barOptions = {
-      series: [{
-        name: 'Pólizas',
-        data: {{ bar_series|safe }}
-      }],
-      chart: {
-        type: 'bar',
-      },
-      xaxis: {
-        categories: {{ bar_labels|safe }},
-      },
-      title: {
-        text: 'Número de Pólizas por Año'
-      },
-    };
-    var barChart = new ApexCharts(document.querySelector("#barChart"), barOptions);
-    barChart.render();
-
-    // Gráfico de líneas
-    var lineOptions = {
-      series: [{
-        name: 'Prima Total',
-        data: {{ line_series|safe }}
-      }],
-      chart: {
-        type: 'line',
-      },
-      xaxis: {
-        categories: {{ line_labels|safe }},
-      },
-      title: {
-        text: 'Prima Total por Año'
-      },
-    };
-    var lineChart = new ApexCharts(document.querySelector("#lineChart"), lineOptions);
-    lineChart.render();
-
-    // Histograma
-    var histogramOptions = {
+    // Histograma 1
+    var histogramOptions1 = {
       series: [{
         name: 'Riesgo',
-        data: {{ histogram_series|safe }}
+        data: {{ histogram_net_premium_soles_series|safe }}
       }],
       chart: {
         type: 'bar',
@@ -92,13 +63,90 @@
         }
       },
       xaxis: {
-        categories: {{ histogram_labels|safe }},
+        categories: {{ histogram_net_premium_soles_labels|safe }},
       },
       title: {
-        text: 'Distribución de Riesgo'
+        text: 'PRIMA NETA POR RIESGO / SOLES'
       },
     };
-    var histogramChart = new ApexCharts(document.querySelector("#histogramChart"), histogramOptions);
-    histogramChart.render();
+    var histogramChart1 = new ApexCharts(document.querySelector("#histogramChart1"), histogramOptions1);
+    histogramChart1.render();
+
+    // Histograma 2
+    var histogramOptions2 = {
+      series: [{
+        name: 'Riesgo',
+        data: {{ histogram_net_premium_dollars_series|safe }}
+      }],
+      chart: {
+        type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        }
+      },
+      colors: ["#9467bd"],
+      xaxis: {
+        categories: {{ histogram_net_premium_dollars_labels|safe }},
+      },
+      title: {
+        text: 'PRIMA NETA POR RIESGO / DÓLARES'
+      },
+    };
+    var histogramChart2 = new ApexCharts(document.querySelector("#histogramChart2"), histogramOptions2);
+    histogramChart2.render();
+
+     // Histograma 3
+     var histogramOptions3= {
+      series: [{
+        name: 'Asesor',
+        data: {{ histogram_net_commission_soles_series|safe }}
+      }],
+      chart: {
+        type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        }
+      },
+      colors: ["#9467bd"],
+      xaxis: {
+        categories: {{ histogram_net_commission_soles_labels|safe }},
+      },
+      title: {
+        text: 'COMISIÓN NETA POR ASESOR / SOLES'
+      },
+    };
+    var histogramChart3 = new ApexCharts(document.querySelector("#histogramChart3"), histogramOptions3);
+    histogramChart3.render();
+
+     // Histograma 4
+     var histogramOptions4= {
+      series: [{
+        name: 'Asesor',
+        data: {{ histogram_net_commission_dollars_series|safe }}
+      }],
+      chart: {
+        type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        }
+      },
+      colors: ["#9467bd"],
+      xaxis: {
+        categories: {{ histogram_net_commission_dollars_labels|safe }},
+      },
+      title: {
+        text: 'COMISIÓN NETA POR ASESOR / DOLARES'
+      },
+    };
+    var histogramChart4 = new ApexCharts(document.querySelector("#histogramChart4"), histogramOptions4);
+    histogramChart4.render();
+
+
   </script>
 {% endblock content %}

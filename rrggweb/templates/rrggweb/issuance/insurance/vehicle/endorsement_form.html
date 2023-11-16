@@ -34,13 +34,13 @@
       const netPremium = Number(netPremiumInput.value);
       const insuredAmount = Number(insuredAmountInput.value);
       const rate = (netPremium / insuredAmount) * 100;
-      rateInput.value = Math.floor((rate) * 100) / 100;
+      rateInput.value = Number(rate.toFixed(2));
     });
     insuredAmountInput.addEventListener('input', () => {
       const insuredAmount = Number(insuredAmountInput.value);
       const netPremium = Number(netPremiumInput.value);
       const rate = (netPremium / insuredAmount) * 100;
-      rateInput.value = Math.floor((rate) * 100) / 100;
+      rateInput.value = Number(rate.toFixed(2));
     });
   </script>
 {% endblock content %}

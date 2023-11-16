@@ -640,15 +640,14 @@ class IssuanceInsuranceVehicle(IssuanceInsurance):
         return to_decimal(amount)
 
     @property
-    def rate(self):
-        premiums = self.quotation_vehicle_premiums.all()
-        return sum(premium.rate for premium in premiums) / len(premiums)
-
-    @property
     def net_premium(self):
         premiums = self.quotation_vehicle_premiums.all()
         amount = sum(premium.amount for premium in premiums)
         return to_decimal(amount)
+
+    @property
+    def rate(self):
+        return self.net_premium / self.insured_amount
 
     @property
     def emission_right(self):

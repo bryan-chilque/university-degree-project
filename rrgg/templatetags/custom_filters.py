@@ -1,3 +1,5 @@
+from decimal import ROUND_HALF_UP, Decimal
+
 from django import template
 
 register = template.Library()
@@ -12,8 +14,10 @@ def to_two_decimals(value):
 @register.filter(name="to_percentage")
 def to_percentage(value):
     if value is not None:
-        value = float(value) * 100
-        if value.is_integer():
+        value = Decimal(value * 100).quantize(
+            Decimal("0.00"), rounding=ROUND_HALF_UP
+        )
+        if value % 1 == 0:
             return "{:.0f}%".format(value)
         else:
             return "{:.2f}%".format(value).replace(".", ",")

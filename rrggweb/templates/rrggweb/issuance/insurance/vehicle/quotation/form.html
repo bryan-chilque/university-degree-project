@@ -1,4 +1,5 @@
 {% extends "rrggweb/issuance/insurance/vehicle/base.html" %}
+{% load custom_filters %}
 {% block title_section %}
   {{ title }}
   <h6>{{ subtitle }}</h6>
@@ -218,7 +219,7 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Tasa</td>
-                  <td>{{quotation.currency.symbol}}{{ premium.rate }}</td>
+                  <td>{{ premium.rate|to_percentage }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Prima neta</td>

@@ -76,7 +76,7 @@
     amountInput.addEventListener('input', () => {
       const netPremium = Number(amountInput.value);
       const rate = (netPremium / insuredAmount) * 100;
-      rateInput.value = Math.floor((rate) * 100) / 100;
+      rateInput.value = Number(rate.toFixed(2));
     });
   </script>
 {% endblock content %}

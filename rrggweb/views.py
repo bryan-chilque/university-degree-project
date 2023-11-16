@@ -6,8 +6,9 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
+from django.db.models import FloatField, Q, Sum
 from django.db.models.deletion import ProtectedError
+from django.db.models.functions import Cast
 from django.forms import modelformset_factory
 from django.http import FileResponse, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -27,6 +28,8 @@ from rrgg import mixins as rrgg_mixins
 
 from . import forms
 from .utils import SeguroItem, to_decimal
+
+# import count
 
 
 class LoginView(views_auth.LoginView):
@@ -1012,48 +1015,129 @@ class EndorsementDetailSupportView(LoginRequiredMixin, DetailView):
 class HomeView(TemplateView):
     template_name = "rrggweb/home.html"
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
+    def get(self, request, *args, **kwargs):
+        if "year" not in request.GET:
+            request.GET = request.GET.copy()
+            request.GET["year"] = "2023"
+        if "months" not in request.GET:
+            request.GET = request.GET.copy()
+            request.GET["months"] = "JUNIO"
+        return super().get(request, *args, **kwargs)
 
-    #     # Pie chart data
-    #     pie_data = rrgg.models.HistoricalData.objects.values(
-    #         "consultant_type"
-    #     ).annotate(dcount=Count("consultant_type"))
-    #     context["pie_series"] = [item["dcount"] for item in pie_data]
-    #     context["pie_labels"] = [item["consultant_type"] for item in pie_data] # noqa: E501
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Years
+        years = (
+            rrgg.models.HistoricalData.objects.values_list("year", flat=True)
+            .distinct()
+            .order_by("year")
+        )
+        context["years"] = years
+        selected_year = self.request.GET.get("year")
+        context["selected_year"] = selected_year
+        # Months
+        month = [
+            "ENERO",
+            "FEBRERO",
+            "MARZO",
+            "ABRIL",
+            "MAYO",
+            "JUNIO",
+            "JULIO",
+            "AGOSTO",
+            "SEPTIEMBRE",
+            "OCTUBRE",
+            "NOVIEMBRE",
+            "DICIEMBRE",
+        ]
+        context["months"] = month
+        selected_month = self.request.GET.get("months")
+        context["selected_month"] = selected_month
 
-    #     # Bar chart data
-    #     bar_data = (
-    #         rrgg.models.HistoricalData.objects.values("year")
-    #         .annotate(dcount=Count("year"))
-    #         .order_by("year")
-    #     )
-    #     context["bar_series"] = [item["dcount"] for item in bar_data]
-    #     context["bar_labels"] = [item["year"] for item in bar_data]
+        data_filter = {}
+        if selected_year is not None:
+            data_filter["year"] = selected_year
+        if selected_month is not None:
+            data_filter["months"] = selected_month
 
-    #     # Line chart data
-    #     line_data = (
-    #         rrgg.models.HistoricalData.objects.values("year")
-    #         .annotate(total=Sum("total_premium"))
-    #         .order_by("year")
-    #     )
-    #     context["line_series"] = [
-    #         round(item["total"], 2) for item in line_data
-    #     ]
-    #     context["line_labels"] = [item["year"] for item in line_data]
+        # Histogram net_premium / soles
+        histogram_net_premium_in_soles = (
+            rrgg.models.HistoricalData.objects.filter(
+                currency="SOLES", **data_filter
+            )
+            .exclude(net_premium="")
+            .exclude(net_premium__isnull=True)
+            .values("year", "months", "risk")
+            .annotate(total=Sum(Cast("net_premium", FloatField())))
+            .order_by("year", "months", "risk")
+        )
 
-    #     # Histogram data
-    #     histogram_data = (
-    #         rrgg.models.HistoricalData.objects.values("risk")
-    #         .annotate(dcount=Count("risk"))
-    #         .order_by("risk")
-    #     )
-    #     context["histogram_series"] = [
-    #         item["dcount"] for item in histogram_data
-    #     ]
-    #     context["histogram_labels"] = [item["risk"] for item in histogram_data] # noqa: E501
+        context["histogram_net_premium_soles_series"] = [
+            round(item["total"], 2) for item in histogram_net_premium_in_soles
+        ]
+        context["histogram_net_premium_soles_labels"] = [
+            item["risk"] for item in histogram_net_premium_in_soles
+        ]
 
-    #     return context
+        # Histogram net_premium / dólares
+        histogram_net_premium_in_dollars = (
+            rrgg.models.HistoricalData.objects.filter(
+                currency="DOLARES", **data_filter
+            )
+            .exclude(net_premium="")
+            .exclude(net_premium__isnull=True)
+            .values("year", "months", "risk")
+            .annotate(total=Sum(Cast("net_premium", FloatField())))
+            .order_by("year", "months", "risk")
+        )
+
+        context["histogram_net_premium_dollars_series"] = [
+            round(item["total"], 2)
+            for item in histogram_net_premium_in_dollars
+        ]
+        context["histogram_net_premium_dollars_labels"] = [
+            item["risk"] for item in histogram_net_premium_in_dollars
+        ]
+
+        # Histogram net_commission / soles
+        histogram_net_commission_in_soles = (
+            rrgg.models.HistoricalData.objects.filter(
+                currency="SOLES", **data_filter
+            )
+            .exclude(net_commission_amount="")
+            .exclude(net_commission_amount__isnull=True)
+            .values("year", "months", "consultant")
+            .annotate(total=Sum(Cast("net_commission_amount", FloatField())))
+            .order_by("year", "months", "consultant")
+        )
+        context["histogram_net_commission_soles_series"] = [
+            round(item["total"], 2)
+            for item in histogram_net_commission_in_soles
+        ]
+        context["histogram_net_commission_soles_labels"] = [
+            item["consultant"] for item in histogram_net_commission_in_soles
+        ]
+
+        # Histogram net_commission / dólares
+        histogram_net_commission_in_dollars = (
+            rrgg.models.HistoricalData.objects.filter(
+                currency="DOLARES", **data_filter
+            )
+            .exclude(net_commission_amount="")
+            .exclude(net_commission_amount__isnull=True)
+            .values("year", "months", "consultant")
+            .annotate(total=Sum(Cast("net_commission_amount", FloatField())))
+            .order_by("year", "months", "consultant")
+        )
+        context["histogram_net_commission_dollars_series"] = [
+            round(item["total"], 2)
+            for item in histogram_net_commission_in_dollars
+        ]
+        context["histogram_net_commission_dollars_labels"] = [
+            item["consultant"] for item in histogram_net_commission_in_dollars
+        ]
+
+        return context
 
 
 # ------------------------------
@@ -4287,9 +4371,7 @@ class IIVCreateStepNewSaleView(CreateIssuanceSupportView):
             for p in context["premiums"]
         )
         context["net_premium"] = sum(p.amount for p in context["premiums"])
-        context["rate"] = sum(p.rate for p in context["premiums"]) / len(
-            context["premiums"]
-        )
+        context["rate"] = context["net_premium"] / context["insured_amount"]
         er_percentage = context["premiums"].first().emission_right_percentage
         context["emission_right"] = to_decimal(
             context["net_premium"] * er_percentage
@@ -5494,9 +5576,7 @@ class IIVCreateStepNewRenewalView(CreateIssuanceSupportView):
             for p in context["premiums"]
         )
         context["net_premium"] = sum(p.amount for p in context["premiums"])
-        context["rate"] = sum(p.rate for p in context["premiums"]) / len(
-            context["premiums"]
-        )
+        context["rate"] = context["net_premium"] / context["insured_amount"]
         er_percentage = context["premiums"].first().emission_right_percentage
         context["emission_right"] = to_decimal(
             context["net_premium"] * er_percentage
@@ -5680,7 +5760,7 @@ class IIVPremiumListRenewalStepView(PremiumListSupportView):
             if current_premiums.exists():
                 if (
                     previous_premium_data.vehicle.plate
-                    in current_premiums.values_list(  # noqa: E501
+                    in current_premiums.values_list(
                         "quotation_insurance_vehicle__vehicle__plate",
                         flat=True,
                     )
@@ -6554,9 +6634,7 @@ class IIVCreateStepRenewalView(CreateIssuanceSupportView):
             for p in context["premiums"]
         )
         context["net_premium"] = sum(p.amount for p in context["premiums"])
-        context["rate"] = sum(p.rate for p in context["premiums"]) / len(
-            context["premiums"]
-        )
+        context["rate"] = context["net_premium"] / context["insured_amount"]
         context["emission_right"] = to_decimal(
             context["net_premium"]
             * context["premiums"].first().emission_right_percentage

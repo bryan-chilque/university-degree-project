@@ -162,7 +162,7 @@
                               {{ premium.quotation_insurance_vehicle.currency.symbol }}{{ premium.amount }}
                             </td>
                             <td class="align-middle">
-                              {{ premium.rate }}%
+                              {{ premium.rate|to_percentage }}
                             </td>
                           </tr>
                         {% endfor %}

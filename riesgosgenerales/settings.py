@@ -72,12 +72,17 @@ WSGI_APPLICATION = "riesgosgenerales.wsgi.application"
 
 # Database
 
-
 DATABASES = {
     "default": (
         {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            # "ENGINE": "django.db.backends.sqlite3",
+            # "NAME": BASE_DIR / "db.sqlite3",
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "rrggpg",
+            "USER": "postgres",
+            "PASSWORD": "3621",
+            "HOST": "localhost",
+            "PORT": "5432",
         }
         if DEBUG
         else {
