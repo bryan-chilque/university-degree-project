@@ -21,11 +21,11 @@
       </a>
       <div class="d-flex gap-2">
         {% if report_xlsx or report_pdf %}
-          <a href="" class="btn btn-success">
+          <a href="{{ report_xlsx }}" class="btn btn-success">
             <i class="fa fa-file-excel"></i>
             Exportar a Excel
           </a>
-          <a href="" class="btn btn-danger">
+          <a href="{{ report_pdf }}" class="btn btn-danger">
             <i class="fa fa-file-pdf"></i>
             Exportar a PDF
           </a>
