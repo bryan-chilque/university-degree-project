@@ -1,12 +1,12 @@
 - model: rrgg.legalperson
   pk: 10
   fields:
-    registered_name: 'ACTIVIDADES ENVIVO EIRL'
+    registered_name: "actividades envivo eirl"
     document_type: 3
-    document_number: '20451741404'
-    anniversary_date: '2011-02-11'
-    email: 'CARLOS.YAIPEN@ENVIVO.COM.PE'
-    address: 'CALLE LOS MOLINOS NRO 306 URB SAN IGNACIO DE MONTERRICO SURCO '
+    document_number: "20451741404"
+    anniversary_date: "2011-02-11"
+    email: "carlos.yaipen@envivo.com.pe"
+    address: "calle los molinos nro 306 urb san ignacio de monterrico surco "
     phone_number: 998164213
 
 - model: rrgg.customermembership
@@ -18,12 +18,12 @@
 - model: rrgg.legalperson
   pk: 11
   fields:
-    registered_name: 'ADM DE PROY MINEROS Y CIV SRLTDA'
+    registered_name: "adm de proy mineros y civ srltda"
     document_type: 3
-    document_number: '20323791415'
-    anniversary_date: '1998-04-08'
-    email: 'NAHOMIZERI16@HOTMAIL.COM'
-    address: 'JIRÓN JUNIN 240 PASCO '
+    document_number: "20323791415"
+    anniversary_date: "1998-04-08"
+    email: "nahomizeri16@hotmail.com"
+    address: "jirón junin 240 pasco "
     phone_number: 963541414
 
 - model: rrgg.customermembership
@@ -35,12 +35,12 @@
 - model: rrgg.legalperson
   pk: 12
   fields:
-    registered_name: 'ALBERT EINSTEIN SAN MIGUEL SAC'
+    registered_name: "albert einstein san miguel sac"
     document_type: 3
-    document_number: '20600902891'
-    anniversary_date: '2015-12-29'
-    email: 'RECURSOS.HUMANOS@UNID.EDU.PE'
-    address: 'AVENIDA LIBERTAD 1170 INTERIOR 9 KM 0.00 SAN MIGUEL'
+    document_number: "20600902891"
+    anniversary_date: "2015-12-29"
+    email: "recursos.humanos@unid.edu.pe"
+    address: "avenida libertad 1170 interior 9 km 0.00 san miguel"
     phone_number: 989021662
 
 - model: rrgg.customermembership
@@ -52,12 +52,12 @@
 - model: rrgg.legalperson
   pk: 13
   fields:
-    registered_name: 'ALLEGRO INMOBILIARIA S.A.C.'
+    registered_name: "allegro inmobiliaria s.a.c."
     document_type: 3
-    document_number: '20537612917'
-    anniversary_date: '2010-09-28'
-    email: 'JSANCHEZ@GALENA.COM.PE'
-    address: 'AV DEL EJERCITO NRO 250 INT 102 MIRAFLORES'
+    document_number: "20537612917"
+    anniversary_date: "2010-09-28"
+    email: "jsanchez@galena.com.pe"
+    address: "av del ejercito nro 250 int 102 miraflores"
     phone_number: 986601350
 
 - model: rrgg.customermembership
@@ -69,12 +69,12 @@
 - model: rrgg.legalperson
   pk: 14
   fields:
-    registered_name: 'ALLINBUS S.A.C.'
+    registered_name: "allinbus s.a.c."
     document_type: 3
-    document_number: '20555095229'
-    anniversary_date: '2013-10-25'
-    email: 'SSOMA@GRUPOCAVASSA.COM.PE'
-    address: 'JIRÓN ANTONIO RAIMONDI N°128 LA VICTORIA '
+    document_number: "20555095229"
+    anniversary_date: "2013-10-25"
+    email: "ssoma@grupocavassa.com.pe"
+    address: "jirón antonio raimondi n°128 la victoria "
     phone_number: 987539647
 
 - model: rrgg.customermembership
@@ -86,12 +86,12 @@
 - model: rrgg.legalperson
   pk: 15
   fields:
-    registered_name: 'ALMACENES FORWARDER S.A.C'
+    registered_name: "almacenes forwarder s.a.c"
     document_type: 3
-    document_number: '20606777257'
-    anniversary_date: '2020-10-27'
-    email: 'FLOR.OBLITAS@ALFOSAC.PE'
-    address: 'NESTOR GAMBETTA 4783 CALLAO'
+    document_number: "20606777257"
+    anniversary_date: "2020-10-27"
+    email: "flor.oblitas@alfosac.pe"
+    address: "nestor gambetta 4783 callao"
     phone_number: 976232996
 
 - model: rrgg.customermembership
@@ -103,13 +103,13 @@
 - model: rrgg.legalperson
   pk: 16
   fields:
-    registered_name: 'ALMERCO ABOGADOS & CONSULTORES S.C.R.LTDA.'
+    registered_name: "almerco abogados & consultores s.c.r.ltda."
     document_type: 3
-    document_number: '20508449519'
-    anniversary_date: '2007-11-07'
-    email: 'ASISTENTEGERENCIA@ALMERCOABOGADOS.COM'
-    email2: 'PAO1710@HOTMAIL.COM'
-    address: 'AV. CIRCUNVALACIÓN GOLF LOS INKAS 206-208 OFICINA 1006-A '
+    document_number: "20508449519"
+    anniversary_date: "2007-11-07"
+    email: "asistentegerencia@almercoabogados.com"
+    email2: "pao1710@hotmail.com"
+    address: "av. circunvalación golf los inkas 206-208 oficina 1006-a "
     phone_number: 997321544
 
 - model: rrgg.customermembership
@@ -121,12 +121,12 @@
 - model: rrgg.legalperson
   pk: 17
   fields:
-    registered_name: 'ANDEAN GARDEN ORGANIC S.A.C'
+    registered_name: "andean garden organic s.a.c"
     document_type: 3
-    document_number: '20603056419'
-    anniversary_date: '2018-04-02'
-    email: 'ANTICONA@MORROSAMA.COM'
-    address: 'MZA. B-1 LOTE. 05 APV. LOS INCAS CHORRILLOS '
+    document_number: "20603056419"
+    anniversary_date: "2018-04-02"
+    email: "anticona@morrosama.com"
+    address: "mza. b-1 lote. 05 apv. los incas chorrillos "
     phone_number: 984703329
 
 - model: rrgg.customermembership
@@ -138,12 +138,12 @@
 - model: rrgg.legalperson
   pk: 18
   fields:
-    registered_name: 'BIPENTA SAC'
+    registered_name: "bipenta sac"
     document_type: 3
-    document_number: '20512841601'
-    anniversary_date: '2006-03-28'
-    email: 'GERENCIA@BIPENTASAC.COM'
-    address: 'CALLE TRECE MZ Ñ LOTE 10 ATE LIMA LIMA'
+    document_number: "20512841601"
+    anniversary_date: "2006-03-28"
+    email: "gerencia@bipentasac.com"
+    address: "calle trece mz ñ lote 10 ate lima lima"
     phone_number: 3520757
 
 - model: rrgg.customermembership
@@ -155,12 +155,12 @@
 - model: rrgg.legalperson
   pk: 19
   fields:
-    registered_name: 'BURO SERVICIOS FINANCIEROS SAC'
+    registered_name: "buro servicios financieros sac"
     document_type: 3
-    document_number: '20601403511'
-    anniversary_date: '2016-08-04'
-    email: 'RRAGGIO@BURO.COM.PE'
-    address: 'AV LARCO NRO 942 MIRAFLORES'
+    document_number: "20601403511"
+    anniversary_date: "2016-08-04"
+    email: "rraggio@buro.com.pe"
+    address: "av larco nro 942 miraflores"
     phone_number: 996685466
 
 - model: rrgg.customermembership
@@ -172,12 +172,12 @@
 - model: rrgg.legalperson
   pk: 20
   fields:
-    registered_name: 'BUSINESS & PROJECTS INC SAC'
+    registered_name: "business & projects inc sac"
     document_type: 3
-    document_number: '20609595907'
-    anniversary_date: '2022-06-09'
-    email: 'RALMERCO10@GMAIL.COM'
-    address: 'SANTA ROSA NRO 129   CIENEGUILLA'
+    document_number: "20609595907"
+    anniversary_date: "2022-06-09"
+    email: "ralmerco10@gmail.com"
+    address: "santa rosa nro 129   cieneguilla"
     phone_number: 997974842
 
 - model: rrgg.customermembership
@@ -189,12 +189,12 @@
 - model: rrgg.legalperson
   pk: 21
   fields:
-    registered_name: 'CAIMAN SECURITY S.A.C.'
+    registered_name: "caiman security s.a.c."
     document_type: 3
-    document_number: '20608821059'
-    anniversary_date: '2021-12-03'
-    email: 'CAIMANSEGURIDADSAC@GMAIL.COM'
-    address: 'MZ A LT 18 CRUZ DE MOTUPE SAN JUAN DE LURIGANCHO '
+    document_number: "20608821059"
+    anniversary_date: "2021-12-03"
+    email: "caimanseguridadsac@gmail.com"
+    address: "mz a lt 18 cruz de motupe san juan de lurigancho "
     phone_number: 914093847
 
 - model: rrgg.customermembership
@@ -206,12 +206,12 @@
 - model: rrgg.legalperson
   pk: 22
   fields:
-    registered_name: 'CALDERON VALDIVIEZO LEONARDO'
+    registered_name: "calderon valdiviezo leonardo"
     document_type: 3
-    document_number: '10329413441'
-    anniversary_date: '1971-05-04'
-    email: 'CALD_LEO@HOTMAIL.COM'
-    address: 'AVENIDA LOS ALAMOS 404 MZ D LTE 11A AGRUPACIÓN'
+    document_number: "10329413441"
+    anniversary_date: "1971-05-04"
+    email: "cald_leo@hotmail.com"
+    address: "avenida los alamos 404 mz d lte 11a agrupación"
     phone_number: 992481886
 
 - model: rrgg.customermembership
@@ -223,12 +223,12 @@
 - model: rrgg.legalperson
   pk: 24
   fields:
-    registered_name: 'CEAE BREÑA SAC'
+    registered_name: "ceae breña sac"
     document_type: 3
-    document_number: '20601090741'
-    anniversary_date: '2016-03-17'
-    email: 'TESORERIA@CEAE.EDU.PE'
-    address: 'AVENIDA BOLIVIA 678 BREÑA'
+    document_number: "20601090741"
+    anniversary_date: "2016-03-17"
+    email: "tesoreria@ceae.edu.pe"
+    address: "avenida bolivia 678 breña"
     phone_number: 984216034
 
 - model: rrgg.customermembership
@@ -240,12 +240,12 @@
 - model: rrgg.legalperson
   pk: 25
   fields:
-    registered_name: 'CERTHIA INSPECCION PERU SAC'
+    registered_name: "certhia inspeccion peru sac"
     document_type: 3
-    document_number: '20520857215'
-    anniversary_date: '2021-08-16'
-    email: 'VSAAVEDRA@GRUPOEYAL.COM'
-    address: 'CALLE 23 MZ J LT 4 LOS OLIVOS '
+    document_number: "20520857215"
+    anniversary_date: "2021-08-16"
+    email: "vsaavedra@grupoeyal.com"
+    address: "calle 23 mz j lt 4 los olivos "
     phone_number: 957342762
 
 - model: rrgg.customermembership
@@ -257,12 +257,12 @@
 - model: rrgg.legalperson
   pk: 26
   fields:
-    registered_name: 'CHONG CHUNG URSULA IVETTE'
+    registered_name: "chong chung ursula ivette"
     document_type: 3
-    document_number: '10257201771'
-    anniversary_date: '1970-03-26'
-    email: 'URSULACHONG@HOTMAIL.COM'
-    address: 'CALLE TAMBO REAL 221 DPTO 301 URB SANT'
+    document_number: "10257201771"
+    anniversary_date: "1970-03-26"
+    email: "ursulachong@hotmail.com"
+    address: "calle tambo real 221 dpto 301 urb sant"
     phone_number: 993283676
 
 - model: rrgg.customermembership
@@ -274,12 +274,12 @@
 - model: rrgg.legalperson
   pk: 27
   fields:
-    registered_name: 'CONSORCIO KOPER '
+    registered_name: "consorcio koper "
     document_type: 3
-    document_number: '20609273098'
-    anniversary_date: '2022-03-25'
-    email: 'REPRESENTANTEC@KOPER.PE'
-    address: 'PRO.GARCILAZO DE LA VEGA NRO. 756 URB. SEC AROMO BAJO CAJAMARCA'
+    document_number: "20609273098"
+    anniversary_date: "2022-03-25"
+    email: "representantec@koper.pe"
+    address: "pro.garcilazo de la vega nro. 756 urb. sec aromo bajo cajamarca"
     phone_number: 959328233
 
 - model: rrgg.customermembership
@@ -291,12 +291,12 @@
 - model: rrgg.legalperson
   pk: 28
   fields:
-    registered_name: 'CONSTRUCCIONES METALICAS Y MONTAJE ABG'
+    registered_name: "construcciones metalicas y montaje abg"
     document_type: 3
-    document_number: '20122545637'
-    anniversary_date: '1993-04-30'
-    email: 'CONTABILIDAD1@ABG.COM.PE'
-    address: 'CALLE 4 MZ D LOTE 1 URB GRIMANESA CALLAO CALLAO CALLAO'
+    document_number: "20122545637"
+    anniversary_date: "1993-04-30"
+    email: "contabilidad1@abg.com.pe"
+    address: "calle 4 mz d lote 1 urb grimanesa callao callao callao"
     phone_number: 999448564
 
 - model: rrgg.customermembership
@@ -308,12 +308,12 @@
 - model: rrgg.legalperson
   pk: 29
   fields:
-    registered_name: 'CONSTRUCTORA ACUNTA PERU E.I.R.L'
+    registered_name: "constructora acunta peru e.i.r.l"
     document_type: 3
-    document_number: '20602545041'
-    anniversary_date: '2017-10-16'
-    email: 'CAP_EIRL@HOTMAIL.COM'
-    address: 'BAMBAMARCA NRO 325 200 METROS DEL- CHOTA '
+    document_number: "20602545041"
+    anniversary_date: "2017-10-16"
+    email: "cap_eirl@hotmail.com"
+    address: "bambamarca nro 325 200 metros del- chota "
     phone_number: 969932933
 
 - model: rrgg.customermembership
@@ -325,12 +325,12 @@
 - model: rrgg.legalperson
   pk: 30
   fields:
-    registered_name: 'CONSTRUCTORA ORVASA SAC'
+    registered_name: "constructora orvasa sac"
     document_type: 3
-    document_number: '20445653234'
-    anniversary_date: '2007-10-04'
-    email: 'GORVASA5@GMAIL.COM'
-    address: 'PJ. CRISTOBAL COLON MZA. B LOTE. 17 INT. A P.J. MAGDALENA NUEVA ANCASH / SANTA / CHIMBOTE'
+    document_number: "20445653234"
+    anniversary_date: "2007-10-04"
+    email: "gorvasa5@gmail.com"
+    address: "pj. cristobal colon mza. b lote. 17 int. a p.j. magdalena nueva ancash / santa / chimbote"
     phone_number: 997923960
 
 - model: rrgg.customermembership
@@ -342,12 +342,12 @@
 - model: rrgg.legalperson
   pk: 31
   fields:
-    registered_name: 'CONSTRUCTORA W & S S.A.C'
+    registered_name: "constructora w & s s.a.c"
     document_type: 3
-    document_number: '20538712753'
-    anniversary_date: '2011-01-05'
-    email: 'JORGEBENITEZR@HOTMAIL.COM '
-    address: 'AV. AVIACION NRO. 3944 INT. 501 URB. LA'
+    document_number: "20538712753"
+    anniversary_date: "2011-01-05"
+    email: "jorgebenitezr@hotmail.com "
+    address: "av. aviacion nro. 3944 int. 501 urb. la"
     phone_number: 950429505
 
 - model: rrgg.customermembership
@@ -359,12 +359,12 @@
 - model: rrgg.legalperson
   pk: 32
   fields:
-    registered_name: 'CONSTRUCTORA Y CONSULTORA FRAKOMH S.R.L'
+    registered_name: "constructora y consultora frakomh s.r.l"
     document_type: 3
-    document_number: '20601173388'
-    anniversary_date: '2016-04-22'
-    email: 'FRAKOMHINGENIEROS@GMAIL.COM'
-    address: 'JR. SANDIA NRO 904 SANTA BARBARA - PUNO - SAN ROMAN - JULIACA'
+    document_number: "20601173388"
+    anniversary_date: "2016-04-22"
+    email: "frakomhingenieros@gmail.com"
+    address: "jr. sandia nro 904 santa barbara - puno - san roman - juliaca"
     phone_number: 991159305
 
 - model: rrgg.customermembership
@@ -376,12 +376,12 @@
 - model: rrgg.legalperson
   pk: 33
   fields:
-    registered_name: 'CONSULTORES Y REPRESENTACIONES DIVERSAS SAC'
+    registered_name: "consultores y representaciones diversas sac"
     document_type: 3
-    document_number: '20536884891'
-    anniversary_date: '2010-07-21'
-    email: 'DREYNA@KCS.PE'
-    address: 'FERMIN TANGUIS 145 OF 302'
+    document_number: "20536884891"
+    anniversary_date: "2010-07-21"
+    email: "dreyna@kcs.pe"
+    address: "fermin tanguis 145 of 302"
     phone_number: 993240946
 
 - model: rrgg.customermembership
@@ -393,12 +393,12 @@
 - model: rrgg.legalperson
   pk: 34
   fields:
-    registered_name: 'CORPORACION WOALLANCE S.A.C.'
+    registered_name: "corporacion woallance s.a.c."
     document_type: 3
-    document_number: '20544014189'
-    anniversary_date: '2011-06-30'
-    email: 'RECURSOSHUMANOS@WOALLANCECOMPANY.COM'
-    address: 'CALLE IGNACIO COSSIO 1866 LA VICTORIA'
+    document_number: "20544014189"
+    anniversary_date: "2011-06-30"
+    email: "recursoshumanos@woallancecompany.com"
+    address: "calle ignacio cossio 1866 la victoria"
     phone_number: 997283619
 
 - model: rrgg.customermembership
@@ -410,12 +410,12 @@
 - model: rrgg.legalperson
   pk: 35
   fields:
-    registered_name: 'C-XPERTO S.A.C. '
+    registered_name: "c-xperto s.a.c. "
     document_type: 3
-    document_number: '20606977086'
-    anniversary_date: '2020-11-27'
-    email: 'MIGUELVERNAL@GMAIL.COM'
-    address: 'AV. PARQUE MANUEL GONZALES PRADA NRO. 625 DPTO. 201MAGDALENA '
+    document_number: "20606977086"
+    anniversary_date: "2020-11-27"
+    email: "miguelvernal@gmail.com"
+    address: "av. parque manuel gonzales prada nro. 625 dpto. 201magdalena "
     phone_number: 951353391
 
 - model: rrgg.customermembership
@@ -427,12 +427,12 @@
 - model: rrgg.legalperson
   pk: 36
   fields:
-    registered_name: 'DAT LATAM SERVICES S.A.C.'
+    registered_name: "dat latam services s.a.c."
     document_type: 3
-    document_number: '20600705963'
-    anniversary_date: '2015-09-30'
-    email: 'CORPORATIVO06@DATSOLUTION.COM.PE'
-    address: 'GUARDIA CIVIL NRO 1321 DPTO 703 URB VILLA VICTORIA SURQUILLO'
+    document_number: "20600705963"
+    anniversary_date: "2015-09-30"
+    email: "corporativo06@datsolution.com.pe"
+    address: "guardia civil nro 1321 dpto 703 urb villa victoria surquillo"
     phone_number: 999750334
 
 - model: rrgg.customermembership
@@ -444,12 +444,12 @@
 - model: rrgg.legalperson
   pk: 37
   fields:
-    registered_name: 'DIESEL TECNICA E.I.R.L'
+    registered_name: "diesel tecnica e.i.r.l"
     document_type: 3
-    document_number: '20101606261'
-    anniversary_date: '1993-03-09'
-    email: 'COBRANZAS@DIESELTECNICA.COM.PE'
-    address: 'UATE LIMA'
+    document_number: "20101606261"
+    anniversary_date: "1993-03-09"
+    email: "cobranzas@dieseltecnica.com.pe"
+    address: "uate lima"
     phone_number: 992431439
 
 - model: rrgg.customermembership
@@ -461,12 +461,12 @@
 - model: rrgg.legalperson
   pk: 38
   fields:
-    registered_name: 'EMBAJADA DE ARGELI A '
+    registered_name: "embajada de argeli a "
     document_type: 3
-    document_number: '20509898287'
-    anniversary_date: '2004-12-07'
-    email: 'ASADARGELIELIMA@GMAIL.COM'
-    address: 'ASADARGELIELIMA@GMAIL.COM>'
+    document_number: "20509898287"
+    anniversary_date: "2004-12-07"
+    email: "asadargelielima@gmail.com"
+    address: "asadargelielima@gmail.com>"
     phone_number: 3962344
 
 - model: rrgg.customermembership
@@ -478,12 +478,12 @@
 - model: rrgg.legalperson
   pk: 39
   fields:
-    registered_name: 'EMTEC PERU S.A'
+    registered_name: "emtec peru s.a"
     document_type: 3
-    document_number: '20555077913'
-    anniversary_date: '2013-10-24'
-    email: 'DLETURIA@KCS.PE'
-    address: 'BOULEVARD DE SURCO NRO 470 OFICINA 501 SAN BORJA'
+    document_number: "20555077913"
+    anniversary_date: "2013-10-24"
+    email: "dleturia@kcs.pe"
+    address: "boulevard de surco nro 470 oficina 501 san borja"
     phone_number: 990100209
 
 - model: rrgg.customermembership
@@ -495,12 +495,12 @@
 - model: rrgg.legalperson
   pk: 40
   fields:
-    registered_name: 'EPI-USE PERU S.A.C.'
+    registered_name: "epi-use peru s.a.c."
     document_type: 3
-    document_number: '20556703231'
-    anniversary_date: '2014-02-26'
-    email: 'MANDA.ORTIZ@EPIUSE.COM.PE'
-    address: 'MANUEL OLGUIN 335-345 NRO 335 INTERIOR 505 URB MONTERRICO CHICO SANTIAGO DE SURCO'
+    document_number: "20556703231"
+    anniversary_date: "2014-02-26"
+    email: "manda.ortiz@epiuse.com.pe"
+    address: "manuel olguin 335-345 nro 335 interior 505 urb monterrico chico santiago de surco"
     phone_number: 988004728
 
 - model: rrgg.customermembership
@@ -512,12 +512,12 @@
 - model: rrgg.legalperson
   pk: 41
   fields:
-    registered_name: 'EYAL MOTORS SAC'
+    registered_name: "eyal motors sac"
     document_type: 3
-    document_number: '20602986757'
-    anniversary_date: '2018-03-09'
-    email: 'EPINEDA@EYALMOTORS.COM'
-    address: 'JR. SAN BERNARDO NRO. 119 URB. SANTA LUISA LIMA - LIMA - LOS OLIVOS'
+    document_number: "20602986757"
+    anniversary_date: "2018-03-09"
+    email: "epineda@eyalmotors.com"
+    address: "jr. san bernardo nro. 119 urb. santa luisa lima - lima - los olivos"
     phone_number: 964009009
 
 - model: rrgg.customermembership
@@ -529,12 +529,12 @@
 - model: rrgg.legalperson
   pk: 42
   fields:
-    registered_name: 'FOREX CONTRUCCIONS '
+    registered_name: "forex contruccions "
     document_type: 3
-    document_number: '20541517139'
-    anniversary_date: '2011-02-23'
-    email: 'FOREX-CONSTRUCTIONS@HOTMAIL.COM'
-    address: 'CALLE HERNANDO LAVALLE 1 MZ 38 LTE 18 CHORILLOS'
+    document_number: "20541517139"
+    anniversary_date: "2011-02-23"
+    email: "forex-constructions@hotmail.com"
+    address: "calle hernando lavalle 1 mz 38 lte 18 chorillos"
     phone_number: 950305624
 
 - model: rrgg.customermembership
@@ -546,12 +546,12 @@
 - model: rrgg.legalperson
   pk: 43
   fields:
-    registered_name: 'G&G SERVICIOS MIGRATORIOS Y ATENCION AL EXPATRIADO SAC.'
+    registered_name: "g&g servicios migratorios y atencion al expatriado sac."
     document_type: 3
-    document_number: '20602039952'
-    anniversary_date: '2017-04-11'
-    email: 'GGSERVGRALES@GMAIL.COM'
-    address: 'AVDA. JAVIER PRADO OESTE NRO 1680 INTERIOR 301 URB ORRANTIA SAN ISIDRO'
+    document_number: "20602039952"
+    anniversary_date: "2017-04-11"
+    email: "ggservgrales@gmail.com"
+    address: "avda. javier prado oeste nro 1680 interior 301 urb orrantia san isidro"
     phone_number: 999709227
 
 - model: rrgg.customermembership
@@ -563,12 +563,12 @@
 - model: rrgg.legalperson
   pk: 44
   fields:
-    registered_name: 'GIRON ORMEÑO ROSSANA'
+    registered_name: "giron ormeño rossana"
     document_type: 3
-    document_number: '10092971789'
-    anniversary_date: '2005-10-24'
-    email: 'ROSSPLAST2@GMAIL.COM'
-    address: 'LOS IBIS NRO 175 DPTO 201 SAN ISIDRO'
+    document_number: "10092971789"
+    anniversary_date: "2005-10-24"
+    email: "rossplast2@gmail.com"
+    address: "los ibis nro 175 dpto 201 san isidro"
     phone_number: 999664673
 
 - model: rrgg.customermembership
@@ -580,12 +580,12 @@
 - model: rrgg.legalperson
   pk: 45
   fields:
-    registered_name: 'GO FINTECH S.A.C.'
+    registered_name: "go fintech s.a.c."
     document_type: 3
-    document_number: '20606231734'
-    anniversary_date: '2020-07-22'
-    email: 'VTARDILLO@GOFINTECH.BIZ'
-    address: 'GUARDIA CIVIL NRO 1321 OFICINA 703 URB VILLA VICTORIA SURQUILLO'
+    document_number: "20606231734"
+    anniversary_date: "2020-07-22"
+    email: "vtardillo@gofintech.biz"
+    address: "guardia civil nro 1321 oficina 703 urb villa victoria surquillo"
     phone_number: 956320725
 
 - model: rrgg.customermembership
@@ -597,12 +597,12 @@
 - model: rrgg.legalperson
   pk: 46
   fields:
-    registered_name: 'GRAMOR SERVICIOS GENERALES S.A.C'
+    registered_name: "gramor servicios generales s.a.c"
     document_type: 3
-    document_number: '20600651430'
-    anniversary_date: '2015-09-08'
-    email: ' GRAMORSAC@GMAIL.COM'
-    address: 'Y 12 AVENIDA AGUARICO BREÑA LIMA LIMA'
+    document_number: "20600651430"
+    anniversary_date: "2015-09-08"
+    email: " gramorsac@gmail.com"
+    address: "y 12 avenida aguarico breña lima lima"
     phone_number: 956777195
 
 - model: rrgg.customermembership
@@ -614,12 +614,12 @@
 - model: rrgg.legalperson
   pk: 47
   fields:
-    registered_name: 'GRUPO BASSALLO EIRL'
+    registered_name: "grupo bassallo eirl"
     document_type: 3
-    document_number: '20601476186'
-    anniversary_date: '2016-09-05'
-    email: 'JORGEBASSALLO@GMAIL.COM'
-    address: 'AV LA PAZ 178 MIRAFLORES'
+    document_number: "20601476186"
+    anniversary_date: "2016-09-05"
+    email: "jorgebassallo@gmail.com"
+    address: "av la paz 178 miraflores"
     phone_number: 989956416
 
 - model: rrgg.customermembership
@@ -631,12 +631,12 @@
 - model: rrgg.legalperson
   pk: 48
   fields:
-    registered_name: 'ICMON SAC'
+    registered_name: "icmon sac"
     document_type: 3
-    document_number: '20608158147'
-    anniversary_date: '2021-07-01'
-    email: 'csanchez@icmon.com.pe'
-    address: 'CALLE PANAMERICANA SUR KM 46 MZA LOTE 78 GRU X, PUNTA NEGRA'
+    document_number: "20608158147"
+    anniversary_date: "2021-07-01"
+    email: "csanchez@icmon.com.pe"
+    address: "calle panamericana sur km 46 mza lote 78 gru x, punta negra"
     phone_number: 987542147
 
 - model: rrgg.customermembership
@@ -648,12 +648,12 @@
 - model: rrgg.legalperson
   pk: 49
   fields:
-    registered_name: 'IDEA MERCH '
+    registered_name: "idea merch "
     document_type: 3
-    document_number: '20603590920'
-    anniversary_date: '2018-09-13'
-    email: 'SMEZARINACUEVA@GMAIL.COM'
-    address: 'CALLE BAJADA AGUA DULCE 153 DPTO 402 CHORRILLOS'
+    document_number: "20603590920"
+    anniversary_date: "2018-09-13"
+    email: "smezarinacueva@gmail.com"
+    address: "calle bajada agua dulce 153 dpto 402 chorrillos"
     phone_number: 966662918
 
 - model: rrgg.customermembership
@@ -665,12 +665,12 @@
 - model: rrgg.legalperson
   pk: 50
   fields:
-    registered_name: 'IGW PERU SAC.'
+    registered_name: "igw peru sac."
     document_type: 3
-    document_number: '20524520746'
-    anniversary_date: '2010-01-15'
-    email: 'EDUARDO.VISALAYA@IGWPERU.NET'
-    address: 'CAL. CARLOS MARIOTTI CATTANEO NRO. 166 COO. PUEBLO LIBRE'
+    document_number: "20524520746"
+    anniversary_date: "2010-01-15"
+    email: "eduardo.visalaya@igwperu.net"
+    address: "cal. carlos mariotti cattaneo nro. 166 coo. pueblo libre"
     phone_number: 956585645
 
 - model: rrgg.customermembership
@@ -682,13 +682,13 @@
 - model: rrgg.legalperson
   pk: 51
   fields:
-    registered_name: 'IMPORT BOLTS & ESTRUCTURE S.A.C'
+    registered_name: "import bolts & estructure s.a.c"
     document_type: 3
-    document_number: '20601850509'
-    anniversary_date: '2017-02-02'
-    email: 'ADMINISTRACION@IMPORTBOLTS.PE'
-    email2: 'VTINEOIMPORTBOLTS@GMAIL.COM'
-    address: 'LAS CAMELIAS MZ J LOTE 4 ZONA LOS OLIVOS'
+    document_number: "20601850509"
+    anniversary_date: "2017-02-02"
+    email: "administracion@importbolts.pe"
+    email2: "vtineoimportbolts@gmail.com"
+    address: "las camelias mz j lote 4 zona los olivos"
     phone_number: 992193463
 
 - model: rrgg.customermembership
@@ -700,12 +700,12 @@
 - model: rrgg.legalperson
   pk: 52
   fields:
-    registered_name: 'INVERSIONES JENCA S.A.C'
+    registered_name: "inversiones jenca s.a.c"
     document_type: 3
-    document_number: '20562825216'
-    anniversary_date: '2014-06-13'
-    email: 'INVERSIONESJENCA@GMAIL.COM'
-    address: 'A LOTE 2 AA.HH 24 DE JUNIO GLORIA BAJA ATE'
+    document_number: "20562825216"
+    anniversary_date: "2014-06-13"
+    email: "inversionesjenca@gmail.com"
+    address: "a lote 2 aa.hh 24 de junio gloria baja ate"
     phone_number: 999999999
 
 - model: rrgg.customermembership
@@ -717,12 +717,12 @@
 - model: rrgg.legalperson
   pk: 53
   fields:
-    registered_name: 'INVERSIONES.IO PERU SOCIEDAD ADMINISTRADORA DE PLATAFORMA DE FINANCIAMIENTO PARTICIPATIVO FINANCIER'
+    registered_name: "inversiones.io peru sociedad administradora de plataforma de financiamiento participativo financier"
     document_type: 3
-    document_number: '20605667351'
-    anniversary_date: '2019-12-20'
-    email: 'VALENTIN.BONNET@INVERSIONES.IO'
-    address: 'Av. Alfredo Benavides Nro. 1944 MIRAFLORES '
+    document_number: "20605667351"
+    anniversary_date: "2019-12-20"
+    email: "valentin.bonnet@inversiones.io"
+    address: "av. alfredo benavides nro. 1944 miraflores "
     phone_number: 984770691
 
 - model: rrgg.customermembership
@@ -734,12 +734,12 @@
 - model: rrgg.legalperson
   pk: 54
   fields:
-    registered_name: 'JDM GLOBAL INVESTMENTS S.A.C.'
+    registered_name: "jdm global investments s.a.c."
     document_type: 3
-    document_number: '20603962584'
-    anniversary_date: '2018-12-28'
-    email: 'DFSH45592@GMAIL.COM'
-    address: 'ANTUNEZ DE MAYOLO NRO 1049 OTROS'
+    document_number: "20603962584"
+    anniversary_date: "2018-12-28"
+    email: "dfsh45592@gmail.com"
+    address: "antunez de mayolo nro 1049 otros"
     phone_number: 947773880
 
 - model: rrgg.customermembership
@@ -751,12 +751,12 @@
 - model: rrgg.legalperson
   pk: 55
   fields:
-    registered_name: 'JUST IN TIME S.A.C.'
+    registered_name: "just in time s.a.c."
     document_type: 3
-    document_number: '20530672809'
-    anniversary_date: '2002-10-03'
-    email: 'CONTABILIDAD2@JITSAC.COM'
-    address: 'CAYETANO HEREDIA 487 LIMA'
+    document_number: "20530672809"
+    anniversary_date: "2002-10-03"
+    email: "contabilidad2@jitsac.com"
+    address: "cayetano heredia 487 lima"
     phone_number: 991159305
 
 - model: rrgg.customermembership
@@ -768,12 +768,12 @@
 - model: rrgg.legalperson
   pk: 56
   fields:
-    registered_name: 'KCS CORREDORES DE SEGUROS S.A.C'
+    registered_name: "kcs corredores de seguros s.a.c"
     document_type: 3
-    document_number: '20600451996'
-    anniversary_date: '2015-06-12'
-    email: 'ECAQUIAMARCA@KCS.PE'
-    address: 'CLLE FERMIN TANGUIS 145 VICTORIA'
+    document_number: "20600451996"
+    anniversary_date: "2015-06-12"
+    email: "ecaquiamarca@kcs.pe"
+    address: "clle fermin tanguis 145 victoria"
     phone_number: 922108705
 
 - model: rrgg.customermembership
@@ -785,12 +785,12 @@
 - model: rrgg.legalperson
   pk: 57
   fields:
-    registered_name: 'LAB NUTRITION CORP SAC'
+    registered_name: "lab nutrition corp sac"
     document_type: 3
-    document_number: '20510103531'
-    anniversary_date: '2005-01-18'
-    email: 'VICENTESANTOS@LABNUTRITION.COM'
-    address: 'AVENIDA SANTA CRUZ 830 MIRAFLORES'
+    document_number: "20510103531"
+    anniversary_date: "2005-01-18"
+    email: "vicentesantos@labnutrition.com"
+    address: "avenida santa cruz 830 miraflores"
     phone_number: 986708278
 
 - model: rrgg.customermembership
@@ -802,12 +802,12 @@
 - model: rrgg.legalperson
   pk: 58
   fields:
-    registered_name: 'MACADAM PERU S.A.C'
+    registered_name: "macadam peru s.a.c"
     document_type: 3
-    document_number: '20601958644'
-    anniversary_date: '2017-03-14'
-    email: 'LCONCHA@MACADAMPERU.COM'
-    address: 'HIPÓLITO UNANUE NRO. 225 INT. 303 - LIMA - LIMA - MIRAFLORES'
+    document_number: "20601958644"
+    anniversary_date: "2017-03-14"
+    email: "lconcha@macadamperu.com"
+    address: "hipólito unanue nro. 225 int. 303 - lima - lima - miraflores"
     phone_number: 988382587
 
 - model: rrgg.customermembership
@@ -819,12 +819,12 @@
 - model: rrgg.legalperson
   pk: 59
   fields:
-    registered_name: 'MAQ LOGISTICS S.R.L'
+    registered_name: "maq logistics s.r.l"
     document_type: 3
-    document_number: '20552024860'
-    anniversary_date: '2013-03-20'
-    email: 'MANUEL@MAGTRONPERU.COM'
-    address: 'CALLE ALDABAS URB. LAS GARDENIAS NÚMERO: 549 INTERIOR: DPTO 203'
+    document_number: "20552024860"
+    anniversary_date: "2013-03-20"
+    email: "manuel@magtronperu.com"
+    address: "calle aldabas urb. las gardenias número: 549 interior: dpto 203"
     phone_number: 949358583
 
 - model: rrgg.customermembership
@@ -836,12 +836,12 @@
 - model: rrgg.legalperson
   pk: 60
   fields:
-    registered_name: 'MELGAREJO RAMOS  WILY ABEL'
+    registered_name: "melgarejo ramos  wily abel"
     document_type: 3
-    document_number: '10406889209'
-    anniversary_date: '1979-09-25'
-    email: 'WILYMR25@GMAIL.COM'
-    address: 'CA. CA ISAAC ALBENIZ 157 DPTO 102 SAN BORJA '
+    document_number: "10406889209"
+    anniversary_date: "1979-09-25"
+    email: "wilymr25@gmail.com"
+    address: "ca. ca isaac albeniz 157 dpto 102 san borja "
     phone_number: 966182771
 
 - model: rrgg.customermembership
@@ -853,12 +853,12 @@
 - model: rrgg.legalperson
   pk: 61
   fields:
-    registered_name: 'MINERIA & CONSTRUCCION MORALITOS S.A.C'
+    registered_name: "mineria & construccion moralitos s.a.c"
     document_type: 3
-    document_number: '20568345755'
-    anniversary_date: '2012-05-18'
-    email: 'GALIAGAKCS@GMAIL.COM'
-    address: 'PROLONG TUPAC AMARU HUANCAYO '
+    document_number: "20568345755"
+    anniversary_date: "2012-05-18"
+    email: "galiagakcs@gmail.com"
+    address: "prolong tupac amaru huancayo "
     phone_number: 984703329
 
 - model: rrgg.customermembership
@@ -870,12 +870,12 @@
 - model: rrgg.legalperson
   pk: 62
   fields:
-    registered_name: 'MORRO SAMA INVERSIONES SAC'
+    registered_name: "morro sama inversiones sac"
     document_type: 3
-    document_number: '20532723711'
-    anniversary_date: '2011-06-13'
-    email: 'ANTICONA@MORROSAMA.COM'
-    address: 'MZA. B-1 LOTE. 05 APV. LOS INCAS CHORRILLOS '
+    document_number: "20532723711"
+    anniversary_date: "2011-06-13"
+    email: "anticona@morrosama.com"
+    address: "mza. b-1 lote. 05 apv. los incas chorrillos "
     phone_number: 980482228
 
 - model: rrgg.customermembership
@@ -887,12 +887,12 @@
 - model: rrgg.legalperson
   pk: 63
   fields:
-    registered_name: 'NATURKOST PERU'
+    registered_name: "naturkost peru"
     document_type: 3
-    document_number: '20537674602'
-    anniversary_date: '2010-10-04'
-    email: 'PERCY.MARTEL@DEGUSTE.COM.PE'
-    address: 'AVENIDA SAN LUIS 1369 SAN LUIS '
+    document_number: "20537674602"
+    anniversary_date: "2010-10-04"
+    email: "percy.martel@deguste.com.pe"
+    address: "avenida san luis 1369 san luis "
     phone_number: 997354848
 
 - model: rrgg.customermembership
@@ -904,12 +904,12 @@
 - model: rrgg.legalperson
   pk: 64
   fields:
-    registered_name: 'NETTIX'
+    registered_name: "nettix"
     document_type: 3
-    document_number: '20515051741'
-    anniversary_date: '2007-01-25'
-    email: 'MGARCIA@NETTIX.COM.PE'
-    address: 'CA.ANDRES SEGOVIA MZ.C 20 SANTA LEONOR CHORRILLOS '
+    document_number: "20515051741"
+    anniversary_date: "2007-01-25"
+    email: "mgarcia@nettix.com.pe"
+    address: "ca.andres segovia mz.c 20 santa leonor chorrillos "
     phone_number: 992556190
 
 - model: rrgg.customermembership
@@ -921,12 +921,12 @@
 - model: rrgg.legalperson
   pk: 65
   fields:
-    registered_name: 'NIETO MENDOZA JHONY '
+    registered_name: "nieto mendoza jhony "
     document_type: 3
-    document_number: '10418155758'
-    anniversary_date: '2021-01-18'
-    email: 'JHONYSOLOOO@GMAIL.COM'
-    address: 'SARAGOZA DPTO 01 MZ B LOTE 32 SECTOR REFORMA AGRARIA LOS OLIVOS'
+    document_number: "10418155758"
+    anniversary_date: "2021-01-18"
+    email: "jhonysolooo@gmail.com"
+    address: "saragoza dpto 01 mz b lote 32 sector reforma agraria los olivos"
     phone_number: 989205052
 
 - model: rrgg.customermembership
@@ -938,12 +938,12 @@
 - model: rrgg.legalperson
   pk: 66
   fields:
-    registered_name: 'OB460 SAC'
+    registered_name: "ob460 sac"
     document_type: 3
-    document_number: '20502726057'
-    anniversary_date: '2001-08-29'
-    email: 'CONTABILIDAD@OB460.COM.PE'
-    address: 'JR. COLINA 100 DPTO B BARRANCO '
+    document_number: "20502726057"
+    anniversary_date: "2001-08-29"
+    email: "contabilidad@ob460.com.pe"
+    address: "jr. colina 100 dpto b barranco "
     phone_number: 995745982
 
 - model: rrgg.customermembership
@@ -955,12 +955,12 @@
 - model: rrgg.legalperson
   pk: 67
   fields:
-    registered_name: 'OCULASER'
+    registered_name: "oculaser"
     document_type: 3
-    document_number: '20523075463'
-    anniversary_date: '2009-09-01'
-    email: 'ADAIBF30@GMAIL.COM'
-    address: 'AV. GRAL ALVAREZ DE ARENALES NRO. 1181 LINCE'
+    document_number: "20523075463"
+    anniversary_date: "2009-09-01"
+    email: "adaibf30@gmail.com"
+    address: "av. gral alvarez de arenales nro. 1181 lince"
     phone_number: 941973203
 
 - model: rrgg.customermembership
@@ -972,12 +972,12 @@
 - model: rrgg.legalperson
   pk: 68
   fields:
-    registered_name: 'PC DISTRIBUIDORA Y SERVICIOS GENERALES VECOR E.I.R.'
+    registered_name: "pc distribuidora y servicios generales vecor e.i.r."
     document_type: 3
-    document_number: '20531687362'
-    anniversary_date: '2009-06-25'
-    email: 'JAVIERCV90@GMAIL.COM'
-    address: 'AA.HH. VILLA SAN LUIS MZ. D LT. 7 2DA INDEPENDIENCIA'
+    document_number: "20531687362"
+    anniversary_date: "2009-06-25"
+    email: "javiercv90@gmail.com"
+    address: "aa.hh. villa san luis mz. d lt. 7 2da independiencia"
     phone_number: 999888777
 
 - model: rrgg.customermembership
@@ -989,12 +989,12 @@
 - model: rrgg.legalperson
   pk: 69
   fields:
-    registered_name: 'PERULIMP SERVICIOS INTEGRALES S.A.C.'
+    registered_name: "perulimp servicios integrales s.a.c."
     document_type: 3
-    document_number: '20602070809'
-    anniversary_date: '2017-04-25'
-    email: 'CLAUDIA.SANJINES@PERULIMP.COM'
-    address: 'GUARDIA CIVIL NRO 1321 SAN BORJA'
+    document_number: "20602070809"
+    anniversary_date: "2017-04-25"
+    email: "claudia.sanjines@perulimp.com"
+    address: "guardia civil nro 1321 san borja"
     phone_number: 987724771
 
 - model: rrgg.customermembership
@@ -1006,12 +1006,12 @@
 - model: rrgg.legalperson
   pk: 70
   fields:
-    registered_name: 'PLUSMETAS SAC'
+    registered_name: "plusmetas sac"
     document_type: 3
-    document_number: '20519289203'
-    anniversary_date: '2016-05-10'
-    email: 'PLANEAMIENTOFINANCIERO@MFSAC.PE'
-    address: 'AV FERMIN TANGUIS 145 LA VICTORIA '
+    document_number: "20519289203"
+    anniversary_date: "2016-05-10"
+    email: "planeamientofinanciero@mfsac.pe"
+    address: "av fermin tanguis 145 la victoria "
     phone_number: 966182771
 
 - model: rrgg.customermembership
@@ -1023,12 +1023,12 @@
 - model: rrgg.legalperson
   pk: 71
   fields:
-    registered_name: 'R & L CONTRUCTAC SRL'
+    registered_name: "r & l contructac srl"
     document_type: 3
-    document_number: '20532732116'
-    anniversary_date: '2011-06-30'
-    email: 'GALIAGAKCS@GMAIL.COM'
-    address: 'VILLA MUNICIPAL MZ D LTE 26 REF ESPALDAS DE LA AV MIRAFLORES'
+    document_number: "20532732116"
+    anniversary_date: "2011-06-30"
+    email: "galiagakcs@gmail.com"
+    address: "villa municipal mz d lte 26 ref espaldas de la av miraflores"
     phone_number: 990283956
 
 - model: rrgg.customermembership
@@ -1040,12 +1040,12 @@
 - model: rrgg.legalperson
   pk: 72
   fields:
-    registered_name: 'RCC SERVICE MOTORS SAC'
+    registered_name: "rcc service motors sac"
     document_type: 3
-    document_number: '20389295184'
-    anniversary_date: '1999-11-29'
-    email: 'GERENCIA@RCCSERVICEMOTORS.COM'
-    address: 'CALLE STA LUCIA 175 CHORRILLOS '
+    document_number: "20389295184"
+    anniversary_date: "1999-11-29"
+    email: "gerencia@rccservicemotors.com"
+    address: "calle sta lucia 175 chorrillos "
     phone_number: 991159305
 
 - model: rrgg.customermembership
@@ -1057,12 +1057,12 @@
 - model: rrgg.legalperson
   pk: 73
   fields:
-    registered_name: 'REPRESENTACIONES Y NEGOCIOS ALTERNOS S.A.C.'
+    registered_name: "representaciones y negocios alternos s.a.c."
     document_type: 3
-    document_number: '20524302676'
-    anniversary_date: '2014-10-29'
-    email: 'EVAQAQUIAMARCA@KCS.PE'
-    address: 'JR FERMIN TANGUIS NRO. 145 INT. 305 URB. SANTA CATALINA'
+    document_number: "20524302676"
+    anniversary_date: "2014-10-29"
+    email: "evaqaquiamarca@kcs.pe"
+    address: "jr fermin tanguis nro. 145 int. 305 urb. santa catalina"
     phone_number: 998786556
 
 - model: rrgg.customermembership
@@ -1074,12 +1074,12 @@
 - model: rrgg.legalperson
   pk: 74
   fields:
-    registered_name: 'REYNA TERRONES DANTE RAUL'
+    registered_name: "reyna terrones dante raul"
     document_type: 3
-    document_number: '10327743550'
-    anniversary_date: '1966-06-01'
-    email: 'DREYNA@KCS.PE'
-    address: 'FERMIN TANGUIS 145 OF 302'
+    document_number: "10327743550"
+    anniversary_date: "1966-06-01"
+    email: "dreyna@kcs.pe"
+    address: "fermin tanguis 145 of 302"
     phone_number: 932239676
 
 - model: rrgg.customermembership
@@ -1091,13 +1091,13 @@
 - model: rrgg.legalperson
   pk: 75
   fields:
-    registered_name: 'RIFLO 7 S.A.C.'
+    registered_name: "riflo 7 s.a.c."
     document_type: 3
-    document_number: '20610253645'
-    anniversary_date: '2022-11-16'
-    email: 'JOHANATM26@HOTMAIL.COM'
-    email2: 'JOHAMONTALVAN30@GMAIL.COM'
-    address: 'PJ. MERCURIO PERUANO NRO 125 DPTO. 101 URB. VALLE HERMOSO OESTE SANTIAGO DE SURCO'
+    document_number: "20610253645"
+    anniversary_date: "2022-11-16"
+    email: "johanatm26@hotmail.com"
+    email2: "johamontalvan30@gmail.com"
+    address: "pj. mercurio peruano nro 125 dpto. 101 urb. valle hermoso oeste santiago de surco"
     phone_number: 932239676
 
 - model: rrgg.customermembership
@@ -1109,11 +1109,11 @@
 - model: rrgg.legalperson
   pk: 76
   fields:
-    registered_name: 'RIFLO JUNIOR SAC'
+    registered_name: "riflo junior sac"
     document_type: 3
-    document_number: '20535821411'
-    anniversary_date: '2010-05-19'
-    address: 'AV MORRO SOLAR NRO 200 URB VALLE HERMOSO '
+    document_number: "20535821411"
+    anniversary_date: "2010-05-19"
+    address: "av morro solar nro 200 urb valle hermoso "
     phone_number: 932239676
 
 - model: rrgg.customermembership
@@ -1125,12 +1125,12 @@
 - model: rrgg.legalperson
   pk: 77
   fields:
-    registered_name: 'RIFLO PA S.A.C'
+    registered_name: "riflo pa s.a.c"
     document_type: 3
-    document_number: '20553672725'
-    anniversary_date: '2013-07-15'
-    email: 'JOHANATM26@HOTMAIL.COM '
-    address: ' PJ. MERCURIO PERUANO NRO. 125 DPTO. 101'
+    document_number: "20553672725"
+    anniversary_date: "2013-07-15"
+    email: "johanatm26@hotmail.com "
+    address: " pj. mercurio peruano nro. 125 dpto. 101"
     phone_number: 999488474
 
 - model: rrgg.customermembership
@@ -1142,12 +1142,12 @@
 - model: rrgg.legalperson
   pk: 78
   fields:
-    registered_name: 'SASTRERIA FIRENZA SAC'
+    registered_name: "sastreria firenza sac"
     document_type: 3
-    document_number: '20606829273'
-    anniversary_date: '2020-11-04'
-    email: 'VSILVA@LUMA.COM.PE'
-    address: 'EMILIO CAVENECIA NRO 389 INTERIOR 601 URB SANTA CRUZ SAN ISIDRO'
+    document_number: "20606829273"
+    anniversary_date: "2020-11-04"
+    email: "vsilva@luma.com.pe"
+    address: "emilio cavenecia nro 389 interior 601 urb santa cruz san isidro"
     phone_number: 989078262
 
 - model: rrgg.customermembership
@@ -1159,12 +1159,12 @@
 - model: rrgg.legalperson
   pk: 79
   fields:
-    registered_name: 'SINTONIA S.A.C.'
+    registered_name: "sintonia s.a.c."
     document_type: 3
-    document_number: '20601097932'
-    anniversary_date: '2016-03-19'
-    email: 'DLOPEZ@VG.COM.PE'
-    address: 'CALLE DOMINGODE LA PRESA 334'
+    document_number: "20601097932"
+    anniversary_date: "2016-03-19"
+    email: "dlopez@vg.com.pe"
+    address: "calle domingode la presa 334"
     phone_number: 946498917
 
 - model: rrgg.customermembership
@@ -1176,12 +1176,12 @@
 - model: rrgg.legalperson
   pk: 80
   fields:
-    registered_name: 'TELAS FINAS INTERNACIONAL SAC'
+    registered_name: "telas finas internacional sac"
     document_type: 3
-    document_number: '20507018085'
-    anniversary_date: '2017-04-11'
-    email: 'TEFINSAC@GMAIL.COM'
-    address: 'AMERICA NRO 652 PISO 1 URB EL PORVENIR LA VICTORIA'
+    document_number: "20507018085"
+    anniversary_date: "2017-04-11"
+    email: "tefinsac@gmail.com"
+    address: "america nro 652 piso 1 urb el porvenir la victoria"
     phone_number: 991877835
 
 - model: rrgg.customermembership
@@ -1193,12 +1193,12 @@
 - model: rrgg.legalperson
   pk: 81
   fields:
-    registered_name: 'TNC CONTRATISTAS S.A.C.'
+    registered_name: "tnc contratistas s.a.c."
     document_type: 3
-    document_number: '20495913733'
-    anniversary_date: '2007-04-09'
-    email: 'NNAKAMOTO@TNCCONTRATISTAS.PE'
-    address: 'LA FLORESTA NRO 165 SANTIAGO DE SURCO'
+    document_number: "20495913733"
+    anniversary_date: "2007-04-09"
+    email: "nnakamoto@tnccontratistas.pe"
+    address: "la floresta nro 165 santiago de surco"
     phone_number: 987545035
 
 - model: rrgg.customermembership
@@ -1210,12 +1210,12 @@
 - model: rrgg.legalperson
   pk: 82
   fields:
-    registered_name: 'TOYOHAMA GOYA CHRISTIAN DONALD'
+    registered_name: "toyohama goya christian donald"
     document_type: 3
-    document_number: '10102709492'
-    anniversary_date: '1996-10-02'
-    email: 'CTOYOHAMA@ACFCOBRANZAS.COM.PE'
-    address: 'CALLE CORONEL VICTOR MALDONADO 396 URB. AURORA - MIRAFLORES'
+    document_number: "10102709492"
+    anniversary_date: "1996-10-02"
+    email: "ctoyohama@acfcobranzas.com.pe"
+    address: "calle coronel victor maldonado 396 urb. aurora - miraflores"
     phone_number: 994975280
 
 - model: rrgg.customermembership
@@ -1227,12 +1227,12 @@
 - model: rrgg.legalperson
   pk: 83
   fields:
-    registered_name: 'TRANSMEDIC S.A.'
+    registered_name: "transmedic s.a."
     document_type: 3
-    document_number: '20108089289'
-    anniversary_date: '1993-04-21'
-    email: 'ASISTENTE@TRANSMEDICSA.COM'
-    address: 'JR. EDUARDO ORDOÑEZ NRO. 225 SAN BORJA/LIMA/LIMA'
+    document_number: "20108089289"
+    anniversary_date: "1993-04-21"
+    email: "asistente@transmedicsa.com"
+    address: "jr. eduardo ordoñez nro. 225 san borja/lima/lima"
     phone_number: 993100575
 
 - model: rrgg.customermembership
@@ -1244,13 +1244,13 @@
 - model: rrgg.legalperson
   pk: 84
   fields:
-    registered_name: 'TRAVEL BUDDIES PERU SAC'
+    registered_name: "travel buddies peru sac"
     document_type: 3
-    document_number: '20603543191'
-    anniversary_date: '2018-08-28'
-    email: 'ABENITES@OCULASERPERU.COM '
-    email2: 'ADAIBF30@GMAIL.COM'
-    address: 'AV. GRAL ALVAREZ DE ARENALES NRO. 1181 URB. SANTA BEATRIZ LIMA'
+    document_number: "20603543191"
+    anniversary_date: "2018-08-28"
+    email: "abenites@oculaserperu.com "
+    email2: "adaibf30@gmail.com"
+    address: "av. gral alvarez de arenales nro. 1181 urb. santa beatriz lima"
     phone_number: 930321969
 
 - model: rrgg.customermembership
@@ -1262,12 +1262,12 @@
 - model: rrgg.legalperson
   pk: 85
   fields:
-    registered_name: 'UNZUETA ACCINELLI ALEJANDRO ALFREDO'
+    registered_name: "unzueta accinelli alejandro alfredo"
     document_type: 3
-    document_number: '10087731010'
-    anniversary_date: '2016-05-24'
-    email: 'AU@UNICORP.PE'
-    address: 'AVDA. LARCO NRO 880 MIRAFLORES'
+    document_number: "10087731010"
+    anniversary_date: "2016-05-24"
+    email: "au@unicorp.pe"
+    address: "avda. larco nro 880 miraflores"
     phone_number: 987208460
 
 - model: rrgg.customermembership
@@ -1279,12 +1279,12 @@
 - model: rrgg.legalperson
   pk: 86
   fields:
-    registered_name: 'VENTAS Y SERVICIOS GENERALES ADAIR E.I.R.L'
+    registered_name: "ventas y servicios generales adair e.i.r.l"
     document_type: 3
-    document_number: '20553366012'
-    anniversary_date: '2013-06-20'
-    email: 'TRANSPORTESGIORDANO@HOTMAIL.COM'
-    address: 'ALFREDO MENDIOLA NRO 3891 LOS OLIVOS'
+    document_number: "20553366012"
+    anniversary_date: "2013-06-20"
+    email: "transportesgiordano@hotmail.com"
+    address: "alfredo mendiola nro 3891 los olivos"
     phone_number: 913057331
 
 - model: rrgg.customermembership
@@ -1296,12 +1296,12 @@
 - model: rrgg.legalperson
   pk: 87
   fields:
-    registered_name: 'VERAMAR AZUL PERÚ S.A.C'
+    registered_name: "veramar azul perú s.a.c"
     document_type: 3
-    document_number: '20605683658'
-    anniversary_date: '2019-12-26'
-    email: 'AMEJIA@INMOBILIARIACANTABRIA.COM '
-    address: 'CALLE AMADOR MERINO REYNA NRO. 339 SAN ISIDRO '
+    document_number: "20605683658"
+    anniversary_date: "2019-12-26"
+    email: "amejia@inmobiliariacantabria.com "
+    address: "calle amador merino reyna nro. 339 san isidro "
     phone_number: 944686505
 
 - model: rrgg.customermembership
@@ -1313,12 +1313,12 @@
 - model: rrgg.legalperson
   pk: 88
   fields:
-    registered_name: 'VICTOR RAUL TINAGEROS LOZA'
+    registered_name: "victor raul tinageros loza"
     document_type: 3
-    document_number: '10293780817'
-    anniversary_date: '1994-05-04'
-    email: 'GERENCIA-ADMINISTRATIVA@NOTARIATINAGEROS.COM'
-    address: 'CALLE LAS CAMELIAS NRO 455 SAN ISIDRO LIMA LIMA'
+    document_number: "10293780817"
+    anniversary_date: "1994-05-04"
+    email: "gerencia-administrativa@notariatinageros.com"
+    address: "calle las camelias nro 455 san isidro lima lima"
     phone_number: 946498917
 
 - model: rrgg.customermembership
@@ -1330,12 +1330,12 @@
 - model: rrgg.legalperson
   pk: 89
   fields:
-    registered_name: 'VISTAMODA PERU S.A.C'
+    registered_name: "vistamoda peru s.a.c"
     document_type: 3
-    document_number: '20544216211'
-    anniversary_date: '2011-06-18'
-    email: 'COMEX@VISTAMODA.COM.PE'
-    address: 'JR. IGNACIO COSSIO 1681 LA VICTORIA'
+    document_number: "20544216211"
+    anniversary_date: "2011-06-18"
+    email: "comex@vistamoda.com.pe"
+    address: "jr. ignacio cossio 1681 la victoria"
     phone_number:
 
 - model: rrgg.customermembership
