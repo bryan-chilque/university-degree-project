@@ -51,7 +51,7 @@
     // Histograma 1
     var histogramOptions1 = {
       series: [{
-        name: 'Riesgo',
+        name: 'Prima Neta',
         data: {{ histogram_net_premium_soles_series|safe }}
       }],
       chart: {
@@ -66,7 +66,7 @@
         categories: {{ histogram_net_premium_soles_labels|safe }},
       },
       title: {
-        text: 'PRIMA NETA POR RIESGO / SOLES'
+        text: 'PRIMA NETA POR CIA / SOLES'
       },
     };
     var histogramChart1 = new ApexCharts(document.querySelector("#histogramChart1"), histogramOptions1);
@@ -75,7 +75,7 @@
     // Histograma 2
     var histogramOptions2 = {
       series: [{
-        name: 'Riesgo',
+        name: 'Prima Neta',
         data: {{ histogram_net_premium_dollars_series|safe }}
       }],
       chart: {
@@ -91,7 +91,7 @@
         categories: {{ histogram_net_premium_dollars_labels|safe }},
       },
       title: {
-        text: 'PRIMA NETA POR RIESGO / DÓLARES'
+        text: 'PRIMA NETA POR CIA / DÓLARES'
       },
     };
     var histogramChart2 = new ApexCharts(document.querySelector("#histogramChart2"), histogramOptions2);
@@ -100,7 +100,7 @@
      // Histograma 3
      var histogramOptions3= {
       series: [{
-        name: 'Asesor',
+        name: 'Comisión',
         data: {{ histogram_net_commission_soles_series|safe }}
       }],
       chart: {
@@ -125,7 +125,7 @@
      // Histograma 4
      var histogramOptions4= {
       series: [{
-        name: 'Asesor',
+        name: 'Comisión',
         data: {{ histogram_net_commission_dollars_series|safe }}
       }],
       chart: {

@@ -1018,10 +1018,10 @@ class HomeView(TemplateView):
     def get(self, request, *args, **kwargs):
         if "year" not in request.GET:
             request.GET = request.GET.copy()
-            request.GET["year"] = "2023"
+            request.GET["year"] = "2024"
         if "months" not in request.GET:
             request.GET = request.GET.copy()
-            request.GET["months"] = "JUNIO"
+            request.GET["months"] = "AGOSTO"
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -1067,16 +1067,17 @@ class HomeView(TemplateView):
             )
             .exclude(net_premium="")
             .exclude(net_premium__isnull=True)
-            .values("year", "months", "risk")
+            .values("year", "months", "insurance_vehicle")
             .annotate(total=Sum(Cast("net_premium", FloatField())))
-            .order_by("year", "months", "risk")
+            .order_by("year", "months", "insurance_vehicle")
         )
 
         context["histogram_net_premium_soles_series"] = [
             round(item["total"], 2) for item in histogram_net_premium_in_soles
         ]
         context["histogram_net_premium_soles_labels"] = [
-            item["risk"] for item in histogram_net_premium_in_soles
+            item["insurance_vehicle"]
+            for item in histogram_net_premium_in_soles
         ]
 
         # Histogram net_premium / dólares
@@ -1086,9 +1087,9 @@ class HomeView(TemplateView):
             )
             .exclude(net_premium="")
             .exclude(net_premium__isnull=True)
-            .values("year", "months", "risk")
+            .values("year", "months", "insurance_vehicle")
             .annotate(total=Sum(Cast("net_premium", FloatField())))
-            .order_by("year", "months", "risk")
+            .order_by("year", "months", "insurance_vehicle")
         )
 
         context["histogram_net_premium_dollars_series"] = [
@@ -1096,7 +1097,8 @@ class HomeView(TemplateView):
             for item in histogram_net_premium_in_dollars
         ]
         context["histogram_net_premium_dollars_labels"] = [
-            item["risk"] for item in histogram_net_premium_in_dollars
+            item["insurance_vehicle"]
+            for item in histogram_net_premium_in_dollars
         ]
 
         # Histogram net_commission / soles
