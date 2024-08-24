@@ -7,3 +7,4 @@ staticfiles
 .vscode
 .DS_Store
 mediafiles/*
+venv
