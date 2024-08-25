@@ -5,7 +5,7 @@
     consultant: JUAN GARCÍA
     consultant_type: ADMINISTRATIVOS
     currency: DOLARES
-    customer: "CAQUIAMARCA VALLADARES EVA LUZ "
+    customer: "CAQUIAMARCA VALLADARES EVA LUZ"
     document_number: ""
     dolar_commission: "111.51"
     dolar_premium: "557.55"
@@ -13,7 +13,7 @@
     expiration_date_first_coupon: ""
     final_validity: 5/03/2025
     initial_validity: 4/03/2024
-    insurance_plan: "CORPORATIVO "
+    insurance_plan: "CORPORATIVO"
     insurance_vehicle: LA POSITIVA
     insured_amount: ""
     issuance_date: ""
@@ -28,10 +28,10 @@
     payment_status_first_coupon: ""
     phone_number: ""
     phone_number2: ""
-    policy: " 230181592 - 46"
+    policy: "230181592 - 46"
     policy_address: ""
     register_date: 2024-03-04
-    risk: LA POSITIVA
+    risk: VEHICULAR
     status: VIGENTE
     total_premium: "677.65"
     year: "2024"
@@ -50,14 +50,14 @@
     dolar_premium: "360.5"
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 16/09/2024
-    initial_validity: 16/09/2023
-    insurance_plan: "AUTO MODULAR "
+    final_validity: 16/09/2025
+    initial_validity: 16/07/2024
+    insurance_plan: "AUTO MODULAR"
     insurance_vehicle: PACIFICO
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 18%
-    months: "SETIEMBRE "
+    months: JULIO
     net_commission_amount: "63.09"
     net_premium: "360.5"
     observations: RENOVADO
@@ -69,11 +69,11 @@
     phone_number2: ""
     policy: "2004739024"
     policy_address: ""
-    register_date: 2023-09-16
+    register_date: 2024-07-16
     risk: PACIFICO
     status: VIGENTE
     total_premium: "438.15"
-    year: "2023"
+    year: "2024"
   model: rrgg.historicaldata
   pk: "2"
 - fields:
@@ -89,17 +89,17 @@
     dolar_premium: "468.65"
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 3/09/2024
-    initial_validity: 3/09/2023
-    insurance_plan: "CORPORATIVO "
+    final_validity: 3/04/2025
+    initial_validity: 3/04/2024
+    insurance_plan: CORPORATIVO
     insurance_vehicle: LA POSITIVA
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 20%
-    months: "SETIEMBRE "
+    months: ABRIL
     net_commission_amount: "91.39"
     net_premium: "468.65"
-    observations: "VENTA NUEVA "
+    observations: VENTA NUEVA
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -108,11 +108,11 @@
     phone_number2: ""
     policy: 230181592 - 126
     policy_address: ""
-    register_date: 2023-09-03
+    register_date: 2024-04-03
     risk: LA POSITIVA
     status: VIGENTE
     total_premium: "569.6"
-    year: "2023"
+    year: "2024"
   model: rrgg.historicaldata
   pk: "3"
 - fields:
@@ -177,7 +177,7 @@
     months: JUNIO
     net_commission_amount: "125.38"
     net_premium: "737.5"
-    observations: "VENTA NUEVA "
+    observations: "VENTA NUEVA"
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -206,17 +206,17 @@
     dolar_premium: "95.37"
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 26/11/2024
-    initial_validity: 24/11/2023
+    final_validity: 26/03/2025
+    initial_validity: 24/03/2024
     insurance_plan: SOAT
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 15%
     months: MARZO
     net_commission_amount: "72.82"
     net_premium: "485.44"
-    observations: "VENTA NUEVA "
+    observations: "VENTA NUEVA"
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -225,11 +225,11 @@
     phone_number2: ""
     policy: 25930789 - 0
     policy_address: ""
-    register_date: 2023-11-24
+    register_date: 2024-03-24
     risk: SOAT
     status: VIGENTE
     total_premium: "590"
-    year: "2023"
+    year: "2024"
   model: rrgg.historicaldata
   pk: "6"
 - fields:
@@ -245,17 +245,17 @@
     dolar_premium: "135"
     email: pattyzn9699@yahoo.es
     expiration_date_first_coupon: ""
-    final_validity: 31/05/2024
-    initial_validity: 1/05/2024
+    final_validity: 31/06/2024
+    initial_validity: 1/06/2024
     insurance_plan: MUNDIAL
-    insurance_vehicle: "GLOBAL "
+    insurance_vehicle: MAPFRE
     insured_amount: 50000.0
     issuance_date: ""
     kcs_commission_percentage: 15%
     months: JUNIO
     net_commission_amount: "20.25"
     net_premium: "135"
-    observations: "VENTA NUEVA "
+    observations: VENTA NUEVA
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -265,7 +265,7 @@
     policy: "11043163"
     policy_address: Etapa Ii - Referencia Espalda De Wong De Tomas
     register_date: 2024-05-01
-    risk: "SEGURO DE VIAJE "
+    risk: "SEGURO DE VIAJE"
     status: VIGENTE
     total_premium: "164.08"
     year: "2024"
@@ -287,7 +287,7 @@
     final_validity: 15/05/2025
     initial_validity: 15/05/2024
     insurance_plan: MEDISALUD PREMIUM
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 10%
@@ -323,9 +323,9 @@
     dolar_premium: null
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 29/06/2025
-    initial_validity: 29/06/2024
-    insurance_plan: "SALUD RED PREFERENTE "
+    final_validity: 29/03/2025
+    initial_validity: 29/03/2024
+    insurance_plan: "SALUD RED PREFERENTE"
     insurance_vehicle: PACIFICO
     insured_amount: ""
     issuance_date: ""
@@ -333,18 +333,18 @@
     months: MARZO
     net_commission_amount: "178.27"
     net_premium: ""
-    observations: "ANULADO "
+    observations: "ANULADO"
     payment_date: ""
     payment_document: ""
     payment_method: "4 CP "
-    payment_status_first_coupon: "ANULADO "
+    payment_status_first_coupon: "ANULADO"
     phone_number: ""
     phone_number2: ""
     policy: "17005641"
     policy_address: ""
     register_date: null
     risk: ASISTENCIA MEDICA
-    status: "ANULADA "
+    status: "ANULADA"
     total_premium: ""
     year: "2024"
   model: rrgg.historicaldata
@@ -401,14 +401,14 @@
     dolar_premium: "313.68"
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 11/08/2025
-    initial_validity: 11/08/2024
+    final_validity: 11/04/2025
+    initial_validity: 11/04/2024
     insurance_plan: AMPLIO
-    insurance_vehicle: "QUALITAS "
+    insurance_vehicle: QUALITAS
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 17%
-    months: "AGOSTO "
+    months: ABRIL
     net_commission_amount: "53.33"
     net_premium: "313.68"
     observations: RENOVADO
@@ -421,7 +421,7 @@
     policy: "70059874"
     policy_address: "CALLE MARISCAL CACERES N\xFAmero: 295"
     register_date: null
-    risk: "VEHICULAR "
+    risk: "VEHICULAR"
     status: VIGENTE
     total_premium: "381.25"
     year: "2024"
@@ -434,33 +434,33 @@
     consultant: JUAN GARCÍA
     consultant_type: ADMINISTRATIVOS
     currency: DOLARES
-    customer: "ALVARADO PINEDA FATIMA CECILIA "
+    customer: "ALVARADO PINEDA FATIMA CECILIA"
     document_number: "12489714"
     dolar_commission: "11.55"
     dolar_premium: "77"
     email: mghg07@hotmail.com
     expiration_date_first_coupon: ""
-    final_validity: 2/05/2025
-    initial_validity: 13/05/2024
+    final_validity: 2/04/2025
+    initial_validity: 13/04/2024
     insurance_plan: VISA
-    insurance_vehicle: "GLOBAL "
+    insurance_vehicle: MAPFRE
     insured_amount: "50000"
-    issuance_date: 10/04/2023
+    issuance_date: 13/04/2024
     kcs_commission_percentage: 15%
-    months: "ABRIL "
+    months: ABRIL
     net_commission_amount: "11.55"
     net_premium: "77"
-    observations: "VENTA NUEVA "
-    payment_date: 13/03/2023
+    observations: "VENTA NUEVA"
+    payment_date: 13/03/2024
     payment_document: ""
     payment_method: ""
-    payment_status_first_coupon: "PAGADO "
+    payment_status_first_coupon: "PAGADO"
     phone_number: "959054425"
     phone_number2: ""
     policy: "11046098"
     policy_address: "AV. DEL PARQUE SUR N\xB0 510 \x96 DPTO. 201"
     register_date: null
-    risk: "SEGURO DE VIAJE "
+    risk: "SEGURO DE VIAJE"
     status: VIGENTE
     total_premium: "93.59"
     year: "2024"
@@ -479,14 +479,14 @@
     dolar_premium: "339.9"
     email: ADOPANI@YAHOO.ES
     expiration_date_first_coupon: ""
-    final_validity: 12/09/2024
-    initial_validity: 12/09/2023
-    insurance_plan: "AUTO MODULAR "
+    final_validity: 12/05/2025
+    initial_validity: 12/05/2024
+    insurance_plan: "AUTO MODULAR"
     insurance_vehicle: PACIFICO
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 18%
-    months: "SETIEMBRE "
+    months: MAYO
     net_commission_amount: "59.48"
     net_premium: "339.9"
     observations: RENOVADO
@@ -499,10 +499,10 @@
     policy: "2004738986"
     policy_address: "Calle Jesus Tay 229 Urbanizaci\xF3n Prolong Benavides"
     register_date: null
-    risk: "VEHICULAR "
+    risk: "VEHICULAR"
     status: VIGENTE
     total_premium: "413.11"
-    year: "2023"
+    year: "2024"
   model: rrgg.historicaldata
   pk: "13"
 - fields:
@@ -518,14 +518,14 @@
     dolar_premium: "408.53"
     email: ADOPANI@YAHOO.ES
     expiration_date_first_coupon: ""
-    final_validity: 19/09/2024
-    initial_validity: 19/09/2023
-    insurance_plan: "AUTO MODULAR "
+    final_validity: 19/06/2025
+    initial_validity: 19/06/2024
+    insurance_plan: "AUTO MODULAR"
     insurance_vehicle: PACIFICO
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 18%
-    months: "SETIEMBRE "
+    months: JUNIO
     net_commission_amount: "71.49"
     net_premium: "408.53"
     observations: RENOVADO
@@ -541,7 +541,7 @@
     risk: "VEHICULAR "
     status: VIGENTE
     total_premium: "496.53"
-    year: "2023"
+    year: "2024"
   model: rrgg.historicaldata
   pk: "14"
 - fields:
@@ -557,17 +557,17 @@
     dolar_premium: "71.21"
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 3/09/2024
-    initial_validity: 23/08/2024
+    final_validity: 3/08/2024
+    initial_validity: 23/07/2024
     insurance_plan: POLIZA RESP SALUD
     insurance_vehicle: MAPFRE
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 15%
-    months: "AGOSTO "
+    months: JULIO
     net_commission_amount: "70.18"
     net_premium: "482.02"
-    observations: "VENTA NUEVA "
+    observations: "VENTA NUEVA"
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -603,7 +603,7 @@
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: ""
-    months: "ABRIL "
+    months: ABRIL
     net_commission_amount: ""
     net_premium: ""
     observations: ANULADA AL FIN DE VIGENCIA
@@ -644,7 +644,7 @@
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 10%
-    months: "ABRIL "
+    months: ABRIL
     net_commission_amount: "15.8"
     net_premium: "157.99"
     observations: RENOVADO
@@ -678,14 +678,14 @@
     dolar_premium: 1468.37
     email: ""
     expiration_date_first_coupon: "983284231"
-    final_validity: 25/09/2024
-    initial_validity: 25/09/2023
+    final_validity: 25/06/2025
+    initial_validity: 25/06/2024
     insurance_plan: "PLAN CORPORATIVO "
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: ""
     issuance_date: CTUSE@YAHOO.COM
     kcs_commission_percentage: 20%
-    months: "SETIEMBRE "
+    months: JUNIO
     net_commission_amount: "286.33"
     net_premium: 1468.37
     observations: RENOVADO
@@ -698,10 +698,10 @@
     policy: 230181592-7
     policy_address: ""
     register_date: null
-    risk: "VEHICULAR "
+    risk: "VEHICULAR"
     status: VIGENTE
     total_premium: 1784.66
-    year: "2023"
+    year: "2024"
   model: rrgg.historicaldata
   pk: "18"
 - fields:
@@ -717,17 +717,17 @@
     dolar_premium: "416.8"
     email: ing.gmeza@gmail.com
     expiration_date_first_coupon: ""
-    final_validity: 10/09/2024
-    initial_validity: 10/09/2023
+    final_validity: 10/06/2025
+    initial_validity: 10/06/2024
     insurance_plan: "PREMIUN DORADA "
     insurance_vehicle: MAPFRE
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 17%
-    months: "SETIEMBRE "
+    months: JUNIO
     net_commission_amount: "70.86"
     net_premium: "416.8"
-    observations: "VENTA NUEVA "
+    observations: "VENTA NUEVA"
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -740,7 +740,7 @@
     risk: "VEHICULAR "
     status: VIGENTE
     total_premium: "506.58"
-    year: "2023"
+    year: "2024"
   model: rrgg.historicaldata
   pk: "19"
 - fields:
@@ -756,17 +756,17 @@
     dolar_premium: "458.1"
     email: fanny_wl@hotmail.com
     expiration_date_first_coupon: ""
-    final_validity: 26/08/2025
-    initial_validity: 25/08/2023
+    final_validity: 26/06/2025
+    initial_validity: 25/06/2024
     insurance_plan: AUTO MODULAR
     insurance_vehicle: PACIFICO
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 17%
-    months: "AGOSTO "
+    months: JUNIO
     net_commission_amount: "77.88"
     net_premium: "458.1"
-    observations: "ANULADA "
+    observations: "ANULADA"
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -779,7 +779,7 @@
     risk: "VEHICULAR "
     status: "ANULADA "
     total_premium: "556.77"
-    year: "2023"
+    year: "2024"
   model: rrgg.historicaldata
   pk: "20"
 - fields:
@@ -788,28 +788,28 @@
     commercial_premium: "677.94"
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
+    currency: "SOLES"
     customer: "FUERZA AEREA DEL  PERU "
     document_number: "20144364059"
     dolar_commission: "60.94444444"
     dolar_premium: "243.778"
     email: jtamayo@cased.edu.pe
     expiration_date_first_coupon: ""
-    final_validity: 1/04/2025
-    initial_validity: 1/03/2024
+    final_validity: 1/06/2025
+    initial_validity: 1/06/2024
     insurance_plan: "ACCIDENTES PERSONALES "
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: JUNIO
     net_commission_amount: "164.55"
     net_premium: "658.2"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: "VENTA NUEVA"
+    payment_date: 21/06/2024
     payment_document: ""
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
+    payment_method: "AL CONTADO"
+    payment_status_first_coupon: "PAGADO"
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
@@ -827,28 +827,28 @@
     commercial_premium: "949.16"
     consultant: RICARDO RAMÍREZ
     consultant_type: VENDEDOR WS
-    currency: "SOLES "
+    currency: "SOLES"
     customer: "FUERZA AEREA DEL  PERU "
     document_number: "20144364059"
     dolar_commission: "85.32592593"
     dolar_premium: "341.304"
     email: jtamayo@cased.edu.pe
     expiration_date_first_coupon: ""
-    final_validity: 1/04/2025
-    initial_validity: 1/03/2024
+    final_validity: 1/06/2025
+    initial_validity: 1/06/2024
     insurance_plan: "ACCIDENTES PERSONALES "
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: JUNIO
     net_commission_amount: "230.38"
     net_premium: "921.52"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: "VENTA NUEVA"
+    payment_date: 21/06/2024
     payment_document: ""
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
+    payment_method: "AL CONTADO"
+    payment_status_first_coupon: "PAGADO"
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
@@ -866,28 +866,28 @@
     commercial_premium: "271.15"
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
+    currency: "SOLES"
     customer: "FUERZA AEREA DEL  PERU "
     document_number: "20144364059"
     dolar_commission: "24.37592593"
     dolar_premium: "97.504"
     email: jtamayo@cased.edu.pe
     expiration_date_first_coupon: ""
-    final_validity: 1/04/2025
-    initial_validity: 1/03/2024
-    insurance_plan: "ACCIDENTES PERSONALES "
+    final_validity: 1/03/2025
+    initial_validity: 1/02/2024
+    insurance_plan: "ACCIDENTES PERSONALES"
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: FEBRERO
     net_commission_amount: "65.82"
     net_premium: "263.26"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: "VENTA NUEVA"
+    payment_date: 21/02/2024
     payment_document: ""
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
+    payment_method: "AL CONTADO"
+    payment_status_first_coupon: "PAGADO"
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
@@ -905,28 +905,28 @@
     commercial_premium: "203.37"
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
+    currency: SOLES
     customer: "FUERZA AEREA DEL  PERU "
     document_number: "20144364059"
     dolar_commission: "18.28240741"
     dolar_premium: "73.13"
     email: jtamayo@cased.edu.pe
     expiration_date_first_coupon: ""
-    final_validity: 1/04/2025
-    initial_validity: 1/03/2024
-    insurance_plan: "ACCIDENTES PERSONALES "
+    final_validity: 1/05/2025
+    initial_validity: 1/04/2024
+    insurance_plan: "ACCIDENTES PERSONALES"
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: ABRIL
     net_commission_amount: "49.36"
     net_premium: "197.45"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: VENTA NUEVA
+    payment_date: 01/04/2024
     payment_document: ""
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
+    payment_method: "AL CONTADO"
+    payment_status_first_coupon: "PAGADO"
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
@@ -944,32 +944,32 @@
     commercial_premium: "677.95"
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
-    customer: "FUERZA AEREA DEL  PERU "
+    currency: SOLES
+    customer: "FUERZA AEREA DEL  PERU"
     document_number: "20144364059"
     dolar_commission: "60.94537037"
     dolar_premium: "243.781"
     email: jtamayo@cased.edu.pe
     expiration_date_first_coupon: ""
     final_validity: 1/04/2025
-    initial_validity: 1/03/2024
-    insurance_plan: "ACCIDENTES PERSONALES "
+    initial_validity: 1/04/2024
+    insurance_plan: "ACCIDENTES PERSONALES"
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: ABRIL
     net_commission_amount: "164.55"
     net_premium: "658.21"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: "VENTA NUEVA4"
+    payment_date: 01/04/2024
     payment_document: ""
     payment_method: "AL CONTADO "
     payment_status_first_coupon: "PAGADO "
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
-    policy_address: "Av higuereta 617 santiago de surco "
+    policy_address: "Av higuereta 617 santiago de surco"
     register_date: null
     risk: ACCIDENTES PERSONALES
     status: VIGENTE
@@ -983,8 +983,8 @@
     commercial_premium: "33.89"
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
-    customer: "FUERZA AEREA DEL  PERU "
+    currency: SOLES
+    customer: "FUERZA AEREA DEL  PERU"
     document_number: "20144364059"
     dolar_commission: "3.047222222"
     dolar_premium: "12.189"
@@ -992,19 +992,19 @@
     expiration_date_first_coupon: ""
     final_validity: 1/04/2025
     initial_validity: 1/03/2024
-    insurance_plan: "ACCIDENTES PERSONALES "
+    insurance_plan: "ACCIDENTES PERSONALES"
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "8.23"
     net_premium: "32.91"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: "VENTA NUEVA"
+    payment_date: 01/03/04
     payment_document: ""
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
+    payment_method: "AL CONTADO"
+    payment_status_first_coupon: "PAGADO"
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
@@ -1022,7 +1022,7 @@
     commercial_premium: "101.71"
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
+    currency: "SOLES"
     customer: "FUERZA AEREA DEL  PERU "
     document_number: "20144364059"
     dolar_commission: "9.143518519"
@@ -1036,18 +1036,18 @@
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: MARZO
     net_commission_amount: "24.69"
     net_premium: "98.75"
     observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    payment_date: 21/03/2024
     payment_document: ""
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
+    payment_method: "AL CONTADO"
+    payment_status_first_coupon: "PAGADO"
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
-    policy_address: "Av higuereta 617 santiago de surco "
+    policy_address: "Av higuereta 617 santiago de surco"
     register_date: null
     risk: ACCIDENTES PERSONALES
     status: VIGENTE
@@ -1061,7 +1061,7 @@
     commercial_premium: 1864.38
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
+    currency: "SOLES"
     customer: "FUERZA AEREA DEL  PERU "
     document_number: "20144364059"
     dolar_commission: "167.6"
@@ -1070,23 +1070,23 @@
     expiration_date_first_coupon: ""
     final_validity: 1/04/2025
     initial_validity: 1/03/2024
-    insurance_plan: "ACCIDENTES PERSONALES "
+    insurance_plan: "ACCIDENTES PERSONALES"
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "452.52"
     net_premium: "1810.08"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: "VENTA NUEVA"
+    payment_date: 21/08/2024
     payment_document: ""
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
+    payment_method: "AL CONTADO"
+    payment_status_first_coupon: "PAGADO"
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
-    policy_address: "Av higuereta 617 santiago de surco "
+    policy_address: "Av higuereta 617 santiago de surco"
     register_date: null
     risk: ACCIDENTES PERSONALES
     status: VIGENTE
@@ -1100,25 +1100,25 @@
     commercial_premium: 2576.27
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
+    currency: SOLES
     customer: "FUERZA AEREA DEL  PERU "
     document_number: "20144364059"
     dolar_commission: "231.5953704"
     dolar_premium: "926.381"
     email: jtamayo@cased.edu.pe
     expiration_date_first_coupon: ""
-    final_validity: 1/04/2025
-    initial_validity: 1/03/2024
-    insurance_plan: "ACCIDENTES PERSONALES "
+    final_validity: 1/08/2025
+    initial_validity: 1/08/2024
+    insurance_plan: "ACCIDENTES PERSONALES"
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "625.31"
     net_premium: "2501.23"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: "VENTA NUEVA"
+    payment_date: 21/08/2024
     payment_document: ""
     payment_method: "AL CONTADO "
     payment_status_first_coupon: "PAGADO "
@@ -1139,28 +1139,28 @@
     commercial_premium: 2983.04
     consultant: MARÍA RODRIGUEZ
     consultant_type: ADMINISTRATIVOS
-    currency: "SOLES "
+    currency: SOLES
     customer: "FUERZA AEREA DEL  PERU "
     document_number: "20144364059"
     dolar_commission: "268.162963"
     dolar_premium: "1072.652"
     email: jtamayo@cased.edu.pe
     expiration_date_first_coupon: ""
-    final_validity: 1/04/2025
-    initial_validity: 1/03/2024
+    final_validity: 1/08/2025
+    initial_validity: 1/08/2024
     insurance_plan: "ACCIDENTES PERSONALES "
     insurance_vehicle: MAPFRE
     insured_amount: "20000"
     issuance_date: ""
     kcs_commission_percentage: 25%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "724.04"
     net_premium: "2896.16"
-    observations: "VENTA NUEVA "
-    payment_date: 21/08/2023
+    observations: VENTA NUEVA
+    payment_date: 21/08/2024
     payment_document: ""
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
+    payment_method: "AL CONTADO"
+    payment_status_first_coupon: "PAGADO"
     phone_number: "947229946"
     phone_number2: ""
     policy: "1012310000000"
@@ -1185,14 +1185,14 @@
     dolar_premium: null
     email: dleturia@kcs.pe
     expiration_date_first_coupon: ""
-    final_validity: 27/01/2026
-    initial_validity: 27/01/2024
+    final_validity: 27/03/2026
+    initial_validity: 27/03/2024
     insurance_plan: PLAN AMPLIA
-    insurance_vehicle: "QUALITAS "
+    insurance_vehicle: QUALITAS
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 17.50%
-    months: "ENERO "
+    months: MARZO
     net_commission_amount: ""
     net_premium: ""
     observations: ANULADA POR FALTA DE PAGO
@@ -1205,8 +1205,8 @@
     policy: "70043650"
     policy_address: ""
     register_date: null
-    risk: "VEHICULAR "
-    status: "ANULADA "
+    risk: "VEHICULAR"
+    status: "ANULADA"
     total_premium: null
     year: "2024"
   model: rrgg.historicaldata
@@ -1224,17 +1224,17 @@
     dolar_premium: "923.72"
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 21/01/2025
-    initial_validity: 27/01/2024
+    final_validity: 21/05/2025
+    initial_validity: 27/05/2024
     insurance_plan: PLAN AMPLIA
-    insurance_vehicle: "QUALITAS "
+    insurance_vehicle: QUALITAS
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 18%
-    months: "ENERO "
+    months: MAYO
     net_commission_amount: "161.65"
     net_premium: "923.72"
-    observations: "VENTA NUEVA "
+    observations: VENTA NUEVA
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -1244,7 +1244,7 @@
     policy: "70043650"
     policy_address: ""
     register_date: null
-    risk: "VEHICULAR "
+    risk: VEHICULAR
     status: VIGENTE
     total_premium: 1122.69
     year: "2024"
@@ -1266,11 +1266,11 @@
     final_validity: 7/08/2025
     initial_validity: 7/08/2024
     insurance_plan: PLAN CORPORATIVO
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 8100.0
     issuance_date: ""
     kcs_commission_percentage: 20%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "73.38"
     net_premium: "366.92"
     observations: RENOVADO
@@ -1283,7 +1283,7 @@
     policy: 230181592 - 77
     policy_address: ""
     register_date: null
-    risk: "VEHICULAR "
+    risk: VEHICULAR
     status: VIGENTE
     total_premium: "445.96"
     year: "2024"
@@ -1305,11 +1305,11 @@
     final_validity: 7/08/2025
     initial_validity: 7/08/2024
     insurance_plan: COPORATIVO
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 20%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "83.98"
     net_premium: "419.92"
     observations: RENOVADO
@@ -1344,11 +1344,11 @@
     final_validity: 6/08/2025
     initial_validity: 7/08/2024
     insurance_plan: PLAN CORPORATIVO
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 8100.0
     issuance_date: ""
     kcs_commission_percentage: 20%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "69.71"
     net_premium: "348.57"
     observations: RENOVADO
@@ -1361,7 +1361,7 @@
     policy: 230181592 - 77
     policy_address: ""
     register_date: null
-    risk: "VEHICULAR "
+    risk: VEHICULAR
     status: VIGENTE
     total_premium: "423.65"
     year: "2024"
@@ -1387,7 +1387,7 @@
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 10%
-    months: "JULIO "
+    months: JULIO
     net_commission_amount: "944.7"
     net_premium: 9729.13
     observations: RENOVADO
@@ -1398,7 +1398,7 @@
     phone_number: "998164213"
     phone_number2: ""
     policy: "15665971"
-    policy_address: "CALLE LOS MOLINOS NRO 306 SURCO "
+    policy_address: "CALLE LOS MOLINOS NRO 306 SURCO"
     register_date: null
     risk: ASISTENCIA MEDICA
     status: VIGENTE
@@ -1426,10 +1426,10 @@
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 10%
-    months: "JULIO "
+    months: JULIO
     net_commission_amount: "12.65"
     net_premium: "126.49"
-    observations: "VENTA NUEVA "
+    observations: VENTA NUEVA
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -1465,10 +1465,10 @@
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 10%
-    months: "JULIO "
+    months: JULIO
     net_commission_amount: "12.65"
     net_premium: "126.49"
-    observations: "VENTA NUEVA "
+    observations: VENTA NUEVA
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -1504,10 +1504,10 @@
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 10%
-    months: "JULIO "
+    months: JULIO
     net_commission_amount: "12.65"
     net_premium: "126.49"
-    observations: "VENTA NUEVA "
+    observations: VENTA NUEVA
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -1543,10 +1543,10 @@
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 10%
-    months: "JULIO "
+    months: JULIO
     net_commission_amount: "12.65"
     net_premium: "126.49"
-    observations: "VENTA NUEVA "
+    observations: VENTA NUEVA
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -1582,10 +1582,10 @@
     insured_amount: ""
     issuance_date: ""
     kcs_commission_percentage: 10%
-    months: "JULIO "
+    months: JULIO
     net_commission_amount: "12.65"
     net_premium: "126.49"
-    observations: "VENTA NUEVA "
+    observations: VENTA NUEVA
     payment_date: ""
     payment_document: ""
     payment_method: ""
@@ -1621,7 +1621,7 @@
     insured_amount: "50000"
     issuance_date: ""
     kcs_commission_percentage: 10%
-    months: "JULIO "
+    months: JULIO
     net_commission_amount: "1246.62"
     net_premium: "12678.1"
     observations: RENOVADO
@@ -1658,13 +1658,13 @@
     insurance_plan: ""
     insurance_vehicle: PACIFICO
     insured_amount: 300000.0
-    issuance_date: 3/08/2023
+    issuance_date: 3/09/2024
     kcs_commission_percentage: 13%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "74.1"
     net_premium: "570"
-    observations: "VENTA NUEVA "
-    payment_date: 4/08/2023
+    observations: VENTA NUEVA
+    payment_date: 4/08/2024
     payment_document: ""
     payment_method: ""
     payment_status_first_coupon: PAGADA
@@ -1697,13 +1697,13 @@
     insurance_plan: ""
     insurance_vehicle: PACIFICO
     insured_amount: 300000.0
-    issuance_date: 3/08/2023
+    issuance_date: 6/08/2024
     kcs_commission_percentage: 13%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "74.1"
     net_premium: "570"
-    observations: "VENTA NUEVA "
-    payment_date: 4/08/2023
+    observations: "VENTA NUEVA"
+    payment_date: 4/08/2024
     payment_document: ""
     payment_method: ""
     payment_status_first_coupon: PAGADA
@@ -1751,7 +1751,7 @@
     policy: "2001803425"
     policy_address: ""
     register_date: null
-    risk: "VEHICULAR "
+    risk: VEHICULAR
     status: VIGENTE
     total_premium: 1598.99
     year: "2024"
@@ -1811,7 +1811,7 @@
     expiration_date_first_coupon: ""
     final_validity: 16/06/2025
     initial_validity: 16/06/2024
-    insurance_plan: "AUTO MODULAR "
+    insurance_plan: "AUTO MODULAR"
     insurance_vehicle: PACIFICO
     insured_amount: "37800"
     issuance_date: ""
@@ -1848,14 +1848,14 @@
     dolar_premium: "72.58"
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 31/01/2024
-    initial_validity: 1/01/2024
+    final_validity: 31/02/2024
+    initial_validity: 1/02/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
-    months: "ENERO "
+    months: FEBRERO
     net_commission_amount: "42.46"
     net_premium: "283.04"
     observations: RENOVADO
@@ -1890,11 +1890,11 @@
     final_validity: 28/02/2024
     initial_validity: 1/02/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
-    months: "FEBRERO "
+    months: FEBRERO
     net_commission_amount: "42.46"
     net_premium: "283.04"
     observations: RENOVADO
@@ -1929,7 +1929,7 @@
     final_validity: 31/03/2024
     initial_validity: 1/03/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
@@ -1968,11 +1968,11 @@
     final_validity: 1/05/2024
     initial_validity: 1/04/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
-    months: "ABRIL "
+    months: ABRIL
     net_commission_amount: "42.46"
     net_premium: "283.04"
     observations: RENOVADO
@@ -2007,7 +2007,7 @@
     final_validity: 31/05/2024
     initial_validity: 1/05/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
@@ -2046,7 +2046,7 @@
     final_validity: 1/07/2024
     initial_validity: 1/06/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
@@ -2085,11 +2085,11 @@
     final_validity: 31/07/2024
     initial_validity: 1/07/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
-    months: "JULIO "
+    months: JULIO
     net_commission_amount: "42.46"
     net_premium: "283.04"
     observations: RENOVADO
@@ -2122,13 +2122,13 @@
     email: ""
     expiration_date_first_coupon: ""
     final_validity: 1/10/2025
-    initial_validity: 1/09/2023
+    initial_validity: 1/05/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
-    months: "SETIEMBRE "
+    months: MAYO
     net_commission_amount: "42.46"
     net_premium: "283.04"
     observations: RENOVADO
@@ -2144,7 +2144,7 @@
     risk: ASISTENCIA MEDICA
     status: VIGENTE
     total_premium: "344.01"
-    year: "2023"
+    year: 2024
   model: rrgg.historicaldata
   pk: "55"
 - fields:
@@ -2163,11 +2163,11 @@
     final_validity: 31/08/2024
     initial_validity: 1/08/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
     issuance_date: ""
     kcs_commission_percentage: 15%
-    months: "AGOSTO "
+    months: AGOSTO
     net_commission_amount: "42.46"
     net_premium: "283.04"
     observations: RENOVADO
@@ -2199,14 +2199,14 @@
     dolar_premium: "75.48"
     email: ""
     expiration_date_first_coupon: ""
-    final_validity: 30/11/2023
-    initial_validity: 1/11/2023
+    final_validity: 30/03/2024
+    initial_validity: 1/03/2024
     insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
+    insurance_vehicle: LA POSITIVA
     insured_amount: 300 000.00
-    issuance_date: 1/11/2023
+    issuance_date: 1/03/2024
     kcs_commission_percentage: 15%
-    months: NOVIEMBRE
+    months: MARZO
     net_commission_amount: "42.46"
     net_premium: "283.04"
     observations: RENOVADO
@@ -2222,1416 +2222,6 @@
     risk: ASISTENCIA MEDICA
     status: VIGENTE
     total_premium: "344.01"
-    year: "2023"
+    year: 2024
   model: rrgg.historicaldata
   pk: "57"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "291.53"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: AGUILAR GARCIA MARIA BEATRIZ
-    document_number: "7877727"
-    dolar_commission: "11.32"
-    dolar_premium: "75.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 1/10/2023
-    initial_validity: 1/10/2023
-    insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: 300 000.00
-    issuance_date: 1/10/2023
-    kcs_commission_percentage: 15%
-    months: "OCTUBRE "
-    net_commission_amount: "42.46"
-    net_premium: "283.04"
-    observations: RENOVADO
-    payment_date: DCTO X PLANILLA
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: "PAGADO "
-    phone_number: "989231300"
-    phone_number2: ""
-    policy: "30039409"
-    policy_address: ""
-    register_date: null
-    risk: ASISTENCIA MEDICA
-    status: VIGENTE
-    total_premium: "344.01"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "58"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "291.53"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: AGUILAR GARCIA MARIA BEATRIZ
-    document_number: "7877727"
-    dolar_commission: "11.32"
-    dolar_premium: "75.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 31/12/2023
-    initial_validity: 1/12/2023
-    insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: 300 000.00
-    issuance_date: 1/12/2023
-    kcs_commission_percentage: 15%
-    months: DICIEMBRE
-    net_commission_amount: "42.46"
-    net_premium: "283.04"
-    observations: RENOVADO
-    payment_date: DCTO X PLANILLA
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: "PAGADO "
-    phone_number: "989231300"
-    phone_number2: ""
-    policy: "30039409"
-    policy_address: ""
-    register_date: null
-    risk: ASISTENCIA MEDICA
-    status: VIGENTE
-    total_premium: "344.01"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "59"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "291.52"
-    consultant: JOSÉ PÉREZ
-    consultant_type: VENDEDOR WS
-    currency: SOLES
-    customer: AGUILAR GARCIA MARIA BEATRIZ
-    document_number: "7877727"
-    dolar_commission: "11.17"
-    dolar_premium: "74.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 31/01/2024
-    initial_validity: 1/01/2024
-    insurance_plan: EMPRESA SALUD - EP
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: 300 000.00
-    issuance_date: 1/01/2024
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "42.45"
-    net_premium: "283.03"
-    observations: RENOVADO
-    payment_date: 8/02/2023
-    payment_document: ""
-    payment_method: "12CP "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: "989231300"
-    phone_number2: ""
-    policy: "30039409"
-    policy_address: ""
-    register_date: null
-    risk: ASISTENCIA MEDICA
-    status: VIGENTE
-    total_premium: "344"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "60"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "1643.26"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: AGUILAR HERMOSA JOHNNY CARLOS
-    document_number: "8676520"
-    dolar_commission: "43.12"
-    dolar_premium: "431.1891892"
-    email: jcaguilah.ja@gmail.com
-    expiration_date_first_coupon: ""
-    final_validity: 28/04/2025
-    initial_validity: 28/04/2024
-    insurance_plan: RED MEDICA PRIVADA
-    insurance_vehicle: RIMAC
-    insured_amount: "5000000"
-    issuance_date: 24/01/2023
-    kcs_commission_percentage: 10%
-    months: MARZO
-    net_commission_amount: "159.54"
-    net_premium: "1595.4"
-    observations: "ENVIADO "
-    payment_date: ""
-    payment_document: ""
-    payment_method: "12 CP "
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 93-29803
-    policy_address: ""
-    register_date: null
-    risk: ASISTENCIA MEDICA
-    status: VIGENTE
-    total_premium: "1939.05"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "61"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "1643.26"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: AGUILAR HERMOSA JOHNNY CARLOS
-    document_number: "8676520"
-    dolar_commission: "43.12"
-    dolar_premium: "431.1891892"
-    email: jcaguilah.ja@gmail.com
-    expiration_date_first_coupon: ""
-    final_validity: 28/04/2025
-    initial_validity: 28/04/2024
-    insurance_plan: RED MEDICA PRIVADA
-    insurance_vehicle: RIMAC
-    insured_amount: "5000000"
-    issuance_date: 24/01/2023
-    kcs_commission_percentage: 10%
-    months: MARZO
-    net_commission_amount: "159.54"
-    net_premium: "1595.4"
-    observations: "ENVIADO "
-    payment_date: ""
-    payment_document: ""
-    payment_method: "12 CP "
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 93-29790
-    policy_address: ""
-    register_date: null
-    risk: ASISTENCIA MEDICA
-    status: VIGENTE
-    total_premium: "1939.05"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "62"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: 1269.42
-    consultant: ISABEL SÁNCHEZ
-    consultant_type: VENDEDOR WS
-    currency: SOLES
-    customer: "AGUILAR HERMOSA JOHNNY CARLOS "
-    document_number: "8676520"
-    dolar_commission: "31.91"
-    dolar_premium: "328.65"
-    email: JCAGUILAH@HOTMAIL.C OM
-    expiration_date_first_coupon: ""
-    final_validity: 1/10/2024
-    initial_validity: 1/09/2023
-    insurance_plan: SALUD RED PRIVADA
-    insurance_vehicle: RIMAC
-    insured_amount: 5000.0
-    issuance_date: ""
-    kcs_commission_percentage: 10%
-    months: JUNIO
-    net_commission_amount: "119.66"
-    net_premium: 1232.45
-    observations: "VENTA NUEVA "
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 93-29790
-    policy_address: ""
-    register_date: null
-    risk: ASISTENCIA MEDICA
-    status: VIGENTE
-    total_premium: 1497.92
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "63"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: 1269.42
-    consultant: ISABEL SÁNCHEZ
-    consultant_type: VENDEDOR WS
-    currency: SOLES
-    customer: "AGUILAR HERMOSA JOHNNY CARLOS "
-    document_number: "8676520"
-    dolar_commission: "31.91"
-    dolar_premium: "328.65"
-    email: jcaguilah.ja@gmail.com
-    expiration_date_first_coupon: ""
-    final_validity: 28/04/2025
-    initial_validity: 28/04/2024
-    insurance_plan: SALUD RED PRIVADA
-    insurance_vehicle: RIMAC
-    insured_amount: 5000.0
-    issuance_date: ""
-    kcs_commission_percentage: 10%
-    months: JUNIO
-    net_commission_amount: "119.66"
-    net_premium: 1232.45
-    observations: "VENTA NUEVA "
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 93-29803
-    policy_address: ""
-    register_date: null
-    risk: ASISTENCIA MEDICA
-    status: VIGENTE
-    total_premium: 1497.92
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "64"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: 1135.41
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: "ALBERT EINSTEIN BRE\xD1A"
-    document_number: "20543229840"
-    dolar_commission: "187.4"
-    dolar_premium: 1102.34
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 10/07/2025
-    initial_validity: 10/07/2024
-    insurance_plan: "MODULAR "
-    insurance_vehicle: PACIFICO
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 17%
-    months: "JULIO "
-    net_commission_amount: "187.4"
-    net_premium: 1102.34
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: "2000199838"
-    policy_address: "Avenida Bolivia 678 Urbanizaci\xF3n Chacra Colorada"
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: 1339.78
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "65"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "723.87"
-    consultant: JOSÉ PÉREZ
-    consultant_type: VENDEDOR WS
-    currency: DOLARES
-    customer: ALBERT EINSTEIN SAN MIGUEL SAC
-    document_number: "20600902891"
-    dolar_commission: "122.99"
-    dolar_premium: "702.79"
-    email: tesoreria@ceae.edu.pe
-    expiration_date_first_coupon: ""
-    final_validity: 1/07/2025
-    initial_validity: 1/06/2024
-    insurance_plan: AUTO MODULAR
-    insurance_vehicle: PACIFICO
-    insured_amount: 15700.0
-    issuance_date: ""
-    kcs_commission_percentage: 17.50%
-    months: MAYO
-    net_commission_amount: "122.99"
-    net_premium: "702.79"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: "2000379176"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "854.17"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "66"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "931.99"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALBERT EINSTEIN SAN MIGUEL SAC
-    document_number: "20600902891"
-    dolar_commission: "153.82"
-    dolar_premium: "904.84"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 10/05/2025
-    initial_validity: 9/05/2024
-    insurance_plan: AUTO MODULAR
-    insurance_vehicle: PACIFICO
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 17%
-    months: MAYO
-    net_commission_amount: "153.82"
-    net_premium: "904.84"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: "2000379176"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: 1099.74
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "67"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "651.49"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALBERT EINSTEIN SAN MIGUEL SAC
-    document_number: "20600902891"
-    dolar_commission: "110.69"
-    dolar_premium: "768.76"
-    email: tesoreria@growcorp.pe
-    expiration_date_first_coupon: ""
-    final_validity: 9/05/2025
-    initial_validity: 9/05/2024
-    insurance_plan: "AUTO MODULAR "
-    insurance_vehicle: PACIFICO
-    insured_amount: "14900"
-    issuance_date: 6/03/2023
-    kcs_commission_percentage: 17.50%
-    months: MAYO
-    net_commission_amount: "110.69"
-    net_premium: "632.51"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: 4 CP MENSUALES
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: "2000379176"
-    policy_address: AVENIDA LIBERTAD 1170 INTERIOR 9
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "768.76"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "68"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "692.62"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALCANTARA REZA MAYBEE PALMIRA
-    document_number: "43333287"
-    dolar_commission: "117.68"
-    dolar_premium: "672.45"
-    email: chantal2003@hotmail.com
-    expiration_date_first_coupon: 15/09/2023
-    final_validity: ""
-    initial_validity: 15/09/2024
-    insurance_plan: AMPLIA
-    insurance_vehicle: "QUALITAS "
-    insured_amount: "26.59"
-    issuance_date: 15/09/2023
-    kcs_commission_percentage: 18%
-    months: "SETIEMBRE "
-    net_commission_amount: "117.68"
-    net_premium: "672.45"
-    observations: "VENTA NUEVA "
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: "932288215"
-    phone_number2: ""
-    policy: "70144750"
-    policy_address:
-      "CALLE 2 MZ F LT 05 LOS GIRASOLES N\xFAmero: LT 05 Interior: MZ\
-      \ F"
-    register_date: 2023-09-19
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "817.29"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "69"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: 1009.04
-    consultant: JOSÉ PÉREZ
-    consultant_type: VEDEDOR WS
-    currency: DOLARES
-    customer: "ALC\xC1NTARA REZA  MAYB\xC9E PALMIRA"
-    document_number: "43333287"
-    dolar_commission: "195.93"
-    dolar_premium: "979.65"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 10/08/2025
-    initial_validity: 10/08/2024
-    insurance_plan: "PLAN CORPORATIVO "
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: 27990.0
-    issuance_date: ""
-    kcs_commission_percentage: 20%
-    months: "AGOSTO "
-    net_commission_amount: "195.93"
-    net_premium: "979.65"
-    observations: "VENTA NUEVA "
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 230181592 - 150
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: 1190.67
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "70"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "350"
-    consultant: LAURA GONZALES
-    consultant_type: "VENDEDOR RRGG"
-    currency: DOLARES
-    customer: ALCAZAR TORRES SUSAHNE GABRIELA
-    document_number: "73451188"
-    dolar_commission: "87.5"
-    dolar_premium: "350"
-    email: gabriela.alcazar11@gmail.com
-    expiration_date_first_coupon: ""
-    final_validity: 28/03/2024
-    initial_validity: 1/09/2023
-    insurance_plan: EUROPA
-    insurance_vehicle: "GLOBAL "
-    insured_amount: "60000"
-    issuance_date: 29/08/2023
-    kcs_commission_percentage: 25%
-    months: "AGOSTO "
-    net_commission_amount: "87.5"
-    net_premium: "350"
-    observations: "VENTA NUEVA "
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: PAGADO
-    phone_number: "964897972"
-    phone_number2: ""
-    policy: "11047441"
-    policy_address: Urb. Rinconada del Lago Etapa II Mz. O Lt. 18
-    register_date: null
-    risk: "SEGURO DE VIAJE "
-    status: VIGENTE
-    total_premium: "350"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "71"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "673.41"
-    consultant: LAURA GONZALES
-    consultant_type: "VENDEDOR RRGG"
-    currency: DOLARES
-    customer: ALIAGA CANO GLORIA ANGELICA
-    document_number: "7659006"
-    dolar_commission: "130.76"
-    dolar_premium: "653.8"
-    email: galiaga.kcs@gmail.com
-    expiration_date_first_coupon: ""
-    final_validity: 17/01/2025
-    initial_validity: 17/01/2024
-    insurance_plan: "PLAN CORPORATIVO "
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: "14000"
-    issuance_date: 17/01/2023
-    kcs_commission_percentage: 20%
-    months: "ENERO "
-    net_commission_amount: "130.76"
-    net_premium: "653.8"
-    observations: "VENTA NUEVA "
-    payment_date: 25/01/2023
-    payment_document: 27/01/2023
-    payment_method: 12 CP
-    payment_status_first_coupon: "PAGADO "
-    phone_number: 966 182 771
-    phone_number2: ""
-    policy: 230181592 - 174
-    policy_address: "Av. AV BOLIVIA 211 SAN FERNANDO LURIGANCHO "
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "794.63"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "72"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "331.81"
-    consultant: LUIS MARTÍNEZ
-    consultant_type: "PRODUCTOR"
-    currency: DOLARES
-    customer: ALIAGA MARIN HUGO ESTEBENSON
-    document_number: "8296740"
-    dolar_commission: "64.43"
-    dolar_premium: "322.14"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 1/10/2023
-    initial_validity: 1/09/2023
-    insurance_plan: "PLAN CORPORATIVO "
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: 8100.0
-    issuance_date: ""
-    kcs_commission_percentage: 20%
-    months: "SETIEMBRE "
-    net_commission_amount: "64.43"
-    net_premium: "322.14"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 230181592 - 113
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "391.53"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "73"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "305.46"
-    consultant: LUIS MARTÍNEZ
-    consultant_type: "PRODUCTOR"
-    currency: DOLARES
-    customer: ALIAGA MARIN HUGO ESTEBENSON
-    document_number: "8296740"
-    dolar_commission: "59.31"
-    dolar_premium: "270.32"
-    email: " halma87@hotmail.com"
-    expiration_date_first_coupon: ""
-    final_validity: 8/01/2024
-    initial_validity: 8/01/2023
-    insurance_plan: PLAN CORPORATIVO
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: "7695"
-    issuance_date: 8/01/2023
-    kcs_commission_percentage: 22%
-    months: "ENERO "
-    net_commission_amount: "59.31"
-    net_premium: "270.32"
-    observations: RENOVADO
-    payment_date: 5/01/2023
-    payment_document: "226851687"
-    payment_method: "8 CP "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: "930455486"
-    phone_number2: ""
-    policy: 230181592 - 113
-    policy_address:
-      "CALLE C LT.20 BLOCK Y 404 ROCIO DEL     GOLF URB.APOLO HUNT -
-      SANTIAGO DE SURCO "
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "360.45"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "74"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "391.47"
-    consultant: LUIS MARTÍNEZ
-    consultant_type: "PRODUCTOR"
-    currency: DOLARES
-    customer: ALIAGA MARIN HUGO ESTEBENSON
-    document_number: "8296740"
-    dolar_commission: "76.01"
-    dolar_premium: "380.07"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 9/01/2025
-    initial_validity: 8/01/2024
-    insurance_plan: "PLAN CORPORATIVO "
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 20%
-    months: "ENERO "
-    net_commission_amount: "76.01"
-    net_premium: "380.07"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 230181592 - 113
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "461.94"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "75"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "331.81"
-    consultant: LUIS MARTÍNEZ
-    consultant_type: "PRODUCTOR"
-    currency: DOLARES
-    customer: ALIAGA MARIN HUGO ESTEBENSON
-    document_number: "8296740"
-    dolar_commission: "64.43"
-    dolar_premium: "322.14"
-    email: ""
-    expiration_date_first_coupon: 1/01/2026
-    final_validity: ""
-    initial_validity: 1/01/2024
-    insurance_plan: PLAN CORPORATIVO
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: $8100.00
-    issuance_date: ""
-    kcs_commission_percentage: 20%
-    months: "SETIEMBRE "
-    net_commission_amount: "64.43"
-    net_premium: "322.14"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 230181592 - 113
-    policy_address: ""
-    register_date: 2024-01-01
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "391.53"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "76"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: 14381.07
-    consultant: MARÍA RODRIGUEZ
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALLEGRO INMOBILIARIA S.A.C.
-    document_number: "20537612917"
-    dolar_commission: 2094.33
-    dolar_premium: 13962.2
-    email: Juan Sanchez Allegro <jsanchez@galena.com.pe>,
-    expiration_date_first_coupon: ""
-    final_validity: 5/06/2025
-    initial_validity: 5/06/2023
-    insurance_plan: MULTIRIESGO LIBERTY EMPRESA
-    insurance_vehicle: "LIBERTY SEGUROS "
-    insured_amount: 11600000.0
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: JUNIO
-    net_commission_amount: 2094.33
-    net_premium: 13962.2
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: LP1-10-00255-3
-    policy_address: ""
-    register_date: null
-    risk: "MULTIRIESGO "
-    status: VIGENTE
-    total_premium: 16969.66
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "77"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "998.47"
-    consultant: MARÍA RODRIGUEZ
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALLEGRO INMOBILIARIA S.A.C.
-    document_number: "20537612917"
-    dolar_commission: "193.88"
-    dolar_premium: "969.39"
-    email: Juan Sanchez Allegro <jsanchez@galena.com.pe>,
-    expiration_date_first_coupon: ""
-    final_validity: 24/09/2025
-    initial_validity: 24/09/2023
-    insurance_plan: PLAN CORPORATIVO
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: "969.39"
-    issuance_date: ""
-    kcs_commission_percentage: 20%
-    months: "SETIEMBRE "
-    net_commission_amount: "193.88"
-    net_premium: "969.39"
-    observations: "VENTA NUEVA "
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 230181592 - 95
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: 1178.2
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "78"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "956.57"
-    consultant: MARÍA RODRIGUEZ
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALLEGRO INMOBILIARIA S.A.C.
-    document_number: "20537612917"
-    dolar_commission: "167.17"
-    dolar_premium: "928.71"
-    email: Juan Sanchez Allegro <jsanchez@galena.com.pe>,
-    expiration_date_first_coupon: ""
-    final_validity: 22/12/2024
-    initial_validity: 22/12/2023
-    insurance_plan: "WEB VEHICULOS "
-    insurance_vehicle: RIMAC
-    insured_amount: 27702.0
-    issuance_date: ""
-    kcs_commission_percentage: 18%
-    months: "DICIEMBRE "
-    net_commission_amount: "167.17"
-    net_premium: "928.71"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 2101 - 909916
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: 1128.75
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "79"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: 16968.2
-    consultant: MARÍA RODRIGUEZ
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALLEGRO INMOBILIARIA S.A.C.
-    document_number: "20537612917"
-    dolar_commission: 1647.4
-    dolar_premium: 16473.98
-    email: Juan Sanchez Allegro <jsanchez@galena.com.pe>,
-    expiration_date_first_coupon: ""
-    final_validity: 5/06/2025
-    initial_validity: 5/06/2024
-    insurance_plan: MULTIRIESGO
-    insurance_vehicle: "LIBERTY SEGUROS "
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 10%
-    months: JUNIO
-    net_commission_amount: 1647.4
-    net_premium: 16473.98
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 1-10-00255-1
-    policy_address: ""
-    register_date: null
-    risk: "MULTIRIESGO "
-    status: VIGENTE
-    total_premium: 20022.48
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "80"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "14500"
-    consultant: MARÍA RODRIGUEZ
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALLEGRO INMOBILIARIA S.A.C.
-    document_number: "20537612917"
-    dolar_commission: "2175"
-    dolar_premium: "17110"
-    email: jsanchez@galena.com.pe ssalazar@galena.com.pe
-    expiration_date_first_coupon: ""
-    final_validity: 5/06/2025
-    initial_validity: 5/06/2024
-    insurance_plan: MULTIRIESGO
-    insurance_vehicle: "LIBERTY SEGUROS "
-    insured_amount: "11600000"
-    issuance_date: 29/05/2023
-    kcs_commission_percentage: 15%
-    months: JUNIO
-    net_commission_amount: "2175"
-    net_premium: "14500"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: "10 CP SIN INTERES "
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: LP1-10-00255-4
-    policy_address:
-      AV. DEL EJERCITO NRO. 250 INT. 102 URB. STA.CRUZ LIMA - LIMA -
-      MIRAFLORES
-    register_date: null
-    risk: "MULTIRIESGO "
-    status: VIGENTE
-    total_premium: "17110"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "81"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "881.82"
-    consultant: MARÍA RODRIGUEZ
-    consultant_type: ADMINISTRATIVOS
-    currency: DOLARES
-    customer: ALLEGRO INMOBILIARIA S.A.C.
-    document_number: "20537612917"
-    dolar_commission: "193.88"
-    dolar_premium: "856.14"
-    email: ""
-    expiration_date_first_coupon: 24/09/2023
-    final_validity: ""
-    initial_validity: 24/08/2024
-    insurance_plan: PLAN CORPORATIVO
-    insurance_vehicle: "LA POSITIVA "
-    insured_amount: $23854.00
-    issuance_date: ""
-    kcs_commission_percentage: 20%
-    months: "SETIEMBRE "
-    net_commission_amount: "193.88"
-    net_premium: "856.14"
-    observations: RENOVADO
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: 230181592 - 95
-    policy_address: ""
-    register_date: 2023-09-25
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: 1040.55
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "82"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: 27427.12
-    consultant: LAURA GONZALES
-    consultant_type: VEDEDOR RRGG
-    currency: DOLARES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: 2662.83
-    dolar_premium: 26628.27
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 15/07/2025
-    initial_validity: 15/07/2024
-    insurance_plan: SOAT
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 10%
-    months: "JULIO "
-    net_commission_amount: 2662.83
-    net_premium: 26628.27
-    observations: "VENTA NUEVA "
-    payment_date: ""
-    payment_document: ""
-    payment_method: ""
-    payment_status_first_coupon: ""
-    phone_number: ""
-    phone_number2: ""
-    policy: ""
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: 32364.0
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "83"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 31/02/2025
-    initial_validity: 31/12/2023
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "52"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8268221"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "84"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: LAURA GONZALES
-    consultant_type: VENDEDOR RRGG
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 31/02/2025
-    initial_validity: 31/12/2023
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "53"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8268108"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "85"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 31/02/2025
-    initial_validity: 31/12/2023
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "54"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8268214"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "86"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 31/02/2025
-    initial_validity: 31/12/2023
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "55"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8268214"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "87"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: CARLOS LOPEZ
-    consultant_type: VENDEDOR RRGG
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 31/02/2025
-    initial_validity: 31/12/2023
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "56"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8268097"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "88"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 31/02/2024
-    initial_validity: 31/12/2023
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "57"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8268168"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2023"
-  model: rrgg.historicaldata
-  pk: "89"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 3/01/2025
-    initial_validity: 3/01/2024
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "58"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8271044"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "90"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: ANA HERNÁNDEZ
-    consultant_type: PRODUCTOR
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 4/01/2025
-    initial_validity: 4/01/2024
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "69"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8271056"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "91"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: MARÍA RODRIGUEZ
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 4/01/2025
-    initial_validity: 4/01/2024
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "60"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8271194"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "92"
-- fields:
-    birth_date: ""
-    collection_record_date: ""
-    commercial_premium: "127.12"
-    consultant: JUAN GARCÍA
-    consultant_type: ADMINISTRATIVOS
-    currency: SOLES
-    customer: ALLINBUS S.A.C.
-    document_number: "20555095229"
-    dolar_commission: "4.87"
-    dolar_premium: "32.48"
-    email: ""
-    expiration_date_first_coupon: ""
-    final_validity: 4/01/2025
-    initial_validity: 4/01/2024
-    insurance_plan: "SOAT "
-    insurance_vehicle: RIMAC
-    insured_amount: ""
-    issuance_date: ""
-    kcs_commission_percentage: 15%
-    months: "ENERO "
-    net_commission_amount: "18.51"
-    net_premium: "123.42"
-    observations: "VENTA NUEVA "
-    payment_date: 15/03/2023
-    payment_document: "61"
-    payment_method: "AL CONTADO "
-    payment_status_first_coupon: "PAGADO "
-    phone_number: ""
-    phone_number2: ""
-    policy: "8271188"
-    policy_address: ""
-    register_date: null
-    risk: "VEHICULAR "
-    status: VIGENTE
-    total_premium: "150"
-    year: "2024"
-  model: rrgg.historicaldata
-  pk: "93"
