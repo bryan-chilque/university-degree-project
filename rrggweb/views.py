@@ -2484,6 +2484,10 @@ class IIVListView(IssuanceListSupportView):
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         context["type"] = "initial"
+        total_issuances = (
+            rrgg.models.IssuanceInsuranceVehicle.objects.all().count()
+        )
+        context["total_issuances"] = total_issuances
         return context
 
 
