@@ -1185,6 +1185,12 @@ class QIVListView(QuotationListSupportView):
             "rrggweb:quotation:insurance:vehicle:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
+        total_quotations = (
+            rrgg.models.QuotationInsuranceVehicle.objects.filter(
+                source="quotation"
+            ).count()
+        )
+        context["total_quotations"] = total_quotations
         return context
 
 
