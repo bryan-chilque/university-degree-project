@@ -53,7 +53,7 @@
                     </ul>
                   </li>
 
-                  <li class="menu-title">Gestión de Cobranzas</li>
+                  {% comment %} <li class="menu-title">Gestión de Cobranzas</li>
 
                   <li>
                     <a class="has-arrow waves-effect">
@@ -61,14 +61,14 @@
                       <span>Cobranzas</span>
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                      {% comment %} <li>
+                      <li>
                         <a href="{% url 'rrggweb:collection' view.kwargs.registrar_id %}">Lista de cobranzas</a>
                       </li>
                       <li>
                         <a href="{% url 'rrggweb:collection:insurance:vehicle:list' view.kwargs.registrar_id %}">Cobranza vehicular</a>
-                      </li> {% endcomment %}
+                      </li>
                     </ul>
-                  </li>
+                  </li> {% endcomment %}
 
                   <li class="menu-title">Clientes</li>
 
@@ -84,7 +84,7 @@
                     </ul>
                   </li>
 
-                  <li class="menu-title">Data histórica</li>
+                  {% comment %} <li class="menu-title">Data histórica</li>
 
                   <li>
                     <a class="has-arrow waves-effect">
@@ -96,7 +96,7 @@
                         <a href="{% url 'rrggweb:historical_data:list' view.kwargs.registrar_id %}">Lista de data histórica</a>
                       </li>
                     </ul>
-                  </li>
+                  </li> {% endcomment %}
 
                 </ul>
               </div>
