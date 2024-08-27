@@ -1,5 +1,6 @@
 import os
 import re
+from datetime import datetime
 
 from django import shortcuts, urls
 from django.conf import settings
@@ -8,7 +9,7 @@ from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, FloatField, Q, Sum
 from django.db.models.deletion import ProtectedError
-from django.db.models.functions import Cast
+from django.db.models.functions import Cast, ExtractMonth, ExtractYear
 from django.forms import modelformset_factory
 from django.http import FileResponse, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -1139,21 +1140,55 @@ class HomeView(TemplateView):
             item["consultant"] for item in histogram_net_commission_in_dollars
         ]
 
-        # TOTAL COUNT COTIZACIONES
+        # TOTAL COUNT COTIZACIONES Y EMISIONES POR ASEGURADORA
+        month_mapping = {
+            "ENERO": 1,
+            "FEBRERO": 2,
+            "MARZO": 3,
+            "ABRIL": 4,
+            "MAYO": 5,
+            "JUNIO": 6,
+            "JULIO": 7,
+            "AGOSTO": 8,
+            "SEPTIEMBRE": 9,
+            "OCTUBRE": 10,
+            "NOVIEMBRE": 11,
+            "DICIEMBRE": 12,
+        }
+
+        year = data_filter.pop("year", None)
+        month = data_filter.pop("months", None)
+
+        if year and month:
+            year = int(year)
+            month = month_mapping.get(month.upper())
+            start_date = datetime(year, month, 1)
+            if month == 12:
+                end_date = datetime(year + 1, 1, 1)
+            else:
+                end_date = datetime(year, month + 1, 1)
+            data_filter["created__range"] = (start_date, end_date)
+
+        # COUNT COTIZACIONES
+
         histogram_total_quotations = (
             rrgg.models.QuotationInsuranceVehiclePremium.objects.filter(
-                quotation_insurance_vehicle__source="quotation", **data_filter
+                **data_filter
+            )
+            .annotate(
+                year=ExtractYear("created"),
+                month=ExtractMonth("created"),
             )
             .values(
                 "year",
-                "months",
+                "month",
                 "insurance_vehicle_ratio__insurance_vehicle__name",
             )
             .annotate(total=Count("id"))
             .order_by(
-                "year",
-                "months",
                 "insurance_vehicle_ratio__insurance_vehicle__name",
+                "year",
+                "month",
             )
         )
 
@@ -1164,6 +1199,37 @@ class HomeView(TemplateView):
         context["histogram_total_quotations_labels"] = [
             item["insurance_vehicle_ratio__insurance_vehicle__name"]
             for item in histogram_total_quotations
+        ]
+
+        # COUNT EMISIONES
+        histogram_total_issuances = (
+            rrgg.models.IssuanceInsuranceVehicle.objects.filter(**data_filter)
+            .annotate(
+                year=ExtractYear("created"),
+                month=ExtractMonth("created"),
+            )
+            .values(
+                "year",
+                "month",
+                "quotation_vehicle_premiums__insurance_vehicle_ratio__insurance_vehicle__name",  # noqa: E501
+            )
+            .annotate(total=Count("id"))
+            .order_by(
+                "quotation_vehicle_premiums__insurance_vehicle_ratio__insurance_vehicle__name",  # noqa: E501
+                "year",
+                "month",
+            )
+        )
+
+        context["histogram_total_issuances_series"] = [
+            int(item["total"]) for item in histogram_total_issuances
+        ]
+
+        context["histogram_total_issuances_labels"] = [
+            item[
+                "quotation_vehicle_premiums__insurance_vehicle_ratio__insurance_vehicle__name"  # noqa: E501
+            ]
+            for item in histogram_total_issuances
         ]
 
         return context

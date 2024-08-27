@@ -43,9 +43,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
       <div id="histogramChart5"></div>
     </div>
+    <div class="col-lg-6">
+      <div id="histogramChart6"></div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-lg-12">
       <div id="heatmapChart"></div>
@@ -115,7 +120,6 @@
           horizontal: true,
         }
       },
-      colors: ["#9467bd"],
       xaxis: {
         categories: {{ histogram_net_commission_soles_labels|safe }},
       },
@@ -165,7 +169,7 @@
           horizontal: true,
         }
       },
-      colors: ["#9467bd"],
+      colors: ["#e88f00"],
       xaxis: {
         categories: {{ histogram_total_quotations_labels|safe }},
       },
@@ -176,6 +180,30 @@
     var histogramChart5 = new ApexCharts(document.querySelector("#histogramChart5"), histogramOptions5);
     histogramChart5.render();
 
+    // Histograma 6
+    var histogramOptions6 = {
+      series: [{
+        name: 'Registros',
+        data: {{ histogram_total_issuances_series|safe }},
+      }],
+      chart: {
+        type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        }
+      },
+      colors: ["#2EFF00"],
+      xaxis: {
+        categories: {{ histogram_total_issuances_labels|safe }},
+      },
+      title: {
+        text: 'TOTAL DE POLIZAS POR MES'
+      },
+    }
+    var histogramChart6 = new ApexCharts(document.querySelector("#histogramChart6"), histogramOptions6);
+    histogramChart6.render();
 
   </script>
 {% endblock content %}
