@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import views as views_auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import FloatField, Q, Sum
+from django.db.models import Count, FloatField, Q, Sum
 from django.db.models.deletion import ProtectedError
 from django.db.models.functions import Cast
 from django.forms import modelformset_factory
@@ -1137,6 +1137,33 @@ class HomeView(TemplateView):
         ]
         context["histogram_net_commission_dollars_labels"] = [
             item["consultant"] for item in histogram_net_commission_in_dollars
+        ]
+
+        # TOTAL COUNT COTIZACIONES
+        histogram_total_quotations = (
+            rrgg.models.QuotationInsuranceVehiclePremium.objects.filter(
+                quotation_insurance_vehicle__source="quotation", **data_filter
+            )
+            .values(
+                "year",
+                "months",
+                "insurance_vehicle_ratio__insurance_vehicle__name",
+            )
+            .annotate(total=Count("id"))
+            .order_by(
+                "year",
+                "months",
+                "insurance_vehicle_ratio__insurance_vehicle__name",
+            )
+        )
+
+        context["histogram_total_quotations_series"] = [
+            item["total"] for item in histogram_total_quotations
+        ]
+
+        context["histogram_total_quotations_labels"] = [
+            item["insurance_vehicle_ratio__insurance_vehicle__name"]
+            for item in histogram_total_quotations
         ]
 
         return context

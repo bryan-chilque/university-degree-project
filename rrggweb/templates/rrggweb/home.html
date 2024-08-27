@@ -44,6 +44,10 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
+      <div id="histogramChart5"></div>
+    </div>
+  <div class="row">
+    <div class="col-lg-12">
       <div id="heatmapChart"></div>
     </div>
   </div>
@@ -146,6 +150,31 @@
     };
     var histogramChart4 = new ApexCharts(document.querySelector("#histogramChart4"), histogramOptions4);
     histogramChart4.render();
+
+    // Histograma 5
+    var histogramOptions5 = {
+      series: [{
+        name: 'Registros',
+        data: {{ histogram_total_quotations_series|safe }}
+      }],
+      chart: {
+        type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        }
+      },
+      colors: ["#9467bd"],
+      xaxis: {
+        categories: {{ histogram_total_quotations_labels|safe }},
+      },
+      title: {
+        text: 'TOTAL DE COTIZACIONES POR MES'
+      },
+    }
+    var histogramChart5 = new ApexCharts(document.querySelector("#histogramChart5"), histogramOptions5);
+    histogramChart5.render();
 
 
   </script>

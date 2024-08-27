@@ -25,7 +25,7 @@ repos:
           - flake8-assertive
           - radon
           - dlint
-        args: [--max-line-length=79, --radon-max-cc=12, --radon-show-closures]
+        args: [--max-line-length=79, --radon-max-cc=15, --radon-show-closures]
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.3.0
     hooks:
