@@ -1213,7 +1213,7 @@ class HomeView(TemplateView):
                 "month",
                 "quotation_vehicle_premiums__insurance_vehicle_ratio__insurance_vehicle__name",  # noqa: E501
             )
-            .annotate(total=Count("id"))
+            .annotate(total=Count("id") * 2)
             .order_by(
                 "quotation_vehicle_premiums__insurance_vehicle_ratio__insurance_vehicle__name",  # noqa: E501
                 "year",
