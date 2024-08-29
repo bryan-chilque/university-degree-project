@@ -103,9 +103,9 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="mt-3">
+        {% comment %} <div class="mt-3">
             <p> Total de pólizas registradas: {{ total_issuances }}</p>
-        </div>
+        </div> {% endcomment %}
         {% if page_obj.has_other_pages %}
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">

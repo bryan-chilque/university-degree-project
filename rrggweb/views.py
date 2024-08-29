@@ -1278,12 +1278,12 @@ class QIVListView(QuotationListSupportView):
             "rrggweb:quotation:insurance:vehicle:list",
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
-        total_quotations = (
-            rrgg.models.QuotationInsuranceVehicle.objects.filter(
-                source="quotation"
-            ).count()
-        )
-        context["total_quotations"] = total_quotations
+        # total_quotations = (
+        #     rrgg.models.QuotationInsuranceVehicle.objects.filter(
+        #         source="quotation"
+        #     ).count()
+        # )
+        # context["total_quotations"] = total_quotations
         return context
 
 
@@ -2577,10 +2577,10 @@ class IIVListView(IssuanceListSupportView):
             kwargs={"registrar_id": self.kwargs["registrar_id"]},
         )
         context["type"] = "initial"
-        total_issuances = (
-            rrgg.models.IssuanceInsuranceVehicle.objects.all().count()
-        )
-        context["total_issuances"] = total_issuances
+        # total_issuances = (
+        #     rrgg.models.IssuanceInsuranceVehicle.objects.all().count()
+        # )
+        # context["total_issuances"] = total_issuances
         return context
 
 
